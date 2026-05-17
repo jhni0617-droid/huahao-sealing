@@ -1,5 +1,6 @@
+import Image from "next/image"
 import Link from "next/link"
-import { products, categories, getCategoryCounts } from "@/lib/products"
+import { products, categories, getCategoryCounts, getProductsByCategory } from "@/lib/products"
 import CTASection from "@/components/CTASection"
 import { generateMeta } from "@/lib/utils"
 
@@ -15,7 +16,7 @@ export default function ProductsPage() {
   const categorizedProducts = categories.map((cat) => ({
     ...cat,
     count: counts[cat.slug] || 0,
-    items: products.filter((p) => p.category.toLowerCase().replace(/\s+/g, "-") === cat.slug),
+    items: getProductsByCategory(cat.slug),
   }))
 
   return (
@@ -44,6 +45,17 @@ export default function ProductsPage() {
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {cat.items.map((product) => (
                   <Link key={product.slug} href={`/products/${product.slug}`} className="card p-6 flex flex-col group">
+                    {product.image && (
+                      <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-gray-50 mb-4">
+                        <Image
+                          src={product.image}
+                          alt={product.name}
+                          fill
+                          className="object-contain p-4"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                      </div>
+                    )}
                     <h3 className="font-bold text-lg mb-1 group-hover:text-accent transition-colors">{product.name}</h3>
                     <p className="text-sm text-muted mb-1">{product.model}</p>
                     <p className="text-sm text-muted leading-relaxed mt-3 flex-1">{product.shortDesc}</p>

@@ -304,6 +304,39 @@ export const products: Product[] = [
       { q: "155系列可与哪些国际品牌互换？", a: "155系列按照与约翰克兰、伊格尔博格曼、科士通等国际主流机械密封品牌兼容的尺寸标准设计。请提供具体尺寸以便交叉参考。" },
     ],
   },
+  {
+    slug: "sleeve-series",
+    name: "碳石墨套",
+    model: "CS系列",
+    category: "碳石墨套",
+    description:
+      "碳石墨套（又称碳石墨轴套、衬套）采用高强度碳石墨材料制成，具有优异自润滑性能和耐温耐腐蚀特性。适用于无油润滑或油润滑不足工况下的旋转或往复运动部件支撑与导向。广泛应用于潜水泵、船舶艉轴密封、化工泵及各类工业泵中，可在水下、油中及多种化学品介质中长期稳定运行。",
+    shortDesc: "自润滑碳石墨轴套，耐高温耐腐蚀，适用于泵类及水下设备。",
+    specs: [
+      { label: "型号", value: "CS100 / CS200 / CS300（可按图定制）" },
+      { label: "温度范围", value: "-50°C ~ 300°C（抗氧化浸渍可达350°C）" },
+      { label: "压力范围", value: "≤ 15 MPa" },
+      { label: "转速", value: "≤ 20 m/s" },
+      { label: "适用介质", value: "清水、污水、海水、油类、弱酸弱碱及有机溶剂" },
+      { label: "材料牌号", value: "M126D / M204K / M254K 等" },
+    ],
+    applications: ["潜水泵", "船舶艉轴", "化工泵", "污水泵", "搅拌器", "压缩机"],
+    materials: ["M126D（标准）", "M204K（耐高温）", "M254K（耐腐蚀）", "特殊浸渍定制"],
+    features: [
+      "自润滑性能优异，可在干运转或边界润滑条件下工作",
+      "耐温范围广，抗氧化牌号可承受350°C峰值温度",
+      "化学惰性强，耐酸、碱及有机溶剂侵蚀",
+      "尺寸稳定性好，热膨胀系数低，适合精密配合",
+      "可按客户图纸定制非标尺寸和外形",
+      "摩檫系数低，减少对偶件磨损，延长设备寿命",
+    ],
+    faq: [
+      { q: "碳石墨套需要加油润滑吗？", a: "不需要。碳石墨具有天然自润滑特性，可在无油润滑工况下正常运行。但在条件允许的情况下，辅助润滑可进一步延长使用寿命。" },
+      { q: "是否可以按图纸定制？", a: "完全可以。我们拥有成熟的非标定制能力，提供来图加工服务。请提供详细尺寸图纸或样品，我们的工程师将在24小时内给出方案。" },
+      { q: "碳石墨套适用于海水环境吗？", a: "适用。碳石墨本身化学惰性强，配合专用的耐腐蚀浸渍工艺，可在海水环境中长期稳定运行，是船舶艉轴密封和海水泵的理想选择。" },
+    ],
+    image: "/images/sleeve-product.jpg",
+  },
 ]
 
 export const categories = [
@@ -312,12 +345,22 @@ export const categories = [
   { slug: "seal-rings", name: "密封环", count: 0 },
   { slug: "inlaid-graphite-rings", name: "镶嵌石墨环", count: 0 },
   { slug: "carbon-graphite-bearings", name: "碳石墨轴承", count: 0 },
+  { slug: "carbon-graphite-sleeves", name: "碳石墨套", count: 0 },
 ]
+
+const categorySlugMap: Record<string, string> = {
+  "机械密封": "mechanical-seals",
+  "碳石墨环": "carbon-graphite-rings",
+  "密封环": "seal-rings",
+  "镶嵌石墨环": "inlaid-graphite-rings",
+  "碳石墨轴承": "carbon-graphite-bearings",
+  "碳石墨套": "carbon-graphite-sleeves",
+}
 
 export function getCategoryCounts() {
   const counts: Record<string, number> = {}
   products.forEach((p) => {
-    const catSlug = p.category.toLowerCase().replace(/\s+/g, "-")
+    const catSlug = categorySlugMap[p.category] || p.category.toLowerCase().replace(/\s+/g, "-")
     counts[catSlug] = (counts[catSlug] || 0) + 1
   })
   return counts
@@ -328,5 +371,5 @@ export function getProductBySlug(slug: string): Product | undefined {
 }
 
 export function getProductsByCategory(categorySlug: string): Product[] {
-  return products.filter((p) => p.category.toLowerCase().replace(/\s+/g, "-") === categorySlug)
+  return products.filter((p) => (categorySlugMap[p.category] || p.category.toLowerCase().replace(/\s+/g, "-")) === categorySlug)
 }

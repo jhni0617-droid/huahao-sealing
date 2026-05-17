@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { products, getProductBySlug } from "@/lib/products"
@@ -74,6 +75,17 @@ export default async function ProductDetailPage({ params }: Props) {
             </div>
 
             <div>
+              {product.image && (
+                <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-gray-50 border border-border mb-8">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    fill
+                    className="object-contain p-6"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                </div>
+              )}
               <div className="card p-6 md:p-8">
                 <h2 className="text-xl font-bold text-primary mb-6">技术参数</h2>
                 <table className="spec-table">
