@@ -4,8 +4,8 @@ import CTASection from "@/components/CTASection"
 import { generateMeta } from "@/lib/utils"
 
 export const metadata = generateMeta({
-  title: "Products | Carbon Graphite Seals & Mechanical Seals",
-  description: "Explore our complete range of carbon graphite sealing products including mechanical seals, seal rings, carbon graphite rings, inlaid rings, and graphite bearings.",
+  title: "产品中心 | 碳石墨密封件与机械密封",
+  description: "浏览我们全系列碳石墨密封产品，包括机械密封、密封环、碳石墨环、镶嵌环和石墨轴承。",
   path: "/products",
 })
 
@@ -22,11 +22,10 @@ export default function ProductsPage() {
     <>
       <section className="bg-hero-bg text-white">
         <div className="container-wide py-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Products</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">产品中心</h1>
           <div className="w-[60px] h-[3px] bg-accent mb-4" />
           <p className="text-gray-300 max-w-2xl">
-            Comprehensive range of carbon graphite sealing solutions for every industrial application. Each product
-            is engineered for reliability, durability, and performance.
+            全系列碳石墨密封解决方案，满足每一种工业应用需求。每件产品都经过精心设计，确保可靠性、耐用性和卓越性能。
           </p>
         </div>
       </section>
@@ -38,7 +37,7 @@ export default function ProductsPage() {
               <div className="flex items-center gap-4 mb-8">
                 <h2 className="text-2xl font-bold text-primary">{cat.name}</h2>
                 <span className="text-sm text-muted bg-gray-100 px-3 py-1 rounded-full">
-                  {cat.count} {cat.count === 1 ? "product" : "products"}
+                  {cat.count} {cat.count === 1 ? "个产品" : "个产品"}
                 </span>
               </div>
 
@@ -64,8 +63,8 @@ export default function ProductsPage() {
       </section>
 
       <CTASection
-        title="Need Help Choosing the Right Seal?"
-        subtitle="Describe your application and our engineers will recommend the optimal product within 24 hours."
+        title="需要帮助选择合适的产品？"
+        subtitle="描述您的应用工况，我们的工程师将在24小时内推荐最佳产品方案。"
       />
     </>
   )

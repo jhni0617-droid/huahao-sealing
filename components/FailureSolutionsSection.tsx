@@ -6,13 +6,12 @@ export default function FailureSolutionsSection() {
     <section className="section-padding bg-white">
       <div className="container-wide">
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="text-accent font-bold text-sm tracking-widest uppercase">Engineering Solutions</span>
+          <span className="text-accent font-bold text-sm tracking-widest">工程解决方案</span>
           <h2 className="text-3xl md:text-4xl font-bold text-primary mt-3 mb-4">
-            Common Seal Failures — Solved
+            常见密封故障 — 我们的解决方案
           </h2>
           <p className="text-muted leading-relaxed">
-            Decades of field experience have given us deep insight into real-world sealing challenges. Here is how
-            we solve the most common failure modes.
+            数十年现场经验让我们深刻理解实际密封挑战。以下是我们解决最常见故障模式的方法。
           </p>
         </div>
 
@@ -37,11 +36,11 @@ export default function FailureSolutionsSection() {
               <div className="px-6 pb-6 pt-2 border-t border-border">
                 <div className="grid sm:grid-cols-2 gap-4 mt-4">
                   <div className="bg-primary/5 p-4 rounded">
-                    <div className="text-xs font-semibold text-primary uppercase tracking-wider mb-1">Our Solution</div>
+                    <div className="text-xs font-semibold text-primary tracking-wider mb-1">华豪方案</div>
                     <p className="text-sm leading-relaxed">{item.solution}</p>
                   </div>
                   <div className="bg-green-50 p-4 rounded">
-                    <div className="text-xs font-semibold text-green-700 uppercase tracking-wider mb-1">Result</div>
+                    <div className="text-xs font-semibold text-green-700 tracking-wider mb-1">实际效果</div>
                     <p className="text-sm font-semibold text-green-700">{item.benefit}</p>
                   </div>
                 </div>
@@ -52,7 +51,7 @@ export default function FailureSolutionsSection() {
 
         <div className="text-center mt-10">
           <Link href="/contact" className="btn-primary">
-            Get a Custom Solution
+            获取定制方案
           </Link>
         </div>
       </div>

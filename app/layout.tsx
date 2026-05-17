@@ -11,13 +11,13 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "HuaHao Sealing | Premium Carbon Graphite Sealing Solutions",
+  title: "华豪密封 | 高品质碳石墨密封解决方案",
   description:
-    "Professional manufacturer of carbon graphite seals, mechanical seals, and seal rings. 20+ years expertise serving 5000+ customers in 50+ countries.",
+    "专业生产碳石墨密封件、机械密封、密封环。20+年行业经验，服务全球5000+客户，产品出口50+国家。",
   openGraph: {
-    title: "HuaHao Sealing | Carbon Graphite Sealing Solutions",
+    title: "华豪密封 | 碳石墨密封解决方案",
     description:
-      "Professional manufacturer of carbon graphite seals, mechanical seals, and seal rings. ISO-certified quality.",
+      "专业生产碳石墨密封件、机械密封、密封环。ISO认证品质保证。",
     type: "website",
   },
 }

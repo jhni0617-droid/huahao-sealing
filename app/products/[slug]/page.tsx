@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props) {
   const product = getProductBySlug(slug)
   if (!product) return {}
   return generateMeta({
-    title: `${product.name} (${product.model}) | Carbon Graphite Seal`,
+    title: `${product.name} (${product.model}) | 华豪密封`,
     description: product.shortDesc,
     path: `/products/${slug}`,
   })
@@ -33,9 +33,9 @@ export default async function ProductDetailPage({ params }: Props) {
     <>
       <section className="bg-gray-50 border-b border-border">
         <div className="container-wide py-4 text-sm text-muted">
-          <Link href="/" className="hover:text-primary">Home</Link>
+          <Link href="/" className="hover:text-primary">首页</Link>
           <span className="mx-2">/</span>
-          <Link href="/products" className="hover:text-primary">Products</Link>
+          <Link href="/products" className="hover:text-primary">产品中心</Link>
           <span className="mx-2">/</span>
           <span className="text-foreground">{product.name}</span>
         </div>
@@ -53,14 +53,14 @@ export default async function ProductDetailPage({ params }: Props) {
               <div className="flex flex-wrap gap-4 mb-8">
                 <a href={`https://wa.me/${siteConfig.whatsapp}?text=Inquiry%20about%20${encodeURIComponent(product.name)}`}
                   target="_blank" rel="noopener noreferrer" className="btn-primary">
-                  Inquiry via WhatsApp
+                  WhatsApp咨询
                 </a>
                 <Link href={`/contact?product=${product.slug}`} className="btn-secondary">
-                  Request Quote
+                  获取报价
                 </Link>
               </div>
 
-              <h2 className="text-xl font-bold text-primary mb-4">Features</h2>
+              <h2 className="text-xl font-bold text-primary mb-4">产品特点</h2>
               <ul className="space-y-2 mb-8">
                 {product.features.map((f, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm">
@@ -75,7 +75,7 @@ export default async function ProductDetailPage({ params }: Props) {
 
             <div>
               <div className="card p-6 md:p-8">
-                <h2 className="text-xl font-bold text-primary mb-6">Technical Specifications</h2>
+                <h2 className="text-xl font-bold text-primary mb-6">技术参数</h2>
                 <table className="spec-table">
                   <tbody>
                     {product.specs.map((spec, i) => (
@@ -89,7 +89,7 @@ export default async function ProductDetailPage({ params }: Props) {
               </div>
 
               <div className="card p-6 md:p-8 mt-6">
-                <h2 className="text-xl font-bold text-primary mb-4">Available Materials</h2>
+                <h2 className="text-xl font-bold text-primary mb-4">可选材料</h2>
                 <div className="flex flex-wrap gap-2">
                   {product.materials.map((m) => (
                     <span key={m} className="px-3 py-1.5 bg-gray-50 border border-border rounded text-sm">{m}</span>
@@ -98,7 +98,7 @@ export default async function ProductDetailPage({ params }: Props) {
               </div>
 
               <div className="card p-6 md:p-8 mt-6">
-                <h2 className="text-xl font-bold text-primary mb-4">Applications</h2>
+                <h2 className="text-xl font-bold text-primary mb-4">应用领域</h2>
                 <div className="flex flex-wrap gap-2">
                   {product.applications.map((app) => (
                     <span key={app} className="px-3 py-1.5 bg-accent/5 border border-accent/20 text-accent rounded text-sm font-medium">{app}</span>
@@ -113,7 +113,7 @@ export default async function ProductDetailPage({ params }: Props) {
       {product.faq.length > 0 && (
         <section className="section-padding bg-gray-50">
           <div className="container-wide max-w-4xl">
-            <h2 className="text-2xl font-bold text-primary mb-8 text-center">Frequently Asked Questions</h2>
+            <h2 className="text-2xl font-bold text-primary mb-8 text-center">常见问题</h2>
             <div className="space-y-4">
               {product.faq.map((item, i) => (
                 <details key={i} className="card p-5 [&[open]]:border-primary/20">
@@ -127,8 +127,8 @@ export default async function ProductDetailPage({ params }: Props) {
       )}
 
       <CTASection
-        title={`Interested in ${product.name}?`}
-        subtitle="Contact us for pricing, technical specifications, or custom manufacturing requirements."
+        title={`对 ${product.name} 感兴趣？`}
+        subtitle="联系我们获取报价、技术参数或定制制造需求。"
       />
     </>
   )

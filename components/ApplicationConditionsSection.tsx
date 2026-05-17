@@ -5,13 +5,12 @@ export default function ApplicationConditionsSection() {
     <section className="section-padding bg-gray-50">
       <div className="container-wide">
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="text-accent font-bold text-sm tracking-widest uppercase">Operating Parameters</span>
+          <span className="text-accent font-bold text-sm tracking-widest">运行参数</span>
           <h2 className="text-3xl md:text-4xl font-bold text-primary mt-3 mb-4">
-            Typical Application Conditions
+            典型应用工况参数
           </h2>
           <p className="text-muted leading-relaxed">
-            Carbon graphite seals perform reliably across a wide range of operating conditions. Below are typical
-            parameters for common industrial applications.
+            碳石墨密封件在广泛的运行条件下均能可靠工作。以下是常见工业应用的典型参数范围。
           </p>
         </div>
 
@@ -19,12 +18,12 @@ export default function ApplicationConditionsSection() {
           <table className="w-full text-sm border-collapse">
             <thead>
               <tr className="bg-primary text-white">
-                <th className="text-left px-4 py-3 font-semibold">Industry / Application</th>
-                <th className="text-left px-4 py-3 font-semibold whitespace-nowrap">Temp. Range</th>
-                <th className="text-left px-4 py-3 font-semibold whitespace-nowrap">Pressure</th>
-                <th className="text-left px-4 py-3 font-semibold whitespace-nowrap">Speed</th>
-                <th className="text-left px-4 py-3 font-semibold">Media Compatibility</th>
-                <th className="text-left px-4 py-3 font-semibold whitespace-nowrap">pH Range</th>
+                <th className="text-left px-4 py-3 font-semibold">行业 / 应用</th>
+                <th className="text-left px-4 py-3 font-semibold whitespace-nowrap">温度范围</th>
+                <th className="text-left px-4 py-3 font-semibold whitespace-nowrap">压力</th>
+                <th className="text-left px-4 py-3 font-semibold whitespace-nowrap">速度</th>
+                <th className="text-left px-4 py-3 font-semibold">适用介质</th>
+                <th className="text-left px-4 py-3 font-semibold whitespace-nowrap">pH范围</th>
               </tr>
             </thead>
             <tbody>
@@ -43,8 +42,7 @@ export default function ApplicationConditionsSection() {
         </div>
 
         <div className="mt-6 p-4 bg-accent/5 border border-accent/20 rounded text-sm text-muted text-center">
-          Note: Actual operating limits depend on specific material grade, impregnation type, and application
-          conditions. Contact our engineering team for application-specific recommendations.
+          注：实际运行极限取决于具体材料牌号、浸渍类型和使用条件。请联系我们的工程团队获取针对特定应用的推荐方案。
         </div>
       </div>
     </section>

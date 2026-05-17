@@ -14,11 +14,11 @@ export default function AdvantagesSection() {
       <div className="container-wide">
         <div className="text-center mb-14">
           <h2 className="text-3xl md:text-4xl font-bold text-primary">
-            Why Carbon Graphite?
+            为什么选择碳石墨？
           </h2>
           <div className="industrial-divider mx-auto" />
           <p className="text-muted mt-4 max-w-2xl mx-auto">
-            Carbon graphite sealing materials outperform conventional options in the most demanding industrial environments.
+            在最严苛的工业环境中，碳石墨密封材料的性能全面超越传统选择。
           </p>
         </div>
 
@@ -38,7 +38,7 @@ export default function AdvantagesSection() {
 
         <div className="text-center mt-12">
           <Link href="/products" className="btn-primary">
-            Explore Products
+            浏览产品
           </Link>
         </div>
       </div>

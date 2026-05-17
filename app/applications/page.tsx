@@ -6,30 +6,30 @@ import ApplicationConditionsSection from "@/components/ApplicationConditionsSect
 import { generateMeta } from "@/lib/utils"
 
 export const metadata = generateMeta({
-  title: "Applications | Industries We Serve",
-  description: "Carbon graphite sealing solutions for pump industry, marine, chemical processing, and general industrial applications. Proven reliability across 20+ industries.",
+  title: "应用领域 | 华豪密封",
+  description: "碳石墨密封解决方案，服务于泵行业、船舶、化工处理和通用工业领域。在20+行业中得到验证的可靠性。",
   path: "/applications",
 })
 
 const details: Record<string, { description: string; products: string[] }> = {
   "pump-industry": {
     description:
-      "Our seals are widely used in centrifugal pumps, chemical process pumps, water pumps, and oil pumps. Carbon graphite's self-lubricating properties make it ideal for high-speed rotating applications where reliability is critical.",
+      "我们的密封件广泛应用于离心泵、化工泵、清水泵和油泵。碳石墨的自润滑特性使其成为对可靠性要求苛刻的高速旋转设备的理想选择。",
     products: ["109-series", "58u-series", "m7n-series", "206-series"],
   },
   "marine-industry": {
     description:
-      "Marine environments demand exceptional corrosion resistance. Our specially treated carbon graphite seals and bearings withstand seawater corrosion while maintaining dimensional stability under varying loads.",
+      "船舶环境要求特殊的耐腐蚀性能。我们经过特殊处理的碳石墨密封件和轴承能够承受海水腐蚀，同时在变化载荷下保持尺寸稳定性。",
     products: ["59u-series", "204-series", "58b-series", "109-series"],
   },
   "chemical-processing": {
     description:
-      "Chemical reactors, agitators, and process pumps require seals that resist aggressive media. Our impregnated carbon graphite grades provide excellent chemical resistance and meet stringent safety requirements.",
+      "化工反应釜、搅拌器和工艺泵要求密封件能够抵抗腐蚀性介质。我们的浸渍碳石墨牌号提供优异的耐化学性能，满足严格的安全要求。",
     products: ["m7n-series", "59u-series", "206-series", "bia-series"],
   },
   "general-sealing": {
     description:
-      "From valve stems to compressors and mixers, our standard and custom-engineered sealing solutions serve a broad spectrum of general industrial equipment with reliable, cost-effective performance.",
+      "从阀杆到压缩机和搅拌器，我们的标准及定制工程密封解决方案以可靠、经济的性能服务于各类通用工业设备。",
     products: ["104-series", "155-series", "58b-series", "58u-series"],
   },
 }
@@ -39,10 +39,10 @@ export default function ApplicationsPage() {
     <>
       <section className="bg-hero-bg text-white">
         <div className="container-wide py-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Industries We Serve</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">服务行业</h1>
           <div className="w-[60px] h-[3px] bg-accent mb-4" />
           <p className="text-gray-300 max-w-2xl">
-            Decades of experience solving sealing challenges across the world's most demanding industries.
+            数十年行业经验，为全球最严苛的工业领域解决密封挑战。
           </p>
         </div>
       </section>
@@ -60,7 +60,7 @@ export default function ApplicationsPage() {
                     <p className="text-muted mt-4 leading-relaxed">{detail.description}</p>
 
                     <div className="mt-6">
-                      <h3 className="font-semibold mb-3">Recommended Products</h3>
+                      <h3 className="font-semibold mb-3">推荐产品</h3>
                       <div className="flex flex-wrap gap-2">
                         {detail.products.map((slug) => {
                           const product = products.find((p) => p.slug === slug)
@@ -79,14 +79,14 @@ export default function ApplicationsPage() {
                   </div>
 
                   <div className="card p-6">
-                    <h3 className="font-semibold mb-4">Why Carbon Graphite for {app.title}?</h3>
+                    <h3 className="font-semibold mb-4">为什么 {app.title} 选择碳石墨？</h3>
                     <ul className="space-y-3">
                       {[
-                        "Self-lubricating — no external lubrication required",
-                        "Corrosion-resistant in harsh environments",
-                        "Handles high temperatures and thermal shock",
-                        "Dimensional stability under varying loads",
-                        "Long service life reduces maintenance downtime",
+                        "自润滑 — 无需外部润滑",
+                        "恶劣环境中耐腐蚀",
+                        "耐高温和抗热冲击",
+                        "变载条件下尺寸稳定",
+                        "长寿命减少维护停机时间",
                       ].map((item, i) => (
                         <li key={i} className="flex items-start gap-2 text-sm">
                           <svg className="w-4 h-4 text-accent shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -107,8 +107,8 @@ export default function ApplicationsPage() {
       <ApplicationConditionsSection />
 
       <CTASection
-        title="Not Sure Which Solution Fits Your Application?"
-        subtitle="Tell us about your operating conditions, and our engineers will recommend the optimal sealing solution."
+        title="不确定哪种方案适合您的工况？"
+        subtitle="告诉我们您的运行条件，我们的工程师将为您推荐最佳的密封方案。"
       />
     </>
   )

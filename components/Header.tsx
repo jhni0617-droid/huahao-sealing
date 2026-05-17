@@ -5,12 +5,12 @@ import Link from "next/link"
 import { siteConfig } from "@/lib/constants"
 
 const navItems = [
-  { label: "Home", href: "/" },
-  { label: "Products", href: "/products" },
-  { label: "Applications", href: "/applications" },
-  { label: "Cases", href: "/cases" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { label: "首页", href: "/" },
+  { label: "产品中心", href: "/products" },
+  { label: "应用领域", href: "/applications" },
+  { label: "案例中心", href: "/cases" },
+  { label: "关于我们", href: "/about" },
+  { label: "联系我们", href: "/contact" },
 ]
 
 export default function Header() {
@@ -25,7 +25,7 @@ export default function Header() {
           </div>
           <div>
             <span className="font-bold text-lg text-primary">{siteConfig.name}</span>
-            <span className="hidden sm:inline text-xs text-muted ml-2">Sealing Solutions</span>
+            <span className="hidden sm:inline text-xs text-muted ml-2">密封解决方案</span>
           </div>
         </Link>
 
@@ -45,7 +45,7 @@ export default function Header() {
             rel="noopener noreferrer"
             className="btn-primary text-sm ml-2"
           >
-            WhatsApp
+            WhatsApp咨询
           </a>
         </nav>
 
@@ -75,7 +75,7 @@ export default function Header() {
               rel="noopener noreferrer"
               className="btn-primary text-sm justify-center mt-2"
             >
-              WhatsApp Inquiry
+               WhatsApp咨询
             </a>
           </div>
         </div>

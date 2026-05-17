@@ -2,22 +2,22 @@ import Link from "next/link"
 
 const problems = [
   {
-    title: "Seal Wear & Short Service Life",
+    title: "密封磨损、寿命短",
     description:
-      "Ordinary seals wear out in months, requiring frequent replacements that drive up maintenance costs and inventory carrying costs. Each replacement means disassembling equipment, replacing parts, and lost production time.",
-    metric: "Up to 6x shorter lifespan vs. carbon graphite",
+      "普通密封件使用几个月就开始磨损，频繁更换推高维护成本和备件库存费用。每一次更换都意味着拆解设备、更换零件和生产线停机的损失。",
+    metric: "使用寿命比碳石墨短3-6倍",
   },
   {
-    title: "Leakage & Environmental Risk",
+    title: "泄漏与环保风险",
     description:
-      "Failed seals cause fluid leakage that creates safety hazards, environmental compliance violations, and costly product loss. In chemical and marine applications, a single seal failure can result in regulatory fines and reputational damage.",
-    metric: "70% of pump failures are seal-related",
+      "密封失效导致介质泄漏，带来安全隐患、环保违规处罚和高昂的物料损失。在化工和船舶领域，一次密封故障就可能造成监管罚款和商誉损害。",
+    metric: "70%的泵故障与密封相关",
   },
   {
-    title: "Unplanned Downtime Losses",
+    title: "非计划停机损失",
     description:
-      "Emergency shutdowns due to seal failure disrupt production schedules, delay deliveries, and incur overtime labor costs. Every hour of unplanned downtime directly impacts your bottom line.",
-    metric: "Average downtime cost: hundreds to thousands per hour",
+      "密封故障引发的紧急停机打乱生产计划、延迟交货并产生加班人工成本。每一次非计划停机都直接影响企业利润。",
+    metric: "平均停机成本：每小时数百至数千元",
   },
 ]
 
@@ -26,13 +26,12 @@ export default function ProblemSection() {
     <section className="section-padding bg-gray-50">
       <div className="container-wide">
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="text-accent font-bold text-sm tracking-widest uppercase">Common Challenges</span>
+          <span className="text-accent font-bold text-sm tracking-widest">常见问题</span>
           <h2 className="text-3xl md:text-4xl font-bold text-primary mt-3 mb-4">
-            The True Cost of Seal Failure
+            密封失效的真实成本
           </h2>
           <p className="text-muted leading-relaxed">
-            If you&apos;re experiencing any of these issues, your current sealing solution may be costing you far more
-            than the price of a replacement part.
+            如果您正面临以下问题，您当前的密封方案可能正在让您付出远超零件价格的代价。
           </p>
         </div>
 
@@ -42,7 +41,7 @@ export default function ProblemSection() {
               <h3 className="text-lg font-bold text-primary mb-3">{p.title}</h3>
               <p className="text-sm text-muted leading-relaxed flex-1 mb-4">{p.description}</p>
               <div className="bg-accent/5 border border-accent/20 rounded p-3">
-                <div className="text-xs text-muted mb-0.5">Impact</div>
+                <div className="text-xs text-muted mb-0.5">影响程度</div>
                 <div className="text-sm font-semibold text-accent">{p.metric}</div>
               </div>
             </div>
@@ -51,15 +50,14 @@ export default function ProblemSection() {
 
         <div className="text-center mt-10 p-8 bg-white border border-border rounded-lg">
           <h3 className="text-xl font-bold text-primary mb-3">
-            Carbon Graphite Solves All Three
+            碳石墨密封 — 三者皆可解决
           </h3>
           <p className="text-muted text-sm max-w-2xl mx-auto mb-6">
-            Self-lubricating, wear-resistant, and corrosion-proof — HuaHao carbon graphite seals deliver 3-6x longer
-            service life, eliminate leakage, and drastically reduce unplanned downtime. Backed by 20+ years of
-            manufacturing expertise and ISO 9001 certified quality.
+            自润滑、耐磨、耐腐蚀 — 华豪碳石墨密封件使用寿命延长3-6倍，消除泄漏，大幅减少非计划停机。
+            源于20+年制造经验和ISO 9001认证品质保证。
           </p>
           <Link href="/contact" className="btn-primary">
-            Solve My Seal Problems
+            解决我的密封问题
           </Link>
         </div>
       </div>

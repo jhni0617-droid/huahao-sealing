@@ -3,18 +3,18 @@ import CTASection from "@/components/CTASection"
 import { generateMeta } from "@/lib/utils"
 
 export const metadata = generateMeta({
-  title: "About Us | HuaHao Carbon Graphite Sealing",
-  description: "Learn about HuaHao Sealing's 20+ years of manufacturing expertise, our production facilities, quality control, and commitment to sealing excellence.",
+  title: "关于我们 | 华豪碳石墨密封",
+  description: "了解华豪密封20+年的制造经验、生产设施、质量控制以及对密封卓越品质的承诺。",
   path: "/about",
 })
 
 const milestones = [
-  { year: "2003", event: "Company founded as a specialized carbon graphite sealing manufacturer" },
-  { year: "2008", event: "Expanded production capacity with CNC machining centers" },
-  { year: "2012", event: "Achieved ISO 9001 quality management certification" },
-  { year: "2015", event: "Opened international sales division; exports to 20+ countries" },
-  { year: "2018", event: "Developed advanced anti-oxidation impregnation technology" },
-  { year: "2023", event: "50+ export countries, 5000+ customers served worldwide" },
+  { year: "2003", event: "公司成立，专业从事碳石墨密封件制造" },
+  { year: "2008", event: "引进CNC加工中心，扩大产能" },
+  { year: "2012", event: "通过ISO 9001质量管理体系认证" },
+  { year: "2015", event: "设立国际销售部门，出口至20+国家" },
+  { year: "2018", event: "自主研发先进抗氧化浸渍技术" },
+  { year: "2023", event: "出口50+国家，服务全球5000+客户" },
 ]
 
 export default function AboutPage() {
@@ -22,10 +22,10 @@ export default function AboutPage() {
     <>
       <section className="bg-hero-bg text-white">
         <div className="container-wide py-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">About HuaHao Sealing</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">关于华豪密封</h1>
           <div className="w-[60px] h-[3px] bg-accent mb-4" />
           <p className="text-gray-300 max-w-2xl">
-            Two decades of relentless commitment to carbon graphite sealing excellence.
+            二十年来对碳石墨密封卓越品质的不懈追求。
           </p>
         </div>
       </section>
@@ -34,21 +34,16 @@ export default function AboutPage() {
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
-              <h2 className="text-3xl font-bold text-primary mb-4">Our Story</h2>
+              <h2 className="text-3xl font-bold text-primary mb-4">公司简介</h2>
               <div className="industrial-divider" />
               <p className="text-muted mt-4 leading-relaxed">
-                Founded in 2003, HuaHao Sealing started as a specialized workshop focused on carbon graphite
-                seal ring manufacturing. Over two decades, we have grown into a comprehensive sealing solutions
-                provider serving over 5,000 customers across 50+ countries.
+                华豪密封成立于2003年，最初是一家专注于碳石墨密封环制造的专业工坊。经过二十多年的发展，我们已成长为综合性密封解决方案供应商，服务全球50多个国家的5000多家客户。
               </p>
               <p className="text-muted mt-4 leading-relaxed">
-                Our core expertise lies in understanding the unique properties of carbon graphite materials and
-                applying them to solve real-world sealing challenges. From standard catalog products to custom-engineered
-                solutions, every product we manufacture reflects our commitment to quality, precision, and reliability.
+                我们的核心专长在于深入理解碳石墨材料的独特性能，并将其应用于解决实际密封挑战。从标准目录产品到定制工程方案，我们制造的每一件产品都体现了对质量、精度和可靠性的承诺。
               </p>
               <p className="text-muted mt-4 leading-relaxed">
-                Today, our products are trusted in some of the most demanding industrial environments — from
-                chemical processing plants to marine vessels, power generation facilities to paper mills.
+                如今，我们的产品被广泛应用于最严苛的工业环境——从化工厂到船舶，从发电设施到造纸厂，处处都有华豪密封的身影。
               </p>
             </div>
 
@@ -66,7 +61,7 @@ export default function AboutPage() {
 
       <section className="section-padding bg-gray-50">
         <div className="container-wide">
-          <h2 className="text-3xl font-bold text-primary text-center mb-12">Our Journey</h2>
+          <h2 className="text-3xl font-bold text-primary text-center mb-12">发展历程</h2>
           <div className="max-w-3xl mx-auto">
             {milestones.map((m, i) => (
               <div key={i} className="flex gap-6 pb-8 last:pb-0 relative">
@@ -86,20 +81,20 @@ export default function AboutPage() {
 
       <section className="section-padding bg-white">
         <div className="container-wide">
-          <h2 className="text-3xl font-bold text-primary text-center mb-12">Quality & Manufacturing</h2>
+          <h2 className="text-3xl font-bold text-primary text-center mb-12">质量与制造</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                title: "Raw Material Control",
-                desc: "Every batch of carbon graphite raw material is tested for density, hardness, and purity before production begins.",
+                title: "原材料控制",
+                desc: "每批碳石墨原材料在投产前均经过密度、硬度和纯度检测。",
               },
               {
-                title: "Precision Machining",
-                desc: "Our CNC machining centers achieve dimensional tolerances within microns, ensuring consistent quality across every production run.",
+                title: "精密加工",
+                desc: "CNC加工中心实现微米级尺寸公差，确保每一批次的质量一致性。",
               },
               {
-                title: "Performance Testing",
-                desc: "Each product undergoes rigorous inspection including dimensional verification, pressure testing, and surface quality assessment.",
+                title: "性能检测",
+                desc: "每件产品经过严格的尺寸验证、压力测试和表面质量评估。",
               },
             ].map((item) => (
               <div key={item.title} className="card p-6">
@@ -112,8 +107,8 @@ export default function AboutPage() {
       </section>
 
       <CTASection
-        title="Partner with HuaHao Sealing"
-        subtitle="Whether you need standard products or custom-engineered solutions, our team is ready to support your project."
+        title="与华豪密封合作"
+        subtitle="无论您需要标准产品还是定制工程方案，我们的团队随时为您的项目提供支持。"
       />
     </>
   )

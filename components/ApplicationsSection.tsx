@@ -13,10 +13,10 @@ export default function ApplicationsSection() {
     <section className="section-padding bg-gray-50">
       <div className="container-wide">
         <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary">Industries We Serve</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-primary">服务行业</h2>
           <div className="industrial-divider mx-auto" />
           <p className="text-muted mt-4 max-w-2xl mx-auto">
-            Our sealing solutions are trusted across a wide range of industrial sectors worldwide.
+            我们的密封解决方案在全球各行业领域深受信赖。
           </p>
         </div>
 

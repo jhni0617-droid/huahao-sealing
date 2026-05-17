@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { manufacturingProcess } from "@/lib/constants"
 
 export default function FactoryWorkshopSection() {
@@ -5,23 +6,22 @@ export default function FactoryWorkshopSection() {
     <section className="section-padding bg-white">
       <div className="container-wide">
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="text-accent font-bold text-sm tracking-widest uppercase">Our Manufacturing</span>
+          <span className="text-accent font-bold text-sm tracking-widest">生产制造</span>
           <h2 className="text-3xl md:text-4xl font-bold text-primary mt-3 mb-4">
-            Factory & Production Workshop
+            工厂与生产车间
           </h2>
           <p className="text-muted leading-relaxed">
-            From raw material to finished product, every step is controlled, measured, and documented to ensure
-            consistent quality across every batch.
+            从原材料到成品，每一步都经过控制、测量和记录，确保每一批次的质量一致性。
           </p>
         </div>
 
         {/* Capabilities overview */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
           {[
-            { label: "CNC Machining Centers", desc: "High-precision automated turning & milling with micron-level tolerances" },
-            { label: "Material Testing Lab", desc: "In-house density, hardness, and chemical analysis for every batch" },
-            { label: "Impregnation Workshop", desc: "Advanced resin & metal impregnation lines for customized properties" },
-            { label: "Inspection Station", desc: "CMM, surface profilometer, pressure test rigs — 100% QC" },
+            { label: "CNC加工中心", desc: "高精度自动化车铣，微米级公差控制" },
+            { label: "材料检测实验室", desc: "每批次密度、硬度、化学成分自主分析" },
+            { label: "浸渍处理车间", desc: "先进树脂及金属浸渍生产线，可定制配方" },
+            { label: "检验站", desc: "三坐标测量仪、表面轮廓仪、压力试验台 — 100%全检" },
           ].map((cap) => (
             <div key={cap.label} className="border border-border rounded-lg p-5 bg-gray-50">
               <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center mb-3">
@@ -36,9 +36,20 @@ export default function FactoryWorkshopSection() {
           ))}
         </div>
 
+        {/* Factory image banner */}
+        <div className="relative w-full aspect-[2.5/1] rounded-lg overflow-hidden border border-border mb-12">
+          <Image
+            src="/images/IMG_20260321_153130.jpg"
+            alt="华豪密封车间实景 — 精密加工设备"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+
         {/* Manufacturing process timeline */}
         <div className="relative">
-          <h3 className="text-xl font-bold text-primary text-center mb-10">Manufacturing Process</h3>
+          <h3 className="text-xl font-bold text-primary text-center mb-10">生产工艺流程</h3>
           <div className="space-y-8">
             {manufacturingProcess.map((step, idx) => (
               <div key={step.step} className="relative flex gap-6">
@@ -73,10 +84,9 @@ export default function FactoryWorkshopSection() {
 
         {/* Quality assurance callout */}
         <div className="mt-12 p-6 md:p-8 bg-primary text-white rounded-lg text-center">
-          <h3 className="text-xl font-bold mb-2">ISO 9001 Certified Quality Management</h3>
+          <h3 className="text-xl font-bold mb-2">ISO 9001 认证质量管理体系</h3>
           <p className="text-sm text-gray-300 max-w-2xl mx-auto">
-            Every product is manufactured under a certified quality management system. From raw material
-            traceability to final inspection records, complete documentation accompanies every shipment.
+            所有产品均在认证的质量管理体系下制造。从原材料追溯至最终检验记录，每批出货都附有完整的文档资料。
           </p>
         </div>
       </div>

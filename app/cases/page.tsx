@@ -3,8 +3,8 @@ import CTASection from "@/components/CTASection"
 import { generateMeta } from "@/lib/utils"
 
 export const metadata = generateMeta({
-  title: "Case Studies | HuaHao Sealing Success Stories",
-  description: "Real-world case studies showing how our carbon graphite sealing solutions solved complex industrial challenges for clients worldwide.",
+  title: "案例中心 | 华豪密封成功案例",
+  description: "真实案例研究，展示我们的碳石墨密封方案如何为全球客户解决复杂的工业密封挑战。",
   path: "/cases",
 })
 
@@ -13,10 +13,10 @@ export default function CasesPage() {
     <>
       <section className="bg-hero-bg text-white">
         <div className="container-wide py-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Case Studies</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">案例中心</h1>
           <div className="w-[60px] h-[3px] bg-accent mb-4" />
           <p className="text-gray-300 max-w-2xl">
-            Real challenges, engineered solutions, measurable results.
+            真实挑战，工程解决方案，可量化成果。
           </p>
         </div>
       </section>
@@ -30,7 +30,7 @@ export default function CasesPage() {
                 <h2 className="text-xl font-bold text-primary mb-4">{c.title}</h2>
                 <p className="text-sm text-muted leading-relaxed flex-1 mb-6">{c.description}</p>
                 <div className="bg-green-50 border border-green-200 rounded p-4">
-                  <div className="text-xs text-muted mb-1">Key Result</div>
+                  <div className="text-xs text-muted mb-1">关键成果</div>
                   <div className="text-sm font-semibold text-green-700">{c.result}</div>
                 </div>
               </div>
@@ -38,11 +38,11 @@ export default function CasesPage() {
           </div>
 
           <div className="text-center mt-16">
-            <h2 className="text-2xl font-bold text-primary mb-4">Want to Be Our Next Success Story?</h2>
+            <h2 className="text-2xl font-bold text-primary mb-4">想成为下一个成功案例？</h2>
             <p className="text-muted mb-6 max-w-xl mx-auto">
-              Contact us to discuss how our sealing solutions can solve your specific challenges.
+              联系我们，探讨我们的密封方案如何解决您的特定挑战。
             </p>
-            <a href="/contact" className="btn-primary">Start Your Project</a>
+            <a href="/contact" className="btn-primary">开始您的项目</a>
           </div>
         </div>
       </section>
