@@ -5,8 +5,8 @@ import CTASection from "@/components/CTASection"
 import { generateMeta } from "@/lib/utils"
 
 export const metadata = generateMeta({
-  title: "产品中心 | 碳石墨密封件与机械密封",
-  description: "浏览我们产品系列，包括碳石墨密封环、碳石墨套、碳石墨三瓣环、碳石墨轴承及机械密封等。",
+  title: "产品中心 | 碳石墨密封环、轴套与三瓣环",
+  description: "主营产品：碳石墨密封环、碳石墨轴套、碳石墨三瓣环，支持按图定制。",
   path: "/products",
 })
 

@@ -26,9 +26,8 @@ export default function Footer() {
             <h4 className="font-semibold mb-4">产品系列</h4>
             <ul className="space-y-2 text-sm">
               <li><Link href="/products/seal-rings" className="text-gray-300 hover:text-white">碳石墨密封环</Link></li>
-              <li><Link href="/products" className="text-gray-300 hover:text-white">碳石墨套</Link></li>
-              <li><Link href="/products" className="text-gray-300 hover:text-white">碳石墨三瓣环</Link></li>
-              <li><Link href="/products/carbon-graphite-bearings" className="text-gray-300 hover:text-white">碳石墨轴承</Link></li>
+              <li><Link href="/products/carbon-graphite-sleeves" className="text-gray-300 hover:text-white">碳石墨轴套</Link></li>
+              <li><Link href="/products/three-part-rings" className="text-gray-300 hover:text-white">碳石墨三瓣环</Link></li>
             </ul>
           </div>
 
