@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     description:
       "专业生产碳石墨密封件、机械密封、密封环。ISO认证品质保证。",
     type: "website",
+    url: "https://huahaoindustrial.com",
   },
 }
 

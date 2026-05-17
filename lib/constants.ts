@@ -8,7 +8,7 @@ export const siteConfig = {
   phone: "+86-199-5646-8316",
   whatsapp: "8619956468316",
   address: "中国",
-  website: "https://huahao-sealing.vercel.app",
+  website: "https://huahaoindustrial.com",
 }
 
 export const advantages = [
