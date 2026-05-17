@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "Bash(vercel build:*)": "allow",
+    "Bash(cd * && vercel build:*)": "allow",
+    "Bash(npm:*)": "allow",
+    "Bash(yarn:*)": "allow"
+  }
+}
