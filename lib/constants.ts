@@ -5,8 +5,8 @@ export const siteConfig = {
   description:
     "专业生产碳石墨密封件、机械密封、密封环，应用于泵类、船舶设备、化工处理和通用工业领域。ISO认证品质，20+年行业经验。",
   email: "sales@huahaosealing.com",
-  phone: "+86-xxx-xxxx-xxxx",
-  whatsapp: "+86-xxxxxxxxxxx",
+  phone: "+86-199-5646-8316",
+  whatsapp: "8619956468316",
   address: "中国",
   website: "https://huahao-sealing.vercel.app",
 }
