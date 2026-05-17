@@ -14,7 +14,7 @@ const milestones = [
   { year: "2012", event: "引进先进浸渍处理生产线，提升产品性能" },
   { year: "2015", event: "设立国际销售部门，出口至20+国家" },
   { year: "2018", event: "自主研发先进抗氧化浸渍技术" },
-  { year: "2023", event: "出口50+国家，服务全球5000+客户" },
+  { year: "2023", event: "出口10+国家，服务全球1000+客户" },
 ]
 
 export default function AboutPage() {
@@ -37,7 +37,7 @@ export default function AboutPage() {
               <h2 className="text-3xl font-bold text-primary mb-4">公司简介</h2>
               <div className="industrial-divider" />
               <p className="text-muted mt-4 leading-relaxed">
-                华豪密封成立于2003年，最初是一家专注于碳石墨密封环制造的专业工坊。经过二十多年的发展，我们已成长为综合性密封解决方案供应商，服务全球50多个国家的5000多家客户。
+                华豪密封成立于2003年，最初是一家专注于碳石墨密封环制造的专业工坊。经过二十多年的发展，我们已成长为综合性密封解决方案供应商，服务全球10多个国家的1000多家客户。
               </p>
               <p className="text-muted mt-4 leading-relaxed">
                 我们的核心专长在于深入理解碳石墨材料的独特性能，并将其应用于解决实际密封挑战。从标准目录产品到定制工程方案，我们制造的每一件产品都体现了对质量、精度和可靠性的承诺。

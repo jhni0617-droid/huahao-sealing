@@ -95,8 +95,8 @@ export const cases = [
 
 export const factoryHighlights = [
   { value: "20+", label: "年行业经验" },
-  { value: "5,000+", label: "全球客户" },
-  { value: "50+", label: "出口国家" },
+  { value: "1,000+", label: "全球客户" },
+  { value: "10+", label: "出口国家" },
   { value: "99.8%", label: "出厂合格率" },
 ]
 

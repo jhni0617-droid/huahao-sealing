@@ -51,8 +51,8 @@ export default function FactorySection() {
             <div className="grid grid-cols-4 gap-3">
               {[
                 { label: "20+", sub: "年行业经验" },
-                { label: "5,000+", sub: "服务客户" },
-                { label: "50+", sub: "出口国家" },
+                { label: "1,000+", sub: "服务客户" },
+                { label: "10+", sub: "出口国家" },
                 { label: "200+", sub: "定制方案" },
               ].map((stat) => (
                 <div key={stat.label} className="text-center p-3 bg-white/5 rounded border border-white/10">

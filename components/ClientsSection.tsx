@@ -26,7 +26,7 @@ export default function ClientsSection() {
         <div className="text-center max-w-2xl mx-auto mb-14">
           <span className="text-accent font-bold text-sm tracking-widest">全球布局</span>
           <h2 className="text-3xl md:text-4xl font-bold text-primary mt-3 mb-4">
-            产品出口全球 <span className="text-accent">50+</span> 国家
+            产品出口全球 <span className="text-accent">10+</span> 国家
           </h2>
           <p className="text-muted leading-relaxed">
             客户遍布六大洲，产品远销欧洲、亚洲、美洲和中东，深受全球工业市场信赖。
@@ -36,8 +36,8 @@ export default function ClientsSection() {
         {/* Big stats row */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border rounded-lg overflow-hidden mb-14">
           {[
-            { value: "50+", label: "出口国家" },
-            { value: "5,000+", label: "全球客户" },
+            { value: "10+", label: "出口国家" },
+            { value: "1,000+", label: "全球客户" },
             { value: "20+", label: "出口经验（年）" },
             { value: "6", label: "服务大洲" },
           ].map((s) => (

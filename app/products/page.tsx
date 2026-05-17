@@ -5,7 +5,7 @@ import { generateMeta } from "@/lib/utils"
 
 export const metadata = generateMeta({
   title: "产品中心 | 碳石墨密封件与机械密封",
-  description: "浏览我们全系列碳石墨密封产品，包括机械密封、密封环、碳石墨环、镶嵌环和石墨轴承。",
+  description: "浏览我们产品系列，包括碳石墨密封环、碳石墨套、碳石墨三瓣环、碳石墨轴承及机械密封等。",
   path: "/products",
 })
 

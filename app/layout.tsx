@@ -13,7 +13,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "华豪密封 | 高品质碳石墨密封解决方案",
   description:
-    "专业生产碳石墨密封件、机械密封、密封环。20+年行业经验，服务全球5000+客户，产品出口50+国家。",
+    "专业生产碳石墨密封件、机械密封、密封环。20+年行业经验，服务全球1000+客户，产品出口10+国家。",
   openGraph: {
     title: "华豪密封 | 碳石墨密封解决方案",
     description:
