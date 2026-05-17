@@ -3,7 +3,7 @@ export const siteConfig = {
   fullName: "华豪碳石墨密封有限公司",
   slogan: "高品质碳石墨密封解决方案",
   description:
-    "专业生产碳石墨密封件、机械密封、密封环，应用于泵类、船舶设备、化工处理和通用工业领域。ISO认证品质，20+年行业经验。",
+    "专业生产碳石墨密封件、机械密封、密封环，应用于泵类、船舶设备、化工处理和通用工业领域。20+年行业经验。",
   email: "sales@huahaosealing.com",
   phone: "+86-199-5646-8316",
   whatsapp: "8619956468316",
@@ -97,7 +97,7 @@ export const factoryHighlights = [
   { value: "20+", label: "年行业经验" },
   { value: "5,000+", label: "全球客户" },
   { value: "50+", label: "出口国家" },
-  { value: "ISO 9001", label: "质量认证" },
+  { value: "99.8%", label: "出厂合格率" },
 ]
 
 export const clientCountries = [
@@ -129,7 +129,7 @@ export const manufacturingProcess = [
   {
     step: 1,
     title: "原材料筛选",
-    description: "从ISO认证供应商采购高纯度碳石墨，在进入生产前进行密度、硬度和纯度的严格检测。",
+    description: "从认证供应商采购高纯度碳石墨，在进入生产前进行密度、硬度和纯度的严格检测。",
     details: ["密度与孔隙率检测", "硬度验证", "化学成分纯度分析", "批次可追溯"],
   },
   {

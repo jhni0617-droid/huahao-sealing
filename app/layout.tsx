@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "华豪密封 | 碳石墨密封解决方案",
     description:
-      "专业生产碳石墨密封件、机械密封、密封环。ISO认证品质保证。",
+      "专业生产碳石墨密封件、机械密封、密封环。20+年行业经验。",
     type: "website",
     url: "https://huahaoindustrial.com",
   },

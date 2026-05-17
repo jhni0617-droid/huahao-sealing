@@ -11,7 +11,7 @@ export const metadata = generateMeta({
 const milestones = [
   { year: "2003", event: "公司成立，专业从事碳石墨密封件制造" },
   { year: "2008", event: "引进CNC加工中心，扩大产能" },
-  { year: "2012", event: "通过ISO 9001质量管理体系认证" },
+  { year: "2012", event: "引进先进浸渍处理生产线，提升产品性能" },
   { year: "2015", event: "设立国际销售部门，出口至20+国家" },
   { year: "2018", event: "自主研发先进抗氧化浸渍技术" },
   { year: "2023", event: "出口50+国家，服务全球5000+客户" },

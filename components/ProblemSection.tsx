@@ -54,7 +54,7 @@ export default function ProblemSection() {
           </h3>
           <p className="text-muted text-sm max-w-2xl mx-auto mb-6">
             自润滑、耐磨、耐腐蚀 — 华豪碳石墨密封件使用寿命延长3-6倍，消除泄漏，大幅减少非计划停机。
-            源于20+年制造经验和ISO 9001认证品质保证。
+            源于20+年制造经验和对品质的持续追求。
           </p>
           <Link href="/contact" className="btn-primary">
             解决我的密封问题
