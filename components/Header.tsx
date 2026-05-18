@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { useTranslations } from "next-intl"
 import LanguageSwitcher from "@/components/LanguageSwitcher"
 
@@ -22,14 +23,15 @@ export default function Header() {
   return (
     <header className="bg-white border-b border-border sticky top-0 z-50">
       <div className="container-wide flex items-center justify-between h-16">
-        <Link href="/" className="flex items-center gap-2 shrink-0">
-          <div className="w-8 h-8 bg-primary rounded flex items-center justify-center">
-            <span className="text-white font-bold text-sm">H</span>
-          </div>
-          <div>
-            <span className="font-bold text-lg text-primary">{t("company.name")}</span>
-            <span className="hidden sm:inline text-xs text-muted ml-2">{t("company.tagline")}</span>
-          </div>
+        <Link href="/" className="flex items-center gap-3 shrink-0">
+          <Image
+            src="/images/logo.jpg"
+            alt={t("company.name")}
+            width={120}
+            height={40}
+            className="h-10 w-auto object-contain"
+            priority
+          />
         </Link>
 
         <nav className="hidden md:flex items-center gap-1">
