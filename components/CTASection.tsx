@@ -1,5 +1,7 @@
+"use client"
+
 import Link from "next/link"
-import { getTranslations } from "next-intl/server"
+import { useTranslations } from "next-intl"
 import { siteConfig } from "@/lib/constants"
 
 interface CTAProps {
@@ -9,8 +11,8 @@ interface CTAProps {
   primaryHref?: string
 }
 
-export default async function CTASection({ title, subtitle, primaryLabel, primaryHref }: CTAProps) {
-  const t = await getTranslations("common")
+export default function CTASection({ title, subtitle, primaryLabel, primaryHref }: CTAProps) {
+  const t = useTranslations("common")
 
   return (
     <section className="bg-hero-bg text-white">

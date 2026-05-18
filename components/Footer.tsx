@@ -1,9 +1,11 @@
+"use client"
+
 import Link from "next/link"
-import { getTranslations } from "next-intl/server"
+import { useTranslations } from "next-intl"
 import { siteConfig, factoryHighlights } from "@/lib/constants"
 
-export default async function Footer() {
-  const t = await getTranslations()
+export default function Footer() {
+  const t = useTranslations()
 
   return (
     <footer className="bg-primary text-white">
