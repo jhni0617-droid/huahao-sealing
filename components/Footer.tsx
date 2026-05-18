@@ -17,6 +17,7 @@ export default function Footer() {
               <li><Link href="/products" className="text-gray-300 hover:text-white">产品中心</Link></li>
               <li><Link href="/applications" className="text-gray-300 hover:text-white">应用领域</Link></li>
               <li><Link href="/cases" className="text-gray-300 hover:text-white">案例中心</Link></li>
+              <li><Link href="/faq" className="text-gray-300 hover:text-white">常见问题</Link></li>
               <li><Link href="/about" className="text-gray-300 hover:text-white">关于我们</Link></li>
               <li><Link href="/contact" className="text-gray-300 hover:text-white">联系我们</Link></li>
             </ul>
@@ -25,9 +26,9 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-4">产品系列</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/products/seal-rings" className="text-gray-300 hover:text-white">碳石墨密封环</Link></li>
-              <li><Link href="/products/carbon-graphite-sleeves" className="text-gray-300 hover:text-white">碳石墨轴套</Link></li>
-              <li><Link href="/products/three-part-rings" className="text-gray-300 hover:text-white">碳石墨三瓣环</Link></li>
+              <li><Link href="/products#seal-rings" className="text-gray-300 hover:text-white">碳石墨密封环</Link></li>
+              <li><Link href="/products#carbon-graphite-sleeves" className="text-gray-300 hover:text-white">碳石墨轴套</Link></li>
+              <li><Link href="/products#three-part-rings" className="text-gray-300 hover:text-white">碳石墨三瓣环</Link></li>
             </ul>
           </div>
 

@@ -1,4 +1,4 @@
-import Image from "next/image"
+import HeroCarousel from "@/components/HeroCarousel"
 
 export default function FactorySection() {
   return (
@@ -12,15 +12,9 @@ export default function FactorySection() {
       />
       <div className="container-wide py-16 md:py-24">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Image */}
-          <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden border border-white/10 order-2 lg:order-1">
-            <Image
-              src="/images/IMG_20260321_153130.jpg"
-              alt="华豪密封工厂车间 — CNC加工设备实景"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
+          {/* Carousel left side */}
+          <div className="order-2 lg:order-1">
+            <HeroCarousel />
           </div>
 
           {/* Content */}

@@ -34,38 +34,39 @@ export default function ProductsPage() {
       <section className="section-padding">
         <div className="container-wide">
           {categorizedProducts.map((cat) => (
-            <div key={cat.slug} className="mb-16 last:mb-0">
+            <div key={cat.slug} id={cat.slug} className="mb-16 last:mb-0">
               <div className="flex items-center gap-4 mb-8">
                 <h2 className="text-2xl font-bold text-primary">{cat.name}</h2>
                 <span className="text-sm text-muted bg-gray-100 px-3 py-1 rounded-full">
-                  {cat.count} {cat.count === 1 ? "个产品" : "个产品"}
+                  {cat.count} 个产品
                 </span>
               </div>
 
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid sm:grid-cols-3 lg:grid-cols-4 gap-4">
                 {cat.items.map((product) => (
-                  <Link key={product.slug} href={`/products/${product.slug}`} className="card p-6 flex flex-col group">
+                  <Link key={product.slug} href={`/products/${product.slug}`} className="card p-4 flex flex-col group hover:shadow-md transition-shadow">
                     {product.image && (
-                      <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-gray-50 mb-4">
+                      <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-gray-50 mb-3">
                         <Image
                           src={product.image}
                           alt={product.name}
                           fill
-                          className="object-contain p-4"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-contain p-3"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                         />
                       </div>
                     )}
-                    <h3 className="font-bold text-lg mb-1 group-hover:text-accent transition-colors">{product.name}</h3>
-                    <p className="text-sm text-muted mb-1">{product.model}</p>
-                    <p className="text-sm text-muted leading-relaxed mt-3 flex-1">{product.shortDesc}</p>
-                    <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-border">
-                      {product.applications.slice(0, 3).map((app) => (
-                        <span key={app} className="text-xs bg-gray-50 border border-border px-2 py-1 rounded">
-                          {app}
-                        </span>
-                      ))}
-                    </div>
+                    <h3 className="font-semibold text-sm mb-1 group-hover:text-accent transition-colors">{product.name}</h3>
+                    <p className="text-xs text-muted leading-relaxed flex-1">{product.shortDesc}</p>
+                    {cat.slug !== "seal-rings" && product.applications.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5 mt-3 pt-3 border-t border-border">
+                        {product.applications.slice(0, 3).map((app) => (
+                          <span key={app} className="text-[10px] bg-gray-50 border border-border px-1.5 py-0.5 rounded">
+                            {app}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </Link>
                 ))}
               </div>

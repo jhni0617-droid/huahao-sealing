@@ -11,7 +11,7 @@
   --color-muted: #6b7280;
   --color-border: #d1d5db;
   --color-hero-bg: #1B2838;
-  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-sans: "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, monospace;
 }
 

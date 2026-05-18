@@ -18,7 +18,7 @@ export default function CasesSection() {
             <div key={i} className="card p-6 flex flex-col">
               <div className="text-xs font-semibold text-accent uppercase tracking-wider mb-2">{c.company}</div>
               <h3 className="font-bold text-lg mb-3">{c.title}</h3>
-              <p className="text-sm text-muted leading-relaxed mb-4 flex-1">{c.description}</p>
+              <p className="text-sm text-muted leading-relaxed mb-4 flex-1 line-clamp-4">{c.condition}</p>
               <div className="pt-4 border-t border-border">
                 <div className="text-xs text-muted mb-1">成果</div>
                 <div className="text-sm font-semibold text-green-700">{c.result}</div>
