@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { failureSolutions } from "@/lib/constants"
-import Link from "next/link"
+import { Link } from "@/i18n/routing"
 
 const industryColors: Record<string, string> = {
   "化工泵": "bg-blue-50 text-blue-700 border-blue-200",

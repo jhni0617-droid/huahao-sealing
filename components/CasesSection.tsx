@@ -1,4 +1,4 @@
-import Link from "next/link"
+import { Link } from "@/i18n/routing"
 import { cases } from "@/lib/constants"
 
 export default function CasesSection() {

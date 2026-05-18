@@ -1,4 +1,4 @@
-import Link from "next/link"
+import { Link } from "@/i18n/routing"
 import { applications } from "@/lib/constants"
 import CTASection from "@/components/CTASection"
 import ApplicationConditionsSection from "@/components/ApplicationConditionsSection"

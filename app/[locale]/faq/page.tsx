@@ -1,4 +1,4 @@
-import Link from "next/link"
+import { Link } from "@/i18n/routing"
 import { coreTables, faqCategories, formulas } from "@/lib/faq-data"
 import type { FAQItem } from "@/lib/faq-data"
 import FAQAccordion from "@/components/FAQAccordion"

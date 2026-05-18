@@ -1,5 +1,5 @@
 import Image from "next/image"
-import Link from "next/link"
+import { Link } from "@/i18n/routing"
 import { products, categories, getCategoryCounts, getProductsByCategory } from "@/lib/products"
 import CTASection from "@/components/CTASection"
 import { generateMeta } from "@/lib/utils"

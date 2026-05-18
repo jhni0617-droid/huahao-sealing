@@ -1,5 +1,5 @@
 import Image from "next/image"
-import Link from "next/link"
+import { Link } from "@/i18n/routing"
 import { notFound } from "next/navigation"
 import { products, getProductBySlug } from "@/lib/products"
 import CTASection from "@/components/CTASection"
