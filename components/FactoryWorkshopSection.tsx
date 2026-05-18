@@ -41,7 +41,7 @@ export default function FactoryWorkshopSection() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={cap.icon} />
                 </svg>
               </div>
-              <h4 className="font-semibold text-sm">{cap.label}</h4>
+              <h3 className="font-semibold text-sm">{cap.label}</h3>
               <p className="text-xs text-muted mt-1 leading-relaxed">{cap.desc}</p>
             </div>
           ))}

@@ -103,7 +103,7 @@ export default function StatsSection() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={f.icon} />
                 </svg>
               </div>
-              <h4 className="text-sm font-semibold mb-1">{f.title}</h4>
+              <h3 className="text-sm font-semibold mb-1">{f.title}</h3>
               <p className="text-[11px] text-gray-500 leading-relaxed">{f.desc}</p>
             </div>
           ))}

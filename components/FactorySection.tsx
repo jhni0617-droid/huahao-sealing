@@ -35,7 +35,7 @@ export default function FactorySection() {
                 { label: "定制方案", desc: "工程支持特殊需求" },
               ].map((item) => (
                 <div key={item.label} className="bg-white/5 border border-white/10 rounded p-4">
-                  <h4 className="font-semibold text-sm text-accent">{item.label}</h4>
+                  <h3 className="font-semibold text-sm text-accent">{item.label}</h3>
                   <p className="text-xs text-gray-400 mt-1">{item.desc}</p>
                 </div>
               ))}

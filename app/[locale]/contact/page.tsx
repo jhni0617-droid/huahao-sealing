@@ -29,7 +29,7 @@ export default async function ContactPage(props: { searchParams?: Promise<{ prod
           <div className="grid lg:grid-cols-5 gap-10">
             <div className="lg:col-span-2 space-y-6">
               <div className="card p-6">
-                <h3 className="font-bold mb-4">联系信息</h3>
+                <h2 className="font-bold mb-4">联系信息</h2>
                 <div className="space-y-4 text-sm">
                   <div>
                     <div className="text-muted text-xs tracking-wider mb-1">邮箱</div>
@@ -60,7 +60,7 @@ export default async function ContactPage(props: { searchParams?: Promise<{ prod
               </div>
 
               <div className="card p-6">
-                <h3 className="font-bold mb-3">为什么选择华豪？</h3>
+                <h2 className="font-bold mb-3">为什么选择华豪？</h2>
                 <ul className="space-y-2 text-sm text-muted">
                   <li className="flex items-start gap-2">
                     <svg className="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
