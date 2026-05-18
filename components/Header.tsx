@@ -27,11 +27,15 @@ export default function Header() {
           <Image
             src="/images/logo.jpg"
             alt={t("company.name")}
-            width={120}
-            height={40}
-            className="h-10 w-auto object-contain"
+            width={160}
+            height={52}
+            className="h-12 w-auto object-contain"
             priority
           />
+          <div className="flex flex-col leading-tight">
+            <span className="font-bold text-lg text-primary">{t("company.name")}</span>
+            <span className="text-xs text-muted">{t("company.tagline")}</span>
+          </div>
         </Link>
 
         <nav className="hidden md:flex items-center gap-1">
