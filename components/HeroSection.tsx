@@ -7,7 +7,10 @@ import dynamic from "next/dynamic"
 import { useTranslations } from "next-intl"
 import { siteConfig, factoryHighlights } from "@/lib/constants"
 
-const HeroParticles = dynamic(() => import("@/components/HeroParticles"), { ssr: false })
+const HeroParticles = dynamic(() => import("@/components/HeroParticles"), {
+  ssr: false,
+  loading: () => null,
+})
 
 const carouselImages = [
   { src: "/images/轴套/IMG_20260408_150153.jpg", label: "碳石墨轴套 · CS 系列" },

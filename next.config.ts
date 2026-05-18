@@ -10,6 +10,9 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: __dirname,
   },
+  experimental: {
+    optimizePackageImports: ["next-intl", "@react-three/fiber", "three", "three-stdlib"],
+  },
 }
 
 export default withNextIntl(nextConfig)
