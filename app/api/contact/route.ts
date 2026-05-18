@@ -9,8 +9,8 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const { name, email, phone, company, productType, industry, temperature, pressure, medium, speed, quantity, message, product, fileName, fileContent } = body
 
-    if (!name || !email || !message) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
+    if (!email || !message) {
+      return NextResponse.json({ error: "请填写邮箱和留言" }, { status: 400 })
     }
 
     // Save to database
