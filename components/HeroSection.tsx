@@ -130,13 +130,13 @@ export default function HeroSection() {
           </div>
 
           {/* ======= Right: Product Carousel ======= */}
-          <div className="hidden lg:flex flex-col items-center">
-            <div className="relative">
+          <div className="flex flex-col items-center">
+            <div className="relative w-full max-w-[480px]">
               {/* Glow behind card */}
               <div className="absolute -inset-6 bg-accent/10 blur-[60px] rounded-full opacity-60 transition-opacity duration-700" />
 
               {/* Glass card */}
-              <div className="relative w-[480px] h-[480px] rounded-[28px] overflow-hidden border border-white/[0.08] bg-white/[0.04] backdrop-blur-sm shadow-[0_30px_80px_-10px_rgba(0,0,0,0.5)]">
+              <div className="relative w-full aspect-square max-h-[480px] rounded-[28px] overflow-hidden border border-white/[0.08] bg-white/[0.04] backdrop-blur-sm shadow-[0_30px_80px_-10px_rgba(0,0,0,0.5)]">
                 {carouselImages.map((img, idx) => (
                   <div
                     key={img.src}
