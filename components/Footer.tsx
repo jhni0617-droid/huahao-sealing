@@ -1,7 +1,10 @@
 import Link from "next/link"
+import { getTranslations } from "next-intl/server"
 import { siteConfig, factoryHighlights } from "@/lib/constants"
 
-export default function Footer() {
+export default async function Footer() {
+  const t = await getTranslations()
+
   return (
     <footer className="bg-primary text-white">
       <div className="container-wide py-16">
@@ -12,32 +15,32 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">快速链接</h4>
+            <h4 className="font-semibold mb-4">{t("footer.quickLinks")}</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/products" className="text-gray-300 hover:text-white">产品中心</Link></li>
-              <li><Link href="/applications" className="text-gray-300 hover:text-white">应用领域</Link></li>
-              <li><Link href="/cases" className="text-gray-300 hover:text-white">案例中心</Link></li>
-              <li><Link href="/faq" className="text-gray-300 hover:text-white">常见问题</Link></li>
-              <li><Link href="/about" className="text-gray-300 hover:text-white">关于我们</Link></li>
-              <li><Link href="/contact" className="text-gray-300 hover:text-white">联系我们</Link></li>
+              <li><Link href="/products" className="text-gray-300 hover:text-white">{t("nav.products")}</Link></li>
+              <li><Link href="/applications" className="text-gray-300 hover:text-white">{t("nav.applications")}</Link></li>
+              <li><Link href="/cases" className="text-gray-300 hover:text-white">{t("nav.cases")}</Link></li>
+              <li><Link href="/faq" className="text-gray-300 hover:text-white">{t("nav.faq")}</Link></li>
+              <li><Link href="/about" className="text-gray-300 hover:text-white">{t("nav.about")}</Link></li>
+              <li><Link href="/contact" className="text-gray-300 hover:text-white">{t("nav.contact")}</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">产品系列</h4>
+            <h4 className="font-semibold mb-4">{t("footer.productSeries")}</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/products#seal-rings" className="text-gray-300 hover:text-white">碳石墨密封环</Link></li>
-              <li><Link href="/products#carbon-graphite-sleeves" className="text-gray-300 hover:text-white">碳石墨轴套</Link></li>
-              <li><Link href="/products#three-part-rings" className="text-gray-300 hover:text-white">碳石墨三瓣环</Link></li>
+              <li><Link href="/products#seal-rings" className="text-gray-300 hover:text-white">{t("footer.sealRings")}</Link></li>
+              <li><Link href="/products#carbon-graphite-sleeves" className="text-gray-300 hover:text-white">{t("footer.bushings")}</Link></li>
+              <li><Link href="/products#three-part-rings" className="text-gray-300 hover:text-white">{t("footer.splitRings")}</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">联系方式</h4>
+            <h4 className="font-semibold mb-4">{t("footer.contact")}</h4>
             <div className="text-sm text-gray-300 space-y-2">
-              <p>邮箱: {siteConfig.email}</p>
-              <p>电话: {siteConfig.phone}</p>
-              <p>地址: {siteConfig.address}</p>
+              <p>{t("footer.email")}: {siteConfig.email}</p>
+              <p>{t("footer.phone")}: {siteConfig.phone}</p>
+              <p>{t("footer.address")}: {siteConfig.address}</p>
             </div>
             <a
               href={`https://wa.me/${siteConfig.whatsapp}`}
@@ -45,7 +48,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="inline-block mt-4 px-4 py-2 bg-accent text-white text-sm font-semibold rounded"
             >
-              WhatsApp咨询
+              {t("common.whatsapp")}
             </a>
           </div>
         </div>
@@ -60,7 +63,7 @@ export default function Footer() {
             ))}
           </div>
           <p className="text-center text-sm text-gray-400">
-            &copy; {new Date().getFullYear()} {siteConfig.fullName}. 版权所有.
+            &copy; {new Date().getFullYear()} {siteConfig.fullName}. {t("footer.copyright")}.
           </p>
         </div>
       </div>

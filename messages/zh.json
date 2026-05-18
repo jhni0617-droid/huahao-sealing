@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "home": "首页",
+    "products": "产品中心",
+    "applications": "应用领域",
+    "cases": "案例中心",
+    "faq": "常见问题",
+    "about": "关于我们",
+    "contact": "联系我们",
+    "whatsapp": "WhatsApp咨询"
+  },
+  "footer": {
+    "quickLinks": "快速链接",
+    "productSeries": "产品系列",
+    "contact": "联系方式",
+    "sealRings": "碳石墨密封环",
+    "bushings": "碳石墨轴套",
+    "splitRings": "碳石墨三瓣环",
+    "copyright": "版权所有"
+  },
+  "common": {
+    "ctaTitle": "准备好优化您的密封方案了吗？",
+    "ctaSubtitle": "联系我们的工程团队获取技术参数、定制方案或有竞争力的报价。我们将在24小时内回复。",
+    "ctaButton": "获取报价",
+    "whatsapp": "WhatsApp咨询"
+  },
+  "home": {
+    "hero": {
+      "tag": "自润滑 · 耐高温 · 耐腐蚀 · 耐磨",
+      "title1": "高品质碳石墨",
+      "title2": "密封解决方案",
+      "description": "专业生产碳石墨密封环、碳石墨轴套/轴承、碳石墨三瓣环，支持按图定制。服务全球1000+客户，产品出口15+国家。",
+      "ctaQuote": "获取报价",
+      "ctaWhatsApp": "WhatsApp咨询",
+      "ctaProducts": "查看产品"
+    }
+  },
+  "company": {
+    "name": "华豪密封",
+    "tagline": "密封解决方案"
+  }
+}

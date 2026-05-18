@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "home": "홈",
+    "products": "제품",
+    "applications": "응용 분야",
+    "cases": "사례",
+    "faq": "FAQ",
+    "about": "회사 소개",
+    "contact": "문의",
+    "whatsapp": "WhatsApp"
+  },
+  "footer": {
+    "quickLinks": "바로가기",
+    "productSeries": "제품 시리즈",
+    "contact": "연락처",
+    "sealRings": "카본 그라파이트 씰링",
+    "bushings": "카본 그라파이트 부싱",
+    "splitRings": "카본 그라파이트 스플릿 링",
+    "copyright": "All Rights Reserved"
+  },
+  "common": {
+    "ctaTitle": "씰 솔루션을 최적화할 준비가 되셨습니까?",
+    "ctaSubtitle": "기술 사양, 맞춤 솔루션 또는 경쟁력 있는 견적을 위해 엔지니어링 팀에 문의하십시오. 24시간 이내에 답변드립니다.",
+    "ctaButton": "견적 받기",
+    "whatsapp": "WhatsApp"
+  },
+  "home": {
+    "hero": {
+      "tag": "자체 윤활 · 내고온 · 내부식 · 내마모",
+      "title1": "고품질 카본 그라파이트",
+      "title2": "씰 솔루션",
+      "description": "카본 그라파이트 씰링, 부싱/베어링, 스플릿 링의 전문 제조업체. 도면에 따른 맞춤 가공 지원.",
+      "ctaQuote": "견적",
+      "ctaWhatsApp": "WhatsApp",
+      "ctaProducts": "제품 보기"
+    }
+  },
+  "company": {
+    "name": "Huahao Sealing",
+    "tagline": "씰 솔루션"
+  }
+}

@@ -7,7 +7,7 @@ import { generateMeta } from "@/lib/utils"
 import { siteConfig } from "@/lib/constants"
 
 interface Props {
-  params: Promise<{ slug: string }>
+  params: Promise<{ locale: string; slug: string }>
 }
 
 export async function generateStaticParams() {

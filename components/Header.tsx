@@ -2,31 +2,33 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { siteConfig } from "@/lib/constants"
-
-const navItems = [
-  { label: "首页", href: "/" },
-  { label: "产品中心", href: "/products" },
-  { label: "应用领域", href: "/applications" },
-  { label: "案例中心", href: "/cases" },
-  { label: "常见问题", href: "/faq" },
-  { label: "关于我们", href: "/about" },
-  { label: "联系我们", href: "/contact" },
-]
+import { useTranslations } from "next-intl"
+import LanguageSwitcher from "@/components/LanguageSwitcher"
 
 export default function Header() {
   const [open, setOpen] = useState(false)
+  const t = useTranslations()
+
+  const navItems = [
+    { label: t("nav.home"), href: "/" },
+    { label: t("nav.products"), href: "/products" },
+    { label: t("nav.applications"), href: "/applications" },
+    { label: t("nav.cases"), href: "/cases" },
+    { label: t("nav.faq"), href: "/faq" },
+    { label: t("nav.about"), href: "/about" },
+    { label: t("nav.contact"), href: "/contact" },
+  ]
 
   return (
     <header className="bg-white border-b border-border sticky top-0 z-50">
       <div className="container-wide flex items-center justify-between h-16">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2 shrink-0">
           <div className="w-8 h-8 bg-primary rounded flex items-center justify-center">
             <span className="text-white font-bold text-sm">H</span>
           </div>
           <div>
-            <span className="font-bold text-lg text-primary">{siteConfig.name}</span>
-            <span className="hidden sm:inline text-xs text-muted ml-2">密封解决方案</span>
+            <span className="font-bold text-lg text-primary">{t("company.name")}</span>
+            <span className="hidden sm:inline text-xs text-muted ml-2">{t("company.tagline")}</span>
           </div>
         </Link>
 
@@ -40,21 +42,25 @@ export default function Header() {
               {item.label}
             </Link>
           ))}
+          <LanguageSwitcher />
           <a
-            href={`https://wa.me/${siteConfig.whatsapp}`}
+            href={`https://wa.me/8615055335103`}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary text-sm ml-2"
           >
-            WhatsApp咨询
+            {t("nav.whatsapp")}
           </a>
         </nav>
 
-        <button className="md:hidden p-2" onClick={() => setOpen(!open)} aria-label="Menu">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            {open ? <path d="M6 6l12 12M6 18L18 6" /> : <path d="M4 6h16M4 12h16M4 18h16" />}
-          </svg>
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <LanguageSwitcher />
+          <button className="p-2" onClick={() => setOpen(!open)} aria-label="Menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              {open ? <path d="M6 6l12 12M6 18L18 6" /> : <path d="M4 6h16M4 12h16M4 18h16" />}
+            </svg>
+          </button>
+        </div>
       </div>
 
       {open && (
@@ -71,12 +77,12 @@ export default function Header() {
               </Link>
             ))}
             <a
-              href={`https://wa.me/${siteConfig.whatsapp}`}
+              href={`https://wa.me/8615055335103`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary text-sm justify-center mt-2"
             >
-               WhatsApp咨询
+               {t("nav.whatsapp")}
             </a>
           </div>
         </div>

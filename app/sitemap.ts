@@ -1,4 +1,5 @@
 import { products } from "@/lib/products"
+import { routing } from "@/i18n/routing"
 
 const baseUrl = "https://huahao-sealing.vercel.app"
 
@@ -13,19 +14,38 @@ const staticRoutes = [
 ]
 
 export default async function sitemap() {
-  const routes = staticRoutes.map((r) => ({
-    url: `${baseUrl}${r.path}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: r.priority,
-  }))
+  const defaultLocale = routing.defaultLocale
+  const locales = routing.locales
 
-  const productRoutes = products.map((p) => ({
-    url: `${baseUrl}/products/${p.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: "0.6",
-  }))
+  const routes = staticRoutes.flatMap((r) => {
+    const entries = locales.map((locale) => ({
+      url: locale === defaultLocale
+        ? `${baseUrl}${r.path}`
+        : `${baseUrl}/${locale}${r.path}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: r.priority,
+      alternates: {
+        languages: Object.fromEntries(
+          locales.map((l) => [l, l === defaultLocale
+            ? `${baseUrl}${r.path}`
+            : `${baseUrl}/${l}${r.path}`])
+        ),
+      },
+    }))
+    return entries
+  })
+
+  const productRoutes = products.flatMap((p) =>
+    locales.map((locale) => ({
+      url: locale === defaultLocale
+        ? `${baseUrl}/products/${p.slug}`
+        : `${baseUrl}/${locale}/products/${p.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: "0.6" as const,
+    }))
+  )
 
   return [...routes, ...productRoutes]
 }

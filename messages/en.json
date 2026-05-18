@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "applications": "Applications",
+    "cases": "Case Studies",
+    "faq": "FAQ",
+    "about": "About Us",
+    "contact": "Contact",
+    "whatsapp": "WhatsApp"
+  },
+  "footer": {
+    "quickLinks": "Quick Links",
+    "productSeries": "Product Series",
+    "contact": "Contact",
+    "sealRings": "Carbon Graphite Seal Rings",
+    "bushings": "Carbon Graphite Bushings",
+    "splitRings": "Carbon Graphite Split Rings",
+    "copyright": "All Rights Reserved"
+  },
+  "common": {
+    "ctaTitle": "Ready to Optimize Your Sealing Solution?",
+    "ctaSubtitle": "Contact our engineering team for technical specifications, custom solutions, or competitive quotes. We'll respond within 24 hours.",
+    "ctaButton": "Get a Quote",
+    "whatsapp": "WhatsApp"
+  },
+  "home": {
+    "hero": {
+      "tag": "Self-lubricating · High Temp · Corrosion Resistant · Wear Resistant",
+      "title1": "High-Quality Carbon Graphite",
+      "title2": "Sealing Solutions",
+      "description": "Professional manufacturer of carbon graphite seal rings, bushings/bearings, and split rings. Custom machining supported. Serving 1,000+ global customers, exporting to 15+ countries.",
+      "ctaQuote": "Get a Quote",
+      "ctaWhatsApp": "WhatsApp",
+      "ctaProducts": "View Products"
+    }
+  },
+  "company": {
+    "name": "Huahao Sealing",
+    "tagline": "Sealing Solutions"
+  }
+}

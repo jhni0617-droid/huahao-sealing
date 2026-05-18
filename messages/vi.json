@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "products": "Sản phẩm",
+    "applications": "Ứng dụng",
+    "cases": "Nghiên cứu",
+    "faq": "Câu hỏi",
+    "about": "Về chúng tôi",
+    "contact": "Liên hệ",
+    "whatsapp": "WhatsApp"
+  },
+  "footer": {
+    "quickLinks": "Liên kết nhanh",
+    "productSeries": "Dòng sản phẩm",
+    "contact": "Liên hệ",
+    "sealRings": "Vòng đệm than chì",
+    "bushings": "Bạc lót than chì",
+    "splitRings": "Vòng chia than chì",
+    "copyright": "Đã đăng ký bản quyền"
+  },
+  "common": {
+    "ctaTitle": "Sẵn sàng tối ưu giải pháp làm kín?",
+    "ctaSubtitle": "Liên hệ đội ngũ kỹ thuật để được báo giá, thông số kỹ thuật hoặc giải pháp tùy chỉnh. Chúng tôi sẽ phản hồi trong 24 giờ.",
+    "ctaButton": "Báo giá",
+    "whatsapp": "WhatsApp"
+  },
+  "home": {
+    "hero": {
+      "tag": "Tự bôi trơn · Chịu nhiệt · Chống ăn mòn · Chống mài mòn",
+      "title1": "Than chì Carbon",
+      "title2": "Chất lượng cao",
+      "description": "Nhà sản xuất chuyên nghiệp vòng đệm than chì, bạc lót than chì và vòng chia than chì. Hỗ trợ gia công tùy chỉnh theo bản vẽ.",
+      "ctaQuote": "Báo giá",
+      "ctaWhatsApp": "WhatsApp",
+      "ctaProducts": "Xem sản phẩm"
+    }
+  },
+  "company": {
+    "name": "Huahao Sealing",
+    "tagline": "Giải pháp làm kín"
+  }
+}

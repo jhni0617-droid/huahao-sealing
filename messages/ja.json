@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "home": "ホーム",
+    "products": "製品",
+    "applications": "用途",
+    "cases": "事例",
+    "faq": "FAQ",
+    "about": "会社概要",
+    "contact": "お問い合わせ",
+    "whatsapp": "WhatsApp"
+  },
+  "footer": {
+    "quickLinks": "クイックリンク",
+    "productSeries": "製品シリーズ",
+    "contact": "連絡先",
+    "sealRings": "カーボングラファイトシールリング",
+    "bushings": "カーボングラファイトブッシング",
+    "splitRings": "カーボングラファイトスプリットリング",
+    "copyright": "All Rights Reserved"
+  },
+  "common": {
+    "ctaTitle": "シールソリューションを最適化しませんか？",
+    "ctaSubtitle": "技術仕様、カスタムソリューション、競争力のある見積もりについては、エンジニアリングチームにお問い合わせください。24時間以内にご返答いたします。",
+    "ctaButton": "見積もりを取得",
+    "whatsapp": "WhatsApp"
+  },
+  "home": {
+    "hero": {
+      "tag": "自己潤滑 · 耐高温 · 耐食 · 耐摩耗",
+      "title1": "高品質カーボングラファイト",
+      "title2": "シールソリューション",
+      "description": "カーボングラファイトシールリング、ブッシング/ベアリング、スプリットリングの専門メーカー。図面によるカスタム加工に対応。",
+      "ctaQuote": "見積もり",
+      "ctaWhatsApp": "WhatsApp",
+      "ctaProducts": "製品を見る"
+    }
+  },
+  "company": {
+    "name": "Huahao Sealing",
+    "tagline": "シールソリューション"
+  }
+}
