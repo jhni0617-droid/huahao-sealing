@@ -1,6 +1,7 @@
 import CTASection from "@/components/CTASection"
 import FailureSolutionsSection from "@/components/FailureSolutionsSection"
 import { generateMeta } from "@/lib/utils"
+import { cases as fallbackCases } from "@/lib/constants"
 import { getDb } from "@/lib/admin/db"
 
 export const metadata = generateMeta({
@@ -19,10 +20,17 @@ interface CaseRow {
 }
 
 export default function CasesPage() {
-  const db = getDb()
-  const cases = db
-    .prepare("SELECT title, company, condition, diagnosis, solution, result FROM cases WHERE published = 1 ORDER BY created_at DESC")
-    .all() as CaseRow[]
+  let cases: CaseRow[]
+
+  try {
+    const db = getDb()
+    const rows = db
+      .prepare("SELECT title, company, condition, diagnosis, solution, result FROM cases WHERE published = 1 ORDER BY created_at DESC")
+      .all() as CaseRow[]
+    cases = rows.length > 0 ? rows : fallbackCases
+  } catch {
+    cases = fallbackCases
+  }
 
   return (
     <>
