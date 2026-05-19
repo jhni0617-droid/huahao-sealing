@@ -1,5 +1,4 @@
 import { getLocale, getTranslations } from "next-intl/server"
-import { Link } from "@/i18n/routing"
 import { faqCoreTablesByLocale, faqCategoriesByLocale, faqFormulasByLocale } from "@/lib/translations-faq-page"
 import type { FAQItem } from "@/lib/faq-data"
 import FAQAccordion from "@/components/FAQAccordion"
