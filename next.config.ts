@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
     root: __dirname,
   },
   experimental: {
-    optimizePackageImports: ["next-intl", "@react-three/fiber", "three", "three-stdlib"],
+    optimizePackageImports: ["next-intl"],
   },
 }
 

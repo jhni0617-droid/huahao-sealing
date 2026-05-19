@@ -1,134 +1,115 @@
 "use client"
 
-import { useRef, useMemo, useEffect, useState } from "react"
-import { Canvas, useFrame } from "@react-three/fiber"
-import * as THREE from "three"
+import { useRef, useEffect } from "react"
 
-// Shared mouse state between React and R3F contexts
-let mouseX = 0
-let mouseY = 0
-
-function ParticleField() {
-  const group = useRef<THREE.Group>(null!)
-  const count = 500
-
-  const { positions, colors } = useMemo(() => {
-    const p = new Float32Array(count * 3)
-    const c = new Float32Array(count * 3)
-
-    for (let i = 0; i < count; i++) {
-      const t = i / count
-      const r = 2 + t * 6                         // 2–8 radius
-      const theta = Math.random() * Math.PI * 2
-      const phi = Math.acos(2 * Math.random() - 1)
-
-      p[i * 3] = r * Math.sin(phi) * Math.cos(theta)
-      p[i * 3 + 1] = r * Math.cos(phi) * 0.35     // flatten vertically
-      p[i * 3 + 2] = r * Math.sin(phi) * Math.sin(theta)
-
-      // Warm bronze / gold tones
-      const b = 0.25 + Math.random() * 0.5
-      const isAccent = Math.random() < 0.15
-      c[i * 3]     = isAccent ? b + 0.2 : b * 0.9
-      c[i * 3 + 1] = isAccent ? b * 0.55 : b * 0.5
-      c[i * 3 + 2] = isAccent ? b * 0.2 : b * 0.25
-    }
-
-    return { positions: p, colors: c }
-  }, [])
-
-  useFrame((state, delta) => {
-    if (!group.current) return
-
-    // Smooth mouse-follow rotation
-    const tx = mouseY * 0.3
-    const ty = mouseX * 0.3
-    group.current.rotation.x += (tx - group.current.rotation.x) * 0.015
-    group.current.rotation.y += (ty - group.current.rotation.y) * 0.015
-    group.current.rotation.z += delta * 0.008
-  })
-
-  return (
-    <group ref={group}>
-      <points>
-        <bufferGeometry>
-          <bufferAttribute args={[positions, 3]} attach="attributes-position" />
-          <bufferAttribute args={[colors, 3]} attach="attributes-color" />
-        </bufferGeometry>
-        <pointsMaterial
-          size={0.045}
-          vertexColors
-          transparent
-          opacity={0.6}
-          blending={THREE.AdditiveBlending}
-          depthWrite={false}
-          sizeAttenuation
-        />
-      </points>
-    </group>
-  )
-}
-
-function GlowRings() {
-  const ring = useRef<THREE.Mesh>(null!)
-  const ring2 = useRef<THREE.Mesh>(null!)
-
-  useFrame((state, delta) => {
-    if (ring.current) {
-      ring.current.rotation.x += delta * 0.15
-      ring.current.rotation.y += delta * 0.1
-    }
-    if (ring2.current) {
-      ring2.current.rotation.x -= delta * 0.08
-      ring2.current.rotation.z += delta * 0.12
-    }
-  })
-
-  return (
-    <>
-      <mesh ref={ring} position={[0, 0, 0]}>
-        <torusGeometry args={[2.8, 0.015, 16, 64]} />
-        <meshBasicMaterial color="#bd7a2c" transparent opacity={0.15} />
-      </mesh>
-      <mesh ref={ring2} position={[0, 0, 0]} rotation={[0.5, 0, 0]}>
-        <torusGeometry args={[3.8, 0.01, 16, 64]} />
-        <meshBasicMaterial color="#bd7a2c" transparent opacity={0.08} />
-      </mesh>
-    </>
-  )
+interface Particle {
+  x: number; y: number; z: number
+  vx: number; vy: number
+  size: number; alpha: number
 }
 
 export default function HeroParticles() {
-  const [isMobile, setIsMobile] = useState(true)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768)
-    const handler = (e: MouseEvent) => {
-      mouseX = (e.clientX / window.innerWidth) * 2 - 1
-      mouseY = -(e.clientY / window.innerHeight) * 2 + 1
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext("2d")!
+    let animId = 0
+    let mouseX = 0
+    let mouseY = 0
+    let isMobile = window.innerWidth < 768
+    let w = 0, h = 0
+
+    const particleCount = isMobile ? 0 : 80
+    const particles: Particle[] = []
+
+    function resize() {
+      w = canvas!.width = window.innerWidth
+      h = canvas!.height = window.innerHeight
+      isMobile = window.innerWidth < 768
     }
-    const resizeHandler = () => setIsMobile(window.innerWidth < 768)
-    window.addEventListener("mousemove", handler)
-    window.addEventListener("resize", resizeHandler)
+
+    function initParticles() {
+      particles.length = 0
+      const count = Math.min(particleCount, isMobile ? 0 : 80)
+      for (let i = 0; i < count; i++) {
+        const z = 0.5 + Math.random() * 4.5
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          z,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3 - 0.15,
+          size: 0.6 + z * 0.4,
+          alpha: 0.2 + z * 0.08,
+        })
+      }
+    }
+
+    function draw() {
+      if (isMobile) { animId = requestAnimationFrame(draw); return }
+      ctx.clearRect(0, 0, w, h)
+
+      // Gentle mouse influence
+      const mx = mouseX * 0.15
+      const my = mouseY * 0.15
+
+      for (const p of particles) {
+        p.x += p.vx + mx * 0.005
+        p.y += p.vy + my * 0.005
+
+        // Wrap around edges
+        if (p.x < -10) p.x = w + 10
+        if (p.x > w + 10) p.x = -10
+        if (p.y < -10) p.y = h + 10
+        if (p.y > h + 10) p.y = -10
+
+        ctx.beginPath()
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(189,122,44,${p.alpha})`
+        ctx.fill()
+      }
+
+      // Rotating ring indicators (decorative arcs)
+      const cx = w / 2, cy = h / 2 + 40
+      const t = Date.now() / 1000
+      ctx.strokeStyle = "rgba(189,122,44,0.06)"
+      ctx.lineWidth = 1.5
+      ctx.beginPath()
+      ctx.arc(cx, cy, 320, t * 0.08, t * 0.08 + 1.2)
+      ctx.stroke()
+      ctx.beginPath()
+      ctx.arc(cx, cy, 260, t * 0.12 + 0.5, t * 0.12 + 1.7)
+      ctx.stroke()
+
+      animId = requestAnimationFrame(draw)
+    }
+
+    const onMouse = (e: MouseEvent) => {
+      mouseX = (e.clientX / w) * 2 - 1
+      mouseY = -(e.clientY / h) * 2 + 1
+    }
+    const onResize = () => { resize(); initParticles() }
+
+    resize()
+    initParticles()
+    window.addEventListener("mousemove", onMouse, { passive: true })
+    window.addEventListener("resize", onResize, { passive: true })
+    draw()
+
     return () => {
-      window.removeEventListener("mousemove", handler)
-      window.removeEventListener("resize", resizeHandler)
+      cancelAnimationFrame(animId)
+      window.removeEventListener("mousemove", onMouse)
+      window.removeEventListener("resize", onResize)
     }
   }, [])
 
-  if (isMobile) return null
-
   return (
-    <div className="absolute inset-0">
-      <Canvas
-        camera={{ position: [0, 0, 8], fov: 60 }}
-        gl={{ antialias: false, alpha: true }}
-        dpr={[1, 1.5]}
-        style={{ background: "transparent" }}
-      >
-        <ParticleField />
-        <GlowRings />
-      </Canvas>
-    </div>
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 pointer-events-none"
+      aria-hidden="true"
+    />
   )
 }

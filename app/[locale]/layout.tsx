@@ -1,18 +1,10 @@
 import { NextIntlClientProvider } from "next-intl"
+import { getMessages } from "next-intl/server"
 import { routing } from "@/i18n/routing"
 import LayoutShell from "@/components/LayoutShell"
 import { OrganizationJsonLd } from "@/components/JsonLd"
 import { notFound } from "next/navigation"
 import { siteConfig } from "@/lib/constants"
-import zh from "../../messages/zh.json"
-import en from "../../messages/en.json"
-import vi from "../../messages/vi.json"
-import th from "../../messages/th.json"
-import ru from "../../messages/ru.json"
-import ja from "../../messages/ja.json"
-import ko from "../../messages/ko.json"
-
-const allMessages = { zh, en, vi, th, ru, ja, ko } as const
 
 interface Props {
   children: React.ReactNode
@@ -41,7 +33,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params
   if (!routing.locales.includes(locale as any)) notFound()
 
-  const messages = allMessages[locale as keyof typeof allMessages] ?? zh
+  const messages = await getMessages()
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
