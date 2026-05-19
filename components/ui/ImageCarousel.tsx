@@ -75,14 +75,16 @@ export default function ImageCarousel({
               className="absolute inset-0 transition-opacity duration-500 ease-in-out"
               style={{ opacity: current === idx ? 1 : 0 }}
             >
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                className="object-contain p-6"
-                sizes="(max-width: 768px) 100vw, 50vw"
-                priority={idx === 0}
-              />
+              {Math.abs(idx - current) <= 1 && (
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  className="object-contain p-6"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority={idx === 0}
+                />
+              )}
             </div>
           ))}
 

@@ -181,6 +181,7 @@ export default async function ProductDetailPage({ params }: Props) {
                     fill
                     className="object-contain p-6"
                     sizes="(max-width: 1024px) 100vw, 50vw"
+                    priority
                   />
                 </div>
               )}

@@ -511,6 +511,8 @@ export default async function AboutPage() {
                 alt={getLocalized({ zh: "华豪密封件厂区实景", en: "Huahao Sealing factory", vi: "Nhà máy Huahao Sealing", th: "โรงงาน Huahao Sealing", ru: "Завод Huahao Sealing", ja: "華豪シール工場", ko: "Huahao Sealing 공장" }, locale)}
                 fill
                 className="rounded-xl object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
               />
             </div>
           </div>

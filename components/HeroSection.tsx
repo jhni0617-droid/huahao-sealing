@@ -143,14 +143,16 @@ export default function HeroSection() {
                     className="absolute inset-0 transition-opacity duration-[500ms] ease-in-out"
                     style={{ opacity: current === idx ? 1 : 0 }}
                   >
-                    <Image
-                      src={img.src}
-                      alt={isEn ? img.enLabel : img.label}
-                      fill
-                      className="object-contain p-10 scale-[0.85]"
-                      sizes="480px"
-                      priority={idx === 0}
-                    />
+                    {Math.abs(idx - current) <= 1 && (
+                      <Image
+                        src={img.src}
+                        alt={isEn ? img.enLabel : img.label}
+                        fill
+                        className="object-contain p-10 scale-[0.85]"
+                        sizes="480px"
+                        priority={idx === current}
+                      />
+                    )}
                   </div>
                 ))}
 
