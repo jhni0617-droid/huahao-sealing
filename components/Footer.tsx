@@ -1,71 +1,91 @@
 "use client"
 
 import { Link } from "@/i18n/routing"
-import { useTranslations } from "next-intl"
-import { siteConfig, factoryHighlights } from "@/lib/constants"
+import { useTranslations, useLocale } from "next-intl"
+import { siteConfig, enSiteConfig, factoryHighlights, enFactoryHighlights } from "@/lib/constants"
+import Icon from "@/components/ui/Icon"
 
 export default function Footer() {
   const t = useTranslations()
+  const locale = useLocale()
+  const isEn = locale !== "zh"
+  const cfg = isEn ? enSiteConfig : siteConfig
+  const highlights = isEn ? enFactoryHighlights : factoryHighlights
 
   return (
     <footer className="bg-primary text-white">
-      <div className="container-wide py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
-          <div>
-            <h3 className="font-bold text-lg mb-4">{siteConfig.name}</h3>
-            <p className="text-gray-300 text-sm leading-relaxed">{siteConfig.description}</p>
+      <div className="container-wide py-16 md:py-20">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
+          {/* Brand */}
+          <div className="lg:col-span-1">
+            <h3 className="font-bold text-lg mb-4">{cfg.name}</h3>
+            <p className="text-gray-400 text-sm leading-relaxed">{cfg.description}</p>
           </div>
 
+          {/* Quick Links */}
           <div>
-            <h4 className="font-semibold mb-4">{t("footer.quickLinks")}</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link href="/products" className="text-gray-300 hover:text-white">{t("nav.products")}</Link></li>
-              <li><Link href="/applications" className="text-gray-300 hover:text-white">{t("nav.applications")}</Link></li>
-              <li><Link href="/cases" className="text-gray-300 hover:text-white">{t("nav.cases")}</Link></li>
-              <li><Link href="/faq" className="text-gray-300 hover:text-white">{t("nav.faq")}</Link></li>
-              <li><Link href="/about" className="text-gray-300 hover:text-white">{t("nav.about")}</Link></li>
-              <li><Link href="/contact" className="text-gray-300 hover:text-white">{t("nav.contact")}</Link></li>
+            <h4 className="font-semibold text-sm uppercase tracking-wider text-gray-300 mb-4">{t("footer.quickLinks")}</h4>
+            <ul className="space-y-3 text-sm">
+              <li><Link href="/products" className="text-gray-400 hover:text-white transition-colors">{t("nav.products")}</Link></li>
+              <li><Link href="/applications" className="text-gray-400 hover:text-white transition-colors">{t("nav.applications")}</Link></li>
+              <li><Link href="/cases" className="text-gray-400 hover:text-white transition-colors">{t("nav.cases")}</Link></li>
+              <li><Link href="/faq" className="text-gray-400 hover:text-white transition-colors">{t("nav.faq")}</Link></li>
+              <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">{t("nav.about")}</Link></li>
+              <li><Link href="/contact" className="text-gray-400 hover:text-white transition-colors">{t("nav.contact")}</Link></li>
             </ul>
           </div>
 
+          {/* Products */}
           <div>
-            <h4 className="font-semibold mb-4">{t("footer.productSeries")}</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link href="/products#seal-rings" className="text-gray-300 hover:text-white">{t("footer.sealRings")}</Link></li>
-              <li><Link href="/products#carbon-graphite-sleeves" className="text-gray-300 hover:text-white">{t("footer.bushings")}</Link></li>
-              <li><Link href="/products#three-part-rings" className="text-gray-300 hover:text-white">{t("footer.splitRings")}</Link></li>
+            <h4 className="font-semibold text-sm uppercase tracking-wider text-gray-300 mb-4">{t("footer.productSeries")}</h4>
+            <ul className="space-y-3 text-sm">
+              <li><Link href="/products#seal-rings" className="text-gray-400 hover:text-white transition-colors">{t("footer.sealRings")}</Link></li>
+              <li><Link href="/products#carbon-graphite-sleeves" className="text-gray-400 hover:text-white transition-colors">{t("footer.bushings")}</Link></li>
+              <li><Link href="/products#three-part-rings" className="text-gray-400 hover:text-white transition-colors">{t("footer.splitRings")}</Link></li>
             </ul>
           </div>
 
+          {/* Contact */}
           <div>
-            <h4 className="font-semibold mb-4">{t("footer.contact")}</h4>
-            <div className="text-sm text-gray-300 space-y-2">
-              <p>{t("footer.email")}: {siteConfig.email}</p>
-              <p>{t("footer.phone")}: {siteConfig.phone}</p>
-              <p>{t("footer.address")}: {siteConfig.address}</p>
+            <h4 className="font-semibold text-sm uppercase tracking-wider text-gray-300 mb-4">{t("footer.contact")}</h4>
+            <div className="text-sm text-gray-400 space-y-3">
+              <div className="flex items-start gap-2.5">
+                <Icon name="mail" className="w-4 h-4 text-gray-500 mt-0.5 shrink-0" />
+                <span>{cfg.email}</span>
+              </div>
+              <div className="flex items-start gap-2.5">
+                <Icon name="phone" className="w-4 h-4 text-gray-500 mt-0.5 shrink-0" />
+                <span>{cfg.phone}</span>
+              </div>
+              <div className="flex items-start gap-2.5">
+                <Icon name="map-pin" className="w-4 h-4 text-gray-500 mt-0.5 shrink-0" />
+                <span>{cfg.address}</span>
+              </div>
             </div>
             <a
-              href={`https://wa.me/${siteConfig.whatsapp}`}
+              href={`https://wa.me/${cfg.whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block mt-4 px-4 py-2 bg-accent text-white text-sm font-semibold rounded"
+              className="inline-flex items-center gap-2 mt-5 px-5 py-2.5 bg-accent/10 border border-accent/20 text-accent text-sm font-semibold rounded-[10px] hover:bg-accent hover:text-white transition-all"
             >
+              <Icon name="whatsapp" className="w-4 h-4" />
               {t("common.whatsapp")}
             </a>
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-gray-700">
+        {/* Bottom bar */}
+        <div className="mt-14 pt-8 border-t border-white/10">
           <div className="flex flex-wrap justify-center gap-8 mb-6">
-            {factoryHighlights.map((h) => (
+            {highlights.map((h) => (
               <div key={h.label} className="text-center">
                 <div className="text-2xl font-bold text-accent">{h.value}</div>
-                <div className="text-xs text-gray-400">{h.label}</div>
+                <div className="text-xs text-gray-500 mt-0.5">{h.label}</div>
               </div>
             ))}
           </div>
-          <p className="text-center text-sm text-gray-400">
-            &copy; {new Date().getFullYear()} {siteConfig.fullName}. {t("footer.copyright")}.
+          <p className="text-center text-sm text-gray-500">
+            &copy; {new Date().getFullYear()} {cfg.fullName}. {t("footer.copyright")}.
           </p>
         </div>
       </div>

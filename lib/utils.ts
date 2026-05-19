@@ -1,16 +1,19 @@
-import { siteConfig } from "./constants"
+import { siteConfig, enSiteConfig } from "./constants"
 
 export function generateMeta({
   title,
   description,
   path,
+  locale,
 }: {
   title: string
   description: string
   path?: string
+  locale?: string
 }) {
-  const fullTitle = `${title} | ${siteConfig.name}`
-  const url = path ? `${siteConfig.website}${path}` : siteConfig.website
+  const cfg = locale && locale !== "zh" ? enSiteConfig : siteConfig
+  const fullTitle = `${title} | ${cfg.name}`
+  const url = path ? `${cfg.website}${path}` : cfg.website
 
   return {
     title: fullTitle,
@@ -19,7 +22,7 @@ export function generateMeta({
       title: fullTitle,
       description,
       url,
-      siteName: siteConfig.name,
+      siteName: cfg.name,
       type: "website" as const,
     },
     twitter: {

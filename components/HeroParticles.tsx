@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useMemo, useEffect } from "react"
+import { useRef, useMemo, useEffect, useState } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
 import * as THREE from "three"
 
@@ -99,14 +99,24 @@ function GlowRings() {
 }
 
 export default function HeroParticles() {
+  const [isMobile, setIsMobile] = useState(true)
+
   useEffect(() => {
+    setIsMobile(window.innerWidth < 768)
     const handler = (e: MouseEvent) => {
       mouseX = (e.clientX / window.innerWidth) * 2 - 1
       mouseY = -(e.clientY / window.innerHeight) * 2 + 1
     }
+    const resizeHandler = () => setIsMobile(window.innerWidth < 768)
     window.addEventListener("mousemove", handler)
-    return () => window.removeEventListener("mousemove", handler)
+    window.addEventListener("resize", resizeHandler)
+    return () => {
+      window.removeEventListener("mousemove", handler)
+      window.removeEventListener("resize", resizeHandler)
+    }
   }, [])
+
+  if (isMobile) return null
 
   return (
     <div className="absolute inset-0">

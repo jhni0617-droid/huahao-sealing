@@ -1,15 +1,22 @@
+import { getLocale, getTranslations } from "next-intl/server"
 import { Link } from "@/i18n/routing"
-import { coreTables, faqCategories, formulas } from "@/lib/faq-data"
+import { faqCoreTablesByLocale, faqCategoriesByLocale, faqFormulasByLocale } from "@/lib/translations-faq-page"
 import type { FAQItem } from "@/lib/faq-data"
 import FAQAccordion from "@/components/FAQAccordion"
 import CTASection from "@/components/CTASection"
+import { FaqJsonLd } from "@/components/JsonLd"
 import { generateMeta } from "@/lib/utils"
 
-export const metadata = generateMeta({
-  title: "常见问题解决 | 华豪密封件",
-  description: "碳石墨密封件选型、装配间隙、加工安装、使用故障、维护保养、定制非标等常见问题解答，及核心技术表格与计算公式。",
-  path: "/faq",
-})
+export async function generateMetadata() {
+  const locale = await getLocale()
+  const t = await getTranslations("faq")
+  return generateMeta({
+    title: t("pageTitle"),
+    description: t("pageSubtitle"),
+    path: "/faq",
+    locale,
+  })
+}
 
 function TableView({ headers, rows }: { headers: string[]; rows: string[][] }) {
   return (
@@ -54,17 +61,29 @@ function FAQItemBlock({ item }: { item: FAQItem }) {
   )
 }
 
-export default function FAQPage() {
+export default async function FAQPage() {
+  const locale = await getLocale()
+  const t = await getTranslations("faq")
+
+  const tables = faqCoreTablesByLocale[locale] || faqCoreTablesByLocale.en
+  const categories = faqCategoriesByLocale[locale] || faqCategoriesByLocale.en
+  const techFormulas = faqFormulasByLocale[locale] || faqFormulasByLocale.en
+
   return (
     <>
+      {/* FAQ Structured Data */}
+      <FaqJsonLd questions={
+        categories.flatMap((cat) => cat.items.map((item) => ({ q: item.question, a: item.answer }))).concat(
+          tables.flatMap((t) => t.rows.slice(0, 3).map((row) => ({ q: row[0], a: row.slice(1).join("；") })))
+        )
+      } />
+
       {/* Hero Banner */}
       <section className="bg-hero-bg text-white">
-        <div className="container-wide py-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">常见问题解决</h1>
-          <div className="w-[60px] h-[3px] bg-accent mb-4" />
-          <p className="text-gray-300 max-w-2xl">
-            选型、装配、故障排查、计算公式 —— 一站式碳石墨密封技术参考资料。
-          </p>
+        <div className="container-wide py-16 md:py-20">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">{t("pageTitle")}</h1>
+          <div className="w-14 h-0.5 bg-accent rounded-full mb-4" />
+          <p className="text-gray-400 max-w-2xl leading-relaxed">{t("pageSubtitle")}</p>
         </div>
       </section>
 
@@ -72,15 +91,13 @@ export default function FAQPage() {
       <section className="section-padding">
         <div className="container-wide">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary">核心实用表格合集</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary">{t("tablesTitle")}</h2>
             <div className="industrial-divider mx-auto" />
-            <p className="text-muted mt-4 max-w-2xl mx-auto">
-              选型、设计、安装、故障排查必备参考数据。点击条目展开详情。
-            </p>
+            <p className="text-muted mt-4 max-w-2xl mx-auto">{t("tablesSubtitle")}</p>
           </div>
 
           <div className="space-y-4 max-w-5xl mx-auto">
-            {coreTables.map((table) => (
+            {tables.map((table) => (
               <FAQAccordion key={table.id} title={table.title} description={table.description}>
                 <TableView headers={table.headers} rows={table.rows} />
               </FAQAccordion>
@@ -93,15 +110,13 @@ export default function FAQPage() {
       <section className="section-padding bg-white">
         <div className="container-wide">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary">常见问题分类</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary">{t("categoriesTitle")}</h2>
             <div className="industrial-divider mx-auto" />
-            <p className="text-muted mt-4 max-w-2xl mx-auto">
-              按类别浏览常见问题，快速找到您需要的答案。
-            </p>
+            <p className="text-muted mt-4 max-w-2xl mx-auto">{t("categoriesSubtitle")}</p>
           </div>
 
           <div className="space-y-8 max-w-4xl mx-auto">
-            {faqCategories.map((cat) => (
+            {categories.map((cat) => (
               <div key={cat.category}>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center shrink-0">
@@ -111,7 +126,7 @@ export default function FAQPage() {
                   </div>
                   <h3 className="text-xl font-bold text-primary">{cat.category}</h3>
                   <span className="text-xs text-muted bg-gray-100 px-2 py-0.5 rounded-full">
-                    {cat.items.length} 问
+                    {cat.items.length} {t("itemsLabel")}
                   </span>
                 </div>
                 <div className="space-y-3">
@@ -129,15 +144,13 @@ export default function FAQPage() {
       <section className="section-padding">
         <div className="container-wide">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary">技术计算公式专区</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary">{t("formulasTitle")}</h2>
             <div className="industrial-divider mx-auto" />
-            <p className="text-muted mt-4 max-w-2xl mx-auto">
-              密封设计与故障分析中常用的工程计算公式。
-            </p>
+            <p className="text-muted mt-4 max-w-2xl mx-auto">{t("formulasSubtitle")}</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {formulas.map((f) => (
+            {techFormulas.map((f) => (
               <div key={f.name} className="card p-6 flex flex-col">
                 <h3 className="font-bold text-lg text-primary mb-2">{f.name}</h3>
                 <p className="text-xs text-muted mb-4">{f.description}</p>
@@ -151,12 +164,12 @@ export default function FAQPage() {
 
                 {/* Variables table */}
                 <div className="text-sm">
-                  <h4 className="font-semibold text-primary mb-2">符号说明</h4>
+                  <h4 className="font-semibold text-primary mb-2">{t("symbolLabel")}</h4>
                   <table className="w-full text-xs border-collapse">
                     <thead>
                       <tr className="bg-gray-50">
-                        <th className="border border-border px-3 py-1.5 text-left font-medium text-primary w-20">符号</th>
-                        <th className="border border-border px-3 py-1.5 text-left font-medium text-primary">含义</th>
+                        <th className="border border-border px-3 py-1.5 text-left font-medium text-primary w-20">{t("symbolLabel")}</th>
+                        <th className="border border-border px-3 py-1.5 text-left font-medium text-primary">{t("meaningLabel")}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -174,7 +187,7 @@ export default function FAQPage() {
 
                 {f.note && (
                   <div className="mt-4 pt-3 border-t border-border text-xs text-muted leading-relaxed">
-                    <span className="font-semibold text-primary">注：</span>
+                    <span className="font-semibold text-primary">{t("noteLabel")}: </span>
                     {f.note}
                   </div>
                 )}
@@ -185,8 +198,8 @@ export default function FAQPage() {
       </section>
 
       <CTASection
-        title="还有未解决的问题？"
-        subtitle="我们的工程师团队随时为您提供专业的碳石墨密封技术支持。"
+        title={t("ctaTitle")}
+        subtitle={t("ctaSubtitle")}
       />
     </>
   )

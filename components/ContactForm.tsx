@@ -1,13 +1,16 @@
 "use client"
 
 import { useState } from "react"
+import { useTranslations } from "next-intl"
 import { siteConfig } from "@/lib/constants"
+import Icon from "@/components/ui/Icon"
 
 interface Props {
   defaultProduct?: string
 }
 
 export default function ContactForm({ defaultProduct }: Props) {
+  const [step, setStep] = useState(1)
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [form, setForm] = useState({
@@ -28,6 +31,7 @@ export default function ContactForm({ defaultProduct }: Props) {
   const [errorMsg, setErrorMsg] = useState("")
   const [file, setFile] = useState<File | null>(null)
   const [fileError, setFileError] = useState("")
+  const t = useTranslations("contact.form")
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.files?.[0]
@@ -37,7 +41,7 @@ export default function ContactForm({ defaultProduct }: Props) {
       return
     }
     if (selected.size > 5 * 1024 * 1024) {
-      setFileError("文件大小不能超过 5MB")
+      setFileError(t("uploadError"))
       setFile(null)
       return
     }
@@ -57,7 +61,7 @@ export default function ContactForm({ defaultProduct }: Props) {
           const reader = new FileReader()
           reader.onload = () => {
             const result = reader.result as string
-            resolve(result.split(",")[1]) // strip data URL prefix
+            resolve(result.split(",")[1])
           }
           reader.readAsDataURL(file)
         })
@@ -72,26 +76,30 @@ export default function ContactForm({ defaultProduct }: Props) {
       if (res.ok) setSubmitted(true)
       else {
         const data = await res.json()
-        setErrorMsg(data?.error || "发送失败，请直接发邮件联系我们。")
+        setErrorMsg(data?.error || t("errorSend"))
       }
     } catch {
-      setErrorMsg("网络错误，请重试。")
+      setErrorMsg(t("errorNetwork"))
     } finally {
       setLoading(false)
     }
   }
 
+  const isValidStep1 = form.email && form.message
+
+  const labelCn = (label: string, opt: string) => (
+    <>{label} <span className="text-gray-400 font-normal">{opt}</span></>
+  )
+
   if (submitted) {
     return (
       <div className="card p-10 text-center">
         <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-          </svg>
+          <Icon name="check" className="w-8 h-8 text-green-600" />
         </div>
-        <h3 className="text-2xl font-bold mb-2">感谢您的咨询！</h3>
+        <h3 className="text-2xl font-bold mb-2">{t("successTitle")}</h3>
         <p className="text-muted mb-4">
-          您的询价已提交成功，我们将在24小时内与您联系。
+          {t("successText")}
         </p>
         <a
           href={`https://wa.me/${siteConfig.whatsapp}`}
@@ -99,7 +107,7 @@ export default function ContactForm({ defaultProduct }: Props) {
           rel="noopener noreferrer"
           className="btn-secondary"
         >
-          通过WhatsApp更快获取回复
+          {t("successWhatsApp")}
         </a>
       </div>
     )
@@ -108,135 +116,151 @@ export default function ContactForm({ defaultProduct }: Props) {
   return (
     <form onSubmit={handleSubmit} className="card p-6 md:p-8 space-y-5">
       <p className="text-sm text-muted">
-        填写基本信息与工况参数，我们将在24小时内与您联系。
+        {t("formIntro")}
       </p>
 
-      {/* Basic info */}
-      <div className="grid sm:grid-cols-2 gap-5">
-        <div>
-          <label className="form-label">姓名 <span className="text-gray-400 font-normal">(可不填)</span></label>
-          <input className="form-input" placeholder="您的姓名" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
-        </div>
-        <div>
-          <label className="form-label">邮箱 <span className="text-red-500">*必填</span></label>
-          <input type="email" required className="form-input" placeholder="your@email.com" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
-        </div>
-        <div>
-          <label className="form-label">电话 <span className="text-gray-400 font-normal">(可不填)</span></label>
-          <input type="tel" className="form-input" placeholder="+86-xxx-xxxx" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
-        </div>
-        <div>
-          <label className="form-label">公司名称 <span className="text-gray-400 font-normal">(可不填)</span></label>
-          <input className="form-input" placeholder="公司/单位名称" value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} />
-        </div>
+      {/* Step indicator */}
+      <div className="flex gap-2 mb-2">
+        <div className={`h-1 flex-1 rounded-full transition-colors ${step >= 1 ? "bg-accent" : "bg-gray-200"}`} />
+        <div className={`h-1 flex-1 rounded-full transition-colors ${step >= 2 ? "bg-accent" : "bg-gray-200"}`} />
       </div>
 
-      {/* Product & industry */}
-      <div className="grid sm:grid-cols-2 gap-5">
-        <div>
-          <label className="form-label">产品类型 <span className="text-gray-400 font-normal">(可不填)</span></label>
-          <select className="form-input" value={form.productType} onChange={(e) => setForm({ ...form, productType: e.target.value })}>
-            <option value="">请选择产品类型</option>
-            <option value="碳石墨密封环">碳石墨密封环</option>
-            <option value="碳石墨轴套">碳石墨轴套</option>
-            <option value="碳石墨三瓣环">碳石墨三瓣环</option>
-            <option value="其他">其他 / 非标定制</option>
-          </select>
-        </div>
-        <div>
-          <label className="form-label">应用行业 <span className="text-gray-400 font-normal">(可不填)</span></label>
-          <select className="form-input" value={form.industry} onChange={(e) => setForm({ ...form, industry: e.target.value })}>
-            <option value="">请选择行业</option>
-            <option value="泵行业">泵行业</option>
-            <option value="船舶">船舶行业</option>
-            <option value="化工">化工处理</option>
-            <option value="电力">电力能源</option>
-            <option value="制药">制药食品</option>
-            <option value="其他">其他</option>
-          </select>
-        </div>
-      </div>
-
-      {/* Operating conditions */}
-      <div>
-        <h3 className="text-sm font-semibold text-primary mb-3">工况参数 <span className="text-gray-400 font-normal">(可不填)</span></h3>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div>
-            <label className="form-label">工作温度</label>
-            <input className="form-input" placeholder="如: 150°C" value={form.temperature} onChange={(e) => setForm({ ...form, temperature: e.target.value })} />
+      {step === 1 && (
+        <>
+          <div className="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label className="form-label" htmlFor="contact-name">{labelCn(t("name"), t("nameOptional"))}</label>
+              <input id="contact-name" className="form-input" placeholder={t("namePlaceholder")} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+            </div>
+            <div>
+              <label className="form-label" htmlFor="contact-email">{t("email")} <span className="text-red-500">{t("emailRequired")}</span></label>
+              <input id="contact-email" type="email" required className="form-input" placeholder={t("emailPlaceholder")} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
+            </div>
+            <div>
+              <label className="form-label" htmlFor="contact-phone">{labelCn(t("phone"), t("phoneOptional"))}</label>
+              <input id="contact-phone" type="tel" className="form-input" placeholder={t("phonePlaceholder")} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+            </div>
+            <div>
+              <label className="form-label" htmlFor="contact-company">{labelCn(t("company"), t("companyOptional"))}</label>
+              <input id="contact-company" className="form-input" placeholder={t("companyPlaceholder")} value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} />
+            </div>
           </div>
-          <div>
-            <label className="form-label">工作压力</label>
-            <input className="form-input" placeholder="如: 0.8 MPa" value={form.pressure} onChange={(e) => setForm({ ...form, pressure: e.target.value })} />
-          </div>
-          <div>
-            <label className="form-label">介质类型</label>
-            <input className="form-input" placeholder="如: 清水/油/酸" value={form.medium} onChange={(e) => setForm({ ...form, medium: e.target.value })} />
-          </div>
-          <div>
-            <label className="form-label">转速</label>
-            <input className="form-input" placeholder="如: 3000 rpm" value={form.speed} onChange={(e) => setForm({ ...form, speed: e.target.value })} />
-          </div>
-        </div>
-      </div>
 
-      {/* Quantity & message */}
-      <div className="grid sm:grid-cols-2 gap-5">
-        <div>
-          <label className="form-label">预估数量 <span className="text-gray-400 font-normal">(可不填)</span></label>
-          <input className="form-input" placeholder="如: 100件/年" value={form.quantity} onChange={(e) => setForm({ ...form, quantity: e.target.value })} />
-        </div>
-      </div>
-      <div>
-        <label className="form-label">留言 <span className="text-red-500">*必填</span></label>
-        <textarea required rows={3} className="form-input resize-y" placeholder="请描述您的具体需求、安装尺寸或技术参数..." value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
-      </div>
+          <div>
+            <label className="form-label" htmlFor="contact-message">{t("message")} <span className="text-red-500">{t("messageRequired")}</span></label>
+            <textarea id="contact-message" required rows={3} className="form-input resize-y" placeholder={t("messagePlaceholder")} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
+          </div>
 
-      {/* File upload */}
-      <div>
-        <label className="form-label">上传图纸 <span className="text-gray-400 font-normal">(可不填，支持 PDF/Word/Excel/图片/CAD，最大 5MB)</span></label>
-        <div className="flex items-center gap-3">
-          <label className="cursor-pointer inline-flex items-center gap-2 px-4 py-2.5 border border-border rounded-lg text-sm text-muted hover:bg-gray-50 hover:border-primary/30 transition-colors">
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
-            </svg>
-            选择文件
-            <input type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.dwg,.dxf,.step,.stp,.igs,.stl" onChange={handleFileChange} className="hidden" />
-          </label>
-          {file && (
-            <span className="text-sm text-muted flex items-center gap-2">
-              <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-              {file.name}
-              <button type="button" onClick={() => { setFile(null); setFileError("") }} className="text-red-500 hover:text-red-700 text-sm ml-1">
-                移除
-              </button>
-            </span>
-          )}
-        </div>
-        {fileError && <p className="text-sm text-red-500 mt-1">{fileError}</p>}
-      </div>
-
-      {errorMsg && (
-        <div className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg p-3">
-          {errorMsg}
-        </div>
+          <button type="button" onClick={() => setStep(2)} disabled={!isValidStep1} className="btn-primary w-full justify-center text-base disabled:opacity-50">
+            {t("nextStep") || "下一步 →"}
+          </button>
+        </>
       )}
-      <button type="submit" disabled={loading} className="btn-primary w-full justify-center text-base disabled:opacity-50">
-        {loading ? "发送中..." : "提交咨询"}
-      </button>
-      <div className="text-center">
+
+      {step === 2 && (
+        <>
+          {/* Product & industry */}
+          <div className="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label className="form-label" htmlFor="contact-productType">{labelCn(t("productType"), t("productTypeOptional"))}</label>
+              <select id="contact-productType" className="form-input" value={form.productType} onChange={(e) => setForm({ ...form, productType: e.target.value })}>
+                <option value="">{t("productTypePlaceholder")}</option>
+                <option value="碳石墨密封环">{t("productSealRing")}</option>
+                <option value="碳石墨轴套">{t("productBushing")}</option>
+                <option value="碳石墨三瓣环">{t("productSplitRing")}</option>
+                <option value="其他">{t("productOther")}</option>
+              </select>
+            </div>
+            <div>
+              <label className="form-label" htmlFor="contact-industry">{labelCn(t("industry"), t("industryOptional"))}</label>
+              <select id="contact-industry" className="form-input" value={form.industry} onChange={(e) => setForm({ ...form, industry: e.target.value })}>
+                <option value="">{t("industryPlaceholder")}</option>
+                <option value="泵行业">{t("industryPump")}</option>
+                <option value="船舶">{t("industryMarine")}</option>
+                <option value="化工">{t("industryChemical")}</option>
+                <option value="电力">{t("industryPower")}</option>
+                <option value="制药">{t("industryPharma")}</option>
+                <option value="其他">{t("industryOther")}</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Operating conditions */}
+          <div>
+            <h3 className="text-sm font-semibold text-primary mb-3">{t("conditions")} <span className="text-gray-400 font-normal">{t("conditionsOptional")}</span></h3>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div>
+                <label className="form-label" htmlFor="contact-temperature">{t("temperature")}</label>
+                <input id="contact-temperature" className="form-input" placeholder={t("temperaturePlaceholder")} value={form.temperature} onChange={(e) => setForm({ ...form, temperature: e.target.value })} />
+              </div>
+              <div>
+                <label className="form-label" htmlFor="contact-pressure">{t("pressure")}</label>
+                <input id="contact-pressure" className="form-input" placeholder={t("pressurePlaceholder")} value={form.pressure} onChange={(e) => setForm({ ...form, pressure: e.target.value })} />
+              </div>
+              <div>
+                <label className="form-label" htmlFor="contact-medium">{t("medium")}</label>
+                <input id="contact-medium" className="form-input" placeholder={t("mediumPlaceholder")} value={form.medium} onChange={(e) => setForm({ ...form, medium: e.target.value })} />
+              </div>
+              <div>
+                <label className="form-label" htmlFor="contact-speed">{t("speed")}</label>
+                <input id="contact-speed" className="form-input" placeholder={t("speedPlaceholder")} value={form.speed} onChange={(e) => setForm({ ...form, speed: e.target.value })} />
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label className="form-label" htmlFor="contact-quantity">{labelCn(t("quantity"), t("quantityOptional"))}</label>
+            <input id="contact-quantity" className="form-input" placeholder={t("quantityPlaceholder")} value={form.quantity} onChange={(e) => setForm({ ...form, quantity: e.target.value })} />
+          </div>
+
+          {/* File upload */}
+          <div>
+            <label className="form-label" htmlFor="contact-file">{t("upload")} <span className="text-gray-400 font-normal">{t("uploadOptional")}</span></label>
+            <div className="flex items-center gap-3">
+              <label className="cursor-pointer inline-flex items-center gap-2 px-4 py-2.5 border border-border rounded-xl text-sm text-muted hover:bg-gray-50 hover:border-primary/30 transition-colors">
+                <Icon name="download" className="w-4 h-4" />
+                {t("uploadButton")}
+                <input id="contact-file" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.dwg,.dxf,.step,.stp,.igs,.stl" onChange={handleFileChange} className="hidden" />
+              </label>
+              {file && (
+                <span className="text-sm text-muted flex items-center gap-2">
+                  <Icon name="check" className="w-4 h-4 text-green-600" />
+                  {file.name}
+                  <button type="button" onClick={() => { setFile(null); setFileError("") }} className="text-red-500 hover:text-red-700 text-sm ml-1">
+                    {t("uploadRemove")}
+                  </button>
+                </span>
+              )}
+            </div>
+            {fileError && <p className="text-sm text-red-500 mt-1">{fileError}</p>}
+          </div>
+
+          {errorMsg && (
+            <div className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl p-3">
+              {errorMsg}
+            </div>
+          )}
+
+          <div className="flex gap-3">
+            <button type="button" onClick={() => setStep(1)} className="btn-secondary flex-1 justify-center text-base">
+              ← {t("prevStep") || "上一步"}
+            </button>
+            <button type="submit" disabled={loading} className="btn-primary flex-[2] justify-center text-base disabled:opacity-50">
+              {loading ? t("submitting") : t("submit")}
+            </button>
+          </div>
+        </>
+      )}
+
+      <div className="text-center pt-2 border-t border-border">
         <a
           href={`https://wa.me/${siteConfig.whatsapp}`}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-primary transition-colors"
         >
-          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c.001 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-          </svg>
-          或通过WhatsApp与我们联系
+          <Icon name="whatsapp" className="w-4 h-4" />
+          {t("whatsappLink")}
         </a>
       </div>
     </form>

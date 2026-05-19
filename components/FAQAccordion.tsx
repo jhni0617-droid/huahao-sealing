@@ -14,8 +14,8 @@ export default function FAQAccordion({ title, description, children, defaultOpen
 
   return (
     <div
-      className={`bg-white border rounded-lg overflow-hidden transition-all duration-200 ${
-        open ? "border-accent/30 shadow-md" : "border-border hover:border-accent/20 hover:shadow-sm"
+      className={`card-subtle overflow-hidden ${
+        open ? "border-accent/30" : "hover:border-accent/20"
       }`}
     >
       <button

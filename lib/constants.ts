@@ -11,6 +11,19 @@ export const siteConfig = {
   website: "https://huahaoindustrial.com",
 }
 
+export const enSiteConfig = {
+  name: "Huahao Sealing",
+  fullName: "Huahao Carbon Graphite Sealing Co., Ltd.",
+  slogan: "High-Quality Carbon Graphite Sealing Solutions",
+  description:
+    "Professional manufacturer of carbon graphite seal rings, bushings/bearings, and split rings for pumps, marine equipment, chemical processing, and general industry.",
+  email: "seals@huahaoindustrial.com",
+  phone: "+86-199-5646-8316",
+  whatsapp: "8619956468316",
+  address: "No.14, Longtan Town Industrial Park, Huoqiu County, Lu'an, Anhui, China",
+  website: "https://huahaoindustrial.com",
+}
+
 export const advantages = [
   {
     title: "自润滑性能",
@@ -148,10 +161,145 @@ export const cases = [
   },
 ]
 
+export const enCases = [
+  {
+    title: "High-Temp Oven Conveyor — Severe Shaft Wear",
+    company: "Lithium Battery Material Manufacturer",
+    condition: "Tunnel oven working at 300°C, conveyor shaft 45mm, 80rpm. Copper bushings + high-temp grease failed every 2 months.",
+    diagnosis: "High-temperature grease carbonization + copper bushing thermal expansion caused accelerated wear and shaft damage.",
+    solution: "Replaced with custom RG-15 carbon graphite bushings with anti-oxidation impregnation, designed for 300°C+ continuous operation.",
+    result: "6 months continuous operation, bushing wear ~0.2mm, shaft undamaged. Maintenance cost reduced by 60%.",
+  },
+  {
+    title: "High-Temp Molten Salt Pump — Bearing Locking",
+    company: "Solar Thermal Power Project",
+    condition: "Molten salt pump at 450°C, shaft 65mm, 1500rpm. Special alloy bearings suffered frequent seizure, 3-month average life.",
+    diagnosis: "Thermal expansion mismatch between alloy bearings and shaft caused clearance loss and seizure at operating temperature.",
+    solution: "Custom high-purity carbon graphite bearings with antimony impregnation, optimized clearance for 450°C operation.",
+    result: "12 months continuous operation, no seizure. Equipment uptime extended from 3 to 12+ months.",
+  },
+  {
+    title: "Food Mixer — Copper Contamination Complaint",
+    company: "Food Machinery Manufacturer",
+    condition: "Chocolate mixer, shaft 30mm, 200rpm, 80°C. Copper bushings + food-grade grease caused copper ion and grease contamination.",
+    diagnosis: "Copper bushing wear particles + grease migration contaminated the chocolate product, causing customer complaints.",
+    solution: "Replaced with FDA-grade resin-impregnated carbon graphite bushings — completely oil-free self-lubricating design.",
+    result: "Zero contamination complaints. FDA-compliant, completely oil-free operation.",
+  },
+  {
+    title: "Chemical Centrifugal Pump — Seal Failure Retrofit",
+    company: "Chemical Group",
+    condition: "Centrifugal pump handling corrosive chemicals, shaft 50mm, 1450rpm, 80-120°C. PTFE seals leaked every 3 months.",
+    diagnosis: "PTFE seals softened at high temperature + chemical attack caused rapid degradation and leakage at the sealing face.",
+    solution: "Custom carbon graphite mechanical seal face with chemical-resistant resin impregnation, paired with SiC mating face.",
+    result: "Service life extended from 3 to 18 months (6x improvement). Annual maintenance savings of ~280,000 RMB.",
+  },
+  {
+    title: "Marine Seawater Pump — Seal Upgrade",
+    company: "Shipbuilding Manufacturer",
+    condition: "Seawater pump, shaft 60mm, 1750rpm. Copper bearings + rubber seals corroded in seawater, replacement every 6 months.",
+    diagnosis: "Galvanic corrosion between copper alloy and shaft in seawater + rubber seal degradation from salt water exposure.",
+    solution: "Marine-grade carbon graphite bushings with special anti-corrosion impregnation + EPDM elastomer seals.",
+    result: "2 years maintenance-free operation. DNV certified. Standard configuration for this shipyard.",
+  },
+  {
+    title: "Power Plant Circulating Pump — Bearing Upgrade",
+    company: "Power Group",
+    condition: "Large circulating water pump, shaft 120mm, 990rpm, 60-95°C. Tin bronze bearings wore rapidly, monthly maintenance.",
+    diagnosis: "Abrasive particles in untreated circulating water accelerated tin bronze bearing wear, requiring monthly replacement.",
+    solution: "High-hardness carbon graphite bearings with anti-abrasion impregnation, designed for sandy/particulate water conditions.",
+    result: "15 months continuous operation. Annual downtime reduced by 720 hours. Maintenance cost reduced by 80%.",
+  },
+]
+
+export const enAdvantages = [
+  {
+    title: "Self-Lubricating Performance",
+    description:
+      "Carbon graphite has natural self-lubricating properties, eliminating the need for external lubrication systems and significantly reducing maintenance costs. Suitable for high-speed rotation, maintaining lubrication even during start-up and shutdown.",
+    icon: "oil",
+  },
+  {
+    title: "High Temperature Resistance",
+    description:
+      "Stable operation at 300°C long-term, with short-term peaks up to 350°C. Special anti-oxidation impregnation ensures consistent performance in high-temperature environments.",
+    icon: "thermo",
+  },
+  {
+    title: "Corrosion Resistance",
+    description:
+      "Chemically inert carbon graphite resists most acids, alkalis, and organic solvents. Impregnation further enhances durability in highly corrosive media.",
+    icon: "shield",
+  },
+  {
+    title: "Wear Resistance",
+    description:
+      "Advanced impregnation technology creates a hard, durable sealing surface, significantly extending service life compared to ordinary materials. Wear resistance improved by 60-80%.",
+    icon: "gear",
+  },
+]
+
+export const enApplications = [
+  {
+    title: "Pump Sealing",
+    slug: "pump-industry",
+    description: "Rotary shaft seals and bushing supports for centrifugal pumps, chemical pumps, water pumps, and multi-stage pumps. Self-lubricating and maintenance-free.",
+    image: "pump",
+  },
+  {
+    title: "Marine & Offshore",
+    slug: "marine-industry",
+    description: "Propeller stern shaft seals, seawater cooling pump seals, rudder bearings. Special anti-corrosion impregnation for seawater environments.",
+    image: "ship",
+  },
+  {
+    title: "Chemical & Pharmaceutical",
+    slug: "chemical-processing",
+    description: "Reactor agitator shaft seals, high-pressure process pump seals. Chemically inert against strong acids, alkalis, and organic solvents.",
+    image: "chem",
+  },
+  {
+    title: "Power & Energy",
+    slug: "power-energy",
+    description: "Circulating water pump bearings, nuclear auxiliary pump seals, turbine oil pump bushings. High-temp capability up to 600°C.",
+    image: "seal",
+  },
+  {
+    title: "Food & Beverage Machinery",
+    slug: "food-pharma",
+    description: "Chocolate mixer bearings, food conveyor pump seals. Food-grade resin impregnation, completely oil-free and FDA compliant.",
+    image: "seal",
+  },
+  {
+    title: "Mining & Metallurgy",
+    slug: "mining-metallurgy",
+    description: "Slurry pump bushings, rolling mill lubrication seals. Excellent wear resistance and thermal shock performance in harsh environments.",
+    image: "pump",
+  },
+  {
+    title: "Oil & Gas",
+    slug: "oil-gas",
+    description: "Oil pump mechanical seals, natural gas compressor bearings. Chemically stable in hydrocarbon media, meeting API standards.",
+    image: "chem",
+  },
+  {
+    title: "General Industrial Sealing",
+    slug: "general-sealing",
+    description: "Valve stem seals, compressor seals, mixer seals. Flexible machinability for custom non-standard configurations.",
+    image: "seal",
+  },
+]
+
 export const factoryHighlights = [
   { value: "15+", label: "出口国家" },
   { value: "30+", label: "现有员工" },
   { value: "5年", label: "出口经验" },
+]
+
+export const enFactoryHighlights = [
+  { value: "15+", label: "Export Countries" },
+  { value: "30+", label: "Employees" },
+  { value: "5 yrs", label: "Export Experience" },
 ]
 
 export const clientCountries = [
@@ -353,5 +501,149 @@ export const failureSolutions = [
     industries: ["大型水泵", "船用设备", "压缩机", "造纸设备"],
     solution: "碳石墨的天然阻尼特性吸收振动，配合优化的间隙设计减少微动磨损。",
     benefit: "在高振动环境下保持稳定性能",
+  },
+]
+
+export const enApplicationConditions = [
+  {
+    industry: "Centrifugal & Process Pumps",
+    tempRange: "-50°C ~ 260°C",
+    pressureRange: "≤ 20 MPa",
+    speedRange: "≤ 25 m/s",
+    media: "Water, oil, chemicals, slurries, hydrocarbons",
+    phRange: "0–14 (varies by grade)",
+  },
+  {
+    industry: "Marine Stern Shaft & Seawater Pumps",
+    tempRange: "-20°C ~ 150°C",
+    pressureRange: "≤ 10 MPa",
+    speedRange: "≤ 15 m/s",
+    media: "Seawater, brine, marine lubricants",
+    phRange: "6–10",
+  },
+  {
+    industry: "Chemical Reactors & Agitators",
+    tempRange: "-50°C ~ 350°C",
+    pressureRange: "≤ 25 MPa",
+    speedRange: "≤ 10 m/s",
+    media: "Strong acids, alkalis, organic solvents, corrosive chemicals",
+    phRange: "0–14 (corrosion-resistant grade)",
+  },
+  {
+    industry: "Power Plant Circulating & Heat Supply Pumps",
+    tempRange: "0°C ~ 250°C",
+    pressureRange: "≤ 16 MPa",
+    speedRange: "≤ 20 m/s",
+    media: "Cooling water, hot water, steam, thermal oil",
+    phRange: "6–10",
+  },
+  {
+    industry: "Food & Pharmaceutical Machinery",
+    tempRange: "-20°C ~ 150°C",
+    pressureRange: "≤ 10 MPa",
+    speedRange: "≤ 10 m/s",
+    media: "Food slurries, chocolate, pharmaceuticals, CIP fluids",
+    phRange: "3–11 (food-grade)",
+  },
+  {
+    industry: "Mining Slurry & Metallurgical Equipment",
+    tempRange: "-20°C ~ 200°C",
+    pressureRange: "≤ 15 MPa",
+    speedRange: "≤ 12 m/s",
+    media: "Ore slurry, mud, solid-containing media",
+    phRange: "4–12",
+  },
+  {
+    industry: "Oil & Gas Transport",
+    tempRange: "-50°C ~ 300°C",
+    pressureRange: "≤ 25 MPa",
+    speedRange: "≤ 20 m/s",
+    media: "Crude oil, natural gas, LNG, oilfield chemicals",
+    phRange: "4–12 (oil-resistant grade)",
+  },
+  {
+    industry: "General Industrial Equipment",
+    tempRange: "-30°C ~ 280°C",
+    pressureRange: "≤ 15 MPa",
+    speedRange: "≤ 20 m/s",
+    media: "Compressed air, steam, gases, lubricating oil",
+    phRange: "4–12",
+  },
+  {
+    industry: "Submersible & Wastewater Pumps",
+    tempRange: "0°C ~ 80°C (short-term 120°C)",
+    pressureRange: "≤ 5 MPa",
+    speedRange: "≤ 10 m/s",
+    media: "Clean water, wastewater, sludge, particle-containing media",
+    phRange: "5–10",
+  },
+  {
+    industry: "Air Compressors & Pneumatic Equipment",
+    tempRange: "-20°C ~ 200°C",
+    pressureRange: "≤ 2.5 MPa",
+    speedRange: "≤ 25 m/s",
+    media: "Compressed air, nitrogen, inert gases, oil-laden gases",
+    phRange: "6–8",
+  },
+  {
+    industry: "Hydraulic Equipment & Valves",
+    tempRange: "-30°C ~ 150°C",
+    pressureRange: "≤ 35 MPa",
+    speedRange: "≤ 5 m/s",
+    media: "Hydraulic oil, lubricating oil, emulsions",
+    phRange: "6–9",
+  },
+]
+
+export const enFailureSolutions = [
+  {
+    id: "wear",
+    failure: "Excessive Wear, Short Life",
+    icon: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v6l5.25 3.15L17 12.23l-4-2.37z",
+    cause: "Abrasive particles in medium, insufficient lubrication, or wrong material grade selection.",
+    symptoms: "Visible thinning of seal, leakage after months of operation; increased pump vibration; grooved or stepped wear pattern on seal face.",
+    industries: ["Chemical Pumps", "Wastewater Pumps", "Slurry Pumps", "Mining Equipment"],
+    solution: "Custom carbon graphite grade with optimized impregnation — self-lubricating matrix reduces wear rate by 60-80%.",
+    benefit: "3-6× longer service life",
+  },
+  {
+    id: "leak",
+    failure: "Seal Face Leakage",
+    icon: "M3 12h2v-2H3v2zm16 0h2v-2h-2v2zM5 12l6-6v4h6v4h-6v4l-6-6z",
+    cause: "Thermal distortion, pressure fluctuations, installation misalignment, or face flatness degradation during operation.",
+    symptoms: "Continuous seepage around seal perimeter; increased leakage after shutdown/restart; thermal cracks or warping marks on seal face.",
+    industries: ["Centrifugal Pumps", "Chemical Pumps", "Water Pumps", "Oil Pumps"],
+    solution: "Precision-lapped seal face with stable carbon graphite material maintains flatness through thermal cycling and pressure fluctuations.",
+    benefit: "Zero leakage under normal operation",
+  },
+  {
+    id: "corrosion",
+    failure: "Corrosion & Chemical Attack",
+    icon: "M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z",
+    cause: "Corrosive chemical media attacking the seal structure, causing swelling, cracking, or dissolution.",
+    symptoms: "Pitting, blistering, or softening on seal surface; dimensional changes causing binding; media penetration and discoloration along seal face.",
+    industries: ["Chemical Reactors", "Pickling Equipment", "Plating Lines", "Pharmaceutical"],
+    solution: "Chemically inert carbon graphite with specialized resin or metal impregnation, rated for specific chemical environments.",
+    benefit: "Resists acids, alkalis & solvents (pH 0-14)",
+  },
+  {
+    id: "heat",
+    failure: "Overheating & Thermal Failure",
+    icon: "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z",
+    cause: "High-speed operation without adequate cooling, dry running, or insufficient heat dissipation at seal face.",
+    symptoms: "Abnormally high temperature at seal area; burn marks or discoloration on seal face; hardened and brittle elastomeric seals.",
+    industries: ["High-Speed Pumps", "Compressors", "Agitators", "Steam Systems"],
+    solution: "High-thermal-conductivity carbon graphite dissipates heat 3× faster than standard materials, with anti-oxidation treatment for high-temp stability.",
+    benefit: "Stable operation at 350°C peak",
+  },
+  {
+    id: "vibration",
+    failure: "Fretting Wear & Vibration Damage",
+    icon: "M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z",
+    cause: "Pump vibration, shaft runout, or improper installation causing fretting between seal components.",
+    symptoms: "Abnormal noise and vibration during operation; polished wear pattern on mating surfaces; uneven O-ring groove wear.",
+    industries: ["Large Water Pumps", "Marine Equipment", "Compressors", "Paper Machinery"],
+    solution: "Carbon graphite's natural damping properties absorb vibration, while optimized clearance design minimizes fretting wear.",
+    benefit: "Stable performance under high vibration",
   },
 ]

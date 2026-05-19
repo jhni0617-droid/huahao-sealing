@@ -1,10 +1,17 @@
 import Image from "next/image"
+import { getLocale, getTranslations } from "next-intl/server"
 import { Link } from "@/i18n/routing"
 import { notFound } from "next/navigation"
-import { products, getProductBySlug } from "@/lib/products"
+import { products } from "@/lib/products"
+import { productsByLocale } from "@/lib/translations-products"
 import CTASection from "@/components/CTASection"
+import FAQAccordion from "@/components/FAQAccordion"
+import SpecBadge from "@/components/ui/SpecBadge"
+import Icon from "@/components/ui/Icon"
+import { ProductJsonLd, BreadcrumbJsonLd } from "@/components/JsonLd"
 import { generateMeta } from "@/lib/utils"
 import { siteConfig } from "@/lib/constants"
+import { getLocalized } from "@/lib/locale-data"
 
 interface Props {
   params: Promise<{ locale: string; slug: string }>
@@ -15,28 +22,55 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props) {
-  const { slug } = await params
-  const product = getProductBySlug(slug)
+  const { slug, locale } = await params
+  const product = (productsByLocale[locale] || productsByLocale.en).find((p) => p.slug === slug)
   if (!product) return {}
   return generateMeta({
-    title: `${product.name} (${product.model}) | 华豪密封`,
+    title: `${product.name} (${product.model})`,
     description: product.shortDesc,
     path: `/products/${slug}`,
+    locale,
   })
 }
 
 export default async function ProductDetailPage({ params }: Props) {
-  const { slug } = await params
-  const product = getProductBySlug(slug)
+  const { slug, locale } = await params
+  const product = (productsByLocale[locale] || productsByLocale.en).find((p) => p.slug === slug)
   if (!product) notFound()
+
+  const t = await getTranslations("productDetail")
+  const tnav = await getTranslations("nav")
+
+  const getSpecValue = (label: string) =>
+    product.specs.find((s) => s.label === label)?.value || ""
+
+  const isSealRing = product.category === "碳石墨密封环" || product.category === "Seal Rings"
+  const defaultMating = locale === "zh"
+    ? ["碳化硅（SiC）", "碳化钨（WC）", "氧化铝陶瓷", "高铬不锈钢"]
+    : ["Silicon Carbide (SiC)", "Tungsten Carbide (WC)", "Alumina Ceramic", "High-Chrome Stainless Steel"]
 
   return (
     <>
+      <BreadcrumbJsonLd items={[
+        { name: tnav("home"), url: "/" },
+        { name: tnav("products"), url: "/products" },
+        { name: product.name, url: `/products/${slug}` },
+      ]} />
+      <ProductJsonLd
+        name={product.name}
+        model={product.model}
+        description={product.description}
+        image={product.image}
+        category={product.category}
+        locale={locale}
+      />
+
+      {/* Breadcrumb */}
       <section className="bg-gray-50 border-b border-border">
         <div className="container-wide py-4 text-sm text-muted">
-          <Link href="/" className="hover:text-primary">首页</Link>
+          <Link href="/" className="hover:text-primary">{tnav("home")}</Link>
           <span className="mx-2">/</span>
-          <Link href="/products" className="hover:text-primary">产品中心</Link>
+          <Link href="/products" className="hover:text-primary">{tnav("products")}</Link>
           <span className="mx-2">/</span>
           <span className="text-foreground">{product.name}</span>
         </div>
@@ -45,45 +79,64 @@ export default async function ProductDetailPage({ params }: Props) {
       <section className="section-padding bg-white">
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12">
+            {/* Left: Product Info */}
             <div>
               <div className="text-sm font-semibold text-accent uppercase tracking-wider mb-2">{product.category}</div>
               <h1 className="text-3xl md:text-4xl font-bold text-primary mb-2">{product.name}</h1>
-              <p className="text-lg text-muted mb-6">{product.model}</p>
+              <p className="text-lg text-muted mb-4">{product.model}</p>
+
+              {/* Spec badges strip */}
+              <div className="flex flex-wrap gap-2 mb-6">
+                {(() => {
+                  const temp = getSpecValue("温度范围") || getSpecValue("Temperature")
+                  const pressure = getSpecValue("压力") || getSpecValue("Pressure")
+                  const speed = getSpecValue("转速") || getSpecValue("Speed")
+                  return (
+                    <>
+                      {temp && <SpecBadge icon="thermometer" label={t("specTemp")} value={temp} />}
+                      {pressure && <SpecBadge icon="gear" label={t("specPressure")} value={pressure} />}
+                      {speed && <SpecBadge icon="clock" label={t("specSpeed")} value={speed} />}
+                    </>
+                  )
+                })()}
+              </div>
+
               <p className="text-muted leading-relaxed mb-8">{product.description}</p>
 
-              <div className="flex flex-wrap gap-4 mb-8">
-                <a href={`https://wa.me/${siteConfig.whatsapp}?text=Inquiry%20about%20${encodeURIComponent(product.name)}`}
-                  target="_blank" rel="noopener noreferrer" className="btn-primary">
-                  WhatsApp咨询
+              {/* CTAs */}
+              <div className="flex flex-wrap gap-3 mb-8">
+                <a
+                  href={`https://wa.me/${siteConfig.whatsapp}?text=Inquiry%20about%20${encodeURIComponent(product.name)}`}
+                  target="_blank" rel="noopener noreferrer" className="btn-primary"
+                >
+                  {t("whatsapp")}
                 </a>
                 <Link href={`/contact?product=${product.slug}`} className="btn-secondary">
-                  获取报价
+                  {t("getQuote")}
                 </Link>
                 {product.pdfUrl && (
                   <a href={product.pdfUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold border border-primary/20 text-primary rounded-[10px] hover:bg-primary/5 transition-all">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    下载数据表
+                    <Icon name="download" className="w-4 h-4" />
+                    {t("downloadPdf")}
                   </a>
                 )}
               </div>
 
-              <h2 className="text-xl font-bold text-primary mb-4">产品特点</h2>
+              {/* Features */}
+              <h2 className="text-xl font-bold text-primary mb-4">{t("features")}</h2>
               <ul className="space-y-2 mb-8">
                 {product.features.map((f, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm">
-                    <svg className="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
+                    <Icon name="check" className="w-5 h-5 text-accent shrink-0 mt-0.5" />
                     {f}
                   </li>
                 ))}
               </ul>
 
+              {/* Common Sizes */}
               {product.commonSizes && product.commonSizes.length > 0 && (
                 <div className="mb-8">
-                  <h2 className="text-xl font-bold text-primary mb-4">常用规格尺寸</h2>
+                  <h2 className="text-xl font-bold text-primary mb-4">{t("commonSizes")}</h2>
                   <div className="card p-5">
                     <table className="w-full text-sm">
                       <tbody>
@@ -95,14 +148,17 @@ export default async function ProductDetailPage({ params }: Props) {
                         ))}
                       </tbody>
                     </table>
-                    <p className="text-xs text-muted mt-3">注：以上为常规尺寸范围，可按图纸定制任意非标尺寸。</p>
+                    <p className="text-xs text-muted mt-3">
+                      {t("commonSizesNote")}
+                    </p>
                   </div>
                 </div>
               )}
 
+              {/* Installation Notes */}
               {product.installationNotes && product.installationNotes.length > 0 && (
                 <div className="mb-8">
-                  <h2 className="text-xl font-bold text-primary mb-4">安装注意事项</h2>
+                  <h2 className="text-xl font-bold text-primary mb-4">{t("installationNotes")}</h2>
                   <ul className="space-y-2">
                     {product.installationNotes.map((note, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm text-muted">
@@ -115,9 +171,10 @@ export default async function ProductDetailPage({ params }: Props) {
               )}
             </div>
 
+            {/* Right: Image + Sidebar */}
             <div>
               {product.image && (
-                <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-gray-50 border border-border mb-8">
+                <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-gray-50 border border-border mb-6 shadow-sm">
                   <Image
                     src={product.image}
                     alt={product.name}
@@ -127,38 +184,44 @@ export default async function ProductDetailPage({ params }: Props) {
                   />
                 </div>
               )}
+
+              {/* Technical Parameters */}
               <div className="card p-6 md:p-8">
-                <h2 className="text-xl font-bold text-primary mb-6">技术参数</h2>
-                <table className="spec-table">
+                <h2 className="text-xl font-bold text-primary mb-6">{t("technicalParams")}</h2>
+                <table className="w-full text-sm">
                   <tbody>
                     {product.specs.map((spec, i) => (
-                      <tr key={i}>
-                        <td>{spec.label}</td>
-                        <td>{spec.value}</td>
+                      <tr key={i} className="border-b border-border last:border-0">
+                        <td className="py-3 pr-4 text-muted font-medium w-36">{spec.label}</td>
+                        <td className="py-3 text-primary font-semibold">{spec.value}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
 
-              {product.category === "碳石墨密封环" && (
+              {/* Graphite Technical Data (for seal rings) */}
+              {isSealRing && (
                 <div className="card p-6 md:p-8 mt-6">
-                  <h2 className="text-xl font-bold text-primary mb-4">普通石墨技术参数</h2>
-                  <table className="spec-table">
+                  <h2 className="text-xl font-bold text-primary mb-4">{t("graphiteParams")}</h2>
+                  <table className="w-full text-sm">
                     <tbody>
-                      <tr><td>抗压强度</td><td>92 MPa</td></tr>
-                      <tr><td>碳含量</td><td>99.9%</td></tr>
-                      <tr><td>抗折强度</td><td>38 MPa</td></tr>
-                      <tr><td>肖氏硬度</td><td>78 HS</td></tr>
-                      <tr><td>灰分</td><td>0.002%</td></tr>
+                      <tr className="border-b border-border"><td className="py-2.5 text-muted">{getLocalized({ zh: "抗压强度", en: "Compressive Strength", vi: "Cường độ nén", th: "กำลังอัด", ru: "Прочность на сжатие", ja: "圧縮強さ", ko: "압축 강도" }, locale)}</td><td className="py-2.5 text-primary font-semibold">92 MPa</td></tr>
+                      <tr className="border-b border-border"><td className="py-2.5 text-muted">{getLocalized({ zh: "碳含量", en: "Carbon Content", vi: "Hàm lượng Carbon", th: "ปริมาณคาร์บอน", ru: "Содержание углерода", ja: "炭素含有量", ko: "탄소 함량" }, locale)}</td><td className="py-2.5 text-primary font-semibold">99.9%</td></tr>
+                      <tr className="border-b border-border"><td className="py-2.5 text-muted">{getLocalized({ zh: "抗折强度", en: "Flexural Strength", vi: "Cường độ uốn", th: "กำลังดัด", ru: "Прочность на изгиб", ja: "曲げ強さ", ko: "굽힘 강도" }, locale)}</td><td className="py-2.5 text-primary font-semibold">38 MPa</td></tr>
+                      <tr className="border-b border-border"><td className="py-2.5 text-muted">{getLocalized({ zh: "肖氏硬度", en: "Shore Hardness", vi: "Độ cứng Shore", th: "ความแข็งโชร์", ru: "Твердость по Шору", ja: "ショア硬度", ko: "쇼어 경도" }, locale)}</td><td className="py-2.5 text-primary font-semibold">78 HS</td></tr>
+                      <tr><td className="py-2.5 text-muted">{getLocalized({ zh: "灰分", en: "Ash Content", vi: "Hàm lượng tro", th: "ปริมาณเถ้า", ru: "Зольность", ja: "灰分", ko: "회분" }, locale)}</td><td className="py-2.5 text-primary font-semibold">0.002%</td></tr>
                     </tbody>
                   </table>
-                  <p className="text-xs text-muted mt-3">以上为基础普通石墨（M106H）物理性能指标，不同浸渍工艺后性能会有所提升。</p>
+                  <p className="text-xs text-muted mt-3">
+                    {t("graphiteParamsNote")}
+                  </p>
                 </div>
               )}
 
+              {/* Available Materials */}
               <div className="card p-6 md:p-8 mt-6">
-                <h2 className="text-xl font-bold text-primary mb-4">可选材料</h2>
+                <h2 className="text-xl font-bold text-primary mb-4">{t("materials")}</h2>
                 <div className="flex flex-wrap gap-2">
                   {product.materials.map((m) => (
                     <span key={m} className="px-3 py-1.5 bg-gray-50 border border-border rounded text-sm">{m}</span>
@@ -166,21 +229,24 @@ export default async function ProductDetailPage({ params }: Props) {
                 </div>
               </div>
 
-              {product.category === "碳石墨密封环" && (
+              {/* Mating Materials (for seal rings) */}
+              {isSealRing && (
                 <div className="card p-6 md:p-8 mt-6">
-                  <h2 className="text-xl font-bold text-primary mb-4">配对材质建议</h2>
-                  <p className="text-sm text-muted mb-3">碳石墨密封环与以下对磨材质配合使用效果最佳：</p>
+                  <h2 className="text-xl font-bold text-primary mb-4">{t("matingMaterials")}</h2>
+                  <p className="text-sm text-muted mb-3">
+                    {t("matingMaterialsDesc")}
+                  </p>
                   <div className="flex flex-wrap gap-2">
-                    {(product.matingMaterials || ["碳化硅（SiC）", "碳化钨（WC）", "氧化铝陶瓷", "高铬不锈钢", "淬火工具钢", "氮化硅（Si₃N₄）"]).map((m) => (
+                    {(product.matingMaterials || defaultMating).map((m) => (
                       <span key={m} className="px-3 py-1.5 bg-accent/5 border border-accent/20 text-accent rounded text-sm font-medium">{m}</span>
                     ))}
                   </div>
-                  <p className="text-xs text-muted mt-3">推荐对磨面硬度 ≥ HRC 55，表面粗糙度 Ra ≤ 0.2 μm</p>
                 </div>
               )}
 
+              {/* Applications */}
               <div className="card p-6 md:p-8 mt-6">
-                <h2 className="text-xl font-bold text-primary mb-4">应用领域</h2>
+                <h2 className="text-xl font-bold text-primary mb-4">{t("applications")}</h2>
                 <div className="flex flex-wrap gap-2">
                   {product.applications.map((app) => (
                     <span key={app} className="px-3 py-1.5 bg-accent/5 border border-accent/20 text-accent rounded text-sm font-medium">{app}</span>
@@ -192,16 +258,16 @@ export default async function ProductDetailPage({ params }: Props) {
         </div>
       </section>
 
+      {/* FAQ */}
       {product.faq.length > 0 && (
         <section className="section-padding bg-gray-50">
           <div className="container-wide max-w-4xl">
-            <h2 className="text-2xl font-bold text-primary mb-8 text-center">常见问题</h2>
+            <h2 className="text-2xl font-bold text-primary mb-8 text-center">{t("faq")}</h2>
             <div className="space-y-4">
               {product.faq.map((item, i) => (
-                <details key={i} className="card p-5 [&[open]]:border-primary/20">
-                  <summary className="font-semibold cursor-pointer">{item.q}</summary>
-                  <p className="mt-3 text-sm text-muted leading-relaxed">{item.a}</p>
-                </details>
+                <FAQAccordion key={i} title={item.q}>
+                  <p className="text-sm text-muted leading-relaxed">{item.a}</p>
+                </FAQAccordion>
               ))}
             </div>
           </div>
@@ -209,8 +275,8 @@ export default async function ProductDetailPage({ params }: Props) {
       )}
 
       <CTASection
-        title={`对 ${product.name} 感兴趣？`}
-        subtitle="联系我们获取报价、技术参数或定制制造需求。"
+        title={t("ctaTitle", { product: product.name })}
+        subtitle={t("ctaSubtitle")}
       />
     </>
   )

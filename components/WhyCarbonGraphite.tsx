@@ -1,0 +1,114 @@
+import { getLocale, getTranslations } from "next-intl/server"
+import { Link } from "@/i18n/routing"
+import { advantagesByLocale } from "@/lib/translations"
+import Icon from "@/components/ui/Icon"
+import { getLocalized } from "@/lib/locale-data"
+
+const iconNames: Record<string, "droplet" | "thermometer" | "shield" | "gear"> = {
+  oil: "droplet",
+  thermo: "thermometer",
+  shield: "shield",
+  gear: "gear",
+}
+
+const problemsData = {
+  zh: [
+    { title: "密封磨损、寿命短", description: "普通密封件使用几个月就开始磨损，频繁更换推高维护成本。每一次更换都意味着拆解设备、更换零件和生产线停机的损失。" },
+    { title: "泄漏与环保风险", description: "密封失效导致介质泄漏，带来安全隐患、环保违规处罚和高昂的物料损失。一次密封故障就可能造成监管罚款。" },
+    { title: "非计划停机损失", description: "密封故障引发的紧急停机打乱生产计划、延迟交货。每一次非计划停机都直接影响企业利润。" },
+  ],
+  en: [
+    { title: "Seal Wear, Short Life", description: "Ordinary seals wear out within months. Frequent replacements drive up maintenance costs. Each replacement means equipment disassembly and production line downtime." },
+    { title: "Leakage & Environmental Risk", description: "Seal failure causes media leakage, safety hazards, and environmental penalties. A single seal failure can result in regulatory fines." },
+    { title: "Unplanned Downtime Loss", description: "Emergency shutdowns from seal failure disrupt production and delay deliveries. Every unplanned stoppage directly impacts your bottom line." },
+  ],
+  vi: [
+    { title: "Mòn phớt, tuổi thọ ngắn", description: "Phớt thông thường bị mòn sau vài tháng. Thay thế thường xuyên làm tăng chi phí bảo trì. Mỗi lần thay có nghĩa là tháo thiết bị và ngừng dây chuyền sản xuất." },
+    { title: "Rò rỉ & Rủi ro môi trường", description: "Phớt hỏng gây rò rỉ môi chất, dẫn đến nguy cơ an toàn, phạt vi phạm môi trường và tổn thất vật liệu lớn." },
+    { title: "Tổn thất do ngừng máy ngoài kế hoạch", description: "Ngừng máy khẩn cấp do phớt hỏng làm gián đoạn sản xuất và chậm giao hàng. Mỗi lần ngừng máy ảnh hưởng trực tiếp đến lợi nhuận." },
+  ],
+  th: [
+    { title: "การสึกหรอของซีล อายุสั้น", description: "ซีลทั่วไปสึกหรอภายในไม่กี่เดือน การเปลี่ยนบ่อยเพิ่มค่าบำรุงรักษา การเปลี่ยนแต่ละครั้งหมายถึงการถอดประกอบอุปกรณ์และหยุดสายการผลิต" },
+    { title: "การรั่วไหลและความเสี่ยงด้านสิ่งแวดล้อม", description: "ซีลเสียทำให้ของเหลวรั่วไหล นำไปสู่ความเสี่ยงด้านความปลอดภัย ค่าปรับด้านสิ่งแวดล้อม และการสูญเสียวัสดุ" },
+    { title: "การสูญเสียจากการหยุดผลิตโดยไม่ได้วางแผน", description: "การหยุดฉุกเฉินจากซีลเสียขัดขวางการผลิตและทำให้การส่งมอบล่าช้า ส่งผลกระทบโดยตรงต่อผลกำไร" },
+  ],
+  ru: [
+    { title: "Износ уплотнения, короткий срок службы", description: "Обычные уплотнения изнашиваются за несколько месяцев. Частая замена увеличивает расходы на обслуживание. Каждая замена означает разборку оборудования и простой производства." },
+    { title: "Утечка и экологический риск", description: "Отказ уплотнения приводит к утечке среды, создавая угрозу безопасности, экологические штрафы и потери материалов." },
+    { title: "Потери от внеплановых простоев", description: "Аварийные остановки из-за отказа уплотнения нарушают производство и задерживают поставки. Каждый внеплановый простой напрямую влияет на прибыль." },
+  ],
+  ja: [
+    { title: "シール摩耗、寿命が短い", description: "通常のシールは数ヶ月で摩耗します。頻繁な交換はメンテナンスコストを押し上げます。毎回の交換は装置の分解と生産ラインの停止を意味します。" },
+    { title: "漏洩と環境リスク", description: "シール不良による媒体漏洩は、安全上の危険、環境違反罰金、および多大な材料損失を引き起こします。" },
+    { title: "計画外ダウンタイムの損失", description: "シール不良による緊急停止は生産計画を乱し、納期を遅らせます。計画外の停止は利益に直接影響します。" },
+  ],
+  ko: [
+    { title: "씰 마모, 짧은 수명", description: "일반 씰은 몇 개월 내에 마모됩니다. 빈번한 교체는 유지보수 비용을 증가시킵니다. 교체할 때마다 장비 분해와 생산라인 중단이 발생합니다." },
+    { title: "누출 및 환경 위험", description: "씰 고장으로 인한 매체 누출은 안전 위험, 환경 위반 벌금 및 막대한 재료 손실을 초래합니다." },
+    { title: "계획 외 가동 중단 손실", description: "씰 고장으로 인한 비상 정지는 생산 계획을 방해하고 납품을 지연시킵니다. 계획 외 중단은 이익에 직접적인 영향을 미칩니다." },
+  ],
+}
+
+export default async function WhyCarbonGraphite() {
+  const locale = await getLocale()
+  const t = await getTranslations("home.whyCarbon")
+  const problems = getLocalized(problemsData, locale)
+  const items = getLocalized(advantagesByLocale, locale)
+
+  return (
+    <section className="section-padding bg-white">
+      <div className="container-wide">
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="badge-accent justify-center mx-auto mb-4">{t("tag")}</div>
+          <h2 className="text-3xl md:text-4xl font-bold text-primary mt-3 mb-4">{t("title")}</h2>
+          <p className="text-muted text-base leading-relaxed">{t("description")}</p>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-10">
+          <div>
+            <h3 className="text-lg font-bold text-primary mb-6 flex items-center gap-2">
+              <span className="w-5 h-5 rounded-full bg-red-100 text-red-500 flex items-center justify-center text-xs font-bold">!</span>
+              {t("problemsTitle")}
+            </h3>
+            <div className="space-y-4">
+              {problems.map((p) => (
+                <div key={p.title} className="card-subtle p-5 border-l-4 border-l-red-400 hover:border-l-red-500">
+                  <h4 className="font-bold text-sm text-primary mb-1.5">{p.title}</h4>
+                  <p className="text-xs text-muted leading-relaxed">{p.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-bold text-primary mb-6 flex items-center gap-2">
+              <Icon name="sparkles" className="w-5 h-5 text-accent" />
+              {t("solutionTitle")}
+            </h3>
+            <div className="space-y-4">
+              {items.map((adv) => (
+                <div key={adv.title} className="card p-5 border-l-4 border-l-accent">
+                  <div className="flex items-start gap-4">
+                    <div className="w-11 h-11 bg-accent-subtle rounded-xl flex items-center justify-center shrink-0">
+                      <Icon name={iconNames[adv.icon]} className="w-5 h-5 text-accent" />
+                    </div>
+                    <div className="min-w-0">
+                      <h4 className="font-bold text-sm text-primary mb-1">{adv.title}</h4>
+                      <p className="text-xs text-muted leading-relaxed">{adv.description}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="text-center mt-14 p-8 md:p-10 bg-gradient-to-br from-accent-subtle to-white border border-accent-light rounded-2xl">
+          <h3 className="text-xl md:text-2xl font-bold text-primary mb-3">{t("ctaTitle")}</h3>
+          <p className="text-muted text-sm max-w-2xl mx-auto mb-6 leading-relaxed">{t("ctaDescription")}</p>
+          <Link href="/contact" className="btn-primary">{t("ctaButton")}</Link>
+        </div>
+      </div>
+    </section>
+  )
+}

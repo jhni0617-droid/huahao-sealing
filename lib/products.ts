@@ -65,6 +65,7 @@ export const products: Product[] = [
     faq: [
       { q: "BIA系列的最高工作温度是多少？", a: "BIA系列采用抗氧化浸渍牌号可长期在280°C下连续运行，短期峰值可承受350°C。" },
     ],
+    image: "/images/products/seal-ring-placeholder.svg",
   },
   {
     slug: "104-series",
@@ -105,6 +106,7 @@ export const products: Product[] = [
     faq: [
       { q: "104系列适合大批量OEM应用吗？", a: "是的，104系列专为高性价比批量生产而设计，在保证质量一致性的同时，非常适合空间受限的OEM应用。" },
     ],
+    image: "/images/products/seal-ring-placeholder.svg",
   },
   {
     slug: "155-series",
@@ -145,6 +147,7 @@ export const products: Product[] = [
     faq: [
       { q: "155系列可与哪些国际品牌互换？", a: "155系列按照与约翰克兰、伊格尔博格曼、科士通等国际主流机械密封品牌兼容的尺寸标准设计。请提供具体尺寸以便交叉参考。" },
     ],
+    image: "/images/products/seal-ring-placeholder.svg",
   },
   {
     slug: "109-series",
@@ -177,6 +180,7 @@ export const products: Product[] = [
     materials: ["普通石墨", "浸树脂石墨", "浸锑石墨", "浸铜石墨"],
     features: ["通用性最强，应用广泛", "标准化尺寸，更换方便", "性能稳定可靠", "性价比高"],
     faq: [],
+    image: "/images/products/seal-ring-placeholder.svg",
   },
   {
     slug: "108-series",
@@ -212,6 +216,7 @@ export const products: Product[] = [
     faq: [
       { q: "108型与109型有什么区别？", a: "108型通常作为动环使用，109型通常作为静环使用，两者互为配对。108型的外径尺寸适配109型的内孔，可组成完整的机械密封单元。" },
     ],
+    image: "/images/products/seal-ring-placeholder.svg",
   },
   {
     slug: "58u-series",
@@ -243,6 +248,7 @@ export const products: Product[] = [
     materials: ["普通石墨", "浸树脂石墨", "浸锑石墨", "浸铜石墨"],
     features: ["非平衡型结构", "结构紧凑", "安装便捷", "经济实用"],
     faq: [],
+    image: "/images/products/seal-ring-placeholder.svg",
   },
   {
     slug: "m7n-series",
@@ -275,6 +281,7 @@ export const products: Product[] = [
     materials: ["普通石墨", "浸树脂石墨", "浸锑石墨", "浸铜石墨"],
     features: ["多弹簧结构补偿能力强", "耐化学腐蚀", "适用于含颗粒介质", "密封性能稳定"],
     faq: [],
+    image: "/images/products/seal-ring-placeholder.svg",
   },
   {
     slug: "206-series",
@@ -306,6 +313,7 @@ export const products: Product[] = [
     materials: ["普通石墨", "浸树脂石墨", "浸锑石墨", "浸铜石墨"],
     features: ["双端面设计", "高安全性", "适用于冲洗系统", "密封可靠性高"],
     faq: [],
+    image: "/images/products/seal-ring-placeholder.svg",
   },
   {
     slug: "59u-series",
@@ -338,6 +346,7 @@ export const products: Product[] = [
     materials: ["普通石墨", "浸树脂石墨", "浸锑石墨", "浸铜石墨"],
     features: ["橡胶波纹管结构", "跟随补偿能力好", "耐海水腐蚀", "安装方便"],
     faq: [],
+    image: "/images/products/seal-ring-placeholder.svg",
   },
   {
     slug: "204-series",
@@ -369,6 +378,7 @@ export const products: Product[] = [
     materials: ["普通石墨", "浸树脂石墨", "浸锑石墨", "浸铜石墨"],
     features: ["轻型经济设计", "大批量OEM适用", "结构简单", "性价比突出"],
     faq: [],
+    image: "/images/products/seal-ring-placeholder.svg",
   },
   {
     slug: "58b-series",
@@ -400,6 +410,7 @@ export const products: Product[] = [
     materials: ["普通石墨", "浸树脂石墨", "浸锑石墨", "浸铜石墨"],
     features: ["平衡型结构", "承压能力高", "适用于高速工况", "耐用性强"],
     faq: [],
+    image: "/images/products/seal-ring-placeholder.svg",
   },
   {
     slug: "graphite-bushing",

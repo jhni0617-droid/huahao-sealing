@@ -1,5 +1,7 @@
+import { getLocale, getTranslations } from "next-intl/server"
 import { Link } from "@/i18n/routing"
-import { applications } from "@/lib/constants"
+import { getLocalized } from "@/lib/locale-data"
+import { applicationsByLocale } from "@/lib/translations"
 
 const iconMap: Record<string, string> = {
   pump: "M3 12h2v-2H3v2zm16 0h2v-2h-2v2zM5 12l6-6v4h6v4h-6v4l-6-6z",
@@ -8,31 +10,38 @@ const iconMap: Record<string, string> = {
   seal: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v6l5.25 3.15L17 12.23l-4-2.37z",
 }
 
-export default function ApplicationsSection() {
+export default async function ApplicationsSection() {
+  const locale = await getLocale()
+  const t = await getTranslations("home.applicationsSection")
+  const items = getLocalized(applicationsByLocale, locale)
+
   return (
     <section className="section-padding bg-gray-50">
       <div className="container-wide">
         <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary">服务行业</h2>
+          <div className="badge-accent justify-center mx-auto mb-4">
+            {t("tag")}
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-primary">{t("title")}</h2>
           <div className="industrial-divider mx-auto" />
-          <p className="text-muted mt-4 max-w-2xl mx-auto">
-            我们的密封解决方案在全球各行业领域深受信赖。
+          <p className="text-muted mt-4 max-w-2xl mx-auto text-base">
+            {t("description")}
           </p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {applications.map((app) => (
+          {items.map((app) => (
             <Link
               key={app.slug}
               href={`/applications#${app.slug}`}
               className="card p-8 text-center group"
             >
-              <div className="w-14 h-14 mx-auto mb-5 bg-primary/5 rounded-lg flex items-center justify-center group-hover:bg-accent/5 transition-colors">
+              <div className="w-14 h-14 mx-auto mb-5 bg-accent-subtle rounded-xl flex items-center justify-center group-hover:bg-accent/10 transition-all group-hover:scale-110 duration-300">
                 <svg className="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={iconMap[app.image]} />
                 </svg>
               </div>
-              <h3 className="font-bold mb-2">{app.title}</h3>
+              <h3 className="font-bold text-base mb-2 text-primary">{app.title}</h3>
               <p className="text-sm text-muted leading-relaxed">{app.description}</p>
             </Link>
           ))}

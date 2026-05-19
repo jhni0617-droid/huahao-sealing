@@ -32,7 +32,7 @@ export default function LanguageSwitcher() {
       value={locale}
       onChange={handleChange}
       disabled={isPending}
-      className="bg-transparent border border-border rounded px-2 py-1 text-sm cursor-pointer focus:outline-none focus:border-accent"
+      className="bg-transparent border border-border rounded-lg px-2 py-1.5 text-sm cursor-pointer focus:outline-none focus:border-accent transition-colors"
       aria-label="选择语言 / Select language"
     >
       {locales.map((l) => (

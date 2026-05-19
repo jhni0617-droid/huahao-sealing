@@ -44,6 +44,13 @@ export default async function sitemap() {
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: "0.6" as const,
+      alternates: {
+        languages: Object.fromEntries(
+          locales.map((l) => [l, l === defaultLocale
+            ? `${baseUrl}/products/${p.slug}`
+            : `${baseUrl}/${l}/products/${p.slug}`])
+        ),
+      },
     }))
   )
 
