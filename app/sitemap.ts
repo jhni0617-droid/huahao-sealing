@@ -1,7 +1,7 @@
 import { products } from "@/lib/products"
 import { routing } from "@/i18n/routing"
 
-const baseUrl = "https://huahao-sealing.vercel.app"
+const baseUrl = "https://huahaoindustrial.com"
 
 const staticRoutes = [
   { path: "", priority: "1.0" },
