@@ -1,5 +1,4 @@
 import { NextIntlClientProvider } from "next-intl"
-import { getMessages } from "next-intl/server"
 import { routing } from "@/i18n/routing"
 import LayoutShell from "@/components/LayoutShell"
 import { notFound } from "next/navigation"
@@ -17,10 +16,15 @@ export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params
   if (!routing.locales.includes(locale as any)) notFound()
 
-  const messages = await getMessages()
+  let messages
+  try {
+    messages = (await import(`../../messages/${locale}.json`)).default
+  } catch {
+    messages = (await import(`../../messages/zh.json`)).default
+  }
 
   return (
-    <NextIntlClientProvider messages={messages}>
+    <NextIntlClientProvider locale={locale} messages={messages}>
       <LayoutShell>{children}</LayoutShell>
     </NextIntlClientProvider>
   )
