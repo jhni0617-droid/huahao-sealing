@@ -1,13 +1,11 @@
-"use client"
-
+import { getTranslations, getLocale } from "next-intl/server"
 import { Link } from "@/i18n/routing"
-import { useTranslations, useLocale } from "next-intl"
 import { siteConfig, enSiteConfig, factoryHighlights, enFactoryHighlights } from "@/lib/constants"
 import Icon from "@/components/ui/Icon"
 
-export default function Footer() {
-  const t = useTranslations()
-  const locale = useLocale()
+export default async function Footer() {
+  const t = await getTranslations()
+  const locale = await getLocale()
   const isEn = locale !== "zh"
   const cfg = isEn ? enSiteConfig : siteConfig
   const highlights = isEn ? enFactoryHighlights : factoryHighlights

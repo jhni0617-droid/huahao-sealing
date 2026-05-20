@@ -1,8 +1,19 @@
 {
   "permissions": {
-    "Bash(vercel build:*)": "allow",
-    "Bash(cd * && vercel build:*)": "allow",
-    "Bash(npm:*)": "allow",
-    "Bash(yarn:*)": "allow"
+    "initialPermissionMode": "auto",
+    "allow": [
+      "Read",
+      "Write",
+      "Edit",
+      "Bash",
+      "Git",
+      "Npm",
+      "Pip"
+    ],
+    "deny": [
+      "Rm",
+      "Ssh",
+      "Sudo"
+    ]
   }
 }

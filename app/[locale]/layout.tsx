@@ -33,10 +33,23 @@ export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params
   if (!routing.locales.includes(locale as any)) notFound()
 
-  const messages = await getMessages()
+  const allMessages = await getMessages()
+
+  // Only pass namespaces used by client-side components (Header, Hero, FloatingCTA, etc.)
+  // Server components use getTranslations() directly and don't need client provider
+  const clientMessages = {
+    nav: allMessages.nav,
+    common: allMessages.common,
+    company: allMessages.company,
+    home: allMessages.home,
+    contact: allMessages.contact,
+    form: allMessages.form,
+    failure: allMessages.failure,
+    faq: allMessages.faq,
+  }
 
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
+    <NextIntlClientProvider locale={locale} messages={clientMessages}>
       <OrganizationJsonLd locale={locale} />
       <LayoutShell>{children}</LayoutShell>
     </NextIntlClientProvider>

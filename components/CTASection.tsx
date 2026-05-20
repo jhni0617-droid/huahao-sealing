@@ -1,7 +1,5 @@
-"use client"
-
+import { getTranslations } from "next-intl/server"
 import { Link } from "@/i18n/routing"
-import { useTranslations } from "next-intl"
 import { siteConfig } from "@/lib/constants"
 
 interface CTAProps {
@@ -11,8 +9,8 @@ interface CTAProps {
   primaryHref?: string
 }
 
-export default function CTASection({ title, subtitle, primaryLabel, primaryHref }: CTAProps) {
-  const t = useTranslations("common")
+export default async function CTASection({ title, subtitle, primaryLabel, primaryHref }: CTAProps) {
+  const t = await getTranslations("common")
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary-light to-primary">

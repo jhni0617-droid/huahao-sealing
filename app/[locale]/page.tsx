@@ -1,11 +1,15 @@
 import type { Metadata } from "next"
+import dynamic from "next/dynamic"
 import HeroSection from "@/components/HeroSection"
 import WhyCarbonGraphite from "@/components/WhyCarbonGraphite"
 import FactoryQuality from "@/components/FactoryQuality"
-import ClientsSection from "@/components/ClientsSection"
 import ApplicationsSection from "@/components/ApplicationsSection"
 import CasesSection from "@/components/CasesSection"
 import CTASection from "@/components/CTASection"
+
+const ClientsSection = dynamic(() => import("@/components/ClientsSection"), {
+  loading: () => <div className="section-padding bg-gray-50" />,
+})
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params

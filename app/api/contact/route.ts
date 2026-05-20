@@ -1,8 +1,18 @@
 import { NextRequest, NextResponse } from "next/server"
-import { Resend } from "resend"
+import nodemailer from "nodemailer"
 import { getDb } from "@/lib/admin/db"
 
-const resend = new Resend(process.env.RESEND_API_KEY!)
+function createTransporter() {
+  return nodemailer.createTransport({
+    host: process.env.SMTP_HOST || "smtp.mxhichina.com",
+    port: Number(process.env.SMTP_PORT) || 465,
+    secure: true,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+  })
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -28,7 +38,7 @@ export async function POST(request: NextRequest) {
       console.error("DB save error (non-fatal):", dbError)
     }
 
-    // Send email
+    // Send email via SMTP (Alibaba Enterprise Email)
     const fields = [
       ["姓名", name],
       ["邮箱", email],
@@ -46,9 +56,9 @@ export async function POST(request: NextRequest) {
 
     const bodyText = fields.map(([label, value]) => `${label}: ${value}`).join("\n")
 
-    const emailPayload: any = {
-      from: "华豪官网 <noreply@huahaoindustrial.com>",
-      to: "seals@huahaoindustrial.com",
+    const mailOptions: nodemailer.SendMailOptions = {
+      from: `华豪官网 <${process.env.SMTP_USER}>`,
+      to: process.env.SMTP_USER,
       subject: `新询价 - ${name}${company ? ` (${company})` : ""}`,
       text: `收到新的询价信息：
 
@@ -61,10 +71,11 @@ ${message}
     }
 
     if (fileName && fileContent) {
-      emailPayload.attachments = [{ filename: fileName, content: fileContent }]
+      mailOptions.attachments = [{ filename: fileName, content: fileContent }]
     }
 
-    await resend.emails.send(emailPayload)
+    const transporter = createTransporter()
+    await transporter.sendMail(mailOptions)
 
     return NextResponse.json({ success: true, message: "Inquiry received" })
   } catch (error: any) {
