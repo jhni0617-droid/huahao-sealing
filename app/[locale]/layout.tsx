@@ -43,7 +43,6 @@ export default async function LocaleLayout({ children, params }: Props) {
     company: allMessages.company,
     home: allMessages.home,
     contact: allMessages.contact,
-    form: allMessages.form,
     failure: allMessages.failure,
     faq: allMessages.faq,
     products: allMessages.products,
