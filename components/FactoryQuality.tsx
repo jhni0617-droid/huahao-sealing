@@ -6,14 +6,14 @@ import { getLocalized } from "@/lib/locale-data"
 
 const carouselImages = [
   { src: "/images/IMG_20260321_153130.jpg", alt: "Huahao Sealing Factory · Overview" },
-  { src: "/images/实拍/IMG_20260517_193443.png", alt: "Huahao Sealing · Workshop" },
-  { src: "/images/实拍/IMG_20260518_215113.png", alt: "Huahao Sealing · Production Equipment" },
-  { src: "/images/实拍/file_00000000d5807206805d8fd791f071db.png", alt: "Huahao Sealing · Manufacturing" },
-  { src: "/images/实拍/GPT Image 2_1776946246679_0.png", alt: "Huahao Sealing · Product Showcase" },
-  { src: "/images/实拍/IMG_20260517_192804.png", alt: "Huahao Sealing · Processing" },
-  { src: "/images/实拍/IMG_20260517_192907.png", alt: "Huahao Sealing · Workshop Detail" },
-  { src: "/images/实拍/IMG_20260517_193309.png", alt: "Huahao Sealing · Machining" },
-  { src: "/images/实拍/IMG_20260517_193327.png", alt: "Huahao Sealing · Quality Control" },
+  { src: "/images/实拍/IMG_20260517_193443.jpg", alt: "Huahao Sealing · Workshop" },
+  { src: "/images/实拍/IMG_20260518_215113.jpg", alt: "Huahao Sealing · Production Equipment" },
+  { src: "/images/实拍/file_00000000d5807206805d8fd791f071db.jpg", alt: "Huahao Sealing · Manufacturing" },
+  { src: "/images/实拍/GPT Image 2_1776946246679_0.jpg", alt: "Huahao Sealing · Product Showcase" },
+  { src: "/images/实拍/IMG_20260517_192804.jpg", alt: "Huahao Sealing · Processing" },
+  { src: "/images/实拍/IMG_20260517_192907.jpg", alt: "Huahao Sealing · Workshop Detail" },
+  { src: "/images/实拍/IMG_20260517_193309.jpg", alt: "Huahao Sealing · Machining" },
+  { src: "/images/实拍/IMG_20260517_193327.jpg", alt: "Huahao Sealing · Quality Control" },
   { src: "/images/实拍/IMG_20260517_193418.jpg", alt: "Huahao Sealing · Facility" },
 ]
 

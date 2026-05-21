@@ -84,10 +84,10 @@ export default async function ContactPage(props: { searchParams?: Promise<{ prod
 
               <ImageCarousel
                 images={[
-                  { src: "/images/实拍/IMG_20260518_214858.png", alt: getLocalized(altText, locale) },
-                  { src: "/images/实拍/IMG_20260518_215335.png", alt: getLocalized(altText, locale) },
-                  { src: "/images/实拍/IMG_20260518_215353.png", alt: getLocalized(altText, locale) },
-                  { src: "/images/实拍/file_00000000e47c7209a756fff4f4d29c2b.png", alt: getLocalized(altText, locale) },
+                  { src: "/images/实拍/IMG_20260518_214858.jpg", alt: getLocalized(altText, locale) },
+                  { src: "/images/实拍/IMG_20260518_215335.jpg", alt: getLocalized(altText, locale) },
+                  { src: "/images/实拍/IMG_20260518_215353.jpg", alt: getLocalized(altText, locale) },
+                  { src: "/images/实拍/file_00000000e47c7209a756fff4f4d29c2b.jpg", alt: getLocalized(altText, locale) },
                 ]}
                 aspectRatio="16/10"
                 variant="solid"

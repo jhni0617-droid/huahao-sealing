@@ -46,3 +46,6 @@ next-env.d.ts
 huahao-admin.db
 huahao-admin.db-wal
 huahao-admin.db-shm
+
+# image backup
+/backup-original-images/
