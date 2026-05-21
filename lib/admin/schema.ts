@@ -62,4 +62,11 @@ CREATE TABLE IF NOT EXISTS cases (
   created_at  TEXT    NOT NULL DEFAULT (datetime('now')),
   updated_at  TEXT    NOT NULL DEFAULT (datetime('now'))
 );
+
+CREATE TABLE IF NOT EXISTS page_views (
+  id          INTEGER PRIMARY KEY AUTOINCREMENT,
+  path        TEXT    NOT NULL,
+  locale      TEXT    NOT NULL DEFAULT 'zh',
+  visited_at  TEXT    NOT NULL DEFAULT (datetime('now'))
+);
 `
