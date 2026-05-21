@@ -46,6 +46,9 @@ export default async function LocaleLayout({ children, params }: Props) {
     form: allMessages.form,
     failure: allMessages.failure,
     faq: allMessages.faq,
+    products: allMessages.products,
+    productDetail: allMessages.productDetail,
+    errorPage: allMessages.errorPage,
   }
 
   return (
