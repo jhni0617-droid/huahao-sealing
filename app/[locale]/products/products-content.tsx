@@ -46,14 +46,14 @@ export default function ProductsPageContent() {
   return (
     <>
       {/* Category Tabs */}
-      <section className="sticky top-16 z-30 bg-white border-b border-border">
+      <section className="sticky top-16 z-30 bg-white/95 border-b border-border backdrop-blur-md">
         <div className="container-wide">
           <div className="flex gap-1 overflow-x-auto py-3 scrollbar-none">
             <button
               onClick={() => setActiveCategory("all")}
               className={`shrink-0 px-4 py-2 text-sm font-medium rounded-lg transition-all whitespace-nowrap ${
                 activeCategory === "all"
-                  ? "bg-accent text-white shadow-sm"
+                  ? "bg-primary text-white shadow-sm"
                   : "text-muted hover:text-primary hover:bg-gray-50"
               }`}
             >
@@ -68,7 +68,7 @@ export default function ProductsPageContent() {
                   onClick={() => setActiveCategory(cat.slug)}
                   className={`shrink-0 px-4 py-2 text-sm font-medium rounded-lg transition-all whitespace-nowrap ${
                     activeCategory === cat.slug
-                      ? "bg-accent text-white shadow-sm"
+                      ? "bg-primary text-white shadow-sm"
                       : "text-muted hover:text-primary hover:bg-gray-50"
                   }`}
                 >
@@ -82,9 +82,9 @@ export default function ProductsPageContent() {
       </section>
 
       {/* Product Grid */}
-      <section className="section-padding">
+      <section className="section-padding industrial-surface">
         <div className="container-wide">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {filteredProducts.map((product) => {
               const tempSpec = getSpec(product, "温度范围", "Temperature")
               const pressureSpec = getSpec(product, "压力", "Pressure")
@@ -94,24 +94,24 @@ export default function ProductsPageContent() {
                 <Link
                   key={product.slug}
                   href={`/products/${product.slug}`}
-                  className="card group flex flex-col overflow-hidden hover:shadow-lg transition-all duration-300"
+                  className="card-static group flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-xl"
                 >
                   {product.image && (
-                    <div className="relative w-full aspect-[4/3] overflow-hidden bg-gray-50">
+                    <div className="relative w-full aspect-[4/3] overflow-hidden bg-white">
                       <Image
                         src={product.image}
                         alt={product.name}
                         fill
-                        className="object-contain p-6 group-hover:scale-105 transition-transform duration-500"
+                        className="object-contain p-7 group-hover:scale-105 transition-transform duration-500"
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       />
                     </div>
                   )}
 
-                  <div className="p-5 flex flex-col flex-1">
-                    <div className="text-xs font-semibold text-accent uppercase tracking-wider mb-1">{product.category}</div>
-                    <h3 className="font-bold text-primary mb-1 group-hover:text-accent transition-colors">{product.name}</h3>
-                    <p className="text-xs text-muted mb-3 flex-1 line-clamp-2">{product.shortDesc}</p>
+                  <div className="p-5 flex flex-col flex-1 border-t border-border">
+                    <div className="text-xs font-semibold text-accent uppercase tracking-[0.08em] mb-2">{product.category}</div>
+                    <h3 className="font-bold text-primary mb-2 group-hover:text-accent transition-colors">{product.name}</h3>
+                    <p className="text-xs text-muted mb-4 flex-1 line-clamp-2 leading-relaxed">{product.shortDesc}</p>
 
                     <div className="flex flex-wrap gap-1.5 mb-3">
                       {tempSpec && <SpecBadge icon="thermometer" label={dt("specTemp")} value={tempSpec.value} />}
@@ -120,7 +120,7 @@ export default function ProductsPageContent() {
                     </div>
 
                     {product.applications.length > 0 && (
-                      <div className="flex flex-wrap gap-1.5 pt-3 border-t border-border mt-auto">
+                      <div className="flex flex-wrap gap-1.5 pt-4 border-t border-border mt-auto">
                         {product.applications.slice(0, 3).map((app) => (
                           <span key={app} className="tag">
                             {app}

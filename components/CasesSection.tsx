@@ -10,29 +10,32 @@ export default async function CasesSection() {
   const items = getLocalized(casesByLocale, locale)
 
   return (
-    <section className="section-padding bg-white">
+    <section className="section-padding bg-background">
       <div className="container-wide">
-        <div className="text-center mb-14">
-          <div className="badge-accent justify-center mx-auto mb-4">
-            {t("tag")}
+        <div className="mb-14 grid gap-6 md:grid-cols-[1fr_360px] md:items-end">
+          <div>
+            <div className="badge-accent mb-4">
+              {t("tag")}
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-primary">{t("title")}</h2>
+            <div className="industrial-divider" />
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-primary">{t("title")}</h2>
-          <div className="industrial-divider mx-auto" />
-          <p className="text-muted mt-4 max-w-2xl mx-auto text-base">
+          <p className="max-w-xl text-base leading-relaxed text-muted md:text-right">
             {t("description")}
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-5">
           {items.map((c, i) => (
-            <div key={i} className="card p-6 flex flex-col">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="text-xs font-semibold text-accent uppercase tracking-wider">{c.company}</div>
-                <span className="w-1 h-1 rounded-full bg-accent/30" />
+            <div key={i} className="card-static flex flex-col overflow-hidden">
+              <div className="border-b border-border bg-white p-6">
+                <div className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-accent">{c.company}</div>
+                <h3 className="text-lg font-bold text-primary">{c.title}</h3>
               </div>
-              <h3 className="font-bold text-base mb-3 text-primary">{c.title}</h3>
-              <p className="text-sm text-muted leading-relaxed mb-4 flex-1 line-clamp-4">{c.condition}</p>
-              <div className="pt-4 border-t border-border mt-auto">
+              <div className="flex flex-1 flex-col p-6">
+                <p className="text-sm text-muted leading-relaxed mb-5 flex-1 line-clamp-4">{c.condition}</p>
+              </div>
+              <div className="border-t border-border bg-green-50/65 p-5">
                 <div className="flex items-center gap-1.5 mb-1.5">
                   <Icon name="check" className="w-3.5 h-3.5 text-success" />
                   <span className="text-xs font-semibold text-muted uppercase tracking-wider">

@@ -56,40 +56,40 @@ export default async function WhyCarbonGraphite() {
   const items = getLocalized(advantagesByLocale, locale)
 
   return (
-    <section className="section-padding bg-white">
+    <section className="section-padding industrial-surface">
       <div className="container-wide">
-        <div className="text-center max-w-2xl mx-auto mb-14">
+        <div className="mx-auto mb-14 max-w-3xl text-center">
           <div className="badge-accent justify-center mx-auto mb-4">{t("tag")}</div>
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mt-3 mb-4">{t("title")}</h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-primary mt-3 mb-4">{t("title")}</h2>
           <p className="text-muted text-base leading-relaxed">{t("description")}</p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-10">
-          <div>
-            <h3 className="text-lg font-bold text-primary mb-6 flex items-center gap-2">
-              <span className="w-5 h-5 rounded-full bg-red-100 text-red-500 flex items-center justify-center text-xs font-bold">!</span>
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div className="card-static p-5 md:p-6">
+            <h3 className="text-base font-bold text-primary mb-5 flex items-center gap-2">
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-red-50 text-xs font-bold text-red-500">!</span>
               {t("problemsTitle")}
             </h3>
             <div className="space-y-4">
               {problems.map((p) => (
-                <div key={p.title} className="card-subtle p-5 border-l-4 border-l-red-400 hover:border-l-red-500">
-                  <h4 className="font-bold text-sm text-primary mb-1.5">{p.title}</h4>
+                <div key={p.title} className="border-l-2 border-l-red-400 bg-white p-4">
+                  <h4 className="font-bold text-sm text-primary mb-2">{p.title}</h4>
                   <p className="text-xs text-muted leading-relaxed">{p.description}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          <div>
-            <h3 className="text-lg font-bold text-primary mb-6 flex items-center gap-2">
+          <div className="card-static p-5 md:p-6">
+            <h3 className="text-base font-bold text-primary mb-5 flex items-center gap-2">
               <Icon name="sparkles" className="w-5 h-5 text-accent" />
               {t("solutionTitle")}
             </h3>
             <div className="space-y-4">
               {items.map((adv) => (
-                <div key={adv.title} className="card p-5 border-l-4 border-l-accent">
+                <div key={adv.title} className="border-l-2 border-l-accent bg-white p-4 transition-shadow hover:shadow-md">
                   <div className="flex items-start gap-4">
-                    <div className="w-11 h-11 bg-accent-subtle rounded-xl flex items-center justify-center shrink-0">
+                    <div className="w-10 h-10 bg-accent-subtle flex items-center justify-center shrink-0">
                       <Icon name={iconNames[adv.icon]} className="w-5 h-5 text-accent" />
                     </div>
                     <div className="min-w-0">
@@ -103,7 +103,7 @@ export default async function WhyCarbonGraphite() {
           </div>
         </div>
 
-        <div className="text-center mt-14 p-8 md:p-10 bg-gradient-to-br from-accent-subtle to-white border border-accent-light rounded-2xl">
+        <div className="text-center mt-14 p-8 md:p-10 bg-white border border-accent-light">
           <h3 className="text-xl md:text-2xl font-bold text-primary mb-3">{t("ctaTitle")}</h3>
           <p className="text-muted text-sm max-w-2xl mx-auto mb-6 leading-relaxed">{t("ctaDescription")}</p>
           <Link href="/contact" className="btn-primary">{t("ctaButton")}</Link>

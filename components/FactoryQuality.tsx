@@ -1,7 +1,7 @@
 import { getLocale, getTranslations } from "next-intl/server"
 import ImageCarousel from "@/components/ui/ImageCarousel"
 import CertBadge from "@/components/ui/CertBadge"
-import Icon from "@/components/ui/Icon"
+import Icon, { type IconName } from "@/components/ui/Icon"
 import { getLocalized } from "@/lib/locale-data"
 
 const carouselImages = [
@@ -161,11 +161,9 @@ export default async function FactoryQuality() {
 
   return (
     <section className="bg-primary text-white relative overflow-hidden">
-      {/* Subtle grid pattern */}
       <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `radial-gradient(circle at 1px 1px, #fff 1px, transparent 0)`, backgroundSize: "40px 40px" }} />
 
       <div className="container-wide py-16 md:py-24">
-        {/* Top: Carousel + Info */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
           <div>
             <ImageCarousel
@@ -182,7 +180,7 @@ export default async function FactoryQuality() {
             <div className="badge-accent text-white/80 border-white/10 bg-white/5 mb-4">
               {t("tag")}
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
               {t("title")}
             </h2>
             <div className="w-14 h-0.5 bg-accent mb-6" />
@@ -192,16 +190,16 @@ export default async function FactoryQuality() {
 
             <div className="grid grid-cols-2 gap-3 mb-8">
               {capabilities.map((item) => (
-                <div key={item.label} className="card-dark p-4">
+                <div key={item.label} className="border border-white/[0.08] bg-white/[0.04] p-4">
                   <h3 className="font-semibold text-sm text-accent">{item.label}</h3>
                   <p className="text-xs text-gray-500 mt-1">{item.desc}</p>
                 </div>
               ))}
             </div>
 
-            <div className="grid grid-cols-4 gap-3">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
               {stats.map((s) => (
-                <div key={s.value} className="text-center p-3 bg-white/[0.03] rounded-xl border border-white/[0.06]">
+                <div key={s.value} className="text-center p-3 bg-white/[0.03] border border-white/[0.06]">
                   <div className="text-xl font-bold text-accent">{s.value}</div>
                   <div className="text-xs text-gray-500 mt-0.5">{s.label}</div>
                 </div>
@@ -210,7 +208,6 @@ export default async function FactoryQuality() {
           </div>
         </div>
 
-        {/* QC Equipment strip */}
         <div className="mb-12">
           <div className="flex items-center gap-4 mb-8">
             <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
@@ -219,8 +216,8 @@ export default async function FactoryQuality() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {qcItems.map((qc) => (
-              <div key={qc.title} className="card-dark p-5 text-center">
-                <Icon name={qc.icon as any} className="w-8 h-8 text-accent mx-auto mb-3" />
+              <div key={qc.title} className="border border-white/[0.08] bg-white/[0.04] p-5 text-center transition-colors hover:border-accent/30">
+                <Icon name={qc.icon as IconName} className="w-8 h-8 text-accent mx-auto mb-3" />
                 <h3 className="text-sm font-bold mb-1">{qc.title}</h3>
                 <p className="text-xs text-gray-500">{qc.desc}</p>
               </div>

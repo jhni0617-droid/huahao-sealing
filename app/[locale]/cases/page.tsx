@@ -1,11 +1,12 @@
 import { getLocale, getTranslations } from "next-intl/server"
+import { Link } from "@/i18n/routing"
 import CTASection from "@/components/CTASection"
 import FailureSolutionsSection from "@/components/FailureSolutionsSection"
-import ROIMetric from "@/components/ui/ROIMetric"
 import { generateMeta } from "@/lib/utils"
 import { casesByLocale } from "@/lib/translations"
 import { getDb } from "@/lib/admin/db"
 import { getLocalized } from "@/lib/locale-data"
+import PageHero from "@/components/PageHero"
 
 export async function generateMetadata() {
   const locale = await getLocale()
@@ -30,6 +31,7 @@ interface CaseRow {
 export default async function CasesPage() {
   const locale = await getLocale()
   const t = await getTranslations("cases")
+  const isZh = locale === "zh"
   const fallback = getLocalized(casesByLocale, locale)
   let cases: CaseRow[]
 
@@ -49,20 +51,24 @@ export default async function CasesPage() {
 
   return (
     <>
-      <section className="bg-hero-bg text-white">
-        <div className="container-wide py-16 md:py-20">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">{t("pageTitle")}</h1>
-          <div className="w-14 h-0.5 bg-accent rounded-full mb-4" />
-          <p className="text-gray-400 max-w-2xl leading-relaxed">{t("pageSubtitle")}</p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow={isZh ? "工程案例" : "Engineering proof"}
+        title={t("pageTitle")}
+        subtitle={t("pageSubtitle")}
+        primaryLabel={t("ctaButton")}
+        stats={[
+          { value: "6x", label: t("metricLife") },
+          { value: "80%", label: t("metricCost") },
+          { value: "720h", label: t("metricRuntime") },
+        ]}
+      />
 
-      <section className="section-padding">
+      <section className="section-padding industrial-surface">
         <div className="container-wide space-y-10">
           {cases.map((c, i) => (
-            <div key={i} className="card p-6 md:p-8">
-              <div className="text-xs font-semibold text-accent uppercase tracking-wider mb-1">{c.company}</div>
-              <h2 className="text-xl font-bold text-primary mb-6">{c.title}</h2>
+            <div key={i} className="card-static bg-white p-6 md:p-8">
+              <div className="mb-1 text-xs font-semibold uppercase tracking-[0.08em] text-accent">{c.company}</div>
+              <h2 className="text-2xl font-bold text-primary mb-6">{c.title}</h2>
 
               <div className="grid md:grid-cols-3 gap-6">
                 <div>
@@ -85,7 +91,7 @@ export default async function CasesPage() {
                 </div>
               </div>
 
-              <div className="mt-6 bg-green-50 border border-green-200 rounded-xl p-4">
+              <div className="mt-6 bg-green-50 border border-green-200 p-4">
                 <div className="text-xs text-muted mb-1 flex items-center gap-2">
                   <span className="w-2 h-2 bg-green-500 rounded-full" />
                   {t("keyResultLabel")}
@@ -98,7 +104,7 @@ export default async function CasesPage() {
                 {c.result.match(/\d+(?:[.-]\d+)?\s*x?/g)?.slice(0, 3).map((num, mi) => {
                   const labels = [t("metricLife"), t("metricCost"), t("metricRuntime")]
                   return (
-                    <div key={mi} className="inline-flex items-center gap-1.5 bg-white border border-green-200 rounded-xl px-3 py-1.5">
+                    <div key={mi} className="inline-flex items-center gap-1.5 bg-white border border-green-200 px-3 py-1.5">
                       <span className="text-xs font-bold text-green-700">{num.trim()}{["倍", "%", "x"][mi] || ""}</span>
                       <span className="text-[10px] text-muted">{labels[mi % 3]}</span>
                     </div>
@@ -116,7 +122,7 @@ export default async function CasesPage() {
         <div className="container-wide text-center mt-16">
           <h2 className="text-2xl font-bold text-primary mb-4">{t("ctaTitle")}</h2>
           <p className="text-muted mb-6 max-w-xl mx-auto">{t("ctaSubtitle")}</p>
-          <a href="/contact" className="btn-primary">{t("ctaButton")}</a>
+          <Link href="/contact" className="btn-primary">{t("ctaButton")}</Link>
         </div>
       </section>
 

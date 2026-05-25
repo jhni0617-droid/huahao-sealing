@@ -1,6 +1,7 @@
 import { getLocale, getTranslations } from "next-intl/server"
 import ProductsPageContent from "./products-content"
 import { generateMeta } from "@/lib/utils"
+import PageHero from "@/components/PageHero"
 
 export async function generateMetadata() {
   const locale = await getLocale()
@@ -16,19 +17,23 @@ export async function generateMetadata() {
 export default async function ProductsPage() {
   const locale = await getLocale()
   const t = await getTranslations("products")
+  const isZh = locale === "zh"
 
   return (
     <>
-      {/* Hero Banner */}
-      <section className="bg-hero-bg text-white">
-        <div className="container-wide py-16 md:py-20">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">{t("pageTitle")}</h1>
-          <div className="w-14 h-0.5 bg-accent rounded-full mb-4" />
-          <p className="text-gray-400 max-w-2xl leading-relaxed">
-            {t("pageSubtitle")}
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow={isZh ? "产品中心" : "Product portfolio"}
+        title={t("pageTitle")}
+        subtitle={t("pageSubtitle")}
+        primaryLabel={isZh ? "提交图纸询价" : "Request Quote"}
+        secondaryLabel={isZh ? "查看应用场景" : "View Applications"}
+        secondaryHref="/applications"
+        stats={[
+          { value: "3", label: isZh ? "核心产品线" : "Core product lines" },
+          { value: "OEM", label: isZh ? "按图加工" : "Drawing-based" },
+          { value: "24h", label: isZh ? "响应询盘" : "Response" },
+        ]}
+      />
 
       <ProductsPageContent />
     </>

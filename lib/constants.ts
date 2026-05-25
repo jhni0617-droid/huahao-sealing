@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "华豪密封",
-  fullName: "华豪碳石墨密封有限公司",
+  fullName: "霍邱县华豪密封件有限公司",
   slogan: "高品质碳石墨密封解决方案",
   description:
     "专业生产碳石墨密封环、碳石墨轴套/轴承、碳石墨三瓣环，应用于泵类、船舶设备、化工处理和通用工业领域。",

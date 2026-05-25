@@ -1,25 +1,25 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #ffffff;
-  --color-foreground: #0f172a;
-  --color-primary: #0f1a2e;
-  --color-primary-dark: #070e1a;
-  --color-primary-light: #1a2d42;
-  --color-accent: #2563eb;
-  --color-accent-hover: #1d4ed8;
-  --color-accent-subtle: #eff6ff;
-  --color-accent-light: #dbeafe;
+  --color-background: #f7f9fc;
+  --color-foreground: #111827;
+  --color-primary: #071525;
+  --color-primary-dark: #030912;
+  --color-primary-light: #12304c;
+  --color-accent: #1f6feb;
+  --color-accent-hover: #1557bd;
+  --color-accent-subtle: #edf5ff;
+  --color-accent-light: #cfe2ff;
   --color-success: #059669;
   --color-warning: #d97706;
   --color-danger: #dc2626;
   --color-card: #ffffff;
-  --color-muted: #475569;
-  --color-muted-light: #94a3b8;
-  --color-muted-dark: #334155;
-  --color-border: #e2e8f0;
-  --color-border-light: #f1f5f9;
-  --color-hero-bg: #0f1a2e;
+  --color-muted: #5b6778;
+  --color-muted-light: #9aa6b7;
+  --color-muted-dark: #39485c;
+  --color-border: #dbe3ee;
+  --color-border-light: #edf1f6;
+  --color-hero-bg: #071525;
 
   --font-sans: "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
   --font-heading: "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
@@ -37,7 +37,8 @@ html {
 
 body {
   color: var(--color-foreground);
-  background: var(--color-background);
+  background:
+    linear-gradient(180deg, #ffffff 0%, var(--color-background) 42%, #ffffff 100%);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -47,7 +48,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   line-height: 1.15;
   font-family: var(--font-heading);
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 
 ::selection {
@@ -57,21 +58,21 @@ h1, h2, h3, h4, h5, h6 {
 
 @utility container-wide {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1240px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1.25rem;
   @media (min-width: 768px) {
     padding: 0 2rem;
   }
 }
 
 @utility section-padding {
-  padding: 5rem 1.5rem;
+  padding: 4.5rem 1.25rem;
   @media (min-width: 768px) {
     padding: 6rem 2rem;
   }
   @media (min-width: 1024px) {
-    padding: 7rem 2rem;
+    padding: 7.5rem 2rem;
   }
 }
 
@@ -83,10 +84,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @utility industrial-divider {
-  height: 3px;
-  background: linear-gradient(90deg, var(--color-accent), transparent);
-  width: 60px;
-  margin: 1rem 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-accent), rgba(31, 111, 235, 0));
+  width: 72px;
+  margin: 1.125rem 0;
 }
 
 @utility section-accent {
@@ -108,37 +109,39 @@ h1, h2, h3, h4, h5, h6 {
 @utility card {
   background: var(--color-card);
   border: 1px solid var(--color-border);
-  border-radius: 16px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(7, 21, 37, 0.03);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(15, 26, 46, 0.08);
-    border-color: var(--color-accent);
+    box-shadow: 0 18px 42px rgba(7, 21, 37, 0.09);
+    border-color: rgba(31, 111, 235, 0.34);
   }
 }
 
 @utility card-static {
   background: var(--color-card);
   border: 1px solid var(--color-border);
-  border-radius: 16px;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(7, 21, 37, 0.03);
 }
 
 /* Subtle card — lighter border, no hover lift, for secondary content */
 @utility card-subtle {
   background: var(--color-card);
   border: 1px solid var(--color-border-light);
-  border-radius: 12px;
+  border-radius: 8px;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   &:hover {
     border-color: var(--color-border);
-    box-shadow: 0 4px 12px rgba(15, 26, 46, 0.04);
+    box-shadow: 0 8px 24px rgba(7, 21, 37, 0.05);
   }
 }
 
 @utility card-dark {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
+  border-radius: 8px;
   transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
   &:hover {
     transform: translateY(-2px);
@@ -149,7 +152,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Glass card for hero overlays */
 @utility card-glass {
-  border-radius: 24px;
+  border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(16px);
@@ -161,14 +164,14 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.375rem 1rem;
+  padding: 0.375rem 0.875rem;
   background: var(--color-accent-subtle);
   color: var(--color-accent);
   font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  border-radius: 100px;
+  border-radius: 999px;
   border: 1px solid var(--color-accent-light);
 }
 
@@ -178,12 +181,13 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.75rem 2rem;
+  min-height: 2.875rem;
+  padding: 0.75rem 1.5rem;
   background: var(--color-accent);
   color: white !important;
   font-weight: 600;
   font-size: 0.9375rem;
-  border-radius: 10px;
+  border-radius: 6px;
   transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
   &:hover {
     background: var(--color-accent-hover);
@@ -200,17 +204,19 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.75rem 2rem;
-  border: 1.5px solid var(--color-accent);
-  color: var(--color-accent);
+  min-height: 2.875rem;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--color-border);
+  color: var(--color-primary);
   font-weight: 600;
   font-size: 0.9375rem;
-  border-radius: 10px;
+  border-radius: 6px;
   transition: all 0.2s ease;
   background: transparent;
   &:hover {
-    background: var(--color-accent);
-    color: white !important;
+    border-color: var(--color-accent);
+    background: var(--color-accent-subtle);
+    color: var(--color-accent) !important;
     transform: translateY(-1px);
     box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
   }
@@ -222,12 +228,13 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.75rem 2rem;
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  min-height: 2.875rem;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.22);
   color: rgba(255, 255, 255, 0.85);
   font-weight: 600;
   font-size: 0.9375rem;
-  border-radius: 10px;
+  border-radius: 6px;
   transition: all 0.2s ease;
   background: transparent;
   &:hover {
@@ -241,7 +248,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   padding: 0.75rem 1rem;
   border: 1px solid var(--color-border);
-  border-radius: 10px;
+  border-radius: 6px;
   font-size: 0.9375rem;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   background: white;
@@ -297,7 +304,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0.25rem 0.75rem;
   font-size: 0.75rem;
   font-weight: 500;
-  border-radius: 6px;
+  border-radius: 4px;
   border: 1px solid var(--color-border);
   background: var(--color-background);
   color: var(--color-muted);
@@ -310,7 +317,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0.25rem 0.75rem;
   font-size: 0.75rem;
   font-weight: 600;
-  border-radius: 6px;
+  border-radius: 4px;
   background: var(--color-accent-subtle);
   color: var(--color-accent);
   border: 1px solid var(--color-accent-light);
@@ -331,6 +338,27 @@ h1, h2, h3, h4, h5, h6 {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
   }
+}
+
+@utility industrial-surface {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(247, 249, 252, 0.96)),
+    radial-gradient(circle at 1px 1px, rgba(7, 21, 37, 0.08) 1px, transparent 0);
+  background-size: auto, 28px 28px;
+}
+
+@utility page-hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(7, 21, 37, 0.98), rgba(18, 48, 76, 0.94)),
+    radial-gradient(circle at 78% 20%, rgba(31, 111, 235, 0.2), transparent 34%);
+  color: white;
+}
+
+@utility kpi-tile {
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  padding-left: 1rem;
 }
 
 /* iOS safe area support */

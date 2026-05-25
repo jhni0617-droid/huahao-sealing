@@ -5,6 +5,7 @@ import Icon from "@/components/ui/Icon"
 import { siteConfig, enSiteConfig } from "@/lib/constants"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
+import PageHero from "@/components/PageHero"
 
 export async function generateMetadata() {
   const locale = await getLocale()
@@ -24,22 +25,26 @@ export default async function ContactPage(props: { searchParams?: Promise<{ prod
   const t = await getTranslations("contact")
   const cfg = getLocalized({ zh: siteConfig, en: enSiteConfig }, locale)
   const altText = { zh: "华豪密封工厂实拍", en: "Huahao Sealing factory", vi: "Nhà máy Huahao Sealing", th: "โรงงาน Huahao Sealing", ru: "Завод Huahao Sealing", ja: "華豪シール工場", ko: "Huahao Sealing 공장" }
+  const isZh = locale === "zh"
 
   return (
     <>
-      <section className="bg-hero-bg text-white">
-        <div className="container-wide py-16 md:py-20">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">{t("pageTitle")}</h1>
-          <div className="w-14 h-0.5 bg-accent rounded-full mb-4" />
-          <p className="text-gray-400 max-w-2xl leading-relaxed">{t("pageSubtitle")}</p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow={isZh ? "工程询盘" : "Engineering inquiry"}
+        title={t("pageTitle")}
+        subtitle={t("pageSubtitle")}
+        stats={[
+          { value: "24h", label: isZh ? "响应" : "Response" },
+          { value: "PDF/CAD", label: isZh ? "图纸支持" : "Drawing support" },
+          { value: "OEM", label: isZh ? "定制加工" : "Custom machining" },
+        ]}
+      />
 
-      <section className="section-padding">
+      <section className="section-padding industrial-surface">
         <div className="container-wide">
-          <div className="grid lg:grid-cols-5 gap-10">
+          <div className="grid lg:grid-cols-5 gap-8">
             <div className="lg:col-span-2 space-y-6">
-              <div className="card p-6">
+              <div className="card-static p-6 bg-white">
                 <h2 className="font-bold mb-4">{t("infoTitle")}</h2>
                 <div className="space-y-4 text-sm">
                   <div>
@@ -70,7 +75,7 @@ export default async function ContactPage(props: { searchParams?: Promise<{ prod
                 </div>
               </div>
 
-              <div className="card p-6">
+              <div className="card-static p-6 bg-white">
                 <h2 className="font-bold mb-3">{t("whyTitle")}</h2>
                 <ul className="space-y-2 text-sm text-muted">
                   {[1, 2, 3, 4].map((i) => (
@@ -97,7 +102,7 @@ export default async function ContactPage(props: { searchParams?: Promise<{ prod
             </div>
 
             <div className="lg:col-span-3">
-              <div className="mb-6">
+              <div className="mb-6 border-l-2 border-accent pl-4">
                 <h2 className="text-2xl font-bold text-primary">{t("formTitle")}</h2>
                 <p className="text-sm text-muted mt-1">{t("formDesc")}</p>
               </div>

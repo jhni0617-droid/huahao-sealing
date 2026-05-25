@@ -6,6 +6,7 @@ import ApplicationConditionsSection from "@/components/ApplicationConditionsSect
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 import { applicationsDetailsByLocale } from "@/lib/translations-app-details"
+import PageHero from "@/components/PageHero"
 
 export async function generateMetadata() {
   const locale = await getLocale()
@@ -191,27 +192,35 @@ export default async function ApplicationsPage() {
   const locale = await getLocale()
   const t = await getTranslations("applications")
   const details = getLocalized({ zh: zhDetails, en: enDetails, ...applicationsDetailsByLocale }, locale)
+  const isZh = locale === "zh"
 
   return (
     <>
-      <section className="bg-hero-bg text-white">
-        <div className="container-wide py-16 md:py-20">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">{t("pageTitle")}</h1>
-          <div className="w-14 h-0.5 bg-accent rounded-full mb-4" />
-          <p className="text-gray-400 max-w-2xl leading-relaxed">
-            {t("heroSubtitle")}
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow={isZh ? "应用与工况" : "Applications & duty conditions"}
+        title={t("pageTitle")}
+        subtitle={t("heroSubtitle")}
+        primaryLabel={isZh ? "描述工况获取建议" : "Get Application Advice"}
+        secondaryLabel={isZh ? "查看产品" : "View Products"}
+        secondaryHref="/products"
+        stats={[
+          { value: "8+", label: isZh ? "工业场景" : "Industries" },
+          { value: "600°C", label: isZh ? "高温适配" : "High-temp range" },
+          { value: "pH 0-14", label: isZh ? "介质覆盖" : "Media range" },
+        ]}
+      />
 
-      <section className="section-padding">
+      <section className="section-padding industrial-surface">
         <div className="container-wide">
           {applications.map((app, idx) => {
             const detail = details[app.slug]
             return (
-              <div key={app.slug} id={app.slug} className={`mb-20 last:mb-0 ${idx > 0 ? "pt-10" : ""}`}>
-                <div className="grid lg:grid-cols-2 gap-10 items-start">
+              <div key={app.slug} id={app.slug} className={`mb-16 last:mb-0 ${idx > 0 ? "pt-8" : ""}`}>
+                <div className="grid lg:grid-cols-[1fr_420px] gap-8 items-stretch">
                   <div>
+                    <div className="mb-3 text-xs font-bold uppercase tracking-[0.08em] text-accent">
+                      0{idx + 1}
+                    </div>
                     <h2 className="text-3xl font-bold text-primary mb-4">{app.title}</h2>
                     <div className="industrial-divider" />
                     <p className="text-muted mt-4 leading-relaxed">{detail.description}</p>
@@ -229,7 +238,7 @@ export default async function ApplicationsPage() {
                     </div>
                   </div>
 
-                  <div className="card p-6">
+                  <div className="card-static p-6 bg-white">
                     <h3 className="font-semibold mb-4">{t("whyTitle", { industry: app.title })}</h3>
                     <ul className="space-y-3">
                       {(detail.reasons || [

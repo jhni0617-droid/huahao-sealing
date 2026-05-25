@@ -53,7 +53,7 @@ export default function ContactForm({ defaultProduct }: Props) {
     setLoading(true)
     setErrorMsg("")
     try {
-      const body: Record<string, any> = { ...form }
+      const body: Record<string, string> = { ...form }
       if (defaultProduct) body.product = defaultProduct
 
       if (file) {
@@ -93,7 +93,7 @@ export default function ContactForm({ defaultProduct }: Props) {
 
   if (submitted) {
     return (
-      <div className="card p-10 text-center">
+      <div className="card-static bg-white p-10 text-center">
         <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
           <Icon name="check" className="w-8 h-8 text-green-600" />
         </div>
@@ -114,7 +114,7 @@ export default function ContactForm({ defaultProduct }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="card p-6 md:p-8 space-y-5">
+    <form onSubmit={handleSubmit} className="card-static bg-white p-6 md:p-8 space-y-5">
       <p className="text-sm text-muted">
         {t("formIntro")}
       </p>

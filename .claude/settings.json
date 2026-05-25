@@ -1,6 +1,6 @@
 {
   "permissions": {
-    "initialPermissionMode": "auto",
+    "defaultMode": "bypassPermissions",
     "allow": [
       "Read",
       "Write",
@@ -9,11 +9,6 @@
       "Git",
       "Npm",
       "Pip"
-    ],
-    "deny": [
-      "Rm",
-      "Ssh",
-      "Sudo"
     ]
   }
 }

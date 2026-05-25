@@ -4,6 +4,7 @@ import CTASection from "@/components/CTASection"
 import FAQAccordion from "@/components/FAQAccordion"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
+import PageHero from "@/components/PageHero"
 
 export async function generateMetadata() {
   const locale = await getLocale()
@@ -480,19 +481,26 @@ const faqCategoriesData: Record<string, FaqCategory[]> = {
 export default async function AboutPage() {
   const locale = await getLocale()
   const t = await getTranslations("about")
+  const isZh = locale === "zh"
   const milestones = getLocalized(milestonesData, locale)
   const qualityCards = getLocalized(qualityData, locale)
   const faqCats = getLocalized(faqCategoriesData, locale)
 
   return (
     <>
-      <section className="bg-hero-bg text-white">
-        <div className="container-wide py-16 md:py-20">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">{t("pageTitle")}</h1>
-          <div className="w-14 h-0.5 bg-accent rounded-full mb-4" />
-          <p className="text-gray-400 max-w-2xl leading-relaxed">{t("pageSubtitle")}</p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow={isZh ? "制造能力" : "Manufacturing capability"}
+        title={t("pageTitle")}
+        subtitle={t("pageSubtitle")}
+        primaryLabel={isZh ? "联系工厂" : "Contact Factory"}
+        secondaryLabel={isZh ? "查看产品" : "View Products"}
+        secondaryHref="/products"
+        stats={[
+          { value: "2006", label: isZh ? "行业起点" : "Industry start" },
+          { value: "CNC", label: isZh ? "精密加工" : "Precision machining" },
+          { value: "100%", label: isZh ? "出厂检测" : "Inspection" },
+        ]}
+      />
 
       <section className="section-padding bg-white">
         <div className="container-wide">
@@ -510,7 +518,7 @@ export default async function AboutPage() {
                 src="/images/{9D8C1630-8B0E-4C5E-8263-6B2C49856468}.png"
                 alt={getLocalized({ zh: "华豪密封件厂区实景", en: "Huahao Sealing factory", vi: "Nhà máy Huahao Sealing", th: "โรงงาน Huahao Sealing", ru: "Завод Huahao Sealing", ja: "華豪シール工場", ko: "Huahao Sealing 공장" }, locale)}
                 fill
-                className="rounded-xl object-cover"
+                className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 priority
               />
@@ -520,7 +528,7 @@ export default async function AboutPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="section-padding bg-gray-50">
+      <section className="section-padding industrial-surface">
         <div className="container-wide">
           <h2 className="text-3xl font-bold text-primary text-center mb-4">{t("faqTitle")}</h2>
           <div className="industrial-divider mx-auto" />
@@ -546,7 +554,7 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      <section className="section-padding bg-gray-50">
+      <section className="section-padding bg-white">
         <div className="container-wide">
           <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-12">{t("milestoneTitle")}</h2>
           <div className="max-w-3xl mx-auto">
@@ -566,12 +574,12 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      <section className="section-padding bg-white">
+      <section className="section-padding industrial-surface">
         <div className="container-wide">
           <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-12">{t("qualityTitle")}</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {qualityCards.map((item) => (
-              <div key={item.title} className="card p-6">
+              <div key={item.title} className="card-static bg-white p-6">
                 <h3 className="font-bold text-lg mb-3 text-primary">{item.title}</h3>
                 <p className="text-sm text-muted leading-relaxed">{item.desc}</p>
               </div>

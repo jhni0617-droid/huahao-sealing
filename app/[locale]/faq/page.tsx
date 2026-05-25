@@ -5,6 +5,7 @@ import FAQAccordion from "@/components/FAQAccordion"
 import CTASection from "@/components/CTASection"
 import { FaqJsonLd } from "@/components/JsonLd"
 import { generateMeta } from "@/lib/utils"
+import PageHero from "@/components/PageHero"
 
 export async function generateMetadata() {
   const locale = await getLocale()
@@ -63,6 +64,7 @@ function FAQItemBlock({ item }: { item: FAQItem }) {
 export default async function FAQPage() {
   const locale = await getLocale()
   const t = await getTranslations("faq")
+  const isZh = locale === "zh"
 
   const tables = faqCoreTablesByLocale[locale] || faqCoreTablesByLocale.en
   const categories = faqCategoriesByLocale[locale] || faqCategoriesByLocale.en
@@ -77,17 +79,20 @@ export default async function FAQPage() {
         )
       } />
 
-      {/* Hero Banner */}
-      <section className="bg-hero-bg text-white">
-        <div className="container-wide py-16 md:py-20">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">{t("pageTitle")}</h1>
-          <div className="w-14 h-0.5 bg-accent rounded-full mb-4" />
-          <p className="text-gray-400 max-w-2xl leading-relaxed">{t("pageSubtitle")}</p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow={isZh ? "技术资料库" : "Technical reference"}
+        title={t("pageTitle")}
+        subtitle={t("pageSubtitle")}
+        primaryLabel={isZh ? "咨询工程师" : "Ask an Engineer"}
+        stats={[
+          { value: `${tables.length}`, label: isZh ? "核心表格" : "Core tables" },
+          { value: `${categories.length}`, label: isZh ? "FAQ 分类" : "FAQ groups" },
+          { value: `${techFormulas.length}`, label: isZh ? "公式" : "Formulas" },
+        ]}
+      />
 
       {/* Part 1: Core Tables */}
-      <section className="section-padding">
+      <section className="section-padding industrial-surface">
         <div className="container-wide">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-primary">{t("tablesTitle")}</h2>
@@ -118,7 +123,7 @@ export default async function FAQPage() {
             {categories.map((cat) => (
               <div key={cat.category}>
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center shrink-0">
+                    <div className="w-10 h-10 bg-accent/10 flex items-center justify-center shrink-0">
                     <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={cat.icon} />
                     </svg>

@@ -14,35 +14,42 @@ export default async function ApplicationsSection() {
   const locale = await getLocale()
   const t = await getTranslations("home.applicationsSection")
   const items = getLocalized(applicationsByLocale, locale)
+  const viewText = locale === "zh" ? "查看应用" : "View application"
 
   return (
-    <section className="section-padding bg-gray-50">
+    <section className="section-padding bg-white">
       <div className="container-wide">
-        <div className="text-center mb-14">
-          <div className="badge-accent justify-center mx-auto mb-4">
-            {t("tag")}
+        <div className="mb-14 grid gap-6 md:grid-cols-[1fr_360px] md:items-end">
+          <div>
+            <div className="badge-accent mb-4">{t("tag")}</div>
+            <h2 className="text-3xl md:text-5xl font-bold text-primary">{t("title")}</h2>
+            <div className="industrial-divider" />
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-primary">{t("title")}</h2>
-          <div className="industrial-divider mx-auto" />
-          <p className="text-muted mt-4 max-w-2xl mx-auto text-base">
+          <p className="max-w-xl text-base leading-relaxed text-muted md:text-right">
             {t("description")}
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {items.map((app) => (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4">
+          {items.map((app, index) => (
             <Link
               key={app.slug}
               href={`/applications#${app.slug}`}
-              className="card p-8 text-center group"
+              className="group border border-border bg-white p-6 transition-all duration-300 hover:z-10 hover:-translate-y-1 hover:border-accent/40 hover:shadow-xl"
             >
-              <div className="w-14 h-14 mx-auto mb-5 bg-accent-subtle rounded-xl flex items-center justify-center group-hover:bg-accent/10 transition-all group-hover:scale-110 duration-300">
-                <svg className="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={iconMap[app.image]} />
-                </svg>
+              <div className="mb-8 flex items-center justify-between">
+                <div className="flex h-12 w-12 items-center justify-center bg-accent-subtle transition-colors group-hover:bg-accent">
+                  <svg className="h-6 w-6 text-accent transition-colors group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={iconMap[app.image]} />
+                  </svg>
+                </div>
+                <span className="text-xs font-bold text-border">0{index + 1}</span>
               </div>
-              <h3 className="font-bold text-base mb-2 text-primary">{app.title}</h3>
-              <p className="text-sm text-muted leading-relaxed">{app.description}</p>
+              <h3 className="mb-3 text-base font-bold text-primary transition-colors group-hover:text-accent">{app.title}</h3>
+              <p className="text-sm leading-relaxed text-muted">{app.description}</p>
+              <div className="mt-6 text-xs font-semibold uppercase tracking-[0.08em] text-accent opacity-0 transition-opacity group-hover:opacity-100">
+                {viewText}
+              </div>
             </Link>
           ))}
         </div>

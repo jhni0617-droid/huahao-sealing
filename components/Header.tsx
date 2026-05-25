@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Link, usePathname } from "@/i18n/routing"
 import Image from "next/image"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import LanguageSwitcher from "@/components/LanguageSwitcher"
 import { siteConfig } from "@/lib/constants"
 
@@ -12,6 +12,8 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
   const t = useTranslations()
+  const locale = useLocale()
+  const isZh = locale === "zh"
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -47,26 +49,26 @@ export default function Header() {
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/90 backdrop-blur-lg border-b border-border shadow-sm"
-          : "bg-white border-b border-border"
+          ? "bg-white/92 backdrop-blur-lg border-b border-border shadow-sm"
+          : "bg-white/95 border-b border-border"
       }`}
     >
-      <div className="container-wide flex items-center justify-between h-16 md:h-18">
+      <div className="container-wide flex items-center justify-between h-16 md:h-[76px]">
         <Link href="/" className="flex items-center gap-3 shrink-0 group">
           <Image
             src="/images/logo.jpg"
             alt={t("company.name")}
             width={160}
             height={52}
-            className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+            className="h-10 md:h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
             priority
           />
-          <div className="hidden sm:block pl-3 border-l border-border">
-            <div className="text-[11px] leading-tight text-primary font-semibold whitespace-nowrap">
-              霍邱县华豪密封件有限公司 — 专注石墨密封件20年
+          <div className="hidden lg:block pl-3 border-l border-border" translate="no">
+            <div className="text-[11px] leading-tight text-primary font-bold uppercase tracking-[0.08em] whitespace-nowrap">
+              {isZh ? "华豪密封" : "Huahao Sealing"}
             </div>
-            <div className="text-[10px] leading-tight text-muted mt-0.5 whitespace-nowrap">
-              HuaHao Sealing Components Co., Ltd., Huoqiu County — Specialized in graphite seals 20 yrs
+            <div className="text-[11px] leading-tight text-muted mt-0.5 whitespace-nowrap">
+              {isZh ? "石墨密封件 · 石墨轴套 · OEM加工" : "Carbon graphite seals · bushings · OEM machining"}
             </div>
           </div>
         </Link>
@@ -79,7 +81,7 @@ export default function Header() {
               className={`relative px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
                 isActive(item.href)
                   ? "text-accent"
-                  : "text-gray-600 hover:text-primary hover:bg-gray-50"
+                  : "text-muted-dark hover:text-primary hover:bg-gray-50"
               }`}
             >
               {item.label}
@@ -94,7 +96,7 @@ export default function Header() {
             href={`https://wa.me/${siteConfig.whatsapp}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary text-sm ml-1"
+            className="btn-primary text-sm ml-1 px-4"
           >
             {t("nav.whatsapp")}
           </a>

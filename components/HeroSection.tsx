@@ -60,38 +60,44 @@ export default function HeroSection() {
   }, [startTimer])
 
   return (
-    <section className="bg-hero-bg text-white relative overflow-hidden min-h-[90vh] flex items-center">
+    <section className="bg-hero-bg text-white relative overflow-hidden min-h-[88vh] flex items-center">
       <HeroParticles />
 
-      {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-r from-hero-bg/95 via-hero-bg/60 to-hero-bg/40 pointer-events-none" />
+      <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.55) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.55) 1px, transparent 1px)", backgroundSize: "48px 48px" }} />
+      <div className="absolute inset-0 bg-gradient-to-r from-hero-bg via-hero-bg/82 to-hero-bg/42 pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-t from-hero-bg via-transparent to-transparent pointer-events-none" />
+      <div className="absolute top-1/4 right-0 w-[44vw] h-[44vw] -translate-y-1/2 bg-accent/10 blur-[150px] pointer-events-none" />
 
-      {/* Brand glow */}
-      <div className="absolute top-1/3 right-0 w-[45vw] h-[45vw] -translate-y-1/2 pointer-events-none">
-        <div className="w-full h-full bg-accent/6 blur-[150px] rounded-full" />
-      </div>
-
-      <div className="container-wide relative z-10 py-20 md:py-0">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left: Content */}
+      <div className="container-wide relative z-10 py-16 md:py-20">
+        <div className="grid lg:grid-cols-[1.05fr_.95fr] gap-12 items-center">
           <div className="animate-reveal">
-            <div className="inline-flex items-center gap-2 bg-accent/10 border border-accent/25 text-accent text-xs font-bold tracking-[0.15em] px-4 py-1.5 rounded-full mb-6">
+            <div className="inline-flex items-center gap-2 bg-white/[0.06] border border-white/12 text-slate-200 text-xs font-bold tracking-[0.08em] uppercase px-3 py-1.5 mb-6">
               <span className="w-1.5 h-1.5 bg-accent rounded-full animate-pulse" />
               {t("tag")}
             </div>
 
-            <h1 className="text-[clamp(2rem,5vw,3.75rem)] font-bold leading-[1.05] tracking-tight mb-5">
+            <h1 className="text-[clamp(2.35rem,5.3vw,4.8rem)] font-bold leading-[1.02] mb-6 max-w-3xl">
               {t("title1")}
               <br />
               <span className="text-accent">{t("title2")}</span>
             </h1>
 
-            <p className="text-base md:text-lg text-gray-400 max-w-lg leading-relaxed mb-10">
+            <p className="text-base md:text-lg text-slate-300 max-w-2xl leading-relaxed mb-8">
               {t("description")}
             </p>
 
-            {/* Primary CTA group */}
+            <div className="mb-9 grid max-w-2xl gap-2 sm:grid-cols-3">
+              {[
+                isEn ? "Drawing-based OEM machining" : "按图纸 OEM 加工",
+                isEn ? "Material grade support" : "材料牌号选型支持",
+                isEn ? "24h engineering response" : "24小时工程响应",
+              ].map((item) => (
+                <div key={item} className="border border-white/10 bg-white/[0.04] px-3 py-2 text-xs font-medium text-slate-300">
+                  {item}
+                </div>
+              ))}
+            </div>
+
             <div className="flex flex-wrap gap-3">
               <Link href="/contact" className="btn-primary text-sm group">
                 {t("ctaQuote")}
@@ -118,25 +124,23 @@ export default function HeroSection() {
               </Link>
             </div>
 
-            {/* Stats row */}
             <div className="hidden md:flex gap-8 mt-12 pt-8 border-t border-white/10">
               {highlights.map((h) => (
                 <div key={h.label} className="group">
                   <div className="text-2xl font-bold text-accent group-hover:scale-105 transition-transform origin-left">
                     {h.value}
                   </div>
-                  <div className="text-xs text-gray-500 mt-1 tracking-wide">{h.label}</div>
+                  <div className="text-xs text-slate-500 mt-1 tracking-wide">{h.label}</div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Right: Premium Carousel */}
           <div className="flex flex-col items-center">
             <div className="relative w-full max-w-[480px]">
-              <div className="absolute -inset-6 bg-accent/8 blur-[80px] rounded-full opacity-60 transition-opacity duration-700" />
+              <div className="absolute -inset-6 bg-accent/10 blur-[90px] opacity-60 transition-opacity duration-700" />
 
-              <div className="card-glass w-full aspect-square max-h-[480px] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.6)]">
+              <div className="card-glass relative w-full aspect-square max-h-[480px] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.6)]">
                 {carouselImages.map((img, idx) => (
                   <div
                     key={img.src}
@@ -148,7 +152,7 @@ export default function HeroSection() {
                         src={img.src}
                         alt={isEn ? img.enLabel : img.label}
                         fill
-                        className="object-contain p-10 scale-[0.85]"
+                        className="object-contain p-8 md:p-10 scale-[0.88]"
                         sizes="480px"
                         priority={idx === current}
                       />
@@ -194,6 +198,14 @@ export default function HeroSection() {
                 </div>
 
                 <div className="absolute inset-0 bg-gradient-to-br from-white/[0.06] via-transparent to-transparent pointer-events-none rounded-2xl" />
+                <div className="absolute left-5 top-5 border border-white/12 bg-primary/55 px-3 py-2 backdrop-blur-sm">
+                  <div className="text-[10px] uppercase tracking-[0.12em] text-slate-400">
+                    {isEn ? "Precision component" : "精密零部件"}
+                  </div>
+                  <div className="mt-0.5 text-xs font-semibold text-white">
+                    {isEn ? carouselImages[current].enLabel : carouselImages[current].label}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -204,7 +216,7 @@ export default function HeroSection() {
           {highlights.map((h) => (
             <div key={h.label}>
               <div className="text-lg font-bold text-accent">{h.value}</div>
-              <div className="text-[10px] text-gray-500 mt-0.5">{h.label}</div>
+              <div className="text-[10px] text-slate-500 mt-0.5">{h.label}</div>
             </div>
           ))}
         </div>

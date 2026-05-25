@@ -192,7 +192,9 @@ export default function ClientsSection() {
               <circle cx={chinaPos.x} cy={chinaPos.y} r={6} fill="#BD7A2C" opacity={0.3} />
               <circle cx={chinaPos.x} cy={chinaPos.y} r={4} fill="#BD7A2C" style={{ filter: "url(#glow)" }} />
               <text x={chinaPos.x} y={chinaPos.y - 12} textAnchor="middle" fill="#BD7A2C" fontSize="9" fontWeight="700" className="select-none">
-                {getLocalized({ zh: "华豪密封", en: "Huahao Sealing", vi: "Huahao Sealing", th: "Huahao Sealing", ru: "Huahao Sealing", ja: "華豪シール", ko: "Huahao Sealing" }, locale)}
+                <span translate="no">
+                  {getLocalized({ zh: "华豪密封", en: "Huahao Sealing", vi: "Huahao Sealing", th: "Huahao Sealing", ru: "Huahao Sealing", ja: "Huahao Sealing", ko: "Huahao Sealing" }, locale)}
+                </span>
               </text>
 
               {countries.map((c) => (
