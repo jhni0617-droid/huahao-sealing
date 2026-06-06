@@ -35,14 +35,14 @@ export default async function CasesSection() {
               <div className="flex flex-1 flex-col p-6">
                 <p className="text-sm text-muted leading-relaxed mb-5 flex-1 line-clamp-4">{c.condition}</p>
               </div>
-              <div className="border-t border-border bg-green-50/65 p-5">
+              <div className="border-t border-border bg-white p-5">
                 <div className="flex items-center gap-1.5 mb-1.5">
                   <Icon name="check" className="w-3.5 h-3.5 text-success" />
                   <span className="text-xs font-semibold text-muted uppercase tracking-wider">
                     {t("resultLabel")}
                   </span>
                 </div>
-                <div className="text-sm font-semibold text-green-700 leading-relaxed">{c.result}</div>
+                <div className="border-l-2 border-success pl-3 text-sm font-semibold text-green-700 leading-relaxed">{c.result}</div>
               </div>
             </div>
           ))}

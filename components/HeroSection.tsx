@@ -5,7 +5,10 @@ import { Link } from "@/i18n/routing"
 import Image from "next/image"
 import dynamic from "next/dynamic"
 import { useTranslations, useLocale } from "next-intl"
-import { siteConfig, factoryHighlights, enFactoryHighlights } from "@/lib/constants"
+import { siteConfig } from "@/lib/constants"
+import { getLocalized } from "@/lib/locale-data"
+import { factoryHighlightsByLocale } from "@/lib/translations"
+import Icon from "@/components/ui/Icon"
 
 const HeroParticles = dynamic(() => import("@/components/HeroParticles"), {
   ssr: false,
@@ -33,12 +36,58 @@ const carouselImages = [
   { src: "/images/密封环/IMG_20260410_175102.jpg", label: "碳石墨密封环", enLabel: "Carbon Graphite Seal Ring" },
 ]
 
+const heroUi = {
+  zh: {
+    bullets: ["按图纸 OEM 加工", "材料牌号选型支持", "24小时工程响应"],
+    previous: "上一张",
+    next: "下一张",
+    precision: "精密零部件",
+  },
+  en: {
+    bullets: ["Drawing-based OEM machining", "Material grade support", "24h engineering response"],
+    previous: "Previous",
+    next: "Next",
+    precision: "Precision component",
+  },
+  vi: {
+    bullets: ["Gia công OEM theo bản vẽ", "Hỗ trợ chọn cấp vật liệu", "Phản hồi kỹ thuật 24h"],
+    previous: "Trước",
+    next: "Tiếp",
+    precision: "Linh kiện chính xác",
+  },
+  th: {
+    bullets: ["ผลิต OEM ตามแบบ", "สนับสนุนการเลือกเกรดวัสดุ", "ตอบกลับทางวิศวกรรม 24 ชม."],
+    previous: "ก่อนหน้า",
+    next: "ถัดไป",
+    precision: "ชิ้นส่วนความแม่นยำ",
+  },
+  ru: {
+    bullets: ["OEM обработка по чертежам", "Подбор марки материала", "Инженерный ответ за 24 ч"],
+    previous: "Назад",
+    next: "Вперед",
+    precision: "Прецизионный компонент",
+  },
+  ja: {
+    bullets: ["図面ベースのOEM加工", "材料グレード選定サポート", "24時間以内の技術対応"],
+    previous: "前へ",
+    next: "次へ",
+    precision: "精密部品",
+  },
+  ko: {
+    bullets: ["도면 기반 OEM 가공", "재료 등급 선정 지원", "24시간 엔지니어링 응답"],
+    previous: "이전",
+    next: "다음",
+    precision: "정밀 부품",
+  },
+}
+
 export default function HeroSection() {
   const [current, setCurrent] = useState(0)
   const t = useTranslations("home.hero")
   const locale = useLocale()
-  const isEn = locale !== "zh"
-  const highlights = isEn ? enFactoryHighlights : factoryHighlights
+  const isZh = locale === "zh"
+  const highlights = getLocalized(factoryHighlightsByLocale, locale)
+  const ui = getLocalized(heroUi, locale)
 
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
@@ -60,13 +109,15 @@ export default function HeroSection() {
   }, [startTimer])
 
   return (
-    <section className="bg-hero-bg text-white relative overflow-hidden min-h-[88vh] flex items-center">
-      <HeroParticles />
+    <section className="bg-hero-bg text-white relative overflow-hidden min-h-[84vh] flex items-center">
+      <div className="opacity-45">
+        <HeroParticles />
+      </div>
 
       <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.55) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.55) 1px, transparent 1px)", backgroundSize: "48px 48px" }} />
       <div className="absolute inset-0 bg-gradient-to-r from-hero-bg via-hero-bg/82 to-hero-bg/42 pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-t from-hero-bg via-transparent to-transparent pointer-events-none" />
-      <div className="absolute top-1/4 right-0 w-[44vw] h-[44vw] -translate-y-1/2 bg-accent/10 blur-[150px] pointer-events-none" />
+      <div className="absolute top-1/4 right-0 w-[36vw] h-[36vw] -translate-y-1/2 bg-accent/8 blur-[150px] pointer-events-none" />
 
       <div className="container-wide relative z-10 py-16 md:py-20">
         <div className="grid lg:grid-cols-[1.05fr_.95fr] gap-12 items-center">
@@ -76,7 +127,7 @@ export default function HeroSection() {
               {t("tag")}
             </div>
 
-            <h1 className="text-[clamp(2.35rem,5.3vw,4.8rem)] font-bold leading-[1.02] mb-6 max-w-3xl">
+            <h1 className="text-[clamp(2.25rem,5vw,4.35rem)] font-bold leading-[1.04] mb-6 max-w-3xl">
               {t("title1")}
               <br />
               <span className="text-accent">{t("title2")}</span>
@@ -87,12 +138,9 @@ export default function HeroSection() {
             </p>
 
             <div className="mb-9 grid max-w-2xl gap-2 sm:grid-cols-3">
-              {[
-                isEn ? "Drawing-based OEM machining" : "按图纸 OEM 加工",
-                isEn ? "Material grade support" : "材料牌号选型支持",
-                isEn ? "24h engineering response" : "24小时工程响应",
-              ].map((item) => (
-                <div key={item} className="border border-white/10 bg-white/[0.04] px-3 py-2 text-xs font-medium text-slate-300">
+              {ui.bullets.map((item) => (
+                <div key={item} className="flex items-center gap-2 border border-white/10 bg-white/[0.04] px-3 py-2 text-xs font-medium text-slate-300">
+                  <Icon name="check" className="h-3.5 w-3.5 shrink-0 text-accent" />
                   {item}
                 </div>
               ))}
@@ -116,7 +164,7 @@ export default function HeroSection() {
                 </svg>
                 {t("ctaWhatsApp")}
               </a>
-              <Link href="/products" className="inline-flex items-center gap-1.5 px-5 py-3 text-sm font-medium text-gray-400 hover:text-white transition-colors">
+              <Link href="/products" className="inline-flex items-center gap-1.5 px-5 py-3 text-sm font-medium text-slate-400 hover:text-white transition-colors">
                 {t("ctaProducts")}
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -136,7 +184,7 @@ export default function HeroSection() {
             </div>
           </div>
 
-          <div className="flex flex-col items-center">
+          <div className="hidden flex-col items-center lg:flex">
             <div className="relative w-full max-w-[480px]">
               <div className="absolute -inset-6 bg-accent/10 blur-[90px] opacity-60 transition-opacity duration-700" />
 
@@ -150,7 +198,7 @@ export default function HeroSection() {
                     {Math.abs(idx - current) <= 1 && (
                       <Image
                         src={img.src}
-                        alt={isEn ? img.enLabel : img.label}
+                        alt={isZh ? img.label : img.enLabel}
                         fill
                         className="object-contain p-8 md:p-10 scale-[0.88]"
                         sizes="480px"
@@ -165,7 +213,7 @@ export default function HeroSection() {
                   type="button"
                   onClick={() => goTo((current - 1 + carouselImages.length) % carouselImages.length)}
                   className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all duration-200 z-10 cursor-pointer backdrop-blur-sm"
-                  aria-label={isEn ? "Previous" : "上一张"}
+                  aria-label={ui.previous}
                 >
                   <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -175,7 +223,7 @@ export default function HeroSection() {
                   type="button"
                   onClick={() => goTo((current + 1) % carouselImages.length)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all duration-200 z-10 cursor-pointer backdrop-blur-sm"
-                  aria-label={isEn ? "Next" : "下一张"}
+                  aria-label={ui.next}
                 >
                   <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -197,13 +245,13 @@ export default function HeroSection() {
                   ))}
                 </div>
 
-                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.06] via-transparent to-transparent pointer-events-none rounded-2xl" />
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.06] via-transparent to-transparent pointer-events-none rounded-lg" />
                 <div className="absolute left-5 top-5 border border-white/12 bg-primary/55 px-3 py-2 backdrop-blur-sm">
                   <div className="text-[10px] uppercase tracking-[0.12em] text-slate-400">
-                    {isEn ? "Precision component" : "精密零部件"}
+                    {ui.precision}
                   </div>
                   <div className="mt-0.5 text-xs font-semibold text-white">
-                    {isEn ? carouselImages[current].enLabel : carouselImages[current].label}
+                    {isZh ? carouselImages[current].label : carouselImages[current].enLabel}
                   </div>
                 </div>
               </div>

@@ -30,7 +30,6 @@ export default function PageHero({
   return (
     <section className="page-hero">
       <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)", backgroundSize: "44px 44px" }} />
-      <div className="absolute -right-32 top-12 h-80 w-80 rounded-full bg-accent/10 blur-3xl" />
       <div className="container-wide relative py-16 md:py-20 lg:py-24">
         <div className="grid gap-10 lg:grid-cols-[1fr_360px] lg:items-end">
           <div className="max-w-3xl">

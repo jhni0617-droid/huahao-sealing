@@ -134,7 +134,7 @@ export default function ClientsSection() {
 
         {/* Premium World Map Card */}
         <div className="relative max-w-5xl mx-auto">
-          <div className="relative rounded-2xl overflow-hidden border border-border/60 shadow-lg bg-gradient-to-br from-[#0B1628] via-[#111D35] to-[#0B1628]">
+          <div className="relative overflow-hidden rounded-lg border border-border/60 bg-[#0B1628] shadow-sm">
             <svg viewBox="0 0 1000 500" className="w-full h-auto block" aria-label={getLocalized({ zh: "世界地图", en: "World Map", vi: "Bản đồ thế giới", th: "แผนที่โลก", ru: "Карта мира", ja: "世界地図", ko: "세계 지도" }, locale)}>
               <defs>
                 <radialGradient id="chinaGlow" cx="50%" cy="50%" r="50%">
@@ -192,9 +192,7 @@ export default function ClientsSection() {
               <circle cx={chinaPos.x} cy={chinaPos.y} r={6} fill="#BD7A2C" opacity={0.3} />
               <circle cx={chinaPos.x} cy={chinaPos.y} r={4} fill="#BD7A2C" style={{ filter: "url(#glow)" }} />
               <text x={chinaPos.x} y={chinaPos.y - 12} textAnchor="middle" fill="#BD7A2C" fontSize="9" fontWeight="700" className="select-none">
-                <span translate="no">
-                  {getLocalized({ zh: "华豪密封", en: "Huahao Sealing", vi: "Huahao Sealing", th: "Huahao Sealing", ru: "Huahao Sealing", ja: "Huahao Sealing", ko: "Huahao Sealing" }, locale)}
-                </span>
+                {getLocalized({ zh: "华豪密封", en: "Huahao Sealing", vi: "Huahao Sealing", th: "Huahao Sealing", ru: "Huahao Sealing", ja: "Huahao Sealing", ko: "Huahao Sealing" }, locale)}
               </text>
 
               {countries.map((c) => (

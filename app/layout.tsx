@@ -38,7 +38,7 @@ export default async function RootLayout({
   const locale = cookieStore.get("NEXT_LOCALE")?.value || "zh"
 
   return (
-    <html lang={locale} className={`h-full antialiased ${locale !== "zh" ? "locale-en" : ""}`}>
+    <html lang={locale} data-scroll-behavior="smooth" className={`h-full antialiased ${locale !== "zh" ? "locale-en" : ""}`}>
       <body className="min-h-full flex flex-col">
         {children}
       </body>

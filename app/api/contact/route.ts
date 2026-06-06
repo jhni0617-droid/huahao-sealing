@@ -4,7 +4,7 @@ import { getDb } from "@/lib/admin/db"
 
 function createTransporter() {
   return nodemailer.createTransport({
-    host: process.env.SMTP_HOST || "smtp.mxhichina.com",
+    host: process.env.SMTP_HOST || "smtp.qiye.aliyun.com",
     port: Number(process.env.SMTP_PORT) || 465,
     secure: true,
     auth: {
@@ -57,17 +57,28 @@ export async function POST(request: NextRequest) {
     const bodyText = fields.map(([label, value]) => `${label}: ${value}`).join("\n")
 
     const mailOptions: nodemailer.SendMailOptions = {
-      from: `华豪官网 <${process.env.SMTP_USER}>`,
+      from: `Huahao Website Inquiry <${process.env.SMTP_USER}>`,
       to: process.env.SMTP_USER,
-      subject: `新询价 - ${name}${company ? ` (${company})` : ""}`,
-      text: `收到新的询价信息：
+      replyTo: email,
+      subject: `New Inquiry from ${name}${company ? ` (${company})` : ""} - huahaoindustrial.com`,
+      text: `New inquiry received from huahaoindustrial.com contact form:
 
 ${bodyText}
 
-留言:
+Message:
 ${message}
 ---
-发送时间: ${new Date().toLocaleString("zh-CN")}`,
+Sent: ${new Date().toLocaleString("zh-CN")}
+Customer email: ${email}
+Customer phone: ${phone || "N/A"}
+Company: ${company || "N/A"}
+
+⚠️ Reply to this email will go to the customer directly (replyTo: ${email})`,
+
+      headers: {
+        "X-Mailer": "HuahaoSealing-ContactForm",
+        "X-Auto-Response-Suppress": "OOF, AutoReply",
+      },
     }
 
     if (fileName && fileContent) {

@@ -31,7 +31,15 @@ interface CaseRow {
 export default async function CasesPage() {
   const locale = await getLocale()
   const t = await getTranslations("cases")
-  const isZh = locale === "zh"
+  const eyebrow = getLocalized({
+    zh: "工程案例",
+    en: "Engineering proof",
+    vi: "Bằng chứng kỹ thuật",
+    th: "หลักฐานทางวิศวกรรม",
+    ru: "Инженерные доказательства",
+    ja: "技術実績",
+    ko: "엔지니어링 사례",
+  }, locale)
   const fallback = getLocalized(casesByLocale, locale)
   let cases: CaseRow[]
 
@@ -52,7 +60,7 @@ export default async function CasesPage() {
   return (
     <>
       <PageHero
-        eyebrow={isZh ? "工程案例" : "Engineering proof"}
+        eyebrow={eyebrow}
         title={t("pageTitle")}
         subtitle={t("pageSubtitle")}
         primaryLabel={t("ctaButton")}

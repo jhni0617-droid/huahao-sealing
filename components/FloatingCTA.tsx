@@ -29,7 +29,7 @@ export default function FloatingCTA() {
       >
         <Link
           href="/contact"
-          className="flex items-center gap-2.5 bg-accent text-white px-5 py-3 rounded-xl shadow-lg font-semibold text-sm hover:bg-accent-hover transition-all hover:shadow-xl hover:-translate-y-0.5"
+          className="flex items-center gap-2.5 bg-accent text-white px-5 py-3 rounded-md shadow-sm font-semibold text-sm hover:bg-accent-hover transition-all hover:-translate-y-0.5"
         >
           <Icon name="mail" className="w-4 h-4" />
           {t("ctaButton")}
@@ -38,7 +38,7 @@ export default function FloatingCTA() {
           href={`https://wa.me/${siteConfig.whatsapp}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2.5 bg-green-600 text-white px-5 py-3 rounded-xl shadow-lg font-semibold text-sm hover:bg-green-700 transition-all hover:shadow-xl hover:-translate-y-0.5"
+          className="flex items-center gap-2.5 bg-green-600 text-white px-5 py-3 rounded-md shadow-sm font-semibold text-sm hover:bg-green-700 transition-all hover:-translate-y-0.5"
         >
           <Icon name="whatsapp" className="w-4 h-4" />
           {t("whatsapp")}
@@ -47,7 +47,7 @@ export default function FloatingCTA() {
 
       {/* Mobile bottom bar */}
       <div
-        className={`md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-border shadow-2xl safe-bottom transition-all duration-500 ${
+        className={`md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-border shadow-lg safe-bottom transition-all duration-500 ${
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-full"
         }`}
       >

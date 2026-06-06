@@ -163,7 +163,7 @@ export default async function FactoryQuality() {
     <section className="bg-primary text-white relative overflow-hidden">
       <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `radial-gradient(circle at 1px 1px, #fff 1px, transparent 0)`, backgroundSize: "40px 40px" }} />
 
-      <div className="container-wide py-16 md:py-24">
+      <div className="container-wide py-20 md:py-28">
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
           <div>
             <ImageCarousel
@@ -184,7 +184,7 @@ export default async function FactoryQuality() {
               {t("title")}
             </h2>
             <div className="w-14 h-0.5 bg-accent mb-6" />
-            <p className="text-gray-400 leading-relaxed mb-8 text-base">
+            <p className="text-slate-300 leading-relaxed mb-8 text-base">
               {t("description")}
             </p>
 
@@ -192,7 +192,7 @@ export default async function FactoryQuality() {
               {capabilities.map((item) => (
                 <div key={item.label} className="border border-white/[0.08] bg-white/[0.04] p-4">
                   <h3 className="font-semibold text-sm text-accent">{item.label}</h3>
-                  <p className="text-xs text-gray-500 mt-1">{item.desc}</p>
+                  <p className="text-xs text-slate-400 mt-1">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -201,7 +201,7 @@ export default async function FactoryQuality() {
               {stats.map((s) => (
                 <div key={s.value} className="text-center p-3 bg-white/[0.03] border border-white/[0.06]">
                   <div className="text-xl font-bold text-accent">{s.value}</div>
-                  <div className="text-xs text-gray-500 mt-0.5">{s.label}</div>
+                  <div className="text-xs text-slate-400 mt-0.5">{s.label}</div>
                 </div>
               ))}
             </div>
@@ -211,7 +211,7 @@ export default async function FactoryQuality() {
         <div className="mb-12">
           <div className="flex items-center gap-4 mb-8">
             <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-            <span className="text-xs text-gray-500 tracking-[0.2em] uppercase">{getLocalized({ zh: "品控设备", en: "QC Equipment", vi: "Thiết bị QC", th: "อุปกรณ์ QC", ru: "Оборудование КК", ja: "品質管理設備", ko: "품질 관리 장비" }, locale)}</span>
+            <span className="text-xs text-slate-400 tracking-[0.2em] uppercase">{getLocalized({ zh: "品控设备", en: "QC Equipment", vi: "Thiết bị QC", th: "อุปกรณ์ QC", ru: "Оборудование КК", ja: "品質管理設備", ko: "품질 관리 장비" }, locale)}</span>
             <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -219,7 +219,7 @@ export default async function FactoryQuality() {
               <div key={qc.title} className="border border-white/[0.08] bg-white/[0.04] p-5 text-center transition-colors hover:border-accent/30">
                 <Icon name={qc.icon as IconName} className="w-8 h-8 text-accent mx-auto mb-3" />
                 <h3 className="text-sm font-bold mb-1">{qc.title}</h3>
-                <p className="text-xs text-gray-500">{qc.desc}</p>
+                <p className="text-xs text-slate-400">{qc.desc}</p>
               </div>
             ))}
           </div>

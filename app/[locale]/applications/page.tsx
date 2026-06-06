@@ -192,21 +192,29 @@ export default async function ApplicationsPage() {
   const locale = await getLocale()
   const t = await getTranslations("applications")
   const details = getLocalized({ zh: zhDetails, en: enDetails, ...applicationsDetailsByLocale }, locale)
-  const isZh = locale === "zh"
+  const hero = getLocalized({
+    zh: { eyebrow: "应用与工况", primary: "描述工况获取建议", secondary: "查看产品", stats: ["工业场景", "高温适配", "介质覆盖"] },
+    en: { eyebrow: "Applications & duty conditions", primary: "Get Application Advice", secondary: "View Products", stats: ["Industries", "High-temp range", "Media range"] },
+    vi: { eyebrow: "Ứng dụng & điều kiện", primary: "Nhận tư vấn ứng dụng", secondary: "Xem sản phẩm", stats: ["Ngành ứng dụng", "Dải nhiệt cao", "Dải môi trường"] },
+    th: { eyebrow: "การใช้งานและสภาวะ", primary: "รับคำแนะนำการใช้งาน", secondary: "ดูสินค้า", stats: ["อุตสาหกรรม", "ช่วงอุณหภูมิสูง", "ช่วงตัวกลาง"] },
+    ru: { eyebrow: "Применения и условия", primary: "Получить рекомендацию", secondary: "Смотреть продукцию", stats: ["Отрасли", "Высокие температуры", "Диапазон сред"] },
+    ja: { eyebrow: "用途と運転条件", primary: "用途相談を依頼", secondary: "製品を見る", stats: ["産業用途", "高温対応", "媒体範囲"] },
+    ko: { eyebrow: "응용 및 운전 조건", primary: "응용 상담 받기", secondary: "제품 보기", stats: ["산업 분야", "고온 범위", "매체 범위"] },
+  }, locale)
 
   return (
     <>
       <PageHero
-        eyebrow={isZh ? "应用与工况" : "Applications & duty conditions"}
+        eyebrow={hero.eyebrow}
         title={t("pageTitle")}
         subtitle={t("heroSubtitle")}
-        primaryLabel={isZh ? "描述工况获取建议" : "Get Application Advice"}
-        secondaryLabel={isZh ? "查看产品" : "View Products"}
+        primaryLabel={hero.primary}
+        secondaryLabel={hero.secondary}
         secondaryHref="/products"
         stats={[
-          { value: "8+", label: isZh ? "工业场景" : "Industries" },
-          { value: "600°C", label: isZh ? "高温适配" : "High-temp range" },
-          { value: "pH 0-14", label: isZh ? "介质覆盖" : "Media range" },
+          { value: "8+", label: hero.stats[0] },
+          { value: "600°C", label: hero.stats[1] },
+          { value: "pH 0-14", label: hero.stats[2] },
         ]}
       />
 
@@ -242,10 +250,10 @@ export default async function ApplicationsPage() {
                     <h3 className="font-semibold mb-4">{t("whyTitle", { industry: app.title })}</h3>
                     <ul className="space-y-3">
                       {(detail.reasons || [
-                        locale === "zh" ? "自润滑 — 无需外部润滑" : "Self-lubricating — no external lubrication",
-                        locale === "zh" ? "恶劣环境中耐腐蚀" : "Corrosion resistant in harsh environments",
-                        locale === "zh" ? "耐高温和抗热冲击" : "High temperature & thermal shock resistance",
-                        locale === "zh" ? "长寿命减少维护停机时间" : "Long life reducing maintenance downtime",
+                        getLocalized({ zh: "自润滑 — 无需外部润滑", en: "Self-lubricating — no external lubrication", vi: "Tự bôi trơn — không cần bôi trơn ngoài", th: "หล่อลื่นตัวเอง — ไม่ต้องใช้สารหล่อลื่นภายนอก", ru: "Самосмазывание — без внешней смазки", ja: "自己潤滑 — 外部潤滑不要", ko: "자체 윤활 — 외부 윤활 불필요" }, locale),
+                        getLocalized({ zh: "恶劣环境中耐腐蚀", en: "Corrosion resistant in harsh environments", vi: "Chống ăn mòn trong môi trường khắc nghiệt", th: "ทนการกัดกร่อนในสภาพแวดล้อมรุนแรง", ru: "Коррозионная стойкость в тяжелых средах", ja: "過酷環境での耐食性", ko: "가혹 환경 내식성" }, locale),
+                        getLocalized({ zh: "耐高温和抗热冲击", en: "High temperature & thermal shock resistance", vi: "Chịu nhiệt và sốc nhiệt", th: "ทนความร้อนและช็อกความร้อน", ru: "Стойкость к высокой температуре и термошоку", ja: "高温・熱衝撃に強い", ko: "고온 및 열충격 저항" }, locale),
+                        getLocalized({ zh: "长寿命减少维护停机时间", en: "Long life reducing maintenance downtime", vi: "Tuổi thọ dài, giảm thời gian dừng máy", th: "อายุการใช้งานยาว ลดเวลาหยุดซ่อม", ru: "Долгий срок службы снижает простои", ja: "長寿命で保守停止を削減", ko: "긴 수명으로 유지보수 정지 감소" }, locale),
                       ]).map((item, i) => (
                         <li key={i} className="flex items-start gap-2 text-sm">
                           <svg className="w-4 h-4 text-accent shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

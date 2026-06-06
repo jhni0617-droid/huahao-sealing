@@ -5,6 +5,7 @@ import FAQAccordion from "@/components/FAQAccordion"
 import CTASection from "@/components/CTASection"
 import { FaqJsonLd } from "@/components/JsonLd"
 import { generateMeta } from "@/lib/utils"
+import { getLocalized } from "@/lib/locale-data"
 import PageHero from "@/components/PageHero"
 
 export async function generateMetadata() {
@@ -64,7 +65,15 @@ function FAQItemBlock({ item }: { item: FAQItem }) {
 export default async function FAQPage() {
   const locale = await getLocale()
   const t = await getTranslations("faq")
-  const isZh = locale === "zh"
+  const hero = getLocalized({
+    zh: { eyebrow: "技术资料库", primary: "咨询工程师", stats: ["核心表格", "FAQ 分类", "公式"] },
+    en: { eyebrow: "Technical reference", primary: "Ask an Engineer", stats: ["Core tables", "FAQ groups", "Formulas"] },
+    vi: { eyebrow: "Tài liệu kỹ thuật", primary: "Hỏi kỹ sư", stats: ["Bảng chính", "Nhóm FAQ", "Công thức"] },
+    th: { eyebrow: "ข้อมูลอ้างอิงทางเทคนิค", primary: "ถามวิศวกร", stats: ["ตารางหลัก", "กลุ่ม FAQ", "สูตร"] },
+    ru: { eyebrow: "Технический справочник", primary: "Спросить инженера", stats: ["Основные таблицы", "Группы FAQ", "Формулы"] },
+    ja: { eyebrow: "技術資料", primary: "技術者に相談", stats: ["主要表", "FAQ分類", "公式"] },
+    ko: { eyebrow: "기술 자료", primary: "엔지니어 문의", stats: ["핵심 표", "FAQ 그룹", "공식"] },
+  }, locale)
 
   const tables = faqCoreTablesByLocale[locale] || faqCoreTablesByLocale.en
   const categories = faqCategoriesByLocale[locale] || faqCategoriesByLocale.en
@@ -80,14 +89,14 @@ export default async function FAQPage() {
       } />
 
       <PageHero
-        eyebrow={isZh ? "技术资料库" : "Technical reference"}
+        eyebrow={hero.eyebrow}
         title={t("pageTitle")}
         subtitle={t("pageSubtitle")}
-        primaryLabel={isZh ? "咨询工程师" : "Ask an Engineer"}
+        primaryLabel={hero.primary}
         stats={[
-          { value: `${tables.length}`, label: isZh ? "核心表格" : "Core tables" },
-          { value: `${categories.length}`, label: isZh ? "FAQ 分类" : "FAQ groups" },
-          { value: `${techFormulas.length}`, label: isZh ? "公式" : "Formulas" },
+          { value: `${tables.length}`, label: hero.stats[0] },
+          { value: `${categories.length}`, label: hero.stats[1] },
+          { value: `${techFormulas.length}`, label: hero.stats[2] },
         ]}
       />
 

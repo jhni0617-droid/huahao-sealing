@@ -60,9 +60,9 @@ export default function ImageCarousel({
   if (images.length === 0) return null
 
   const containerStyle = variant === "glass"
-    ? "rounded-[28px] overflow-hidden border border-white/[0.08] bg-white/[0.04] backdrop-blur-sm shadow-[0_30px_80px_-10px_rgba(0,0,0,0.5)]"
+    ? "rounded-lg overflow-hidden border border-white/[0.08] bg-white/[0.04] backdrop-blur-sm shadow-[0_20px_50px_-18px_rgba(0,0,0,0.45)]"
     : variant === "solid"
-    ? "rounded-xl overflow-hidden border border-border bg-white shadow-lg"
+    ? "rounded-lg overflow-hidden border border-border bg-white shadow-sm"
     : "rounded-lg overflow-hidden"
 
   return (

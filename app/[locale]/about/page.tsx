@@ -1,10 +1,12 @@
 import Image from "next/image"
 import { getLocale, getTranslations } from "next-intl/server"
+import { Link } from "@/i18n/routing"
 import CTASection from "@/components/CTASection"
 import FAQAccordion from "@/components/FAQAccordion"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 import PageHero from "@/components/PageHero"
+import Icon, { type IconName } from "@/components/ui/Icon"
 
 export async function generateMetadata() {
   const locale = await getLocale()
@@ -147,6 +149,126 @@ const qualityData: Record<string, QualityCard[]> = {
     { title: "정밀 가공", desc: "CNC 가공센터가 미크론 수준 치수 공차 달성, 모든 로트에서 일관된 품질." },
     { title: "성능 테스트", desc: "모든 제품이 엄격한 치수 검증, 압력 테스트, 표면 품질 평가를 거칩니다." },
   ],
+}
+
+const trustPillars = {
+  zh: [
+    { icon: "chemical", title: "材料体系", desc: "围绕高温、腐蚀、干运转和水下工况选择碳石墨牌号与浸渍方案。" },
+    { icon: "gear", title: "加工体系", desc: "覆盖石墨密封环、轴套、轴承、止推件、三瓣环等精密零部件加工。" },
+    { icon: "shield", title: "检测体系", desc: "尺寸、公差、端面、外观和关键性能按出厂标准进行确认。" },
+    { icon: "file-text", title: "OEM协作", desc: "支持图纸、样品、替代型号、长期供货和批量定制项目。" },
+  ],
+  en: [
+    { icon: "chemical", title: "Material system", desc: "Graphite grade and impregnation selected for heat, corrosion, dry running, and submerged duty." },
+    { icon: "gear", title: "Machining system", desc: "Precision machining for seal rings, bushings, bearings, thrust parts, and split rings." },
+    { icon: "shield", title: "Inspection system", desc: "Dimensions, tolerances, faces, appearance, and key performance points checked before shipment." },
+    { icon: "file-text", title: "OEM collaboration", desc: "Drawings, samples, replacement models, long-term supply, and batch custom programs." },
+  ],
+  vi: [
+    { icon: "chemical", title: "Hệ vật liệu", desc: "Chọn cấp graphite và tẩm cho nhiệt, ăn mòn, chạy khô và ngập nước." },
+    { icon: "gear", title: "Hệ gia công", desc: "Gia công chính xác vòng phớt, bạc lót, ổ trục, chi tiết chặn và vòng chia." },
+    { icon: "shield", title: "Hệ kiểm tra", desc: "Kích thước, dung sai, mặt, ngoại quan và điểm hiệu suất chính được kiểm tra trước giao hàng." },
+    { icon: "file-text", title: "Hợp tác OEM", desc: "Bản vẽ, mẫu, model thay thế, cung ứng dài hạn và chương trình tùy chỉnh lô." },
+  ],
+  th: [
+    { icon: "chemical", title: "ระบบวัสดุ", desc: "เลือกเกรดกราไฟต์และการอัดซึมสำหรับความร้อน การกัดกร่อน งานแห้ง และงานใต้น้ำ" },
+    { icon: "gear", title: "ระบบการผลิต", desc: "กลึงแม่นยำสำหรับแหวนซีล บูช แบริ่ง ชิ้นส่วนรับแรง และแหวนแบ่ง" },
+    { icon: "shield", title: "ระบบตรวจสอบ", desc: "ตรวจขนาด ค่าความคลาดเคลื่อน หน้า ลักษณะภายนอก และจุดสมรรถนะสำคัญก่อนส่ง" },
+    { icon: "file-text", title: "ความร่วมมือ OEM", desc: "รองรับแบบ ตัวอย่าง รุ่นทดแทน การจัดหาระยะยาว และโครงการผลิตเป็นล็อต" },
+  ],
+  ru: [
+    { icon: "chemical", title: "Система материалов", desc: "Подбор марки графита и пропитки для тепла, коррозии, сухого хода и погружения." },
+    { icon: "gear", title: "Система обработки", desc: "Точная обработка колец, втулок, подшипников, упорных деталей и сегментных колец." },
+    { icon: "shield", title: "Система контроля", desc: "Размеры, допуски, торцы, внешний вид и ключевые параметры проверяются перед отгрузкой." },
+    { icon: "file-text", title: "OEM сотрудничество", desc: "Чертежи, образцы, замена моделей, долгосрочные поставки и серийные проекты." },
+  ],
+  ja: [
+    { icon: "chemical", title: "材料体系", desc: "高温、腐食、ドライ運転、水中条件に応じてグラファイトグレードと含浸を選定。" },
+    { icon: "gear", title: "加工体系", desc: "シールリング、ブッシング、軸受、スラスト部品、分割リングの精密加工。" },
+    { icon: "shield", title: "検査体系", desc: "寸法、公差、端面、外観、主要性能を出荷前に確認。" },
+    { icon: "file-text", title: "OEM協力", desc: "図面、サンプル、代替型番、長期供給、量産カスタムに対応。" },
+  ],
+  ko: [
+    { icon: "chemical", title: "재료 시스템", desc: "고온, 부식, 건식 운전 및 수중 조건에 맞춰 그라파이트 등급과 함침 선택." },
+    { icon: "gear", title: "가공 시스템", desc: "씰 링, 부싱, 베어링, 스러스트 부품 및 분할 링 정밀 가공." },
+    { icon: "shield", title: "검사 시스템", desc: "출하 전 치수, 공차, 단면, 외관 및 핵심 성능 확인." },
+    { icon: "file-text", title: "OEM 협업", desc: "도면, 샘플, 대체 모델, 장기 공급 및 대량 맞춤 프로젝트 지원." },
+  ],
+}
+
+function getAboutCopy(locale: string) {
+  return getLocalized({
+    zh: {
+      eyebrow: "制造能力",
+      primary: "联系工厂",
+      secondary: "查看产品",
+      stats: ["行业起点", "精密加工", "出厂检测"],
+      proof: "制造与质量证据",
+      profileKicker: "公司定位",
+      profileCta: "查看工厂实力",
+      faqKicker: "采购常见问题",
+    },
+    en: {
+      eyebrow: "Manufacturing capability",
+      primary: "Contact Factory",
+      secondary: "View Products",
+      stats: ["Industry start", "Precision machining", "Inspection"],
+      proof: "Manufacturing and quality evidence",
+      profileKicker: "Company position",
+      profileCta: "View Factory Capability",
+      faqKicker: "Buyer FAQ",
+    },
+    vi: {
+      eyebrow: "Năng lực sản xuất",
+      primary: "Liên hệ nhà máy",
+      secondary: "Xem sản phẩm",
+      stats: ["Khởi điểm ngành", "Gia công chính xác", "Kiểm tra"],
+      proof: "Bằng chứng sản xuất và chất lượng",
+      profileKicker: "Định vị công ty",
+      profileCta: "Xem năng lực nhà máy",
+      faqKicker: "FAQ mua hàng",
+    },
+    th: {
+      eyebrow: "ความสามารถการผลิต",
+      primary: "ติดต่อโรงงาน",
+      secondary: "ดูสินค้า",
+      stats: ["จุดเริ่มต้นอุตสาหกรรม", "กลึงแม่นยำ", "ตรวจสอบก่อนส่ง"],
+      proof: "หลักฐานการผลิตและคุณภาพ",
+      profileKicker: "ตำแหน่งของบริษัท",
+      profileCta: "ดูความสามารถโรงงาน",
+      faqKicker: "คำถามผู้ซื้อ",
+    },
+    ru: {
+      eyebrow: "Производственные возможности",
+      primary: "Связаться с заводом",
+      secondary: "Смотреть продукцию",
+      stats: ["Старт отрасли", "Точная обработка", "Контроль"],
+      proof: "Производство и качество",
+      profileKicker: "Позиционирование",
+      profileCta: "Смотреть производство",
+      faqKicker: "FAQ закупщика",
+    },
+    ja: {
+      eyebrow: "製造能力",
+      primary: "工場に問い合わせ",
+      secondary: "製品を見る",
+      stats: ["業界開始", "精密加工", "出荷検査"],
+      proof: "製造と品質の証拠",
+      profileKicker: "会社ポジション",
+      profileCta: "工場能力を見る",
+      faqKicker: "購買FAQ",
+    },
+    ko: {
+      eyebrow: "제조 역량",
+      primary: "공장 문의",
+      secondary: "제품 보기",
+      stats: ["산업 시작", "정밀 가공", "출하 검사"],
+      proof: "제조 및 품질 증거",
+      profileKicker: "회사 포지션",
+      profileCta: "공장 역량 보기",
+      faqKicker: "구매 FAQ",
+    },
+  }, locale)
 }
 
 // FAQ content
@@ -481,39 +603,45 @@ const faqCategoriesData: Record<string, FaqCategory[]> = {
 export default async function AboutPage() {
   const locale = await getLocale()
   const t = await getTranslations("about")
-  const isZh = locale === "zh"
   const milestones = getLocalized(milestonesData, locale)
   const qualityCards = getLocalized(qualityData, locale)
   const faqCats = getLocalized(faqCategoriesData, locale)
+  const pillars = getLocalized(trustPillars, locale)
+  const copy = getAboutCopy(locale)
 
   return (
     <>
       <PageHero
-        eyebrow={isZh ? "制造能力" : "Manufacturing capability"}
+        eyebrow={copy.eyebrow}
         title={t("pageTitle")}
         subtitle={t("pageSubtitle")}
-        primaryLabel={isZh ? "联系工厂" : "Contact Factory"}
-        secondaryLabel={isZh ? "查看产品" : "View Products"}
+        primaryLabel={copy.primary}
+        secondaryLabel={copy.secondary}
         secondaryHref="/products"
         stats={[
-          { value: "2006", label: isZh ? "行业起点" : "Industry start" },
-          { value: "CNC", label: isZh ? "精密加工" : "Precision machining" },
-          { value: "100%", label: isZh ? "出厂检测" : "Inspection" },
+          { value: "2006", label: copy.stats[0] },
+          { value: "CNC", label: copy.stats[1] },
+          { value: "100%", label: copy.stats[2] },
         ]}
       />
 
       <section className="section-padding bg-white">
         <div className="container-wide">
-          <div className="grid lg:grid-cols-2 gap-12 items-stretch">
+          <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-stretch">
             <div>
+              <div className="text-xs font-bold uppercase tracking-[0.08em] text-accent">{copy.profileKicker}</div>
               <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">{t("companyTitle")}</h2>
               <div className="industrial-divider" />
               <p className="text-muted mt-4 leading-relaxed">{t("companyPara1")}</p>
               <p className="text-muted mt-4 leading-relaxed">{t("companyPara2")}</p>
               <p className="text-muted mt-4 leading-relaxed">{t("companyPara3")}</p>
+              <Link href="/factory" className="btn-secondary mt-8">
+                {copy.profileCta}
+                <Icon name="arrow-right" className="h-4 w-4" />
+              </Link>
             </div>
 
-            <div className="relative h-full min-h-[400px]">
+            <div className="relative min-h-[420px] overflow-hidden border border-border bg-background">
               <Image
                 src="/images/{9D8C1630-8B0E-4C5E-8263-6B2C49856468}.png"
                 alt={getLocalized({ zh: "华豪密封件厂区实景", en: "Huahao Sealing factory", vi: "Nhà máy Huahao Sealing", th: "โรงงาน Huahao Sealing", ru: "Завод Huahao Sealing", ja: "華豪シール工場", ko: "Huahao Sealing 공장" }, locale)}
@@ -527,27 +655,29 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      {/* FAQ Section */}
       <section className="section-padding industrial-surface">
         <div className="container-wide">
-          <h2 className="text-3xl font-bold text-primary text-center mb-4">{t("faqTitle")}</h2>
-          <div className="industrial-divider mx-auto" />
-          <p className="text-muted mt-4 text-center max-w-2xl mx-auto mb-12">{t("faqSubtitle")}</p>
+          <div className="mb-10 max-w-3xl">
+            <div className="text-xs font-bold uppercase tracking-[0.08em] text-accent">{copy.proof}</div>
+            <h2 className="mt-3 text-3xl font-bold text-primary md:text-4xl">{t("qualityTitle")}</h2>
+            <div className="industrial-divider" />
+          </div>
 
-          <div className="max-w-4xl mx-auto space-y-10">
-            {faqCats.map((cat, ci) => (
-              <div key={ci}>
-                <h3 className="text-xl font-bold text-primary mb-4 flex items-center gap-2">
-                  <span className="w-1 h-5 bg-accent rounded-full" />
-                  {cat.title}
-                </h3>
-                <div className="space-y-3">
-                  {cat.items.map((item, ii) => (
-                    <FAQAccordion key={ii} title={item.question}>
-                      <p className="text-sm text-muted leading-relaxed">{item.answer}</p>
-                    </FAQAccordion>
-                  ))}
-                </div>
+          <div className="grid gap-4 md:grid-cols-4">
+            {pillars.map((item) => (
+              <div key={item.title} className="border border-border bg-white p-5">
+                <Icon name={item.icon as IconName} className="mb-4 h-6 w-6 text-accent" />
+                <h3 className="font-bold text-primary">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-5 grid gap-5 md:grid-cols-3">
+            {qualityCards.map((item) => (
+              <div key={item.title} className="card-static bg-white p-6">
+                <h3 className="font-bold text-lg mb-3 text-primary">{item.title}</h3>
+                <p className="text-sm text-muted leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -576,12 +706,27 @@ export default async function AboutPage() {
 
       <section className="section-padding industrial-surface">
         <div className="container-wide">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-12">{t("qualityTitle")}</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {qualityCards.map((item) => (
-              <div key={item.title} className="card-static bg-white p-6">
-                <h3 className="font-bold text-lg mb-3 text-primary">{item.title}</h3>
-                <p className="text-sm text-muted leading-relaxed">{item.desc}</p>
+          <div className="mb-12 text-center">
+            <div className="text-xs font-bold uppercase tracking-[0.08em] text-accent">{copy.faqKicker}</div>
+            <h2 className="mt-3 text-3xl font-bold text-primary">{t("faqTitle")}</h2>
+            <div className="industrial-divider mx-auto" />
+            <p className="text-muted mt-4 max-w-2xl mx-auto">{t("faqSubtitle")}</p>
+          </div>
+
+          <div className="max-w-4xl mx-auto space-y-10">
+            {faqCats.map((cat, ci) => (
+              <div key={ci}>
+                <h3 className="text-xl font-bold text-primary mb-4 flex items-center gap-2">
+                  <span className="w-1 h-5 bg-accent" />
+                  {cat.title}
+                </h3>
+                <div className="space-y-3">
+                  {cat.items.map((item, ii) => (
+                    <FAQAccordion key={ii} title={item.question}>
+                      <p className="text-sm text-muted leading-relaxed">{item.answer}</p>
+                    </FAQAccordion>
+                  ))}
+                </div>
               </div>
             ))}
           </div>

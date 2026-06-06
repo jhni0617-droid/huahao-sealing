@@ -1,14 +1,16 @@
 import { getTranslations, getLocale } from "next-intl/server"
 import { Link } from "@/i18n/routing"
-import { siteConfig, enSiteConfig, factoryHighlights, enFactoryHighlights } from "@/lib/constants"
+import { siteConfig } from "@/lib/constants"
+import { factoryHighlightsByLocale } from "@/lib/translations"
+import { getLocalized, getLocalizedSiteConfig } from "@/lib/locale-data"
 import Icon from "@/components/ui/Icon"
 
 export default async function Footer() {
   const t = await getTranslations()
   const locale = await getLocale()
-  const isEn = locale !== "zh"
-  const cfg = isEn ? enSiteConfig : siteConfig
-  const highlights = isEn ? enFactoryHighlights : factoryHighlights
+  const localizedCfg = getLocalizedSiteConfig(locale)
+  const cfg = { ...siteConfig, ...localizedCfg }
+  const highlights = getLocalized(factoryHighlightsByLocale, locale)
 
   return (
     <footer className="bg-primary text-white">
@@ -26,6 +28,7 @@ export default async function Footer() {
             <ul className="space-y-3 text-sm">
               <li><Link href="/products" className="text-gray-400 hover:text-white transition-colors">{t("nav.products")}</Link></li>
               <li><Link href="/applications" className="text-gray-400 hover:text-white transition-colors">{t("nav.applications")}</Link></li>
+              <li><Link href="/factory" className="text-gray-400 hover:text-white transition-colors">{t("nav.factory")}</Link></li>
               <li><Link href="/cases" className="text-gray-400 hover:text-white transition-colors">{t("nav.cases")}</Link></li>
               <li><Link href="/faq" className="text-gray-400 hover:text-white transition-colors">{t("nav.faq")}</Link></li>
               <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">{t("nav.about")}</Link></li>

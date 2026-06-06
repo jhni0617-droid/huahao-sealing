@@ -16,16 +16,19 @@ const locales = [
 
 function FlagIcon({ code }: { code: string }) {
   const common = "h-4 w-6 overflow-hidden shadow-sm ring-1 ring-black/10"
+  const star = "12,1.8 12.8,4.7 15.8,4.7 13.4,6.5 14.3,9.4 12,7.6 9.7,9.4 10.6,6.5 8.2,4.7 11.2,4.7"
 
   if (code === "zh") {
     return (
       <svg className={common} viewBox="0 0 24 16" aria-hidden="true">
         <rect width="24" height="16" fill="#de2910" />
-        <polygon points="4,2 4.7,4.1 6.9,4.1 5.1,5.4 5.8,7.5 4,6.2 2.2,7.5 2.9,5.4 1.1,4.1 3.3,4.1" fill="#ffde00" />
-        <circle cx="8.8" cy="2.7" r="0.8" fill="#ffde00" />
-        <circle cx="10.4" cy="4.5" r="0.8" fill="#ffde00" />
-        <circle cx="10.2" cy="7" r="0.8" fill="#ffde00" />
-        <circle cx="8.2" cy="8.7" r="0.8" fill="#ffde00" />
+        <polygon points="4,2 4.75,4.25 7.1,4.25 5.2,5.65 5.95,7.9 4,6.5 2.05,7.9 2.8,5.65 0.9,4.25 3.25,4.25" fill="#ffde00" />
+        <g fill="#ffde00" transform="scale(.34)">
+          <polygon points={star} transform="translate(14 -1) rotate(22 12 8)" />
+          <polygon points={star} transform="translate(19 4) rotate(45 12 8)" />
+          <polygon points={star} transform="translate(19 11) rotate(68 12 8)" />
+          <polygon points={star} transform="translate(14 16) rotate(20 12 8)" />
+        </g>
       </svg>
     )
   }
@@ -33,16 +36,11 @@ function FlagIcon({ code }: { code: string }) {
   if (code === "en") {
     return (
       <svg className={common} viewBox="0 0 24 16" aria-hidden="true">
-        <rect width="24" height="16" fill="#b22234" />
-        {Array.from({ length: 6 }).map((_, i) => (
-          <rect key={i} y={1.23 + i * 2.46} width="24" height="1.23" fill="#fff" />
-        ))}
-        <rect width="10.5" height="8.6" fill="#3c3b6e" />
-        {Array.from({ length: 5 }).map((_, row) =>
-          Array.from({ length: 6 }).map((__, col) => (
-            <circle key={`${row}-${col}`} cx={1 + col * 1.6} cy={0.9 + row * 1.55} r="0.22" fill="#fff" />
-          ))
-        )}
+        <rect width="24" height="16" fill="#012169" />
+        <path d="M0 0l24 16M24 0L0 16" stroke="#fff" strokeWidth="3.2" />
+        <path d="M0 0l24 16M24 0L0 16" stroke="#c8102e" strokeWidth="1.7" />
+        <path d="M12 0v16M0 8h24" stroke="#fff" strokeWidth="5.2" />
+        <path d="M12 0v16M0 8h24" stroke="#c8102e" strokeWidth="3.1" />
       </svg>
     )
   }
@@ -89,10 +87,16 @@ function FlagIcon({ code }: { code: string }) {
   return (
     <svg className={common} viewBox="0 0 24 16" aria-hidden="true">
       <rect width="24" height="16" fill="#fff" />
-      <path d="M0 0h24v16H0z" fill="#fff" />
-      <path d="M0 0h24v3.2H0zm0 6.4h24v3.2H0zm0 6.4h24V16H0z" fill="#000" />
-      <circle cx="12" cy="8" r="3.2" fill="#cd2e3a" />
-      <path d="M12 4.8a3.2 3.2 0 0 1 0 6.4 1.6 1.6 0 0 0 0-3.2 1.6 1.6 0 0 1 0-3.2z" fill="#0047a0" />
+      <g transform="translate(12 8)">
+        <path d="M0-3.4a3.4 3.4 0 0 1 0 6.8 1.7 1.7 0 0 1 0-3.4 1.7 1.7 0 0 0 0-3.4z" fill="#0047a0" transform="rotate(33)" />
+        <path d="M0-3.4a3.4 3.4 0 0 0 0 6.8 1.7 1.7 0 0 0 0-3.4 1.7 1.7 0 0 1 0-3.4z" fill="#cd2e3a" transform="rotate(33)" />
+      </g>
+      <g stroke="#111" strokeWidth="0.75">
+        <path d="M4.2 2.6l3.7 2.2M4.9 1.5l3.7 2.2M3.5 3.7l3.7 2.2" />
+        <path d="M16.1 11.2l3.7 2.2M15.4 12.3l3.7 2.2M16.8 10.1l3.7 2.2" />
+        <path d="M16.2 4.8l3.6-2.1M15.4 3.7l1.4-.8M18.4 2l1.4-.8M16.9 5.9l1.4-.8M19.9 4.2l1.4-.8" />
+        <path d="M4.2 13.4l3.6-2.1M3.5 12.3l3.6-2.1M4.9 14.5l1.4-.8M7.9 12.8l1.4-.8" />
+      </g>
     </svg>
   )
 }

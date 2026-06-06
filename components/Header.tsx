@@ -6,6 +6,17 @@ import Image from "next/image"
 import { useLocale, useTranslations } from "next-intl"
 import LanguageSwitcher from "@/components/LanguageSwitcher"
 import { siteConfig } from "@/lib/constants"
+import { getLocalized } from "@/lib/locale-data"
+
+const brandCopy = {
+  zh: { name: "华豪密封", desc: "石墨密封件 · 石墨轴套 · OEM加工" },
+  en: { name: "Huahao Sealing", desc: "Carbon graphite seals · bushings · OEM machining" },
+  vi: { name: "Huahao Sealing", desc: "Phớt graphite · bạc lót · gia công OEM" },
+  th: { name: "Huahao Sealing", desc: "ซีลกราไฟต์ · บูช · งาน OEM" },
+  ru: { name: "Huahao Sealing", desc: "Графитовые уплотнения · втулки · OEM" },
+  ja: { name: "Huahao Sealing", desc: "グラファイトシール · ブッシング · OEM加工" },
+  ko: { name: "Huahao Sealing", desc: "그라파이트 씰 · 부싱 · OEM 가공" },
+}
 
 export default function Header() {
   const [open, setOpen] = useState(false)
@@ -13,7 +24,7 @@ export default function Header() {
   const pathname = usePathname()
   const t = useTranslations()
   const locale = useLocale()
-  const isZh = locale === "zh"
+  const brand = getLocalized(brandCopy, locale)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -34,6 +45,7 @@ export default function Header() {
     { label: t("nav.home"), href: "/" },
     { label: t("nav.products"), href: "/products" },
     { label: t("nav.applications"), href: "/applications" },
+    { label: t("nav.factory"), href: "/factory" },
     { label: t("nav.cases"), href: "/cases" },
     { label: t("nav.faq"), href: "/faq" },
     { label: t("nav.about"), href: "/about" },
@@ -65,15 +77,15 @@ export default function Header() {
           />
           <div className="hidden lg:block pl-3 border-l border-border" translate="no">
             <div className="text-[11px] leading-tight text-primary font-bold uppercase tracking-[0.08em] whitespace-nowrap">
-              {isZh ? "华豪密封" : "Huahao Sealing"}
+              {brand.name}
             </div>
             <div className="text-[11px] leading-tight text-muted mt-0.5 whitespace-nowrap">
-              {isZh ? "石墨密封件 · 石墨轴套 · OEM加工" : "Carbon graphite seals · bushings · OEM machining"}
+              {brand.desc}
             </div>
           </div>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
+        <nav className="hidden xl:flex items-center gap-1" aria-label="Main navigation">
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -102,7 +114,7 @@ export default function Header() {
           </a>
         </nav>
 
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 xl:hidden">
           <LanguageSwitcher />
           <button
             className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
@@ -119,7 +131,7 @@ export default function Header() {
 
       {/* Mobile menu with overlay */}
       {open && (
-        <div className="md:hidden border-t border-border bg-white">
+        <div className="xl:hidden border-t border-border bg-white">
           <div className="container-wide py-4 flex flex-col gap-1">
             {navItems.map((item) => (
               <Link

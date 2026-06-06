@@ -1,4 +1,5 @@
-import { siteConfig, enSiteConfig } from "@/lib/constants"
+import { siteConfig } from "@/lib/constants"
+import { getLocalizedProductCategory, getLocalizedSiteConfig } from "@/lib/locale-data"
 
 const baseUrl = "https://huahaoindustrial.com"
 
@@ -9,7 +10,7 @@ interface JsonLdProps {
 }
 
 export function OrganizationJsonLd({ locale = "zh" }: { locale?: string }) {
-  const cfg = locale === "zh" ? siteConfig : enSiteConfig
+  const cfg = { ...siteConfig, ...getLocalizedSiteConfig(locale) }
   const schema = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -53,6 +54,7 @@ export function ProductJsonLd({
   category: string
   locale?: string
 }) {
+  const cfg = { ...siteConfig, ...getLocalizedSiteConfig(locale) }
   const schema = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -60,10 +62,10 @@ export function ProductJsonLd({
     model,
     description,
     image: image ? `${baseUrl}${image}` : undefined,
-    category,
+    category: getLocalizedProductCategory(category, locale),
     manufacturer: {
       "@type": "Organization",
-      name: locale === "zh" ? siteConfig.fullName : enSiteConfig.fullName,
+      name: cfg.fullName,
     },
   }
 

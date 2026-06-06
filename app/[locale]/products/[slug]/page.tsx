@@ -11,7 +11,7 @@ import Icon from "@/components/ui/Icon"
 import { ProductJsonLd, BreadcrumbJsonLd } from "@/components/JsonLd"
 import { generateMeta } from "@/lib/utils"
 import { siteConfig } from "@/lib/constants"
-import { getLocalized } from "@/lib/locale-data"
+import { getLocalized, getLocalizedProductCategory } from "@/lib/locale-data"
 
 interface Props {
   params: Promise<{ locale: string; slug: string }>
@@ -45,9 +45,16 @@ export default async function ProductDetailPage({ params }: Props) {
     product.specs.find((s) => s.label === label)?.value || ""
 
   const isSealRing = product.category === "碳石墨密封环" || product.category === "Seal Rings"
-  const defaultMating = locale === "zh"
-    ? ["碳化硅（SiC）", "碳化钨（WC）", "氧化铝陶瓷", "高铬不锈钢"]
-    : ["Silicon Carbide (SiC)", "Tungsten Carbide (WC)", "Alumina Ceramic", "High-Chrome Stainless Steel"]
+  const displayCategory = getLocalizedProductCategory(product.category, locale)
+  const defaultMating = getLocalized({
+    zh: ["碳化硅（SiC）", "碳化钨（WC）", "氧化铝陶瓷", "高铬不锈钢"],
+    en: ["Silicon Carbide (SiC)", "Tungsten Carbide (WC)", "Alumina Ceramic", "High-Chrome Stainless Steel"],
+    vi: ["Cacbua Silic (SiC)", "Cacbua Vonfram (WC)", "Gốm Alumina", "Thép không gỉ Crom cao"],
+    th: ["ซิลิคอนคาร์ไบด์ (SiC)", "ทังสเตนคาร์ไบด์ (WC)", "เซรามิกอะลูมินา", "สแตนเลสโครเมียมสูง"],
+    ru: ["Карбид кремния (SiC)", "Карбид вольфрама (WC)", "Глиноземная керамика", "Высокохромистая нержавеющая сталь"],
+    ja: ["炭化ケイ素 (SiC)", "炭化タングステン (WC)", "アルミナセラミック", "高クロムステンレス鋼"],
+    ko: ["탄화규소 (SiC)", "탄화텅스텐 (WC)", "알루미나 세라믹", "고크롬 스테인리스강"],
+  }, locale)
 
   return (
     <>
@@ -61,7 +68,7 @@ export default async function ProductDetailPage({ params }: Props) {
         model={product.model}
         description={product.description}
         image={product.image}
-        category={product.category}
+                category={displayCategory}
         locale={locale}
       />
 
@@ -81,7 +88,7 @@ export default async function ProductDetailPage({ params }: Props) {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Left: Product Info */}
             <div>
-              <div className="text-sm font-semibold text-accent uppercase tracking-wider mb-2">{product.category}</div>
+              <div className="text-sm font-semibold text-accent uppercase tracking-wider mb-2">{displayCategory}</div>
               <h1 className="text-3xl md:text-4xl font-bold text-primary mb-2">{product.name}</h1>
               <p className="text-lg text-muted mb-4">{product.model}</p>
 

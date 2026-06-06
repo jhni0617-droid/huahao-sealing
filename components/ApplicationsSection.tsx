@@ -14,7 +14,15 @@ export default async function ApplicationsSection() {
   const locale = await getLocale()
   const t = await getTranslations("home.applicationsSection")
   const items = getLocalized(applicationsByLocale, locale)
-  const viewText = locale === "zh" ? "查看应用" : "View application"
+  const viewText = getLocalized({
+    zh: "查看应用",
+    en: "View application",
+    vi: "Xem ứng dụng",
+    th: "ดูการใช้งาน",
+    ru: "Смотреть применение",
+    ja: "用途を見る",
+    ko: "응용 보기",
+  }, locale)
 
   return (
     <section className="section-padding bg-white">
