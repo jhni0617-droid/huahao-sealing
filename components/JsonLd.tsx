@@ -11,7 +11,9 @@ interface JsonLdProps {
 
 export function OrganizationJsonLd({ locale = "zh" }: { locale?: string }) {
   const cfg = { ...siteConfig, ...getLocalizedSiteConfig(locale) }
-  const schema = {
+
+  // Organization schema (for the company in general)
+  const orgSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: cfg.fullName,
@@ -31,11 +33,45 @@ export function OrganizationJsonLd({ locale = "zh" }: { locale?: string }) {
     description: cfg.description,
   }
 
+  // LocalBusiness schema (for local search visibility)
+  const localBizSchema = {
+    "@context": "https://schema.org",
+    "@type": ["Organization", "LocalBusiness"],
+    name: cfg.fullName,
+    alternateName: cfg.name,
+    url: baseUrl,
+    logo: `${baseUrl}/images/logo.jpg`,
+    email: cfg.email,
+    telephone: cfg.phone,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: cfg.address,
+      addressCountry: "CN",
+    },
+    description: cfg.description,
+    openingHoursSpecification: [
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "Monday", opens: "08:00", closes: "17:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "Tuesday", opens: "08:00", closes: "17:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "Wednesday", opens: "08:00", closes: "17:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "Thursday", opens: "08:00", closes: "17:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "Friday", opens: "08:00", closes: "17:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "09:00", closes: "12:00" },
+    ],
+    areaServed: "Worldwide",
+    sameAs: [`https://wa.me/${cfg.whatsapp}`],
+  }
+
   return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBizSchema) }}
+      />
+    </>
   )
 }
 

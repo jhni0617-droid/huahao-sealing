@@ -1,9 +1,9 @@
 import Link from "next/link"
-import { getDb } from "@/lib/admin/db"
+import { getDb, dbAll } from "@/lib/admin/db"
 
 export default async function AdminProductsPage() {
-  const db = getDb()
-  const products = db.prepare("SELECT * FROM products ORDER BY created_at DESC").all() as any[]
+  const db = await getDb()
+  const products = await dbAll("SELECT * FROM products ORDER BY created_at DESC", []) as any[]
 
   return (
     <div>

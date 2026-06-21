@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { getDb } from "@/lib/admin/db"
+import { getDb, dbRun } from "@/lib/admin/db"
 
 export async function POST(request: NextRequest) {
   try {
@@ -8,11 +8,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "path required" }, { status: 400 })
     }
 
-    const db = getDb()
-    db.prepare("INSERT INTO page_views (path, locale) VALUES (?, ?)").run(
-      path,
-      locale || "zh",
-    )
+    const db = await getDb()
+    await dbRun("INSERT INTO page_views (path, locale) VALUES (?, ?)", [path, locale || "zh"])
 
     return NextResponse.json({ success: true })
   } catch {

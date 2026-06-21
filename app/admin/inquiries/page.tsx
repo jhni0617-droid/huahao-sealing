@@ -1,19 +1,19 @@
 import Link from "next/link"
-import { getDb } from "@/lib/admin/db"
+import { getDb, dbAll } from "@/lib/admin/db"
 
 export default async function AdminInquiriesPage({
   searchParams,
 }: {
   searchParams: { status?: string }
 }) {
-  const db = getDb()
+  const db = await getDb()
   const filter = searchParams.status || "all"
 
   let inquiries: any[]
   if (filter === "all") {
-    inquiries = db.prepare("SELECT id, name, email, company, product_type, status, created_at FROM inquiries ORDER BY created_at DESC").all() as any[]
+    inquiries = await dbAll("SELECT id, name, email, company, product_type, status, created_at FROM inquiries ORDER BY created_at DESC", []) as any[]
   } else {
-    inquiries = db.prepare("SELECT id, name, email, company, product_type, status, created_at FROM inquiries WHERE status = ? ORDER BY created_at DESC").all(filter) as any[]
+    inquiries = await dbAll("SELECT id, name, email, company, product_type, status, created_at FROM inquiries WHERE status = ? ORDER BY created_at DESC", [filter]) as any[]
   }
 
   const statuses = [

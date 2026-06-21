@@ -5,6 +5,7 @@ import LayoutShell from "@/components/LayoutShell"
 import { OrganizationJsonLd } from "@/components/JsonLd"
 import { notFound } from "next/navigation"
 import { siteConfig } from "@/lib/constants"
+import AnalyticsScripts from "@/components/AnalyticsScripts"
 
 interface Props {
   children: React.ReactNode
@@ -54,6 +55,7 @@ export default async function LocaleLayout({ children, params }: Props) {
     <NextIntlClientProvider locale={locale} messages={clientMessages}>
       <OrganizationJsonLd locale={locale} />
       <LayoutShell>{children}</LayoutShell>
+      <AnalyticsScripts />
     </NextIntlClientProvider>
   )
 }

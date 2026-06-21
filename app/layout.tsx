@@ -27,6 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
         : "Professional manufacturer of carbon graphite seal rings, bushings and bearings, and split rings.",
       type: "website",
       url: "https://huahaoindustrial.com",
+      images: [{ url: "https://huahaoindustrial.com/images/logo.jpg", width: 1200, height: 1200 }],
     },
   }
 }

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { getDb } from "@/lib/admin/db"
+import { getDb, dbGet } from "@/lib/admin/db"
 import { signToken, COOKIE_NAME, TOKEN_EXPIRY, verifyPassword } from "@/lib/admin/auth"
 
 export async function POST(request: NextRequest) {
@@ -10,8 +10,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "请输入用户名和密码" }, { status: 400 })
     }
 
-    const db = getDb()
-    const admin = db.prepare("SELECT * FROM admins WHERE username = ?").get(username) as any
+    const db = await getDb()
+    const admin = await dbGet("SELECT * FROM admins WHERE username = ?", [username]) as any
 
     if (!admin) {
       return NextResponse.json({ error: "用户名或密码错误" }, { status: 401 })

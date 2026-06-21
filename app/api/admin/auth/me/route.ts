@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { getDb } from "@/lib/admin/db"
+import { getDb, dbGet } from "@/lib/admin/db"
 
 export async function GET(request: NextRequest) {
   const adminId = request.headers.get("x-admin-id")
@@ -8,8 +8,8 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
 
-  const db = getDb()
-  const admin = db.prepare("SELECT id, username, display_name FROM admins WHERE id = ?").get(adminId) as any
+  const db = await getDb()
+  const admin = await dbGet("SELECT id, username, display_name FROM admins WHERE id = ?", [adminId]) as any
 
   if (!admin) {
     return NextResponse.json({ error: "Admin not found" }, { status: 404 })

@@ -4,7 +4,7 @@ import CTASection from "@/components/CTASection"
 import FailureSolutionsSection from "@/components/FailureSolutionsSection"
 import { generateMeta } from "@/lib/utils"
 import { casesByLocale } from "@/lib/translations"
-import { getDb } from "@/lib/admin/db"
+import { getDb, dbAll } from "@/lib/admin/db"
 import { getLocalized } from "@/lib/locale-data"
 import PageHero from "@/components/PageHero"
 
@@ -47,10 +47,8 @@ export default async function CasesPage() {
     cases = fallback
   } else {
     try {
-      const db = getDb()
-      const rows = db
-        .prepare("SELECT title, company, condition, diagnosis, solution, result FROM cases WHERE published = 1 ORDER BY created_at DESC")
-        .all() as CaseRow[]
+      const db = await getDb()
+      const rows = await dbAll("SELECT title, company, condition, diagnosis, solution, result FROM cases WHERE published = 1 ORDER BY created_at DESC", []) as CaseRow[]
       cases = rows.length > 0 ? rows : fallback
     } catch {
       cases = fallback

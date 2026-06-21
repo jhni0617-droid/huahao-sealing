@@ -33,6 +33,9 @@ export default function ContactForm({ defaultProduct }: Props) {
   const [fileError, setFileError] = useState("")
   const t = useTranslations("contact.form")
 
+  // Honeypot anti-spam: hidden field bots fill in but humans don't see
+  const [honeypot, setHoneypot] = useState("")
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.files?.[0]
     setFileError("")
@@ -53,7 +56,7 @@ export default function ContactForm({ defaultProduct }: Props) {
     setLoading(true)
     setErrorMsg("")
     try {
-      const body: Record<string, string> = { ...form }
+      const body: Record<string, string> = { ...form, _hp: honeypot }
       if (defaultProduct) body.product = defaultProduct
 
       if (file) {
@@ -115,6 +118,12 @@ export default function ContactForm({ defaultProduct }: Props) {
 
   return (
     <form onSubmit={handleSubmit} className="card-static bg-white p-6 md:p-8 space-y-5">
+      {/* Honeypot: invisible to users, catches bots */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", opacity: 0 }}>
+        <label htmlFor="contact-hp">Leave this empty</label>
+        <input id="contact-hp" tabIndex={-1} autoComplete="off" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} />
+      </div>
+
       <p className="text-sm text-muted">
         {t("formIntro")}
       </p>

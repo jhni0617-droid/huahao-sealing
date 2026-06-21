@@ -3,6 +3,7 @@ import { getLocale, getTranslations } from "next-intl/server"
 import { Link } from "@/i18n/routing"
 import CTASection from "@/components/CTASection"
 import FAQAccordion from "@/components/FAQAccordion"
+import { FaqJsonLd } from "@/components/JsonLd"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 import PageHero from "@/components/PageHero"
@@ -643,7 +644,7 @@ export default async function AboutPage() {
 
             <div className="relative min-h-[420px] overflow-hidden border border-border bg-background">
               <Image
-                src="/images/{9D8C1630-8B0E-4C5E-8263-6B2C49856468}.png"
+                src="/images/factory-satellite-view.png"
                 alt={getLocalized({ zh: "华豪密封件厂区实景", en: "Huahao Sealing factory", vi: "Nhà máy Huahao Sealing", th: "โรงงาน Huahao Sealing", ru: "Завод Huahao Sealing", ja: "華豪シール工場", ko: "Huahao Sealing 공장" }, locale)}
                 fill
                 className="object-cover"
@@ -734,6 +735,13 @@ export default async function AboutPage() {
       </section>
 
       <CTASection />
+
+      {/* FAQ structured data for search engines */}
+      <FaqJsonLd
+        questions={faqCats.flatMap((cat) =>
+          cat.items.map((item) => ({ q: item.question, a: item.answer }))
+        )}
+      />
     </>
   )
 }

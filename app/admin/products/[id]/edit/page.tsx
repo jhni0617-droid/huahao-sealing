@@ -1,9 +1,9 @@
-import { getDb } from "@/lib/admin/db"
+import { getDb, dbGet } from "@/lib/admin/db"
 import EditProductForm from "./EditProductForm"
 
 export default async function EditProductPage({ params }: { params: { id: string } }) {
-  const db = getDb()
-  const product = db.prepare("SELECT * FROM products WHERE id = ?").get(params.id) as any
+  const db = await getDb()
+  const product = await dbGet("SELECT * FROM products WHERE id = ?", [params.id]) as any
 
   if (!product) {
     return <div className="text-gray-500">产品不存在</div>

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import nodemailer from "nodemailer"
-import { getDb } from "@/lib/admin/db"
+import { getDb, dbRun } from "@/lib/admin/db"
 
 function createTransporter() {
   return nodemailer.createTransport({
@@ -17,7 +17,12 @@ function createTransporter() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { name, email, phone, company, productType, industry, temperature, pressure, medium, speed, quantity, message, product, fileName, fileContent } = body
+    const { name, email, phone, company, productType, industry, temperature, pressure, medium, speed, quantity, message, product, fileName, fileContent, _hp } = body
+
+    // Honeypot anti-spam: if hidden field was filled, silently accept
+    if (_hp) {
+      return NextResponse.json({ success: true, message: "Inquiry received" })
+    }
 
     if (!email || !message) {
       return NextResponse.json({ error: "请填写邮箱和留言" }, { status: 400 })
@@ -25,14 +30,13 @@ export async function POST(request: NextRequest) {
 
     // Save to database
     try {
-      const db = getDb()
-      db.prepare(`
-        INSERT INTO inquiries (name, email, phone, company, product_type, industry, temperature, pressure, medium, speed, quantity, message, product, file_name, file_content)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-      `).run(
-        name, email, phone || "", company || "", productType || "", industry || "",
-        temperature || "", pressure || "", medium || "", speed || "", quantity || "",
-        message, product || "", fileName || null, fileContent || null,
+      const db = await getDb()
+      await dbRun(
+        `INSERT INTO inquiries (name, email, phone, company, product_type, industry, temperature, pressure, medium, speed, quantity, message, product, file_name, file_content)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [name, email, phone || "", company || "", productType || "", industry || "",
+          temperature || "", pressure || "", medium || "", speed || "", quantity || "",
+          message, product || "", fileName || null, fileContent || null],
       )
     } catch (dbError) {
       console.error("DB save error (non-fatal):", dbError)

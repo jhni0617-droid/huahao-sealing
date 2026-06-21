@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server"
-import { getDb } from "@/lib/admin/db"
+import { getDb, dbGet, dbRun } from "@/lib/admin/db"
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
-  const db = getDb()
-  const product = db.prepare("SELECT * FROM products WHERE id = ?").get(id) as any
+  const db = await getDb()
+  const product = await dbGet("SELECT * FROM products WHERE id = ?", [id]) as any
   if (!product) {
     return NextResponse.json({ error: "产品不存在" }, { status: 404 })
   }
@@ -21,16 +21,14 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
   const { id } = await params
   try {
     const body = await request.json()
-    const db = getDb()
+    const db = await getDb()
 
-    const stmt = db.prepare(`
+    await dbRun(`
       UPDATE products SET slug=?, name=?, model=?, category=?, description=?, short_desc=?,
         specs=?, applications=?, materials=?, features=?, faq=?, image=?, pdf_url=?, published=?,
         updated_at=datetime('now')
       WHERE id=?
-    `)
-
-    stmt.run(
+    `, [
       body.slug,
       body.name,
       body.model || "",
@@ -46,9 +44,9 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
       body.pdf_url || null,
       body.published ?? 1,
       id,
-    )
+    ])
 
-    const product = db.prepare("SELECT * FROM products WHERE id = ?").get(id)
+    const product = await dbGet("SELECT * FROM products WHERE id = ?", [id])
     return NextResponse.json({ data: product })
   } catch (error: any) {
     return NextResponse.json({ error: error.message || "更新失败" }, { status: 500 })
@@ -57,7 +55,7 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
 
 export async function DELETE(_request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
-  const db = getDb()
-  db.prepare("DELETE FROM products WHERE id = ?").run(id)
+  const db = await getDb()
+  await dbRun("DELETE FROM products WHERE id = ?", [id])
   return NextResponse.json({ success: true })
 }

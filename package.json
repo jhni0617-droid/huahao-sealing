@@ -12,6 +12,7 @@
   "dependencies": {
     "@fontsource/inter": "^5.2.8",
     "@fontsource/plus-jakarta-sans": "^5.2.8",
+    "@libsql/client": "^0.17.4",
     "bcryptjs": "^3.0.3",
     "better-sqlite3": "^12.10.0",
     "jose": "^6.2.3",
