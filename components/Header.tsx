@@ -68,7 +68,7 @@ export default function Header() {
       <div className="container-wide flex items-center justify-between h-16 md:h-[76px]">
         <Link href="/" className="flex items-center gap-3 shrink-0 group">
           <Image
-            src="/images/logo.jpg"
+            src="/images/logo.webp"
             alt={t("company.name")}
             width={160}
             height={52}

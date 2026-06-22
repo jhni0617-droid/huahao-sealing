@@ -65,7 +65,7 @@ export const products: Product[] = [
     faq: [
       { q: "BIA系列的最高工作温度是多少？", a: "BIA系列采用抗氧化浸渍牌号可长期在280°C下连续运行，短期峰值可承受350°C。" },
     ],
-    image: "/images/products/catalog/bia.jpg"
+    image: "/images/products/catalog/bia.webp"
   },
   {
     slug: "104-series",
@@ -106,7 +106,7 @@ export const products: Product[] = [
     faq: [
       { q: "104系列适合大批量OEM应用吗？", a: "是的，104系列专为高性价比批量生产而设计，在保证质量一致性的同时，非常适合空间受限的OEM应用。" },
     ],
-    image: "/images/products/catalog/104.jpg"
+    image: "/images/products/catalog/104.webp"
   },
   {
     slug: "109-series",
@@ -139,7 +139,7 @@ export const products: Product[] = [
     materials: ["普通石墨", "浸树脂石墨", "浸锑石墨", "浸铜石墨"],
     features: ["通用性最强，应用广泛", "标准化尺寸，更换方便", "性能稳定可靠", "性价比高"],
     faq: [],
-    image: "/images/products/catalog/109.jpg"
+    image: "/images/products/catalog/109.webp"
   },
   {
     slug: "58u-series",
@@ -171,7 +171,7 @@ export const products: Product[] = [
     materials: ["普通石墨", "浸树脂石墨", "浸锑石墨", "浸铜石墨"],
     features: ["非平衡型结构", "结构紧凑", "安装便捷", "经济实用"],
     faq: [],
-    image: "/images/products/catalog/58u.jpg"
+    image: "/images/products/catalog/58u.webp"
   },
   {
     slug: "m7n-series",
@@ -204,7 +204,7 @@ export const products: Product[] = [
     materials: ["普通石墨", "浸树脂石墨", "浸锑石墨", "浸铜石墨"],
     features: ["多弹簧结构补偿能力强", "耐化学腐蚀", "适用于含颗粒介质", "密封性能稳定"],
     faq: [],
-    image: "/images/products/catalog/m7n.jpg"
+    image: "/images/products/catalog/m7n.webp"
   },
   {
     slug: "206-series",
@@ -236,7 +236,7 @@ export const products: Product[] = [
     materials: ["普通石墨", "浸树脂石墨", "浸锑石墨", "浸铜石墨"],
     features: ["双端面设计", "高安全性", "适用于冲洗系统", "密封可靠性高"],
     faq: [],
-    image: "/images/products/catalog/206.jpg"
+    image: "/images/products/catalog/206.webp"
   },
   {
     slug: "59u-series",
@@ -269,7 +269,7 @@ export const products: Product[] = [
     materials: ["普通石墨", "浸树脂石墨", "浸锑石墨", "浸铜石墨"],
     features: ["橡胶波纹管结构", "跟随补偿能力好", "耐海水腐蚀", "安装方便"],
     faq: [],
-    image: "/images/products/catalog/59u.jpg"
+    image: "/images/products/catalog/59u.webp"
   },
   {
     slug: "58b-series",
@@ -301,7 +301,7 @@ export const products: Product[] = [
     materials: ["普通石墨", "浸树脂石墨", "浸锑石墨", "浸铜石墨"],
     features: ["平衡型结构", "承压能力高", "适用于高速工况", "耐用性强"],
     faq: [],
-    image: "/images/products/catalog/58b.jpg"
+    image: "/images/products/catalog/58b.webp"
   },
   {
     slug: "graphite-bushing",
@@ -333,7 +333,7 @@ export const products: Product[] = [
       { q: "石墨套需要加油润滑吗？", a: "不需要。碳石墨具有天然自润滑特性，可在无油润滑工况下正常运行。但在条件允许的情况下，辅助润滑可进一步延长使用寿命。" },
       { q: "是否可以按图纸定制？", a: "完全可以。我们拥有成熟的非标定制能力，提供来图加工服务。请提供详细尺寸图纸或样品，我们的工程师将在24小时内给出方案。" },
     ],
-    image: "/images/products/graphite-bushing.png",
+    image: "/images/products/graphite-bushing.webp",
   },
   {
     slug: "graphite-bearing",
@@ -365,7 +365,7 @@ export const products: Product[] = [
       { q: "石墨轴承能承受多大载荷？", a: "GB系列石墨轴承根据牌号和浸渍工艺不同，可承受的径向载荷范围在5~20 MPa之间。请提供具体工况参数，我们的工程师将为您推荐最合适的牌号。" },
       { q: "石墨轴承适用于海水环境吗？", a: "适用。采用耐腐蚀浸渍工艺的石墨轴承可在海水环境中长期稳定运行，是船舶艉轴轴承和海水泵轴承的理想选择。" },
     ],
-    image: "/images/products/graphite-bearing.png",
+    image: "/images/products/graphite-bearing.webp",
   },
   {
     slug: "graphite-thrust-disc",
@@ -397,7 +397,7 @@ export const products: Product[] = [
       { q: "石墨推力盘和石墨轴承有什么区别？", a: "石墨推力盘主要承受轴向推力载荷，安装在轴的端面位置；石墨轴承则主要承受径向载荷，安装在轴套位置。两者的应用场景和受力方向不同。" },
       { q: "是否可以定制非标尺寸的推力盘？", a: "完全可以。请提供详细图纸或样品，我们可以根据您的需求定制外径、内径、厚度及安装孔位。" },
     ],
-    image: "/images/products/graphite-thrust-disc.png",
+    image: "/images/products/graphite-thrust-disc.webp",
   },
   {
     slug: "three-part-series",
@@ -430,7 +430,7 @@ export const products: Product[] = [
       { q: "三瓣环的瓣间接合处会泄漏吗？", a: "瓣间接合面经过精密研磨加工，配合碳石墨材料的自润滑特性，在运行中瓣间间隙极小。对于绝大多数工况，密封性能完全满足要求。" },
       { q: "可以定制其他瓣数吗？", a: "可以。除标准三瓣外，我们可定制2瓣、4瓣、6瓣等多瓣结构，以满足不同安装空间和使用需求。" },
     ],
-    image: "/images/products/three-part-ring.jpg",
+    image: "/images/products/three-part-ring.webp",
   },
   // ===== 以下为新增产品（来自产品目录）=====
   {
@@ -470,7 +470,7 @@ export const products: Product[] = [
       "精密研磨端面，泄漏量低",
     ],
     faq: [],
-    image: "/images/products/catalog/oil-pump-double-seal.jpg",
+    image: "/images/products/catalog/oil-pump-double-seal.webp",
   },
   {
     slug: "g6-series",
@@ -503,7 +503,7 @@ export const products: Product[] = [
     materials: ["普通石墨", "浸树脂石墨", "浸锑石墨", "浸铜石墨"],
     features: ["标准互换尺寸", "密封性能稳定", "多种浸渍可选", "经济实用"],
     faq: [],
-    image: "/images/products/catalog/g6.jpg",
+    image: "/images/products/catalog/g6.webp",
   },
   {
     slug: "f-type-series",
@@ -536,7 +536,7 @@ export const products: Product[] = [
     materials: ["普通石墨", "浸树脂石墨", "浸锑石墨", "浸铜石墨"],
     features: ["紧凑结构", "密封可靠", "安装便捷", "性价比高"],
     faq: [],
-    image: "/images/products/catalog/f-type.jpg",
+    image: "/images/products/catalog/f-type.webp",
   },
   {
     slug: "120-m3n-series",
@@ -569,7 +569,7 @@ export const products: Product[] = [
     materials: ["普通石墨", "浸树脂石墨", "浸锑石墨", "浸铜石墨"],
     features: ["多弹簧补偿", "追随性能好", "适用范围广", "密封稳定"],
     faq: [],
-    image: "/images/products/catalog/120-m3n.jpg",
+    image: "/images/products/catalog/120-m3n.webp",
   },
   {
     slug: "fbd-series",
@@ -602,7 +602,7 @@ export const products: Product[] = [
     materials: ["普通石墨", "浸树脂石墨", "浸锑石墨", "浸铜石墨"],
     features: ["专用型号配套", "接口标准化", "密封可靠", "寿命长"],
     faq: [],
-    image: "/images/products/catalog/fbd.jpg",
+    image: "/images/products/catalog/fbd.webp",
   },
   {
     slug: "2100-series",
@@ -635,7 +635,7 @@ export const products: Product[] = [
     materials: ["普通石墨", "浸树脂石墨", "浸锑石墨", "浸铜石墨"],
     features: ["结构优化设计", "中高速性能好", "密封稳定", "耐用性强"],
     faq: [],
-    image: "/images/products/catalog/2100.jpg",
+    image: "/images/products/catalog/2100.webp",
   },
   {
     slug: "1527-series",
@@ -668,7 +668,7 @@ export const products: Product[] = [
     materials: ["普通石墨", "浸树脂石墨", "浸锑石墨", "浸铜石墨"],
     features: ["标准化互换尺寸", "低泄漏率", "寿命长", "品质稳定"],
     faq: [],
-    image: "/images/products/catalog/1527.jpg",
+    image: "/images/products/catalog/1527.webp",
   },
   {
     slug: "us-series",
@@ -701,7 +701,7 @@ export const products: Product[] = [
     materials: ["普通石墨", "浸树脂石墨", "浸锑石墨", "浸铜石墨"],
     features: ["通用接口设计", "易于更换", "性能稳定", "性价比高"],
     faq: [],
-    image: "/images/products/catalog/us.jpg",
+    image: "/images/products/catalog/us.webp",
   },
   {
     slug: "527-series",
@@ -734,7 +734,7 @@ export const products: Product[] = [
     materials: ["普通石墨", "浸树脂石墨", "浸锑石墨", "浸铜石墨"],
     features: ["标准互换尺寸", "精密研磨端面", "密封可靠", "供货及时"],
     faq: [],
-    image: "/images/products/catalog/527.jpg",
+    image: "/images/products/catalog/527.webp",
   },
   {
     slug: "press-series",
@@ -768,7 +768,7 @@ export const products: Product[] = [
     materials: ["高强度石墨", "浸锑石墨", "浸铜石墨"],
     features: ["高耐压强度", "自润滑性好", "耐高温", "适用于重载工况"],
     faq: [],
-    image: "/images/products/catalog/press.jpg",
+    image: "/images/products/catalog/press.webp",
   },
   {
     slug: "dyeing-machine-series",
@@ -802,7 +802,7 @@ export const products: Product[] = [
     materials: ["普通石墨", "浸树脂石墨", "浸锑石墨"],
     features: ["耐染料液腐蚀", "耐高温", "使用寿命长", "纺织行业专用"],
     faq: [],
-    image: "/images/products/catalog/dyeing-machine.jpg",
+    image: "/images/products/catalog/dyeing-machine.webp",
   },
 ]
 

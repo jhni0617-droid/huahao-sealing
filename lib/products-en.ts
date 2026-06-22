@@ -72,7 +72,7 @@ export const enProducts: Product[] = [
     faq: [
       { q: "What is the maximum operating temperature of the BIA series?", a: "The BIA series with anti-oxidation impregnation can operate continuously at 280°C, with short-term peaks up to 350°C." },
     ],
-    image: "/images/products/catalog/bia.jpg",
+    image: "/images/products/catalog/bia.webp",
   },
   {
     slug: "104-series",
@@ -113,7 +113,7 @@ export const enProducts: Product[] = [
     faq: [
       { q: "Is the 104 series suitable for high-volume OEM applications?", a: "Yes, the 104 series is designed for cost-effective batch production, offering consistent quality ideal for space-constrained OEM applications." },
     ],
-    image: "/images/products/catalog/104.jpg",
+    image: "/images/products/catalog/104.webp",
   },
   {
     slug: "109-series",
@@ -146,7 +146,7 @@ export const enProducts: Product[] = [
     materials: ["Standard Graphite", "Resin-Impregnated Graphite", "Antimony-Impregnated Graphite", "Copper-Impregnated Graphite"],
     features: ["Most versatile, widely used", "Standardized dimensions, easy replacement", "Stable and reliable performance", "Excellent cost-performance ratio"],
     faq: [],
-    image: "/images/products/catalog/109.jpg",
+    image: "/images/products/catalog/109.webp",
   },
   {
     slug: "58u-series",
@@ -178,7 +178,7 @@ export const enProducts: Product[] = [
     materials: ["Standard Graphite", "Resin-Impregnated Graphite", "Antimony-Impregnated Graphite", "Copper-Impregnated Graphite"],
     features: ["Unbalanced design", "Compact structure", "Easy installation", "Economical"],
     faq: [],
-    image: "/images/products/catalog/58u.jpg",
+    image: "/images/products/catalog/58u.webp",
   },
   {
     slug: "m7n-series",
@@ -211,7 +211,7 @@ export const enProducts: Product[] = [
     materials: ["Standard Graphite", "Resin-Impregnated Graphite", "Antimony-Impregnated Graphite", "Copper-Impregnated Graphite"],
     features: ["Multi-spring design for strong compensation", "Chemical corrosion resistant", "Suitable for particle-containing media", "Stable sealing performance"],
     faq: [],
-    image: "/images/products/catalog/m7n.jpg",
+    image: "/images/products/catalog/m7n.webp",
   },
   {
     slug: "206-series",
@@ -243,7 +243,7 @@ export const enProducts: Product[] = [
     materials: ["Standard Graphite", "Resin-Impregnated Graphite", "Antimony-Impregnated Graphite", "Copper-Impregnated Graphite"],
     features: ["Dual-face design", "High safety", "Suitable for flush systems", "High sealing reliability"],
     faq: [],
-    image: "/images/products/catalog/206.jpg",
+    image: "/images/products/catalog/206.webp",
   },
   {
     slug: "59u-series",
@@ -276,7 +276,7 @@ export const enProducts: Product[] = [
     materials: ["Standard Graphite", "Resin-Impregnated Graphite", "Antimony-Impregnated Graphite", "Copper-Impregnated Graphite"],
     features: ["Rubber bellows design", "Good follow-up compensation", "Seawater corrosion resistant", "Easy installation"],
     faq: [],
-    image: "/images/products/catalog/59u.jpg",
+    image: "/images/products/catalog/59u.webp",
   },
   {
     slug: "58b-series",
@@ -308,7 +308,7 @@ export const enProducts: Product[] = [
     materials: ["Standard Graphite", "Resin-Impregnated Graphite", "Antimony-Impregnated Graphite", "Copper-Impregnated Graphite"],
     features: ["Balanced design", "High pressure capacity", "Suitable for high-speed conditions", "Excellent durability"],
     faq: [],
-    image: "/images/products/catalog/58b.jpg",
+    image: "/images/products/catalog/58b.webp",
   },
   {
     slug: "graphite-bushing",
@@ -340,7 +340,7 @@ export const enProducts: Product[] = [
       { q: "Do graphite bushings require oil lubrication?", a: "No. Carbon graphite has natural self-lubricating properties and operates normally in oil-free conditions. However, auxiliary lubrication can further extend service life when conditions permit." },
       { q: "Can you customize bushings per drawing?", a: "Absolutely. We have mature custom manufacturing capabilities supporting drawing-based processing. Provide detailed dimensional drawings or samples, and our engineers will respond within 24 hours." },
     ],
-    image: "/images/products/graphite-bushing.png",
+    image: "/images/products/graphite-bushing.webp",
   },
   {
     slug: "graphite-bearing",
@@ -372,7 +372,7 @@ export const enProducts: Product[] = [
       { q: "What load can graphite bearings handle?", a: "GB series graphite bearings can handle radial loads ranging from 5~20 MPa depending on the grade and impregnation process. Provide specific operating parameters for the best grade recommendation." },
       { q: "Are graphite bearings suitable for seawater?", a: "Yes. Graphite bearings with corrosion-resistant impregnation operate stably long-term in seawater, making them ideal for marine stern shaft and seawater pump bearings." },
     ],
-    image: "/images/products/graphite-bearing.png",
+    image: "/images/products/graphite-bearing.webp",
   },
   {
     slug: "graphite-thrust-disc",
@@ -404,7 +404,7 @@ export const enProducts: Product[] = [
       { q: "What is the difference between a thrust disc and a bearing?", a: "A graphite thrust disc primarily承受s axial thrust loads and is installed on the shaft end face. Graphite bearings primarily承受 radial loads and are installed in the housing bore. Their application scenarios and load directions differ." },
       { q: "Can you customize non-standard thrust disc sizes?", a: "Absolutely. Provide detailed drawings or samples, and we can customize outer diameter, inner diameter, thickness, and mounting hole positions per your requirements." },
     ],
-    image: "/images/products/graphite-thrust-disc.png",
+    image: "/images/products/graphite-thrust-disc.webp",
   },
   {
     slug: "three-part-series",
@@ -437,7 +437,7 @@ export const enProducts: Product[] = [
       { q: "Do the segment joints leak?", a: "Segment joints are precision-lapped. Combined with carbon graphite's self-lubricating properties, the inter-segment gap is minimal during operation. For most conditions, sealing performance fully meets requirements." },
       { q: "Can you customize other segment counts?", a: "Yes. Beyond the standard three-segment design, we can customize 2, 4, 6, or more segments to suit different installation spaces and requirements." },
     ],
-    image: "/images/products/three-part-ring.jpg",
+    image: "/images/products/three-part-ring.webp",
   },
   // ===== New products from product catalog =====
   {
@@ -477,7 +477,7 @@ export const enProducts: Product[] = [
       "Precision-lapped faces, low leakage",
     ],
     faq: [],
-    image: "/images/products/catalog/oil-pump-double-seal.jpg",
+    image: "/images/products/catalog/oil-pump-double-seal.webp",
   },
   {
     slug: "g6-series",
@@ -510,7 +510,7 @@ export const enProducts: Product[] = [
     materials: ["Standard Graphite", "Resin-Impregnated Graphite", "Antimony-Impregnated Graphite", "Copper-Impregnated Graphite"],
     features: ["Standard interchangeable dimensions", "Stable sealing performance", "Multiple impregnation options", "Economical"],
     faq: [],
-    image: "/images/products/catalog/g6.jpg",
+    image: "/images/products/catalog/g6.webp",
   },
   {
     slug: "f-type-series",
@@ -543,7 +543,7 @@ export const enProducts: Product[] = [
     materials: ["Standard Graphite", "Resin-Impregnated Graphite", "Antimony-Impregnated Graphite", "Copper-Impregnated Graphite"],
     features: ["Compact structure", "Reliable sealing", "Easy installation", "Cost-effective"],
     faq: [],
-    image: "/images/products/catalog/f-type.jpg",
+    image: "/images/products/catalog/f-type.webp",
   },
   {
     slug: "120-m3n-series",
@@ -576,7 +576,7 @@ export const enProducts: Product[] = [
     materials: ["Standard Graphite", "Resin-Impregnated Graphite", "Antimony-Impregnated Graphite", "Copper-Impregnated Graphite"],
     features: ["Multi-spring compensation", "Good follow-up performance", "Wide application range", "Stable sealing"],
     faq: [],
-    image: "/images/products/catalog/120-m3n.jpg",
+    image: "/images/products/catalog/120-m3n.webp",
   },
   {
     slug: "fbd-series",
@@ -609,7 +609,7 @@ export const enProducts: Product[] = [
     materials: ["Standard Graphite", "Resin-Impregnated Graphite", "Antimony-Impregnated Graphite", "Copper-Impregnated Graphite"],
     features: ["Specialized model matching", "Standardized interface", "Reliable sealing", "Long service life"],
     faq: [],
-    image: "/images/products/catalog/fbd.jpg",
+    image: "/images/products/catalog/fbd.webp",
   },
   {
     slug: "2100-series",
@@ -642,7 +642,7 @@ export const enProducts: Product[] = [
     materials: ["Standard Graphite", "Resin-Impregnated Graphite", "Antimony-Impregnated Graphite", "Copper-Impregnated Graphite"],
     features: ["Optimized structural design", "Good medium-high speed performance", "Stable sealing", "Excellent durability"],
     faq: [],
-    image: "/images/products/catalog/2100.jpg",
+    image: "/images/products/catalog/2100.webp",
   },
   {
     slug: "1527-series",
@@ -675,7 +675,7 @@ export const enProducts: Product[] = [
     materials: ["Standard Graphite", "Resin-Impregnated Graphite", "Antimony-Impregnated Graphite", "Copper-Impregnated Graphite"],
     features: ["Standardized interchangeable dimensions", "Low leakage rate", "Long life", "Consistent quality"],
     faq: [],
-    image: "/images/products/catalog/1527.jpg",
+    image: "/images/products/catalog/1527.webp",
   },
   {
     slug: "us-series",
@@ -708,7 +708,7 @@ export const enProducts: Product[] = [
     materials: ["Standard Graphite", "Resin-Impregnated Graphite", "Antimony-Impregnated Graphite", "Copper-Impregnated Graphite"],
     features: ["Standard interface design", "Easy replacement", "Stable performance", "Cost-effective"],
     faq: [],
-    image: "/images/products/catalog/us.jpg",
+    image: "/images/products/catalog/us.webp",
   },
   {
     slug: "527-series",
@@ -741,7 +741,7 @@ export const enProducts: Product[] = [
     materials: ["Standard Graphite", "Resin-Impregnated Graphite", "Antimony-Impregnated Graphite", "Copper-Impregnated Graphite"],
     features: ["Standard interchangeable dimensions", "Precision-lapped face", "Reliable sealing", "Prompt delivery"],
     faq: [],
-    image: "/images/products/catalog/527.jpg",
+    image: "/images/products/catalog/527.webp",
   },
   {
     slug: "press-series",
@@ -775,7 +775,7 @@ export const enProducts: Product[] = [
     materials: ["High-Strength Graphite", "Antimony-Impregnated Graphite", "Copper-Impregnated Graphite"],
     features: ["High pressure resistance", "Excellent self-lubrication", "High temperature resistance", "Suitable for heavy-load conditions"],
     faq: [],
-    image: "/images/products/catalog/press.jpg",
+    image: "/images/products/catalog/press.webp",
   },
   {
     slug: "dyeing-machine-series",
@@ -809,6 +809,6 @@ export const enProducts: Product[] = [
     materials: ["Standard Graphite", "Resin-Impregnated Graphite", "Antimony-Impregnated Graphite"],
     features: ["Dye liquor corrosion resistant", "High temperature resistant", "Long service life", "Textile industry specialized"],
     faq: [],
-    image: "/images/products/catalog/dyeing-machine.jpg",
+    image: "/images/products/catalog/dyeing-machine.webp",
   },
 ]

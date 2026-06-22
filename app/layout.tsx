@@ -1,14 +1,21 @@
 import type { Metadata } from "next"
 import { cookies } from "next/headers"
-import "@fontsource/inter/400.css"
-import "@fontsource/inter/500.css"
-import "@fontsource/inter/600.css"
-import "@fontsource/inter/700.css"
-import "@fontsource/plus-jakarta-sans/500.css"
-import "@fontsource/plus-jakarta-sans/600.css"
-import "@fontsource/plus-jakarta-sans/700.css"
-import "@fontsource/plus-jakarta-sans/800.css"
+import { Inter, Plus_Jakarta_Sans } from "next/font/google"
 import "./globals.css"
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
+})
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-plus-jakarta",
+  weight: ["500", "600", "700", "800"],
+})
 
 export async function generateMetadata(): Promise<Metadata> {
   const cookieStore = await cookies()
@@ -27,7 +34,7 @@ export async function generateMetadata(): Promise<Metadata> {
         : "Professional manufacturer of carbon graphite seal rings, bushings and bearings, and split rings.",
       type: "website",
       url: "https://huahaoindustrial.com",
-      images: [{ url: "https://huahaoindustrial.com/images/logo.jpg", width: 1200, height: 1200 }],
+      images: [{ url: "https://huahaoindustrial.com/images/logo.webp", width: 1200, height: 1200 }],
     },
   }
 }
@@ -39,7 +46,7 @@ export default async function RootLayout({
   const locale = cookieStore.get("NEXT_LOCALE")?.value || "zh"
 
   return (
-    <html lang={locale} data-scroll-behavior="smooth" className={`h-full antialiased ${locale !== "zh" ? "locale-en" : ""}`}>
+    <html lang={locale} data-scroll-behavior="smooth" className={`h-full antialiased ${inter.variable} ${plusJakartaSans.variable} ${locale !== "zh" ? "locale-en" : ""}`}>
       <body className="min-h-full flex flex-col">
         {children}
       </body>

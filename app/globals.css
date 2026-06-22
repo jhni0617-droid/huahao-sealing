@@ -25,10 +25,10 @@
   --font-heading: "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
 }
 
-/* English locale overrides */
+/* English locale overrides — use next/font variables with fallbacks */
 html.locale-en {
-  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --font-heading: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+  --font-sans: var(--font-inter), "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-heading: var(--font-plus-jakarta), "Inter", system-ui, sans-serif;
 }
 
 html {
