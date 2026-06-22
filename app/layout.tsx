@@ -47,6 +47,11 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} data-scroll-behavior="smooth" className={`h-full antialiased ${inter.variable} ${plusJakartaSans.variable} ${locale !== "zh" ? "locale-en" : ""}`}>
+      <head>
+        <link rel="preconnect" href="https://huahaoindustrial.com" />
+        <link rel="dns-prefetch" href="//huahaoindustrial.com" />
+        <meta name="theme-color" content="#071525" />
+      </head>
       <body className="min-h-full flex flex-col">
         {children}
       </body>

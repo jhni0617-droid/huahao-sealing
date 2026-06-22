@@ -1,119 +1,51 @@
-"use client"
-
-import { useState, useEffect, useCallback, useRef } from "react"
 import { Link } from "@/i18n/routing"
-import Image from "next/image"
-import dynamic from "next/dynamic"
-import { useTranslations, useLocale } from "next-intl"
+import { getLocale, getTranslations } from "next-intl/server"
 import { siteConfig } from "@/lib/constants"
 import { getLocalized } from "@/lib/locale-data"
 import { factoryHighlightsByLocale } from "@/lib/translations"
 import Icon from "@/components/ui/Icon"
-
-const HeroParticles = dynamic(() => import("@/components/HeroParticles"), {
-  ssr: false,
-  loading: () => null,
-})
-
-const carouselImages = [
-  { src: "/images/轴套/IMG_20260408_150153.jpg", label: "碳石墨轴套 · CS 系列", enLabel: "Carbon Graphite Bushing · CS Series" },
-  { src: "/images/轴套/IMG_20260404_133002.jpg", label: "碳石墨轴套 · 精密加工", enLabel: "Carbon Graphite Bushing · Precision Machining" },
-  { src: "/images/轴套/IMG_20260408_152358_edit_25785.jpg", label: "碳石墨轴套 · 耐高温型", enLabel: "Carbon Graphite Bushing · High-Temp Grade" },
-  { src: "/images/轴套/IMG_20260418_151357.jpg", label: "碳石墨制品 · 定制加工", enLabel: "Carbon Graphite Products · Custom Machining" },
-  { src: "/images/轴套/mmexport1772969134237.jpg", label: "碳石墨轴套 · 耐腐蚀型", enLabel: "Carbon Graphite Bushing · Corrosion-Resistant" },
-  { src: "/images/密封环/IMG_20260410_175147.jpg", label: "碳石墨密封环", enLabel: "Carbon Graphite Seal Ring" },
-  { src: "/images/密封环/IMG_20260411_144415.jpg", label: "碳石墨密封环", enLabel: "Carbon Graphite Seal Ring" },
-  { src: "/images/密封环/IMG_20260430_155027.jpg", label: "碳石墨密封环", enLabel: "Carbon Graphite Seal Ring" },
-  { src: "/images/密封环/IMG_20260504_140916.jpg", label: "碳石墨密封环", enLabel: "Carbon Graphite Seal Ring" },
-  { src: "/images/密封环/IMG_20260504_142652.jpg", label: "碳石墨密封环", enLabel: "Carbon Graphite Seal Ring" },
-  { src: "/images/密封环/IMG_20260505_125534.jpg", label: "碳石墨密封环", enLabel: "Carbon Graphite Seal Ring" },
-  { src: "/images/密封环/IMG_20260505_125610.jpg", label: "碳石墨密封环", enLabel: "Carbon Graphite Seal Ring" },
-  { src: "/images/密封环/IMG_20260505_125818.jpg", label: "碳石墨密封环", enLabel: "Carbon Graphite Seal Ring" },
-  { src: "/images/密封环/mmexport1776699514989.jpg", label: "碳石墨密封环", enLabel: "Carbon Graphite Seal Ring" },
-  { src: "/images/密封环/IMG_20260404_133116.jpg", label: "碳石墨密封环", enLabel: "Carbon Graphite Seal Ring" },
-  { src: "/images/密封环/IMG_20260410_173548.jpg", label: "碳石墨密封环", enLabel: "Carbon Graphite Seal Ring" },
-  { src: "/images/密封环/IMG_20260410_173715.jpg", label: "碳石墨密封环", enLabel: "Carbon Graphite Seal Ring" },
-  { src: "/images/密封环/IMG_20260410_175102.jpg", label: "碳石墨密封环", enLabel: "Carbon Graphite Seal Ring" },
-]
+import HeroDynamicContent from "@/components/HeroDynamicContent"
 
 const heroUi = {
   zh: {
     bullets: ["按图纸 OEM 加工", "材料牌号选型支持", "24小时工程响应"],
-    previous: "上一张",
-    next: "下一张",
     precision: "精密零部件",
   },
   en: {
     bullets: ["Drawing-based OEM machining", "Material grade support", "24h engineering response"],
-    previous: "Previous",
-    next: "Next",
     precision: "Precision component",
   },
   vi: {
     bullets: ["Gia công OEM theo bản vẽ", "Hỗ trợ chọn cấp vật liệu", "Phản hồi kỹ thuật 24h"],
-    previous: "Trước",
-    next: "Tiếp",
     precision: "Linh kiện chính xác",
   },
   th: {
     bullets: ["ผลิต OEM ตามแบบ", "สนับสนุนการเลือกเกรดวัสดุ", "ตอบกลับทางวิศวกรรม 24 ชม."],
-    previous: "ก่อนหน้า",
-    next: "ถัดไป",
     precision: "ชิ้นส่วนความแม่นยำ",
   },
   ru: {
     bullets: ["OEM обработка по чертежам", "Подбор марки материала", "Инженерный ответ за 24 ч"],
-    previous: "Назад",
-    next: "Вперед",
     precision: "Прецизионный компонент",
   },
   ja: {
     bullets: ["図面ベースのOEM加工", "材料グレード選定サポート", "24時間以内の技術対応"],
-    previous: "前へ",
-    next: "次へ",
     precision: "精密部品",
   },
   ko: {
     bullets: ["도면 기반 OEM 가공", "재료 등급 선정 지원", "24시간 엔지니어링 응답"],
-    previous: "이전",
-    next: "다음",
     precision: "정밀 부품",
   },
 }
 
-export default function HeroSection() {
-  const [current, setCurrent] = useState(0)
-  const t = useTranslations("home.hero")
-  const locale = useLocale()
-  const isZh = locale === "zh"
-  const highlights = getLocalized(factoryHighlightsByLocale, locale)
+export default async function HeroSection() {
+  const locale = await getLocale()
+  const t = await getTranslations("home.hero")
   const ui = getLocalized(heroUi, locale)
-
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
-
-  const startTimer = useCallback(() => {
-    if (timerRef.current) clearInterval(timerRef.current)
-    timerRef.current = setInterval(() => {
-      setCurrent((c) => (c + 1) % carouselImages.length)
-    }, 5000)
-  }, [])
-
-  const goTo = useCallback((idx: number) => {
-    setCurrent(idx)
-    startTimer()
-  }, [startTimer])
-
-  useEffect(() => {
-    startTimer()
-    return () => { if (timerRef.current) clearInterval(timerRef.current) }
-  }, [startTimer])
+  const highlights = getLocalized(factoryHighlightsByLocale, locale)
 
   return (
     <section className="bg-hero-bg text-white relative overflow-hidden min-h-[84vh] flex items-center">
-      <div className="opacity-45">
-        <HeroParticles />
-      </div>
-
+      <HeroDynamicContent />
       <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.55) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.55) 1px, transparent 1px)", backgroundSize: "48px 48px" }} />
       <div className="absolute inset-0 bg-gradient-to-r from-hero-bg via-hero-bg/82 to-hero-bg/42 pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-t from-hero-bg via-transparent to-transparent pointer-events-none" />
@@ -183,80 +115,6 @@ export default function HeroSection() {
               ))}
             </div>
           </div>
-
-          <div className="hidden flex-col items-center lg:flex">
-            <div className="relative w-full max-w-[480px]">
-              <div className="absolute -inset-6 bg-accent/10 blur-[90px] opacity-60 transition-opacity duration-700" />
-
-              <div className="card-glass relative w-full aspect-square max-h-[480px] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.6)]">
-                {carouselImages.map((img, idx) => (
-                  <div
-                    key={img.src}
-                    className="absolute inset-0 transition-opacity duration-[500ms] ease-in-out"
-                    style={{ opacity: current === idx ? 1 : 0 }}
-                  >
-                    {Math.abs(idx - current) <= 1 && (
-                      <Image
-                        src={img.src}
-                        alt={isZh ? img.label : img.enLabel}
-                        fill
-                        className="object-contain p-8 md:p-10 scale-[0.88]"
-                        sizes="480px"
-                        priority={idx === current}
-                      />
-                    )}
-                  </div>
-                ))}
-
-                {/* Nav buttons — cleaner */}
-                <button
-                  type="button"
-                  onClick={() => goTo((current - 1 + carouselImages.length) % carouselImages.length)}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all duration-200 z-10 cursor-pointer backdrop-blur-sm"
-                  aria-label={ui.previous}
-                >
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                  </svg>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => goTo((current + 1) % carouselImages.length)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all duration-200 z-10 cursor-pointer backdrop-blur-sm"
-                  aria-label={ui.next}
-                >
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-
-                {/* Dots indicator */}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
-                  {[0, 1, 2, 3, 4].map((i) => (
-                    <button
-                      key={i}
-                      onClick={() => goTo(i * Math.ceil(carouselImages.length / 5))}
-                      className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                        Math.floor(current / Math.ceil(carouselImages.length / 5)) === i
-                          ? "bg-white w-4"
-                          : "bg-white/30 hover:bg-white/50"
-                      }`}
-                    />
-                  ))}
-                </div>
-
-                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.06] via-transparent to-transparent pointer-events-none rounded-lg" />
-                <div className="absolute left-5 top-5 border border-white/12 bg-primary/55 px-3 py-2 backdrop-blur-sm">
-                  <div className="text-[10px] uppercase tracking-[0.12em] text-slate-400">
-                    {ui.precision}
-                  </div>
-                  <div className="mt-0.5 text-xs font-semibold text-white">
-                    {isZh ? carouselImages[current].label : carouselImages[current].enLabel}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Stats — mobile */}
@@ -267,14 +125,6 @@ export default function HeroSection() {
               <div className="text-[10px] text-slate-500 mt-0.5">{h.label}</div>
             </div>
           ))}
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-gray-600">
-          <span className="text-[10px] tracking-[0.2em]">SCROLL</span>
-          <div className="w-4 h-7 border border-gray-600/40 rounded-full flex justify-center p-1">
-            <div className="w-1 h-1.5 bg-accent/60 rounded-full animate-bounce" />
-          </div>
         </div>
       </div>
     </section>
