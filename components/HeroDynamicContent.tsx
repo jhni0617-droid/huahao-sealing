@@ -1,7 +1,6 @@
 "use client"
 
 import dynamic from "next/dynamic"
-import { useState, useEffect } from "react"
 
 const HeroParticles = dynamic(() => import("@/components/HeroParticles"), {
   ssr: false,
@@ -14,19 +13,13 @@ const HeroCarousel = dynamic(() => import("@/components/HeroCarousel"), {
 })
 
 export default function HeroDynamicContent() {
-  const [isDesktop, setIsDesktop] = useState(false)
-
-  useEffect(() => {
-    setIsDesktop(window.innerWidth >= 1024)
-  }, [])
-
   return (
     <>
       <div className="opacity-45">
         <HeroParticles />
       </div>
-      {/* Carousel chunk is NEVER loaded on mobile — conditionally rendered */}
-      {isDesktop && <HeroCarousel />}
+      {/* Carousel — CSS hidden on mobile, shown on lg+ */}
+      <HeroCarousel />
     </>
   )
 }
