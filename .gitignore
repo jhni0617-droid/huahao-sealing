@@ -49,3 +49,7 @@ huahao-admin.db-shm
 
 # image backup
 /backup-original-images/
+.turso-token.txt
+scripts/turso-db-jwt.txt
+auth
+auth-wal
