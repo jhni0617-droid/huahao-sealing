@@ -98,7 +98,8 @@ export async function getDb(): Promise<Client> {
           authToken: process.env.TURSO_DB_TOKEN,
         }
       : {
-          url: `file:${process.env.SQLITE_DB_PATH || path.join(process.cwd(), "huahao-admin.db")}`,
+          // On Vercel, use /tmp/ (only writable directory). Local dev uses cwd.
+          url: `file:${process.env.SQLITE_DB_PATH || path.join(process.env.VERCEL ? "/tmp" : process.cwd(), "huahao-admin.db")}`,
         },
   )
 
