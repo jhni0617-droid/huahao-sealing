@@ -98,7 +98,9 @@ CREATE TABLE IF NOT EXISTS products (
   faq          TEXT    NOT NULL DEFAULT '[]',
   image        TEXT    DEFAULT NULL,
   pdf_url      TEXT    DEFAULT NULL,
-  published    INTEGER NOT NULL DEFAULT 1
+  published    INTEGER NOT NULL DEFAULT 1,
+  created_at   TEXT,
+  updated_at   TEXT
 );
 
 CREATE TABLE IF NOT EXISTS inquiries (
@@ -118,7 +120,9 @@ CREATE TABLE IF NOT EXISTS inquiries (
   product      TEXT    DEFAULT NULL,
   file_name    TEXT    DEFAULT NULL,
   file_content TEXT    DEFAULT NULL,
-  status       TEXT    NOT NULL DEFAULT 'unread'
+  status       TEXT    NOT NULL DEFAULT 'unread',
+  created_at   TEXT,
+  updated_at   TEXT
 );
 
 CREATE TABLE IF NOT EXISTS cases (
@@ -129,13 +133,16 @@ CREATE TABLE IF NOT EXISTS cases (
   diagnosis   TEXT    NOT NULL DEFAULT '',
   solution    TEXT    NOT NULL DEFAULT '',
   result      TEXT    NOT NULL DEFAULT '',
-  published   INTEGER NOT NULL DEFAULT 1
+  published   INTEGER NOT NULL DEFAULT 1,
+  created_at  TEXT,
+  updated_at  TEXT
 );
 
 CREATE TABLE IF NOT EXISTS page_views (
   id          INTEGER PRIMARY KEY AUTOINCREMENT,
   path        TEXT    NOT NULL,
-  locale      TEXT    NOT NULL DEFAULT 'zh'
+  locale      TEXT    NOT NULL DEFAULT 'zh',
+  visited_at  TEXT
 );
 `
 
