@@ -70,8 +70,21 @@ CREATE TABLE IF NOT EXISTS page_views (
   id          INTEGER PRIMARY KEY AUTOINCREMENT,
   path        TEXT    NOT NULL,
   locale      TEXT    NOT NULL DEFAULT 'zh',
+  country     TEXT    DEFAULT NULL,
+  referrer    TEXT    DEFAULT NULL,
+  user_agent  TEXT    DEFAULT NULL,
+  ip_hash     TEXT    DEFAULT NULL,
+  session_id  TEXT    DEFAULT NULL,
+  is_bot      INTEGER NOT NULL DEFAULT 0,
   visited_at  TEXT    NOT NULL DEFAULT (datetime('now'))
 );
+`
+
+// 索引单独定义，迁移完成后才执行（旧库表里还没有 ip_hash/country 列时直接建索引会报错）
+const CREATE_INDEXES_SQL = `
+CREATE INDEX IF NOT EXISTS idx_page_views_visited_at ON page_views(visited_at);
+CREATE INDEX IF NOT EXISTS idx_page_views_ip_hash ON page_views(ip_hash);
+CREATE INDEX IF NOT EXISTS idx_page_views_country ON page_views(country);
 `
 
 // Turso/libSQL doesn't support function calls (e.g. datetime()) in DEFAULT
@@ -142,6 +155,12 @@ CREATE TABLE IF NOT EXISTS page_views (
   id          INTEGER PRIMARY KEY AUTOINCREMENT,
   path        TEXT    NOT NULL,
   locale      TEXT    NOT NULL DEFAULT 'zh',
+  country     TEXT    DEFAULT NULL,
+  referrer    TEXT    DEFAULT NULL,
+  user_agent  TEXT    DEFAULT NULL,
+  ip_hash     TEXT    DEFAULT NULL,
+  session_id  TEXT    DEFAULT NULL,
+  is_bot      INTEGER NOT NULL DEFAULT 0,
   visited_at  TEXT
 );
 `
@@ -180,6 +199,37 @@ export async function getDb(): Promise<Client> {
   const statements = tableSql.split(";").filter((s) => s.trim())
   for (const stmt of statements) {
     await client.execute(stmt + ";")
+  }
+
+  // Migrate legacy page_views table: add new columns if missing (idempotent)
+  const colsRs = await client.execute("PRAGMA table_info(page_views)")
+  const existingCols = new Set(colsRs.rows.map((r) => (r as any).name))
+  const migrations: Array<[string, string]> = [
+    ["country", "ALTER TABLE page_views ADD COLUMN country TEXT DEFAULT NULL"],
+    ["referrer", "ALTER TABLE page_views ADD COLUMN referrer TEXT DEFAULT NULL"],
+    ["user_agent", "ALTER TABLE page_views ADD COLUMN user_agent TEXT DEFAULT NULL"],
+    ["ip_hash", "ALTER TABLE page_views ADD COLUMN ip_hash TEXT DEFAULT NULL"],
+    ["session_id", "ALTER TABLE page_views ADD COLUMN session_id TEXT DEFAULT NULL"],
+    ["is_bot", "ALTER TABLE page_views ADD COLUMN is_bot INTEGER NOT NULL DEFAULT 0"],
+  ]
+  for (const [col, sql] of migrations) {
+    if (!existingCols.has(col)) {
+      try {
+        await client.execute(sql)
+      } catch {
+        // ignore — column may already exist or unsupported
+      }
+    }
+  }
+
+  // 建索引（迁移完成后才执行，避免引用不存在的列）
+  const indexStatements = CREATE_INDEXES_SQL.split(";").filter((s) => s.trim())
+  for (const stmt of indexStatements) {
+    try {
+      await client.execute(stmt + ";")
+    } catch {
+      // ignore — index may already exist or unsupported on this DB
+    }
   }
 
   // Ensure default admin exists

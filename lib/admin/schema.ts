@@ -67,6 +67,16 @@ CREATE TABLE IF NOT EXISTS page_views (
   id          INTEGER PRIMARY KEY AUTOINCREMENT,
   path        TEXT    NOT NULL,
   locale      TEXT    NOT NULL DEFAULT 'zh',
+  country     TEXT    DEFAULT NULL,
+  referrer    TEXT    DEFAULT NULL,
+  user_agent  TEXT    DEFAULT NULL,
+  ip_hash     TEXT    DEFAULT NULL,
+  session_id  TEXT    DEFAULT NULL,
+  is_bot      INTEGER NOT NULL DEFAULT 0,
   visited_at  TEXT    NOT NULL DEFAULT (datetime('now'))
 );
+
+CREATE INDEX IF NOT EXISTS idx_page_views_visited_at ON page_views(visited_at);
+CREATE INDEX IF NOT EXISTS idx_page_views_ip_hash ON page_views(ip_hash);
+CREATE INDEX IF NOT EXISTS idx_page_views_country ON page_views(country);
 `
