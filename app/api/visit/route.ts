@@ -76,9 +76,11 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    const visitedAt = new Date().toISOString().replace("T", " ").slice(0, 19)
+
     await dbRun(
-      `INSERT INTO page_views (path, locale, country, referrer, user_agent, ip_hash, session_id, is_bot)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO page_views (path, locale, country, referrer, user_agent, ip_hash, session_id, is_bot, visited_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         path,
         locale,
@@ -88,6 +90,7 @@ export async function POST(request: NextRequest) {
         ipHash,
         sessionId,
         isBot,
+        visitedAt,
       ],
     )
 
