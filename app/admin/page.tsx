@@ -11,10 +11,14 @@ export default async function AdminDashboardPage() {
   const unreadCount = (await dbGet("SELECT COUNT(*) as count FROM inquiries WHERE status = 'unread'", []) as any).count
   const caseCount = (await dbGet("SELECT COUNT(*) as count FROM cases", []) as any).count
 
-  // 真实访客统计（排除爬虫）
+  // 真实访客统计（排除爬虫）。visited_at 已存为北京时间（UTC+8），
+  // 所以查询时也要用 UTC+8 来对比"今天"和"最近7天"
   const totalVisits = (await dbGet("SELECT COUNT(*) as count FROM page_views WHERE is_bot = 0", []) as any).count
   const botVisits = (await dbGet("SELECT COUNT(*) as count FROM page_views WHERE is_bot = 1", []) as any).count
-  const todayVisits = (await dbGet("SELECT COUNT(*) as count FROM page_views WHERE is_bot = 0 AND date(visited_at) = date('now')", []) as any).count
+  const todayVisits = (await dbGet(
+    "SELECT COUNT(*) as count FROM page_views WHERE is_bot = 0 AND date(visited_at) = date('now', '+8 hours')",
+    [],
+  ) as any).count
   const uniqueVisitors = (await dbGet(
     `SELECT COUNT(DISTINCT COALESCE(ip_hash, session_id)) as count
      FROM page_views
@@ -22,6 +26,7 @@ export default async function AdminDashboardPage() {
     [],
   ) as any).count
 
+  // 热门入口页面：由于会话级去重，这里统计的是用户进入站点的第一个页面
   const topPages = await dbAll(
     `SELECT path, locale, COUNT(*) as count FROM page_views WHERE is_bot = 0
      GROUP BY path, locale ORDER BY count DESC LIMIT 8`,
@@ -29,7 +34,7 @@ export default async function AdminDashboardPage() {
   ) as any[]
   const visitsByDay = await dbAll(
     `SELECT date(visited_at) as day, COUNT(*) as count FROM page_views
-     WHERE is_bot = 0 AND visited_at >= datetime('now', '-7 days')
+     WHERE is_bot = 0 AND visited_at >= datetime('now', '+8 hours', '-7 days')
      GROUP BY day ORDER BY day`,
     [],
   ) as any[]
@@ -81,7 +86,7 @@ export default async function AdminDashboardPage() {
 
       {/* 真实访客统计 */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-        <StatsCard label="真实访客 PV" value={totalVisits} icon="👁️" />
+        <StatsCard label="访问次数（会话级）" value={totalVisits} icon="👁️" />
         <StatsCard label="独立访客 UV" value={uniqueVisitors} icon="👤" />
         <StatsCard label="今日访问" value={todayVisits} icon="📊" />
         <StatsCard label="爬虫访问（已过滤）" value={botVisits} icon="🤖" />
@@ -118,7 +123,7 @@ export default async function AdminDashboardPage() {
         </div>
 
         <div className="bg-white rounded-xl border border-gray-200 p-5">
-          <h2 className="text-sm font-semibold text-gray-900 mb-4">热门页面 TOP 8（真实访客）</h2>
+          <h2 className="text-sm font-semibold text-gray-900 mb-4">入口页面 TOP 8（用户首次访问的页面）</h2>
           {topPages.length === 0 ? (
             <p className="text-sm text-gray-400">暂无数据</p>
           ) : (

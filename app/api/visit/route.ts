@@ -61,22 +61,26 @@ export async function POST(request: NextRequest) {
 
     const db = await getDb()
 
-    // 30 秒内同 ip_hash + path + session_id 视为重复刷新，不再写入
+    // 会话级去重：同一 session_id 或 ip_hash 在 30 分钟内只算一次访问，
+    // 不管浏览了多少个页面，避免点击多界面导致访问量虚高
     if (ipHash || sessionId) {
       const recent = await dbGet(
         `SELECT id FROM page_views
-         WHERE path = ?
-           AND (ip_hash = ? OR session_id = ?)
-           AND visited_at >= datetime('now', '-30 seconds')
+         WHERE (ip_hash = ? OR session_id = ?)
+           AND visited_at >= datetime('now', '-30 minutes')
          LIMIT 1`,
-        [path, ipHash, sessionId],
+        [ipHash, sessionId],
       )
       if (recent) {
         return NextResponse.json({ success: true, deduplicated: true })
       }
     }
 
-    const visitedAt = new Date().toISOString().replace("T", " ").slice(0, 19)
+    // 存储为北京时间（UTC+8），与后台查询/显示一致
+    const visitedAt = new Date(Date.now() + 8 * 60 * 60 * 1000)
+      .toISOString()
+      .replace("T", " ")
+      .slice(0, 19)
 
     await dbRun(
       `INSERT INTO page_views (path, locale, country, referrer, user_agent, ip_hash, session_id, is_bot, visited_at)
