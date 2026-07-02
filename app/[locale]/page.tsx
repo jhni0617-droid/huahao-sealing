@@ -52,6 +52,7 @@ export default function HomePage() {
     <>
       <HeroSection />
       <HomeProductEntry />
+      <CTASection />
       <WhyCarbonGraphite />
       <FactoryQuality />
       <ClientsSection />

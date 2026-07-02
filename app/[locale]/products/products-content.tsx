@@ -237,57 +237,57 @@ function ProductCard({ product, locale }: { product: Product; locale: string }) 
   return (
     <Link
       href={`/products/${product.slug}`}
-      className="group grid min-h-full overflow-hidden border border-border bg-white transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/45 hover:shadow-[0_18px_44px_rgba(7,21,37,0.08)] focus-ring lg:grid-cols-[180px_1fr]"
+      className="group grid min-h-full overflow-hidden border border-border bg-white transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/45 hover:shadow-[0_18px_44px_rgba(7,21,37,0.08)] focus-ring sm:grid-rows-[auto_1fr] lg:grid-cols-[180px_1fr] lg:grid-rows-1"
     >
-      <div className="relative flex min-h-44 items-center justify-center border-b border-border bg-gradient-to-br from-white to-slate-50 lg:border-b-0 lg:border-r">
+      <div className="relative flex min-h-32 sm:min-h-40 items-center justify-center border-b border-border bg-gradient-to-br from-white to-slate-50 lg:border-b-0 lg:border-r lg:min-h-full">
         {product.image ? (
           <Image
             src={product.image}
             alt={product.name}
             fill
-            className="object-contain p-8 transition-transform duration-300 group-hover:scale-[1.03]"
-            sizes="(max-width: 1024px) 100vw, 180px"
+            className="object-contain p-4 sm:p-6 lg:p-8 transition-transform duration-300 group-hover:scale-[1.03]"
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 100vw, 180px"
           />
         ) : (
-          <div className="px-8 text-center text-xs font-semibold uppercase tracking-[0.08em] text-muted-light">
+          <div className="px-4 sm:px-6 text-center text-[10px] sm:text-xs font-semibold uppercase tracking-[0.08em] text-muted-light">
             {copy.noImage}
           </div>
         )}
       </div>
 
-      <div className="flex min-w-0 flex-col p-5 md:p-6">
-        <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
-          <span className="text-xs font-bold uppercase tracking-[0.08em] text-accent">
+      <div className="flex min-w-0 flex-col p-3 sm:p-4 md:p-5 lg:p-6">
+        <div className="mb-2 sm:mb-3 flex flex-wrap items-center justify-between gap-2 sm:gap-3">
+          <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.08em] text-accent">
             {getLocalizedProductCategory(product.category, locale)}
           </span>
-          <span className="border border-border bg-background px-2.5 py-1 text-xs font-semibold text-muted">
+          <span className="border border-border bg-background px-2 py-0.5 text-[10px] sm:text-xs font-semibold text-muted">
             {copy.model}: {product.model}
           </span>
         </div>
 
-        <h3 className="text-lg font-bold leading-snug text-primary transition-colors group-hover:text-accent">
+        <h3 className="text-sm sm:text-base lg:text-lg font-bold leading-snug text-primary transition-colors group-hover:text-accent line-clamp-2">
           {product.name}
         </h3>
-        <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted">{product.shortDesc}</p>
+        <p className="mt-1 sm:mt-2 line-clamp-2 text-xs sm:text-sm leading-relaxed text-muted">{product.shortDesc}</p>
 
-        <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
+        <div className="mt-3 sm:mt-5 grid grid-cols-3 gap-1.5 sm:gap-3">
           <ProductSpecMini icon="thermometer" label={t("specTemp")} value={tempSpec?.value} />
           <ProductSpecMini icon="gear" label={t("specPressure")} value={pressureSpec?.value} />
           <ProductSpecMini icon="clock" label={t("specSpeed")} value={speedSpec?.value} />
         </div>
 
-        <div className="mt-5 flex flex-wrap gap-2 border-t border-border pt-4">
-          {product.applications.slice(0, 4).map((app) => (
-            <span key={app} className="tag">
+        <div className="mt-3 sm:mt-5 flex flex-wrap gap-1 sm:gap-2 border-t border-border pt-3 sm:pt-4">
+          {product.applications.slice(0, 3).map((app) => (
+            <span key={app} className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 border border-border rounded bg-background text-muted">
               {app}
             </span>
           ))}
-          {product.applications.length > 4 && <span className="tag">+{product.applications.length - 4}</span>}
+          {product.applications.length > 3 && <span className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 border border-border rounded bg-background text-muted">+{product.applications.length - 3}</span>}
         </div>
 
-        <div className="mt-5 flex items-center gap-2 text-sm font-semibold text-accent">
+        <div className="mt-3 sm:mt-5 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm font-semibold text-accent">
           {copy.view}
-          <Icon name="arrow-right" className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          <Icon name="arrow-right" className="h-3 w-3 sm:h-4 sm:w-4 transition-transform group-hover:translate-x-1" />
         </div>
       </div>
     </Link>
@@ -448,7 +448,7 @@ export default function ProductsPageContent() {
       <section className="section-padding industrial-surface">
         <div className="container-wide">
           {filteredProducts.length > 0 ? (
-            <div className="grid gap-5 xl:grid-cols-2">
+            <div className="grid gap-4 sm:gap-5 grid-cols-1 sm:grid-cols-2 xl:grid-cols-2">
               {filteredProducts.map((product) => (
                 <ProductCard key={product.slug} product={product} locale={locale} />
               ))}

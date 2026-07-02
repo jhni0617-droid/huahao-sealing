@@ -4,6 +4,7 @@ import { getLocalized } from "@/lib/locale-data"
 import { blogPostsMeta } from "@/lib/blog-data"
 import { BreadcrumbJsonLd } from "@/components/JsonLd"
 import PageHero from "@/components/PageHero"
+import QuickCTA from "@/components/QuickCTA"
 import CTASection from "@/components/CTASection"
 import Link from "next/link"
 
@@ -81,8 +82,8 @@ export default async function BlogPage() {
         eyebrow={eyebrow}
         title={t("pageTitle")}
         subtitle={t("pageSubtitle")}
-        primaryLabel={t("ctaButton")}
       />
+      <QuickCTA />
 
       <section className="section-padding industrial-surface">
         <div className="container-wide">
@@ -93,20 +94,20 @@ export default async function BlogPage() {
                 <span className="text-sm text-muted">({grouped[ym].length} {getLocalized({ zh: "篇", en: "posts" }, locale)})</span>
                 <div className="flex-1 h-px bg-border" />
               </div>
-              <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-3 sm:gap-4 md:gap-5 grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
                 {grouped[ym].map((post) => (
-                  <Link key={post.slug} href={`/blog/${post.slug}`} className="card-static bg-white p-5 block group hover:shadow-lg transition-shadow">
-                    <div className="flex items-center gap-2 mb-3">
+                  <Link key={post.slug} href={`/blog/${post.slug}`} className="card-static bg-white p-3 sm:p-4 lg:p-5 block group hover:shadow-lg transition-shadow">
+                    <div className="flex items-center gap-2 mb-2 sm:mb-3">
                       <span className="text-[10px] font-bold uppercase tracking-[0.08em] text-accent">
                         {tagLabels[post.tag as keyof typeof tagLabels] || post.tag}
                       </span>
-                      <span className="text-[10px] text-muted">{post.date}</span>
+                      <span className="text-[10px] text-muted">{post.date.slice(5)}</span>
                     </div>
-                    <h3 className="text-base font-bold text-primary mb-2 group-hover:text-accent transition-colors leading-snug">{getLocalized(post.title, locale)}</h3>
-                    <p className="text-xs text-muted leading-relaxed line-clamp-3">{getLocalized(post.excerpt, locale)}</p>
-                    <div className="mt-3 flex items-center gap-1 text-xs font-semibold text-accent">
+                    <h3 className="text-sm sm:text-base font-bold text-primary mb-2 group-hover:text-accent transition-colors leading-snug line-clamp-2">{getLocalized(post.title, locale)}</h3>
+                    <p className="text-xs text-muted leading-relaxed line-clamp-2 sm:line-clamp-3">{getLocalized(post.excerpt, locale)}</p>
+                    <div className="mt-2 sm:mt-3 flex items-center gap-1 text-xs font-semibold text-accent">
                       {t("readMore")}
-                      <svg className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                     </div>

@@ -169,7 +169,7 @@ export default async function HomeProductEntry() {
           </div>
         </div>
 
-        <div className="grid gap-5 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {data.products.map((product) => (
             <Link
               key={product.title}
@@ -181,19 +181,19 @@ export default async function HomeProductEntry() {
                   src={product.image}
                   alt={product.title}
                   fill
-                  className="object-contain p-8 transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 1024px) 100vw, 33vw"
+                  className="object-contain p-4 sm:p-6 lg:p-8 transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 33vw"
                 />
               </div>
-              <div className="border-t border-border p-6">
-                <div className="mb-5 flex items-center justify-between gap-4">
-                  <div className="text-xs font-bold uppercase tracking-[0.08em] text-accent">{product.subtitle}</div>
-                  <div className="flex h-10 w-10 items-center justify-center bg-accent-subtle text-accent">
-                    <Icon name={product.icon as IconName} className="h-5 w-5" />
+              <div className="border-t border-border p-4 sm:p-5 lg:p-6">
+                <div className="mb-3 sm:mb-4 flex items-center justify-between gap-3">
+                  <div className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.08em] text-accent">{product.subtitle}</div>
+                  <div className="flex h-8 w-8 sm:h-9 sm:w-9 lg:h-10 lg:w-10 items-center justify-center bg-accent-subtle text-accent">
+                    <Icon name={product.icon as IconName} className="h-4 w-4 sm:h-4.5 sm:w-4.5 lg:h-5 lg:w-5" />
                   </div>
                 </div>
-                <h3 className="mb-3 text-xl font-bold text-primary transition-colors group-hover:text-accent">{product.title}</h3>
-                <p className="text-sm leading-relaxed text-muted">{product.description}</p>
+                <h3 className="mb-2 sm:mb-3 text-base sm:text-lg lg:text-xl font-bold text-primary transition-colors group-hover:text-accent">{product.title}</h3>
+                <p className="text-xs sm:text-sm leading-relaxed text-muted line-clamp-3">{product.description}</p>
               </div>
             </Link>
           ))}
