@@ -1,14 +1,88 @@
 {
   "nav": {
     "home": "ホーム",
-    "products": "製品",
+    "products": "グラファイト製品",
     "applications": "用途",
-    "cases": "事例",
+    "cases": "工場 & 事例",
     "faq": "FAQ",
     "factory": "工場",
     "about": "会社概要",
     "contact": "お問い合わせ",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "blog": "技術ブログ",
+    "quote": "見積依頼",
+    "productMenu": {
+      "groupProducts": "製品細分",
+      "groupSolutions": "業界ソリューション",
+      "raw": "含浸グラファイト原料",
+      "sealRings": "カーボングラファイトシールリング",
+      "bushings": "カーボングラファイトブッシング",
+      "splitRings": "カーボングラファイトスプリットリング",
+      "custom": "オーダーメイド",
+      "solutions": "産業別ソリューション",
+      "ev": "EVバッテリーソリューション",
+      "semiconductor": "半導体ソリューション",
+      "chemical": "化学プラントソリューション",
+      "metallurgy": "冶金ソリューション"
+    },
+    "casesMenu": {
+      "groupFactory": "工場実力",
+      "groupCases": "輸出案例",
+      "factory": "工場能力",
+      "workshop": "精密加工",
+      "quality": "品質管理",
+      "process": "含浸プロセス",
+      "capacity": "生産能力",
+      "certificates": "認証",
+      "sealCases": "シール事例",
+      "semiconductorCases": "半導体事例",
+      "moldCases": "金型事例",
+      "exportCases": "輸出注文",
+      "customCases": "図面オーダー事例"
+    },
+    "blogMenu": {
+      "groupBlog": "技術ブログ",
+      "groupFaq": "技術FAQ",
+      "groupDownload": "資料ダウンロード",
+      "articles": "技術記事",
+      "process": "加工技術",
+      "selection": "材料選択",
+      "precision": "精密加工",
+      "news": "業界ニュース",
+      "faq": "技術FAQ",
+      "faqLeak": "リーク対策",
+      "faqTolerance": "公差管理",
+      "faqMaterial": "材料選択",
+      "faqSample": "サンプル問答",
+      "download": "ダウンロードセンター",
+      "catalog": "製品カタログ",
+      "manual": "技術マニュアル",
+      "certFiles": "認証ファイル",
+      "template": "図面テンプレート"
+    },
+    "aboutMenu": {
+      "groupAbout": "会社概要",
+      "intro": "会社紹介",
+      "factory": "工場見学",
+      "process": "協力プロセス",
+      "certifications": "認証"
+    },
+    "shortcuts": {
+      "upload": "図面アップロード",
+      "download": "カタログダウンロード"
+    }
+  },
+  "blog": {
+    "pageTitle": "技術ブログ",
+    "pageSubtitle": "グラファイト加工、材料選択、精度管理の知識を共有",
+    "ctaButton": "エンジニアに連絡",
+    "readMore": "続きを読む"
+  },
+  "download": {
+    "pageTitle": "ダウンロードセンター",
+    "pageSubtitle": "製品カタログ、技術マニュアル、認証ファイル、図面テンプレートをダウンロード",
+    "ctaButton": "さらに資料を取得",
+    "download": "ダウンロード"
   },
   "footer": {
     "quickLinks": "クイックリンク",

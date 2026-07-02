@@ -1,14 +1,88 @@
 {
   "nav": {
     "home": "首页",
-    "products": "产品中心",
+    "products": "石墨产品中心",
     "applications": "应用领域",
-    "cases": "案例中心",
+    "cases": "实力与案例",
     "faq": "常见问题",
     "factory": "工厂实力",
     "about": "关于我们",
     "contact": "联系我们",
-    "whatsapp": "WhatsApp咨询"
+    "whatsapp": "WhatsApp咨询",
+    "blog": "技术资讯",
+    "quote": "在线询价",
+    "productMenu": {
+      "groupProducts": "产品细分",
+      "groupSolutions": "行业方案",
+      "raw": "浸渍石墨圆柱形原料",
+      "sealRings": "碳石墨密封环",
+      "bushings": "碳石墨轴套/轴承",
+      "splitRings": "碳石墨分瓣环",
+      "custom": "4丝公差非标石墨定制",
+      "solutions": "分行业成套解决方案",
+      "ev": "新能源锂电石墨方案",
+      "semiconductor": "半导体真空石墨方案",
+      "chemical": "化工防腐密封方案",
+      "metallurgy": "高温冶金石墨方案"
+    },
+    "casesMenu": {
+      "groupFactory": "工厂实力板块",
+      "groupCases": "外贸案例板块",
+      "factory": "工厂实力板块",
+      "workshop": "精密加工车间",
+      "quality": "4丝精度质检流程",
+      "process": "浸渍生产工艺",
+      "capacity": "产能交付周期",
+      "certificates": "资质检测报告",
+      "sealCases": "石墨密封定制案例",
+      "semiconductorCases": "半导体配件案例",
+      "moldCases": "高温模具加工案例",
+      "exportCases": "海外批量出口订单",
+      "customCases": "图纸定制落地案例"
+    },
+    "blogMenu": {
+      "groupBlog": "技术博客",
+      "groupFaq": "技术问答FAQ",
+      "groupDownload": "资料下载中心",
+      "articles": "技术博客",
+      "process": "石墨加工工艺科普",
+      "selection": "材料选型指南",
+      "precision": "高精度加工干货",
+      "news": "行业技术动态",
+      "faq": "技术问答FAQ",
+      "faqLeak": "石墨密封漏气解决方案",
+      "faqTolerance": "公差控制相关问题",
+      "faqMaterial": "浸渍石墨选型区别",
+      "faqSample": "样品打样常见疑问",
+      "download": "资料下载中心",
+      "catalog": "产品电子样本",
+      "manual": "技术参数手册",
+      "certFiles": "资质证书文件",
+      "template": "定制图纸模板"
+    },
+    "aboutMenu": {
+      "groupAbout": "关于华豪",
+      "intro": "企业简介",
+      "factory": "工厂实拍",
+      "process": "合作流程",
+      "certifications": "荣誉资质"
+    },
+    "shortcuts": {
+      "upload": "上传图纸定制",
+      "download": "快速下载样本"
+    }
+  },
+  "blog": {
+    "pageTitle": "技术资讯",
+    "pageSubtitle": "分享石墨加工工艺、材料选型、精度控制等专业技术知识",
+    "ctaButton": "联系技术顾问",
+    "readMore": "阅读全文"
+  },
+  "download": {
+    "pageTitle": "资料下载中心",
+    "pageSubtitle": "下载产品目录、技术手册、资质证书和图纸模板",
+    "ctaButton": "获取更多资料",
+    "download": "下载"
   },
   "footer": {
     "quickLinks": "快速链接",

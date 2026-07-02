@@ -291,14 +291,14 @@ export const enApplications = [
 ]
 
 export const factoryHighlights = [
-  { value: "15+", label: "出口国家" },
-  { value: "30+", label: "现有员工" },
+  { value: "10+", label: "出口国家" },
+  { value: "20+", label: "现有员工" },
   { value: "5年", label: "出口经验" },
 ]
 
 export const enFactoryHighlights = [
-  { value: "15+", label: "Export Countries" },
-  { value: "30+", label: "Employees" },
+  { value: "10+", label: "Export Countries" },
+  { value: "20+", label: "Employees" },
   { value: "5 yrs", label: "Export Experience" },
 ]
 

@@ -1,14 +1,88 @@
 {
   "nav": {
     "home": "หน้าแรก",
-    "products": "สินค้า",
+    "products": "ผลิตภัณฑ์ Graphite",
     "applications": "การใช้งาน",
-    "cases": "กรณีศึกษา",
-    "faq": "คำถามที่พบบ่อย",
+    "cases": "โรงงาน & กรณี",
+    "faq": "คำถาม",
     "factory": "โรงงาน",
     "about": "เกี่ยวกับเรา",
     "contact": "ติดต่อ",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "blog": "บทความเทคนิค",
+    "quote": "ขอราคา",
+    "productMenu": {
+      "groupProducts": "ผลิตภัณฑ์",
+      "groupSolutions": "โซลูชันอุตสาหกรรม",
+      "raw": "วัสดุ Graphite บำบัด",
+      "sealRings": "แหวนซีลกราไฟต์",
+      "bushings": "บูชชิ่งกราไฟต์",
+      "splitRings": "แหวนแยกกราไฟต์",
+      "custom": "ผลิตตามแบบ",
+      "solutions": "โซลูชันอุตสาหกรรม",
+      "ev": "โซลูชัน EV",
+      "semiconductor": "โซลูชันครึ่งตัวนำ",
+      "chemical": "โซลูชันเคมี",
+      "metallurgy": "โซลูชันโลหะ"
+    },
+    "casesMenu": {
+      "groupFactory": "ความสามารถโรงงาน",
+      "groupCases": "เคสส่งออก",
+      "factory": "ความสามารถโรงงาน",
+      "workshop": "โรงงานผลิต",
+      "quality": "ควบคุมคุณภาพ",
+      "process": "กระบวนการบำบัด",
+      "capacity": "ความจุและการจัดส่ง",
+      "certificates": "ใบรับรอง",
+      "sealCases": "กรณีซีล",
+      "semiconductorCases": "กรณีครึ่งตัวนำ",
+      "moldCases": "กรณีแม่พิมพ์",
+      "exportCases": "คำสั่งซื้อส่งออก",
+      "customCases": "กรณีผลิตตามแบบ"
+    },
+    "blogMenu": {
+      "groupBlog": "บล็อกเทคนิค",
+      "groupFaq": "คำถามที่พบบ่อย",
+      "groupDownload": "ดาวน์โหลด",
+      "articles": "บทความเทคนิค",
+      "process": "กระบวนการผลิต",
+      "selection": "การเลือกวัสดุ",
+      "precision": "ความแม่นยำ",
+      "news": "ข่าวสารอุตสาหกรรม",
+      "faq": "คำถามเทคนิค",
+      "faqLeak": "โซลูชันการรั่ว",
+      "faqTolerance": "ควบคุมความคลาดเคลื่อน",
+      "faqMaterial": "การเลือกวัสดุ",
+      "faqSample": "คำถามเกี่ยวกับตัวอย่าง",
+      "download": "ศูนย์ดาวน์โหลด",
+      "catalog": "แคตตาล็อก",
+      "manual": "คู่มือเทคนิค",
+      "certFiles": "ใบรับรอง",
+      "template": "แม่แบบแบบ"
+    },
+    "aboutMenu": {
+      "groupAbout": "เกี่ยวกับเรา",
+      "intro": "ประวัติบริษัท",
+      "factory": "ทัวร์โรงงาน",
+      "process": "กระบวนการความร่วมมือ",
+      "certifications": "ใบรับรอง"
+    },
+    "shortcuts": {
+      "upload": "อัปโหลดแบบ",
+      "download": "ดาวน์โหลดแคตตาล็อก"
+    }
+  },
+  "blog": {
+    "pageTitle": "บทความเทคนิค",
+    "pageSubtitle": "แชร์ความรู้เกี่ยวกับการประมวลผลกราฟไฟต์ การเลือกวัสดุ การควบคุมความแม่นยำ",
+    "ctaButton": "ติดต่อวิศวกร",
+    "readMore": "อ่านเพิ่ม"
+  },
+  "download": {
+    "pageTitle": "ศูนย์ดาวน์โหลด",
+    "pageSubtitle": "ดาวน์โหลดแคตตาล็อกผลิตภัณฑ์ คู่มือเทคนิค ใบรับรอง และแม่แบบแบบ",
+    "ctaButton": "รับเอกสารเพิ่มเติม",
+    "download": "ดาวน์โหลด"
   },
   "footer": {
     "quickLinks": "ลิงก์ด่วน",

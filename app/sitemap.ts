@@ -1,4 +1,5 @@
 import { products } from "@/lib/products"
+import { blogPosts } from "@/lib/blog-data"
 import { routing } from "@/i18n/routing"
 
 const baseUrl = "https://huahaoindustrial.com"
@@ -8,6 +9,7 @@ const staticRoutes = [
   { path: "/products", priority: "0.9" },
   { path: "/applications", priority: "0.8" },
   { path: "/cases", priority: "0.7" },
+  { path: "/blog", priority: "0.8" },
   { path: "/faq", priority: "0.7" },
   { path: "/about", priority: "0.7" },
   { path: "/contact", priority: "0.8" },
@@ -54,5 +56,23 @@ export default async function sitemap() {
     }))
   )
 
-  return [...routes, ...productRoutes]
+  const blogRoutes = blogPosts.flatMap((p) =>
+    locales.map((locale) => ({
+      url: locale === defaultLocale
+        ? `${baseUrl}/blog/${p.slug}`
+        : `${baseUrl}/${locale}/blog/${p.slug}`,
+      lastModified: new Date(p.date),
+      changeFrequency: "monthly" as const,
+      priority: "0.7" as const,
+      alternates: {
+        languages: Object.fromEntries(
+          locales.map((l) => [l, l === defaultLocale
+            ? `${baseUrl}/blog/${p.slug}`
+            : `${baseUrl}/${l}/blog/${p.slug}`])
+        ),
+      },
+    }))
+  )
+
+  return [...routes, ...productRoutes, ...blogRoutes]
 }

@@ -1,14 +1,88 @@
 {
   "nav": {
     "home": "Главная",
-    "products": "Продукция",
+    "products": "Графитовые изделия",
     "applications": "Применение",
-    "cases": "Кейсы",
+    "cases": "Производство & Кейсы",
     "faq": "ЧаВо",
     "factory": "Производство",
     "about": "О нас",
     "contact": "Контакты",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "blog": "Технический блог",
+    "quote": "Запросить цену",
+    "productMenu": {
+      "groupProducts": "Продукция",
+      "groupSolutions": "Отраслевые решения",
+      "raw": "Графитовое сырье",
+      "sealRings": "Уплотнительные кольца",
+      "bushings": "Втулки/Подшипники",
+      "splitRings": "Разрезные кольца",
+      "custom": "Индивидуальные изделия",
+      "solutions": "Индустриальные решения",
+      "ev": "Электромобили",
+      "semiconductor": "Полупроводники",
+      "chemical": "Химия",
+      "metallurgy": "Металлургия"
+    },
+    "casesMenu": {
+      "groupFactory": "Возможности завода",
+      "groupCases": "Экспортные кейсы",
+      "factory": "Производственные мощности",
+      "workshop": "Точная обработка",
+      "quality": "Контроль качества",
+      "process": "Импрегнация",
+      "capacity": "Производительность",
+      "certificates": "Сертификаты",
+      "sealCases": "Кейсы уплотнений",
+      "semiconductorCases": "Кейсы полупроводников",
+      "moldCases": "Кейсы форм",
+      "exportCases": "Экспорт",
+      "customCases": "Кейсы по чертежам"
+    },
+    "blogMenu": {
+      "groupBlog": "Технический блог",
+      "groupFaq": "Технический FAQ",
+      "groupDownload": "Центр загрузок",
+      "articles": "Технические статьи",
+      "process": "Процессы обработки",
+      "selection": "Выбор материала",
+      "precision": "Точная обработка",
+      "news": "Новости отрасли",
+      "faq": "Технические вопросы",
+      "faqLeak": "Решения утечек",
+      "faqTolerance": "Толерансы",
+      "faqMaterial": "Выбор материала",
+      "faqSample": "Вопросы образцов",
+      "download": "Центр загрузок",
+      "catalog": "Каталог",
+      "manual": "Техническое руководство",
+      "certFiles": "Сертификаты",
+      "template": "Шаблон чертежа"
+    },
+    "aboutMenu": {
+      "groupAbout": "О нас",
+      "intro": "О компании",
+      "factory": "Производство",
+      "process": "Процесс сотрудничества",
+      "certifications": "Сертификаты"
+    },
+    "shortcuts": {
+      "upload": "Загрузить чертеж",
+      "download": "Скачать каталог"
+    }
+  },
+  "blog": {
+    "pageTitle": "Технический блог",
+    "pageSubtitle": "Поделиться знаниями о графите, выборе материалов, точном контроле",
+    "ctaButton": "Связаться с инженером",
+    "readMore": "Подробнее"
+  },
+  "download": {
+    "pageTitle": "Центр загрузок",
+    "pageSubtitle": "Скачать каталог, руководство, сертификаты и шаблон чертежа",
+    "ctaButton": "Получить больше документов",
+    "download": "Скачать"
   },
   "footer": {
     "quickLinks": "Быстрые ссылки",

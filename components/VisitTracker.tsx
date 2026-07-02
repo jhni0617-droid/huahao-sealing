@@ -39,12 +39,16 @@ export default function VisitTracker() {
 
     const sessionId = getOrCreateSessionId()
 
-    fetch("/api/visit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ path: cleanPath, locale, sessionId }),
-      keepalive: true,
-    }).catch(() => {})
+    const timer = setTimeout(() => {
+      fetch("/api/visit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ path: cleanPath, locale, sessionId }),
+        keepalive: true,
+      }).catch(() => {})
+    }, 1500)
+
+    return () => clearTimeout(timer)
   }, [pathname])
 
   return null

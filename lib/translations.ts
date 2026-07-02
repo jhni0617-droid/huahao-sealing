@@ -213,8 +213,8 @@ export const viManufacturingProcess = [
 ]
 
 export const viFactoryHighlights = [
-  { value: "15+", label: "Quốc gia xuất khẩu" },
-  { value: "30+", label: "Nhân viên" },
+  { value: "10+", label: "Quốc gia xuất khẩu" },
+  { value: "20+", label: "Nhân viên" },
   { value: "5 năm", label: "Kinh nghiệm xuất khẩu" },
 ]
 
@@ -423,8 +423,8 @@ export const thManufacturingProcess = [
 ]
 
 export const thFactoryHighlights = [
-  { value: "15+", label: "ประเทศที่ส่งออก" },
-  { value: "30+", label: "พนักงาน" },
+  { value: "10+", label: "ประเทศที่ส่งออก" },
+  { value: "20+", label: "พนักงาน" },
   { value: "5 ปี", label: "ประสบการณ์ส่งออก" },
 ]
 
@@ -633,8 +633,8 @@ export const ruManufacturingProcess = [
 ]
 
 export const ruFactoryHighlights = [
-  { value: "15+", label: "Стран экспорта" },
-  { value: "30+", label: "Сотрудников" },
+  { value: "10+", label: "Стран экспорта" },
+  { value: "20+", label: "Сотрудников" },
   { value: "5 лет", label: "Опыта экспорта" },
 ]
 
@@ -843,8 +843,8 @@ export const jaManufacturingProcess = [
 ]
 
 export const jaFactoryHighlights = [
-  { value: "15+", label: "輸出国" },
-  { value: "30+", label: "従業員数" },
+  { value: "10+", label: "輸出国" },
+  { value: "20+", label: "従業員数" },
   { value: "5年", label: "輸出経験" },
 ]
 
@@ -1053,8 +1053,8 @@ export const koManufacturingProcess = [
 ]
 
 export const koFactoryHighlights = [
-  { value: "15+", label: "수출 국가" },
-  { value: "30+", label: "직원 수" },
+  { value: "10+", label: "수출 국가" },
+  { value: "20+", label: "직원 수" },
   { value: "5년", label: "수출 경험" },
 ]
 

@@ -55,43 +55,43 @@ const regionsData = {
 
 const statsData = {
   zh: [
-    { value: "15+", label: "出口国家" },
+    { value: "10+", label: "出口国家" },
     { value: "1,000+", label: "全球客户" },
     { value: "20+", label: "出口经验（年）" },
     { value: "6", label: "服务大洲" },
   ],
   en: [
-    { value: "15+", label: "Export Countries" },
+    { value: "10+", label: "Export Countries" },
     { value: "1,000+", label: "Global Customers" },
     { value: "20+", label: "Export Experience" },
     { value: "6", label: "Continents Served" },
   ],
   vi: [
-    { value: "15+", label: "Quốc gia xuất khẩu" },
+    { value: "10+", label: "Quốc gia xuất khẩu" },
     { value: "1,000+", label: "Khách hàng toàn cầu" },
     { value: "20+", label: "Kinh nghiệm xuất khẩu" },
     { value: "6", label: "Châu lục phục vụ" },
   ],
   th: [
-    { value: "15+", label: "ประเทศที่ส่งออก" },
+    { value: "10+", label: "ประเทศที่ส่งออก" },
     { value: "1,000+", label: "ลูกค้าทั่วโลก" },
     { value: "20+", label: "ประสบการณ์การส่งออก" },
     { value: "6", label: "ทวีปที่ให้บริการ" },
   ],
   ru: [
-    { value: "15+", label: "Стран экспорта" },
+    { value: "10+", label: "Стран экспорта" },
     { value: "1,000+", label: "Глобальных клиентов" },
     { value: "20+", label: "Опыт экспорта" },
     { value: "6", label: "Континентов" },
   ],
   ja: [
-    { value: "15+", label: "輸出国" },
+    { value: "10+", label: "輸出国" },
     { value: "1,000+", label: "グローバル顧客" },
     { value: "20+", label: "輸出経験" },
     { value: "6", label: "サービス提供大陸" },
   ],
   ko: [
-    { value: "15+", label: "수출 국가" },
+    { value: "10+", label: "수출 국가" },
     { value: "1,000+", label: "글로벌 고객" },
     { value: "20+", label: "수출 경험" },
     { value: "6", label: "서비스 대륙" },

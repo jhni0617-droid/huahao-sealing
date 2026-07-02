@@ -1,14 +1,88 @@
 {
   "nav": {
     "home": "Home",
-    "products": "Products",
+    "products": "Graphite Products",
     "applications": "Applications",
-    "cases": "Case Studies",
+    "cases": "Factory & Cases",
     "faq": "FAQ",
     "factory": "Factory",
     "about": "About Us",
     "contact": "Contact",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "blog": "Technical Blog",
+    "quote": "Get Quote",
+    "productMenu": {
+      "groupProducts": "Products",
+      "groupSolutions": "Industry Solutions",
+      "raw": "Impregnated Graphite Raw Material",
+      "sealRings": "Carbon Graphite Seal Rings",
+      "bushings": "Carbon Graphite Bushings/Bearings",
+      "splitRings": "Carbon Graphite Split Rings",
+      "custom": "Custom Precision Graphite Parts",
+      "solutions": "Industry Solutions",
+      "ev": "EV Battery Graphite Solutions",
+      "semiconductor": "Semiconductor Vacuum Solutions",
+      "chemical": "Chemical Corrosion Solutions",
+      "metallurgy": "High-Temp Metallurgy Solutions"
+    },
+    "casesMenu": {
+      "groupFactory": "Factory Capability",
+      "groupCases": "Export Cases",
+      "factory": "Factory Capability",
+      "workshop": "Precision Workshop",
+      "quality": "Quality Control",
+      "process": "Impregnation Process",
+      "capacity": "Capacity & Delivery",
+      "certificates": "Certifications",
+      "sealCases": "Seal Custom Cases",
+      "semiconductorCases": "Semiconductor Cases",
+      "moldCases": "High-Temp Mold Cases",
+      "exportCases": "Export Orders",
+      "customCases": "Drawing Custom Cases"
+    },
+    "blogMenu": {
+      "groupBlog": "Technical Blog",
+      "groupFaq": "Technical FAQ",
+      "groupDownload": "Download Center",
+      "articles": "Technical Articles",
+      "process": "Machining Process",
+      "selection": "Material Selection",
+      "precision": "Precision Machining",
+      "news": "Industry News",
+      "faq": "Technical FAQ",
+      "faqLeak": "Leak Solutions",
+      "faqTolerance": "Tolerance Control",
+      "faqMaterial": "Material Selection",
+      "faqSample": "Sample Questions",
+      "download": "Download Center",
+      "catalog": "Product Catalog",
+      "manual": "Technical Manual",
+      "certFiles": "Certificates",
+      "template": "Drawing Template"
+    },
+    "aboutMenu": {
+      "groupAbout": "About Us",
+      "intro": "Company Profile",
+      "factory": "Factory Tour",
+      "process": "Cooperation Process",
+      "certifications": "Certifications"
+    },
+    "shortcuts": {
+      "upload": "Upload Drawing",
+      "download": "Download Catalog"
+    }
+  },
+  "blog": {
+    "pageTitle": "Technical Blog",
+    "pageSubtitle": "Share knowledge on graphite machining, material selection, precision control",
+    "ctaButton": "Contact Engineer",
+    "readMore": "Read More"
+  },
+  "download": {
+    "pageTitle": "Download Center",
+    "pageSubtitle": "Download product catalog, technical manual, certifications and drawing template",
+    "ctaButton": "Get More Documents",
+    "download": "Download"
   },
   "footer": {
     "quickLinks": "Quick Links",

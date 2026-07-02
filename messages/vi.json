@@ -1,14 +1,88 @@
 {
   "nav": {
     "home": "Trang chủ",
-    "products": "Sản phẩm",
+    "products": "Sản phẩm Graphite",
     "applications": "Ứng dụng",
-    "cases": "Nghiên cứu",
+    "cases": "Nhà máy & Trường hợp",
     "faq": "Câu hỏi",
     "factory": "Nhà máy",
     "about": "Về chúng tôi",
     "contact": "Liên hệ",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "blog": "Tin tức kỹ thuật",
+    "quote": "Yêu cầu báo giá",
+    "productMenu": {
+      "groupProducts": "Sản phẩm",
+      "groupSolutions": "Giải pháp ngành",
+      "raw": "Nguyên liệu Graphite tẩm",
+      "sealRings": "Vòng đệm than chì",
+      "bushings": "Bạc lót than chì",
+      "splitRings": "Vòng chia than chì",
+      "custom": "Phát triển theo yêu cầu",
+      "solutions": "Giải pháp theo ngành",
+      "ev": "Giải pháp EV",
+      "semiconductor": "Giải pháp bán dẫn",
+      "chemical": "Giải pháp hóa chất",
+      "metallurgy": "Giải pháp nhiệt luyện"
+    },
+    "casesMenu": {
+      "groupFactory": "Năng lực nhà máy",
+      "groupCases": "Xuất khẩu",
+      "factory": "Khả năng nhà máy",
+      "workshop": "Xưởng chế tạo",
+      "quality": "Kiểm soát chất lượng",
+      "process": "Quy trình tẩm",
+      "capacity": "Năng lực giao hàng",
+      "certificates": "Chứng nhận",
+      "sealCases": "Trường hợp đệm",
+      "semiconductorCases": "Trường hợp bán dẫn",
+      "moldCases": "Trường hợp khuôn",
+      "exportCases": "Đơn hàng xuất khẩu",
+      "customCases": "Trường hợp phát triển"
+    },
+    "blogMenu": {
+      "groupBlog": "Blog kỹ thuật",
+      "groupFaq": "FAQ kỹ thuật",
+      "groupDownload": "Tải tài liệu",
+      "articles": "Bài viết kỹ thuật",
+      "process": "Công nghệ gia công",
+      "selection": "Chọn vật liệu",
+      "precision": "Gia công chính xác",
+      "news": "Tin tức ngành",
+      "faq": "Câu hỏi kỹ thuật",
+      "faqLeak": "Giải pháp rò rỉ",
+      "faqTolerance": "Kiểm soát sai số",
+      "faqMaterial": "Chọn vật liệu",
+      "faqSample": "Câu hỏi mẫu",
+      "download": "Tải tài liệu",
+      "catalog": "Sản phẩm",
+      "manual": "Sổ tay kỹ thuật",
+      "certFiles": "Chứng nhận",
+      "template": "Mẫu bản vẽ"
+    },
+    "aboutMenu": {
+      "groupAbout": "Về chúng tôi",
+      "intro": "Giới thiệu",
+      "factory": "Nhà máy",
+      "process": "Quy trình hợp tác",
+      "certifications": "Chứng nhận"
+    },
+    "shortcuts": {
+      "upload": "Tải bản vẽ",
+      "download": "Tải sổ tay"
+    }
+  },
+  "blog": {
+    "pageTitle": "Tin tức kỹ thuật",
+    "pageSubtitle": "Chia sẻ kiến thức về công nghệ graphite, lựa chọn vật liệu, kiểm soát chính xác",
+    "ctaButton": "Liên hệ kỹ sư",
+    "readMore": "Đọc tiếp"
+  },
+  "download": {
+    "pageTitle": "Tải tài liệu",
+    "pageSubtitle": "Tải sổ sản phẩm, sổ tay kỹ thuật, chứng nhận và mẫu bản vẽ",
+    "ctaButton": "Nhận thêm tài liệu",
+    "download": "Tải xuống"
   },
   "footer": {
     "quickLinks": "Liên kết nhanh",

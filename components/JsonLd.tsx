@@ -158,3 +158,57 @@ export function BreadcrumbJsonLd({ items }: { items: { name: string; url: string
     />
   )
 }
+
+export function ArticleJsonLd({
+  title,
+  description,
+  slug,
+  date,
+  author,
+  locale = "zh",
+}: {
+  title: string
+  description: string
+  slug: string
+  date: string
+  author?: string
+  locale?: string
+}) {
+  const cfg = { ...siteConfig, ...getLocalizedSiteConfig(locale) }
+  const url = locale === "zh"
+    ? `${baseUrl}/blog/${slug}`
+    : `${baseUrl}/${locale}/blog/${slug}`
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: title,
+    description,
+    datePublished: date,
+    dateModified: date,
+    author: {
+      "@type": "Organization",
+      name: author || cfg.fullName,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: cfg.fullName,
+      logo: {
+        "@type": "ImageObject",
+        url: `${baseUrl}/images/logo.jpg`,
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+    },
+    url,
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  )
+}

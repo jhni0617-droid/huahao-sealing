@@ -27,6 +27,21 @@ type IconName =
   | "sparkles"
   | "eye"
   | "file-text"
+  | "factory"
+  | "microscope"
+  | "bolt"
+  | "atom"
+  | "flask"
+  | "fire"
+  | "box"
+  | "clipboard"
+  | "news"
+  | "question"
+  | "certificate"
+  | "ruler"
+  | "layers"
+  | "wrench"
+  | "building"
 
 const paths: Record<IconName, string> = {
   "chevron-right": "M9 5l7 7-7 7",
@@ -58,6 +73,21 @@ const paths: Record<IconName, string> = {
   sparkles: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z",
   eye: "M15 12a3 3 0 11-6 0 3 3 0 016 0zm7.243-3.757A11.955 11.955 0 0012 3a11.955 11.955 0 00-9.243 5.243 1.5 1.5 0 000 1.514A11.955 11.955 0 0012 15a11.955 11.955 0 009.243-5.243 1.5 1.5 0 000-1.514z",
   "file-text": "M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z M14 2v6h6 M16 13H8 M16 17H8 M10 9H8",
+  "factory": "M3 21h18M5 21V8l5 4V8l5 4V8l4 13M9 21v-4h2v4M14 21v-4h2v4M9 13h.01M14 13h.01",
+  "microscope": "M6 18h8M9 18l-2 4h4l-2-4M12 14l2-2 2 2-2 2-2-2zM10 4l4 4-6 6-4-4 6-6z",
+  "bolt": "M13 2L3 14h9l-1 8 10-12h-9l1-8z",
+  "atom": "M12 2v20M2 12h20M5 5c4 4 10 4 14 0M5 19c4-4 10-4 14 0",
+  "flask": "M9 3v6l-4 8a2 2 0 002 3h10a2 2 0 002-3l-4-8V3M7 3h10M10 12h4",
+  "fire": "M12 2C9 5 7 8 7 12a5 5 0 0010 0c0-4-2-7-5-10zM12 6c1 1.5 2 3 2 5a2 2 0 11-4 0c0-2 1-3.5 2-5z",
+  "box": "M21 8l-9-5-9 5v8l9 5 9-5V8zM3 8l9 5 9-5M12 13v8",
+  "clipboard": "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2M9 12h6M9 16h4",
+  "news": "M4 4h12v16H4zM16 8h3v10a2 2 0 01-2 2M7 8h6M7 12h6M7 16h4",
+  "question": "M12 2a7 7 0 100 14 7 7 0 000-14zM12 8v.01M10 8a2 2 0 114 0c0 1-2 1-2 3v1",
+  "certificate": "M12 2l3 6 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1z",
+  "ruler": "M3 17L17 3l4 4L7 21zM12 6l2 2M14 4l2 2M10 8l2 2M8 10l2 2M6 12l2 2",
+  "layers": "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5",
+  "wrench": "M14.7 6.3a4 4 0 00-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 005.4-5.4l-2.5 2.5-2.5-.5-.5-2.5 2.5-2.5z",
+  "building": "M3 21h18M5 21V5a1 1 0 011-1h6a1 1 0 011 1v16M13 21V11a1 1 0 011-1h4a1 1 0 011 1v10M8 8h2M8 12h2M8 16h2M16 14h.01",
 }
 
 interface IconProps {

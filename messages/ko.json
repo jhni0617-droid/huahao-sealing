@@ -1,14 +1,88 @@
 {
   "nav": {
     "home": "홈",
-    "products": "제품",
+    "products": "그라파이트 제품",
     "applications": "응용 분야",
-    "cases": "사례 연구",
+    "cases": "공장 & 사례",
     "faq": "FAQ",
     "factory": "공장",
     "about": "회사 소개",
     "contact": "문의",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "blog": "기술 블로그",
+    "quote": "견적 요청",
+    "productMenu": {
+      "groupProducts": "제품 분류",
+      "groupSolutions": "산업 솔루션",
+      "raw": "함침 그라파이트 원자재",
+      "sealRings": "카본 그라파이트 씰 링",
+      "bushings": "카본 그라파이트 부싱",
+      "splitRings": "카본 그라파이트 분할 링",
+      "custom": "맞춤 제작",
+      "solutions": "산업별 솔루션",
+      "ev": "EV 배터리 솔루션",
+      "semiconductor": "반도체 솔루션",
+      "chemical": "화학 공정 솔루션",
+      "metallurgy": "금속 공정 솔루션"
+    },
+    "casesMenu": {
+      "groupFactory": "공장 역량",
+      "groupCases": "수출 사례",
+      "factory": "공장 능력",
+      "workshop": "정밀 가공",
+      "quality": "품질 관리",
+      "process": "함침 공정",
+      "capacity": "생산 능력",
+      "certificates": "인증서",
+      "sealCases": "씰 맞춤 사례",
+      "semiconductorCases": "반도체 사례",
+      "moldCases": "금형 사례",
+      "exportCases": "수출 주문",
+      "customCases": "도면 맞춤 사례"
+    },
+    "blogMenu": {
+      "groupBlog": "기술 블로그",
+      "groupFaq": "기술 FAQ",
+      "groupDownload": "자료 다운로드",
+      "articles": "기술 기사",
+      "process": "가공 공정",
+      "selection": "재료 선택",
+      "precision": "정밀 가공",
+      "news": "산업 뉴스",
+      "faq": "기술 FAQ",
+      "faqLeak": "누출 해결",
+      "faqTolerance": "공차 관리",
+      "faqMaterial": "재료 선택",
+      "faqSample": "샘플 질문",
+      "download": "다운로드 센터",
+      "catalog": "제품 카탈로그",
+      "manual": "기술 매뉴얼",
+      "certFiles": "인증서",
+      "template": "도면 템플릿"
+    },
+    "aboutMenu": {
+      "groupAbout": "회사 소개",
+      "intro": "회사 소개",
+      "factory": "공장 투어",
+      "process": "협력 프로세스",
+      "certifications": "인증서"
+    },
+    "shortcuts": {
+      "upload": "도면 업로드",
+      "download": "카탈로그 다운로드"
+    }
+  },
+  "blog": {
+    "pageTitle": "기술 블로그",
+    "pageSubtitle": "그라파이트 가공, 재료 선택, 정밀 제어에 대한 지식 공유",
+    "ctaButton": "엔지니어에게 문의",
+    "readMore": "더 읽기"
+  },
+  "download": {
+    "pageTitle": "다운로드 센터",
+    "pageSubtitle": "제품 카탈로그, 기술 매뉴얼, 인증 파일, 도면 템플릿을 다운로드",
+    "ctaButton": "더 많은 문서를 얻기",
+    "download": "다운로드"
   },
   "footer": {
     "quickLinks": "바로가기",
