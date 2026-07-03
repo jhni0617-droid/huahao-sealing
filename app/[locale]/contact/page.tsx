@@ -138,7 +138,7 @@ export default async function ContactPage(props: { searchParams?: Promise<{ prod
         <div className="container-wide">
           <div className="grid lg:grid-cols-5 gap-8">
             {/* 移动端先显示表单 */}
-            <div className="lg:col-span-3 order-2 lg:order-2">
+            <div className="lg:col-span-3 order-1 lg:order-2">
               <div className="mb-6 border-l-2 border-accent pl-4">
                 <h2 className="text-2xl font-bold text-primary">{t("formTitle")}</h2>
                 <p className="text-sm text-muted mt-1">{t("formDesc")}</p>
@@ -146,7 +146,7 @@ export default async function ContactPage(props: { searchParams?: Promise<{ prod
               <ContactForm defaultProduct={defaultProduct} />
             </div>
 
-            <div className="lg:col-span-2 order-1 lg:order-1 space-y-6">
+            <div className="lg:col-span-2 order-2 lg:order-1 space-y-6">
               <div className="border border-border bg-primary p-6 text-white">
                 <div className="text-xs font-bold uppercase tracking-[0.08em] text-white/55">{copy.route}</div>
                 <h2 className="mt-3 text-2xl font-bold">{copy.routeTitle}</h2>
