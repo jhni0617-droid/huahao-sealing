@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import { getDb, dbGet, dbAll } from "@/lib/admin/db"
+import { getCountryName } from "@/lib/country-names"
 
 export async function GET() {
   const db = await getDb()
@@ -43,6 +44,11 @@ export async function GET() {
     [],
   )
 
+  const byCountryWithNames = byCountry.map((c: any) => ({
+    ...c,
+    displayName: c.country === 'Unknown' ? '未知' : getCountryName(c.country),
+  }))
+
   // 来源分布（外部 referrer）
   const byReferrer = await dbAll(
     `SELECT COALESCE(referrer, '(直接访问 / 收藏夹)') as referrer, COUNT(*) as count
@@ -51,21 +57,29 @@ export async function GET() {
     [],
   )
 
-  // 最近 30 条真实访客明细
-  const recentVisits = await dbAll(
+  // 最近 30 条真实访客明细（带国家名称）
+  const recentVisitsRaw = await dbAll(
     `SELECT id, path, locale, country, referrer, visited_at
      FROM page_views WHERE is_bot = 0
      ORDER BY id DESC LIMIT 30`,
     [],
   )
+  const recentVisits = recentVisitsRaw.map((v: any) => ({
+    ...v,
+    countryName: v.country ? getCountryName(v.country) : null,
+  }))
 
   // 最近 30 条爬虫访问（用来给站长看是不是搜索引擎在抓）
-  const recentBots = await dbAll(
+  const recentBotsRaw = await dbAll(
     `SELECT id, path, locale, country, user_agent, visited_at
      FROM page_views WHERE is_bot = 1
      ORDER BY id DESC LIMIT 20`,
     [],
   )
+  const recentBots = recentBotsRaw.map((v: any) => ({
+    ...v,
+    countryName: v.country ? getCountryName(v.country) : null,
+  }))
 
   const recentInquiries = await dbAll(
     "SELECT id, name, email, company, status, created_at FROM inquiries ORDER BY created_at DESC LIMIT 5",
@@ -84,6 +98,7 @@ export async function GET() {
         topPages,
         visitsByDay,
         byCountry,
+        byCountryWithNames,
         byReferrer,
         recentVisits,
         recentBots,

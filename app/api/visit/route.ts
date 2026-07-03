@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getDb, dbRun, dbGet } from "@/lib/admin/db"
 import { createHash } from "crypto"
+import { getCountryCodeByIp } from "@/lib/ip-geolocation"
 
 // 已知的搜索引擎/爬虫 User-Agent 关键词（小写匹配）
 const BOT_KEYWORDS = [
@@ -46,7 +47,9 @@ export async function POST(request: NextRequest) {
     const ip = request.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
                 request.headers.get("x-real-ip") ||
                 "unknown"
-    const country = request.headers.get("x-vercel-ip-country") ||
+    const ipCountry = getCountryCodeByIp(ip)
+    const country = ipCountry ||
+                     request.headers.get("x-vercel-ip-country") ||
                      request.headers.get("x-country") ||
                      null
     const ua = request.headers.get("user-agent") || ""

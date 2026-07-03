@@ -13,6 +13,7 @@
     "@libsql/client": "^0.17.4",
     "bcryptjs": "^3.0.3",
     "better-sqlite3": "^12.10.0",
+    "ip2region": "^2.3.0",
     "jose": "^6.2.3",
     "next": "16.2.6",
     "next-intl": "^4.12.0",

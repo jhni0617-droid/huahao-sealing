@@ -41,6 +41,7 @@ export default function Header() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+  const [mobileExpandedItems, setMobileExpandedItems] = useState<Set<string>>(new Set())
   const pathname = usePathname()
   const t = useTranslations()
   const locale = useLocale()
@@ -156,16 +157,6 @@ export default function Header() {
             { label: t("nav.blogMenu.faqTolerance"), href: "/faq", icon: "ruler" },
             { label: t("nav.blogMenu.faqMaterial"), href: "/faq", icon: "seal" },
             { label: t("nav.blogMenu.faqSample"), href: "/faq", icon: "eye" },
-          ],
-        },
-        {
-          title: t("nav.blogMenu.groupDownload"),
-          items: [
-            { label: t("nav.blogMenu.download"), href: "/download", icon: "download" },
-            { label: t("nav.blogMenu.catalog"), href: "/download", icon: "file-text" },
-            { label: t("nav.blogMenu.manual"), href: "/download", icon: "file-text" },
-            { label: t("nav.blogMenu.certFiles"), href: "/download", icon: "certificate" },
-            { label: t("nav.blogMenu.template"), href: "/download", icon: "clipboard" },
           ],
         },
       ],
@@ -347,23 +338,51 @@ export default function Header() {
             <div className="flex flex-col gap-1">
               {navItems.map((item) => (
                 <div key={item.href}>
-                  <Link
-                    href={item.href}
-                    className={`flex items-center justify-between py-2.5 px-3 rounded-lg text-sm font-medium transition-colors ${
-                      isActive(item.href)
-                        ? "text-accent bg-accent-subtle"
-                        : "text-gray-700 hover:text-primary hover:bg-gray-50"
-                    }`}
-                    onClick={() => setOpen(false)}
-                  >
-                    <span>{item.label}</span>
-                    {item.hasDropdown && (
-                      <svg className="h-4 w-4 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  {item.hasDropdown ? (
+                    <button
+                      onClick={() => {
+                        setMobileExpandedItems((prev) => {
+                          const next = new Set(prev)
+                          if (next.has(item.href)) {
+                            next.delete(item.href)
+                          } else {
+                            next.add(item.href)
+                          }
+                          return next
+                        })
+                      }}
+                      className={`flex items-center justify-between w-full py-2.5 px-3 rounded-lg text-sm font-medium transition-colors ${
+                        isActive(item.href)
+                          ? "text-accent bg-accent-subtle"
+                          : "text-gray-700 hover:text-primary hover:bg-gray-50"
+                      }`}
+                    >
+                      <span>{item.label}</span>
+                      <svg
+                        className={`h-4 w-4 text-muted transition-transform duration-200 ${
+                          mobileExpandedItems.has(item.href) ? "rotate-90" : ""
+                        }`}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
-                    )}
-                  </Link>
-                  {item.hasDropdown && item.dropdownGroups && (
+                    </button>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className={`flex items-center justify-between py-2.5 px-3 rounded-lg text-sm font-medium transition-colors ${
+                        isActive(item.href)
+                          ? "text-accent bg-accent-subtle"
+                          : "text-gray-700 hover:text-primary hover:bg-gray-50"
+                      }`}
+                      onClick={() => setOpen(false)}
+                    >
+                      <span>{item.label}</span>
+                    </Link>
+                  )}
+                  {item.hasDropdown && item.dropdownGroups && mobileExpandedItems.has(item.href) && (
                     <div className="ml-4 mt-1 space-y-1 border-l-2 border-border pl-3">
                       {item.dropdownGroups.map((group, gi) => (
                         <div key={gi}>

@@ -448,7 +448,7 @@ export default function ProductsPageContent() {
       <section className="section-padding industrial-surface">
         <div className="container-wide">
           {filteredProducts.length > 0 ? (
-            <div className="grid gap-4 sm:gap-5 grid-cols-1 sm:grid-cols-2 xl:grid-cols-2">
+            <div className="grid gap-4 sm:gap-5 grid-cols-2">
               {filteredProducts.map((product) => (
                 <ProductCard key={product.slug} product={product} locale={locale} />
               ))}

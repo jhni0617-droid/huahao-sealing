@@ -2,6 +2,7 @@ import StatsCard from "@/components/admin/StatsCard"
 import StatusBadge from "@/components/admin/StatusBadge"
 import Link from "next/link"
 import { getDb, dbGet, dbAll } from "@/lib/admin/db"
+import { getCountryName } from "@/lib/country-names"
 
 export default async function AdminDashboardPage() {
   const db = await getDb()
@@ -47,6 +48,11 @@ export default async function AdminDashboardPage() {
      GROUP BY country ORDER BY count DESC LIMIT 15`,
     [],
   ) as any[]
+
+  const byCountryWithNames = byCountry.map((c: any) => ({
+    ...c,
+    displayName: c.country === 'Unknown' ? '未知' : getCountryName(c.country),
+  }))
 
   // 来源分布
   const byReferrer = await dbAll(
@@ -147,13 +153,13 @@ export default async function AdminDashboardPage() {
       <div className="grid lg:grid-cols-2 gap-6 mb-6">
         <div className="bg-white rounded-xl border border-gray-200 p-5">
           <h2 className="text-sm font-semibold text-gray-900 mb-4">访客国家 / 地区分布</h2>
-          {byCountry.length === 0 ? (
+          {byCountryWithNames.length === 0 ? (
             <p className="text-sm text-gray-400">暂无数据</p>
           ) : (
             <div className="space-y-2">
-              {byCountry.map((c: any) => (
+              {byCountryWithNames.map((c: any) => (
                 <div key={c.country} className="flex items-center justify-between p-2.5 rounded-lg bg-gray-50">
-                  <span className="text-sm text-gray-700">{c.country}</span>
+                  <span className="text-sm text-gray-700">{c.displayName}</span>
                   <div className="flex items-center gap-3">
                     <span className="text-xs text-gray-400">UV {c.unique_count}</span>
                     <span className="text-sm font-medium text-accent">{c.count} 次</span>
@@ -202,7 +208,7 @@ export default async function AdminDashboardPage() {
                 {recentVisits.map((v: any) => (
                   <tr key={v.id} className="border-b border-gray-50">
                     <td className="py-2 pr-3 text-gray-500 whitespace-nowrap">{v.visited_at}</td>
-                    <td className="py-2 pr-3 text-gray-700">{v.country || "—"}</td>
+                    <td className="py-2 pr-3 text-gray-700">{v.country ? getCountryName(v.country) : "—"}</td>
                     <td className="py-2 pr-3 text-gray-500 font-mono">{v.locale}</td>
                     <td className="py-2 pr-3 text-gray-700">{v.path}</td>
                     <td className="py-2 text-gray-500 truncate max-w-[200px]" title={v.referrer || ""}>
