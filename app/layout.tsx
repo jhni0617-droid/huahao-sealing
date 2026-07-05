@@ -19,7 +19,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 
 export async function generateMetadata(): Promise<Metadata> {
   const cookieStore = await cookies()
-  const locale = cookieStore.get("NEXT_LOCALE")?.value || "zh"
+  const locale = cookieStore.get("NEXT_LOCALE")?.value || "en"
   const isZh = locale === "zh"
 
   return {
@@ -43,7 +43,7 @@ export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   const cookieStore = await cookies()
-  const locale = cookieStore.get("NEXT_LOCALE")?.value || "zh"
+  const locale = cookieStore.get("NEXT_LOCALE")?.value || "en"
 
   return (
     <html lang={locale} data-scroll-behavior="smooth" className={`h-full antialiased ${inter.variable} ${plusJakartaSans.variable} ${locale !== "zh" ? "locale-en" : ""}`}>

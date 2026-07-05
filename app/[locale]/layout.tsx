@@ -19,11 +19,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params
   const locales = routing.locales
+  const defaultLocale = routing.defaultLocale
 
   const alternates = {
-    canonical: locale === "zh" ? siteConfig.website : `${siteConfig.website}/${locale}`,
+    canonical: locale === defaultLocale ? siteConfig.website : `${siteConfig.website}/${locale}`,
     languages: Object.fromEntries(
-      locales.map((l) => [l === "zh" ? "x-default" : l, l === "zh" ? siteConfig.website : `${siteConfig.website}/${l}`])
+      locales.map((l) => [l === defaultLocale ? "x-default" : l, l === defaultLocale ? siteConfig.website : `${siteConfig.website}/${l}`])
     ),
   }
 

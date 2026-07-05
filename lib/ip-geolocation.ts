@@ -1,28 +1,38 @@
-
 import path from "path"
 import { createRequire } from "module"
+import fs from "fs"
 
-let ip2region: any = null
+let ip2regionInstance: any = null
 let initError: Error | null = null
+let initAttempted = false
 
 function getIp2Region() {
-  if (ip2region || initError) return { ip2region, initError }
+  if (initAttempted) return { ip2region: ip2regionInstance, initError }
+
+  initAttempted = true
 
   try {
     const require = createRequire(import.meta.url)
     const IP2Region = require("ip2region").default
+
     const packageDir = path.dirname(require.resolve("ip2region/package.json"))
     const dataDir = path.join(packageDir, "data")
-    ip2region = new IP2Region({
-      ipv4db: path.join(dataDir, "ip2region.db"),
-      ipv6db: path.join(dataDir, "ipv6wry.db"),
-    })
+
+    const ipv4db = path.join(dataDir, "ip2region.db")
+    const ipv6db = path.join(dataDir, "ipv6wry.db")
+
+    if (!fs.existsSync(ipv4db)) {
+      initError = new Error(`IPv4 database not found: ${ipv4db}`)
+      return { ip2region: null, initError }
+    }
+
+    ip2regionInstance = new IP2Region({ ipv4db, ipv6db })
   } catch (e: any) {
     initError = e
-    ip2region = null
+    ip2regionInstance = null
   }
 
-  return { ip2region, initError }
+  return { ip2region: ip2regionInstance, initError }
 }
 
 const COUNTRY_NAME_TO_CODE: Record<string, string> = {
@@ -216,21 +226,57 @@ const COUNTRY_NAME_TO_CODE: Record<string, string> = {
 }
 
 export function getCountryCodeByIp(ip: string): string | null {
-  if (!ip || ip === "unknown" || ip === "127.0.0.1" || ip === "::1" || ip.startsWith("192.168.") || ip.startsWith("10.")) {
+  if (!ip || ip === "unknown" || ip === "127.0.0.1" || ip === "::1") {
+    return null
+  }
+
+  if (ip.startsWith("192.168.") || ip.startsWith("10.") || ip.startsWith("172.16.")) {
     return null
   }
 
   try {
-    const { ip2region } = getIp2Region()
-    if (!ip2region) return null
+    const { ip2region, initError: err } = getIp2Region()
+    if (!ip2region) {
+      console.warn("[ip-geolocation] ip2region not available:", err?.message)
+      return null
+    }
 
     const result = ip2region.search(ip)
     if (result && result.country) {
       const countryName = result.country as string
-      return COUNTRY_NAME_TO_CODE[countryName] || null
+      const code = COUNTRY_NAME_TO_CODE[countryName]
+      if (!code) {
+        console.warn(`[ip-geolocation] Unknown country name: "${countryName}" for IP: ${ip}`)
+      }
+      return code || null
     }
     return null
-  } catch {
+  } catch (e: any) {
+    console.warn("[ip-geolocation] search error:", e?.message)
     return null
   }
+}
+
+export function extractClientIp(headers: Headers): string {
+  const xVercelForwardedFor = headers.get("x-vercel-forwarded-for")
+  if (xVercelForwardedFor) {
+    const ip = xVercelForwardedFor.split(",")[0].trim()
+    if (ip) return ip
+  }
+
+  const xForwardedFor = headers.get("x-forwarded-for")
+  if (xForwardedFor) {
+    const ips = xForwardedFor.split(",").map((s) => s.trim()).filter(Boolean)
+    if (ips.length > 0) {
+      return ips[0]
+    }
+  }
+
+  const xRealIp = headers.get("x-real-ip")
+  if (xRealIp) return xRealIp
+
+  const cfConnectingIp = headers.get("cf-connecting-ip")
+  if (cfConnectingIp) return cfConnectingIp
+
+  return "unknown"
 }

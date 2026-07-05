@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getDb, dbRun, dbGet } from "@/lib/admin/db"
 import { createHash } from "crypto"
-import { getCountryCodeByIp } from "@/lib/ip-geolocation"
+import { getCountryCodeByIp, extractClientIp } from "@/lib/ip-geolocation"
 
-// 已知的搜索引擎/爬虫 User-Agent 关键词（小写匹配）
 const BOT_KEYWORDS = [
   "bot", "crawler", "spider", "archiver", "slurp", "baidu", "bingpreview",
   "facebookexternalhit", "twitterbot", "linkedinbot", "telegrambot",
@@ -25,7 +24,6 @@ function extractReferrer(referrer: string | null, host: string | null): string |
   if (!referrer) return null
   try {
     const u = new URL(referrer)
-    // 自己站点内部跳转不算来源
     if (host && u.hostname === host) return null
     return u.hostname
   } catch {
@@ -40,32 +38,32 @@ export async function POST(request: NextRequest) {
     if (!path) {
       return NextResponse.json({ error: "path required" }, { status: 400 })
     }
-    const locale = typeof body.locale === "string" ? body.locale : "zh"
+    const locale = typeof body.locale === "string" ? body.locale : "en"
     const sessionId = typeof body.sessionId === "string" && body.sessionId.length <= 64 ? body.sessionId : null
 
-    // 读 header
-    const ip = request.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
-                request.headers.get("x-real-ip") ||
-                "unknown"
+    const ip = extractClientIp(request.headers)
     const ipCountry = getCountryCodeByIp(ip)
-    const country = ipCountry ||
-                     request.headers.get("x-vercel-ip-country") ||
-                     request.headers.get("x-country") ||
-                     null
+
+    const vercelCountry = request.headers.get("x-vercel-ip-country")
+    const xCountry = request.headers.get("x-country")
+
+    const country = ipCountry || vercelCountry || xCountry || null
+
+    if (process.env.NODE_ENV === "development") {
+      console.log("[visit] IP:", ip, "| ip2region:", ipCountry, "| vercel:", vercelCountry, "| final:", country)
+    }
+
     const ua = request.headers.get("user-agent") || ""
     const referrerRaw = request.headers.get("referer") || request.headers.get("referrer")
     const host = request.headers.get("host")
     const referrer = extractReferrer(referrerRaw, host)
 
-    // IP hash（不存原 IP，做隐私保护）
     const ipHash = ip === "unknown" ? null : createHash("sha256").update(ip).digest("hex").slice(0, 32)
 
     const isBot = isBotUA(ua) ? 1 : 0
 
     const db = await getDb()
 
-    // 会话级去重：同一 session_id 或 ip_hash 在 30 分钟内只算一次访问，
-    // 不管浏览了多少个页面，避免点击多界面导致访问量虚高
     if (ipHash || sessionId) {
       const recent = await dbGet(
         `SELECT id FROM page_views
@@ -79,7 +77,6 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // 存储为北京时间（UTC+8），与后台查询/显示一致
     const visitedAt = new Date(Date.now() + 8 * 60 * 60 * 1000)
       .toISOString()
       .replace("T", " ")
@@ -102,7 +99,8 @@ export async function POST(request: NextRequest) {
     )
 
     return NextResponse.json({ success: true })
-  } catch {
+  } catch (e: any) {
+    console.error("[visit] error:", e?.message || e)
     return NextResponse.json({ success: true })
   }
 }
