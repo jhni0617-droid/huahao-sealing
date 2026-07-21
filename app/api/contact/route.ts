@@ -28,21 +28,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "请填写邮箱和留言" }, { status: 400 })
     }
 
-    // Save to database
-    try {
-      const db = await getDb()
-      await dbRun(
-        `INSERT INTO inquiries (name, email, phone, company, product_type, industry, temperature, pressure, medium, speed, quantity, message, product, file_name, file_content)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-        [name, email, phone || "", company || "", productType || "", industry || "",
-          temperature || "", pressure || "", medium || "", speed || "", quantity || "",
-          message, product || "", fileName || null, fileContent || null],
-      )
-    } catch (dbError) {
-      console.error("DB save error (non-fatal):", dbError)
-    }
-
-    // Send email via SMTP (Alibaba Enterprise Email)
+    // 构造邮件内容
     const fields = [
       ["姓名", name],
       ["邮箱", email],
@@ -86,11 +72,34 @@ Company: ${company || "N/A"}
     }
 
     if (fileName && fileContent) {
-      mailOptions.attachments = [{ filename: fileName, content: fileContent }]
+      mailOptions.attachments = [{ filename: fileName, content: fileContent, encoding: "base64" }]
     }
 
+    // 数据库保存和邮件发送并行执行，总耗时 = max(DB, SMTP) 而非两者之和
     const transporter = createTransporter()
-    await transporter.sendMail(mailOptions)
+    const [dbResult, mailResult] = await Promise.allSettled([
+      (async () => {
+        const db = await getDb()
+        await dbRun(
+          `INSERT INTO inquiries (name, email, phone, company, product_type, industry, temperature, pressure, medium, speed, quantity, message, product, file_name, file_content)
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+          [name, email, phone || "", company || "", productType || "", industry || "",
+            temperature || "", pressure || "", medium || "", speed || "", quantity || "",
+            message, product || "", fileName || null, fileContent || null],
+        )
+      })(),
+      transporter.sendMail(mailOptions),
+    ])
+
+    // 数据库保存失败：记录日志（非致命）
+    if (dbResult.status === "rejected") {
+      console.error("DB save error (non-fatal):", dbResult.reason)
+    }
+
+    // 邮件发送失败：记录日志（非致命，询价已存入数据库则后台可见）
+    if (mailResult.status === "rejected") {
+      console.error("Email send failed (non-fatal):", mailResult.reason)
+    }
 
     return NextResponse.json({ success: true, message: "Inquiry received" })
   } catch (error: any) {

@@ -4,6 +4,65 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import StatusBadge from "@/components/admin/StatusBadge"
 
+const MIME_MAP: Record<string, string> = {
+  jpg: "image/jpeg", jpeg: "image/jpeg", png: "image/png", gif: "image/gif",
+  webp: "image/webp", bmp: "image/bmp", svg: "image/svg+xml",
+  pdf: "application/pdf",
+  doc: "application/msword", docx: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  xls: "application/vnd.ms-excel", xlsx: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+}
+
+function getMime(fileName: string): string {
+  const ext = fileName.split(".").pop()?.toLowerCase() || ""
+  return MIME_MAP[ext] || "application/octet-stream"
+}
+
+function AttachmentView({ fileName, fileContent }: { fileName: string; fileContent: string | null }) {
+  if (!fileContent) {
+    return <p className="text-sm text-gray-500">{fileName}（内容未保存）</p>
+  }
+
+  const mime = getMime(fileName)
+  const dataUrl = `data:${mime};base64,${fileContent}`
+  const isImage = mime.startsWith("image/")
+
+  const handleDownload = () => {
+    const link = document.createElement("a")
+    link.href = dataUrl
+    link.download = fileName
+    link.click()
+  }
+
+  return (
+    <div className="space-y-3">
+      <div className="flex items-center gap-3">
+        <span className="text-sm text-gray-700">{fileName}</span>
+        <button
+          onClick={handleDownload}
+          className="text-sm text-blue-600 hover:text-blue-800 underline"
+        >
+          下载
+        </button>
+      </div>
+      {isImage ? (
+        <a href={dataUrl} target="_blank" rel="noopener noreferrer" className="block">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={dataUrl}
+            alt={fileName}
+            className="max-w-full max-h-96 rounded-lg border border-gray-200 object-contain"
+          />
+          <p className="text-xs text-gray-400 mt-1">点击图片查看原图</p>
+        </a>
+      ) : mime === "application/pdf" ? (
+        <a href={dataUrl} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-600 hover:text-blue-800 underline">
+          在新窗口打开 PDF
+        </a>
+      ) : null}
+    </div>
+  )
+}
+
 export default function InquiryDetailPage({ params }: { params: { id: string } }) {
   const router = useRouter()
   const [inquiry, setInquiry] = useState<any>(null)
@@ -84,8 +143,8 @@ export default function InquiryDetailPage({ params }: { params: { id: string } }
         {/* Attachment */}
         {inquiry.file_name && (
           <div className="bg-white rounded-xl border border-gray-200 p-5">
-            <h2 className="text-sm font-semibold text-gray-900 mb-2">附件</h2>
-            <p className="text-sm text-gray-500">{inquiry.file_name}</p>
+            <h2 className="text-sm font-semibold text-gray-900 mb-3">附件</h2>
+            <AttachmentView fileName={inquiry.file_name} fileContent={inquiry.file_content} />
           </div>
         )}
 
