@@ -13,6 +13,18 @@ const BOT_KEYWORDS = [
   "perfcraw", "headlesschrome", "phantomjs", "selenium", "puppeteer",
   "wget", "curl", "python-requests", "go-http-client", "node-fetch",
   "httpclient", "httpx", "scrapy", "java/",
+  "googlebot", "bingbot", "msnbot", "yahoo", "teoma", "ask jeeves",
+  "scrubby", "yandexbot", "yandexsearch", "sogou spider",
+  "360spider", "so.com", "haosou", "baiduspider", "baiduimage",
+  "googlebot-image", "googlebot-mobile", "bingbot-mobile",
+  "linkedinbot", "facebookbot", "pinterest", "slackbot",
+  "redditbot", "discordbot", "whatsappbot", "linebot", "kakao",
+  "tiktokbot", "douyin", "xiaohongshu", "snapchatbot", "instagram",
+  "twitchbot", "twitterbot", "telegram", "messenger", "skype",
+  "google-assistant", "alexa", "siri", "cortana",
+  "baidu-ai", "alibaba", "toutiao", "meituan", "jd",
+  "qqbot", "wechatbot", "weixin", "smtbot", "youdaobot",
+  "google-cloud", "aws-sdk", "azure-sdk", "digitalocean", "cloudflare",
 ]
 
 function isBotUA(ua: string): boolean {
@@ -67,20 +79,18 @@ export async function POST(request: NextRequest) {
     if (ipHash || sessionId) {
       const recent = await dbGet(
         `SELECT id FROM page_views
-         WHERE (ip_hash = ? OR session_id = ?)
+         WHERE path = ?
+           AND (ip_hash = ? OR session_id = ?)
            AND visited_at >= datetime('now', '-30 minutes')
          LIMIT 1`,
-        [ipHash, sessionId],
+        [path, ipHash, sessionId],
       )
       if (recent) {
         return NextResponse.json({ success: true, deduplicated: true })
       }
     }
 
-    const visitedAt = new Date(Date.now() + 8 * 60 * 60 * 1000)
-      .toISOString()
-      .replace("T", " ")
-      .slice(0, 19)
+    const visitedAt = new Date().toISOString().replace("T", " ").slice(0, 19)
 
     await dbRun(
       `INSERT INTO page_views (path, locale, country, referrer, user_agent, ip_hash, session_id, is_bot, visited_at)

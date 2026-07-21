@@ -12,12 +12,11 @@ export default async function AdminDashboardPage() {
   const unreadCount = (await dbGet("SELECT COUNT(*) as count FROM inquiries WHERE status = 'unread'", []) as any).count
   const caseCount = (await dbGet("SELECT COUNT(*) as count FROM cases", []) as any).count
 
-  // 真实访客统计（排除爬虫）。visited_at 已存为北京时间（UTC+8），
-  // 所以查询时也要用 UTC+8 来对比"今天"和"最近7天"
+  // 真实访客统计（排除爬虫）。visited_at 存储为 UTC 时间，查询时转换为 UTC+8
   const totalVisits = (await dbGet("SELECT COUNT(*) as count FROM page_views WHERE is_bot = 0", []) as any).count
   const botVisits = (await dbGet("SELECT COUNT(*) as count FROM page_views WHERE is_bot = 1", []) as any).count
   const todayVisits = (await dbGet(
-    "SELECT COUNT(*) as count FROM page_views WHERE is_bot = 0 AND date(visited_at) = date('now', '+8 hours')",
+    "SELECT COUNT(*) as count FROM page_views WHERE is_bot = 0 AND date(visited_at, '+8 hours') = date('now')",
     [],
   ) as any).count
   const uniqueVisitors = (await dbGet(
@@ -34,8 +33,8 @@ export default async function AdminDashboardPage() {
     [],
   ) as any[]
   const visitsByDay = await dbAll(
-    `SELECT date(visited_at) as day, COUNT(*) as count FROM page_views
-     WHERE is_bot = 0 AND visited_at >= datetime('now', '+8 hours', '-7 days')
+    `SELECT date(visited_at, '+8 hours') as day, COUNT(*) as count FROM page_views
+     WHERE is_bot = 0 AND visited_at >= datetime('now', '-7 days')
      GROUP BY day ORDER BY day`,
     [],
   ) as any[]
