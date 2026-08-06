@@ -20,22 +20,18 @@ const staticRoutes = [
 ]
 
 export default async function sitemap() {
-  const defaultLocale = routing.defaultLocale
   const locales = routing.locales
 
+  // localePrefix: "always" —— 所有语言（含默认语言 en）都带前缀，规范 URL 如 https://huahaoindustrial.com/en/products
   const routes = staticRoutes.flatMap((r) => {
     const entries = locales.map((locale) => ({
-      url: locale === defaultLocale
-        ? `${baseUrl}${r.path}`
-        : `${baseUrl}/${locale}${r.path}`,
+      url: `${baseUrl}/${locale}${r.path}`,
       lastModified: CONTENT_LAST_MODIFIED,
       changeFrequency: "monthly" as const,
       priority: r.priority,
       alternates: {
         languages: Object.fromEntries(
-          locales.map((l) => [l, l === defaultLocale
-            ? `${baseUrl}${r.path}`
-            : `${baseUrl}/${l}${r.path}`])
+          locales.map((l) => [l, `${baseUrl}/${l}${r.path}`])
         ),
       },
     }))
@@ -44,17 +40,13 @@ export default async function sitemap() {
 
   const productRoutes = products.flatMap((p) =>
     locales.map((locale) => ({
-      url: locale === defaultLocale
-        ? `${baseUrl}/products/${p.slug}`
-        : `${baseUrl}/${locale}/products/${p.slug}`,
+      url: `${baseUrl}/${locale}/products/${p.slug}`,
       lastModified: CONTENT_LAST_MODIFIED,
       changeFrequency: "monthly" as const,
       priority: "0.6" as const,
       alternates: {
         languages: Object.fromEntries(
-          locales.map((l) => [l, l === defaultLocale
-            ? `${baseUrl}/products/${p.slug}`
-            : `${baseUrl}/${l}/products/${p.slug}`])
+          locales.map((l) => [l, `${baseUrl}/${l}/products/${p.slug}`])
         ),
       },
     }))
@@ -62,17 +54,13 @@ export default async function sitemap() {
 
   const blogRoutes = blogPosts.flatMap((p) =>
     locales.map((locale) => ({
-      url: locale === defaultLocale
-        ? `${baseUrl}/blog/${p.slug}`
-        : `${baseUrl}/${locale}/blog/${p.slug}`,
+      url: `${baseUrl}/${locale}/blog/${p.slug}`,
       lastModified: new Date(p.date),
       changeFrequency: "monthly" as const,
       priority: "0.7" as const,
       alternates: {
         languages: Object.fromEntries(
-          locales.map((l) => [l, l === defaultLocale
-            ? `${baseUrl}/blog/${p.slug}`
-            : `${baseUrl}/${l}/blog/${p.slug}`])
+          locales.map((l) => [l, `${baseUrl}/${l}/blog/${p.slug}`])
         ),
       },
     }))

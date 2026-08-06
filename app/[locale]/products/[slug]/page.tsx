@@ -59,8 +59,8 @@ export default async function ProductDetailPage({ params }: Props) {
 
   return (
     <>
-      <BreadcrumbJsonLd items={[
-        { name: tnav("home"), url: "/" },
+      <BreadcrumbJsonLd locale={locale} items={[
+        { name: tnav("home"), url: "" },
         { name: tnav("products"), url: "/products" },
         { name: product.name, url: `/products/${slug}` },
       ]} />

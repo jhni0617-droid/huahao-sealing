@@ -38,7 +38,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const isZh = locale === "zh"
   const locales = routing.locales
   const defaultLocale = routing.defaultLocale
-  const canonicalUrl = locale === defaultLocale ? siteConfig.website : `${siteConfig.website}/${locale}`
+  // localePrefix: "always" —— 规范 URL 统一带语言前缀（含默认语言 en）：https://huahaoindustrial.com/en
+  const canonicalUrl = `${siteConfig.website}/${locale}`
 
   return {
     metadataBase: new URL(siteConfig.website),
@@ -57,7 +58,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       languages: Object.fromEntries(
         locales.map((l) => [
           l === defaultLocale ? "x-default" : l,
-          l === defaultLocale ? siteConfig.website : `${siteConfig.website}/${l}`,
+          `${siteConfig.website}/${l}`,
         ]),
       ),
     },

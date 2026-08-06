@@ -228,6 +228,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
       />
       <FaqJsonLd questions={faqQuestions} />
       <BreadcrumbJsonLd
+        locale={locale}
         items={[
           { name: getLocalized({ zh: "首页", en: "Home" }, locale), url: "" },
           { name: getLocalized({ zh: "技术博客", en: "Technical Blog" }, locale), url: "/blog" },

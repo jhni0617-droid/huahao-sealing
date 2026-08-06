@@ -74,6 +74,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
   return (
     <>
       <BreadcrumbJsonLd
+        locale={locale}
         items={[
           { name: getLocalized({ zh: "首页", en: "Home" }, locale), url: "" },
           { name: eyebrow, url: "/blog" },

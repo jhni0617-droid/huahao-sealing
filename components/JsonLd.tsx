@@ -163,15 +163,16 @@ export function FaqJsonLd({
   )
 }
 
-export function BreadcrumbJsonLd({ items }: { items: { name: string; url: string }[] }) {
+export function BreadcrumbJsonLd({ items, locale = "en" }: { items: { name: string; url: string }[]; locale?: string }) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    // localePrefix: "always" —— URL 统一带语言前缀，item.url 为不含前缀的路径（如 /products，首页传 ""）
     itemListElement: items.map((item, i) => ({
       "@type": "ListItem",
       position: i + 1,
       name: item.name,
-      item: `${baseUrl}${item.url}`,
+      item: `${baseUrl}/${locale}${item.url}`,
     })),
   }
 
@@ -199,9 +200,8 @@ export function ArticleJsonLd({
   locale?: string
 }) {
   const cfg = { ...siteConfig, ...getLocalizedSiteConfig(locale) }
-  const url = locale === "zh"
-    ? `${baseUrl}/blog/${slug}`
-    : `${baseUrl}/${locale}/blog/${slug}`
+  // localePrefix: "always" —— 所有语言（含默认 en 与 zh）都带前缀：/{locale}/blog/{slug}
+  const url = `${baseUrl}/${locale}/blog/${slug}`
 
   const schema = {
     "@context": "https://schema.org",
