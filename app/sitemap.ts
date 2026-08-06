@@ -12,6 +12,7 @@ const staticRoutes = [
   { path: "/products", priority: "0.9" },
   { path: "/applications", priority: "0.8" },
   { path: "/cases", priority: "0.7" },
+  { path: "/factory", priority: "0.7" },
   { path: "/blog", priority: "0.8" },
   { path: "/faq", priority: "0.7" },
   { path: "/about", priority: "0.7" },

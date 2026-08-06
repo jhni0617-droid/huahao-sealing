@@ -36,9 +36,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       publishedTime: post.date,
       authors: [siteConfig.fullName],
     },
-    alternates: {
-      canonical: `${siteConfig.website}/blog/${slug}`,
-    },
+    // canonical 已由 generateMeta 按 path 生成（website + /blog/{slug}），
+    // 保留 base.alternates 以携带 hreflang languages
+    alternates: base.alternates,
   }
 }
 
