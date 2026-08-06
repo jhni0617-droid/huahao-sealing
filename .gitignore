@@ -53,3 +53,6 @@ huahao-admin.db-shm
 scripts/turso-db-jwt.txt
 auth
 auth-wal
+
+# reasonix local tooling
+.reasonix/
