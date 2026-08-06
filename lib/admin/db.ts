@@ -195,10 +195,20 @@ export async function getDb(): Promise<Client> {
   )
 
   // Initialize tables (split multi-statement SQL for libsql compatibility)
+  // 用 batch 一次网络往返执行全部 DDL，减少 serverless 冷启动开销
   const tableSql = isTurso ? CREATE_TABLES_TURSO_SQL : CREATE_TABLES_SQL
   const statements = tableSql.split(";").filter((s) => s.trim())
-  for (const stmt of statements) {
-    await client.execute(stmt + ";")
+  try {
+    await client.batch(statements.map((s) => s + ";"), "write")
+  } catch {
+    // 个别语句失败（如旧库结构差异）时退回逐条执行
+    for (const stmt of statements) {
+      try {
+        await client.execute(stmt + ";")
+      } catch {
+        // ignore
+      }
+    }
   }
 
   // Migrate legacy page_views table: add new columns if missing (idempotent)
@@ -212,23 +222,32 @@ export async function getDb(): Promise<Client> {
     ["session_id", "ALTER TABLE page_views ADD COLUMN session_id TEXT DEFAULT NULL"],
     ["is_bot", "ALTER TABLE page_views ADD COLUMN is_bot INTEGER NOT NULL DEFAULT 0"],
   ]
-  for (const [col, sql] of migrations) {
-    if (!existingCols.has(col)) {
-      try {
-        await client.execute(sql)
-      } catch {
-        // ignore — column may already exist or unsupported
+  const pendingMigrations = migrations.filter(([col]) => !existingCols.has(col))
+  if (pendingMigrations.length > 0) {
+    try {
+      await client.batch(pendingMigrations.map(([, sql]) => sql), "write")
+    } catch {
+      for (const [, sql] of pendingMigrations) {
+        try {
+          await client.execute(sql)
+        } catch {
+          // ignore — column may already exist or unsupported
+        }
       }
     }
   }
 
   // 建索引（迁移完成后才执行，避免引用不存在的列）
   const indexStatements = CREATE_INDEXES_SQL.split(";").filter((s) => s.trim())
-  for (const stmt of indexStatements) {
-    try {
-      await client.execute(stmt + ";")
-    } catch {
-      // ignore — index may already exist or unsupported on this DB
+  try {
+    await client.batch(indexStatements.map((s) => s + ";"), "write")
+  } catch {
+    for (const stmt of indexStatements) {
+      try {
+        await client.execute(stmt + ";")
+      } catch {
+        // ignore — index may already exist or unsupported on this DB
+      }
     }
   }
 

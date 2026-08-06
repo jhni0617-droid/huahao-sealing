@@ -3,7 +3,7 @@ import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 import { blogPosts, getPostBySlug, getAllSlugs } from "@/lib/blog-data"
 import { siteConfig } from "@/lib/constants"
-import { ArticleJsonLd, BreadcrumbJsonLd } from "@/components/JsonLd"
+import { ArticleJsonLd, BreadcrumbJsonLd, FaqJsonLd } from "@/components/JsonLd"
 import PageHero from "@/components/PageHero"
 import CTASection from "@/components/CTASection"
 import Link from "next/link"
@@ -40,6 +40,24 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     // 保留 base.alternates 以携带 hreflang languages
     alternates: base.alternates,
   }
+}
+
+function extractTakeaways(content: string): string[] {
+  const lines = content.split("\n")
+  const items: string[] = []
+  let inTakeaways = false
+  for (const line of lines) {
+    const trimmed = line.trim()
+    if (trimmed.startsWith("## 核心要点") || trimmed.startsWith("## Key Takeaways")) {
+      inTakeaways = true
+      continue
+    }
+    if (inTakeaways) {
+      if (trimmed.startsWith("## ") || trimmed.startsWith("### ")) break
+      if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) items.push(trimmed.slice(2))
+    }
+  }
+  return items
 }
 
 function renderContent(content: string) {
@@ -182,6 +200,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
   const excerpt = getLocalized(post.excerpt, locale)
   const content = getLocalized(post.content, locale)
 
+  // GEO：基于文章“核心要点”生成 FAQ schema（内容真实，非编造）
+  const takeaways = extractTakeaways(post.content[locale === "zh" ? "zh" : "en"])
+  const faqQuestions = [
+    {
+      q: locale === "zh" ? `「${post.title.zh}」的核心要点有哪些？` : `What are the key takeaways of "${post.title.en}"?`,
+      a: takeaways.slice(0, 3).join(" ") || excerpt,
+    },
+    {
+      q: locale === "zh" ? `什么是${post.title.zh}？` : `What is "${post.title.en}"?`,
+      a: excerpt,
+    },
+  ]
+
   const currentIdx = blogPosts.findIndex((p) => p.slug === slug)
   const prevPost = currentIdx > 0 ? blogPosts[currentIdx - 1] : null
   const nextPost = currentIdx < blogPosts.length - 1 ? blogPosts[currentIdx + 1] : null
@@ -195,6 +226,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
         date={post.date}
         locale={locale}
       />
+      <FaqJsonLd questions={faqQuestions} />
       <BreadcrumbJsonLd
         items={[
           { name: getLocalized({ zh: "首页", en: "Home" }, locale), url: "" },
