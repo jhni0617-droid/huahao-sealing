@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { getLocale } from "next-intl/server"
+import { getLocale, setRequestLocale } from "next-intl/server"
 import { Link } from "@/i18n/routing"
 import PageHero from "@/components/PageHero"
 import CTASection from "@/components/CTASection"
@@ -257,20 +257,20 @@ const content = {
 }
 
 const gallery = [
-  "/images/IMG_20260321_153130.jpg",
-  "/images/实拍/IMG_20260517_193443.jpg",
-  "/images/实拍/IMG_20260518_215113.jpg",
-  "/images/实拍/IMG_20260518_215335.jpg",
-  "/images/密封环/IMG_20260410_141247.jpg",
-  "/images/轴套/IMG_20260408_150153.jpg",
+  "/images/IMG_20260321_153130.webp",
+  "/images/实拍/IMG_20260517_193443.webp",
+  "/images/实拍/IMG_20260518_215113.webp",
+  "/images/实拍/IMG_20260518_215335.webp",
+  "/images/密封环/IMG_20260410_141247.webp",
+  "/images/轴套/IMG_20260408_150153.webp",
 ]
 
 function getCopy(locale: string) {
   return getLocalized(content, locale)
 }
 
-export async function generateMetadata() {
-  const locale = await getLocale()
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
   const copy = getCopy(locale)
   return generateMeta({
     title: copy.metaTitle,
@@ -280,8 +280,9 @@ export async function generateMetadata() {
   })
 }
 
-export default async function FactoryPage() {
-  const locale = await getLocale()
+export default async function FactoryPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  setRequestLocale(locale)
   const copy = getCopy(locale)
 
   return (

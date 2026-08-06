@@ -28,8 +28,13 @@ const BOT_KEYWORDS = [
 ]
 
 function isBotUA(ua: string): boolean {
+  // 无 User-Agent（健康检查、脚本、部分爬虫）一律视为非真实访客
+  if (!ua || !ua.trim()) return true
   const lower = ua.toLowerCase()
-  return BOT_KEYWORDS.some((k) => lower.includes(k))
+  if (BOT_KEYWORDS.some((k) => lower.includes(k))) return true
+  // 常见脚本/非浏览器特征（无 bot 字样）
+  if (/^(python|curl|wget|go-http-client|node|java\/|okhttp|axios|httpclient|ruby|perl|php|powershell|lua)/.test(lower)) return true
+  return false
 }
 
 function extractReferrer(referrer: string | null, host: string | null): string | null {
@@ -59,7 +64,9 @@ export async function POST(request: NextRequest) {
     const vercelCountry = request.headers.get("x-vercel-ip-country")
     const xCountry = request.headers.get("x-country")
 
-    const country = ipCountry || vercelCountry || xCountry || null
+    // Vercel 官方提供的国家信息最可靠；x-country 是 CDN/自建代理的透传；
+    // ip2region 数据库陈旧（海外覆盖差），仅作为非 Vercel 部署环境的兜底。
+    const country = vercelCountry || xCountry || ipCountry || null
 
     if (process.env.NODE_ENV === "development") {
       console.log("[visit] IP:", ip, "| ip2region:", ipCountry, "| vercel:", vercelCountry, "| final:", country)

@@ -24,13 +24,13 @@ export function generateMeta({
       url,
       siteName: cfg.name,
       type: "website" as const,
-      images: [{ url: `${cfg.website}/images/logo.jpg`, width: 1200, height: 1200 }],
+      images: [{ url: `${cfg.website}/images/og-banner.jpg`, width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image" as const,
       title: fullTitle,
       description,
-      images: [`${cfg.website}/images/logo.jpg`],
+      images: [`${cfg.website}/images/og-banner.jpg`],
     },
     alternates: { canonical: url },
   }

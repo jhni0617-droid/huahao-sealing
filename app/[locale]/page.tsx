@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import dynamic from "next/dynamic"
+import { setRequestLocale } from "next-intl/server"
 import { getLocalized } from "@/lib/locale-data"
 import HeroSection from "@/components/HeroSection"
 import HomeProductEntry from "@/components/HomeProductEntry"
@@ -47,7 +48,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   }, locale)
 }
 
-export default function HomePage() {
+export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  setRequestLocale(locale)
   return (
     <>
       <HeroSection />

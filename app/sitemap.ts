@@ -4,6 +4,9 @@ import { routing } from "@/i18n/routing"
 
 const baseUrl = "https://huahaoindustrial.com"
 
+// 内容页面更新不频繁，使用稳定的最后修改日期（而非每次构建都变的 new Date()）
+const CONTENT_LAST_MODIFIED = "2026-06-01"
+
 const staticRoutes = [
   { path: "", priority: "1.0" },
   { path: "/products", priority: "0.9" },
@@ -24,7 +27,7 @@ export default async function sitemap() {
       url: locale === defaultLocale
         ? `${baseUrl}${r.path}`
         : `${baseUrl}/${locale}${r.path}`,
-      lastModified: new Date(),
+      lastModified: CONTENT_LAST_MODIFIED,
       changeFrequency: "monthly" as const,
       priority: r.priority,
       alternates: {
@@ -43,7 +46,7 @@ export default async function sitemap() {
       url: locale === defaultLocale
         ? `${baseUrl}/products/${p.slug}`
         : `${baseUrl}/${locale}/products/${p.slug}`,
-      lastModified: new Date(),
+      lastModified: CONTENT_LAST_MODIFIED,
       changeFrequency: "monthly" as const,
       priority: "0.6" as const,
       alternates: {

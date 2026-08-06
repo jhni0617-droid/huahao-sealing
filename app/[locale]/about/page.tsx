@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { getLocale, getTranslations } from "next-intl/server"
+import { getLocale, getTranslations, setRequestLocale } from "next-intl/server"
 import { Link } from "@/i18n/routing"
 import CTASection from "@/components/CTASection"
 import FAQAccordion from "@/components/FAQAccordion"
@@ -9,9 +9,9 @@ import { getLocalized } from "@/lib/locale-data"
 import PageHero from "@/components/PageHero"
 import Icon, { type IconName } from "@/components/ui/Icon"
 
-export async function generateMetadata() {
-  const locale = await getLocale()
-  const t = await getTranslations("about")
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "about" })
   return generateMeta({
     title: t("pageTitle"),
     description: t("pageSubtitle"),
@@ -601,8 +601,9 @@ const faqCategoriesData: Record<string, FaqCategory[]> = {
   ko: koFaqCategoriesData,
 }
 
-export default async function AboutPage() {
-  const locale = await getLocale()
+export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  setRequestLocale(locale)
   const t = await getTranslations("about")
   const milestones = getLocalized(milestonesData, locale)
   const qualityCards = getLocalized(qualityData, locale)
@@ -644,7 +645,7 @@ export default async function AboutPage() {
 
             <div className="relative min-h-[420px] overflow-hidden border border-border bg-background">
               <Image
-                src="/images/factory-satellite-view.png"
+                src="/images/factory-satellite-view.webp"
                 alt={getLocalized({ zh: "华豪密封件厂区实景", en: "Huahao Sealing factory", vi: "Nhà máy Huahao Sealing", th: "โรงงาน Huahao Sealing", ru: "Завод Huahao Sealing", ja: "華豪シール工場", ko: "Huahao Sealing 공장" }, locale)}
                 fill
                 className="object-cover"

@@ -1,4 +1,4 @@
-import { getLocale, getTranslations } from "next-intl/server"
+import { getLocale, getTranslations, setRequestLocale } from "next-intl/server"
 import ProductsPageContent from "./products-content"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
@@ -49,9 +49,9 @@ const heroCopy = {
   },
 }
 
-export async function generateMetadata() {
-  const locale = await getLocale()
-  const t = await getTranslations("products")
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "products" })
   return generateMeta({
     title: t("pageTitle"),
     description: t("pageSubtitle"),
@@ -60,8 +60,9 @@ export async function generateMetadata() {
   })
 }
 
-export default async function ProductsPage() {
-  const locale = await getLocale()
+export default async function ProductsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  setRequestLocale(locale)
   const t = await getTranslations("products")
   const copy = getLocalized(heroCopy, locale)
 

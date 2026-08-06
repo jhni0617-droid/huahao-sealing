@@ -1,4 +1,4 @@
-import { getLocale, getTranslations } from "next-intl/server"
+import { getLocale, getTranslations, setRequestLocale } from "next-intl/server"
 import { Link } from "@/i18n/routing"
 import { applications } from "@/lib/constants"
 import CTASection from "@/components/CTASection"
@@ -8,9 +8,9 @@ import { getLocalized } from "@/lib/locale-data"
 import { applicationsDetailsByLocale } from "@/lib/translations-app-details"
 import PageHero from "@/components/PageHero"
 
-export async function generateMetadata() {
-  const locale = await getLocale()
-  const t = await getTranslations("applications")
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "applications" })
   return generateMeta({
     title: t("pageTitle"),
     description: t("pageSubtitle"),
@@ -188,8 +188,9 @@ const enDetails: Record<string, DetailData> = {
   },
 }
 
-export default async function ApplicationsPage() {
-  const locale = await getLocale()
+export default async function ApplicationsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  setRequestLocale(locale)
   const t = await getTranslations("applications")
   const details = getLocalized({ zh: zhDetails, en: enDetails, ...applicationsDetailsByLocale }, locale)
   const hero = getLocalized({

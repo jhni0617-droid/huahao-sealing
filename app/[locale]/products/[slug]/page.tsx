@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { getLocale, getTranslations } from "next-intl/server"
+import { getTranslations, setRequestLocale } from "next-intl/server"
 import { Link } from "@/i18n/routing"
 import { notFound } from "next/navigation"
 import { products } from "@/lib/products"
@@ -35,6 +35,7 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function ProductDetailPage({ params }: Props) {
   const { slug, locale } = await params
+  setRequestLocale(locale)
   const product = (productsByLocale[locale] || productsByLocale.en).find((p) => p.slug === slug)
   if (!product) notFound()
 

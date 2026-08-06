@@ -257,6 +257,18 @@ export function getCountryCodeByIp(ip: string): string | null {
   }
 }
 
+function isPrivateIp(ip: string): boolean {
+  if (!ip) return true
+  // IPv4 私有/保留段（含 100.64/10 CGNAT、127 环回、0.x、169.254 链路本地）
+  if (/^127\./.test(ip) || /^10\./.test(ip) || /^192\.168\./.test(ip) || /^169\.254\./.test(ip) || /^0\./.test(ip)) return true
+  if (/^172\.(1[6-9]|2\d|3[01])\./.test(ip)) return true
+  // CGNAT 100.64.0.0/10（100.64–100.127）
+  if (/^100\.(6[4-9]|[7-9]\d|1[01]\d|12[0-7])\./.test(ip)) return true
+  // IPv6 特殊段（::1 环回、:: 未指定、fc/fd ULA、fe80–febf link-local）
+  if (ip === "::1" || ip === "::" || /^f[cd]/.test(ip) || /^fe[89ab]/.test(ip)) return true
+  return false
+}
+
 export function extractClientIp(headers: Headers): string {
   const xVercelForwardedFor = headers.get("x-vercel-forwarded-for")
   if (xVercelForwardedFor) {
@@ -264,19 +276,17 @@ export function extractClientIp(headers: Headers): string {
     if (ip) return ip
   }
 
-  const xForwardedFor = headers.get("x-forwarded-for")
-  if (xForwardedFor) {
-    const ips = xForwardedFor.split(",").map((s) => s.trim()).filter(Boolean)
-    if (ips.length > 0) {
-      return ips[0]
+  // 信任链中取第一个公网 IP（跳过私有/保留地址，避免代理内网 IP 被当作客户端）
+  for (const headerName of ["x-forwarded-for", "x-real-ip", "cf-connecting-ip"]) {
+    const raw = headers.get(headerName)
+    if (!raw) continue
+    const candidates = raw.split(",").map((s) => s.trim()).filter(Boolean)
+    for (const candidate of candidates) {
+      if (!isPrivateIp(candidate)) return candidate
     }
+    // 全部为私有地址时退回最后一个（最接近来源）
+    if (candidates.length > 0) return candidates[candidates.length - 1]
   }
-
-  const xRealIp = headers.get("x-real-ip")
-  if (xRealIp) return xRealIp
-
-  const cfConnectingIp = headers.get("cf-connecting-ip")
-  if (cfConnectingIp) return cfConnectingIp
 
   return "unknown"
 }

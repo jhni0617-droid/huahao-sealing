@@ -16,10 +16,11 @@ export function OrganizationJsonLd({ locale = "zh" }: { locale?: string }) {
   const orgSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${baseUrl}/#organization`,
     name: cfg.fullName,
     alternateName: cfg.name,
     url: baseUrl,
-    logo: `${baseUrl}/images/logo.jpg`,
+    logo: `${baseUrl}/images/logo.webp`,
     email: cfg.email,
     telephone: cfg.phone,
     address: {
@@ -37,10 +38,11 @@ export function OrganizationJsonLd({ locale = "zh" }: { locale?: string }) {
   const localBizSchema = {
     "@context": "https://schema.org",
     "@type": ["Organization", "LocalBusiness"],
+    "@id": `${baseUrl}/#localbusiness`,
     name: cfg.fullName,
     alternateName: cfg.name,
     url: baseUrl,
-    logo: `${baseUrl}/images/logo.jpg`,
+    logo: `${baseUrl}/images/logo.webp`,
     email: cfg.email,
     telephone: cfg.phone,
     address: {
@@ -61,6 +63,24 @@ export function OrganizationJsonLd({ locale = "zh" }: { locale?: string }) {
     sameAs: [`https://wa.me/${cfg.whatsapp}`],
   }
 
+  // WebSite schema (for site-level search / GEO signals)
+  const webSiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${baseUrl}/#website`,
+    url: baseUrl,
+    name: cfg.name,
+    alternateName: cfg.fullName,
+    description: cfg.description,
+    inLanguage: ["en", "zh", "vi", "th", "ru", "ja", "ko"],
+    publisher: {
+      "@type": "Organization",
+      "@id": `${baseUrl}/#organization`,
+      name: cfg.fullName,
+      logo: `${baseUrl}/images/logo.webp`,
+    },
+  }
+
   return (
     <>
       <script
@@ -70,6 +90,10 @@ export function OrganizationJsonLd({ locale = "zh" }: { locale?: string }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBizSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
       />
     </>
   )
@@ -195,12 +219,17 @@ export function ArticleJsonLd({
       name: cfg.fullName,
       logo: {
         "@type": "ImageObject",
-        url: `${baseUrl}/images/logo.jpg`,
+        url: `${baseUrl}/images/logo.webp`,
       },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": url,
+    },
+    // GEO：speakable 让 AI/语音助手可直接摘取文章“核心要点”
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["#key-takeaways"],
     },
     url,
   }

@@ -1,4 +1,4 @@
-import { getLocale, getTranslations } from "next-intl/server"
+import { getLocale, getTranslations, setRequestLocale } from "next-intl/server"
 import ContactForm from "@/components/ContactForm"
 import ImageCarousel from "@/components/ui/ImageCarousel"
 import Icon from "@/components/ui/Icon"
@@ -101,9 +101,9 @@ const contactCopy = {
   },
 }
 
-export async function generateMetadata() {
-  const locale = await getLocale()
-  const t = await getTranslations("contact")
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "contact" })
   return generateMeta({
     title: t("pageTitle"),
     description: t("pageSubtitle"),
@@ -112,10 +112,11 @@ export async function generateMetadata() {
   })
 }
 
-export default async function ContactPage(props: { searchParams?: Promise<{ product?: string }> }) {
+export default async function ContactPage(props: { params: Promise<{ locale: string }>; searchParams?: Promise<{ product?: string }> }) {
   const searchParams = await props.searchParams
   const defaultProduct = searchParams?.product
-  const locale = await getLocale()
+  const { locale } = await props.params
+  setRequestLocale(locale)
   const t = await getTranslations("contact")
   const cfg = getLocalized({ zh: siteConfig, en: enSiteConfig }, locale)
   const altText = { zh: "华豪密封工厂实拍", en: "Huahao Sealing factory", vi: "Nhà máy Huahao Sealing", th: "โรงงาน Huahao Sealing", ru: "Завод Huahao Sealing", ja: "華豪シール工場", ko: "Huahao Sealing 공장" }
@@ -212,10 +213,10 @@ export default async function ContactPage(props: { searchParams?: Promise<{ prod
 
               <ImageCarousel
                 images={[
-                  { src: "/images/实拍/IMG_20260518_214858.jpg", alt: getLocalized(altText, locale) },
-                  { src: "/images/实拍/IMG_20260518_215335.jpg", alt: getLocalized(altText, locale) },
-                  { src: "/images/实拍/IMG_20260518_215353.jpg", alt: getLocalized(altText, locale) },
-                  { src: "/images/实拍/file_00000000e47c7209a756fff4f4d29c2b.jpg", alt: getLocalized(altText, locale) },
+                  { src: "/images/实拍/IMG_20260518_214858.webp", alt: getLocalized(altText, locale) },
+                  { src: "/images/实拍/IMG_20260518_215335.webp", alt: getLocalized(altText, locale) },
+                  { src: "/images/实拍/IMG_20260518_215353.webp", alt: getLocalized(altText, locale) },
+                  { src: "/images/实拍/file_00000000e47c7209a756fff4f4d29c2b.webp", alt: getLocalized(altText, locale) },
                 ]}
                 aspectRatio="16/10"
                 variant="solid"

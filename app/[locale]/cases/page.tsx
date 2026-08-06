@@ -1,4 +1,4 @@
-import { getLocale, getTranslations } from "next-intl/server"
+import { getLocale, getTranslations, setRequestLocale } from "next-intl/server"
 import { Link } from "@/i18n/routing"
 import CTASection from "@/components/CTASection"
 import FailureSolutionsSection from "@/components/FailureSolutionsSection"
@@ -8,9 +8,9 @@ import { getDb, dbAll } from "@/lib/admin/db"
 import { getLocalized } from "@/lib/locale-data"
 import PageHero from "@/components/PageHero"
 
-export async function generateMetadata() {
-  const locale = await getLocale()
-  const t = await getTranslations("cases")
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "cases" })
   return generateMeta({
     title: t("pageTitle"),
     description: t("pageSubtitle"),
@@ -28,8 +28,9 @@ interface CaseRow {
   result: string
 }
 
-export default async function CasesPage() {
-  const locale = await getLocale()
+export default async function CasesPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  setRequestLocale(locale)
   const t = await getTranslations("cases")
   const eyebrow = getLocalized({
     zh: "工程案例",

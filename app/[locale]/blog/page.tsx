@@ -1,4 +1,4 @@
-import { getLocale, getTranslations } from "next-intl/server"
+import { getLocale, getTranslations, setRequestLocale } from "next-intl/server"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 import { blogPostsMeta } from "@/lib/blog-data"
@@ -8,9 +8,9 @@ import QuickCTA from "@/components/QuickCTA"
 import CTASection from "@/components/CTASection"
 import Link from "next/link"
 
-export async function generateMetadata() {
-  const locale = await getLocale()
-  const t = await getTranslations("blog")
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "blog" })
   return generateMeta({
     title: t("pageTitle"),
     description: t("pageSubtitle"),
@@ -19,8 +19,9 @@ export async function generateMetadata() {
   })
 }
 
-export default async function BlogPage() {
-  const locale = await getLocale()
+export default async function BlogPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  setRequestLocale(locale)
   const t = await getTranslations("blog")
   const eyebrow = getLocalized({
     zh: "技术博客",

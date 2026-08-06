@@ -1,22 +1,28 @@
-"use client"
+import type { Metadata } from "next"
+import "../globals.css"
+import AdminShell from "@/components/admin/AdminShell"
 
-import { usePathname } from "next/navigation"
-import AdminSidebar from "@/components/admin/AdminSidebar"
+export const metadata: Metadata = {
+  title: {
+    default: "华豪密封管理后台",
+    template: "%s | 华豪密封管理后台",
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+  },
+}
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname()
-  const isLoginPage = pathname === "/admin/login"
-
-  if (isLoginPage) {
-    return <>{children}</>
-  }
-
+export default function AdminRootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-screen bg-gray-100">
-      <AdminSidebar />
-      <main className="flex-1 overflow-y-auto p-6 md:p-8">
-        {children}
-      </main>
-    </div>
+    <html lang="zh-CN">
+      <body className="min-h-full">
+        <AdminShell>{children}</AdminShell>
+      </body>
+    </html>
   )
 }

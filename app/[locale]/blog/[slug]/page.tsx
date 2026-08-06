@@ -1,4 +1,4 @@
-import { getLocale, getTranslations } from "next-intl/server"
+import { getTranslations, setRequestLocale } from "next-intl/server"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 import { blogPosts, getPostBySlug, getAllSlugs } from "@/lib/blog-data"
@@ -13,12 +13,11 @@ export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }))
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params
+export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {
+  const { slug, locale } = await params
   const post = getPostBySlug(slug)
   if (!post) return {}
 
-  const locale = await getLocale()
   const title = getLocalized(post.title, locale)
   const description = getLocalized(post.excerpt, locale)
 
@@ -66,7 +65,7 @@ function renderContent(content: string) {
   const flushTakeaways = () => {
     if (takeawayItems.length > 0) {
       elements.push(
-        <div key="key-takeaways" className="my-6 p-5 bg-accent-subtle border-l-4 border-accent rounded-r-lg">
+        <div key="key-takeaways" id="key-takeaways" className="my-6 p-5 bg-accent-subtle border-l-4 border-accent rounded-r-lg">
           <div className="flex items-center gap-2 mb-3">
             <svg className="h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -155,15 +154,15 @@ function parseInline(text: string): string {
     .replace(/\*\*(.+?)\*\*/g, '<strong class="font-bold text-primary">$1</strong>')
 }
 
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params
+export default async function BlogPostPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
+  const { slug, locale } = await params
+  setRequestLocale(locale)
   const post = getPostBySlug(slug)
 
   if (!post) {
     notFound()
   }
 
-  const locale = await getLocale()
   const t = await getTranslations("blog")
 
   const tagLabels = getLocalized(

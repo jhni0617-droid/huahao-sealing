@@ -26,7 +26,7 @@ export default async function AdminDashboardPage() {
     [],
   ) as any).count
 
-  // 热门入口页面：由于会话级去重，这里统计的是用户进入站点的第一个页面
+  // 热门页面：会话级去重后的页面访问次数（同一会话 30 分钟内同页只记一次）
   const topPages = await dbAll(
     `SELECT path, locale, COUNT(*) as count FROM page_views WHERE is_bot = 0
      GROUP BY path, locale ORDER BY count DESC LIMIT 8`,
@@ -61,9 +61,9 @@ export default async function AdminDashboardPage() {
     [],
   ) as any[]
 
-  // 最近真实访客明细
+  // 最近真实访客明细（visited_at 存 UTC，展示时转为 UTC+8 北京时间）
   const recentVisits = await dbAll(
-    `SELECT id, path, locale, country, referrer, visited_at
+    `SELECT id, path, locale, country, referrer, datetime(visited_at, '+8 hours') as visited_at
      FROM page_views WHERE is_bot = 0
      ORDER BY id DESC LIMIT 30`,
     [],
@@ -128,7 +128,7 @@ export default async function AdminDashboardPage() {
         </div>
 
         <div className="bg-white rounded-xl border border-gray-200 p-5">
-          <h2 className="text-sm font-semibold text-gray-900 mb-4">入口页面 TOP 8（用户首次访问的页面）</h2>
+          <h2 className="text-sm font-semibold text-gray-900 mb-4">热门页面 TOP 8（会话级去重）</h2>
           {topPages.length === 0 ? (
             <p className="text-sm text-gray-400">暂无数据</p>
           ) : (

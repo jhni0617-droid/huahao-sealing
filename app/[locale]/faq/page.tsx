@@ -1,4 +1,4 @@
-import { getLocale, getTranslations } from "next-intl/server"
+import { getLocale, getTranslations, setRequestLocale } from "next-intl/server"
 import { faqCoreTablesByLocale, faqCategoriesByLocale, faqFormulasByLocale } from "@/lib/translations-faq-page"
 import type { FAQItem } from "@/lib/faq-data"
 import FAQAccordion from "@/components/FAQAccordion"
@@ -8,9 +8,9 @@ import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 import PageHero from "@/components/PageHero"
 
-export async function generateMetadata() {
-  const locale = await getLocale()
-  const t = await getTranslations("faq")
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "faq" })
   return generateMeta({
     title: t("pageTitle"),
     description: t("pageSubtitle"),
@@ -62,8 +62,9 @@ function FAQItemBlock({ item }: { item: FAQItem }) {
   )
 }
 
-export default async function FAQPage() {
-  const locale = await getLocale()
+export default async function FAQPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  setRequestLocale(locale)
   const t = await getTranslations("faq")
   const hero = getLocalized({
     zh: { eyebrow: "技术资料库", primary: "咨询工程师", stats: ["核心表格", "FAQ 分类", "公式"] },
