@@ -6,6 +6,7 @@ import { factoryHighlightsByLocale } from "@/lib/translations"
 import Icon from "@/components/ui/Icon"
 import HeroDynamicContent from "@/components/HeroDynamicContent"
 import ClientCarousel from "@/components/ClientCarousel"
+import DesktopOnly from "@/components/DesktopOnly"
 
 const heroUi = {
   zh: {
@@ -117,8 +118,10 @@ export default async function HeroSection() {
             </div>
           </div>
 
-          {/* Hero carousel — grid second column, hidden on mobile via CSS */}
-          <ClientCarousel />
+          {/* Hero carousel — 桌面端专属（lg+），移动端不加载 JS/图片 */}
+          <DesktopOnly>
+            <ClientCarousel />
+          </DesktopOnly>
         </div>
 
         {/* Stats — mobile */}
