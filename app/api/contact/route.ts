@@ -1,6 +1,8 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextRequest, NextResponse, after } from "next/server"
 import nodemailer from "nodemailer"
 import { getDb, dbRun } from "@/lib/admin/db"
+import { sendCapiLead } from "@/lib/meta/capi"
+import { extractClientIp } from "@/lib/ip-geolocation"
 
 function createTransporter() {
   return nodemailer.createTransport({
@@ -99,6 +101,32 @@ Company: ${company || "N/A"}
     // 邮件发送失败：记录日志（非致命，询价已存入数据库则后台可见）
     if (mailResult.status === "rejected") {
       console.error("Email send failed (non-fatal):", mailResult.reason)
+    }
+
+    // Meta 转化 API：异步上报 Lead（不阻塞响应）。浏览器 Pixel 端会用同一
+    // metaEventId 上报，Meta 据此去重，保证浏览器被拦截/跳出时转化仍被记录。
+    const metaEventId = typeof body.metaEventId === "string" ? body.metaEventId : undefined
+    if (metaEventId) {
+      // after() 在响应发送后继续执行（Vercel Serverless 上不会被冻结中断）
+      after(() => {
+        sendCapiLead({
+          eventId: metaEventId,
+          email,
+          phone: phone || undefined,
+          name: name || undefined,
+          fbp: typeof body.metaFbp === "string" ? body.metaFbp : undefined,
+          fbc: typeof body.metaFbc === "string" ? body.metaFbc : undefined,
+          ip: extractClientIp(request.headers),
+          userAgent: request.headers.get("user-agent") || undefined,
+          product: productType || product || undefined,
+        })
+          .then((r) => {
+            if (r.ok && process.env.NODE_ENV === "development") {
+              console.log("[meta-capi] Lead sent:", r.response)
+            }
+          })
+          .catch((e) => console.error("[meta-capi] async error:", e))
+      })
     }
 
     return NextResponse.json({ success: true, message: "Inquiry received" })

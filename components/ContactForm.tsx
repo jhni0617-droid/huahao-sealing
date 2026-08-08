@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { useTranslations } from "next-intl"
 import { siteConfig } from "@/lib/constants"
+import { getMetaBrowserCookies, trackPixelEvent } from "@/lib/meta/client"
 import Icon from "@/components/ui/Icon"
 
 interface Props {
@@ -55,9 +56,18 @@ export default function ContactForm({ defaultProduct }: Props) {
     e.preventDefault()
     setLoading(true)
     setErrorMsg("")
+    // 事件唯一 ID：浏览器 Pixel 与服务端 CAPI 共用，Meta 据此去重
+    const metaEventId =
+      typeof crypto !== "undefined" && "randomUUID" in crypto
+        ? crypto.randomUUID()
+        : `${Date.now()}-${Math.random().toString(36).slice(2)}`
+    const { fbp, fbc } = getMetaBrowserCookies()
     try {
       const body: Record<string, string> = { ...form, _hp: honeypot }
       if (defaultProduct) body.product = defaultProduct
+      body.metaEventId = metaEventId
+      if (fbp) body.metaFbp = fbp
+      if (fbc) body.metaFbc = fbc
 
       if (file) {
         const base64 = await new Promise<string>((resolve) => {
@@ -76,8 +86,18 @@ export default function ContactForm({ defaultProduct }: Props) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       })
-      if (res.ok) setSubmitted(true)
-      else {
+      if (res.ok) {
+        setSubmitted(true)
+        // 浏览器端 Pixel 上报 Lead（服务端 CAPI 已在 /api/contact 内同步上报，同 event_id 去重）
+        trackPixelEvent(
+          "Lead",
+          {
+            content_name: "Contact Form",
+            ...(defaultProduct ? { content_category: defaultProduct } : {}),
+          },
+          metaEventId,
+        )
+      } else {
         const data = await res.json()
         setErrorMsg(data?.error || t("errorSend"))
       }

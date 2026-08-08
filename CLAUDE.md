@@ -76,6 +76,16 @@ lib/                        # 数据层（修改内容主要在这里）
 2. 参照已有页面格式
 3. 在 `app/sitemap.ts` 中添加路由
 
+### Meta Pixel / 转化 API（CAPI）跟踪
+- 配置文件：`lib/meta/capi.ts`（服务端上报）、`lib/meta/client.ts`（浏览器辅助）、`components/AnalyticsScripts.tsx`（Pixel 初始化 + 路由切换重发 PageView）
+- 事件：`PageView`（Pixel 自动/路由切换）、`Lead`（询价表单提交，Pixel + CAPI 双通道，同 `event_id` 去重）
+- 启用配置（`.env.local`）：
+  - `NEXT_PUBLIC_META_PIXEL_ID` — Pixel ID
+  - `META_CAPI_ACCESS_TOKEN` — 转化 API token（仅服务端使用，切勿暴露）
+  - `META_CAPI_TEST_EVENT_CODE` — 可选，测试事件代码（调试用，上线前清空）
+- 新增转化事件：在业务成功路径调用 `sendCapiEvent`（服务端）或 `trackPixelEvent`（浏览器），两者使用相同 `eventId` 避免重复计数
+- 隐私：PII（em/ph/fn）在服务端 SHA-256 哈希后上报；`fbp`/`fbc` 透传不哈希
+
 ### 修改样式/颜色
 → 编辑 `app/globals.css` 中的 `@theme` 块：
   - `--color-primary` — 主色（深蓝 #1a3a5c）
