@@ -63,15 +63,34 @@ export default async function Footer() {
                 <span>{cfg.address}</span>
               </div>
             </div>
-            <a
-              href={`https://wa.me/${cfg.whatsapp}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-5 px-5 py-2.5 bg-accent/10 border border-accent/20 text-accent text-sm font-semibold rounded-[10px] hover:bg-accent hover:text-white transition-all"
-            >
-              <Icon name="whatsapp" className="w-4 h-4" />
-              {t("common.whatsapp")}
-            </a>
+            <div className="flex flex-wrap gap-3 mt-5">
+              <a
+                href={cfg.facebookPage}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-accent/10 border border-accent/20 text-accent text-sm font-semibold rounded-[10px] hover:bg-accent hover:text-white transition-all"
+              >
+                <Icon name="facebook" className="w-4 h-4" />
+                Facebook
+              </a>
+              <a
+                href={`https://zalo.me/${cfg.zalo.replace(/\D/g, "")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-accent/10 border border-accent/20 text-accent text-sm font-semibold rounded-[10px] hover:bg-accent hover:text-white transition-all"
+              >
+                Zalo
+              </a>
+              <a
+                href={`https://wa.me/${cfg.whatsapp}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-accent/10 border border-accent/20 text-accent text-sm font-semibold rounded-[10px] hover:bg-accent hover:text-white transition-all"
+              >
+                <Icon name="whatsapp" className="w-4 h-4" />
+                {t("common.whatsapp")}
+              </a>
+            </div>
           </div>
         </div>
 

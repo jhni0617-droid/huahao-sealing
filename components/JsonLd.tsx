@@ -30,6 +30,7 @@ export function OrganizationJsonLd({ locale = "zh" }: { locale?: string }) {
     },
     sameAs: [
       `https://wa.me/${cfg.whatsapp}`,
+      cfg.facebookPage,
     ],
     description: cfg.description,
   }
@@ -60,7 +61,7 @@ export function OrganizationJsonLd({ locale = "zh" }: { locale?: string }) {
       { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "09:00", closes: "12:00" },
     ],
     areaServed: "Worldwide",
-    sameAs: [`https://wa.me/${cfg.whatsapp}`],
+    sameAs: [`https://wa.me/${cfg.whatsapp}`, cfg.facebookPage],
   }
 
   // WebSite schema (for site-level search / GEO signals)

@@ -193,6 +193,38 @@ export default async function ContactPage(props: { params: Promise<{ locale: str
                     </a>
                   </div>
                   <div>
+                    <div className="text-muted text-xs tracking-wider mb-1">{t("facebookLabel")}</div>
+                    <div className="space-y-1">
+                      <a
+                        href={cfg.facebookPage}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block text-primary font-medium hover:underline"
+                      >
+                        {t("facebookPageLabel")}
+                      </a>
+                      <a
+                        href={cfg.facebookProfile}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block text-primary font-medium hover:underline"
+                      >
+                        {t("facebookProfileLabel")}
+                      </a>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-muted text-xs tracking-wider mb-1">{t("zaloLabel")}</div>
+                    <a
+                      href={`https://zalo.me/${cfg.zalo.replace(/\D/g, "")}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary font-medium hover:underline"
+                    >
+                      {cfg.zalo}
+                    </a>
+                  </div>
+                  <div>
                     <div className="text-muted text-xs tracking-wider mb-1">{t("addressLabel")}</div>
                     <p>{cfg.address}</p>
                   </div>

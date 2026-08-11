@@ -7,6 +7,9 @@ export const siteConfig = {
   email: "seals@huahaoindustrial.com",
   phone: "+86-199-5646-8316",
   whatsapp: "8619956468316",
+  zalo: "+86 19556167860",
+  facebookProfile: "https://www.facebook.com/profile.php?id=61585729740434",
+  facebookPage: "https://www.facebook.com/profile.php?id=61583759223569",
   address: "中国安徽省六安市霍邱县龙潭镇产业园14号",
   website: "https://huahaoindustrial.com",
 }
@@ -20,6 +23,9 @@ export const enSiteConfig = {
   email: "seals@huahaoindustrial.com",
   phone: "+86-199-5646-8316",
   whatsapp: "8619956468316",
+  zalo: "+86 19556167860",
+  facebookProfile: "https://www.facebook.com/profile.php?id=61585729740434",
+  facebookPage: "https://www.facebook.com/profile.php?id=61583759223569",
   address: "No.14, Longtan Town Industrial Park, Huoqiu County, Lu'an, Anhui, China",
   website: "https://huahaoindustrial.com",
 }
