@@ -38,12 +38,14 @@ export default function VisitTracker() {
         : pathname
 
     const sessionId = getOrCreateSessionId()
+    // 真实来源只能从 document.referrer 取（fetch 请求的 Referer 是同源当前页，会被后端过滤）
+    const referrer = document.referrer || ""
 
     const timer = setTimeout(() => {
       fetch("/api/visit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ path: cleanPath, locale, sessionId }),
+        body: JSON.stringify({ path: cleanPath, locale, sessionId, referrer }),
         keepalive: true,
       }).catch(() => {})
     }, 1500)

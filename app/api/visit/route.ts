@@ -41,7 +41,11 @@ function extractReferrer(referrer: string | null, host: string | null): string |
   if (!referrer) return null
   try {
     const u = new URL(referrer)
-    if (host && u.hostname === host) return null
+    // 同源跳转（含端口差异，如 localhost:3005 → localhost）不算外部来源
+    if (host) {
+      const hostname = host.replace(/:\d+$/, "").toLowerCase()
+      if (u.hostname.toLowerCase() === hostname) return null
+    }
     return u.hostname
   } catch {
     return null
@@ -73,7 +77,11 @@ export async function POST(request: NextRequest) {
     }
 
     const ua = request.headers.get("user-agent") || ""
-    const referrerRaw = request.headers.get("referer") || request.headers.get("referrer")
+    // 优先取前端 document.referrer（真实外部来源）；header 的 Referer 是同源当前页，仅作兜底
+    const referrerRaw =
+      (typeof body.referrer === "string" && body.referrer ? body.referrer : null) ||
+      request.headers.get("referer") ||
+      request.headers.get("referrer")
     const host = request.headers.get("host")
     const referrer = extractReferrer(referrerRaw, host)
 
