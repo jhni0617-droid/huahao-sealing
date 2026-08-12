@@ -6,7 +6,7 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd"
 import PageHero from "@/components/PageHero"
 import QuickCTA from "@/components/QuickCTA"
 import CTASection from "@/components/CTASection"
-import Link from "next/link"
+import { Link } from "@/i18n/routing"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params

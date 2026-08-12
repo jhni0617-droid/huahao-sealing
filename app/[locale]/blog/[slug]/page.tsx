@@ -6,7 +6,7 @@ import { siteConfig } from "@/lib/constants"
 import { ArticleJsonLd, BreadcrumbJsonLd, FaqJsonLd } from "@/components/JsonLd"
 import PageHero from "@/components/PageHero"
 import CTASection from "@/components/CTASection"
-import Link from "next/link"
+import { Link } from "@/i18n/routing"
 import { notFound } from "next/navigation"
 
 export async function generateStaticParams() {

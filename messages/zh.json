@@ -313,6 +313,7 @@
     "installationNotes": "安装注意事项",
     "technicalParams": "技术参数",
     "graphiteParams": "普通石墨技术参数",
+    "graphiteParamsCategory": "石墨技术参数",
     "graphiteParamsNote": "以上为基础普通石墨（M106H）物理性能指标，不同浸渍工艺后性能会有所提升。",
     "materials": "可选材料",
     "matingMaterials": "配对材质建议",
