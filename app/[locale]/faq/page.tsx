@@ -7,6 +7,7 @@ import { FaqJsonLd } from "@/components/JsonLd"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 import PageHero from "@/components/PageHero"
+import Breadcrumb from "@/components/Breadcrumb"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -100,6 +101,7 @@ export default async function FAQPage({ params }: { params: Promise<{ locale: st
           { value: `${techFormulas.length}`, label: hero.stats[2] },
         ]}
       />
+      <Breadcrumb items={[{ name: t("pageTitle"), url: "/faq" }]} locale={locale} />
 
       {/* Part 1: Core Tables */}
       <section className="section-padding industrial-surface">

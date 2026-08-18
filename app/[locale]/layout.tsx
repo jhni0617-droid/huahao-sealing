@@ -69,7 +69,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         : "Professional manufacturer of carbon graphite seal rings, bushings and bearings, and split rings.",
       type: "website",
       url: canonicalUrl,
-      locale: locale === "zh" ? "zh_CN" : locale === "ja" ? "ja_JP" : "en_US",
+      locale: locale === "zh" ? "zh_CN" : locale === "ja" ? "ja_JP" : locale === "vi" ? "vi_VN" : locale === "th" ? "th_TH" : locale === "ru" ? "ru_RU" : locale === "ko" ? "ko_KR" : "en_US",
       siteName: "Huahao Sealing",
       images: [{ url: `${siteConfig.website}/images/og-banner.jpg`, width: 1200, height: 630 }],
     },

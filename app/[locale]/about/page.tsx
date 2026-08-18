@@ -7,6 +7,7 @@ import { FaqJsonLd } from "@/components/JsonLd"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 import PageHero from "@/components/PageHero"
+import Breadcrumb from "@/components/Breadcrumb"
 import Icon, { type IconName } from "@/components/ui/Icon"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -626,6 +627,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           { value: "100%", label: copy.stats[2] },
         ]}
       />
+      <Breadcrumb items={[{ name: t("pageTitle"), url: "/about" }]} locale={locale} />
 
       <section className="section-padding bg-white">
         <div className="container-wide">

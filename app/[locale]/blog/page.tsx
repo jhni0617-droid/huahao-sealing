@@ -2,7 +2,7 @@ import { getLocale, getTranslations, setRequestLocale } from "next-intl/server"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 import { blogPostsMeta } from "@/lib/blog-data"
-import { BreadcrumbJsonLd } from "@/components/JsonLd"
+import Breadcrumb from "@/components/Breadcrumb"
 import PageHero from "@/components/PageHero"
 import QuickCTA from "@/components/QuickCTA"
 import CTASection from "@/components/CTASection"
@@ -73,18 +73,12 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
 
   return (
     <>
-      <BreadcrumbJsonLd
-        locale={locale}
-        items={[
-          { name: getLocalized({ zh: "首页", en: "Home" }, locale), url: "" },
-          { name: eyebrow, url: "/blog" },
-        ]}
-      />
       <PageHero
         eyebrow={eyebrow}
         title={t("pageTitle")}
         subtitle={t("pageSubtitle")}
       />
+      <Breadcrumb items={[{ name: eyebrow, url: "/blog" }]} locale={locale} />
       <QuickCTA />
 
       <section className="section-padding industrial-surface">

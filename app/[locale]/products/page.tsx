@@ -3,6 +3,7 @@ import ProductsPageContent from "./products-content"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 import PageHero from "@/components/PageHero"
+import Breadcrumb from "@/components/Breadcrumb"
 
 const heroCopy = {
   zh: {
@@ -81,6 +82,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
           { value: "24h", label: copy.stats[2] },
         ]}
       />
+      <Breadcrumb items={[{ name: t("pageTitle"), url: "/products" }]} locale={locale} />
 
       <ProductsPageContent />
     </>

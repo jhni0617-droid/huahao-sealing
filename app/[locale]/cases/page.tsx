@@ -7,6 +7,7 @@ import { casesByLocale } from "@/lib/translations"
 import { getDb, dbAll } from "@/lib/admin/db"
 import { getLocalized } from "@/lib/locale-data"
 import PageHero from "@/components/PageHero"
+import Breadcrumb from "@/components/Breadcrumb"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -69,6 +70,7 @@ export default async function CasesPage({ params }: { params: Promise<{ locale: 
           { value: "720h", label: t("metricRuntime") },
         ]}
       />
+      <Breadcrumb items={[{ name: t("pageTitle"), url: "/cases" }]} locale={locale} />
 
       <section className="section-padding industrial-surface">
         <div className="container-wide space-y-6 sm:space-y-10">

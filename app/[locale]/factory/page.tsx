@@ -2,6 +2,7 @@ import Image from "next/image"
 import { getLocale, setRequestLocale } from "next-intl/server"
 import { Link } from "@/i18n/routing"
 import PageHero from "@/components/PageHero"
+import Breadcrumb from "@/components/Breadcrumb"
 import CTASection from "@/components/CTASection"
 import Icon, { type IconName } from "@/components/ui/Icon"
 import { generateMeta } from "@/lib/utils"
@@ -296,6 +297,7 @@ export default async function FactoryPage({ params }: { params: Promise<{ locale
         secondaryHref="/products"
         stats={copy.stats}
       />
+      <Breadcrumb items={[{ name: copy.title, url: "/factory" }]} locale={locale} />
 
       <section className="section-padding bg-white">
         <div className="container-wide">

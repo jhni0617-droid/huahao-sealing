@@ -7,6 +7,7 @@ import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 import { applicationsDetailsByLocale } from "@/lib/translations-app-details"
 import PageHero from "@/components/PageHero"
+import Breadcrumb from "@/components/Breadcrumb"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -218,6 +219,7 @@ export default async function ApplicationsPage({ params }: { params: Promise<{ l
           { value: "pH 0-14", label: hero.stats[2] },
         ]}
       />
+      <Breadcrumb items={[{ name: t("pageTitle"), url: "/applications" }]} locale={locale} />
 
       <section className="section-padding industrial-surface">
         <div className="container-wide">

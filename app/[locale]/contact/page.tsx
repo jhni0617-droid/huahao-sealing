@@ -6,6 +6,7 @@ import { siteConfig, enSiteConfig } from "@/lib/constants"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 import PageHero from "@/components/PageHero"
+import Breadcrumb from "@/components/Breadcrumb"
 
 const contactCopy = {
   zh: {
@@ -134,6 +135,7 @@ export default async function ContactPage(props: { params: Promise<{ locale: str
           { value: "OEM", label: copy.stats[2] },
         ]}
       />
+      <Breadcrumb items={[{ name: t("pageTitle"), url: "/contact" }]} locale={locale} />
 
       <section className="section-padding industrial-surface">
         <div className="container-wide">
