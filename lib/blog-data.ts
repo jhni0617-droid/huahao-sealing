@@ -8,23 +8,23 @@ import { blogPostsBatch7 } from "./blog-data-7"
 
 export interface BlogPost {
   slug: string
-  title: { zh: string; en: string; vi?: string; th?: string }
-  excerpt: { zh: string; en: string; vi?: string; th?: string }
+  title: { zh: string; en: string; vi?: string; th?: string; ru?: string; ja?: string; ko?: string }
+  excerpt: { zh: string; en: string; vi?: string; th?: string; ru?: string; ja?: string; ko?: string }
   tag: string
   date: string
-  content: { zh: string; en: string; vi?: string; th?: string }
+  content: { zh: string; en: string; vi?: string; th?: string; ru?: string; ja?: string; ko?: string }
 }
 
 export interface BlogPostMeta {
   slug: string
-  title: { zh: string; en: string; vi?: string; th?: string }
-  excerpt: { zh: string; en: string; vi?: string; th?: string }
+  title: { zh: string; en: string; vi?: string; th?: string; ru?: string; ja?: string; ko?: string }
+  excerpt: { zh: string; en: string; vi?: string; th?: string; ru?: string; ja?: string; ko?: string }
   tag: string
   date: string
 }
 
 // 翻译结果 JSON（由 scripts/translate-blog.ts 增量生成）
-// 结构：{ [slug]: { vi?: {title,excerpt,content}, th?: {...} } }
+// 结构：{ [slug]: { vi?: {title,excerpt,content}, th?: {...}, ru?: {...}, ja?: {...}, ko?: {...} } }
 import blogTranslations from "../content/blog-translations.json"
 
 export const blogPosts: BlogPost[] = [
@@ -40,9 +40,9 @@ export const blogPosts: BlogPost[] = [
   if (!t) return post
   return {
     ...post,
-    title: { ...post.title, vi: t.vi?.title, th: t.th?.title },
-    excerpt: { ...post.excerpt, vi: t.vi?.excerpt, th: t.th?.excerpt },
-    content: { ...post.content, vi: t.vi?.content, th: t.th?.content },
+    title: { ...post.title, vi: t.vi?.title, th: t.th?.title, ru: t.ru?.title, ja: t.ja?.title, ko: t.ko?.title },
+    excerpt: { ...post.excerpt, vi: t.vi?.excerpt, th: t.th?.excerpt, ru: t.ru?.excerpt, ja: t.ja?.excerpt, ko: t.ko?.excerpt },
+    content: { ...post.content, vi: t.vi?.content, th: t.th?.content, ru: t.ru?.content, ja: t.ja?.content, ko: t.ko?.content },
   }
 })
 

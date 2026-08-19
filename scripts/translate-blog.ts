@@ -33,10 +33,13 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY
 const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4o-mini"
 const OPENAI_BASE_URL = process.env.OPENAI_BASE_URL || "https://api.openai.com/v1"
 const TRANSLATIONS_PATH = path.join(process.cwd(), "content", "blog-translations.json")
-const TARGET_LANGS = ["vi", "th"] as const
+const TARGET_LANGS = ["vi", "th", "ru", "ja", "ko"] as const
 const LANG_NAMES: Record<string, string> = {
   vi: "Vietnamese",
   th: "Thai",
+  ru: "Russian",
+  ja: "Japanese",
+  ko: "Korean",
 }
 const MAX_RETRIES = 3
 const RETRY_DELAY_MS = 2000
@@ -65,7 +68,7 @@ interface PostData {
 
 function extractPosts(): PostData[] {
   const posts: PostData[] = []
-  for (let i = 1; i <= 6; i++) {
+  for (let i = 1; i <= 7; i++) {
     const filePath = path.join(process.cwd(), "lib", `blog-data-${i}.ts`)
     const content = fs.readFileSync(filePath, "utf8")
 
