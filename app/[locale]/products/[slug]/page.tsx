@@ -30,6 +30,7 @@ export async function generateMetadata({ params }: Props) {
     description: product.shortDesc,
     path: `/products/${slug}`,
     locale,
+    image: product.image ? `${siteConfig.website}${product.image}` : undefined,
   })
 }
 

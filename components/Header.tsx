@@ -162,6 +162,21 @@ export default function Header() {
       ],
     },
     {
+      label: getLocalized({ zh: "技术资源", en: "Resources", vi: "Tài nguyên", th: "แหล่งข้อมูล", ru: "Ресурсы", ja: "リソース", ko: "리소스" }, locale),
+      href: "/compare",
+      hasDropdown: true,
+      dropdownGroups: [
+        {
+          title: getLocalized({ zh: "技术资源", en: "Resources", vi: "Tài nguyên", th: "แหล่งข้อมูล", ru: "Ресурсы", ja: "リソース", ko: "리소스" }, locale),
+          items: [
+            { label: getLocalized({ zh: "材料对比", en: "Material Compare", vi: "So sánh vật liệu", th: "เปรียบเทียบวัสดุ", ru: "Сравнение материалов", ja: "材料比較", ko: "재료 비교" }, locale), href: "/compare", icon: "layers" },
+            { label: getLocalized({ zh: "技术参数", en: "Technical Specs", vi: "Thông số kỹ thuật", th: "ข้อมูลทางเทคนิค", ru: "Технические параметры", ja: "技術パラメータ", ko: "기술 매개변수" }, locale), href: "/technical-params", icon: "ruler" },
+            { label: getLocalized({ zh: "行业应用", en: "Applications", vi: "Ứng dụng", th: "การใช้งาน", ru: "Применения", ja: "応用", ko: "적용 분야" }, locale), href: "/applications", icon: "factory" },
+          ],
+        },
+      ],
+    },
+    {
       label: t("nav.about"),
       href: "/about",
       hasDropdown: true,
