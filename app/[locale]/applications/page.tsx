@@ -6,6 +6,7 @@ import ApplicationConditionsSection from "@/components/ApplicationConditionsSect
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 import { applicationsDetailsByLocale } from "@/lib/translations-app-details"
+import { industryLandings } from "@/lib/industry-landing-data"
 import PageHero from "@/components/PageHero"
 import Breadcrumb from "@/components/Breadcrumb"
 
@@ -271,6 +272,20 @@ export default async function ApplicationsPage({ params }: { params: Promise<{ l
               </div>
             )
           })}
+        </div>
+      </section>
+
+      <section className="section-padding industrial-surface">
+        <div className="container-wide">
+          <h2 className="text-3xl font-bold text-primary mb-8">{getLocalized({ zh: "行业应用专题", en: "Industry Application Guides", vi: "Hướng dẫn ứng dụng ngành", th: "คู่มือการใช้งานอุตสาหกรรม" }, locale)}</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {industryLandings.map((industry) => (
+              <Link key={industry.slug} href={`/applications/${industry.slug}`} className="card-static p-5 hover:border-accent transition-colors block">
+                <h3 className="font-semibold text-primary mb-2">{getLocalized(industry.title, locale)}</h3>
+                <p className="text-sm text-muted line-clamp-2">{getLocalized(industry.description, locale)}</p>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 

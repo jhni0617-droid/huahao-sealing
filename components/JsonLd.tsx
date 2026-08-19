@@ -211,6 +211,7 @@ export function ArticleJsonLd({
     description,
     datePublished: date,
     dateModified: date,
+    image: `${baseUrl}/images/og-banner.jpg`,
     author: {
       "@type": "Organization",
       name: author || cfg.fullName,

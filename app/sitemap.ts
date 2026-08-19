@@ -35,7 +35,10 @@ export default async function sitemap() {
       priority: r.priority,
       alternates: {
         languages: Object.fromEntries(
-          locales.map((l) => [l, `${baseUrl}/${l}${r.path}`])
+          [
+            ["x-default", `${baseUrl}/en${r.path}`],
+            ...locales.map((l) => [l, `${baseUrl}/${l}${r.path}`]),
+          ]
         ),
       },
     }))
@@ -50,7 +53,10 @@ export default async function sitemap() {
       priority: "0.6" as const,
       alternates: {
         languages: Object.fromEntries(
-          locales.map((l) => [l, `${baseUrl}/${l}/products/${p.slug}`])
+          [
+            ["x-default", `${baseUrl}/en/products/${p.slug}`],
+            ...locales.map((l) => [l, `${baseUrl}/${l}/products/${p.slug}`]),
+          ]
         ),
       },
     }))
@@ -64,7 +70,10 @@ export default async function sitemap() {
       priority: "0.7" as const,
       alternates: {
         languages: Object.fromEntries(
-          locales.map((l) => [l, `${baseUrl}/${l}/blog/${p.slug}`])
+          [
+            ["x-default", `${baseUrl}/en/blog/${p.slug}`],
+            ...locales.map((l) => [l, `${baseUrl}/${l}/blog/${p.slug}`]),
+          ]
         ),
       },
     }))
@@ -78,7 +87,10 @@ export default async function sitemap() {
       priority: "0.7" as const,
       alternates: {
         languages: Object.fromEntries(
-          locales.map((l) => [l, `${baseUrl}/${l}/applications/${item.slug}`])
+          [
+            ["x-default", `${baseUrl}/en/applications/${item.slug}`],
+            ...locales.map((l) => [l, `${baseUrl}/${l}/applications/${item.slug}`]),
+          ]
         ),
       },
     }))
@@ -92,7 +104,10 @@ export default async function sitemap() {
       priority: "0.6" as const,
       alternates: {
         languages: Object.fromEntries(
-          locales.map((l) => [l, `${baseUrl}/${l}/compare/${item.slug}`])
+          [
+            ["x-default", `${baseUrl}/en/compare/${item.slug}`],
+            ...locales.map((l) => [l, `${baseUrl}/${l}/compare/${item.slug}`]),
+          ]
         ),
       },
     }))

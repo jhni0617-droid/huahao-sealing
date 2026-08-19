@@ -85,6 +85,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       index: true,
       follow: true,
     },
+    other: {
+      "content-language": locale,
+    },
   }
 }
 

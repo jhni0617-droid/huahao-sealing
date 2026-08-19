@@ -46,9 +46,10 @@ function extractTakeaways(content: string): string[] {
   const lines = content.split("\n")
   const items: string[] = []
   let inTakeaways = false
+  const takeawayHeaders = ["## 核心要点", "## Key Takeaways", "## Điều chính", "## ประเด็นหลัก"]
   for (const line of lines) {
     const trimmed = line.trim()
-    if (trimmed.startsWith("## 核心要点") || trimmed.startsWith("## Key Takeaways")) {
+    if (takeawayHeaders.some((h) => trimmed.startsWith(h))) {
       inTakeaways = true
       continue
     }
@@ -201,7 +202,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
   const content = getLocalized(post.content, locale)
 
   // GEO：基于文章“核心要点”生成 FAQ schema（内容真实，非编造）
-  const takeaways = extractTakeaways(post.content[locale === "zh" ? "zh" : "en"])
+  const blogContent = (post.content as Record<string, string | undefined>)[locale] ?? post.content.en
+  const takeaways = extractTakeaways(blogContent)
   const faqQuestions = [
     {
       q: locale === "zh" ? `「${post.title.zh}」的核心要点有哪些？` : `What are the key takeaways of "${post.title.en}"?`,
