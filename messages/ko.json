@@ -206,6 +206,7 @@
       "email": "이메일",
       "emailRequired": "*필수",
       "emailPlaceholder": "your@email.com",
+      "emailInvalid": "유효한 이메일 주소를 입력해주세요",
       "phone": "전화",
       "phoneOptional": "(선택사항)",
       "phonePlaceholder": "+86-xxx-xxxx",

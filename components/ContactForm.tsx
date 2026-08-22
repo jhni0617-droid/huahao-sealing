@@ -10,6 +10,10 @@ interface Props {
   defaultProduct?: string
 }
 
+// 邮箱正则：本地部分(字母数字._%+-) @ 域名(字母数字.-) . TLD(≥2字母)
+// 与 app/api/contact/route.ts 保持一致，前后端共用同一规格
+const EMAIL_RE = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+
 export default function ContactForm({ defaultProduct }: Props) {
   const [step, setStep] = useState(1)
   const [submitted, setSubmitted] = useState(false)
@@ -108,7 +112,9 @@ export default function ContactForm({ defaultProduct }: Props) {
     }
   }
 
-  const isValidStep1 = form.email && form.message
+  // 邮箱必填且必须符合规格；留言必填。电话号码可选（input 无 required）
+  const emailValid = EMAIL_RE.test(form.email.trim())
+  const isValidStep1 = form.email.trim() && emailValid && form.message.trim()
 
   const labelCn = (label: string, opt: string) => (
     <>{label} <span className="text-gray-400 font-normal">{opt}</span></>
@@ -164,6 +170,9 @@ export default function ContactForm({ defaultProduct }: Props) {
             <div>
               <label className="form-label" htmlFor="contact-email">{t("email")} <span className="text-red-500">{t("emailRequired")}</span></label>
               <input id="contact-email" type="email" required className="form-input" placeholder={t("emailPlaceholder")} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
+              {form.email && !emailValid && (
+                <p className="text-sm text-red-500 mt-1">{t("emailInvalid")}</p>
+              )}
             </div>
             <div>
               <label className="form-label" htmlFor="contact-phone">{labelCn(t("phone"), t("phoneOptional"))}</label>

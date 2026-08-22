@@ -206,6 +206,7 @@
       "email": "Email",
       "emailRequired": "*Required",
       "emailPlaceholder": "your@email.com",
+      "emailInvalid": "Please enter a valid email address",
       "phone": "Phone",
       "phoneOptional": "(optional)",
       "phonePlaceholder": "+86-xxx-xxxx",

@@ -206,6 +206,7 @@
       "email": "邮箱",
       "emailRequired": "*必填",
       "emailPlaceholder": "your@email.com",
+      "emailInvalid": "请输入有效的邮箱地址",
       "phone": "电话",
       "phoneOptional": "(可不填)",
       "phonePlaceholder": "+86-xxx-xxxx",

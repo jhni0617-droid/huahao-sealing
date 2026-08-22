@@ -206,6 +206,7 @@
       "email": "Email",
       "emailRequired": "*Обязательно",
       "emailPlaceholder": "your@email.com",
+      "emailInvalid": "Пожалуйста, введите корректный адрес электронной почты",
       "phone": "Телефон",
       "phoneOptional": "(необязательно)",
       "phonePlaceholder": "+86-xxx-xxxx",

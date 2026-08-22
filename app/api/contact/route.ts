@@ -4,6 +4,11 @@ import { getDb, dbRun } from "@/lib/admin/db"
 import { sendCapiLead } from "@/lib/meta/capi"
 import { extractClientIp } from "@/lib/ip-geolocation"
 
+// 邮箱正则：本地部分(字母数字._%+-) @ 域名(字母数字.-) . TLD(≥2字母)
+// 与 components/ContactForm.tsx 保持一致，前后端共用同一规格
+// 用于过滤机器人提交的无效邮箱（如 a@b.c / test@test / 随机字符串）
+const EMAIL_RE = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+
 function createTransporter() {
   return nodemailer.createTransport({
     host: process.env.SMTP_HOST || "smtp.qiye.aliyun.com",
@@ -21,13 +26,19 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const { name, email, phone, company, productType, industry, temperature, pressure, medium, speed, quantity, message, product, fileName, fileContent, _hp } = body
 
-    // Honeypot anti-spam: if hidden field was filled, silently accept
+    // Honeypot 反机器人：隐藏字段被填即判定为机器人，静默接收不报错（迷惑机器人）
     if (_hp) {
       return NextResponse.json({ success: true, message: "Inquiry received" })
     }
 
+    // 邮箱必填且必须符合规格（过滤机器人提交的无效邮箱）
+    // 电话号码可选：不强制填写
     if (!email || !message) {
       return NextResponse.json({ error: "请填写邮箱和留言" }, { status: 400 })
+    }
+
+    if (!EMAIL_RE.test(String(email).trim())) {
+      return NextResponse.json({ error: "邮箱格式不正确" }, { status: 400 })
     }
 
     // 构造邮件内容

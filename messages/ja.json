@@ -206,6 +206,7 @@
       "email": "メール",
       "emailRequired": "*必須",
       "emailPlaceholder": "your@email.com",
+      "emailInvalid": "有効なメールアドレスを入力してください",
       "phone": "電話番号",
       "phoneOptional": "(任意)",
       "phonePlaceholder": "+86-xxx-xxxx",

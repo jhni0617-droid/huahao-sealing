@@ -206,6 +206,7 @@
       "email": "อีเมล",
       "emailRequired": "*จำเป็น",
       "emailPlaceholder": "your@email.com",
+      "emailInvalid": "กรุณากรอกที่อยู่อีเมลที่ถูกต้อง",
       "phone": "โทรศัพท์",
       "phoneOptional": "(ไม่บังคับ)",
       "phonePlaceholder": "+86-xxx-xxxx",
