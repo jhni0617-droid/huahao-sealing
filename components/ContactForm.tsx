@@ -38,8 +38,13 @@ export default function ContactForm({ defaultProduct }: Props) {
   const [fileError, setFileError] = useState("")
   const t = useTranslations("contact.form")
 
-  // Honeypot anti-spam: hidden field bots fill in but humans don't see
-  const [honeypot, setHoneypot] = useState("")
+  // Honeypot 反机器人：3 个隐藏字段 + 1 个提交时间戳
+  // 字段名故意取诱饵名字（website/url/phone_alt），机器人识别为常见字段会自动填，人类看不到
+  const [honeypot, setHoneypot] = useState("") // _hp：通用字段
+  const [honeypotWebsite, setHoneypotWebsite] = useState("") // _hp2：website 诱饵
+  const [honeypotUrl, setHoneypotUrl] = useState("") // _hp3：url 诱饵
+  // 表单挂载时间戳：用于后端检测秒填机器人（< 1.5s 判定为机器人）
+  const [formMountedAt] = useState(() => Date.now())
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.files?.[0]
@@ -67,7 +72,13 @@ export default function ContactForm({ defaultProduct }: Props) {
         : `${Date.now()}-${Math.random().toString(36).slice(2)}`
     const { fbp, fbc } = getMetaBrowserCookies()
     try {
-      const body: Record<string, string> = { ...form, _hp: honeypot }
+      const body: Record<string, string> = {
+        ...form,
+        _hp: honeypot,
+        _hp2: honeypotWebsite,
+        _hp3: honeypotUrl,
+        _t0: String(formMountedAt),
+      }
       if (defaultProduct) body.product = defaultProduct
       body.metaEventId = metaEventId
       if (fbp) body.metaFbp = fbp
@@ -144,10 +155,14 @@ export default function ContactForm({ defaultProduct }: Props) {
 
   return (
     <form onSubmit={handleSubmit} className="card-static bg-white p-6 md:p-8 space-y-5">
-      {/* Honeypot: invisible to users, catches bots */}
-      <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", opacity: 0 }}>
+      {/* Honeypot 反机器人：3 个隐藏诱饵字段，机器人会自动填，人类看不到 */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", top: 0, opacity: 0, pointerEvents: "none", height: 0, width: 0, overflow: "hidden" }}>
         <label htmlFor="contact-hp">Leave this empty</label>
-        <input id="contact-hp" tabIndex={-1} autoComplete="off" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} />
+        <input id="contact-hp" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} />
+        <label htmlFor="contact-hp2">Website URL</label>
+        <input id="contact-hp2" name="url" tabIndex={-1} autoComplete="off" aria-hidden="true" value={honeypotWebsite} onChange={(e) => setHoneypotWebsite(e.target.value)} />
+        <label htmlFor="contact-hp3">Alternate phone</label>
+        <input id="contact-hp3" name="phone_alt" tabIndex={-1} autoComplete="off" aria-hidden="true" value={honeypotUrl} onChange={(e) => setHoneypotUrl(e.target.value)} />
       </div>
 
       <p className="text-sm text-muted">

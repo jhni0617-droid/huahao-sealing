@@ -24,11 +24,22 @@ function createTransporter() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { name, email, phone, company, productType, industry, temperature, pressure, medium, speed, quantity, message, product, fileName, fileContent, _hp } = body
+    const { name, email, phone, company, productType, industry, temperature, pressure, medium, speed, quantity, message, product, fileName, fileContent, _hp, _hp2, _hp3, _t0 } = body
 
-    // Honeypot 反机器人：隐藏字段被填即判定为机器人，静默接收不报错（迷惑机器人）
-    if (_hp) {
+    // Honeypot 反机器人：任一隐藏诱饵字段被填即判定为机器人
+    // 三个诱饵字段（website/url/phone_alt）覆盖不同机器人扫描策略
+    if (_hp || _hp2 || _hp3) {
       return NextResponse.json({ success: true, message: "Inquiry received" })
+    }
+
+    // 提交时间检测：< 1.5 秒视为机器人秒填（人类填写+翻页至少数秒）
+    // 静默返回 200 不暴露拒绝逻辑，迷惑机器人继续浪费资源
+    const SUBMIT_MIN_MS = 1500
+    if (_t0) {
+      const elapsed = Date.now() - Number(_t0)
+      if (!Number.isNaN(elapsed) && elapsed < SUBMIT_MIN_MS) {
+        return NextResponse.json({ success: true, message: "Inquiry received" })
+      }
     }
 
     // 邮箱必填且必须符合规格（过滤机器人提交的无效邮箱）
