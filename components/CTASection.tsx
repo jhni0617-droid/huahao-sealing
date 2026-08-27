@@ -16,14 +16,16 @@ export default function CTASection({ title, subtitle, primaryLabel, primaryHref 
 
   return (
     <section className="relative overflow-hidden bg-primary">
-      <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)", backgroundSize: "42px 42px" }} />
-      <div className="absolute right-0 top-0 h-72 w-72 bg-accent/10 blur-[110px] pointer-events-none" />
+      <div className="absolute inset-y-0 left-1/2 hidden w-px bg-white/[0.06] md:block" aria-hidden />
 
       <div className="container-wide py-16 md:py-20 relative z-10">
         <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
           <div>
-            <div className="mb-4 h-0.5 w-16 bg-accent" />
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+            <div className="en-caption mb-3 flex items-center gap-3 text-xs text-slate-400" aria-hidden>
+              <span className="h-[2px] w-8 bg-accent" />
+              Get a Quote
+            </div>
+            <h2 className="text-3xl font-bold mb-4 text-white md:text-4xl">
               {title || t("ctaTitle")}
             </h2>
             <p className="text-gray-400 max-w-2xl leading-relaxed text-base">

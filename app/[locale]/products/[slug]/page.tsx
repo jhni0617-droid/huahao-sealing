@@ -48,6 +48,17 @@ export default async function ProductDetailPage({ params }: Props) {
 
   const isSealRing = product.category === "碳石墨密封环" || product.category === "Seal Rings"
   const displayCategory = getLocalizedProductCategory(product.category, locale)
+
+  // GEO：答案优先的关键事实摘要（标签多语言），便于 AI 引擎与精选摘要直接引用
+  const keyFactLabels = getLocalized({
+    zh: { heading: "关键参数速览", model: "型号", category: "产品类别", materials: "适用材料", applications: "典型应用" },
+    en: { heading: "Key Facts", model: "Model", category: "Category", materials: "Materials", applications: "Applications" },
+    vi: { heading: "Thông số chính", model: "Model", category: "Danh mục", materials: "Vật liệu", applications: "Ứng dụng" },
+    th: { heading: "ข้อมูลสำคัญ", model: "รุ่น", category: "หมวดหมู่", materials: "วัสดุ", applications: "การใช้งาน" },
+    ru: { heading: "Ключевые параметры", model: "Модель", category: "Категория", materials: "Материалы", applications: "Применение" },
+    ja: { heading: "主要スペック", model: "型番", category: "カテゴリ", materials: "材料", applications: "用途" },
+    ko: { heading: "핵심 사양", model: "모델", category: "분류", materials: "재료", applications: "적용 분야" },
+  }, locale)
   const defaultMating = getLocalized({
     zh: ["碳化硅（SiC）", "碳化钨（WC）", "氧化铝陶瓷", "高铬不锈钢"],
     en: ["Silicon Carbide (SiC)", "Tungsten Carbide (WC)", "Alumina Ceramic", "High-Chrome Stainless Steel"],
@@ -70,7 +81,10 @@ export default async function ProductDetailPage({ params }: Props) {
         model={product.model}
         description={product.description}
         image={product.image}
-                category={displayCategory}
+        category={displayCategory}
+        slug={slug}
+        materials={product.materials}
+        specs={product.specs}
         locale={locale}
       />
 
@@ -111,6 +125,24 @@ export default async function ProductDetailPage({ params }: Props) {
               </div>
 
               <p className="text-muted leading-relaxed mb-8">{product.description}</p>
+
+              {/* GEO 关键事实块：答案优先、可被 AI 引擎直接摘取 */}
+              <dl id="key-facts" className="mb-8">
+                <dt className="en-caption mb-3 text-xs text-muted-light">{keyFactLabels.heading}</dt>
+                <div className="grid grid-cols-2 gap-px border border-border bg-border sm:grid-cols-4">
+                  {[
+                    { label: keyFactLabels.model, value: product.model },
+                    { label: keyFactLabels.category, value: displayCategory },
+                    { label: keyFactLabels.materials, value: product.materials.slice(0, 2).join(" / ") },
+                    { label: keyFactLabels.applications, value: product.applications[0] },
+                  ].map((f) => (
+                    <div key={f.label} className="bg-white p-3.5">
+                      <dt className="text-[11px] font-medium text-muted">{f.label}</dt>
+                      <dd className="mt-1 text-sm font-semibold leading-snug text-primary">{f.value}</dd>
+                    </div>
+                  ))}
+                </div>
+              </dl>
 
               {/* CTAs */}
               <div className="flex flex-wrap gap-3 mb-8">

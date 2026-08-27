@@ -28,10 +28,7 @@ export function OrganizationJsonLd({ locale = "zh" }: { locale?: string }) {
       streetAddress: cfg.address,
       addressCountry: "CN",
     },
-    sameAs: [
-      `https://wa.me/${cfg.whatsapp}`,
-      cfg.facebookPage,
-    ],
+    sameAs: [cfg.facebookProfile, cfg.facebookPage].filter(Boolean),
     description: cfg.description,
   }
 
@@ -61,7 +58,26 @@ export function OrganizationJsonLd({ locale = "zh" }: { locale?: string }) {
       { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "09:00", closes: "12:00" },
     ],
     areaServed: "Worldwide",
-    sameAs: [`https://wa.me/${cfg.whatsapp}`, cfg.facebookPage],
+    sameAs: [cfg.facebookProfile, cfg.facebookPage].filter(Boolean),
+    // GEO：knowsAbout 帮助生成式引擎建立公司与主题领域的关联
+    knowsAbout: [
+      "carbon graphite seals",
+      "mechanical seal faces",
+      "graphite bushings",
+      "graphite bearings",
+      "segmented split rings",
+      "pump shaft sealing",
+      "marine shaft seals",
+      "resin impregnated graphite",
+      "metal impregnated carbon graphite",
+    ],
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      email: cfg.email,
+      telephone: cfg.phone,
+      availableLanguage: ["en", "zh", "vi", "th", "ru", "ja", "ko"],
+    },
   }
 
   // WebSite schema (for site-level search / GEO signals)
@@ -106,6 +122,9 @@ export function ProductJsonLd({
   description,
   image,
   category,
+  slug,
+  materials,
+  specs,
   locale = "zh",
 }: {
   name: string
@@ -113,6 +132,9 @@ export function ProductJsonLd({
   description: string
   image?: string
   category: string
+  slug?: string
+  materials?: string[]
+  specs?: { label: string; value: string }[]
   locale?: string
 }) {
   const cfg = { ...siteConfig, ...getLocalizedSiteConfig(locale) }
@@ -121,13 +143,27 @@ export function ProductJsonLd({
     "@type": "Product",
     name,
     model,
+    sku: model,
     description,
-    image: image ? `${baseUrl}${image}` : undefined,
+    url: slug ? `${baseUrl}/${locale}/products/${slug}` : undefined,
+    image: image ? (image.startsWith("http") ? image : `${baseUrl}${image}`) : undefined,
     category: getLocalizedProductCategory(category, locale),
+    brand: {
+      "@type": "Brand",
+      name: cfg.name,
+    },
     manufacturer: {
       "@type": "Organization",
+      "@id": `${baseUrl}/#organization`,
       name: cfg.fullName,
     },
+    material: materials?.length ? materials.join(", ") : "carbon graphite",
+    // GEO：规格以结构化属性输出，便于 AI 引擎与垂直搜索直接摘取
+    additionalProperty: specs?.slice(0, 8).map((s) => ({
+      "@type": "PropertyValue",
+      name: s.label,
+      value: s.value,
+    })),
   }
 
   return (

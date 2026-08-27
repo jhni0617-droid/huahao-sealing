@@ -3,6 +3,7 @@ import dynamic from "next/dynamic"
 import { setRequestLocale } from "next-intl/server"
 import { getLocalized } from "@/lib/locale-data"
 import HeroSection from "@/components/HeroSection"
+import StatsBand from "@/components/StatsBand"
 import HomeProductEntry from "@/components/HomeProductEntry"
 import WhyCarbonGraphite from "@/components/WhyCarbonGraphite"
 import FactoryQuality from "@/components/FactoryQuality"
@@ -54,6 +55,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   return (
     <>
       <HeroSection />
+      <StatsBand />
       <HomeProductEntry />
       <CTASection />
       <WhyCarbonGraphite />

@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import { NextIntlClientProvider } from "next-intl"
 import { getMessages, setRequestLocale } from "next-intl/server"
-import { Inter, Plus_Jakarta_Sans } from "next/font/google"
+import { Inter, Plus_Jakarta_Sans, Bebas_Neue } from "next/font/google"
 import { routing } from "@/i18n/routing"
 import LayoutShell from "@/components/LayoutShell"
 import { OrganizationJsonLd } from "@/components/JsonLd"
@@ -22,6 +22,14 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   display: "swap",
   variable: "--font-plus-jakarta",
   weight: ["500", "600", "700", "800"],
+})
+
+/* 良工式大数字/英文标注展示字体（仅拉丁字符，用于数字与 EN caption） */
+const bebasNeue = Bebas_Neue({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-bebas",
+  weight: "400",
 })
 
 interface Props {
@@ -92,7 +100,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#071525",
+  themeColor: "#101215",
   width: "device-width",
   initialScale: 1,
 }
@@ -122,7 +130,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   }
 
   return (
-    <html lang={locale} data-scroll-behavior="smooth" className={`h-full antialiased ${inter.variable} ${plusJakartaSans.variable} ${locale !== "zh" ? "locale-en" : ""}`}>
+    <html lang={locale} data-scroll-behavior="smooth" className={`h-full antialiased ${inter.variable} ${plusJakartaSans.variable} ${bebasNeue.variable} ${locale !== "zh" ? "locale-en" : ""}`}>
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider locale={locale} messages={clientMessages}>
           <OrganizationJsonLd locale={locale} />

@@ -2,7 +2,9 @@ import Image from "next/image"
 import { getLocale } from "next-intl/server"
 import { Link } from "@/i18n/routing"
 import { getLocalized } from "@/lib/locale-data"
-import Icon, { type IconName } from "@/components/ui/Icon"
+import Icon from "@/components/ui/Icon"
+import Reveal from "@/components/ui/Reveal"
+import SectionHead from "@/components/ui/SectionHead"
 
 const copy = {
   zh: {
@@ -154,52 +156,66 @@ export default async function HomeProductEntry() {
   return (
     <section className="section-padding bg-white">
       <div className="container-wide">
-        <div className="mb-14 grid gap-6 lg:grid-cols-[1fr_420px] lg:items-end">
-          <div>
-            <div className="badge-accent mb-4">{data.eyebrow}</div>
-            <h2 className="max-w-4xl text-3xl font-bold text-primary md:text-5xl">{data.title}</h2>
-            <div className="industrial-divider" />
+        <div className="mb-12 flex flex-wrap items-end justify-between gap-6 md:mb-16">
+          <div className="min-w-0 max-w-full flex-1 lg:max-w-[calc(100%-440px)]">
+            <SectionHead en="Products" title={data.title} />
           </div>
-          <div className="lg:text-right">
+          <div className="lg:max-w-sm">
             <p className="text-base leading-relaxed text-muted">{data.description}</p>
-            <div className="mt-6 flex flex-wrap gap-3 lg:justify-end">
-              <Link href="/products" className="btn-secondary">{data.viewAll}</Link>
-              <Link href="/contact" className="btn-primary">{data.quote}</Link>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link href="/contact" className="btn-primary text-sm">{data.quote}</Link>
+              <Link href="/products" className="btn-secondary text-sm">{data.viewAll}</Link>
             </div>
           </div>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {data.products.map((product) => (
+        <Reveal>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+          {data.products.map((product, i) => (
             <Link
               key={product.title}
               href={product.href}
-              className="group grid overflow-hidden border border-border bg-white transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-xl"
+              className="group relative flex flex-col overflow-hidden border border-border bg-white transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_18px_42px_rgba(23,25,29,0.12)]"
             >
+              {/* hover 时顶部红色压条 */}
+              <span className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100" aria-hidden />
+              {/* 良工式大序号 */}
+              <span
+                className="stat-num pointer-events-none absolute right-4 top-4 z-10 text-4xl text-border-light transition-colors duration-300 group-hover:text-accent/70"
+                aria-hidden
+              >
+                {String(i + 1).padStart(2, "0")}
+              </span>
+
               <div className="relative aspect-[16/10] bg-background">
                 <Image
                   src={product.image}
                   alt={product.title}
                   fill
-                  className="object-contain p-4 sm:p-6 lg:p-8 transition-transform duration-500 group-hover:scale-105"
+                  className="object-contain p-4 transition-transform duration-500 group-hover:scale-105 sm:p-6 lg:p-8"
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 33vw"
                 />
               </div>
-              <div className="border-t border-border p-4 sm:p-5 lg:p-6">
-                <div className="mb-3 sm:mb-4 flex items-center justify-between gap-3">
-                  <div className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.08em] text-accent">{product.subtitle}</div>
-                  <div className="flex h-8 w-8 sm:h-9 sm:w-9 lg:h-10 lg:w-10 items-center justify-center bg-accent-subtle text-accent">
-                    <Icon name={product.icon as IconName} className="h-4 w-4 sm:h-4.5 sm:w-4.5 lg:h-5 lg:w-5" />
-                  </div>
-                </div>
-                <h3 className="mb-2 sm:mb-3 text-base sm:text-lg lg:text-xl font-bold text-primary transition-colors group-hover:text-accent">{product.title}</h3>
-                <p className="text-xs sm:text-sm leading-relaxed text-muted line-clamp-3">{product.description}</p>
+              <div className="flex flex-1 flex-col border-t border-border p-5 sm:p-6">
+                <div className="en-caption mb-3 text-xs text-muted-light">{product.subtitle}</div>
+                <h3 className="text-lg font-bold text-primary transition-colors group-hover:text-accent md:text-xl">
+                  {product.title}
+                </h3>
+                <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-muted">{product.description}</p>
+                <span className="mt-auto inline-flex items-center gap-1.5 pt-5 text-xs font-bold uppercase tracking-[0.14em] text-accent">
+                  More
+                  <svg className="h-3 w-3 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </span>
               </div>
             </Link>
           ))}
         </div>
+        </Reveal>
 
-        <div className="mt-6 grid gap-4 border border-border bg-background p-6 md:grid-cols-[1fr_auto] md:items-center">
+        <Reveal delay={120}>
+        <div className="mt-6 grid gap-4 border border-border bg-background p-6 md:grid-cols-[1fr_auto] md:items-center md:p-8">
           <div>
             <h3 className="text-lg font-bold text-primary">{data.customTitle}</h3>
             <p className="mt-2 text-sm leading-relaxed text-muted">{data.customDesc}</p>
@@ -209,6 +225,7 @@ export default async function HomeProductEntry() {
             <Icon name="arrow-right" className="h-4 w-4" />
           </Link>
         </div>
+        </Reveal>
       </div>
     </section>
   )
