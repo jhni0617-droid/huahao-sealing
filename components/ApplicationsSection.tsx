@@ -2,6 +2,8 @@ import { getLocale, getTranslations } from "next-intl/server"
 import { Link } from "@/i18n/routing"
 import { getLocalized } from "@/lib/locale-data"
 import { applicationsByLocale } from "@/lib/translations"
+import Reveal from "@/components/ui/Reveal"
+import SectionHead from "@/components/ui/SectionHead"
 
 const iconMap: Record<string, string> = {
   pump: "M3 12h2v-2H3v2zm16 0h2v-2h-2v2zM5 12l6-6v4h6v4h-6v4l-6-6z",
@@ -25,40 +27,42 @@ export default async function ApplicationsSection() {
   }, locale)
 
   return (
-    <section className="section-padding bg-white">
+    <section className="section-padding bg-background">
       <div className="container-wide">
-        <div className="mb-14 grid gap-6 md:grid-cols-[1fr_360px] md:items-end">
-          <div>
-            <div className="badge-accent mb-4">{t("tag")}</div>
-            <h2 className="text-3xl md:text-5xl font-bold text-primary">{t("title")}</h2>
-            <div className="industrial-divider" />
-          </div>
-          <p className="max-w-xl text-base leading-relaxed text-muted md:text-right">
-            {t("description")}
-          </p>
-        </div>
+        <SectionHead en="Applications" title={t("title")} description={t("description")} />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
           {items.map((app, index) => (
-            <Link
-              key={app.slug}
-              href={`/applications#${app.slug}`}
-              className="group border border-border bg-white p-6 transition-all duration-300 hover:z-10 hover:-translate-y-1 hover:border-accent/40 hover:shadow-xl"
-            >
-              <div className="mb-8 flex items-center justify-between">
-                <div className="flex h-12 w-12 items-center justify-center bg-accent-subtle transition-colors group-hover:bg-accent">
-                  <svg className="h-6 w-6 text-accent transition-colors group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <Reveal key={app.slug} delay={index * 80}>
+              <Link
+                href={`/applications#${app.slug}`}
+                className="group relative flex h-full flex-col bg-white p-6 transition-colors duration-300 hover:bg-[#fafafb] md:p-7"
+              >
+                {/* 良工式大序号 */}
+                <span
+                  className="stat-num pointer-events-none absolute right-5 top-4 text-5xl text-border-light transition-colors duration-300 group-hover:text-accent/80 lg:text-6xl"
+                  aria-hidden
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
+                <div className="mb-7 flex h-12 w-12 items-center justify-center border border-border bg-background text-muted-dark transition-colors duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-white">
+                  <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={iconMap[app.image]} />
                   </svg>
                 </div>
-                <span className="text-xs font-bold text-border">0{index + 1}</span>
-              </div>
-              <h3 className="mb-3 text-base font-bold text-primary transition-colors group-hover:text-accent">{app.title}</h3>
-              <p className="text-sm leading-relaxed text-muted">{app.description}</p>
-              <div className="mt-6 text-xs font-semibold uppercase tracking-[0.08em] text-accent opacity-0 transition-opacity group-hover:opacity-100">
-                {viewText}
-              </div>
-            </Link>
+                <h3 className="mb-3 text-lg font-bold text-primary transition-colors group-hover:text-accent">
+                  {app.title}
+                </h3>
+                <p className="line-clamp-4 text-sm leading-relaxed text-muted">{app.description}</p>
+                <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-xs font-bold uppercase tracking-[0.14em] text-accent opacity-0 transition-all duration-300 group-hover:opacity-100">
+                  {viewText}
+                  <svg className="h-3 w-3 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </span>
+              </Link>
+            </Reveal>
           ))}
         </div>
       </div>

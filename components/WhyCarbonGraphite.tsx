@@ -3,6 +3,7 @@ import { Link } from "@/i18n/routing"
 import { advantagesByLocale } from "@/lib/translations"
 import Icon from "@/components/ui/Icon"
 import { getLocalized } from "@/lib/locale-data"
+import Reveal from "@/components/ui/Reveal"
 
 const iconNames: Record<string, "droplet" | "thermometer" | "shield" | "gear"> = {
   oil: "droplet",
@@ -56,38 +57,47 @@ export default async function WhyCarbonGraphite() {
   const items = getLocalized(advantagesByLocale, locale)
 
   return (
-    <section className="section-padding industrial-surface">
+    <section className="section-padding bg-white">
       <div className="container-wide">
-        <div className="mx-auto mb-14 max-w-3xl text-center">
-          <div className="badge-accent justify-center mx-auto mb-4">{t("tag")}</div>
-          <h2 className="text-3xl md:text-5xl font-bold text-primary mt-3 mb-4">{t("title")}</h2>
-          <p className="text-muted text-base leading-relaxed">{t("description")}</p>
-        </div>
+        <Reveal className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
+          <div className="mb-4 flex items-center justify-center gap-3">
+            <span className="h-[3px] w-10 bg-accent" aria-hidden />
+            <span className="en-caption text-sm text-muted">Why Carbon Graphite</span>
+          </div>
+          <h2 className="text-3xl font-bold text-primary md:text-4xl lg:text-[2.75rem] leading-tight">{t("title")}</h2>
+          <p className="mt-4 text-muted text-base leading-relaxed">{t("description")}</p>
+        </Reveal>
 
-        <div className="grid gap-6 lg:grid-cols-2">
-          <div className="card-static p-5 md:p-6">
+        <div className="grid gap-px border border-border bg-border lg:grid-cols-2">
+          <Reveal>
+          <div className="h-full bg-white p-5 md:p-7">
             <h3 className="text-base font-bold text-primary mb-5 flex items-center gap-2">
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-red-50 text-xs font-bold text-red-500">!</span>
+              <span className="flex h-6 w-6 items-center justify-center bg-accent-subtle text-xs font-bold text-accent">!</span>
               {t("problemsTitle")}
             </h3>
             <div className="space-y-4">
-              {problems.map((p) => (
-                <div key={p.title} className="border-l-2 border-l-red-400 bg-white p-4">
-                  <h4 className="font-bold text-sm text-primary mb-2">{p.title}</h4>
+              {problems.map((p, i) => (
+                <Reveal key={p.title} delay={i * 90}>
+                <div className="border-l-2 border-l-accent bg-background p-4">
+                  <h4 className="font-bold text-sm text-primary mb-1.5">{p.title}</h4>
                   <p className="text-xs text-muted leading-relaxed">{p.description}</p>
                 </div>
+                </Reveal>
               ))}
             </div>
           </div>
+          </Reveal>
 
-          <div className="card-static p-5 md:p-6">
+          <Reveal delay={150}>
+          <div className="h-full bg-white p-5 md:p-7">
             <h3 className="text-base font-bold text-primary mb-5 flex items-center gap-2">
               <Icon name="sparkles" className="w-5 h-5 text-accent" />
               {t("solutionTitle")}
             </h3>
             <div className="space-y-4">
-              {items.map((adv) => (
-                <div key={adv.title} className="border-l-2 border-l-accent bg-white p-4 transition-shadow hover:shadow-md">
+              {items.map((adv, i) => (
+                <Reveal key={adv.title} delay={i * 90}>
+                <div className="border-l-2 border-l-accent bg-background p-4 transition-colors hover:bg-accent-subtle/60">
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 bg-accent-subtle flex items-center justify-center shrink-0">
                       <Icon name={iconNames[adv.icon]} className="w-5 h-5 text-accent" />
@@ -98,16 +108,20 @@ export default async function WhyCarbonGraphite() {
                     </div>
                   </div>
                 </div>
+                </Reveal>
               ))}
             </div>
           </div>
+          </Reveal>
         </div>
 
-        <div className="text-center mt-14 p-8 md:p-10 bg-white border border-accent-light">
-          <h3 className="text-xl md:text-2xl font-bold text-primary mb-3">{t("ctaTitle")}</h3>
-          <p className="text-muted text-sm max-w-2xl mx-auto mb-6 leading-relaxed">{t("ctaDescription")}</p>
-          <Link href="/contact" className="btn-primary">{t("ctaButton")}</Link>
-        </div>
+        <Reveal className="mt-14 grid gap-4 border border-border bg-background p-8 md:grid-cols-[1fr_auto] md:items-center md:p-10">
+          <div>
+            <h3 className="text-xl font-bold text-primary mb-2">{t("ctaTitle")}</h3>
+            <p className="text-muted text-sm max-w-2xl leading-relaxed">{t("ctaDescription")}</p>
+          </div>
+          <Link href="/contact" className="btn-primary md:justify-self-end">{t("ctaButton")}</Link>
+        </Reveal>
       </div>
     </section>
   )

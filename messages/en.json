@@ -100,7 +100,10 @@
     "ctaTitle": "Ready to Optimize Your Sealing Solution?",
     "ctaSubtitle": "Contact our engineering team for technical specifications, custom solutions, or competitive quotes. We'll respond within 24 hours.",
     "ctaButton": "Get a Quote",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "hotline": "Hotline",
+    "onlineConsult": "Inquiry",
+    "backToTop": "Top"
   },
   "home": {
     "hero": {
@@ -352,7 +355,7 @@
   "applications": {
     "pageTitle": "Applications | Huahao Sealing",
     "pageSubtitle": "Carbon graphite sealing solutions for pumps, marine, chemical, power, food & pharma, mining & metallurgy, oil & gas industries.",
-    "heroSubtitle": "Decades of industry experience solving sealing challenges in the world\u2019s most demanding industrial sectors.",
+    "heroSubtitle": "Decades of industry experience solving sealing challenges in the world’s most demanding industrial sectors.",
     "applicableProducts": "Applicable Products",
     "sealRings": "Carbon Graphite Seal Rings",
     "bushings": "Graphite Bushings & Bearings",

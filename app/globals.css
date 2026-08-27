@@ -1,28 +1,29 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #f7f9fc;
-  --color-foreground: #111827;
-  --color-primary: #071525;
-  --color-primary-dark: #030912;
-  --color-primary-light: #12304c;
-  --color-accent: #1f6feb;
-  --color-accent-hover: #1557bd;
-  --color-accent-subtle: #edf5ff;
-  --color-accent-light: #cfe2ff;
+  --color-background: #f4f5f6;
+  --color-foreground: #1f2226;
+  --color-primary: #17191d;
+  --color-primary-dark: #0b0c0e;
+  --color-primary-light: #2b2f36;
+  --color-accent: #e60012;
+  --color-accent-hover: #c4000f;
+  --color-accent-subtle: #fdf0f1;
+  --color-accent-light: #f9ccd0;
   --color-success: #059669;
   --color-warning: #d97706;
   --color-danger: #dc2626;
   --color-card: #ffffff;
-  --color-muted: #5b6778;
-  --color-muted-light: #9aa6b7;
-  --color-muted-dark: #39485c;
-  --color-border: #dbe3ee;
-  --color-border-light: #edf1f6;
-  --color-hero-bg: #071525;
+  --color-muted: #61666d;
+  --color-muted-light: #98a0a8;
+  --color-muted-dark: #40454c;
+  --color-border: #e2e4e7;
+  --color-border-light: #eef0f2;
+  --color-hero-bg: #101215;
 
   --font-sans: "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
   --font-heading: "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-bebas), "Bebas Neue", "Arial Narrow", Impact, sans-serif;
 }
 
 /* English locale overrides — use next/font variables with fallbacks */
@@ -38,8 +39,7 @@ html {
 
 body {
   color: var(--color-foreground);
-  background:
-    linear-gradient(180deg, #ffffff 0%, var(--color-background) 42%, #ffffff 100%);
+  background: #ffffff;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -102,9 +102,24 @@ h1, h2, h3, h4, h5, h6 {
 
 @utility industrial-divider {
   height: 2px;
-  background: linear-gradient(90deg, var(--color-accent), rgba(31, 111, 235, 0));
+  background: linear-gradient(90deg, var(--color-accent), transparent);
   width: 72px;
   margin: 1.125rem 0;
+}
+
+/* Bebas-style display type for numerals / EN captions */
+@utility stat-num {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.015em;
+}
+
+@utility en-caption {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.26em;
 }
 
 @utility section-accent {
@@ -126,43 +141,43 @@ h1, h2, h3, h4, h5, h6 {
 @utility card {
   background: var(--color-card);
   border: 1px solid var(--color-border);
-  border-radius: 8px;
-  box-shadow: 0 1px 2px rgba(7, 21, 37, 0.03);
+  border-radius: 0;
+  box-shadow: 0 1px 2px rgba(23, 25, 29, 0.04);
   transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 18px 42px rgba(7, 21, 37, 0.09);
-    border-color: rgba(31, 111, 235, 0.34);
+    box-shadow: 0 18px 42px rgba(23, 25, 29, 0.1);
+    border-color: rgba(230, 0, 18, 0.45);
   }
 }
 
 @utility card-static {
   background: var(--color-card);
   border: 1px solid var(--color-border);
-  border-radius: 8px;
-  box-shadow: 0 1px 2px rgba(7, 21, 37, 0.03);
+  border-radius: 0;
+  box-shadow: 0 1px 2px rgba(23, 25, 29, 0.04);
 }
 
 /* Subtle card — lighter border, no hover lift, for secondary content */
 @utility card-subtle {
   background: var(--color-card);
   border: 1px solid var(--color-border-light);
-  border-radius: 8px;
+  border-radius: 0;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   &:hover {
     border-color: var(--color-border);
-    box-shadow: 0 8px 24px rgba(7, 21, 37, 0.05);
+    box-shadow: 0 8px 24px rgba(23, 25, 29, 0.06);
   }
 }
 
 @utility card-dark {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 8px;
+  border-radius: 0;
   transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
   &:hover {
     transform: translateY(-2px);
-    border-color: rgba(37, 99, 235, 0.25);
+    border-color: rgba(230, 0, 18, 0.4);
     background: rgba(255, 255, 255, 0.06);
   }
 }
@@ -188,7 +203,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  border-radius: 999px;
+  border-radius: 0;
   border: 1px solid var(--color-accent-light);
 }
 
@@ -204,12 +219,12 @@ h1, h2, h3, h4, h5, h6 {
   color: white !important;
   font-weight: 600;
   font-size: 0.9375rem;
-  border-radius: 6px;
+  border-radius: 0;
   transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
   &:hover {
     background: var(--color-accent-hover);
     transform: translateY(-1px);
-    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+    box-shadow: 0 8px 20px rgba(230, 0, 18, 0.28);
   }
   &:active {
     transform: translateY(0);
@@ -227,7 +242,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-primary);
   font-weight: 600;
   font-size: 0.9375rem;
-  border-radius: 6px;
+  border-radius: 0;
   transition: all 0.2s ease;
   background: transparent;
   &:hover {
@@ -235,7 +250,7 @@ h1, h2, h3, h4, h5, h6 {
     background: var(--color-accent-subtle);
     color: var(--color-accent) !important;
     transform: translateY(-1px);
-    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
+    box-shadow: 0 8px 20px rgba(230, 0, 18, 0.15);
   }
 }
 
@@ -265,7 +280,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   padding: 0.75rem 1rem;
   border: 1px solid var(--color-border);
-  border-radius: 6px;
+  border-radius: 0;
   font-size: 0.9375rem;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   background: white;
@@ -299,6 +314,28 @@ h1, h2, h3, h4, h5, h6 {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Scroll-triggered reveal (driven by components/ui/Reveal.tsx).
+   Elements start hidden and transition in when they enter the viewport;
+   .is-revealed is added once by IntersectionObserver. */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
 
@@ -368,8 +405,8 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   overflow: hidden;
   background:
-    linear-gradient(135deg, rgba(7, 21, 37, 0.98), rgba(18, 48, 76, 0.94)),
-    radial-gradient(circle at 78% 20%, rgba(31, 111, 235, 0.2), transparent 34%);
+    linear-gradient(135deg, rgba(16, 18, 21, 0.98), rgba(43, 47, 54, 0.94)),
+    radial-gradient(circle at 78% 20%, rgba(230, 0, 18, 0.14), transparent 34%);
   color: white;
 }
 

@@ -100,7 +100,10 @@
     "ctaTitle": "씰링 솔루션을 최적화할 준비가 되셨나요?",
     "ctaSubtitle": "기술 사양, 맞춤 솔루션 또는 경쟁력 있는 견적을 위해 엔지니어링 팀에 문의하세요. 24시간 이내에 답변드리겠습니다.",
     "ctaButton": "견적 요청",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "hotline": "상담 전화",
+    "onlineConsult": "상담 문의",
+    "backToTop": "맨 위로"
   },
   "home": {
     "hero": {

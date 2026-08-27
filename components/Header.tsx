@@ -7,6 +7,7 @@ import { useLocale, useTranslations } from "next-intl"
 import LanguageSwitcher from "@/components/LanguageSwitcher"
 import Icon from "@/components/ui/Icon"
 import { getLocalized } from "@/lib/locale-data"
+import { siteConfig } from "@/lib/constants"
 import type { IconName } from "@/components/ui/Icon"
 
 const brandCopy = {
@@ -35,6 +36,55 @@ type NavItem = {
   href: string
   hasDropdown: boolean
   dropdownGroups?: DropdownGroup[]
+}
+
+/* mega-panel 左侧栏目介绍（良工式 sub_txt） */
+const menuIntroByLocale: Record<string, { zh: string; en: string; vi: string; th: string; ru: string; ja: string; ko: string }> = {
+  "/products": {
+    zh: "主营碳石墨密封环、石墨轴套/轴承、碳石墨三瓣环，支持按图纸与样品定制加工。",
+    en: "Carbon graphite seal rings, bushings & bearings, and segmented split rings — custom machined from drawing or sample.",
+    vi: "Vòng phớt, bạc lót/ổ trục và vòng chia than chì carbon — gia công theo bản vẽ hoặc mẫu.",
+    th: "แหวนซีล บูช/แบริ่ง และแหวนแบ่งคาร์บอนกราไฟต์ ผลิตตามแบบหรือตัวอย่าง",
+    ru: "Углерод-графитовые кольца, втулки и сегментные кольца — изготовление по чертежу или образцу.",
+    ja: "カーボングラファイトシールリング、ブッシング/軸受、分割リング。図面・サンプルによるカスタム加工対応。",
+    ko: "카본 그라파이트 씰 링, 부싱/베어링, 분할 링 — 도면 및 샘플 기반 맞춤 가공.",
+  },
+  "/cases": {
+    zh: "工厂实拍、生产设备与品控流程，以及各行业的密封应用案例。",
+    en: "Factory tour, production equipment and QC process, plus sealing case studies across industries.",
+    vi: "Tham quan nhà máy, thiết bị sản xuất, quy trình QC và các case study ứng dụng.",
+    th: "ชมโรงงาน อุปกรณ์การผลิต กระบวนการ QC และกรณีศึกษาการใช้งานซีล",
+    ru: "Завод, оборудование и контроль качества, а также кейсы применения уплотнений.",
+    ja: "工場見学、生産設備、品質管理プロセス、および各業界のシール適用事例。",
+    ko: "공장 투어, 생산 설비, 품질 관리 프로세스 및 산업별 씰링 적용 사례.",
+  },
+  "/blog": {
+    zh: "技术文章、材料选型指南与常见问题解答。",
+    en: "Technical articles, material selection guides and FAQ.",
+    vi: "Bài viết kỹ thuật, hướng dẫn chọn vật liệu và FAQ.",
+    th: "บทความเทคนิค คู่มือเลือกวัสดุ และคำถามที่พบบ่อย",
+    ru: "Технические статьи, руководства по выбору материала и FAQ.",
+    ja: "技術記事、材料選定ガイド、よくある質問。",
+    ko: "기술 문서, 소재 선정 가이드 및 FAQ.",
+  },
+  "/compare": {
+    zh: "材料对比、技术参数与行业应用参考资料。",
+    en: "Material comparisons, technical specs and application references.",
+    vi: "So sánh vật liệu, thông số kỹ thuật và tài liệu ứng dụng.",
+    th: "เปรียบเทียบวัสดุ ข้อมูลทางเทคนิค และเอกสารการใช้งาน",
+    ru: "Сравнение материалов, технические параметры и справочные материалы.",
+    ja: "材料比較、技術パラメータ、応用リファレンス。",
+    ko: "소재 비교, 기술 매개변수 및 응용 자료.",
+  },
+  "/about": {
+    zh: "公司简介、工厂实力与认证资质。",
+    en: "Company profile, factory strength and certifications.",
+    vi: "Giới thiệu công ty, năng lực nhà máy và chứng nhận.",
+    th: "ข้อมูลบริษัท ความสามารถโรงงาน และใบรับรอง",
+    ru: "О компании, производственные мощности и сертификаты.",
+    ja: "会社概要、工場の強み、認証資格。",
+    ko: "회사 소개, 공장 역량 및 인증.",
+  },
 }
 
 export default function Header() {
@@ -162,7 +212,7 @@ export default function Header() {
       ],
     },
     {
-      label: getLocalized({ zh: "技术资源", en: "Resources", vi: "Tài nguyên", th: "แหล่งข้อมูล", ru: "Ресурсы", ja: "リソース", ko: "리소스" }, locale),
+      label: getLocalized({ zh: "技术资源下载", en: "Resources", vi: "Tài nguyên", th: "แหล่งข้อมูล", ru: "Ресурсы", ja: "リソース", ko: "리소스" }, locale),
       href: "/compare",
       hasDropdown: true,
       dropdownGroups: [
@@ -172,6 +222,14 @@ export default function Header() {
             { label: getLocalized({ zh: "材料对比", en: "Material Compare", vi: "So sánh vật liệu", th: "เปรียบเทียบวัสดุ", ru: "Сравнение материалов", ja: "材料比較", ko: "재료 비교" }, locale), href: "/compare", icon: "layers" },
             { label: getLocalized({ zh: "技术参数", en: "Technical Specs", vi: "Thông số kỹ thuật", th: "ข้อมูลทางเทคนิค", ru: "Технические параметры", ja: "技術パラメータ", ko: "기술 매개변수" }, locale), href: "/technical-params", icon: "ruler" },
             { label: getLocalized({ zh: "行业应用", en: "Applications", vi: "Ứng dụng", th: "การใช้งาน", ru: "Применения", ja: "応用", ko: "적용 분야" }, locale), href: "/applications", icon: "factory" },
+          ],
+        },
+        {
+          title: getLocalized({ zh: "资料下载", en: "Downloads", vi: "Tải xuống", th: "ดาวน์โหลด", ru: "Скачать", ja: "資料ダウンロード", ko: "자료 다운로드" }, locale),
+          items: [
+            { label: getLocalized({ zh: "宣传册", en: "Company Brochure", vi: "Tài liệu giới thiệu", th: "โบรชัวร์บริษัท", ru: "Брошюра компании", ja: "会社パンフレット", ko: "회사 브로슈어" }, locale), href: "/downloads/Huahao-Seals-Brochure.pdf", icon: "download" },
+            { label: getLocalized({ zh: "产品目录", en: "Product Catalog", vi: "Danh mục sản phẩm", th: "แคตตาล็อกสินค้า", ru: "Каталог продукции", ja: "製品カタログ", ko: "제품 카탈로그" }, locale), href: "/downloads/huahao-product-catalog.pdf", icon: "download" },
+            { label: getLocalized({ zh: "出口资料", en: "Export Documents", vi: "Tài liệu xuất khẩu", th: "เอกสารการส่งออก", ru: "Экспортные документы", ja: "輸出書類", ko: "수출 서류" }, locale), href: "/downloads/Huahao-Export-Declaration.docx", icon: "download" },
           ],
         },
       ],
@@ -199,19 +257,37 @@ export default function Header() {
     return pathname.startsWith(href)
   }
 
-  const getDropdownCols = (item: NavItem) => {
-    return item.dropdownGroups?.length || 1
-  }
-
   return (
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/92 backdrop-blur-lg border-b border-border shadow-sm"
-          : "bg-white/95 border-b border-border"
+          ? "bg-white shadow-sm"
+          : "bg-white"
       }`}
     >
-      <div className="container-wide flex items-center justify-between h-14 md:h-[64px]">
+      {/* 顶部信息条（良工式：深色细条 + 联系方式） */}
+      <div className="hidden bg-primary text-white/65 md:block">
+        <div className="container-wide flex h-9 items-center justify-between text-xs">
+          <span className="en-caption text-[11px]">Huahao Sealing · Carbon Graphite Components</span>
+          <div className="flex items-center gap-6">
+            <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-1.5 transition-colors hover:text-white">
+              <Icon name="mail" className="h-3.5 w-3.5" />
+              {siteConfig.email}
+            </a>
+            <a href={`tel:${siteConfig.phone.replace(/-/g, "")}`} className="flex items-center gap-1.5 transition-colors hover:text-white">
+              <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.21 2.2z" />
+              </svg>
+              {siteConfig.phone}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div
+        className="container-wide relative flex items-center justify-between h-14 border-b border-border md:h-[64px]"
+        onMouseLeave={() => setActiveDropdown(null)}
+      >
         <Link href="/" className="flex items-center shrink-0 group">
           <Image
             src="/images/logo.webp"
@@ -233,13 +309,15 @@ export default function Header() {
                     e.stopPropagation()
                     setActiveDropdown(activeDropdown === item.href ? null : item.href)
                   }}
-                  className={`relative flex items-center px-3.5 py-2 text-[15px] font-medium rounded-lg transition-colors whitespace-nowrap ${
-                    isActive(item.href)
+                  onMouseEnter={() => setActiveDropdown(item.href)}
+                  className={`relative flex items-center px-3.5 py-2 text-[15px] font-semibold transition-colors whitespace-nowrap ${
+                    isActive(item.href) || activeDropdown === item.href
                       ? "text-accent"
-                      : "text-muted-dark hover:text-primary hover:bg-gray-50"
+                      : "text-muted-dark hover:text-accent"
                   } cursor-pointer`}
                 >
                   {item.label}
+                  <span className={`absolute inset-x-3.5 bottom-0 h-[2px] bg-accent transition-transform duration-200 ${activeDropdown === item.href ? "scale-x-100" : "scale-x-0"}`} aria-hidden />
                   <svg className={`ml-1 h-4 w-4 transition-transform duration-200 ${activeDropdown === item.href ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
@@ -247,69 +325,98 @@ export default function Header() {
               ) : (
                 <Link
                   href={item.href}
-                  className={`relative flex items-center px-3.5 py-2 text-[15px] font-medium rounded-lg transition-colors whitespace-nowrap ${
+                  className={`relative flex items-center px-3.5 py-2 text-[15px] font-semibold transition-colors whitespace-nowrap ${
                     isActive(item.href)
                       ? "text-accent"
-                      : "text-muted-dark hover:text-primary hover:bg-gray-50"
+                      : "text-muted-dark hover:text-accent"
                   }`}
                   onClick={() => setActiveDropdown(null)}
                 >
                   {item.label}
+                  {isActive(item.href) && <span className="absolute inset-x-3.5 bottom-0 h-[2px] bg-accent" aria-hidden />}
                 </Link>
-              )}
-
-              {item.hasDropdown && activeDropdown === item.href && (
-                <div
-                  className={`absolute top-full left-0 mt-1 bg-white border border-border rounded-lg shadow-xl py-3 z-50 ${
-                    getDropdownCols(item) <= 1
-                      ? "w-52"
-                      : getDropdownCols(item) === 2
-                      ? "w-[440px] grid grid-cols-2 gap-0"
-                      : "w-[620px] grid grid-cols-3 gap-0"
-                  }`}
-                >
-                  <div className={`col-span-full flex items-center gap-2 px-4 pb-2 mb-1 border-b border-border-light`}>
-                    <span className="text-sm font-bold text-primary">{item.label}</span>
-                  </div>
-
-                  {item.dropdownGroups?.map((group, gi) => (
-                    <div key={gi} className="px-2">
-                      <div className="flex items-center gap-1.5 px-3 py-1.5 mb-0.5">
-                        <span className="w-1 h-3 bg-accent rounded-full" />
-                        <span className="text-xs font-bold text-muted-dark uppercase tracking-wide">{group.title}</span>
-                      </div>
-                      <div className="space-y-0.5">
-                        {group.items.map((sub, si) => (
-                          <Link
-                            key={`${gi}-${si}`}
-                            href={sub.href}
-                            onClick={() => setActiveDropdown(null)}
-                            className="group/item flex items-center gap-2 px-3 py-1.5 rounded-lg transition-colors"
-                          >
-                            <div className={`flex-shrink-0 w-7 h-7 rounded flex items-center justify-center transition-colors ${
-                              isActive(sub.href)
-                                ? "bg-accent text-white"
-                                : "bg-gray-50 text-muted group-hover/item:bg-accent-subtle group-hover/item:text-accent"
-                            }`}>
-                              <Icon name={sub.icon} className="h-3.5 w-3.5" />
-                            </div>
-                            <span className={`text-sm transition-colors ${
-                              isActive(sub.href)
-                                ? "text-accent font-semibold"
-                                : "text-gray-700 group-hover/item:text-primary"
-                            }`}>
-                              {sub.label}
-                            </span>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
               )}
             </div>
           ))}
         </nav>
+
+        {/* 良工式整幅 mega-panel：左侧栏目介绍 + 右侧带箭头分类列表 */}
+        {navItems.map((item) => {
+          if (!item.hasDropdown || activeDropdown !== item.href || !item.dropdownGroups) return null
+          const intro = getLocalized(menuIntroByLocale[item.href] ?? { zh: "", en: "", vi: "", th: "", ru: "", ja: "", ko: "" }, locale)
+          return (
+            <div
+              key={`mega-${item.href}`}
+              className="dropdown-container absolute inset-x-0 top-full z-50 hidden border border-t-0 border-border bg-white shadow-[0_24px_48px_rgba(23,25,29,0.14)] lg:block"
+            >
+              <div className="grid grid-cols-[300px_1fr]">
+                <div className="border-r border-border bg-background p-7">
+                  <div className="text-lg font-bold text-primary">{item.label}</div>
+                  <div className="mt-1 h-[2px] w-8 bg-accent" aria-hidden />
+                  <p className="mt-4 text-xs leading-relaxed text-muted">{intro}</p>
+                  <Link
+                    href={item.href}
+                    onClick={() => setActiveDropdown(null)}
+                    className="mt-5 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.14em] text-accent"
+                  >
+                    View All
+                    <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </Link>
+                </div>
+                <div className="p-5">
+                  {item.dropdownGroups.map((group, gi) => (
+                    <div key={gi} className={gi > 0 ? "mt-3 border-t border-border-light pt-3" : ""}>
+                      {item.dropdownGroups && item.dropdownGroups.length > 1 && (
+                        <div className="en-caption px-3 pb-1.5 text-[11px] text-muted-light">{group.title}</div>
+                      )}
+                      <ul>
+                        {group.items.map((sub, si) => {
+                          const item = (
+                            <>
+                              <span className="flex items-center gap-2.5 text-sm text-muted-dark transition-colors group-hover/sub:text-accent">
+                                <Icon name={sub.icon} className="h-4 w-4 shrink-0 text-muted-light transition-colors group-hover/sub:text-accent" />
+                                {sub.label}
+                              </span>
+                              <span className="flex h-6 w-6 shrink-0 items-center justify-center border border-border text-muted-light transition-all group-hover/sub:border-accent group-hover/sub:bg-accent group-hover/sub:text-white">
+                                <svg className="h-3 w-3 transition-transform group-hover/sub:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                                </svg>
+                              </span>
+                            </>
+                          )
+                          return (
+                            <li key={`${gi}-${si}`}>
+                              {sub.href.startsWith("/downloads/") ? (
+                                <a
+                                  href={sub.href}
+                                  download
+                                  onClick={() => setActiveDropdown(null)}
+                                  className="group/sub flex items-center justify-between gap-3 px-3 py-2 transition-colors hover:bg-accent-subtle"
+                                >
+                                  {item}
+                                </a>
+                              ) : (
+                                <Link
+                                  href={sub.href}
+                                  onClick={() => setActiveDropdown(null)}
+                                  className="group/sub flex items-center justify-between gap-3 px-3 py-2 transition-colors hover:bg-accent-subtle"
+                                >
+                                  {item}
+                                </Link>
+                              )}
+                            </li>
+                          )
+                        })}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )
+        })}
 
         {/* 右侧快捷入口和询价按钮 */}
         <div className="hidden lg:flex items-center gap-3 shrink-0">
@@ -404,17 +511,34 @@ export default function Header() {
                           <div className="text-xs font-bold text-muted-dark uppercase tracking-wide px-3 py-1.5">
                             {group.title}
                           </div>
-                          {group.items.map((sub, si) => (
-                            <Link
-                              key={`mobile-${gi}-${si}`}
-                              href={sub.href}
-                              className="flex items-center gap-2 py-2 px-3 text-sm text-gray-600 hover:text-accent hover:bg-gray-50 rounded-lg transition-colors"
-                              onClick={() => setOpen(false)}
-                            >
-                              <Icon name={sub.icon} className="h-4 w-4 text-muted" />
-                              {sub.label}
-                            </Link>
-                          ))}
+                          {group.items.map((sub, si) => {
+                            const mobileItem = (
+                              <>
+                                <Icon name={sub.icon} className="h-4 w-4 text-muted" />
+                                {sub.label}
+                              </>
+                            )
+                            return sub.href.startsWith("/downloads/") ? (
+                              <a
+                                key={`mobile-${gi}-${si}`}
+                                href={sub.href}
+                                download
+                                className="flex items-center gap-2 py-2 px-3 text-sm text-gray-600 hover:text-accent hover:bg-gray-50 rounded-lg transition-colors"
+                                onClick={() => setOpen(false)}
+                              >
+                                {mobileItem}
+                              </a>
+                            ) : (
+                              <Link
+                                key={`mobile-${gi}-${si}`}
+                                href={sub.href}
+                                className="flex items-center gap-2 py-2 px-3 text-sm text-gray-600 hover:text-accent hover:bg-gray-50 rounded-lg transition-colors"
+                                onClick={() => setOpen(false)}
+                              >
+                                {mobileItem}
+                              </Link>
+                            )
+                          })}
                         </div>
                       ))}
                     </div>

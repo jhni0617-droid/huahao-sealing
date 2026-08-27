@@ -2,6 +2,8 @@ import { getLocale, getTranslations } from "next-intl/server"
 import ImageCarousel from "@/components/ui/ImageCarousel"
 import CertBadge from "@/components/ui/CertBadge"
 import Icon, { type IconName } from "@/components/ui/Icon"
+import Reveal from "@/components/ui/Reveal"
+import CountUp from "@/components/ui/CountUp"
 import { getLocalized } from "@/lib/locale-data"
 
 const carouselImages = [
@@ -176,36 +178,37 @@ export default async function FactoryQuality() {
             />
           </div>
 
-          <div>
-            <div className="badge-accent text-white/80 border-white/10 bg-white/5 mb-4">
-              {t("tag")}
+          <Reveal>
+            <div className="mb-4 flex items-center gap-3">
+              <span className="h-[3px] w-10 bg-accent" aria-hidden />
+              <span className="en-caption text-sm text-slate-400">Factory & Quality</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
+            <h2 className="text-3xl md:text-[2.75rem] font-bold mb-5 leading-tight">
               {t("title")}
             </h2>
-            <div className="w-14 h-0.5 bg-accent mb-6" />
             <p className="text-slate-300 leading-relaxed mb-8 text-base">
               {t("description")}
             </p>
 
             <div className="grid grid-cols-2 gap-3 mb-8">
               {capabilities.map((item) => (
-                <div key={item.label} className="border border-white/[0.08] bg-white/[0.04] p-4">
-                  <h3 className="font-semibold text-sm text-accent">{item.label}</h3>
+                <div key={item.label} className="border border-white/[0.08] bg-white/[0.04] p-4 transition-colors hover:border-accent/40">
+                  <h3 className="font-semibold text-sm text-white">{item.label}</h3>
                   <p className="text-xs text-slate-400 mt-1">{item.desc}</p>
                 </div>
               ))}
             </div>
 
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {stats.map((s) => (
-                <div key={s.value} className="text-center p-3 bg-white/[0.03] border border-white/[0.06]">
-                  <div className="text-xl font-bold text-accent">{s.value}</div>
-                  <div className="text-xs text-slate-400 mt-0.5">{s.label}</div>
+            {/* 良工式计数器：大号展示字体数字 + 虚线分隔（单行四列避免换行破线） */}
+            <div className="grid grid-cols-4">
+              {stats.map((s, i) => (
+                <div key={s.value} className={`px-3 py-1 ${i > 0 ? "border-l border-dashed border-white/12" : "pl-0"}`}>
+                  <CountUp value={s.value} className="stat-num block text-[2rem] text-white lg:text-5xl" />
+                  <div className="mt-2 truncate text-xs text-slate-400">{s.label}</div>
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
         </div>
 
         <div className="mb-12">
@@ -215,12 +218,14 @@ export default async function FactoryQuality() {
             <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {qcItems.map((qc) => (
-              <div key={qc.title} className="border border-white/[0.08] bg-white/[0.04] p-5 text-center transition-colors hover:border-accent/30">
-                <Icon name={qc.icon as IconName} className="w-8 h-8 text-accent mx-auto mb-3" />
-                <h3 className="text-sm font-bold mb-1">{qc.title}</h3>
-                <p className="text-xs text-slate-400">{qc.desc}</p>
-              </div>
+            {qcItems.map((qc, i) => (
+              <Reveal key={qc.title} delay={i * 90}>
+                <div className="border border-white/[0.08] bg-white/[0.04] p-5 text-center transition-colors hover:border-accent/30">
+                  <Icon name={qc.icon as IconName} className="w-8 h-8 text-accent mx-auto mb-3" />
+                  <h3 className="text-sm font-bold mb-1">{qc.title}</h3>
+                  <p className="text-xs text-slate-400">{qc.desc}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>

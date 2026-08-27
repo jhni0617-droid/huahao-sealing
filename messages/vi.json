@@ -100,7 +100,10 @@
     "ctaTitle": "Sẵn sàng tối ưu giải pháp làm kín?",
     "ctaSubtitle": "Liên hệ đội ngũ kỹ thuật để được báo giá, thông số kỹ thuật hoặc giải pháp tùy chỉnh. Chúng tôi sẽ phản hồi trong 24 giờ.",
     "ctaButton": "Báo giá",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "hotline": "Đường dây nóng",
+    "onlineConsult": "Tư vấn",
+    "backToTop": "Lên đầu"
   },
   "home": {
     "hero": {
@@ -350,14 +353,14 @@
     "qualityTitle": "Chất lượng & Sản xuất"
   },
   "applications": {
-    "pageTitle": "\u1ee8ng d\u1ee5ng | Huahao Sealing",
-    "pageSubtitle": "Gi\u1ea3i ph\u00e1p l\u00e0m k\u00edn than ch\u00ec cho b\u01a1m, h\u00e0ng h\u1ea3i, h\u00f3a ch\u1ea5t, n\u0103ng l\u01b0\u1ee3ng, th\u1ef1c ph\u1ea9m-d\u01b0\u1ee3c ph\u1ea9m, khai th\u00e1c m\u1ecf-luy\u1ec7n kim, d\u1ea7u kh\u00ed.",
-    "heroSubtitle": "H\u00e0ng th\u1eadp k\u1ef7 kinh nghi\u1ec7m gi\u1ea3i quy\u1ebft th\u00e1ch th\u1ee9c l\u00e0m k\u00edn trong c\u00e1c ng\u00e0nh c\u00f4ng nghi\u1ec7p kh\u1eafc nghi\u1ec7t nh\u1ea5t th\u1ebf gi\u1edbi.",
-    "applicableProducts": "S\u1ea3n ph\u1ea9m ph\u00f9 h\u1ee3p",
-    "sealRings": "V\u00f2ng \u0111\u1ec7m than ch\u00ec",
-    "bushings": "B\u1ea1c l\u00f3t v\u00e0 v\u00f2ng bi than ch\u00ec",
-    "whyTitle": "T\u1ea1i sao Carbon Graphite cho {industry}?",
-    "ctaTitle": "Kh\u00f4ng ch\u1eafc gi\u1ea3i ph\u00e1p n\u00e0o ph\u00f9 h\u1ee3p?",
-    "ctaSubtitle": "Cho ch\u00fang t\u00f4i bi\u1ebft \u0111i\u1ec1u ki\u1ec7n v\u1eadn h\u00e0nh, k\u1ef9 s\u01b0 s\u1ebd \u0111\u1ec1 xu\u1ea5t gi\u1ea3i ph\u00e1p t\u1ed1t nh\u1ea5t."
+    "pageTitle": "Ứng dụng | Huahao Sealing",
+    "pageSubtitle": "Giải pháp làm kín than chì cho bơm, hàng hải, hóa chất, năng lượng, thực phẩm-dược phẩm, khai thác mỏ-luyện kim, dầu khí.",
+    "heroSubtitle": "Hàng thập kỷ kinh nghiệm giải quyết thách thức làm kín trong các ngành công nghiệp khắc nghiệt nhất thế giới.",
+    "applicableProducts": "Sản phẩm phù hợp",
+    "sealRings": "Vòng đệm than chì",
+    "bushings": "Bạc lót và vòng bi than chì",
+    "whyTitle": "Tại sao Carbon Graphite cho {industry}?",
+    "ctaTitle": "Không chắc giải pháp nào phù hợp?",
+    "ctaSubtitle": "Cho chúng tôi biết điều kiện vận hành, kỹ sư sẽ đề xuất giải pháp tốt nhất."
   }
 }
