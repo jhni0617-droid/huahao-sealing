@@ -10,6 +10,9 @@
     "contact": "联系我们",
     "whatsapp": "WhatsApp咨询",
     "blog": "技术资讯",
+    "materials": "材料技术",
+    "markets": "全球市场",
+    "resources": "技术资源",
     "quote": "在线询价",
     "productMenu": {
       "groupProducts": "产品细分",
@@ -362,5 +365,33 @@
     "whyTitle": "为什么 {industry} 选择碳石墨？",
     "ctaTitle": "不确定哪种方案适合您的工况？",
     "ctaSubtitle": "告诉我们您的运行条件，我们的工程师将为您推荐最佳的密封方案。"
+  },
+  "materials": {
+    "pageTitle": "碳石墨材料 | 牌号选型与性能参数",
+    "pageSubtitle": "碳石墨材料全面指南：树脂、锑、铜、巴氏合金浸渍牌号，等静压与电化石墨。涵盖性能参数、选型与应用。",
+    "heroSubtitle": "8 大碳石墨材料牌号，耐温-200~600℃，pH 0-14，从食品级到重工业全覆盖。",
+    "properties": "材料性能参数",
+    "advantages": "核心优势",
+    "applications": "典型应用",
+    "grades": "材料牌号",
+    "relatedProducts": "相关产品",
+    "faq": "常见问题",
+    "viewDetails": "查看详情",
+    "ctaTitle": "不确定选哪个牌号？让工程师帮您",
+    "ctaSubtitle": "提交工况参数（温度、压力、介质、转速），24 小时内获得选型建议与报价。"
+  },
+  "markets": {
+    "pageTitle": "全球市场 | 区域碳石墨密封解决方案",
+    "pageSubtitle": "华豪密封服务 6+ 出口市场，提供多语言对接、FTA 原产地证、快速物流。越南、印度、中东、印尼、巴西、俄罗斯。",
+    "heroSubtitle": "6+ 出口市场，7 语言支持，ASEAN-China FTA 0% 关税。",
+    "ctaTitle": "找不到您的市场？联系工程师对接",
+    "ctaSubtitle": "无论您在哪个国家，我们都能提供多语言对接、原产地证与物流方案。"
+  },
+  "resources": {
+    "pageTitle": "技术资源 | 牌号选型指南与化学耐蚀性表",
+    "pageSubtitle": "碳石墨牌号选型指南与化学耐蚀性表，覆盖 40+ 介质（酸、碱、盐、溶剂）。化工泵、反应釜、压缩机密封工程参考。",
+    "heroSubtitle": "2 个技术资源，8+ 牌号数据，40+ 介质耐蚀评级。",
+    "ctaTitle": "找不到所需数据？联系工程师对接",
+    "ctaSubtitle": "提交工况参数，工程师提供个性化选型与耐蚀性数据。"
   }
 }

@@ -27,7 +27,9 @@ export default async function Footer() {
             <h4 className="font-semibold text-sm uppercase tracking-wider text-gray-300 mb-4">{t("footer.quickLinks")}</h4>
             <ul className="space-y-3 text-sm">
               <li><Link href="/products" className="text-gray-400 hover:text-white transition-colors">{t("nav.products")}</Link></li>
+              <li><Link href="/materials" className="text-gray-400 hover:text-white transition-colors">{t("nav.materials")}</Link></li>
               <li><Link href="/applications" className="text-gray-400 hover:text-white transition-colors">{t("nav.applications")}</Link></li>
+              <li><Link href="/markets" className="text-gray-400 hover:text-white transition-colors">{t("nav.markets")}</Link></li>
               <li><Link href="/factory" className="text-gray-400 hover:text-white transition-colors">{t("nav.factory")}</Link></li>
               <li><Link href="/cases" className="text-gray-400 hover:text-white transition-colors">{t("nav.cases")}</Link></li>
               <li><Link href="/compare" className="text-gray-400 hover:text-white transition-colors">{getLocalized({ zh: "材料对比", en: "Comparisons", vi: "So sánh vật liệu", th: "เปรียบเทียบวัสดุ" }, locale)}</Link></li>

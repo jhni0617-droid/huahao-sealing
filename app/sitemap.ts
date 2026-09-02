@@ -2,6 +2,9 @@ import { products } from "@/lib/products"
 import { blogPosts } from "@/lib/blog-data"
 import { industryLandings } from "@/lib/industry-landing-data"
 import { comparisons } from "@/lib/compare-data"
+import { materialLandings } from "@/lib/materials-data"
+import { marketLandings } from "@/lib/markets-data"
+import { resourceLandings } from "@/lib/resources-data"
 import { routing } from "@/i18n/routing"
 
 const baseUrl = "https://huahaoindustrial.com"
@@ -12,6 +15,9 @@ const CONTENT_LAST_MODIFIED = "2026-06-01"
 const staticRoutes = [
   { path: "", priority: "1.0" },
   { path: "/products", priority: "0.9" },
+  { path: "/materials", priority: "0.8" },
+  { path: "/markets", priority: "0.8" },
+  { path: "/resources", priority: "0.8" },
   { path: "/applications", priority: "0.8" },
   { path: "/cases", priority: "0.7" },
   { path: "/factory", priority: "0.7" },
@@ -113,5 +119,56 @@ export default async function sitemap() {
     }))
   )
 
-  return [...routes, ...productRoutes, ...blogRoutes, ...industryRoutes, ...comparisonRoutes]
+  const materialRoutes = materialLandings.flatMap((item) =>
+    locales.map((locale) => ({
+      url: `${baseUrl}/${locale}/materials/${item.slug}`,
+      lastModified: CONTENT_LAST_MODIFIED,
+      changeFrequency: "monthly" as const,
+      priority: "0.7" as const,
+      alternates: {
+        languages: Object.fromEntries(
+          [
+            ["x-default", `${baseUrl}/en/materials/${item.slug}`],
+            ...locales.map((l) => [l, `${baseUrl}/${l}/materials/${item.slug}`]),
+          ]
+        ),
+      },
+    }))
+  )
+
+  const marketRoutes = marketLandings.flatMap((item) =>
+    locales.map((locale) => ({
+      url: `${baseUrl}/${locale}/markets/${item.slug}`,
+      lastModified: CONTENT_LAST_MODIFIED,
+      changeFrequency: "monthly" as const,
+      priority: "0.7" as const,
+      alternates: {
+        languages: Object.fromEntries(
+          [
+            ["x-default", `${baseUrl}/en/markets/${item.slug}`],
+            ...locales.map((l) => [l, `${baseUrl}/${l}/markets/${item.slug}`]),
+          ]
+        ),
+      },
+    }))
+  )
+
+  const resourceRoutes = resourceLandings.flatMap((item) =>
+    locales.map((locale) => ({
+      url: `${baseUrl}/${locale}/resources/${item.slug}`,
+      lastModified: CONTENT_LAST_MODIFIED,
+      changeFrequency: "monthly" as const,
+      priority: "0.7" as const,
+      alternates: {
+        languages: Object.fromEntries(
+          [
+            ["x-default", `${baseUrl}/en/resources/${item.slug}`],
+            ...locales.map((l) => [l, `${baseUrl}/${l}/resources/${item.slug}`]),
+          ]
+        ),
+      },
+    }))
+  )
+
+  return [...routes, ...productRoutes, ...blogRoutes, ...industryRoutes, ...comparisonRoutes, ...materialRoutes, ...marketRoutes, ...resourceRoutes]
 }

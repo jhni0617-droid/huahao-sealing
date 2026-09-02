@@ -10,6 +10,9 @@
     "contact": "Contact",
     "whatsapp": "WhatsApp",
     "blog": "Technical Blog",
+    "materials": "Materials",
+    "markets": "Global Markets",
+    "resources": "Technical Resources",
     "quote": "Get Quote",
     "productMenu": {
       "groupProducts": "Products",
@@ -362,5 +365,33 @@
     "whyTitle": "Why Carbon Graphite for {industry}?",
     "ctaTitle": "Not sure which solution fits your conditions?",
     "ctaSubtitle": "Tell us your operating conditions and our engineers will recommend the best sealing solution."
+  },
+  "materials": {
+    "pageTitle": "Carbon Graphite Materials | Grade Selection & Properties",
+    "pageSubtitle": "Comprehensive guide to carbon graphite materials: resin, antimony, copper and Babbitt impregnated grades, isostatic and electrographite. Properties, selection and applications.",
+    "heroSubtitle": "8 carbon graphite material grades covering -200°C to 600°C, pH 0-14, from food-grade to heavy industry.",
+    "properties": "Material Properties",
+    "advantages": "Key Advantages",
+    "applications": "Typical Applications",
+    "grades": "Material Grades",
+    "relatedProducts": "Related Products",
+    "faq": "Frequently Asked Questions",
+    "viewDetails": "View details",
+    "ctaTitle": "Not sure which grade? Let our engineers help",
+    "ctaSubtitle": "Submit your duty parameters — engineers reply with grade selection and quotation within 24 hours."
+  },
+  "markets": {
+    "pageTitle": "Global Markets | Regional Carbon Graphite Sealing Solutions",
+    "pageSubtitle": "Huahao Sealing serves 6+ export markets with localized dialogue, FTA origin certificates, and fast logistics. Vietnam, India, Middle East, Indonesia, Brazil, Russia.",
+    "heroSubtitle": "6+ export markets, 7-language support, ASEAN-China FTA 0% tariff.",
+    "ctaTitle": "Don't see your market? Contact our engineers",
+    "ctaSubtitle": "Wherever you are, we offer multilingual dialogue, origin certificates and logistics solutions."
+  },
+  "resources": {
+    "pageTitle": "Technical Resources | Grade Selection Guide & Chemical Resistance Chart",
+    "pageSubtitle": "Carbon graphite grade selection guide and chemical resistance chart for 40+ media (acids, alkalis, salts, solvents). Engineering reference for chemical pumps, reactors, compressor seals.",
+    "heroSubtitle": "2 technical resources, 8+ grade data points, 40+ media resistance ratings.",
+    "ctaTitle": "Don't see the data you need? Contact our engineers",
+    "ctaSubtitle": "Submit duty parameters — engineers provide personalized selection and resistance data."
   }
 }

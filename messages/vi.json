@@ -10,6 +10,9 @@
     "contact": "Liên hệ",
     "whatsapp": "WhatsApp",
     "blog": "Tin tức kỹ thuật",
+    "materials": "Vật liệu",
+    "markets": "Thị trường",
+    "resources": "Tài nguyên",
     "quote": "Yêu cầu báo giá",
     "productMenu": {
       "groupProducts": "Sản phẩm",
@@ -362,5 +365,33 @@
     "whyTitle": "Tại sao Carbon Graphite cho {industry}?",
     "ctaTitle": "Không chắc giải pháp nào phù hợp?",
     "ctaSubtitle": "Cho chúng tôi biết điều kiện vận hành, kỹ sư sẽ đề xuất giải pháp tốt nhất."
+  },
+  "materials": {
+    "pageTitle": "Vật liệu than chì carbon | Lựa chọn vật liệu và thông số",
+    "pageSubtitle": "Hướng dẫn vật liệu than chì carbon: vật liệu impregnation nhựa/antimony/đồng/babbitt, isostatic và điện hóa. Thông số, lựa chọn và ứng dụng.",
+    "heroSubtitle": "8 vật liệu than chì carbon, nhiệt -200 đến 600°C, pH 0-14, từ cấp thực phẩm đến công nghiệp nặng.",
+    "properties": "Thông số vật liệu",
+    "advantages": "Ưu điểm chính",
+    "applications": "Ứng dụng điển hình",
+    "grades": "Vật liệu",
+    "relatedProducts": "Sản phẩm liên quan",
+    "faq": "Câu hỏi thường gặp",
+    "viewDetails": "Xem chi tiết",
+    "ctaTitle": "Không chắc chọn vật liệu nào? Kỹ sư giúp bạn",
+    "ctaSubtitle": "Gửi thông số vận hành — kỹ sư phản hồi lựa chọn vật liệu và báo giá trong 24 giờ."
+  },
+  "markets": {
+    "pageTitle": "Thị trường toàn cầu | Giải pháp kín than chì carbon theo khu vực",
+    "pageSubtitle": "Huahao Sealing phục 6+ thị trường xuất khẩu với đối thoại đa ngôn ngữ, chứng nhận xuất xứ FTA và logistics nhanh. Việt Nam, Ấn Độ, Trung Đông, Indonesia, Brazil, Nga.",
+    "heroSubtitle": "6+ thị trường, 7 ngôn ngữ, ASEAN-China FTA 0%.",
+    "ctaTitle": "Không thấy thị trường? Liên hệ kỹ sư",
+    "ctaSubtitle": "Bất cứ nơi đâu, chúng tôi hỗ trợ đa ngôn ngữ, chứng nhận xuất xứ và logistics."
+  },
+  "resources": {
+    "pageTitle": "Tài nguyên kỹ thuật | Hướng dẫn chọn vật liệu và bảng kháng hóa chất",
+    "pageSubtitle": "Hướng dẫn chọn vật liệu than chì carbon và bảng kháng hóa chất cho 40+ môi trường (axit, kiềm, muối, dung môi). Tài liệu kỹ thuật cho bơm hóa chất, phản ứng, nén.",
+    "heroSubtitle": "2 tài nguyên, 8+ dữ liệu vật liệu, 40+ đánh giá kháng.",
+    "ctaTitle": "Không thấy dữ liệu? Liên hệ kỹ sư",
+    "ctaSubtitle": "Gửi thông số — kỹ sư trả lời cá nhân hóa."
   }
 }

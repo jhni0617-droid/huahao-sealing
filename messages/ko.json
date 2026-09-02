@@ -10,6 +10,9 @@
     "contact": "문의",
     "whatsapp": "WhatsApp",
     "blog": "기술 블로그",
+    "materials": "소재",
+    "markets": "글로벌 시장",
+    "resources": "기술 자료",
     "quote": "견적 요청",
     "productMenu": {
       "groupProducts": "제품 분류",
@@ -362,5 +365,33 @@
     "whyTitle": "{industry}에 카본 그라파이트를 선택해야 하는 이유",
     "ctaTitle": "어떤 솔루션이 적합한지 잘 모르시겠습니까?",
     "ctaSubtitle": "운전 조건을 알려주시면 엔지니어가 최적의 씰링 솔루션을 추천해 드립니다."
+  },
+  "materials": {
+    "pageTitle": "카본 그라파이트 소재 | 등급 선정 및 특성",
+    "pageSubtitle": "카본 그라파이트 소재 종합 가이드: 레진/안티모니/구리/바빗 함침 등급, 등정압 및 전기흑연. 특성, 선정 및 응용.",
+    "heroSubtitle": "8가지 카본 그라파이트 소재 등급, 내온 -200~600°C, pH 0-14, 식품급부터 중공업까지.",
+    "properties": "소재 특성",
+    "advantages": "주요 장점",
+    "applications": "대표적 응용",
+    "grades": "소재 등급",
+    "relatedProducts": "관련 제품",
+    "faq": "자주 묻는 질문",
+    "viewDetails": "상세 보기",
+    "ctaTitle": "등급 선택이 막막하시면 엔지니어에게 문의하세요",
+    "ctaSubtitle": "운전 파라미터 제출 — 24시간 내 엔지니어가 등급 선정 및 견적 회신."
+  },
+  "markets": {
+    "pageTitle": "글로벌 시장 | 지역별 카본 그라파이트 씰 솔루션",
+    "pageSubtitle": "Huahao Sealing은 6개 이상의 수출 시장에 다국어 지원, FTA 원산지 증명, 빠른 물류를 제공. 베트남, 인도, 중동, 인도네시아, 브라질, 러시아.",
+    "heroSubtitle": "6개 이상 시장, 7개 언어, ASEAN-China FTA 0%.",
+    "ctaTitle": "해당 시장이 없나요? 엔지니어에게 문의",
+    "ctaSubtitle": "어디에 계시든 다국어 지원, 원산지 증명, 물류 솔루션 제공."
+  },
+  "resources": {
+    "pageTitle": "기술 자료 | 등급 선정 가이드 및 화학 내식성 표",
+    "pageSubtitle": "카본 그라파이트 등급 선정 가이드와 40개 이상 매체(산, 알칼리, 염, 용제)의 화학 내식성 표. 화학 펌프, 반응기, 압축기 씰 엔지니어링 참고.",
+    "heroSubtitle": "2개 자료, 8개 이상 등급 데이터, 40개 이상 내식 평가.",
+    "ctaTitle": "데이터가 없나요? 엔지니어에게 문의",
+    "ctaSubtitle": "파라미터 제출 — 엔지니어가 맞춤 답변."
   }
 }
