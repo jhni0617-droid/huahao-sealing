@@ -56,3 +56,8 @@ auth-wal
 
 # reasonix local tooling
 .reasonix/
+.gstack/
+
+# local tooling & scratch
+.video_agent/
+components/test-write.txt

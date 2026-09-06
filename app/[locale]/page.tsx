@@ -20,11 +20,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return getLocalized({
     zh: {
       title: "华豪密封 | 高品质碳石墨密封解决方案",
-      description: "专业生产碳石墨密封环、碳石墨轴套/轴承、碳石墨三瓣环，应用于泵类、船舶、化工和工业领域。20+年行业经验，产品出口全球15+国家。",
+      description: "成立于2006年，专业生产碳石墨密封环、碳石墨轴套/轴承、碳石墨三瓣环，按图纸定制加工，产品出口全球20个国家，应用于泵类、船舶、化工和工业领域。",
     },
     en: {
       title: "Huahao Sealing | High-Quality Carbon Graphite Sealing Solutions",
-      description: "Professional manufacturer of carbon graphite seal rings, bushings/bearings, and split rings for pumps, marine, chemical and industrial applications. 20+ years of experience, exported to 15+ countries.",
+      description: "Founded in 2006, Huahao Sealing custom-machines carbon graphite seal rings, bushings/bearings and split rings to your drawings, exporting to 20 countries for pumps, marine, chemical and industrial applications.",
     },
     vi: {
       title: "Huahao Sealing | Giải pháp làm kín than chì carbon chất lượng cao",
@@ -57,7 +57,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <HeroSection />
       <StatsBand />
       <HomeProductEntry />
-      <CTASection />
       <WhyCarbonGraphite />
       <FactoryQuality />
       <ClientsSection />

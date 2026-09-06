@@ -54,7 +54,7 @@ export default async function MaterialsPage({ params }: { params: Promise<{ loca
         secondaryLabel={hero.secondary}
         secondaryHref="/products"
         stats={[
-          { value: "8+", label: hero.stats[0] },
+          { value: "8", label: hero.stats[0] },
           { value: "600°C", label: hero.stats[1] },
           { value: "0-14", label: hero.stats[2] },
         ]}

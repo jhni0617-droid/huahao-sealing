@@ -34,7 +34,7 @@ export const blogPostsBatch6: BlogPost[] = [
 ## 一、数据来源与统计方法
 
 ### 1.1 数据采集范围
-本次分析覆盖2018-2025年间投运的537台套石墨轴套，应用场景包括离心泵、真空泵、搅拌机、压缩机等。数据维度涵盖材料牌号（M106K、M120H、M254K等）、浸渍类型（树脂、锑、巴氏合金、铜）、运行参数（温度、压力、转速、介质）、失效模式及实际运行小时数。所有数据来自霍邱县华豪密封件有限公司客户回访记录和现场巡检报告。
+本次分析覆盖2018-2025年间投运的537台套石墨轴套，应用场景包括离心泵、真空泵、搅拌机、压缩机等。数据维度涵盖材料牌号（M106K、M120H、M106D等）、浸渍类型（树脂、锑、巴氏合金、铜）、运行参数（温度、压力、转速、介质）、失效模式及实际运行小时数。所有数据来自霍邱县华豪密封件有限公司客户回访记录和现场巡检报告。
 
 ### 1.2 统计分析方法
 采用Weibull分布对失效数据进行拟合，计算特征寿命η和形状参数β。使用多元线性回归分析各因素对寿命的影响权重，并通过方差分析（ANOVA）验证显著性。所有统计分析在95%置信度下进行。
@@ -50,7 +50,7 @@ export const blogPostsBatch6: BlogPost[] = [
 ## 三、工况参数对寿命的影响
 
 ### 3.1 温度影响
-介质温度与石墨轴套寿命呈负指数关系。常温（20-50°C）下寿命为基准值，温度每升高50°C，寿命下降约30%-40%。当介质温度超过200°C时，纯碳石墨和浸树脂牌号氧化加速，建议改用浸锑或浸巴氏合金牌号。在350°C蒸汽工况中，浸锑M120D的实测寿命为4200小时，而浸树脂M106K仅为1100小时，差距4倍以上。
+介质温度与石墨轴套寿命呈负指数关系。常温（20-50°C）下寿命为基准值，温度每升高50°C，寿命下降约30%-40%。当介质温度超过200°C时，纯碳石墨和浸树脂牌号氧化加速，建议改用浸锑或浸巴氏合金牌号。在350°C蒸汽工况中，浸锑M120D的实测寿命为4200小时，而浸树脂M106D仅为1100小时，差距4倍以上。
 
 ### 3.2 PV值影响
 PV值（压力与速度的乘积）是衡量摩擦副工况严苛程度的核心指标。统计表明，PV值每提升1 MPa·m/s，石墨轴套的磨损速率增加约0.02-0.05 mm/1000h。为留出安全余量，建议实际工况PV值控制在材料许用值的60%以下。例如浸锑碳石墨许用PV值为10 MPa·m/s，实际工况建议不超过6 MPa·m/s。
@@ -92,7 +92,7 @@ As the core friction pair of sliding bearings, graphite bushings directly determ
 ## 1. Data Sources and Statistical Methods
 
 ### 1.1 Data Collection Scope
-This analysis covers 537 graphite bushing sets commissioned between 2018 and 2025, applied in centrifugal pumps, vacuum pumps, agitators, and compressors. Data dimensions include material grade (M106K, M120H, M254K), impregnation type (resin, antimony, Babbitt alloy, copper), operating parameters (temperature, pressure, speed, media), failure mode, and actual operating hours. All data comes from Huahao Sealing Co., Ltd. customer follow-up records and field inspection reports.
+This analysis covers 537 graphite bushing sets commissioned between 2018 and 2025, applied in centrifugal pumps, vacuum pumps, agitators, and compressors. Data dimensions include material grade (M106K, M120H, M106D), impregnation type (resin, antimony, Babbitt alloy, copper), operating parameters (temperature, pressure, speed, media), failure mode, and actual operating hours. All data comes from Huahao Sealing Co., Ltd. customer follow-up records and field inspection reports.
 
 ### 1.2 Statistical Analysis Methods
 Weibull distribution was used to fit failure data, calculating characteristic life η and shape parameter β. Multiple linear regression analyzed the influence weight of each factor on life, with significance verified through analysis of variance (ANOVA). All statistical analysis was conducted at 95% confidence level.
@@ -162,7 +162,7 @@ Graphite bushing life is the combined result of material, operating conditions, 
 - Plan 32外接清洁冲洗液方案适用于含固体颗粒或易结晶介质，冲洗液流量建议0.5-2.0 m³/h，压力高于密封腔0.1-0.2 MPa
 - Plan 53A双端面密封隔离液方案用于高危有毒有害介质，隔离液压力高于密封腔0.15-0.25 MPa，泄漏率可控制在5 mL/h以下
 
-机械密封的冲洗方案是保证密封长期稳定运行的关键辅助系统。对于采用碳石墨密封环作为静环或动环的机械密封而言，合理的冲洗方案可以有效控制密封腔温度、排除固体颗粒、维持端面液膜，从而显著延长密封寿命。作为霍邱县华豪密封件有限公司的技术服务内容之一，我们经常为客户推荐和设计API 682标准冲洗方案。本文将系统介绍主流冲洗方案的适用场景和选型原则。
+冲洗方案选得对，碳石墨密封环寿命可以差出 2-3 倍：Plan 23 闭路循环能把密封腔温度拉低 30-50℃，高温泵靠它避开树脂分解；Plan 11 覆盖约 60% 的常规工况，但遇到含固体颗粒介质就失灵；Plan 32 外接冲洗液专门对付含固工况。方案之间不是好坏之分，是对不对症。本文按 API 682 框架讲主流方案的适用场景、管路配置和切换条件。
 
 ## 一、API 682冲洗方案概述
 
@@ -223,7 +223,7 @@ Plan 52采用串联式双端面密封，两套密封之间设置缓冲液，压�
 - Plan 32 external clean flush is suitable for media containing solid particles or prone to crystallization, with flush flow rate of 0.5-2.0 m³/h and pressure 0.1-0.2 MPa above the seal chamber
 - Plan 53A double mechanical seal barrier fluid plan is used for hazardous toxic media, with barrier fluid pressure 0.15-0.25 MPa above the seal chamber, controlling leakage rate below 5 mL/h
 
-The flush plan of a mechanical seal is a key auxiliary system ensuring long-term stable operation. For mechanical seals using carbon graphite seal rings as either stationary or rotating rings, a properly selected flush plan can effectively control seal chamber temperature, remove solid particles, and maintain end-face liquid film, thereby significantly extending seal life. As part of the technical services provided by Huahao Sealing Co., Ltd. (霍邱县华豪密封件有限公司), we frequently recommend and design API 682 standard flush plans for customers. This article systematically introduces the applicable scenarios and selection principles of mainstream flush plans.
+The right flush plan can multiply carbon graphite seal ring life by 2–3 times: Plan 23 closed-loop circulation drops seal chamber temperature by 30–50°C, keeping high-temperature pumps away from resin decomposition; Plan 11 covers about 60% of conventional services but fails with solids-laden media; Plan 32 external flush exists precisely for dirty service. Plans are not ranked good versus bad — they either match the condition or they do not. Within the API 682 framework, this article covers applicable scenarios, piping arrangements and switchover criteria for the mainstream plans.
 
 ## 1. Overview of API 682 Flush Plans
 
@@ -359,7 +359,7 @@ Flush plan selection is a key decision in mechanical seal system engineering. We
 
 ## 结语
 
-端面材料配对是机械密封设计的核心环节。碳石墨密封环凭借其自润滑性和导热性，能与多种硬环材料形成良好配对。霍邱县华豪密封件有限公司可提供M106K、M120D、M254K等多种牌号的碳石墨密封环，并根据客户工况推荐最优配对方案。如需配对技术咨询或样品试制，请联系我们的工程团队。`,
+端面材料配对是机械密封设计的核心环节。碳石墨密封环凭借其自润滑性和导热性，能与多种硬环材料形成良好配对。霍邱县华豪密封件有限公司可提供M106K、M120D、M106D等多种牌号的碳石墨密封环，并根据客户工况推荐最优配对方案。如需配对技术咨询或样品试制，请联系我们的工程团队。`,
       en: `## Key Takeaways
 
 - Carbon graphite seal rings paired with silicon carbide have a friction coefficient of 0.05-0.10 and wear rate below 5×10⁻⁸ mm³/(N·m), the optimal friction pair combination for overall performance
@@ -425,7 +425,7 @@ Before selection, confirm key parameters: media type (clean/solid-containing/cor
 
 ## Conclusion
 
-End-face material pairing is the core of mechanical seal design. Carbon graphite seal rings, with their self-lubricating properties and thermal conductivity, can form good pairings with various hard ring materials. Huahao Sealing Co., Ltd. provides carbon graphite seal rings in various grades including M106K, M120D, and M254K, and recommends optimal pairing solutions based on customer conditions. For pairing technical consultation or sample production, please contact our engineering team.`,
+End-face material pairing is the core of mechanical seal design. Carbon graphite seal rings, with their self-lubricating properties and thermal conductivity, can form good pairings with various hard ring materials. Huahao Sealing Co., Ltd. provides carbon graphite seal rings in various grades including M106K, M120D, and M106D, and recommends optimal pairing solutions based on customer conditions. For pairing technical consultation or sample production, please contact our engineering team.`,
     },
   },
 
@@ -1045,7 +1045,7 @@ PCD刀具硬度HV 6000-8000，是加工碳石墨的首选刀具。其耐磨性�
 
 ## 结语
 
-碳石墨密封环的加工工艺是一个系统工程，需要从余量分配、刀具选择、参数优化到质量检验各环节协同控制。通过科学的工艺设计，可以实现高精度、高效率、低成本的加工目标。霍邱县华豪密封件有限公司拥有完整的碳石墨密封件生产线和丰富的加工经验，可为客户提供M106K、M120D、M254K等各类牌号的高质量碳石墨密封件。如需加工工艺咨询或定制化产品，请联系我们的技术团队。`,
+碳石墨密封环的加工工艺是一个系统工程，需要从余量分配、刀具选择、参数优化到质量检验各环节协同控制。通过科学的工艺设计，可以实现高精度、高效率、低成本的加工目标。霍邱县华豪密封件有限公司拥有完整的碳石墨密封件生产线和丰富的加工经验，可为客户提供M106K、M120D、M106D等各类牌号的高质量碳石墨密封件。如需加工工艺咨询或定制化产品，请联系我们的技术团队。`,
       en: `## Key Takeaways
 
 - Carbon graphite seal ring rough machining allowance is recommended at 0.8-1.5 mm, fine machining allowance 0.1-0.3 mm, grinding allowance 0.02-0.05 mm; staged machining can reduce defect rate to below 2%
@@ -1147,7 +1147,7 @@ Main causes: material internal stress release, clamping deformation, temperature
 
 ## Conclusion
 
-The machining process of carbon graphite seal rings is a systematic engineering, requiring coordinated control from allowance distribution, tool selection, parameter optimization to quality inspection. Through scientific process design, high-precision, high-efficiency, and low-cost machining targets can be achieved. Huahao Sealing Co., Ltd. has a complete carbon graphite seal production line and rich machining experience, providing customers with high-quality carbon graphite seals in various grades including M106K, M120D, and M254K. For machining process consultation or customized products, please contact our technical team.`,
+The machining process of carbon graphite seal rings is a systematic engineering, requiring coordinated control from allowance distribution, tool selection, parameter optimization to quality inspection. Through scientific process design, high-precision, high-efficiency, and low-cost machining targets can be achieved. Huahao Sealing Co., Ltd. has a complete carbon graphite seal production line and rich machining experience, providing customers with high-quality carbon graphite seals in various grades including M106K, M120D, and M106D. For machining process consultation or customized products, please contact our technical team.`,
     },
   },
 

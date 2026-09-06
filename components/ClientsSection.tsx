@@ -56,44 +56,44 @@ const regionsData = {
 const statsData = {
   zh: [
     { value: "10+", label: "出口国家" },
-    { value: "1,000+", label: "全球客户" },
-    { value: "20+", label: "出口经验（年）" },
+    { value: "1,000", label: "全球客户" },
+    { value: "2006", label: "年建厂" },
     { value: "6", label: "服务大洲" },
   ],
   en: [
     { value: "10+", label: "Export Countries" },
-    { value: "1,000+", label: "Global Customers" },
-    { value: "20+", label: "Export Experience" },
+    { value: "1,000", label: "Global Customers" },
+    { value: "2006", label: "Founded" },
     { value: "6", label: "Continents Served" },
   ],
   vi: [
     { value: "10+", label: "Quốc gia xuất khẩu" },
-    { value: "1,000+", label: "Khách hàng toàn cầu" },
-    { value: "20+", label: "Kinh nghiệm xuất khẩu" },
+    { value: "1,000", label: "Khách hàng toàn cầu" },
+    { value: "2006", label: "Năm thành lập" },
     { value: "6", label: "Châu lục phục vụ" },
   ],
   th: [
     { value: "10+", label: "ประเทศที่ส่งออก" },
-    { value: "1,000+", label: "ลูกค้าทั่วโลก" },
-    { value: "20+", label: "ประสบการณ์การส่งออก" },
+    { value: "1,000", label: "ลูกค้าทั่วโลก" },
+    { value: "2006", label: "ปีที่ก่อตั้ง" },
     { value: "6", label: "ทวีปที่ให้บริการ" },
   ],
   ru: [
     { value: "10+", label: "Стран экспорта" },
-    { value: "1,000+", label: "Глобальных клиентов" },
-    { value: "20+", label: "Опыт экспорта" },
+    { value: "1,000", label: "Глобальных клиентов" },
+    { value: "2006", label: "Год основания" },
     { value: "6", label: "Континентов" },
   ],
   ja: [
     { value: "10+", label: "輸出国" },
-    { value: "1,000+", label: "グローバル顧客" },
-    { value: "20+", label: "輸出経験" },
+    { value: "1,000", label: "グローバル顧客" },
+    { value: "2006", label: "創業年" },
     { value: "6", label: "サービス提供大陸" },
   ],
   ko: [
     { value: "10+", label: "수출 국가" },
-    { value: "1,000+", label: "글로벌 고객" },
-    { value: "20+", label: "수출 경험" },
+    { value: "1,000", label: "글로벌 고객" },
+    { value: "2006", label: "설립 연도" },
     { value: "6", label: "서비스 대륙" },
   ],
 }
@@ -110,23 +110,24 @@ export default function ClientsSection() {
       <div className="container-wide relative z-10">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <div className="badge-accent justify-center mx-auto mb-4">
-            {t("tag")}
+          <div className="mb-4 inline-flex items-center gap-3">
+            <span className="h-[3px] w-8 bg-accent" aria-hidden />
+            <span className="en-caption text-sm text-muted">{t("tag")}</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mt-3 mb-4">
+          <h2 className="font-serif-sc text-3xl md:text-4xl font-bold text-primary leading-tight">
             {t("title")}
-            <span className="text-accent">15+</span> {t("titleSuffix")}
+            <span className="text-accent">10+</span> {t("titleSuffix")}
           </h2>
-          <p className="text-muted leading-relaxed text-base">
+          <p className="mt-4 text-muted leading-relaxed text-base">
             {t("description")}
           </p>
         </div>
 
-        {/* Stats row — premium card style */}
+        {/* Stats row — 数字静置，红色只留给标题里的 10+ */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 max-w-4xl mx-auto">
           {stats.map((s) => (
-            <div key={s.label} className="card p-5 md:p-6 text-center hover:translate-y-0">
-              <div className="text-2xl md:text-3xl font-bold text-accent mb-1">{s.value}</div>
+            <div key={s.label} className="card p-5 md:p-6 text-center">
+              <div className="stat-num text-3xl md:text-4xl text-primary mb-1">{s.value}</div>
               <div className="text-xs md:text-sm text-muted">{s.label}</div>
             </div>
           ))}

@@ -113,7 +113,7 @@
       "tag": "Self-lubricating · High Temp · Corrosion Resistant · Wear Resistant",
       "title1": "High-Quality Carbon Graphite",
       "title2": "Sealing Solutions",
-      "description": "Professional manufacturer of carbon graphite seal rings, bushings/bearings, and split rings. Custom machining supported. Serving 1,000+ global customers, exporting to 15+ countries.",
+      "description": "Professional manufacturer of carbon graphite seal rings, bushings/bearings, and split rings. Custom-machined to your drawings. Exporting to 20 countries.",
       "ctaQuote": "Get a Quote",
       "ctaWhatsApp": "WhatsApp",
       "ctaProducts": "View Products"
@@ -121,7 +121,7 @@
     "whyCarbon": {
       "tag": "Why Carbon Graphite",
       "title": "Cost of Failure vs Carbon Graphite Advantage",
-      "description": "If you are facing frequent seal failures, carbon graphite may be the answer you have been looking for.",
+      "description": "Frequent seal failures usually trace back to the material. Here is how carbon graphite handles wear, high temperature and corrosion — compared with data.",
       "problemsTitle": "Common Problems",
       "solutionTitle": "Carbon Graphite Solution",
       "ctaTitle": "Carbon Graphite — Solves All Three",
@@ -131,7 +131,7 @@
     "applicationsSection": {
       "tag": "Applications",
       "title": "Industries Served",
-      "description": "Our sealing solutions are trusted across industries worldwide."
+      "description": "Where carbon graphite seals are used: pumps, marine, chemical, metallurgy and more."
     },
     "casesSection": {
       "tag": "Case Studies",
@@ -341,7 +341,10 @@
     "all": "All Products",
     "empty": "No products in this category",
     "ctaTitle": "Need Help Choosing the Right Product?",
-    "ctaSubtitle": "Describe your operating conditions and our engineers will recommend the best solution within 24 hours."
+    "ctaSubtitle": "Describe your operating conditions and our engineers will recommend the best solution within 24 hours.",
+    "videoOverline": "Factory videos",
+    "videoTitle": "Product Center · Real Footage",
+    "videoIntro": "Real workshop, equipment and product footage: from blanks and machining to finished parts and packing, fully in-house production."
   },
   "about": {
     "pageTitle": "About Huahao Sealing",

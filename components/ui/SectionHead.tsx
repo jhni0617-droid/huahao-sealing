@@ -18,7 +18,7 @@ export default function SectionHead({ en, title, description, align = "left" }: 
             <span className="h-[3px] w-10 bg-accent" aria-hidden />
             <span className="en-caption text-sm text-muted">{en}</span>
           </div>
-          <h2 className="text-3xl font-bold text-primary md:text-4xl lg:text-[2.75rem] leading-tight">
+          <h2 className="font-serif-sc text-3xl font-bold text-primary md:text-4xl lg:text-[2.75rem] leading-tight">
             {title}
           </h2>
         </div>

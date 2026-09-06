@@ -4,6 +4,7 @@ import { siteConfig } from "@/lib/constants"
 import { factoryHighlightsByLocale } from "@/lib/translations"
 import { getLocalized, getLocalizedSiteConfig } from "@/lib/locale-data"
 import Icon from "@/components/ui/Icon"
+import TrackedLink from "@/components/TrackedLink"
 
 export default async function Footer() {
   const t = await getTranslations()
@@ -77,23 +78,27 @@ export default async function Footer() {
                 <Icon name="facebook" className="w-4 h-4" />
                 Facebook
               </a>
-              <a
+              <TrackedLink
                 href={`https://zalo.me/${cfg.zalo.replace(/\D/g, "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                event="zalo_click"
+                label="footer"
                 className="inline-flex items-center gap-2 px-5 py-2.5 bg-accent/10 border border-accent/20 text-accent text-sm font-semibold rounded-[10px] hover:bg-accent hover:text-white transition-all"
               >
                 Zalo
-              </a>
-              <a
+              </TrackedLink>
+              <TrackedLink
                 href={`https://wa.me/${cfg.whatsapp}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                event="whatsapp_click"
+                label="footer"
                 className="inline-flex items-center gap-2 px-5 py-2.5 bg-accent/10 border border-accent/20 text-accent text-sm font-semibold rounded-[10px] hover:bg-accent hover:text-white transition-all"
               >
                 <Icon name="whatsapp" className="w-4 h-4" />
                 {t("common.whatsapp")}
-              </a>
+              </TrackedLink>
             </div>
           </div>
         </div>

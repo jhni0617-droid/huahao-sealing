@@ -3,15 +3,12 @@ import ImageCarousel from "@/components/ui/ImageCarousel"
 import CertBadge from "@/components/ui/CertBadge"
 import Icon, { type IconName } from "@/components/ui/Icon"
 import Reveal from "@/components/ui/Reveal"
-import CountUp from "@/components/ui/CountUp"
 import { getLocalized } from "@/lib/locale-data"
 
 const carouselImages = [
   { src: "/images/IMG_20260321_153130.webp", alt: "Huahao Sealing Factory · Overview" },
   { src: "/images/实拍/IMG_20260517_193443.webp", alt: "Huahao Sealing · Workshop" },
   { src: "/images/实拍/IMG_20260518_215113.webp", alt: "Huahao Sealing · Production Equipment" },
-  { src: "/images/实拍/file_00000000d5807206805d8fd791f071db.webp", alt: "Huahao Sealing · Manufacturing" },
-  { src: "/images/实拍/GPT Image 2_1776946246679_0.webp", alt: "Huahao Sealing · Product Showcase" },
   { src: "/images/实拍/IMG_20260517_192804.webp", alt: "Huahao Sealing · Processing" },
   { src: "/images/实拍/IMG_20260517_192907.webp", alt: "Huahao Sealing · Workshop Detail" },
   { src: "/images/实拍/IMG_20260517_193309.webp", alt: "Huahao Sealing · Machining" },
@@ -66,46 +63,46 @@ const capabilitiesData = {
 
 const statsData = {
   zh: [
-    { value: "20+", label: "年行业经验" },
-    { value: "1,000+", label: "服务客户" },
+    { value: "2006", label: "年建厂" },
+    { value: "1,000", label: "服务客户" },
     { value: "10+", label: "出口国家" },
-    { value: "200+", label: "定制方案" },
+    { value: "200", label: "定制方案" },
   ],
   en: [
-    { value: "20+", label: "Years Experience" },
-    { value: "1,000+", label: "Customers Served" },
+    { value: "2006", label: "Founded" },
+    { value: "1,000", label: "Customers Served" },
     { value: "10+", label: "Export Countries" },
-    { value: "200+", label: "Custom Solutions" },
+    { value: "200", label: "Custom Solutions" },
   ],
   vi: [
-    { value: "20+", label: "Năm Kinh Nghiệm" },
-    { value: "1,000+", label: "Khách Hàng Đã Phục Vụ" },
+    { value: "2006", label: "Năm Thành Lập" },
+    { value: "1,000", label: "Khách Hàng Đã Phục Vụ" },
     { value: "10+", label: "Quốc Gia Xuất Khẩu" },
-    { value: "200+", label: "Giải Pháp Tùy Chỉnh" },
+    { value: "200", label: "Giải Pháp Tùy Chỉnh" },
   ],
   th: [
-    { value: "20+", label: "ปีแห่งประสบการณ์" },
-    { value: "1,000+", label: "ลูกค้าที่ให้บริการ" },
+    { value: "2006", label: "ปีที่ก่อตั้ง" },
+    { value: "1,000", label: "ลูกค้าที่ให้บริการ" },
     { value: "10+", label: "ประเทศที่ส่งออก" },
-    { value: "200+", label: "โซลูชันที่กำหนดเอง" },
+    { value: "200", label: "โซลูชันที่กำหนดเอง" },
   ],
   ru: [
-    { value: "20+", label: "Лет опыта" },
-    { value: "1,000+", label: "Обслуженных клиентов" },
+    { value: "2006", label: "Год основания" },
+    { value: "1,000", label: "Обслуженных клиентов" },
     { value: "10+", label: "Стран экспорта" },
-    { value: "200+", label: "Индивидуальных решений" },
+    { value: "200", label: "Индивидуальных решений" },
   ],
   ja: [
-    { value: "20+", label: "年の経験" },
-    { value: "1,000+", label: "顧客実績" },
+    { value: "2006", label: "創業年" },
+    { value: "1,000", label: "顧客実績" },
     { value: "10+", label: "輸出国" },
-    { value: "200+", label: "カスタムソリューション" },
+    { value: "200", label: "カスタムソリューション" },
   ],
   ko: [
-    { value: "20+", label: "년 경험" },
-    { value: "1,000+", label: "서비스 고객" },
+    { value: "2006", label: "설립 연도" },
+    { value: "1,000", label: "서비스 고객" },
     { value: "10+", label: "수출 국가" },
-    { value: "200+", label: "맞춤 솔루션" },
+    { value: "200", label: "맞춤 솔루션" },
   ],
 }
 
@@ -183,7 +180,7 @@ export default async function FactoryQuality() {
               <span className="h-[3px] w-10 bg-accent" aria-hidden />
               <span className="en-caption text-sm text-slate-400">Factory & Quality</span>
             </div>
-            <h2 className="text-3xl md:text-[2.75rem] font-bold mb-5 leading-tight">
+            <h2 className="font-serif-sc text-3xl md:text-[2.75rem] font-bold mb-5 leading-tight">
               {t("title")}
             </h2>
             <p className="text-slate-300 leading-relaxed mb-8 text-base">
@@ -192,18 +189,18 @@ export default async function FactoryQuality() {
 
             <div className="grid grid-cols-2 gap-3 mb-8">
               {capabilities.map((item) => (
-                <div key={item.label} className="border border-white/[0.08] bg-white/[0.04] p-4 transition-colors hover:border-accent/40">
+                <div key={item.label} className="border border-white/[0.08] bg-white/[0.04] p-4">
                   <h3 className="font-semibold text-sm text-white">{item.label}</h3>
                   <p className="text-xs text-slate-400 mt-1">{item.desc}</p>
                 </div>
               ))}
             </div>
 
-            {/* 良工式计数器：大号展示字体数字 + 虚线分隔（单行四列避免换行破线） */}
+            {/* 静态大数字：静的才笃定，不做滚动动画 */}
             <div className="grid grid-cols-4">
               {stats.map((s, i) => (
                 <div key={s.value} className={`px-3 py-1 ${i > 0 ? "border-l border-dashed border-white/12" : "pl-0"}`}>
-                  <CountUp value={s.value} className="stat-num block text-[2rem] text-white lg:text-5xl" />
+                  <span className="stat-num block text-[2rem] text-white lg:text-5xl">{s.value}</span>
                   <div className="mt-2 truncate text-xs text-slate-400">{s.label}</div>
                 </div>
               ))}
@@ -220,8 +217,8 @@ export default async function FactoryQuality() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {qcItems.map((qc, i) => (
               <Reveal key={qc.title} delay={i * 90}>
-                <div className="border border-white/[0.08] bg-white/[0.04] p-5 text-center transition-colors hover:border-accent/30">
-                  <Icon name={qc.icon as IconName} className="w-8 h-8 text-accent mx-auto mb-3" />
+                <div className="border border-white/[0.08] bg-white/[0.04] p-5 text-center">
+                  <Icon name={qc.icon as IconName} className="w-7 h-7 text-slate-300 mx-auto mb-3" />
                   <h3 className="text-sm font-bold mb-1">{qc.title}</h3>
                   <p className="text-xs text-slate-400">{qc.desc}</p>
                 </div>

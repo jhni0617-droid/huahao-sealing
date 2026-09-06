@@ -7,6 +7,7 @@ import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 import PageHero from "@/components/PageHero"
 import Breadcrumb from "@/components/Breadcrumb"
+import TrackedLink from "@/components/TrackedLink"
 
 const contactCopy = {
   zh: {
@@ -175,9 +176,9 @@ export default async function ContactPage(props: { params: Promise<{ locale: str
                 <div className="space-y-4 text-sm">
                   <div>
                     <div className="text-muted text-xs tracking-wider mb-1">{t("emailLabel")}</div>
-                    <a href={`mailto:${cfg.email}`} className="text-primary font-medium hover:underline">
+                    <TrackedLink href={`mailto:${cfg.email}`} event="email_click" label="contact_page" className="text-primary font-medium hover:underline">
                       {cfg.email}
-                    </a>
+                    </TrackedLink>
                   </div>
                   <div>
                     <div className="text-muted text-xs tracking-wider mb-1">{t("phoneLabel")}</div>
@@ -185,14 +186,16 @@ export default async function ContactPage(props: { params: Promise<{ locale: str
                   </div>
                   <div>
                     <div className="text-muted text-xs tracking-wider mb-1">WhatsApp</div>
-                    <a
+                    <TrackedLink
                       href={`https://wa.me/${cfg.whatsapp}`}
                       target="_blank"
                       rel="noopener noreferrer"
+                      event="whatsapp_click"
+                      label="contact_page"
                       className="text-primary font-medium hover:underline"
                     >
                       {cfg.whatsapp}
-                    </a>
+                    </TrackedLink>
                   </div>
                   <div>
                     <div className="text-muted text-xs tracking-wider mb-1">{t("facebookLabel")}</div>
@@ -250,7 +253,7 @@ export default async function ContactPage(props: { params: Promise<{ locale: str
                   { src: "/images/实拍/IMG_20260518_214858.webp", alt: getLocalized(altText, locale) },
                   { src: "/images/实拍/IMG_20260518_215335.webp", alt: getLocalized(altText, locale) },
                   { src: "/images/实拍/IMG_20260518_215353.webp", alt: getLocalized(altText, locale) },
-                  { src: "/images/实拍/file_00000000e47c7209a756fff4f4d29c2b.webp", alt: getLocalized(altText, locale) },
+                  { src: "/images/实拍/IMG_20260517_193309.webp", alt: getLocalized(altText, locale) },
                 ]}
                 aspectRatio="16/10"
                 variant="solid"

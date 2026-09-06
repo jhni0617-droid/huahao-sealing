@@ -112,26 +112,26 @@ export const materialLandings: MaterialLanding[] = [
     grades: [
       { code: "M106", temp: "350°C", note: { zh: "普通碳石墨，通用机械密封与轴承", en: "Standard carbon graphite, general-purpose seals and bearings", vi: "Than chì carbon tiêu chuẩn, kín và vòng bi thông dụng", th: "คาร์บอนกราไฟต์มาตรฐาน ซีลและแบริ่งทั่วไป" } },
       { code: "M106K", temp: "220°C", note: { zh: "树脂浸渍，食品级，FDA合规", en: "Resin-impregnated, food-grade, FDA compliant", vi: "Impregnation nhựa, cấp thực phẩm, tuân thủ FDA", th: "อิมเพรกเนชันเรซิน เกรดอาหาร ตรงมาตรฐาน FDA" } },
-      { code: "M106H", temp: "500°C", note: { zh: "锑浸渍，耐高温抗氧化", en: "Antimony-impregnated, high-temp anti-oxidation", vi: "Impregnation antimony, nhiệt cao chống oxy hóa", th: "อิมเพรกเนชันพลวง ความร้อนสูงป้องกันออกซิเดชัน" } },
+      { code: "M106D", temp: "500°C", note: { zh: "锑浸渍，耐高温抗氧化", en: "Antimony-impregnated, high-temp anti-oxidation", vi: "Impregnation antimony, nhiệt cao chống oxy hóa", th: "อิมเพรกเนชันพลวง ความร้อนสูงป้องกันออกซิเดชัน" } },
       { code: "M191T", temp: "600°C", note: { zh: "碳化处理，化学惰性极高", en: "Carbonized, extreme chemical inertness", vi: "Carbonized, trơ hóa học cực cao", th: "ระบมพลาสติก ความเฉื่อยเคมีสูงมาก" } },
     ],
     relatedProducts: ["109-series", "graphite-bushing", "graphite-bearing", "graphite-thrust-disc"],
     faq: {
       zh: [
         { q: "碳石墨和石墨有什么区别？", a: "碳石墨是经过焙烧处理的工程材料，孔隙率8-15%，需要浸渍处理后用于密封件。天然石墨或可膨胀石墨层间结合力弱，不适合精密加工。密封行业说的'碳石墨'通常指经过焙烧、浸渍的工程碳石墨。" },
-        { q: "碳石墨的最高工作温度是多少？", a: "取决于牌号。普通碳石墨350℃，树脂浸渍牌号(M106K)220℃，锑浸渍牌号(M106H)500℃，碳化处理牌号(M191T)600℃。超过400℃需选用金属浸渍或碳化处理牌号，并配合抗氧化处理。" },
+        { q: "碳石墨的最高工作温度是多少？", a: "取决于牌号。普通碳石墨350℃，树脂浸渍牌号(M106K)220℃，锑浸渍牌号(M106D)500℃，碳化处理牌号(M191T)600℃。超过400℃需选用金属浸渍或碳化处理牌号，并配合抗氧化处理。" },
         { q: "碳石墨的密度是多少？", a: "未浸渍碳石墨密度1.55-1.70 g/cm³。树脂浸渍后1.75-1.80 g/cm³，锑浸渍后1.80-1.85 g/cm³。密度越高，孔隙率越低，机械强度和耐磨性越好。" },
         { q: "碳石墨为什么能自润滑？", a: "碳石墨的层状晶体结构中，碳原子在同一平面内以强共价键结合，层间以弱范德华力结合。摩擦时层间容易滑动，并在配对面上形成转移膜，从而降低摩擦系数至0.04-0.15。" },
       ],
       en: [
         { q: "What is the difference between carbon graphite and graphite?", a: "Carbon graphite is a baked engineering material with 8-15% porosity that requires impregnation for seal applications. Natural or expandable graphite has weak interlayer bonding and is unsuitable for precision machining. The term 'carbon graphite' in the sealing industry refers to baked and impregnated engineering carbon graphite." },
-        { q: "What is the maximum working temperature of carbon graphite?", a: "It depends on the grade. Standard carbon graphite 350°C, resin-impregnated (M106K) 220°C, antimony-impregnated (M106H) 500°C, carbonized (M191T) 600°C. Above 400°C, metal-impregnated or carbonized grades with anti-oxidation treatment are required." },
+        { q: "What is the maximum working temperature of carbon graphite?", a: "It depends on the grade. Standard carbon graphite 350°C, resin-impregnated (M106K) 220°C, antimony-impregnated (M106D) 500°C, carbonized (M191T) 600°C. Above 400°C, metal-impregnated or carbonized grades with anti-oxidation treatment are required." },
         { q: "What is the density of carbon graphite?", a: "Unimpregnated carbon graphite density is 1.55-1.70 g/cm³. After resin impregnation 1.75-1.80 g/cm³, after antimony impregnation 1.80-1.85 g/cm³. Higher density means lower porosity and better mechanical strength and wear resistance." },
         { q: "Why is carbon graphite self-lubricating?", a: "In the layered crystal structure of carbon graphite, carbon atoms are bonded by strong covalent bonds within layers and weak van der Waals forces between layers. During friction, layers slide easily and form a transfer film on the mating surface, reducing the friction coefficient to 0.04-0.15." },
       ],
       vi: [
         { q: "Khác nhau giữa than chì carbon và than chì?", a: "Than chì carbon là vật liệu kỹ thuật đã nung, độ rỗng 8-15%, cần impregnation cho ứng dụng kín. Than chì tự nhiên liên kết lớp yếu, không phù hợp gia công chính xác. 'Than chì carbon' trong ngành kín chỉ vật liệu đã nung và impregnation." },
-        { q: "Nhiệt độ làm việc tối đa của than chì carbon?", a: "Tùy vật liệu: tiêu chuẩn 350°C, impregnation nhựa (M106K) 220°C, impregnation antimony (M106H) 500°C, carbonized (M191T) 600°C. Trên 400°C cần vật liệu impregnation kim loại hoặc carbonized có xử lý chống oxy hóa." },
+        { q: "Nhiệt độ làm việc tối đa của than chì carbon?", a: "Tùy vật liệu: tiêu chuẩn 350°C, impregnation nhựa (M106K) 220°C, impregnation antimony (M106D) 500°C, carbonized (M191T) 600°C. Trên 400°C cần vật liệu impregnation kim loại hoặc carbonized có xử lý chống oxy hóa." },
         { q: "Mật độ than chì carbon?", a: "Chưa impregnation 1.55-1.70 g/cm³. Sau impregnation nhựa 1.75-1.80 g/cm³, sau impregnation antimony 1.80-1.85 g/cm³. Mật độ cao hơn = độ rỗng thấp hơn, độ bền và chống mài mòn tốt hơn." },
         { q: "Tại sao than chì carbon tự bôi trơn?", a: "Cấu trúc tinh thể lớp, liên kết đồng hóa trị mạnh trong lớp, liên kết Van der Waals yếu giữa các lớp. Ma sát trượt lớp dễ dàng tạo màng chuyển, giảm hệ số ma sát 0.04-0.15." },
       ],
@@ -154,10 +154,10 @@ export const materialLandings: MaterialLanding[] = [
       th: "กราไฟต์อิมเพรกเนชันเรซิน | วัสดุซีลเกรดอาหาร M106K",
     },
     description: {
-      zh: "树脂浸渍石墨是将焙烧后的碳石墨基体在真空条件下浸入酚醛或环氧树脂，使树脂填充微孔，密度提升至1.75-1.80 g/cm³。华豪密封M106K牌号耐温220℃，符合FDA食品接触标准，用于食品机械、制药设备、饮用水泵等无污染自润滑工况。",
-      en: "Resin-impregnated graphite is produced by vacuum-impregnating baked carbon graphite with phenolic or epoxy resin, filling the micropores to raise density to 1.75-1.80 g/cm³. Huahao Sealing's M106K grade is rated 220°C and FDA-compliant for food machinery, pharmaceutical equipment and drinking-water pumps requiring contamination-free self-lubrication.",
-      vi: "Than chì impregnation nhựa được tạo bằng cách impregnation than chì đã nung với nhựa phenolic hoặc epoxy trong chân không, lấp đầy lỗ rỗng nâng mật độ 1.75-1.80 g/cm³. Vật liệu M106K của Huahao Sealing chịu 220°C, tuân thủ FDA cho máy thực phẩm, thiết bị dược phẩm và bơm nước uống.",
-      th: "กราไฟต์อิมเพรกเนชันเรซินสร้างโดยอิมเพรกเนตกราไฟต์ที่เผาแล้วด้วยเรซินเฟนอลิกหรืออีพอกซีในสุญญากาศ เติมรูพรุนเพิ่มความหนาแน่นเป็น 1.75-1.80 g/cm³ เกรด M106K ของ Huahao ทน 220°C ตรง FDA",
+      zh: "树脂浸渍石墨是将焙烧后的碳石墨基体在真空条件下浸入酚醛、环氧或呋喃树脂，使树脂填充微孔，密度提升至1.75-1.80 g/cm³。华豪密封M106K牌号耐温220℃，符合FDA食品接触标准，用于食品机械、制药设备、饮用水泵等无污染自润滑工况。",
+      en: "Resin-impregnated graphite is produced by vacuum-impregnating baked carbon graphite with phenolic, epoxy or furan resin, filling the micropores to raise density to 1.75-1.80 g/cm³. Huahao Sealing's M106K grade is rated 220°C and FDA-compliant for food machinery, pharmaceutical equipment and drinking-water pumps requiring contamination-free self-lubrication.",
+      vi: "Than chì impregnation nhựa được tạo bằng cách impregnation than chì đã nung với nhựa phenolic, epoxy hoặc furan trong chân không, lấp đầy lỗ rỗng nâng mật độ 1.75-1.80 g/cm³. Vật liệu M106K của Huahao Sealing chịu 220°C, tuân thủ FDA cho máy thực phẩm, thiết bị dược phẩm và bơm nước uống.",
+      th: "กราไฟต์อิมเพรกเนชันเรซินสร้างโดยอิมเพรกเนตกราไฟต์ที่เผาแล้วด้วยเรซินเฟนอลิก อีพอกซี หรือฟูแรนในสุญญากาศ เติมรูพรุนเพิ่มความหนาแน่นเป็น 1.75-1.80 g/cm³ เกรด M106K ของ Huahao ทน 220°C ตรง FDA",
     },
     properties: [
       { label: "Density", value: "1.75 – 1.80 g/cm³" },
@@ -230,29 +230,29 @@ export const materialLandings: MaterialLanding[] = [
       ],
     },
     grades: [
-      { code: "M106K", temp: "220°C", note: { zh: "酚醛树脂浸渍，食品级", en: "Phenolic resin impregnated, food-grade", vi: "Impregnation nhựa phenolic, cấp thực phẩm", th: "อิมเพรกเนตเรซินเฟนอลิก เกรดอาหาร" } },
-      { code: "M120K", temp: "200°C", note: { zh: "环氧树脂浸渍，耐腐蚀", en: "Epoxy resin impregnated, corrosion-resistant", vi: "Impregnation nhựa epoxy, chống ăn mòn", th: "อิมเพรกเนตเรซินอีพอกซี ทนการกัดกร่อน" } },
+      { code: "M106K", temp: "220°C", note: { zh: "呋喃树脂浸渍，通用耐腐", en: "Furan resin impregnated, general purpose", vi: "Impregnation nhựa furan, thông dụng", th: "อิมเพรกเนตเรซินฟูแรน ทั่วไป" } },
+      { code: "M120K", temp: "200°C", note: { zh: "呋喃树脂浸渍，高强基体", en: "Furan resin impregnated, high-strength base", vi: "Impregnation nhựa furan, nền cường độ cao", th: "อิมเพรกเนตเรซินฟูแรน โครงสร้างแข็งแรง" } },
     ],
     relatedProducts: ["104-series", "graphite-bushing", "graphite-bearing"],
     faq: {
       zh: [
-        { q: "树脂浸渍石墨能在高温下使用吗？", a: "树脂浸渍牌号(M106K)最高工作温度220℃。超过此温度树脂会碳化分解，失去浸渍效果。高温工况(>220℃)应选用锑浸渍(M106H, 500℃)或碳化处理(M191T, 600℃)牌号。" },
-        { q: "树脂浸渍石墨符合食品级标准吗？", a: "是的。M106K牌号使用食品级酚醛树脂浸渍剂，符合FDA 21 CFR 175.300和EU 1935/2004食品接触材料标准。完全无油自润滑运行，无金属离子污染风险，已通过食品安全认证。" },
-        { q: "树脂浸渍和锑浸渍怎么选？", a: "温度低于220℃且要求食品级/无污染工况选树脂浸渍(M106K)。温度高于220℃或需高耐磨性选锑浸渍(M106H, 500℃)。锑浸渍硬度更高、耐温更高，但不适合食品接触。" },
+        { q: "树脂浸渍石墨能在高温下使用吗？", a: "树脂浸渍牌号(M106K)最高工作温度220℃。超过此温度树脂会碳化分解，失去浸渍效果。高温工况(>220℃)应选用锑浸渍(M106D, 500℃)或碳化处理(M191T, 600℃)牌号。" },
+        { q: "树脂浸渍石墨符合食品级标准吗？", a: "是的。M106K牌号浸渍树脂体系符合FDA 21 CFR 175.300和EU 1935/2004食品接触材料标准。完全无油自润滑运行，无金属离子污染风险，已通过食品安全认证。" },
+        { q: "树脂浸渍和锑浸渍怎么选？", a: "温度低于220℃且要求食品级/无污染工况选树脂浸渍(M106K)。温度高于220℃或需高耐磨性选锑浸渍(M106D, 500℃)。锑浸渍硬度更高、耐温更高，但不适合食品接触。" },
       ],
       en: [
-        { q: "Can resin-impregnated graphite be used at high temperatures?", a: "Resin-impregnated grade (M106K) has a maximum working temperature of 220°C. Above this, the resin carbonizes and decomposes, losing its impregnation effect. For high-temperature service (>220°C), select antimony-impregnated (M106H, 500°C) or carbonized (M191T, 600°C) grades." },
-        { q: "Is resin-impregnated graphite food-grade compliant?", a: "Yes. The M106K grade uses food-grade phenolic resin impregnant that meets FDA 21 CFR 175.300 and EU 1935/2004 food contact material standards. It runs completely oil-free with no metal ion contamination risk and has passed food safety certification." },
-        { q: "How to choose between resin and antimony impregnation?", a: "For temperatures below 220°C with food-grade/contamination-free requirements, choose resin-impregnated (M106K). For temperatures above 220°C or where high wear resistance is needed, choose antimony-impregnated (M106H, 500°C). Antimony grades have higher hardness and temperature resistance but are not suitable for food contact." },
+        { q: "Can resin-impregnated graphite be used at high temperatures?", a: "Resin-impregnated grade (M106K) has a maximum working temperature of 220°C. Above this, the resin carbonizes and decomposes, losing its impregnation effect. For high-temperature service (>220°C), select antimony-impregnated (M106D, 500°C) or carbonized (M191T, 600°C) grades." },
+        { q: "Is resin-impregnated graphite food-grade compliant?", a: "Yes. The M106K grade uses a food-contact-compliant resin impregnant system meeting FDA 21 CFR 175.300 and EU 1935/2004 food contact material standards. It runs completely oil-free with no metal ion contamination risk and has passed food safety certification." },
+        { q: "How to choose between resin and antimony impregnation?", a: "For temperatures below 220°C with food-grade/contamination-free requirements, choose resin-impregnated (M106K). For temperatures above 220°C or where high wear resistance is needed, choose antimony-impregnated (M106D, 500°C). Antimony grades have higher hardness and temperature resistance but are not suitable for food contact." },
       ],
       vi: [
-        { q: "Than chì impregnation nhựa dùng được ở nhiệt cao không?", a: "Vật liệu M106K nhiệt tối đa 220°C. Trên nhiệt này nhựa carbonized phân hủy. Trên 220°C chọn impregnation antimony (M106H, 500°C) hoặc carbonized (M191T, 600°C)." },
-        { q: "Than chì impregnation nhựa có đạt chuẩn thực phẩm?", a: "Có. M106K dùng nhựa phenolic cấp thực phẩm, tuân thủ FDA 21 CFR 175.300 và EU 1935/2004. Chạy hoàn toàn không dầu, không nhiễm ion kim loại." },
-        { q: "Chọn nhựa hay antimony impregnation?", a: "Dưới 220°C yêu cầu cấp thực phẩm chọn nhựa (M106K). Trên 220°C hoặc cần chống mài mòn cao chọn antimony (M106H, 500°C). Antimony cứng hơn, chịu nhiệt cao hơn nhưng không phù hợp tiếp xúc thực phẩm." },
+        { q: "Than chì impregnation nhựa dùng được ở nhiệt cao không?", a: "Vật liệu M106K nhiệt tối đa 220°C. Trên nhiệt này nhựa carbonized phân hủy. Trên 220°C chọn impregnation antimony (M106D, 500°C) hoặc carbonized (M191T, 600°C)." },
+        { q: "Than chì impregnation nhựa có đạt chuẩn thực phẩm?", a: "Có. M106K dùng hệ nhựa cấp thực phẩm, tuân thủ FDA 21 CFR 175.300 và EU 1935/2004. Chạy hoàn toàn không dầu, không nhiễm ion kim loại." },
+        { q: "Chọn nhựa hay antimony impregnation?", a: "Dưới 220°C yêu cầu cấp thực phẩm chọn nhựa (M106K). Trên 220°C hoặc cần chống mài mòn cao chọn antimony (M106D, 500°C). Antimony cứng hơn, chịu nhiệt cao hơn nhưng không phù hợp tiếp xúc thực phẩm." },
       ],
       th: [
-        { q: "กราไฟต์อิมเพรกเนตเรซินใช้ที่อุณหภูมิสูงได้ไหม?", a: "เกรด M106K อุณหภูมิสูงสุด 220°C สูงกว่านั้นเรซินคาร์บอไนซ์ ต้องเลือกพลวง (M106H, 500°C) หรือคาร์บอไนซ์ (M191T, 600°C)" },
-        { q: "กราไฟต์อิมเพรกเนตเรซินเกรดอาหารไหม?", a: "ใช่ M106K ใช้เรซินเฟนอลิกเกรดอาหาร ตรง FDA 21 CFR 175.300 และ EU 1935/2004 วิ่งไม่มีน้ำมัน" },
+        { q: "กราไฟต์อิมเพรกเนตเรซินใช้ที่อุณหภูมิสูงได้ไหม?", a: "เกรด M106K อุณหภูมิสูงสุด 220°C สูงกว่านั้นเรซินคาร์บอไนซ์ ต้องเลือกพลวง (M106D, 500°C) หรือคาร์บอไนซ์ (M191T, 600°C)" },
+        { q: "กราไฟต์อิมเพรกเนตเรซินเกรดอาหารไหม?", a: "ใช่ M106K ใช้ระบบเรซินเกรดอาหาร ตรง FDA 21 CFR 175.300 และ EU 1935/2004 วิ่งไม่มีน้ำมัน" },
         { q: "เลือกเรซินหรือพลวง?", a: "ต่ำกว่า 220°C ต้องการเกรดอาหารเลือกเรซิน สูงกว่า 220°C เลือกพลวง พลวงแข็งและทนร้อนกว่าแต่ไม่เหมาะกับอาหาร" },
       ],
     },
@@ -262,23 +262,23 @@ export const materialLandings: MaterialLanding[] = [
   {
     slug: "antimony-impregnated-graphite",
     title: {
-      zh: "锑浸渍石墨 | 高温抗氧化密封材料 M106H",
-      en: "Antimony Impregnated Graphite | High-Temp Anti-Oxidation Sealing Material M106H",
-      vi: "Than chì impregnation antimony | Vật liệu kín nhiệt cao chống oxy hóa M106H",
-      th: "กราไฟต์อิมเพรกเนชันพลวง | วัสดุซีลความร้อนสูงป้องกันออกซิเดชัน M106H",
+      zh: "锑浸渍石墨 | 高温抗氧化密封材料 M106D",
+      en: "Antimony Impregnated Graphite | High-Temp Anti-Oxidation Sealing Material M106D",
+      vi: "Than chì impregnation antimony | Vật liệu kín nhiệt cao chống oxy hóa M106D",
+      th: "กราไฟต์อิมเพรกเนชันพลวง | วัสดุซีลความร้อนสูงป้องกันออกซิเดชัน M106D",
     },
     description: {
-      zh: "锑浸渍石墨是将碳石墨基体在高压下浸入熔融锑金属，锑填充微孔形成金属网络，密度提升至1.80-1.85 g/cm³。华豪密封M106H牌号耐温500℃，配有抗氧化处理，硬度高、耐磨性优异，广泛用于高温油泵、压缩机、石化设备等苛刻工况。",
-      en: "Antimony-impregnated graphite is produced by high-pressure impregnation of carbon graphite with molten antimony metal, forming a metallic network in the micropores to raise density to 1.80-1.85 g/cm³. Huahao Sealing's M106H grade is rated 500°C with anti-oxidation treatment, offering high hardness and excellent wear resistance for high-temperature oil pumps, compressors and petrochemical equipment.",
-      vi: "Than chì impregnation antimony được tạo bằng cách impregnation than chì carbon với antimony nóng chảy ở áp suất cao, tạo mạng lưới kim loại trong lỗ rỗng, mật độ 1.80-1.85 g/cm³. Vật liệu M106H của Huahao chịu 500°C có xử lý chống oxy hóa, độ cứng cao và chống mài mòn tuyệt vời cho bơm dầu nhiệt cao, máy nén và thiết bị hóa chất.",
-      th: "กราไฟต์อิมเพรกเนชันพลวงสร้างโดยอิมเพรกเนตกราไฟต์กับพลวงหลอมเหลวใต้แรงดันสูง สร้างเครือข่ายโลหะเพิ่มความหนาแน่น 1.80-1.85 g/cm³ เกรด M106H ทน 500°C มีการป้องกันออกซิเดชัน แข็งและทนการสึกดี",
+      zh: "锑浸渍石墨是将碳石墨基体在高压下浸入熔融锑金属，锑填充微孔形成金属网络，密度可达2.2 g/cm³（第三方检测：密度2.20 g/cm³、气孔率2%、抗压强度190 MPa、肖氏硬度92 HS）。华豪密封M106D牌号耐温500℃，配有抗氧化处理，硬度高、耐磨性优异，广泛用于高温油泵、压缩机、石化设备等苛刻工况。",
+      en: "Antimony-impregnated graphite is produced by high-pressure impregnation of carbon graphite with molten antimony metal, forming a metallic network in the micropores to raise density to about 2.2 g/cm³ (third-party tested: 2.20 g/cm³ density, 2% porosity, 190 MPa compressive strength, 92 HS). Huahao Sealing's M106D grade is rated 500°C with anti-oxidation treatment, offering high hardness and excellent wear resistance for high-temperature oil pumps, compressors and petrochemical equipment.",
+      vi: "Than chì impregnation antimony được tạo bằng cách impregnation than chì carbon với antimony nóng chảy ở áp suất cao, tạo mạng lưới kim loại trong lỗ rỗng, mật độ khoảng 2.2 g/cm³ (kiểm định: 2.20 g/cm³, độ rỗng 2%, nén 190 MPa). Vật liệu M106D của Huahao chịu 500°C có xử lý chống oxy hóa, độ cứng cao và chống mài mòn tuyệt vời cho bơm dầu nhiệt cao, máy nén và thiết bị hóa chất.",
+      th: "กราไฟต์อิมเพรกเนชันพลวงสร้างโดยอิมเพรกเนตกราไฟต์กับพลวงหลอมเหลวใต้แรงดันสูง สร้างเครือข่ายโลหะเพิ่มความหนาแน่นราว 2.2 g/cm³ (ทดสอบ: 2.20 g/cm³, รูพรุน 2%, แรงอัด 190 MPa) เกรด M106D ทน 500°C มีการป้องกันออกซิเดชัน แข็งและทนการสึกดี",
     },
     properties: [
-      { label: "Density", value: "1.80 – 1.85 g/cm³" },
+      { label: "Density", value: "2.15 – 2.25 g/cm³ (tested 2.20)" },
       { label: "Temperature", value: "-200°C ~ 500°C" },
-      { label: "Compressive Strength", value: "250 – 350 MPa" },
+      { label: "Compressive Strength", value: "180 – 200 MPa (tested 190)" },
       { label: "Shore Hardness", value: "85 – 105 HS" },
-      { label: "Porosity (after impregnation)", value: "< 1.5%" },
+      { label: "Porosity (after impregnation)", value: "≤ 2% (tested 2%)" },
       { label: "Friction Coefficient", value: "0.05 – 0.12" },
       { label: "Anti-Oxidation Treatment", value: "Yes (proprietary)" },
       { label: "Impregnant", value: "Antimony (Sb) metal" },
@@ -344,28 +344,28 @@ export const materialLandings: MaterialLanding[] = [
       ],
     },
     grades: [
-      { code: "M106H", temp: "500°C", note: { zh: "锑浸渍+抗氧化处理，通用高温牌号", en: "Antimony + anti-oxidation, general high-temp grade", vi: "Antimony + chống oxy hóa, vật liệu nhiệt cao thông dụng", th: "พลวง + ป้องกันออกซิเดชัน เกรดความร้อนสูงทั่วไป" } },
+      { code: "M106D", temp: "500°C", note: { zh: "锑浸渍+抗氧化处理，通用高温牌号", en: "Antimony + anti-oxidation, general high-temp grade", vi: "Antimony + chống oxy hóa, vật liệu nhiệt cao thông dụng", th: "พลวง + ป้องกันออกซิเดชัน เกรดความร้อนสูงทั่วไป" } },
       { code: "M120H", temp: "500°C", note: { zh: "高密度锑浸渍，耐压更高", en: "High-density antimony, higher pressure rating", vi: "Antimony mật độ cao, chịu áp cao hơn", th: "พลวงความหนาแน่นสูง ทนแรงดันสูงกว่า" } },
     ],
     relatedProducts: ["m7n-series", "206-series", "oil-pump-double-seal", "graphite-bushing"],
     faq: {
       zh: [
-        { q: "锑浸渍石墨和碳化处理石墨有什么区别？", a: "锑浸渍(M106H)是将熔融锑金属填充石墨微孔，耐温500℃，硬度高、导热好。碳化处理(M191T)是高温石墨化处理，耐温600℃，化学惰性更高但硬度稍低。500℃以下选锑浸渍，500-600℃选碳化处理。" },
+        { q: "锑浸渍石墨和碳化处理石墨有什么区别？", a: "锑浸渍(M106D)是将熔融锑金属填充石墨微孔，耐温500℃，硬度高、导热好。碳化处理(M191T)是高温石墨化处理，耐温600℃，化学惰性更高但硬度稍低。500℃以下选锑浸渍，500-600℃选碳化处理。" },
         { q: "锑浸渍石墨在含硫油品中会腐蚀吗？", a: "不会。锑浸渍牌号在含硫油品和酸性水中保持化学惰性，硫离子不侵蚀锑金属和石墨基体。长期运行无溶胀、无点蚀，已广泛用于催化裂化油泵和含硫原油输送泵。" },
         { q: "锑浸渍石墨符合食品级标准吗？", a: "不符合。锑是重金属，不适合食品接触。食品级工况应选用树脂浸渍牌号(M106K)，符合FDA标准。锑浸渍牌号专用于工业高温、高压、重载工况。" },
       ],
       en: [
-        { q: "What is the difference between antimony-impregnated and carbonized graphite?", a: "Antimony impregnation (M106H) fills graphite micropores with molten antimony metal, rated 500°C, with high hardness and good thermal conductivity. Carbonization (M191T) is a high-temperature graphitization treatment, rated 600°C, with higher chemical inertness but slightly lower hardness. Below 500°C choose antimony; for 500-600°C choose carbonized." },
+        { q: "What is the difference between antimony-impregnated and carbonized graphite?", a: "Antimony impregnation (M106D) fills graphite micropores with molten antimony metal, rated 500°C, with high hardness and good thermal conductivity. Carbonization (M191T) is a high-temperature graphitization treatment, rated 600°C, with higher chemical inertness but slightly lower hardness. Below 500°C choose antimony; for 500-600°C choose carbonized." },
         { q: "Will antimony-impregnated graphite corrode in sour crude service?", a: "No. Antimony-impregnated grades remain chemically inert in sour crude and sour water. Sulfur ions do not attack the antimony metal or graphite matrix, with no swelling or pitting over long-term operation. It is widely used in FCC oil pumps and sour crude transport pumps." },
         { q: "Is antimony-impregnated graphite food-grade compliant?", a: "No. Antimony is a heavy metal unsuitable for food contact. Food-grade applications should use resin-impregnated grade (M106K) that meets FDA standards. Antimony-impregnated grades are designed for industrial high-temperature, high-pressure and heavy-duty service." },
       ],
       vi: [
-        { q: "Khác nhau giữa antimony impregnation và carbonized?", a: "Antimony (M106H) lấp đầy lỗ rỗng bằng antimony nóng chảy, 500°C, cứng và dẫn nhiệt tốt. Carbonized (M191T) xử lý nhiệt cao, 600°C, trơ hóa học cao hơn nhưng cứng thấp hơn. Dưới 500°C chọn antimony, 500-600°C chọn carbonized." },
+        { q: "Khác nhau giữa antimony impregnation và carbonized?", a: "Antimony (M106D) lấp đầy lỗ rỗng bằng antimony nóng chảy, 500°C, cứng và dẫn nhiệt tốt. Carbonized (M191T) xử lý nhiệt cao, 600°C, trơ hóa học cao hơn nhưng cứng thấp hơn. Dưới 500°C chọn antimony, 500-600°C chọn carbonized." },
         { q: "Antimony có bị ăn mòn trong dầu lưu huỳnh?", a: "Không. Vật liệu antimony trơ hóa học trong dầu lưu huỳnh, ion lưu huỳnh không tấn công antimony và nền than chì. Dùng rộng rãi cho bơm FCC và bơm dầu lưu huỳnh." },
         { q: "Antimony có đạt chuẩn thực phẩm?", a: "Không. Antimony là kim loại nặng, không phù hợp tiếp xúc thực phẩm. Cấp thực phẩm dùng M106K (nhựa), tuân thủ FDA. Antimony chuyên dùng công nghiệp nhiệt cao áp cao." },
       ],
       th: [
-        { q: "ต่างกันอย่างไรระหว่างพลวงและคาร์บอไนซ์?", a: "พลวง (M106H) เติมพลวงหลอม 500°C แข็งและนำความร้อนดี คาร์บอไนซ์ (M191T) ปฏิบัติการความร้อนสูง 600°C เฉื่อยเคมีสูงกว่าแต่แข็งน้อยกว่า" },
+        { q: "ต่างกันอย่างไรระหว่างพลวงและคาร์บอไนซ์?", a: "พลวง (M106D) เติมพลวงหลอม 500°C แข็งและนำความร้อนดี คาร์บอไนซ์ (M191T) ปฏิบัติการความร้อนสูง 600°C เฉื่อยเคมีสูงกว่าแต่แข็งน้อยกว่า" },
         { q: "พลวงถูกกัดกร่อนในน้ำมันกำมะถันไหม?", a: "ไม่ พลวงเฉื่อยทางเคมี ไอออนกำมะถันไม่ทำลายพลวงและเมทริกซ์กราไฟต์ ใช้กันในปั๊ม FCC" },
         { q: "พลวงเกรดอาหารไหม?", a: "ไม่ พลวงเป็นโลหะหนัก ใช้ M106K เรซินสำหรับอาหาร" },
       ],
@@ -376,16 +376,16 @@ export const materialLandings: MaterialLanding[] = [
   {
     slug: "copper-graphite",
     title: {
-      zh: "浸铜石墨 | 高载荷轴承材料 M106D",
-      en: "Copper Graphite Material | High-Load Bearing Material M106D",
-      vi: "Than chì impregnation đồng | Vật liệu vòng bi tải cao M106D",
-      th: "กราไฟต์อิมเพรกเนชันทองแด | วัสดุแบริ่งโหลดสูง M106D",
+      zh: "浸铜石墨 | 高载荷轴承材料",
+      en: "Copper Graphite Material | High-Load Bearing Material",
+      vi: "Than chì impregnation đồng | Vật liệu vòng bi tải cao",
+      th: "กราไฟต์อิมเพรกเนชันทองแด | วัสดุแบริ่งโหลดสูง",
     },
     description: {
-      zh: "浸铜石墨是将碳石墨基体在真空条件下浸入熔融铜合金，铜填充微孔形成金属网络。华豪密封M106D牌号密度1.85-1.95 g/cm³，兼具铜的导电导热性和石墨的自润滑性，适用于高载荷、高转速轴承和导电碳刷工况。",
-      en: "Copper graphite is produced by vacuum-impregnating carbon graphite with molten copper alloy, forming a metallic network in the micropores. Huahao Sealing's M106D grade has density 1.85-1.95 g/cm³, combining copper's electrical and thermal conductivity with graphite's self-lubrication for high-load, high-speed bearings and electrical carbon brushes.",
-      vi: "Than chì impregnation đồng được tạo bằng cách impregnation than chì carbon với hợp kim đồng nóng chảy trong chân không. Vật liệu M106D mật độ 1.85-1.95 g/cm³, kết hợp dẫn điện/nhiệt của đồng và tự bôi trơn của than chì cho vòng bi tải cao và chổi than.",
-      th: "กราไฟต์ทองแดสร้างโดยอิมเพรกเนตกราไฟต์กับทองแดหลอมเหลวในสุญญากาศ เกรด M106D ความหนาแน่น 1.85-1.95 g/cm³ ผสานการนำไฟฟ้า/ความร้อนของทองแดและการหล่อลื่นเอง",
+      zh: "浸铜石墨是将碳石墨基体在真空条件下浸入熔融铜合金，铜填充微孔形成金属网络。华豪密封浸铜牌号密度1.85-1.95 g/cm³，兼具铜的导电导热性和石墨的自润滑性，适用于高载荷、高转速轴承和导电碳刷工况。",
+      en: "Copper graphite is produced by vacuum-impregnating carbon graphite with molten copper alloy, forming a metallic network in the micropores. Huahao Sealing's copper-impregnated grades have density 1.85-1.95 g/cm³, combining copper's electrical and thermal conductivity with graphite's self-lubrication for high-load, high-speed bearings and electrical carbon brushes.",
+      vi: "Than chì impregnation đồng được tạo bằng cách impregnation than chì carbon với hợp kim đồng nóng chảy trong chân không. Vật liệu tẩm đồng mật độ 1.85-1.95 g/cm³, kết hợp dẫn điện/nhiệt của đồng và tự bôi trơn của than chì cho vòng bi tải cao và chổi than.",
+      th: "กราไฟต์ทองแดสร้างโดยอิมเพรกเนตกราไฟต์กับทองแดหลอมเหลวในสุญญากาศ เกรดทองแด ความหนาแน่น 1.85-1.95 g/cm³ ผสานการนำไฟฟ้า/ความร้อนของทองแดและการหล่อลื่นเอง",
     },
     properties: [
       { label: "Density", value: "1.85 – 1.95 g/cm³" },
@@ -458,24 +458,24 @@ export const materialLandings: MaterialLanding[] = [
       ],
     },
     grades: [
-      { code: "M106D", temp: "400°C", note: { zh: "铜合金浸渍，高载荷通用牌号", en: "Copper alloy impregnated, general high-load grade", vi: "Impregnation hợp kim đồng, vật liệu tải cao thông dụng", th: "อิมเพรกเนตอัลลอยทองแด เกรดโหลดสูงทั่วไป" } },
+      { code: "Custom", temp: "400°C", note: { zh: "铜合金浸渍，按需定制牌号", en: "Copper alloy impregnated, custom grade", vi: "Impregnation hợp kim đồng, vật liệu tải cao thông dụng", th: "อิมเพรกเนตอัลลอยทองแด เกรดโหลดสูงทั่วไป" } },
     ],
     relatedProducts: ["graphite-thrust-disc", "graphite-bearing", "g6-series"],
     faq: {
       zh: [
-        { q: "浸铜石墨和浸锑石墨怎么选？", a: "浸铜(M106D)耐温400℃，导电导热性好，适合高载荷和高转速工况。浸锑(M106H)耐温500℃，硬度更高，适合高温油泵和石化工况。需要导电选铜，需要更高耐温选锑。" },
+        { q: "浸铜石墨和浸锑石墨怎么选？", a: "浸铜耐温400℃，导电导热性好，适合高载荷和高转速工况。浸锑(M106D)耐温500℃，硬度更高，适合高温油泵和石化工况。需要导电选铜，需要更高耐温选锑。" },
         { q: "浸铜石墨能导电吗？", a: "可以。铜金属网络填充石墨微孔后，导电率大幅提升至10-50 μΩ·m，适合电机碳刷、集电环等需要导电自润滑的工况。普通石墨电阻率较高，不适合大电流导电场合。" },
       ],
       en: [
-        { q: "How to choose between copper and antimony impregnated graphite?", a: "Copper (M106D) is rated 400°C with good electrical/thermal conductivity, suitable for high-load and high-speed applications. Antimony (M106H) is rated 500°C with higher hardness, suitable for high-temperature oil pumps and petrochemical service. Choose copper for electrical conductivity, antimony for higher temperature." },
+        { q: "How to choose between copper and antimony impregnated graphite?", a: "Copper grades are rated 400°C with good electrical/thermal conductivity, suitable for high-load and high-speed applications. Antimony (M106D) is rated 500°C with higher hardness, suitable for high-temperature oil pumps and petrochemical service. Choose copper for electrical conductivity, antimony for higher temperature." },
         { q: "Is copper graphite electrically conductive?", a: "Yes. After copper fills the graphite micropores, electrical resistivity drops to 10-50 μΩ·m, suitable for motor carbon brushes and slip rings requiring conductive self-lubrication. Standard graphite has higher resistivity and is unsuitable for high-current applications." },
       ],
       vi: [
-        { q: "Chọn đồng hay antimony?", a: "Đồng (M106D) 400°C dẫn điện/nhiệt tốt cho tải cao và tốc độ cao. Antimony (M106H) 500°C cứng hơn cho bơm dầu nhiệt cao. Cần dẫn điện chọn đồng, cần nhiệt cao hơn chọn antimony." },
+        { q: "Chọn đồng hay antimony?", a: "Đồng 400°C dẫn điện/nhiệt tốt cho tải cao và tốc độ cao. Antimony (M106D) 500°C cứng hơn cho bơm dầu nhiệt cao. Cần dẫn điện chọn đồng, cần nhiệt cao hơn chọn antimony." },
         { q: "Đồng dẫn điện được không?", a: "Được. Mạng đồng lấp đầy lỗ rỗng, điện trở 10-50 μΩ·m, phù hợp chổi than và vòng trượt. Than chì thường điện trở cao hơn không phù hợp dòng lớn." },
       ],
       th: [
-        { q: "เลือกทองแดหรือพลวง?", a: "ทองแด (M106D) 400°C นำไฟ/ความร้อนดี พลวง (M106H) 500°C แข็งกว่า ต้องการไฟฟ้าเลือกทองแด ความร้อนสูงเลือกพลวง" },
+        { q: "เลือกทองแดหรือพลวง?", a: "ทองแด 400°C นำไฟ/ความร้อนดี พลวง (M106D) 500°C แข็งกว่า ต้องการไฟฟ้าเลือกทองแด ความร้อนสูงเลือกพลวง" },
         { q: "ทองแดนำไฟฟ้าได้ไหม?", a: "ได้ เครือข่ายทองแดเติมรูพรุน ความต้านทาน 10-50 μΩ·m เหมาะแปรงถ่านและสลิปริง" },
       ],
     },
@@ -571,15 +571,15 @@ export const materialLandings: MaterialLanding[] = [
     relatedProducts: ["59u-series", "58b-series", "graphite-bearing"],
     faq: {
       zh: [
-        { q: "巴氏合金浸渍石墨的最高耐温是多少？", a: "200℃。巴氏合金(Sn-Sb-Cu系)熔点较低，超过200℃会软化失去浸渍效果。高温工况(>200℃)应选用锑浸渍(M106H, 500℃)或碳化处理(M191T, 600℃)。" },
+        { q: "巴氏合金浸渍石墨的最高耐温是多少？", a: "200℃。巴氏合金(Sn-Sb-Cu系)熔点较低，超过200℃会软化失去浸渍效果。高温工况(>200℃)应选用锑浸渍(M106D, 500℃)或碳化处理(M191T, 600℃)。" },
         { q: "巴氏合金浸渍石墨适合什么工况？", a: "适合高转速(5000-10000rpm)、低摩擦、需要快速跑合的精密密封工况。如高速泵密封环、离心压缩机轴封、精密仪器轴承。不适合高温高压重载工况。" },
       ],
       en: [
-        { q: "What is the maximum temperature for Babbitt-impregnated graphite?", a: "200°C. Babbitt alloy (Sn-Sb-Cu system) has a low melting point and softens above 200°C, losing its impregnation effect. For high-temperature service (>200°C), select antimony-impregnated (M106H, 500°C) or carbonized (M191T, 600°C) grades." },
+        { q: "What is the maximum temperature for Babbitt-impregnated graphite?", a: "200°C. Babbitt alloy (Sn-Sb-Cu system) has a low melting point and softens above 200°C, losing its impregnation effect. For high-temperature service (>200°C), select antimony-impregnated (M106D, 500°C) or carbonized (M191T, 600°C) grades." },
         { q: "What applications suit Babbitt-impregnated graphite?", a: "High-speed (5000-10000 rpm), low-friction precision sealing applications requiring rapid running-in, such as high-speed pump seal rings, centrifugal compressor shaft seals and precision instrument bearings. Not suitable for high-temperature, high-pressure or heavy-load service." },
       ],
       vi: [
-        { q: "Nhiệt tối đa của babbitt?", a: "200°C. Hợp kim babbitt (Sn-Sb-Cu) nhiệt độ nóng chảy thấp, trên 200°C mềm mất tác dụng. Trên 200°C chọn antimony (M106H, 500°C) hoặc carbonized (M191T, 600°C)." },
+        { q: "Nhiệt tối đa của babbitt?", a: "200°C. Hợp kim babbitt (Sn-Sb-Cu) nhiệt độ nóng chảy thấp, trên 200°C mềm mất tác dụng. Trên 200°C chọn antimony (M106D, 500°C) hoặc carbonized (M191T, 600°C)." },
         { q: "Babbitt phù hợp ứng dụng nào?", a: "Tốc cao (5000-10000 rpm), ma sát thấp, cần chạy lồng nhanh như kín bơm tốc cao, kín trục máy nén ly tâm, vòng bi thiết bị chính xác. Không phù hợp nhiệt cao áp cao." },
       ],
       th: [
@@ -824,7 +824,7 @@ export const materialLandings: MaterialLanding[] = [
       th: "กราไฟต์อิมเพรกเนชันโลหะเป็นคอมโพสิตประสิทธิภาพสูง Huahao จัดหาหลายเกรดสมดุลการหล่อลื่นเองและความแข็งแรง/การนำไฟฟ้า คลุม 200-500°C",
     },
     properties: [
-      { label: "Antimony (M106H)", value: "500°C, 85-105 HS, <1.5% porosity" },
+      { label: "Antimony (M106D)", value: "500°C, 85-105 HS, <1.5% porosity" },
       { label: "Copper (M106D)", value: "400°C, 80-100 HS, high conductivity" },
       { label: "Babbitt (M254B)", value: "200°C, 70-90 HS, lowest friction" },
       { label: "Density Range", value: "1.80 – 1.95 g/cm³" },
@@ -892,22 +892,22 @@ export const materialLandings: MaterialLanding[] = [
       ],
     },
     grades: [
-      { code: "M106H (Sb)", temp: "500°C", note: { zh: "锑浸渍，高温重载", en: "Antimony, high-temp heavy-duty", vi: "Antimony, nhiệt cao tải nặng", th: "พลวง ความร้อนสูงโหลดหนัก" } },
+      { code: "M106D (Sb)", temp: "500°C", note: { zh: "锑浸渍，高温重载", en: "Antimony, high-temp heavy-duty", vi: "Antimony, nhiệt cao tải nặng", th: "พลวง ความร้อนสูงโหลดหนัก" } },
       { code: "M106D (Cu)", temp: "400°C", note: { zh: "铜浸渍，导电高载", en: "Copper, conductive high-load", vi: "Đồng, dẫn điện tải cao", th: "ทองแด นำไฟฟ้าโหลดสูง" } },
       { code: "M254B (Babbitt)", temp: "200°C", note: { zh: "巴氏合金，高速低摩擦", en: "Babbitt, high-speed low-friction", vi: "Babbitt, tốc cao ma sát thấp", th: "บาบิต ความเร็วสูงเสียดทานต่ำ" } },
     ],
     relatedProducts: ["m7n-series", "graphite-bearing", "graphite-thrust-disc", "oil-pump-double-seal"],
     faq: {
       zh: [
-        { q: "三种金属浸渍怎么选？", a: "按温度和工况选：500℃高温选锑(M106H)，400℃以下需导电/高载选铜(M106D)，200℃以下高速精密选巴氏合金(M254B)。锑硬度最高，铜导电最好，巴氏合金摩擦最低。" },
+        { q: "三种金属浸渍怎么选？", a: "按温度和工况选：500℃高温选锑(M106D)，400℃以下需导电/高载选铜，200℃以下高速精密选巴氏合金(M254B)。锑硬度最高，铜导电最好，巴氏合金摩擦最低。" },
         { q: "金属浸渍石墨能用在水泵里吗？", a: "可以。锑浸渍和铜浸渍牌号在水中化学稳定，适合水泵密封。但不适合食品级饮用水——金属离子可能溶出，饮用水应选树脂浸渍(M106K)。" },
       ],
       en: [
-        { q: "How to choose among the three metal impregnations?", a: "By temperature and duty: 500°C high-temp choose antimony (M106H); below 400°C needing conductivity/high-load choose copper (M106D); below 200°C high-speed precision choose Babbitt (M254B). Antimony has highest hardness, copper best conductivity, Babbitt lowest friction." },
+        { q: "How to choose among the three metal impregnations?", a: "By temperature and duty: 500°C high-temp choose antimony (M106D); below 400°C needing conductivity/high-load choose copper; below 200°C high-speed precision choose Babbitt (M254B). Antimony has highest hardness, copper best conductivity, Babbitt lowest friction." },
         { q: "Can metal-impregnated graphite be used in water pumps?", a: "Yes. Antimony and copper-impregnated grades are chemically stable in water for pump seals. However, they are not suitable for food-grade drinking water — metal ions may leach out. Drinking water should use resin-impregnated grade (M106K)." },
       ],
       vi: [
-        { q: "Chọn 3 loại kim loại nào?", a: "Theo nhiệt: 500°C chọn antimony (M106H), dưới 400°C cần dẫn điện/tải cao chọn đồng (M106D), dưới 200°C tốc cao chọn babbitt (M254B). Antimony cứng nhất, đồng dẫn điện tốt nhất, babbitt ma sát thấp nhất." },
+        { q: "Chọn 3 loại kim loại nào?", a: "Theo nhiệt: 500°C chọn antimony (M106D), dưới 400°C cần dẫn điện/tải cao chọn đồng (M106D), dưới 200°C tốc cao chọn babbitt (M254B). Antimony cứng nhất, đồng dẫn điện tốt nhất, babbitt ma sát thấp nhất." },
         { q: "Dùng trong bơm nước được không?", a: "Được. Antimony và đồng ổn định trong nước. Nhưng không phù hợp nước uống — ion kim loại có thể rỉ ra, nước uống dùng M106K nhựa." },
       ],
       th: [

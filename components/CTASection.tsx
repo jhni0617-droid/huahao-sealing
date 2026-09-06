@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl"
 import { Link } from "@/i18n/routing"
 import { siteConfig } from "@/lib/constants"
+import { trackEvent } from "@/lib/track"
 
 interface CTAProps {
   title?: string
@@ -43,6 +44,7 @@ export default function CTASection({ title, subtitle, primaryLabel, primaryHref 
               href={`https://wa.me/${siteConfig.whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackEvent("whatsapp_click", "cta_section")}
               className="btn-ghost"
             >
               {t("whatsapp")}

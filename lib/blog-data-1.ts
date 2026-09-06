@@ -16,8 +16,8 @@ export const blogPostsBatch1: BlogPost[] = [
       en: "Carbon Graphite Seal Ring Basics: Structure, Principles and Applications",
     },
     excerpt: {
-      zh: "作为霍邱县华豪密封件有限公司的基础技术科普，本文系统讲解碳石墨密封环的材料构成、密封机理、典型结构与工业应用场景，帮助工程师与采购人员建立完整认知框架。",
-      en: "As a foundational technical primer from Huahao Sealing Co., Ltd., this article systematically explains the material composition, sealing mechanism, typical structure and industrial applications of carbon graphite seal rings, helping engineers and procurement staff build a complete understanding.",
+      zh: "碳石墨密封环烧结后气孔率高达 10%-20%，不浸渍必然渗漏——本文围绕把气孔率压到 2% 以下的浸渍工序这条主线，讲清材料构成、密封机理、典型结构与应用，并解释干摩擦系数、导热、耐温等关键数据的工况含义。",
+      en: "Baked carbon graphite seal rings leave the furnace with 10%–20% porosity and will leak without impregnation. Built around the impregnation step that drives porosity below 2%, this article explains material composition, sealing mechanism, typical structures and applications, with the working meaning of key data: dry friction coefficient, thermal conductivity and temperature limits.",
     },
     tag: "faq",
     date: "2026-06-01",
@@ -30,7 +30,7 @@ export const blogPostsBatch1: BlogPost[] = [
 - 浸渍类型决定应用场景：呋喃耐强酸碱、PTFE满足食品制药卫生级、锑金属浸渍适用400℃高温油泵
 - 碳石墨作为软环与碳化硅等硬质材料配对形成摩擦副，是化工泵、压缩机、反应釜、汽车水泵的标准配置
 
-碳石墨密封环是现代流体机械中不可或缺的关键部件，其性能直接决定了离心泵、压缩机、反应釜等设备的运行可靠性与使用寿命。作为霍邱县华豪密封件有限公司的核心产品线之一，碳石墨密封环在我们多年生产实践中已经覆盖了化工、制药、食品、冶金、电力等多个行业。本文将从材料、结构、原理与应用四个维度，为工程师与采购人员提供一份系统的基础知识。
+一只合格的碳石墨密封环，烧结出炉时气孔率高达 10%-20%——不浸渍，介质就会顺着微孔渗出来。所以真正决定密封环成败的，是浸渍工序能否把气孔率压到 2% 以下。本文围绕这条主线，把材料构成、密封机理、典型结构和行业应用讲清楚：干摩擦系数 0.04-0.15、导热 70-150 W/(m·K)、非氧化介质耐温 600℃ 以上，这些数字对应什么工况，工程师和采购各该先看哪几项。
 
 ## 一、碳石墨密封环的材料构成
 
@@ -85,7 +85,7 @@ export const blogPostsBatch1: BlogPost[] = [
 - Impregnation type dictates application: furan for strong acids/alkalis, PTFE for sanitary food and pharmaceutical service, antimony for 400°C high-temperature oil pumps
 - Carbon graphite as the soft face paired with silicon carbide or tungsten carbide forms the friction pair, standard in chemical pumps, compressors, reactors and automotive water pumps
 
-The carbon graphite seal ring is an indispensable key component in modern fluid machinery, and its performance directly determines the operational reliability and service life of centrifugal pumps, compressors, reactors and similar equipment. As one of the core product lines of Huahao Sealing Co., Ltd., our carbon graphite seal rings have served the chemical, pharmaceutical, food, metallurgical and power industries for many years. This article provides engineers and procurement staff with a systematic primer across the four dimensions of material, structure, principle and application.
+A carbon graphite seal ring leaves the furnace with 10%–20% porosity — without impregnation, media will weep straight through the interconnected pores. That is why the make-or-break step in seal ring manufacturing is impregnation, which must drive porosity below 2%. Around that through-line, this article covers material composition, sealing mechanism, typical structures and applications: what a 0.04–0.15 dry friction coefficient, 70–150 W/(m·K) thermal conductivity and 600°C-plus service in non-oxidizing media mean for your conditions, and which parameters engineers and buyers should check first.
 
 ## 1. Material Composition of Carbon Graphite Seal Rings
 
@@ -157,7 +157,7 @@ Understanding the material, principle and structure of carbon graphite seal ring
 - 浸渍类型差异：树脂浸渍石墨适用中载中低温，金属浸渍石墨适用高载高温但摩擦系数略高（0.10-0.20）
 - 应用数据：PTFE浸渍石墨轴套在食品机械中可运行8000小时以上，锑浸渍石墨轴承可在400-500℃高温炉辊道持续运转
 
-石墨轴套作为一种典型的自润滑滑动轴承，凭借无需外加润滑剂即可长期稳定运行的特性，在食品机械、纺织设备、化工泵、高温炉等领域得到广泛应用。霍邱县华豪密封件有限公司多年来生产各类石墨轴套，本文将结合生产实践，从晶体层面到工程应用，系统讲解石墨轴套的自润滑机理。
+不加一滴润滑油，石墨轴套能在食品机械、纺织设备、化工泵里连续运转数年——金属轴承做不到。原因要从晶体结构说起：石墨层间结合能只有 7 kJ/mol，受剪切应力就滑移，磨损时还会在对磨面上转移出一层 0.1-1μm 的定向石墨膜，把金属-石墨摩擦变成石墨-石墨的层间滑移。但自润滑不是无条件成立的：轴表面粗糙度 Ra 0.4-0.8μm 才最佳，线速度超过 10 m/s 或湿度低于 30%RH 都会出问题。本文从晶体结构讲到转移膜，再落到工程上怎么用。
 
 ## 一、石墨的晶体结构与润滑基础
 
@@ -218,7 +218,7 @@ Understanding the material, principle and structure of carbon graphite seal ring
 - Impregnation type differences: resin-impregnated graphite suits medium load and medium-low temperature; metal-impregnated graphite suits heavy load and high temperature but with slightly higher friction coefficient (0.10-0.20)
 - Application data: PTFE-impregnated graphite bushings run over 8000 hours in food machinery; antimony-impregnated graphite bearings sustain 400-500°C in furnace rollers
 
-Graphite bushings, as typical self-lubricating sliding bearings, are widely used in food machinery, textile equipment, chemical pumps and high-temperature furnaces due to their ability to operate stably over long periods without additional lubricant. Huahao Sealing Co., Ltd. has produced a wide range of graphite bushings for many years. This article combines our production practice to systematically explain the self-lubrication mechanism of graphite bushings from the crystal level to engineering application.
+Graphite bushings run for years in food machinery, textile equipment and chemical pumps without a drop of lubricating oil — something metal bearings cannot do. The reason starts at the crystal level: graphite's interlayer bonding energy is only about 7 kJ/mol, so layers shear and slide under stress, and the bushing lays down a 0.1–1 μm oriented graphite film on the mating surface, turning metal-on-graphite friction into graphite-on-graphite interlayer sliding. Self-lubrication is not unconditional, though: shaft roughness of Ra 0.4–0.8 μm works best, while surface speeds above 10 m/s or humidity below 30% RH cause trouble. This article walks from crystal structure to transfer film to shop-floor practice.
 
 ## 1. Crystal Structure and Lubrication Basis
 
@@ -435,7 +435,7 @@ There is a non-linear relationship between hardness and wear resistance of carbo
 - 按温度选型：≤200℃任选树脂浸渍；200-350℃锑或巴氏合金；350-450℃锑浸渍；≥450℃纯碳石墨
 - 真空-加压复合浸渍工艺关键参数：真空度≤-0.095MPa，加压1.0-1.5MPa，确保浸渍贯穿整个工件截面
 
-浸渍石墨是机械密封和滑动轴承领域的关键工程材料。同一种碳石墨基体经过不同浸渍处理后，性能可呈现巨大差异。如何在众多浸渍类型中做出正确选择，是工程师选型时面临的核心问题。霍邱县华豪密封件有限公司基于多年生产与服务经验，本文系统梳理六种主流浸渍石墨的特性，并提供选型决策矩阵。
+同一批焙烧碳石墨，浸酚醛耐 -50~200℃，浸锑能扛 450℃ 高温重载，浸 PTFE 则几乎不怕任何介质——基体一样，浸渍物决定性能走向。选错浸渍类型，是密封件早期失效的常见根源。本文按介质、温度、压力三条线，梳理酚醛、呋喃、环氧、锑、巴氏合金、PTFE 六种主流浸渍石墨的适用边界，并给出一张选型决策矩阵。
 
 ## 一、浸渍工艺的本质作用
 
@@ -506,7 +506,7 @@ PTFE 浸渍石墨耐温 -100℃ 至 +250℃，最大特点是化学惰性极强�
 - Selection by temperature: ≤200°C any resin; 200-350°C antimony or Babbitt; 350-450°C antimony; ≥450°C pure carbon graphite
 - Vacuum-pressure composite impregnation key parameters: vacuum ≤-0.095MPa, pressure 1.0-1.5MPa, ensuring impregnant penetrates the entire workpiece cross-section
 
-Impregnated graphite is a key engineering material in mechanical seals and sliding bearings. The same carbon graphite matrix can exhibit vastly different performance after different impregnation treatments. How to make the correct choice among many impregnation types is the core problem facing engineers. Based on years of production and service experience, Huahao Sealing Co., Ltd. systematically summarizes the characteristics of six mainstream impregnated graphite types and provides a selection decision matrix.
+The same baked carbon graphite matrix behaves completely differently depending on what fills its pores: phenolic impregnation serves -50 to 200°C, antimony carries high-temperature heavy loads up to 450°C, and PTFE shrugs off almost any medium. Choosing the wrong impregnant is a common root cause of early seal failure. Organized along media, temperature and pressure, this article maps the working boundaries of six mainstream impregnated graphites — phenolic, furan, epoxy, antimony, babbitt and PTFE — and closes with a selection decision matrix.
 
 ## 1. The Essential Role of Impregnation
 
@@ -594,7 +594,7 @@ Impregnated graphite selection is an interdisciplinary problem combining materia
 - 强腐蚀工况弹簧应选哈氏合金或蒙乃尔合金，或改用外置式机械密封结构避免腐蚀失效
 - 316不锈钢在氯离子介质中缝隙腐蚀临界温度仅60℃，需通过材质匹配预防电偶腐蚀和应力腐蚀开裂
 
-机械密封是流体机械中可靠性要求最高的部件之一，其失效直接导致介质泄漏、设备停机甚至环境污染事故。据霍邱县华豪密封件有限公司多年售后服务统计，超过 60% 的离心泵非计划停机与机械密封失效相关。本文结合现场服务案例，系统分析机械密封失效的主要模式、根本原因与预防措施。
+超过 60% 的离心泵非计划停机，追到最后往往都是机械密封的问题——这是售后统计里反复出现的数字。失效很少是单一原因：端面磨损占失效案例约 45%，干摩擦几秒钟就能把端面温度推过 300℃，氟橡胶 200℃、丁腈橡胶 120℃ 到限后按 2-3 年周期例行老化。本文按失效模式逐一拆解：识别特征、根本原因，以及现场就能落实的预防措施。
 
 ## 一、端面磨损失效
 
@@ -675,7 +675,7 @@ Impregnated graphite selection is an interdisciplinary problem combining materia
 - For highly corrosive service, springs should use Hastelloy or Monel, or switch to external mechanical seal structures to prevent corrosion failure
 - 316 stainless steel has a crevice corrosion critical temperature of only 60°C in chloride media; material matching is needed to prevent galvanic corrosion and stress corrosion cracking
 
-Mechanical seals are among the most reliability-critical components in fluid machinery. Their failure directly causes media leakage, equipment downtime and even environmental incidents. According to Huahao Sealing Co., Ltd.'s after-sales statistics, more than 60% of unplanned centrifugal pump shutdowns relate to mechanical seal failure. Based on field service cases, this article systematically analyzes the main failure modes, root causes and preventive measures for mechanical seals.
+More than 60% of unplanned centrifugal pump shutdowns trace back to the mechanical seal — a figure that keeps reappearing in after-sales statistics. Failure rarely has a single cause: face wear accounts for roughly 45% of cases; a few seconds of dry running can push face temperature past 300°C; fluoroelastomer O-rings age out at 200°C and nitrile at 120°C, on a predictable 2–3 year cycle. This article breaks failures down mode by mode — identifying features, root causes, and preventive measures you can implement on site.
 
 ## 1. Face Wear Failure
 
@@ -1272,8 +1272,8 @@ Graphite bearings offer unmatched advantages in high-temperature service compare
       en: "Segmented Split Ring Design Principles and Installation",
     },
     excerpt: {
-      zh: "碳石墨三瓣环是活塞式压缩机和高载荷往复机械中的关键密封件。本文从结构原理、张力设计、装配工艺三方面系统讲解，结合霍邱华豪制造经验。",
-      en: "The segmented split ring (three-segment ring) is a key seal in piston compressors and heavy-duty reciprocating machinery. This article systematically covers structure principle, tension design and assembly process based on Huahao's manufacturing experience.",
+      zh: "三瓣环三片扇形错位 120° 布置，不拆活塞即可装入缸体。本文讲其结构原理、弹簧张力设计（0.02-0.05MPa 接触压力）与装配工艺，含专用扩张器装配要点。",
+      en: "Three segmented arcs staggered 120° apart let the ring be fitted without removing the piston. This article covers structure, spring tension design (0.02–0.05 MPa contact pressure) and assembly, including the dedicated expander tool.",
     },
     tag: "precision",
     date: "2026-06-09",
@@ -1286,7 +1286,7 @@ Graphite bearings offer unmatched advantages in high-temperature service compare
 - 装配必须使用专用扩张器，禁止徒手撬装；装入缸体须用锥度导向套筒，禁止敲击
 - 失效模式：磨损（最常见）、折断（装配不当或张力过大）、卡死（颗粒物或积碳）
 
-碳石墨三瓣环（又称分瓣环、开口环、活塞环）是活塞式压缩机、往复泵和膨胀机等高载荷往复机械中的核心密封元件。其密封性能直接决定设备容积效率和使用寿命。霍邱县华豪密封件有限公司专业生产各类碳石墨三瓣环多年，本文系统讲解其设计原理与安装工艺。
+整体活塞环装不进缸体，现场又不可能每次都拆机——三瓣环就是为这个矛盾设计的：三片扇形错位 120° 布置，不拆活塞即可装入缸体，靠径向、轴向、切口三重密封面兜住泄漏。设计上真正费心思的是弹簧张力：无介质压力时，环外圆对缸壁仍要保持 0.02-0.05MPa 接触压力。本文讲清结构原理、张力设计与装配工艺——装配必须用专用扩张器，徒手扩环是最常见的现场失误。
 
 ## 一、三瓣环的结构原理
 
@@ -1363,7 +1363,7 @@ Graphite bearings offer unmatched advantages in high-temperature service compare
 - Assembly requires dedicated expanders; hand prying is prohibited; tapered guide sleeve required for cylinder entry; hammering is forbidden
 - Failure modes: wear (most common), fracture (improper assembly or excessive tension), sticking (particulate matter or carbon deposits)
 
-The segmented split ring (also called split ring, cut ring or piston ring) is a core sealing element in piston compressors, reciprocating pumps and expanders. Its sealing performance directly determines volumetric efficiency and service life. Huahao Sealing Co., Ltd. has specialized in producing various carbon graphite segmented split rings for many years. This article systematically explains the design principles and installation process.
+A one-piece piston ring cannot be fitted into a closed cylinder, and nobody wants to tear the machine down every time — the three-segment ring exists precisely for this conflict: three arcs staggered 120° apart slip in past the piston and seal through radial, axial and joint faces combined. The real design effort goes into spring tension: with zero media pressure the ring must still press 0.02–0.05 MPa against the cylinder wall. This article covers the structure, tension design and assembly process — including why a dedicated expander tool is mandatory and why stretching rings by hand is the most common field mistake.
 
 ## 1. Structure Principle of Segmented Split Rings
 

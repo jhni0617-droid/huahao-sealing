@@ -708,7 +708,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         </div>
       </section>
 
-      <section className="section-padding industrial-surface">
+      <section id="buyer-faq" className="section-padding industrial-surface scroll-mt-24">
         <div className="container-wide">
           <div className="mb-12 text-center">
             <div className="text-xs font-bold uppercase tracking-[0.08em] text-accent">{copy.faqKicker}</div>

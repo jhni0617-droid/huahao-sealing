@@ -4,6 +4,7 @@ import { Link } from "@/i18n/routing"
 import PageHero from "@/components/PageHero"
 import Breadcrumb from "@/components/Breadcrumb"
 import CTASection from "@/components/CTASection"
+import TrackedLink from "@/components/TrackedLink"
 import Icon, { type IconName } from "@/components/ui/Icon"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
@@ -19,7 +20,7 @@ const content = {
     primary: "提交图纸询价",
     secondary: "查看产品目录",
     stats: [
-      { value: "20+", label: "行业经验" },
+      { value: "2006", label: "年建厂" },
       { value: "CNC", label: "精密加工" },
       { value: "24h", label: "工程响应" },
     ],
@@ -60,7 +61,7 @@ const content = {
     primary: "Send Drawing / Quote",
     secondary: "View Product Catalog",
     stats: [
-      { value: "20+", label: "Years experience" },
+      { value: "2006", label: "Founded" },
       { value: "CNC", label: "Precision machining" },
       { value: "24h", label: "Engineering response" },
     ],
@@ -99,7 +100,7 @@ const content = {
     primary: "Gửi bản vẽ / báo giá",
     secondary: "Xem danh mục sản phẩm",
     stats: [
-      { value: "20+", label: "Năm kinh nghiệm" },
+      { value: "2006", label: "Năm thành lập" },
       { value: "CNC", label: "Gia công chính xác" },
       { value: "24h", label: "Phản hồi kỹ thuật" },
     ],
@@ -132,7 +133,7 @@ const content = {
     primary: "ส่งแบบ / ขอราคา",
     secondary: "ดูแคตตาล็อกสินค้า",
     stats: [
-      { value: "20+", label: "ปีประสบการณ์" },
+      { value: "2006", label: "ปีที่ก่อตั้ง" },
       { value: "CNC", label: "กลึงแม่นยำ" },
       { value: "24h", label: "ตอบกลับวิศวกรรม" },
     ],
@@ -165,7 +166,7 @@ const content = {
     primary: "Отправить чертеж / запрос",
     secondary: "Смотреть каталог",
     stats: [
-      { value: "20+", label: "Лет опыта" },
+      { value: "2006", label: "Год основания" },
       { value: "CNC", label: "Точная обработка" },
       { value: "24h", label: "Инженерный ответ" },
     ],
@@ -198,7 +199,7 @@ const content = {
     primary: "図面送付 / 見積",
     secondary: "製品カタログを見る",
     stats: [
-      { value: "20+", label: "年の経験" },
+      { value: "2006", label: "創業年" },
       { value: "CNC", label: "精密加工" },
       { value: "24h", label: "技術対応" },
     ],
@@ -231,7 +232,7 @@ const content = {
     primary: "도면 / 견적 보내기",
     secondary: "제품 카탈로그 보기",
     stats: [
-      { value: "20+", label: "년 경험" },
+      { value: "2006", label: "설립 연도" },
       { value: "CNC", label: "정밀 가공" },
       { value: "24h", label: "엔지니어링 응답" },
     ],
@@ -270,6 +271,16 @@ function getCopy(locale: string) {
   return getLocalized(content, locale)
 }
 
+const certificatesCopy = {
+  zh: { title: "资质与检测报告", desc: "产品出厂前经尺寸、端面、外观与关键性能全检；以下材料检测报告可在线查看与下载，其他牌号报告可按需提供。", reportLabel: "检测报告" },
+  en: { title: "Certificates & Test Reports", desc: "Every batch is fully inspected for dimensions, seal faces, appearance and key performance parameters before shipment. The material test reports below are available for download; reports for other grades can be provided on request.", reportLabel: "Test Report" },
+  vi: { title: "Chứng nhận & báo cáo kiểm nghiệm", desc: "Mỗi lô sản phẩm được kiểm tra toàn bộ kích thước, mặt làm kín, ngoại quan và các thông số hiệu suất then chốt trước khi xuất xưởng. Các báo cáo kiểm nghiệm vật liệu dưới đây có thể tải về; báo cáo cho các loại khác có thể cung cấp theo yêu cầu.", reportLabel: "Báo cáo kiểm nghiệm" },
+  th: { title: "ใบรับรองและรายงานการทดสอบ", desc: "ตรวจสอบขนาด หน้าสัมผัส ลักษณะภายนอก และพารามิเตอร์สำคัญครบทุกชุดก่อนส่งมอบ ดาวน์โหลดรายงานการทดสอบวัสดุด้านล่างได้ และจัดเตรียมรายงานสำหรับเกรดอื่นได้ตามคำขอ", reportLabel: "รายงานการทดสอบ" },
+  ru: { title: "Сертификаты и протоколы испытаний", desc: "Каждая партия проходит полный контроль размеров, торцов, внешнего вида и ключевых параметров перед отгрузкой. Протоколы испытаний материалов ниже доступны для скачивания; протоколы по другим маркам предоставляются по запросу.", reportLabel: "Отчёт об испытаниях" },
+  ja: { title: "認証・検査成績書", desc: "出荷前に寸法・シール面・外観・主要性能を全数検査しています。以下の材料試験報告書はダウンロード可能です。その他グレードの報告書もご要望に応じて提供します。", reportLabel: "試験報告書" },
+  ko: { title: "인증 및 시험 성적서", desc: "출하 전 치수, 씰면, 외관 및 핵심 성능을 전수 검사합니다. 아래 소재 시험 성적서를 다운로드할 수 있으며, 다른 등급의 성적서도 요청 시 제공됩니다.", reportLabel: "시험 성적서" },
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   const copy = getCopy(locale)
@@ -285,6 +296,7 @@ export default async function FactoryPage({ params }: { params: Promise<{ locale
   const { locale } = await params
   setRequestLocale(locale)
   const copy = getCopy(locale)
+  const certCopy = getLocalized(certificatesCopy, locale)
 
   return (
     <>
@@ -321,7 +333,7 @@ export default async function FactoryPage({ params }: { params: Promise<{ locale
         </div>
       </section>
 
-      <section className="section-padding industrial-surface">
+      <section id="process" className="section-padding industrial-surface scroll-mt-24">
         <div className="container-wide">
           <div className="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
@@ -346,7 +358,7 @@ export default async function FactoryPage({ params }: { params: Promise<{ locale
         </div>
       </section>
 
-      <section className="section-padding bg-white">
+      <section id="gallery" className="section-padding bg-white scroll-mt-24">
         <div className="container-wide">
           <div className="grid gap-10 lg:grid-cols-[1fr_360px]">
             <div>
@@ -367,7 +379,7 @@ export default async function FactoryPage({ params }: { params: Promise<{ locale
               </div>
             </div>
 
-            <aside className="border border-border bg-primary p-6 text-white lg:sticky lg:top-24">
+            <aside id="qc" className="scroll-mt-24 border border-border bg-primary p-6 text-white lg:sticky lg:top-24">
               <div className="text-xs font-bold uppercase tracking-[0.08em] text-white/56">QC</div>
               <h3 className="mt-3 text-2xl font-bold">{copy.qcTitle}</h3>
               <div className="my-5 h-px bg-white/12" />
@@ -380,6 +392,37 @@ export default async function FactoryPage({ params }: { params: Promise<{ locale
                 ))}
               </ul>
             </aside>
+          </div>
+        </div>
+      </section>
+
+      <section id="certificates" className="section-padding industrial-surface scroll-mt-24">
+        <div className="container-wide">
+          <div className="mb-8">
+            <h2 className="text-3xl font-bold text-primary md:text-4xl">{certCopy.title}</h2>
+            <div className="industrial-divider" />
+            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted">{certCopy.desc}</p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {["M120K", "M106D", "M140K"].map((model) => (
+              <TrackedLink
+                key={model}
+                href={`/downloads/${model}.pdf`}
+                target="_blank"
+                rel="noopener noreferrer"
+                event="datasheet_download"
+                label={model}
+                className="group flex items-center justify-between gap-3 border border-border bg-white p-5 transition-colors hover:border-accent"
+              >
+                <span className="flex items-center gap-3">
+                  <Icon name="certificate" className="h-6 w-6 shrink-0 text-accent" />
+                  <span className="text-sm font-bold text-primary">
+                    {model} {certCopy.reportLabel}
+                  </span>
+                </span>
+                <Icon name="download" className="h-4 w-4 shrink-0 text-muted-light transition-colors group-hover:text-accent" />
+              </TrackedLink>
+            ))}
           </div>
         </div>
       </section>

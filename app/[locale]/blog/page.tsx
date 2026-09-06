@@ -19,10 +19,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   })
 }
 
-export default async function BlogPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function BlogPage({ params, searchParams }: { params: Promise<{ locale: string }>; searchParams?: Promise<{ tag?: string }> }) {
   const { locale } = await params
   setRequestLocale(locale)
   const t = await getTranslations("blog")
+  const { tag } = (await searchParams) ?? {}
   const eyebrow = getLocalized({
     zh: "技术博客",
     en: "Technical Blog",
@@ -46,9 +47,13 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
     locale
   )
 
+  const validTags = new Set(Object.keys(tagLabels))
+  const activeTag = tag && validTags.has(tag) ? tag : null
+
   // 按年月分组
   const grouped: Record<string, typeof blogPostsMeta> = {}
-  for (const post of blogPostsMeta) {
+  const listedPosts = activeTag ? blogPostsMeta.filter((post) => post.tag === activeTag) : blogPostsMeta
+  for (const post of listedPosts) {
     const ym = post.date.slice(0, 7) // "2026-06"
     if (!grouped[ym]) grouped[ym] = []
     grouped[ym].push(post)
@@ -71,6 +76,19 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
     locale
   )
 
+  const filterCopy = getLocalized(
+    {
+      zh: { filter: "当前筛选", clear: "清除筛选" },
+      en: { filter: "Filtered by", clear: "Clear filter" },
+      vi: { filter: "Đang lọc", clear: "Xóa bộ lọc" },
+      th: { filter: "กำลังกรอง", clear: "ล้างตัวกรอง" },
+      ru: { filter: "Фильтр", clear: "Сбросить фильтр" },
+      ja: { filter: "絞り込み", clear: "フィルタを解除" },
+      ko: { filter: "필터", clear: "필터 해제" },
+    },
+    locale
+  )
+
   return (
     <>
       <PageHero
@@ -83,6 +101,17 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
 
       <section className="section-padding industrial-surface">
         <div className="container-wide">
+          {activeTag && (
+            <div className="mb-10 flex flex-wrap items-center gap-3 border border-border bg-white px-4 py-3">
+              <span className="text-sm text-muted">{filterCopy.filter}</span>
+              <span className="border border-accent/30 bg-accent/5 px-2.5 py-1 text-xs font-bold text-accent">
+                {tagLabels[activeTag as keyof typeof tagLabels] || activeTag}
+              </span>
+              <Link href="/blog" className="ml-auto text-xs font-semibold text-accent hover:underline">
+                {filterCopy.clear}
+              </Link>
+            </div>
+          )}
           {months.map((ym) => (
             <div key={ym} className="mb-12 last:mb-0">
               <div className="flex items-center gap-3 mb-6">

@@ -17,8 +17,8 @@ export const blogPostsBatch7: BlogPost[] = [
       th: "ซีลคาร์บอนกราไฟต์สำหรับปั๊มน้ำมันอุณหภูมิสูงในโรงกลั่นน้ำมัน: โซลูชันสำหรับปั๊มกากอุณหภูมิ 350℃",
     },
     excerpt: {
-      zh: "针对常减压装置塔底泵 350℃ 以上高温渣油工况，本文系统讲解碳石墨密封环的材料选型（锑金属浸渍石墨）、结构设计（平衡型）、冲洗方案（API 682 Plan 23）与现场使用案例，为炼厂机械工程师提供实用选型指南。",
-      en: "For atmospheric-vacuum distillation unit bottom pumps operating above 350℃ with high-temperature residue, this article systematically covers carbon graphite seal ring material selection (antimony-impregnated graphite), structural design (balanced type), flush plans (API 682 Plan 23), and field case studies — a practical selection guide for refinery mechanical engineers.",
+      zh: "塔底泵渣油温度 350-380℃，树脂浸渍石墨 300℃ 以上碳化失效。本文按材料（锑浸渍石墨）、结构（平衡型）、冲洗（API 682 Plan 23）三步给出高温油泵密封选型流程，附炼厂现场案例。",
+      en: "Bottom-pump residue runs 350–380°C while resin-impregnated graphite carbonizes above 300°C. In three steps — material (antimony-impregnated graphite), structure (balanced type) and flush plan (API 682 Plan 23) — this article lays out a selection workflow for hot oil pump seals with refinery field cases.",
       vi: "Dành cho bơm đáy tháp chưng cất áp suất thường-khí hoạt động trên 350℃ với cặn nhiệt độ cao, bài viết trình bày có hệ thống cách chọn vật liệu vòng đệm than chì carbon (than chì tẩm kim loại antimon), thiết kế kết cấu (kiểu cân bằng), phương án xả (API 682 Plan 23) và các case study thực tế — hướng dẫn chọn lựa thực tế cho kỹ sư cơ khí nhà máy lọc dầu.",
       th: "สำหรับปั๊มก้นหอกลั่นภายใต้ความดันปกติและสุญญากาศที่ทำงานเหนือ 350℃ กับกากน้ำมันอุณหภูมิสูง บทความนี้อธิบายอย่างเป็นระบบถึงการเลือกวัสดุซีลคาร์บอนกราไฟต์ (กราไฟต์อิมเพรกเนตอินติมอนี) การออกแบบโครงสร้าง (แบบสมดุล) แผนล้าง (API 682 Plan 23) และกรณีศึกษาภาคสนาม — คู่มือเลือกใช้สำหรับวิศวกรเครื่องกลโรงกลั่น",
     },
@@ -33,7 +33,7 @@ export const blogPostsBatch7: BlogPost[] = [
 - 华豪密封在某石化 800 万吨/年常减压装置改造中，将原机械密封寿命从 4000 小时提升至 14000 小时
 - 选型三要素：介质温度梯度、含固体颗粒量、启停频次，三者决定浸渍类型与冲洗方案组合
 
-石油炼化行业常减压装置的塔底泵是装置的"心脏"设备，其输送的常压渣油温度通常在 350-380℃，减压渣油温度也在 380℃ 以上。在这种工况下，机械密封的可靠性直接决定装置能否实现四年一修的长周期运行目标。本文结合霍邱县华豪密封件有限公司多年服务于中石化、中石油炼厂的实际经验，系统讲解高温油泵碳石墨密封的选型与设计要点。
+塔底泵输送的渣油温度 350-380℃，普通树脂浸渍石墨在 300℃ 以上就会碳化失效——所以高温油泵密封的选材答案几乎只有一个：锑金属浸渍石墨。但材料只是三分之一：端面液膜在高温下易汽化，要靠 API 682 Plan 23 自冲洗把密封腔温度压下来；结构上选平衡型控制比压。本文按材料、结构、冲洗方案三步走，结合炼厂现场案例讲完整选型流程。
 
 ## 一、工况特性与失效机理
 
@@ -55,7 +55,7 @@ export const blogPostsBatch7: BlogPost[] = [
 
 锑（Sb）金属浸渍石墨的耐温上限可达 500℃，熔点 630℃。锑浸渍后石墨气孔率降至 1% 以下，且金属浸渍层在高温下不分解、不收缩，长期稳定。锑的导热系数（24 W/(m·K)）远高于树脂（0.2 W/(m·K)），有利于端面摩擦热散失。
 
-华豪密封的 M106H-Sb 锑浸渍石墨在 380℃ 渣油工况下的实测寿命：树脂浸渍 M106H 平均 4200 小时，锑浸渍 M106H-Sb 平均 13800 小时，寿命提升 3.3 倍。
+华豪密封的 M106D 锑浸渍石墨在 380℃ 渣油工况下的实测寿命：树脂浸渍 M106K 平均 4200 小时，锑浸渍 M106D 平均 13800 小时，寿命提升 3.3 倍。
 
 ### 2.3 配对材料选择
 
@@ -83,7 +83,7 @@ Plan 23 是高温油泵首选方案：从密封腔引出介质，经冷却器降
 
 ## 五、华豪密封案例
 
-某石化公司 800 万吨/年常减压装置塔底泵（流量 450 m³/h，温度 365℃，介质含焦粉），原用进口品牌机械密封平均寿命 4000 小时，年泄漏停工 3 次。2019 年改用华豪密封 M106H-Sb + SiC + Inconel 波纹管 + Plan 23 方案后，平均寿命提升至 14000 小时，4 年累计运行 56000 小时仅更换 4 套密封，节约备件费用约 80 万元。
+某石化公司 800 万吨/年常减压装置塔底泵（流量 450 m³/h，温度 365℃，介质含焦粉），原用进口品牌机械密封平均寿命 4000 小时，年泄漏停工 3 次。2019 年改用华豪密封 M106D + SiC + Inconel 波纹管 + Plan 23 方案后，平均寿命提升至 14000 小时，4 年累计运行 56000 小时仅更换 4 套密封，节约备件费用约 80 万元。
 
 选型时需综合考量介质温度梯度、含固量、启停频次三要素：温度波动大优先用波纹管；含固量高优先用 Plan 21+23；频繁启停应降低端面比压至 0.3-0.4 MPa。`,
       en: `## Key Takeaways
@@ -94,7 +94,7 @@ Plan 23 是高温油泵首选方案：从密封腔引出介质，经冷却器降
 - Huahao Sealing extended seal life from 4000 to 14000 hours in a Sinopec 8 million ton/year atmospheric-vacuum unit revamp
 - Three selection factors: media temperature gradient, solid particle content, and start-stop frequency — together they determine the impregnation type and flush plan combination
 
-The bottom pumps of atmospheric-vacuum distillation units in petroleum refineries are the "heart" of the unit. The atmospheric residue they convey is typically 350-380℃, and vacuum residue exceeds 380℃. Under such conditions, mechanical seal reliability directly determines whether the unit can achieve a four-year turnaround cycle. Drawing on years of field experience serving Sinopec and PetroChina refineries, this article systematically covers selection and design of carbon graphite seals for high-temperature oil pumps.
+Bottom pumps convey residue at 350–380°C, and resin-impregnated graphite carbonizes above 300°C — so the material answer for hot oil pump seals is nearly singular: antimony-impregnated graphite. But material is only one third of the answer: the face liquid film flashes easily at high temperature, so API 682 Plan 23 self-circulation is needed to pull seal chamber temperature down, and a balanced-type design controls face pressure. This article walks material, structure and flush plan in three steps, backed by refinery field cases.
 
 ## 1. Operating Conditions and Failure Mechanisms
 
@@ -116,7 +116,7 @@ Thermosetting resin-impregnated graphite (phenolic, furan) has a long-term servi
 
 Antimony (Sb) metal-impregnated graphite has a temperature ceiling of 500℃ (antimony melting point 630℃). After impregnation, graphite porosity drops below 1%, and the metal impregnation layer does not decompose or shrink at high temperature, remaining stable long-term. Antimony's thermal conductivity (24 W/(m·K)) is far higher than resin (0.2 W/(m·K)), aiding face friction heat dissipation.
 
-Huahao Sealing's M106H-Sb antimony-impregnated graphite in 380℃ residue oil service shows: average life of resin-impregnated M106H is 4200 hours, while Sb-impregnated M106H-Sb averages 13800 hours — a 3.3x life improvement.
+Huahao Sealing's M106D antimony-impregnated graphite in 380℃ residue oil service shows: average life of resin-impregnated M106K is 4200 hours, while Sb-impregnated M106D averages 13800 hours — a 3.3x life improvement.
 
 ### 2.3 Mating Material Selection
 
@@ -144,7 +144,7 @@ For vacuum residue with higher particle content, Plan 21 (clean wax oil from pum
 
 ## 5. Huahao Sealing Case Study
 
-A Sinopec 8 million ton/year atmospheric-vacuum unit bottom pump (flow 450 m³/h, temperature 365℃, media containing coke powder) originally used an imported brand mechanical seal averaging 4000 hours life, with three leakage shutdowns per year. After switching to Huahao Sealing's M106H-Sb + SiC + Inconel bellows + Plan 23 solution in 2019, average life reached 14000 hours. Over 4 years and 56000 cumulative hours, only 4 seal sets were replaced, saving about 800000 CNY in spare parts.
+A Sinopec 8 million ton/year atmospheric-vacuum unit bottom pump (flow 450 m³/h, temperature 365℃, media containing coke powder) originally used an imported brand mechanical seal averaging 4000 hours life, with three leakage shutdowns per year. After switching to Huahao Sealing's M106D + SiC + Inconel bellows + Plan 23 solution in 2019, average life reached 14000 hours. Over 4 years and 56000 cumulative hours, only 4 seal sets were replaced, saving about 800000 CNY in spare parts.
 
 Selection requires weighing three factors: media temperature gradient, particle content, and start-stop frequency. Large temperature swings favor bellows; high particle content favors Plan 21+23; frequent starts/stops should reduce face specific pressure to 0.3-0.4 MPa.`,
       vi: `## Điểm chính
@@ -177,7 +177,7 @@ Than chì tẩm nhựa nhiệt rắn (phenolic, furan) có giới hạn nhiệt 
 
 Than chì tẩm kim loại antimon (Sb) có giới hạn nhiệt độ 500℃ (antimon nóng chảy 630℃). Sau khi tẩm, độ rỗng than chì giảm dưới 1%, lớp tẩm kim loại không phân hủy hay co lại ở nhiệt độ cao, ổn định dài hạn. Hệ số dẫn nhiệt của antimon (24 W/(m·K)) cao hơn nhiều so với nhựa (0.2 W/(m·K)), có lợi cho tản nhiệt ma sát bề mặt.
 
-Than chì tẩm antimon M106H-Sb của Huahao Sealing trong điều kiện cặn dầu 380℃ cho kết quả: tuổi thọ trung bình của M106H tẩm nhựa là 4200 giờ, trong khi M106H-Sb tẩm antimon đạt 13800 giờ — tăng 3.3 lần.
+Than chì tẩm antimon M106D của Huahao Sealing trong điều kiện cặn dầu 380℃ cho kết quả: tuổi thọ trung bình của M106H tẩm nhựa là 4200 giờ, trong khi M106D tẩm antimon đạt 13800 giờ — tăng 3.3 lần.
 
 ### 2.3 Chọn vật liệu ma đối
 
@@ -205,7 +205,7 @@ Cho cặn dầu chân không có nhiều hạt, có thể song song Plan 21 (d�
 
 ## 5. Case study Huahao Sealing
 
-Bơm đáy tháp thiết bị chưng cất áp suất thường-khí 8 triệu tấn/năm của Sinopec (lưu lượng 450 m³/h, nhiệt độ 365℃, môi chất chứa bột cốc) ban đầu dùng cơ cấu kín thương hiệu nhập khẩu tuổi thọ trung bình 4000 giờ, mỗi năm dừng máy do rò rỉ 3 lần. Sau khi chuyển sang giải pháp M106H-Sb + SiC + ống bích Inconel + Plan 23 của Huahao Sealing năm 2019, tuổi thọ trung bình đạt 14000 giờ. Trong 4 năm tích lũy 56000 giờ, chỉ thay 4 bộ kín, tiết kiệm chi phí phụ tùng khoảng 800000 CNY.
+Bơm đáy tháp thiết bị chưng cất áp suất thường-khí 8 triệu tấn/năm của Sinopec (lưu lượng 450 m³/h, nhiệt độ 365℃, môi chất chứa bột cốc) ban đầu dùng cơ cấu kín thương hiệu nhập khẩu tuổi thọ trung bình 4000 giờ, mỗi năm dừng máy do rò rỉ 3 lần. Sau khi chuyển sang giải pháp M106D + SiC + ống bích Inconel + Plan 23 của Huahao Sealing năm 2019, tuổi thọ trung bình đạt 14000 giờ. Trong 4 năm tích lũy 56000 giờ, chỉ thay 4 bộ kín, tiết kiệm chi phí phụ tùng khoảng 800000 CNY.
 
 Chọn lựa cần xem xét ba yếu tố: gradient nhiệt độ môi chất, hàm lượng hạt, tần số khởi-dừng. Dao động nhiệt lớn ưu tiên ống bích; hạt nhiều ưu tiên Plan 21+23; khởi-dừng thường xuyên nên giảm áp suất riêng bề mặt xuống 0.3-0.4 MPa.`,
       th: `## ประเด็นสำคัญ
@@ -238,7 +238,7 @@ Chọn lựa cần xem xét ba yếu tố: gradient nhiệt độ môi chất, h
 
 กราไฟต์อิมเพรกเนตอินติมอนี (Sb) โลหะมีเพดานอุณหภูมิ 500℃ (จุดหลอมเหลวอินติมอนี 630℃) หลังอิมเพรกเนต พอรอสิตี้กราไฟต์ลดต่ำกว่า 1% และชั้นอิมเพรกเนตโลหะไม่สลายตัวหรือหดตัวที่อุณหภูมิสูง คงที่ในระยะยาว ค่าการนำความร้อนของอินติมอนี (24 W/(m·K)) สูงกว่าเรซิน (0.2 W/(m·K)) มาก ช่วยกระจายความร้อนจากการเสียดสีที่ผิวหน้า
 
-กราไฟต์อิมเพรกเนตอินติมอนี M106H-Sb ของ Huahao Sealing ในบริการกากน้ำมัน 380℃ แสดง: อายุการใช้งานเฉลี่ยของ M106H อิมเพรกเนตเรซินคือ 4200 ชั่วโมง ในขณะที่ M106H-Sb อิมเพรกเนตอินติมอนีเฉลี่ย 13800 ชั่วโมง — อายุการใช้งานเพิ่มขึ้น 3.3 เท่า
+กราไฟต์อิมเพรกเนตอินติมอนี M106D ของ Huahao Sealing ในบริการกากน้ำมัน 380℃ แสดง: อายุการใช้งานเฉลี่ยของ M106H อิมเพรกเนตเรซินคือ 4200 ชั่วโมง ในขณะที่ M106D อิมเพรกเนตอินติมอนีเฉลี่ย 13800 ชั่วโมง — อายุการใช้งานเพิ่มขึ้น 3.3 เท่า
 
 ### 2.3 การเลือกวัสดุประกบ
 
@@ -266,7 +266,7 @@ Plan 23 เป็นโซลูชันที่ต้องการสำห
 
 ## 5. กรณีศึกษา Huahao Sealing
 
-ปั๊มก้นหอหอกลั่นภายใต้ความดันปกติ-สุญญากาศ 8 ล้านตัน/ปี ของ Sinopec (อัตราการไหล 450 m³/h อุณหภูมิ 365℃ ตัวกลางมีผงโค้ก) เดิมใช้ซีลกลไกแบรนด์นำเข้าอายุการใช้งานเฉลี่ย 4000 ชั่วโมง ปีละ 3 ครั้งที่หยุดเครื่องเนื่องจากการรั่วซึม หลังเปลี่ยนเป็นโซลูชัน M106H-Sb + SiC + ท่อระฆัง Inconel + Plan 23 ของ Huahao Sealing ในปี 2019 อายุการใช้งานเฉลี่ยถึง 14000 ชั่วโมง ในระยะเวลา 4 ปีสะสม 56000 ชั่วโมง มีการเปลี่ยนเพียง 4 ชุดซีล ประหยัดค่าอะไหล่ประมาณ 800000 CNY
+ปั๊มก้นหอหอกลั่นภายใต้ความดันปกติ-สุญญากาศ 8 ล้านตัน/ปี ของ Sinopec (อัตราการไหล 450 m³/h อุณหภูมิ 365℃ ตัวกลางมีผงโค้ก) เดิมใช้ซีลกลไกแบรนด์นำเข้าอายุการใช้งานเฉลี่ย 4000 ชั่วโมง ปีละ 3 ครั้งที่หยุดเครื่องเนื่องจากการรั่วซึม หลังเปลี่ยนเป็นโซลูชัน M106D + SiC + ท่อระฆัง Inconel + Plan 23 ของ Huahao Sealing ในปี 2019 อายุการใช้งานเฉลี่ยถึง 14000 ชั่วโมง ในระยะเวลา 4 ปีสะสม 56000 ชั่วโมง มีการเปลี่ยนเพียง 4 ชุดซีล ประหยัดค่าอะไหล่ประมาณ 800000 CNY
 
 การเลือกต้องพิจารณาปัจจัยสามประการ: การไล่เฉดอุณหภูมิของตัวกลาง ปริมาณอนุภาค และความถี่ในการเริ่ม-หยุด การผันความร้อนมากให้ใช้ท่อระฆัง; อนุภาคมากให้ใช้ Plan 21+23; เริ่ม-หยุดบ่อยควรลดความดันจำเพาะผิวหน้าลงเหลือ 0.3-0.4 MPa`,
     },
@@ -515,7 +515,7 @@ O-ring ต้องใช้ Aflas หรือ Kalrez ทน NH₃ ที่ด
 
 ### 2.1 环氧树脂浸渍石墨
 
-烘缸工况首选环氧树脂浸渍石墨 M120E。环氧浸渍后气孔率降至 1.5% 以下，耐 200℃ 蒸汽长期冲刷不分解。180℃ 蒸汽环境 5000 小时测试：环氧浸渍石墨气孔率从 1.4% 升至 1.7%；酚醛浸渍升至 3.2%，开始蒸汽渗透泄漏。
+烘缸工况首选环氧树脂浸渍石墨 M106K。环氧浸渍后气孔率降至 1.5% 以下，耐 200℃ 蒸汽长期冲刷不分解。180℃ 蒸汽环境 5000 小时测试：环氧浸渍石墨气孔率从 1.4% 升至 1.7%；酚醛浸渍升至 3.2%，开始蒸汽渗透泄漏。
 
 ### 2.2 配对材料
 
@@ -541,7 +541,7 @@ O-ring ต้องใช้ Aflas หรือ Kalrez ทน NH₃ ที่ด
 
 ## 五、华豪密封案例
 
-某特种纸企业 5 万吨/年生产线（烘缸直径 1.5 m，蒸汽压力 1.0 MPa，温度 185℃，56 个烘缸），原用进口品牌剖分式密封平均寿命 4000 小时，每年因泄漏停机 6 次，单次损失约 8 万元。2021 年改用华豪密封 M120E + SSiC + AM350 波纹管 + 反吹系统方案后，平均寿命提升至 12000 小时，年停机次数降至 2 次，年节约停机损失约 32 万元，节约备件费用约 18 万元。
+某特种纸企业 5 万吨/年生产线（烘缸直径 1.5 m，蒸汽压力 1.0 MPa，温度 185℃，56 个烘缸），原用进口品牌剖分式密封平均寿命 4000 小时，每年因泄漏停机 6 次，单次损失约 8 万元。2021 年改用华豪密封 M106H + SSiC + AM350 波纹管 + 反吹系统方案后，平均寿命提升至 12000 小时，年停机次数降至 2 次，年节约停机损失约 32 万元，节约备件费用约 18 万元。
 
 选型核心：蒸汽温度决定浸渍剂（200℃ 以内选环氧）、潮湿环境决定弹性元件（波纹管替代弹簧）、维护需求决定结构形式（多烘缸选剖分式）。`,
       en: `## Key Takeaways
@@ -564,7 +564,7 @@ Pulp black liquor (containing NaOH, Na₂S, lignin, pH 9-11) seeps along the jou
 
 ### 2.1 Epoxy Resin-Impregnated Graphite
 
-For dryer can service, epoxy resin-impregnated graphite M120E is preferred. After epoxy impregnation, porosity drops below 1.5%, resisting 200℃ steam long-term erosion without decomposition. 5000-hour test in 180℃ steam: epoxy-impregnated graphite porosity rises from 1.4% to 1.7%; phenolic-impregnated rises to 3.2%, beginning steam permeation leakage.
+For dryer can service, epoxy resin-impregnated graphite M106K is preferred. After epoxy impregnation, porosity drops below 1.5%, resisting 200℃ steam long-term erosion without decomposition. 5000-hour test in 180℃ steam: epoxy-impregnated graphite porosity rises from 1.4% to 1.7%; phenolic-impregnated rises to 3.2%, beginning steam permeation leakage.
 
 ### 2.2 Mating Material
 
@@ -590,7 +590,7 @@ A purge chamber outside the seal is fed with 0.05-0.1 MPa low-pressure air or lo
 
 ## 5. Huahao Sealing Case Study
 
-A specialty paper company's 50000 ton/year production line (dryer can diameter 1.5 m, steam pressure 1.0 MPa, temperature 185℃, 56 cans) originally used an imported brand split seal averaging 4000 hours life, with 6 leakage shutdowns per year, each costing about 80000 CNY. After switching to Huahao Sealing's M120E + SSiC + AM350 bellows + purge system solution in 2021, average life reached 12000 hours, annual shutdowns dropped to 2, saving about 320000 CNY in downtime losses and 180000 CNY in spare parts annually.
+A specialty paper company's 50000 ton/year production line (dryer can diameter 1.5 m, steam pressure 1.0 MPa, temperature 185℃, 56 cans) originally used an imported brand split seal averaging 4000 hours life, with 6 leakage shutdowns per year, each costing about 80000 CNY. After switching to Huahao Sealing's M106H + SSiC + AM350 bellows + purge system solution in 2021, average life reached 12000 hours, annual shutdowns dropped to 2, saving about 320000 CNY in downtime losses and 180000 CNY in spare parts annually.
 
 Selection core: steam temperature determines impregnant (within 200℃ choose epoxy), humid environment determines elastic element (bellows replace springs), maintenance needs determine structural form (multiple cans choose split type).`,
       vi: `## Điểm chính
@@ -613,7 +613,7 @@ Dung dịch đen giấy bột (chứa NaOH, Na₂S, lignin, pH 9-11) thấm dọ
 
 ### 2.1 Than chì tẩm nhựa epoxy
 
-Cho điều kiện lô sấy, than chì tẩm nhựa epoxy M120E được ưu tiên. Sau khi tẩm epoxy, độ rỗng giảm dưới 1.5%, chịu xói mòn hơi nước 200℃ dài hạn không phân hủy. Thử nghiệm 5000 giờ trong môi trường hơi nước 180℃: than chì tẩm epoxy độ rỗng tăng từ 1.4% lên 1.7%; than chì tẩm phenolic tăng lên 3.2%, bắt đầu rò rỉ thấm hơi nước.
+Cho điều kiện lô sấy, than chì tẩm nhựa epoxy M106H được ưu tiên. Sau khi tẩm epoxy, độ rỗng giảm dưới 1.5%, chịu xói mòn hơi nước 200℃ dài hạn không phân hủy. Thử nghiệm 5000 giờ trong môi trường hơi nước 180℃: than chì tẩm epoxy độ rỗng tăng từ 1.4% lên 1.7%; than chì tẩm phenolic tăng lên 3.2%, bắt đầu rò rỉ thấm hơi nước.
 
 ### 2.2 Vật liệu ma đối
 
@@ -639,7 +639,7 @@ Buồng phun ngược bên ngoài kín cấp khí áp suất thấp 0.05-0.1 MPa
 
 ## 5. Case study Huahao Sealing
 
-Dây chuyền giấy đặc biệt 50000 tấn/năm (đường kính lô sấy 1.5 m, áp suất hơi 1.0 MPa, nhiệt độ 185℃, 56 lô), ban đầu dùng kín tách thương hiệu nhập khẩu tuổi thọ trung bình 4000 giờ, mỗi năm dừng máy do rò rỉ 6 lần, mỗi lần tổn thất khoảng 80000 CNY. Năm 2021 chuyển sang giải pháp M120E + SSiC + ống bích AM350 + hệ thống phun ngược của Huahao Sealing, tuổi thọ trung bình đạt 12000 giờ, số lần dừng máy hàng năm giảm xuống 2, tiết kiệm tổn thất dừng máy khoảng 320000 CNY và chi phí phụ tùng khoảng 180000 CNY mỗi năm.
+Dây chuyền giấy đặc biệt 50000 tấn/năm (đường kính lô sấy 1.5 m, áp suất hơi 1.0 MPa, nhiệt độ 185℃, 56 lô), ban đầu dùng kín tách thương hiệu nhập khẩu tuổi thọ trung bình 4000 giờ, mỗi năm dừng máy do rò rỉ 6 lần, mỗi lần tổn thất khoảng 80000 CNY. Năm 2021 chuyển sang giải pháp M106H + SSiC + ống bích AM350 + hệ thống phun ngược của Huahao Sealing, tuổi thọ trung bình đạt 12000 giờ, số lần dừng máy hàng năm giảm xuống 2, tiết kiệm tổn thất dừng máy khoảng 320000 CNY và chi phí phụ tùng khoảng 180000 CNY mỗi năm.
 
 Chọn lõi: nhiệt độ hơi nước quyết định chất tẩm (trong 200℃ chọn epoxy), môi trường ẩm quyết định phần tử đàn hồi (ống bích thay lò xo), nhu cầu bảo trì quyết định hình thức kết cấu (nhiều lô chọn kiểu tách).`,
       th: `## ประเด็นสำคัญ
@@ -662,7 +662,7 @@ Chọn lõi: nhiệt độ hơi nước quyết định chất tẩm (trong 200�
 
 ### 2.1 กราไฟต์อิมเพรกเนตเรซินอีพ็อกซี
 
-สำหรับสภาวะลูกกลิ้งอบแห้ง กราไฟต์อิมเพรกเนตเรซินอีพ็อกซี M120E เป็นที่ต้องการ หลังอิมเพรกเนตอีพ็อกซี พอรอสิตี้ลดต่ำกว่า 1.5% ทนการกัดเซาะไอน้ำ 200℃ ระยะยาวโดยไม่สลาย ทดสอบ 5000 ชั่วโมงในสภาพไอน้ำ 180℃: กราไฟต์อิมเพรกเนตอีพ็อกซีพอรอสิตี้เพิ่มจาก 1.4% เป็น 1.7%; อิมเพรกเนตฟีนอลิกเพิ่มเป็น 3.2% เริ่มรั่วซึมไอน้ำ
+สำหรับสภาวะลูกกลิ้งอบแห้ง กราไฟต์อิมเพรกเนตเรซินอีพ็อกซี M106H เป็นที่ต้องการ หลังอิมเพรกเนตอีพ็อกซี พอรอสิตี้ลดต่ำกว่า 1.5% ทนการกัดเซาะไอน้ำ 200℃ ระยะยาวโดยไม่สลาย ทดสอบ 5000 ชั่วโมงในสภาพไอน้ำ 180℃: กราไฟต์อิมเพรกเนตอีพ็อกซีพอรอสิตี้เพิ่มจาก 1.4% เป็น 1.7%; อิมเพรกเนตฟีนอลิกเพิ่มเป็น 3.2% เริ่มรั่วซึมไอน้ำ
 
 ### 2.2 วัสดุประกบ
 
@@ -688,7 +688,7 @@ Chọn lõi: nhiệt độ hơi nước quyết định chất tẩm (trong 200�
 
 ## 5. กรณีศึกษา Huahao Sealing
 
-สายการผลิตกระดาษพิเศษ 50000 ตัน/ปี (เส้นผ่านศูนย์กลางลูกกลิ้งอบแห้ง 1.5 m ความดันไอน้ำ 1.0 MPa อุณหภูมิ 185℃ 56 ลูก) เดิมใช้ซีลแยกส่วนแบรนด์นำเข้าอายุการใช้งานเฉลี่ย 4000 ชั่วโมง ปีละ 6 ครั้งที่หยุดเครื่องเนื่องจากการรั่วซึม แต่ละครั้งสูญเสียประมาณ 80000 CNY ปี 2021 เปลี่ยนเป็นโซลูชัน M120E + SSiC + ท่อระฆัง AM350 + ระบบพ่นย้อนของ Huahao Sealing อายุการใช้งานเฉลี่ยถึง 12000 ชั่วโมง จำนวนครั้งหยุดเครื่องต่อปีลดเหลือ 2 ประหยัดความสูญเสียจากการหยุดทำงานประมาณ 320000 CNY และค่าอะไหล่ประมาณ 180000 CNY ต่อปี
+สายการผลิตกระดาษพิเศษ 50000 ตัน/ปี (เส้นผ่านศูนย์กลางลูกกลิ้งอบแห้ง 1.5 m ความดันไอน้ำ 1.0 MPa อุณหภูมิ 185℃ 56 ลูก) เดิมใช้ซีลแยกส่วนแบรนด์นำเข้าอายุการใช้งานเฉลี่ย 4000 ชั่วโมง ปีละ 6 ครั้งที่หยุดเครื่องเนื่องจากการรั่วซึม แต่ละครั้งสูญเสียประมาณ 80000 CNY ปี 2021 เปลี่ยนเป็นโซลูชัน M106H + SSiC + ท่อระฆัง AM350 + ระบบพ่นย้อนของ Huahao Sealing อายุการใช้งานเฉลี่ยถึง 12000 ชั่วโมง จำนวนครั้งหยุดเครื่องต่อปีลดเหลือ 2 ประหยัดความสูญเสียจากการหยุดทำงานประมาณ 320000 CNY และค่าอะไหล่ประมาณ 180000 CNY ต่อปี
 
 หลักการเลือก: อุณหภูมิไอน้ำกำหนดสารอิมเพรกเนต (ภายใน 200℃ เลือกอีพ็อกซี) สภาพแวดล้อมชื้นกำหนดองค์ประกอบยืดหยุ่น (ท่อระฆังแทนสปริง) ความต้องการบำรุงรักษากำหนดรูปแบบโครงสร้าง (หลายลูกกลิ้งเลือกแบบแยกส่วน)`,
     },
@@ -1215,9 +1215,9 @@ Chọn lõi: pH và nhiệt độ môi chất quyết định chất tẩm (dung
       zh: `## 核心要点
 
 - 船舶尾轴长期浸没在海水（含 3.5% NaCl）中运转，还会混入泥沙（粒径 0.1-0.5 mm，航速 2-4 m/s），普通铜合金衬套 1-2 年即严重磨损
-- 碳石墨水润滑轴承选环氧树脂浸渍石墨（M120E），海水化学稳定，自润滑无水膜仍能干运转 30 分钟无抱轴
+- 碳石墨水润滑轴承选环氧树脂浸渍石墨（M106H），海水化学稳定，自润滑无水膜仍能干运转 30 分钟无抱轴
 - 三瓣/六瓣水腔分区结构：水腔占比 35-45%，确保泥沙随冷却水排出，不嵌入摩擦面；石墨条宽 20-30 mm 均匀承载
-- 尾轴直径 > 300 mm 推荐碳纤维增强石墨（M120E-CF），抗压强度从 180 MPa 提升至 280 MPa，抗冲击 50%
+- 尾轴直径 > 300 mm 推荐碳纤维增强环氧浸渍石墨，抗压强度从 180 MPa 提升至 280 MPa，抗冲击 50%
 - 华豪密封在某 25000DWT 散货船尾轴改造中，将铜衬套寿命从 1.5 年延长至 8 年，年维护成本降低 60%
 
 船舶螺旋桨尾轴轴承是船舶动力传动系统的关键部件，其性能直接关系到航行安全。传统铜合金衬套在海水 + 泥沙工况下磨损快、需要定期进坞更换。碳石墨水润滑轴承凭借耐磨、耐腐蚀、自润滑、无油污染的优势，成为铜衬套的理想替代品。本文结合霍邱县华豪密封件有限公司在多家船舶修造厂的应用经验，介绍碳石墨水润滑轴承选型要点。
@@ -1239,7 +1239,7 @@ Chọn lõi: pH và nhiệt độ môi chất quyết định chất tẩm (dung
 
 ### 2.1 环氧树脂浸渍石墨
 
-船舶水润滑轴承首选环氧树脂浸渍石墨 M120E，关键性能：
+船舶水润滑轴承首选环氧树脂浸渍石墨 M106K，关键性能：
 
 - 海水稳定性：3.5% NaCl 溶液浸泡 3000 小时，重量变化 < 0.1%，无溶胀
 - 自润滑性：水膜破裂后（如船舶搁浅、启动瞬间），仍可干运转 30 分钟不抱轴，摩擦系数 < 0.3
@@ -1250,7 +1250,7 @@ Chọn lõi: pH và nhiệt độ môi chất quyết định chất tẩm (dung
 
 ### 2.2 碳纤维增强型
 
-尾轴直径 > 300 mm 或重型船舶（油轮、散货船）推荐 M120E-CF（碳纤维增强环氧浸渍石墨）：
+尾轴直径 > 300 mm 或重型船舶（油轮、散货船）推荐 碳纤维增强环氧浸渍石墨：
 
 - 抗压强度：180 MPa → 280 MPa（+56%）
 - 抗冲击强度：0.8 J/cm² → 1.2 J/cm²（+50%）
@@ -1295,15 +1295,15 @@ Chọn lõi: pH và nhiệt độ môi chất quyết định chất tẩm (dung
 
 ## 五、华豪密封案例
 
-某海运公司 25000DWT 散货船（尾轴直径 340 mm，轴长 12 m，额定功率 3000 kW），原用锡青铜衬套平均寿命 1.5 年，每次进坞更换费用约 35 万元（含坞费、人工费、备件）。2018 年改用华豪密封 M120E-CF 碳纤维增强环氧石墨六瓣轴承 + Stellite 6 堆焊尾轴方案后，截至 2026 年已运行 8 年，累计航行 48 万海里，拆检磨损量仅 0.25 mm，预计剩余寿命 5-6 年。8 年累计节约维护成本约 280 万元，同时消除了润滑油泄漏风险。
+某海运公司 25000DWT 散货船（尾轴直径 340 mm，轴长 12 m，额定功率 3000 kW），原用锡青铜衬套平均寿命 1.5 年，每次进坞更换费用约 35 万元（含坞费、人工费、备件）。2018 年改用华豪密封 M106H-CF 碳纤维增强环氧石墨六瓣轴承 + Stellite 6 堆焊尾轴方案后，截至 2026 年已运行 8 年，累计航行 48 万海里，拆检磨损量仅 0.25 mm，预计剩余寿命 5-6 年。8 年累计节约维护成本约 280 万元，同时消除了润滑油泄漏风险。
 
 选型核心：轴径/载荷决定材料等级（重型选 CF 增强型）、泥沙含量决定水腔比例（含沙量高选 40-45%）、海水环境决定浸渍剂（环氧耐弱碱海水）。`,
       en: `## Key Takeaways
 
 - Marine stern shafts operate continuously immersed in seawater (3.5% NaCl) entrained with sediment (0.1-0.5 mm particle size, 2-4 m/s velocity); conventional copper alloy bushings wear severely in 1-2 years
-- Carbon graphite water-lubricated bearings use epoxy-impregnated graphite (M120E), chemically stable in seawater, self-lubricating allowing 30-minute dry run without shaft seizure even if water film breaks
+- Carbon graphite water-lubricated bearings use epoxy-impregnated graphite (M106H), chemically stable in seawater, self-lubricating allowing 30-minute dry run without shaft seizure even if water film breaks
 - 3-lobe/6-lobe water chamber zoning: 35-45% water chamber ratio ensures sediment flushes out with cooling water without embedding; 20-30 mm wide graphite strips provide uniform load distribution
-- Stern shafts >300 mm diameter recommend carbon-fiber-reinforced graphite (M120E-CF), compressive strength increased from 180 to 280 MPa, impact resistance +50%
+- Stern shafts >300 mm diameter recommend carbon-fiber-reinforced graphite (M106H-CF), compressive strength increased from 180 to 280 MPa, impact resistance +50%
 - Huahao Sealing extended copper bushing life from 1.5 to 8 years in a 25000 DWT bulk carrier stern shaft revamp, reducing annual maintenance cost by 60%
 
 Marine propeller stern shaft bearings are critical components of the ship's power transmission system; their performance directly relates to navigation safety. Traditional copper alloy bushings wear rapidly under seawater + sediment conditions and require regular dry-docking for replacement. With the advantages of wear resistance, corrosion resistance, self-lubrication, and zero oil pollution, carbon graphite water-lubricated bearings become the ideal alternative to copper bushings. Based on Huahao Sealing's application experience at multiple shipyards, this article introduces carbon graphite water-lubricated bearing selection points.
@@ -1325,7 +1325,7 @@ Conventional tin bronze (ZCuSn10P1) bushing failure statistics: sediment abrasiv
 
 ### 2.1 Epoxy Resin-Impregnated Graphite
 
-For marine water-lubricated bearings, epoxy resin-impregnated graphite M120E is preferred, with key properties:
+For marine water-lubricated bearings, epoxy resin-impregnated graphite M106K is preferred, with key properties:
 
 - Seawater stability: 3.5% NaCl solution immersion for 3000 hours, weight change <0.1%, no swelling
 - Self-lubricating: after water film rupture (e.g. ship grounding, start-up moment), still allows 30-minute dry run without shaft seizure, friction coefficient <0.3
@@ -1336,7 +1336,7 @@ Compared to phenolic-impregnated graphite: epoxy is more stable in seawater (pH 
 
 ### 2.2 Carbon Fiber-Reinforced Type
 
-For stern shafts >300 mm diameter or heavy vessels (tankers, bulk carriers), M120E-CF (carbon-fiber-reinforced epoxy-impregnated graphite) is recommended:
+For stern shafts >300 mm diameter or heavy vessels (tankers, bulk carriers), M106H-CF (carbon-fiber-reinforced epoxy-impregnated graphite) is recommended:
 
 - Compressive strength: 180 → 280 MPa (+56%)
 - Impact strength: 0.8 → 1.2 J/cm² (+50%)
@@ -1381,15 +1381,15 @@ Water-lubricated bearings use a lobe-type structure, embedding graphite strips i
 
 ## 5. Huahao Sealing Case Study
 
-A shipping company's 25000 DWT bulk carrier (stern shaft diameter 340 mm, shaft length 12 m, rated power 3000 kW) originally used tin bronze bushings averaging 1.5 years life, each dry-dock replacement costing about 350000 CNY (including dock fee, labor, spare parts). After switching to Huahao Sealing's M120E-CF carbon-fiber-reinforced epoxy graphite 6-lobe bearing + Stellite 6 overlaid stern shaft solution in 2018, as of 2026 it has operated for 8 years, accumulated 480000 nautical miles sailing, with inspection wear of only 0.25 mm. Estimated remaining life is 5-6 years. Over 8 years cumulative maintenance cost saving is about 2800000 CNY, while eliminating lubricating oil leakage risk.
+A shipping company's 25000 DWT bulk carrier (stern shaft diameter 340 mm, shaft length 12 m, rated power 3000 kW) originally used tin bronze bushings averaging 1.5 years life, each dry-dock replacement costing about 350000 CNY (including dock fee, labor, spare parts). After switching to Huahao Sealing's M106H-CF carbon-fiber-reinforced epoxy graphite 6-lobe bearing + Stellite 6 overlaid stern shaft solution in 2018, as of 2026 it has operated for 8 years, accumulated 480000 nautical miles sailing, with inspection wear of only 0.25 mm. Estimated remaining life is 5-6 years. Over 8 years cumulative maintenance cost saving is about 2800000 CNY, while eliminating lubricating oil leakage risk.
 
 Selection core: shaft diameter/load determines material grade (heavy-duty selects CF reinforced type), sediment content determines water chamber ratio (high sediment selects 40-45%), seawater environment determines impregnant (epoxy resistant to weak alkaline seawater).`,
       vi: `## Điểm chính
 
 - Trục sau tàu hoạt động liên tục ngập trong nước biển (3.5% NaCl) có chứa bồi cát (kích thước hạt 0.1-0.5 mm, vận tốc 2-4 m/s); bạc lót hợp kim đồng thông thường mài mòn nghiêm trọng sau 1-2 năm
-- Vòng bi bôi trơn nước than chì carbon dùng than chì tẩm nhựa epoxy (M120E), ổn định hóa học trong nước biển, tự bôi trơn cho phép chạy khô 30 phút không kẹt trục ngay cả khi màng nước vỡ
+- Vòng bi bôi trơn nước than chì carbon dùng than chì tẩm nhựa epoxy (M106H), ổn định hóa học trong nước biển, tự bôi trơn cho phép chạy khô 30 phút không kẹt trục ngay cả khi màng nước vỡ
 - Cấu trúc chia khoang nước 3/6 thùy: tỷ lệ khoang nước 35-45% đảm bảo bồi cát được xả cùng nước làm mát không lắng đọng; dải than chì rộng 20-30 mm phân bố tải đều
-- Trục sau đường kính >300 mm khuyến nghị than chì cốt sợi carbon (M120E-CF), cường độ chịu nén từ 180 lên 280 MPa, chống va đập +50%
+- Trục sau đường kính >300 mm khuyến nghị than chì cốt sợi carbon (M106H-CF), cường độ chịu nén từ 180 lên 280 MPa, chống va đập +50%
 - Huahao Sealing đã kéo dài tuổi thọ bạc lót đồng từ 1.5 lên 8 năm trong dự án cải tạo trục sau tàu hàng rời 25000 DWT, giảm chi phí bảo trì hàng năm 60%
 
 Vòng bi trục sau cánh quạt tàu là bộ phận then chốt của hệ thống truyền lực tàu; hiệu năng của chúng liên quan trực tiếp đến an toàn hàng hải. Bạc lót hợp kim đồng truyền thống mài mòn nhanh trong điều kiện nước biển + bồi cát và cần thay thế định kỳ vào bến tàu khô. Với lợi ích chống mài mòn, chống ăn mòn, tự bôi trơn và không ô nhiễm dầu, vòng bi bôi trơn nước than chì carbon trở thành lựa chọn thay thế lý tưởng cho bạc lót đồng. Dựa trên kinh nghiệm ứng dụng của Huahao Sealing tại nhiều nhà máy đóng tàu, bài viết giới thiệu điểm chọn vòng bi bôi trơn nước than chì carbon.
@@ -1411,7 +1411,7 @@ Thống kê hỏng bạc lót đồng thiếc thiếc (ZCuSn10P1) truyền thố
 
 ### 2.1 Than chì tẩm nhựa epoxy
 
-Cho vòng bi bôi trơn nước tàu, than chì tẩm nhựa epoxy M120E được ưu tiên, với đặc tính then chốt:
+Cho vòng bi bôi trơn nước tàu, than chì tẩm nhựa epoxy M106H được ưu tiên, với đặc tính then chốt:
 
 - Ổn định nước biển: ngâm dung dịch NaCl 3.5% 3000 giờ, thay đổi khối lượng <0.1%, không trương nở
 - Tự bôi trơn: sau khi vỡ màng nước (ví dụ tàu mắc cạn, lúc khởi động), vẫn chạy khô 30 phút không kẹt trục, hệ số ma sát <0.3
@@ -1422,7 +1422,7 @@ So với than chì tẩm phenolic: epoxy ổn định hơn trong nước biển 
 
 ### 2.2 Loại cốt sợi carbon
 
-Cho trục sau đường kính >300 mm hoặc tàu hạng nặng (tàu dầu, tàu hàng rời), M120E-CF (than chì tẩm epoxy cốt sợi carbon) được khuyến nghị:
+Cho trục sau đường kính >300 mm hoặc tàu hạng nặng (tàu dầu, tàu hàng rời), M106H-CF (than chì tẩm epoxy cốt sợi carbon) được khuyến nghị:
 
 - Cường độ chịu nén: 180 → 280 MPa (+56%)
 - Cường độ chống va đập: 0.8 → 1.2 J/cm² (+50%)
@@ -1467,15 +1467,15 @@ Lớp giảm xóc cao su styrene-butadiene (SBR) dày 3-5 mm giữa dải than c
 
 ## 5. Case study Huahao Sealing
 
-Tàu hàng rời 25000 DWT của công ty vận tải biển (đường kính trục sau 340 mm, dài trục 12 m, công suất định mức 3000 kW), ban đầu dùng bạc lót đồng thiếc thiếc tuổi thọ trung bình 1.5 năm, mỗi lần thay vào bến tàu khô chi phí khoảng 350000 CNY (bao gồm phí bến, công nhân, phụ tùng). Năm 2018 chuyển sang giải pháp vòng bi 6 thùy than chì epoxy cốt sợi carbon M120E-CF + trục sau hàn bề mặt Stellite 6 của Huahao Sealing, đến năm 2026 đã chạy 8 năm, tích lũy hàng hải 480000 hải lý, kiểm tra độ mài mòn chỉ 0.25 mm. Ước tính tuổi thọ còn lại 5-6 năm. Trong 8 năm tiết kiệm chi phí bảo trì tích lũy khoảng 2800000 CNY, đồng thời loại bỏ rủi ro rò rỉ dầu nhờn.
+Tàu hàng rời 25000 DWT của công ty vận tải biển (đường kính trục sau 340 mm, dài trục 12 m, công suất định mức 3000 kW), ban đầu dùng bạc lót đồng thiếc thiếc tuổi thọ trung bình 1.5 năm, mỗi lần thay vào bến tàu khô chi phí khoảng 350000 CNY (bao gồm phí bến, công nhân, phụ tùng). Năm 2018 chuyển sang giải pháp vòng bi 6 thùy than chì epoxy cốt sợi carbon M106H-CF + trục sau hàn bề mặt Stellite 6 của Huahao Sealing, đến năm 2026 đã chạy 8 năm, tích lũy hàng hải 480000 hải lý, kiểm tra độ mài mòn chỉ 0.25 mm. Ước tính tuổi thọ còn lại 5-6 năm. Trong 8 năm tiết kiệm chi phí bảo trì tích lũy khoảng 2800000 CNY, đồng thời loại bỏ rủi ro rò rỉ dầu nhờn.
 
 Chọn lõi: đường kính trục/tải quyết định cấp vật liệu (hạng nặng chọn loại cốt CF), hàm lượng bồi cát quyết định tỷ lệ khoang nước (cát nhiều chọn 40-45%), môi trường nước biển quyết định chất tẩm (epoxy chống nước biển kiềm yếu).`,
       th: `## ประเด็นสำคัญ
 
 - เพลาหางเรือทำงานต่อเนื่องแช่น้ำทะเล (3.5% NaCl) พร้อมตะกอน (ขนาดอนุภาค 0.1-0.5 mm ความเร็ว 2-4 m/s); บุชชิ่งโลหะผสมทองแดงทั่วไปสึกหรออย่างรุนแรงใน 1-2 ปี
-- แบริ่งน้ำหล่อลื่นคาร์บอนกราไฟต์ใช้กราไฟต์อิมเพรกเนตอีพ็อกซี (M120E) คงที่ทางเคมีในน้ำทะเล หล่อลื่นตัวเองให้ทำงานแบบแห้ง 30 นาทีโดยไม่ยึดเพลาแม้ฟิล์มน้ำจะแตก
+- แบริ่งน้ำหล่อลื่นคาร์บอนกราไฟต์ใช้กราไฟต์อิมเพรกเนตอีพ็อกซี (M106H) คงที่ทางเคมีในน้ำทะเล หล่อลื่นตัวเองให้ทำงานแบบแห้ง 30 นาทีโดยไม่ยึดเพลาแม้ฟิล์มน้ำจะแตก
 - โครงสร้างแบ่งช่องน้ำ 3/6 โลบ: อัตราส่วนช่องน้ำ 35-45% รับประกันตะกอนถูกชะออกพร้อมน้ำหล่อเย็นโดยไม่ฝัง; แถบกราไฟต์กว้าง 20-30 mm ให้การแบ่งภาระสม่ำเสมอ
-- เพลาหางเส้นผ่านศูนย์กลาง >300 mm แนะนำกราไฟต์เสริมใยคาร์บอน (M120E-CF) ความต้านทานการอัดเพิ่มจาก 180 เป็น 280 MPa ทนต่อการกระแทก +50%
+- เพลาหางเส้นผ่านศูนย์กลาง >300 mm แนะนำกราไฟต์เสริมใยคาร์บอน (M106H-CF) ความต้านทานการอัดเพิ่มจาก 180 เป็น 280 MPa ทนต่อการกระแทก +50%
 - Huahao Sealing ได้ยืดอายุบุชชิ่งทองแดงจาก 1.5 เป็น 8 ปีในโครงการปรับปรุงเพลาหางเรือขนส่งสินค้าถุง 25000 DWT ลดค่าบำรุงรักษาต่อปีลง 60%
 
 แบริ่งเพลาหางพัดลมเรือเป็นส่วนประกอบสำคัญของระบบส่งกำลังเรือ; ประสิทธิภาพของมันสัมพันธ์โดยตรงกับความปลอดภัยในการเดินเรือ บุชชิ่งโลหะผสมทองแดงแบบดั้งเดิมสึกหรอเร็วในสภาวะน้ำทะเล + ตะกอน และต้องเปลี่ยนอย่างสม่ำเสมอด้วยการเข้าฝากเรือแห้ง ด้วยข้อได้เปรียบของการต้านทานการสึกหรอ การต้านทานการกัดกร่อน การหล่อลื่นตัวเอง และไม่มีมลพิษน้ำมัน แบริ่งน้ำหล่อลื่นคาร์บอนกราไฟต์กลายเป็นทางเลือกทดแทนที่เหมาะสมสำหรับบุชชิ่งทองแดง จากประสบการณ์การใช้งานของ Huahao Sealing ที่โรงส่งเรือหลายแห่ง บทความนี้แนะนำจุดสำคัญในการเลือกแบริ่งน้ำหล่อลื่นคาร์บอนกราไฟต์
@@ -1497,7 +1497,7 @@ Chọn lõi: đường kính trục/tải quyết định cấp vật liệu (h�
 
 ### 2.1 กราไฟต์อิมเพรกเนตเรซินอีพ็อกซี
 
-สำหรับแบริ่งน้ำหล่อลื่นของเรือ กราไฟต์อิมเพรกเนตเรซินอีพ็อกซี M120E เป็นที่ต้องการ มีคุณสมบัติหลัก:
+สำหรับแบริ่งน้ำหล่อลื่นของเรือ กราไฟต์อิมเพรกเนตเรซินอีพ็อกซี M106H เป็นที่ต้องการ มีคุณสมบัติหลัก:
 
 - ความเสถียรของน้ำทะเล: แช่ในสารละลาย NaCl 3.5% เป็นเวลา 3000 ชั่วโมง การเปลี่ยนแปลงน้ำหนัก <0.1% ไม่มีการบวม
 - การหล่อลื่นตัวเอง: หลังฟิล์มน้ำแตก (เช่น เรืออุดตัน ช่วงเวลาเริ่มต้น) ยังให้ทำงานแบบแห้ง 30 นาทีโดยไม่ยึดเพลา ค่าสัมประสิทธิ์แรงเสียดสี <0.3
@@ -1508,7 +1508,7 @@ Chọn lõi: đường kính trục/tải quyết định cấp vật liệu (h�
 
 ### 2.2 ชนิดเสริมใยคาร์บอน
 
-สำหรับเพลาหางเส้นผ่านศูนย์กลาง >300 มม. หรือเรือหนัก (เรือขนส่งน้ำมัน เรือขนส่งสินค้าถุง) M120E-CF (กราไฟต์อิมเพรกเนตอีพ็อกซีเสริมใยคาร์บอน) แนะนำ:
+สำหรับเพลาหางเส้นผ่านศูนย์กลาง >300 มม. หรือเรือหนัก (เรือขนส่งน้ำมัน เรือขนส่งสินค้าถุง) M106H-CF (กราไฟต์อิมเพรกเนตอีพ็อกซีเสริมใยคาร์บอน) แนะนำ:
 
 - ความต้านทานการอัด: 180 → 280 MPa (+56%)
 - ความต้านทานการกระแทก: 0.8 → 1.2 J/cm² (+50%)
@@ -1553,7 +1553,7 @@ Chọn lõi: đường kính trục/tải quyết định cấp vật liệu (h�
 
 ## 5. กรณีศึกษา Huahao Sealing
 
-เรือขนส่งสินค้าถุง 25000 DWT ของบริษัทขนส่งเรือ (เส้นผ่านศูนย์กลางเพลาหาง 340 มม. ความยาวเพลา 12 ม. กำลังไฟฟ้าที่กำหนด 3000 kW) เดิมใช้บุชชิ่งทองแดงดีบุกอายุการใช้งานเฉลี่ย 1.5 ปี แต่ละครั้งที่เปลี่ยนเมื่อเข้าฝากเรือแห้งใช้จ่ายประมาณ 350000 CNY (รวมค่าฝาก ค่าแรง ค่าอะไหล่) หลังจากเปลี่ยนเป็นโซลูชันแบริ่ง 6 โลบกราไฟต์อีพ็อกซีเสริมใยคาร์บอน M120E-CF + เพลาหางชุบ Stellite 6 ของ Huahao Sealing ในปี 2018 ณ ปี 2026 ได้ทำงานมา 8 ปี สะสมการเดินเรือ 480000 ไมล์ทะเล การตรวจสอบการสึกหรอเพียง 0.25 มม. คาดว่าอายุการใช้งานที่เหลืออีก 5-6 ปี ในช่วง 8 ปีนี้ค่าบำรุงรักษาที่ประหยัดสะสมประมาณ 2800000 CNY ในขณะเดียวกันกำจัดความเสี่ยงการรั่วซึมน้ำมันหล่อลื่น
+เรือขนส่งสินค้าถุง 25000 DWT ของบริษัทขนส่งเรือ (เส้นผ่านศูนย์กลางเพลาหาง 340 มม. ความยาวเพลา 12 ม. กำลังไฟฟ้าที่กำหนด 3000 kW) เดิมใช้บุชชิ่งทองแดงดีบุกอายุการใช้งานเฉลี่ย 1.5 ปี แต่ละครั้งที่เปลี่ยนเมื่อเข้าฝากเรือแห้งใช้จ่ายประมาณ 350000 CNY (รวมค่าฝาก ค่าแรง ค่าอะไหล่) หลังจากเปลี่ยนเป็นโซลูชันแบริ่ง 6 โลบกราไฟต์อีพ็อกซีเสริมใยคาร์บอน M106H-CF + เพลาหางชุบ Stellite 6 ของ Huahao Sealing ในปี 2018 ณ ปี 2026 ได้ทำงานมา 8 ปี สะสมการเดินเรือ 480000 ไมล์ทะเล การตรวจสอบการสึกหรอเพียง 0.25 มม. คาดว่าอายุการใช้งานที่เหลืออีก 5-6 ปี ในช่วง 8 ปีนี้ค่าบำรุงรักษาที่ประหยัดสะสมประมาณ 2800000 CNY ในขณะเดียวกันกำจัดความเสี่ยงการรั่วซึมน้ำมันหล่อลื่น
 
 หลักการเลือก: เส้นผ่านศูนย์กลาง/ภาระของเพลากำหนดเกรดวัสดุ (หนักรู้ใช้ CF รีอินฟอร์ซ) ปริมาณตะกอนกำหนดอัตราส่วนช่องน้ำ (ตะกอนมากใช้ 40-45%) สภาพแวดล้อมน้ำทะเลกำหนดสารอิมเพรกเนต (อีพ็อกซีต้านทานน้ำทะเลด่างอ่อน)`,
     },
@@ -2445,7 +2445,7 @@ Chọn lõi: nồng độ ion flo quyết định vật liệu ma đối (F⁻ >
 
 ### 2.1 锑-铜双金属浸渍石墨
 
-无油真空泵干气密封动环推荐华豪密封 M280Sb-Cu 锑-铜双金属浸渍石墨：
+无油真空泵干气密封动环推荐华豪密封 锑-铜双金属浸渍石墨：
 
 - **基材**：细颗粒高强石墨（颗粒 10 μm，密度 1.85 g/cm³，气孔率 14-17%）
 - **浸渍剂**：锑（Sb）12% + 铜（Cu）18% 双金属真空压力浸渍（浸渍率 ≥ 95%，残余气孔率 < 1%）
@@ -2504,7 +2504,7 @@ Chọn lõi: nồng độ ion flo quyết định vật liệu ma đối (F⁻ >
 2. 每年约换 13 套密封，备件费 + 停车检修费约 **195 万元**
 3. 启动瞬间密封面干摩擦冒烟，溶剂蒸汽与磨屑混合物存在燃爆风险（2018 年有过一次闪爆未遂事故）
 
-2019 年改用华豪密封 **M280Sb-Cu 锑-铜双金属浸渍石墨动环 + SSiC 配对环 + 螺旋槽（α=16°，槽深 4 μm）+ Kalrez 7075 O 型圈 + 小弹簧平衡型** 方案后：
+2019 年改用华豪密封 **锑-铜双金属浸渍石墨动环 + SSiC 配对环 + 螺旋槽（α=16°，槽深 4 μm）+ Kalrez 7075 O 型圈 + 小弹簧平衡型** 方案后：
 
 - 首台泵连续运行 **4.2 年（2019.08-2023.11）**，拆检时密封面磨损量 **0.08 mm**，无热裂纹，气膜厚度仍稳定在 3.8 μm
 - 累计启动 **3800+ 次**，密封寿命 **50.4 个月**（+358%），从 11 个月提升
@@ -2544,7 +2544,7 @@ Conventional resin-impregnated graphite dry gas seal failure statistics:
 
 ### 2.1 Antimony-Copper Bimetal Impregnated Graphite
 
-Huahao Sealing M280Sb-Cu antimony-copper bimetal impregnated graphite is recommended for oil-free vacuum pump dry gas seal rotating rings:
+Huahao Sealing antimony-copper bimetal impregnated graphite is recommended for oil-free vacuum pump dry gas seal rotating rings:
 
 - **Base material**: fine-grain high-strength graphite (grain 10 μm, density 1.85 g/cm³, porosity 14-17%)
 - **Impregnant**: antimony (Sb) 12% + copper (Cu) 18% bimetal vacuum pressure impregnation (impregnation rate ≥ 95%, residual porosity < 1%)
@@ -2603,7 +2603,7 @@ A fine chemical company under a large petrochemical group has 4 sets of 50000 t/
 2. About 13 seal replacements per year, spare parts cost + shutdown maintenance cost about **1.95 million CNY**
 3. Startup transient seal face dry friction produced smoke, solvent vapor plus wear debris mixture presented explosion risk (one near-miss flash explosion incident in 2018)
 
-After switching to Huahao Sealing's **M280Sb-Cu antimony-copper bimetal impregnated graphite rotating ring + SSiC mating ring + spiral groove (α=16°, groove depth 4 μm) + Kalrez 7075 O-rings + small spring balanced type** solution in 2019:
+After switching to Huahao Sealing's **antimony-copper bimetal impregnated graphite rotating ring + SSiC mating ring + spiral groove (α=16°, groove depth 4 μm) + Kalrez 7075 O-rings + small spring balanced type** solution in 2019:
 
 - First pump continuous operation **4.2 years (2019.08-2023.11)**, teardown inspection seal face wear **0.08 mm**, no thermal cracks, gas film thickness still stable at 3.8 μm
 - Cumulative **3800+ starts**, seal life **50.4 months** (+358%), improved from 11 months
@@ -2643,7 +2643,7 @@ Thống kê hỏng kín khí khô than chì tẩm nhựa truyền thống:
 
 ### 2.1 Than chì tẩm kim loại kép Antimon-Đồng
 
-Vòng quay kín khí khô bơm chân không không dầu khuyến nghị than chì tẩm kim loại kép antimon-đồng M280Sb-Cu của Huahao Sealing:
+Vòng quay kín khí khô bơm chân không không dầu khuyến nghị than chì tẩm kim loại kép antimon-đồng Sb-Cu của Huahao Sealing:
 
 - **Vật liệu nền**: than chì cường độ cao hạt mịn (hạt 10 μm, khối lượng riêng 1.85 g/cm³, độ xốp 14-17%)
 - **Chất tẩm**: antimon (Sb) 12% + đồng (Cu) 18% tẩm áp suất chân không kim loại kép (tỷ lệ tẩm ≥ 95%, độ xốp dư < 1%)
@@ -2702,7 +2702,7 @@ Công ty hóa chất tinh chế thuộc Tập đoàn hóa dầu lớn có 4 bộ
 2. Khoảng 13 lần thay kín mỗi năm, chi phí phụ tùng + chi phí bảo trì dừng máy khoảng **1.95 triệu CNY**
 3. Ma sát khô mặt kín tức thời khi khởi động tạo khói, hỗn hợp hơi dung môi và mảnh vụn mài có rủi ro cháy nổ (một vụ gần xảy ra nổ chớp năm 2018)
 
-Năm 2019 chuyển sang giải pháp **Vòng quay than chì tẩm kim loại kép antimon-đồng M280Sb-Cu + vòng ma đối SSiC + rãnh xoắn ốc (α=16°, độ sâu rãnh 4 μm) + O-ring Kalrez 7075 + kiểu cân bằng lò xo nhỏ** của Huahao Sealing:
+Năm 2019 chuyển sang giải pháp **Vòng quay than chì tẩm kim loại kép antimon-đồng Sb-Cu + vòng ma đối SSiC + rãnh xoắn ốc (α=16°, độ sâu rãnh 4 μm) + O-ring Kalrez 7075 + kiểu cân bằng lò xo nhỏ** của Huahao Sealing:
 
 - Bơm đầu tiên chạy liên tục **4.2 năm (2019.08-2023.11)**, tháo kiểm mài mòn mặt kín **0.08 mm**, không có vết nứt nhiệt, độ dày màng khí vẫn ổn định ở 3.8 μm
 - Tích lũy **3800+ lần khởi động**, tuổi thọ kín **50.4 tháng** (+358%), cải thiện từ 11 tháng
@@ -2742,7 +2742,7 @@ Chọn lõi: tần suất khởi động/dừng quyết định chất tẩm (>5
 
 ### 2.1 กราไฟต์อิมเพรกเนตอัลลอยด์แอนทิโมนี-ทองแดงคู่
 
-แนะนำให้ใช้กราไฟต์อิมเพรกเนตอัลลอยด์แอนทิโมนี-ทองแดงคู่ M280Sb-Cu ของ Huahao Sealing สำหรับวงหมุนซีลก๊าซแห้งของปั๊มสูญญากาศแบบไม่มีน้ำมัน:
+แนะนำให้ใช้กราไฟต์อิมเพรกเนตอัลลอยด์แอนทิโมนี-ทองแดงคู่ Sb-Cu ของ Huahao Sealing สำหรับวงหมุนซีลก๊าซแห้งของปั๊มสูญญากาศแบบไม่มีน้ำมัน:
 
 - **วัสดุฐาน**: กราไฟต์ความแข็งแรงสูงเม็ดละเอียด (เม็ด 10 ไมครอน, ความหนาแน่น 1.85 กร./ลบ.ซม. ความรูพรุน 14-17%)
 - **สารอิมเพรกเนต**: แอนทิโมนี (Sb) 12% + ทองแดง (Cu) 18% อิมเพรกเนตความดันสุญญากาศด้วยโลหะคู่ (อัตราการอิมเพรกเนต ≥ 95%, ความรูพรุนคงเหลือ < 1%)
@@ -2801,7 +2801,7 @@ Chọn lõi: tần suất khởi động/dừng quyết định chất tẩm (>5
 2. เปลี่ยนซีลประมาณ 13 ครั้งต่อปี ค่าใช้จ่ายอะไหล่ + ค่าบำรุงรักษาขณะหยุดทำงานประมาณ **1.95 ล้าน CNY**
 3. การเสียดสีแห้งของผิวหน้าซีลในช่วงเริ่มต้นทำให้เกิดควัน ส่วนผสมของไอตัวทำละลายและเศษการสึกหรอมีความเสี่ยงในการระเบิดจากการจุดชนวน (มีอุบัติเหตุที่เกือบจะเกิดการระเบิดจากไฟกระพริบ 1 ครั้งในปี 2018)
 
-หลังจากเปลี่ยนเป็นโซลูชัน **วงหมุนกราไฟต์อิมเพรกเนตอัลลอยด์แอนทิโมนี-ทองแดงคู่ M280Sb-Cu + วงประกบ SSiC + ร่องเกลียว (α=16°, ความลึกร่อง 4 ไมครอน) + O-ring Kalrez 7075 + แบบสมดุลสปริงขนาดเล็ก** ของ Huahao Sealing ในปี 2019:
+หลังจากเปลี่ยนเป็นโซลูชัน **วงหมุนกราไฟต์อิมเพรกเนตอัลลอยด์แอนทิโมนี-ทองแดงคู่ Sb-Cu + วงประกบ SSiC + ร่องเกลียว (α=16°, ความลึกร่อง 4 ไมครอน) + O-ring Kalrez 7075 + แบบสมดุลสปริงขนาดเล็ก** ของ Huahao Sealing ในปี 2019:
 
 - ปั๊มแรกทำงานต่อเนื่อง **4.2 ปี (2019.08-2023.11)** ถอดตรวจสอบพบว่าการสึกหรอของผิวหน้าซีล **0.08 มม.** ไม่มีรอยแตกจากความร้อน ความหนาฟิล์มก๊าซยังคงเสถียรที่ 3.8 ไมครอน
 - สะสมการเริ่มต้น **3800+ ครั้ง** อายุซีล **50.4 เดือน** (+358%), ปรับปรุงจาก 11 เดือน
@@ -2860,7 +2860,7 @@ Chọn lõi: tần suất khởi động/dừng quyết định chất tẩm (>5
 
 ### 2.1 碳石墨优势对比
 
-| 特性 | 6061-T6 铝 | H62 黄铜 | 316L 不锈钢 | **M150Cu 青铜浸渍石墨** |
+| 特性 | 6061-T6 铝 | H62 黄铜 | 316L 不锈钢 | **青铜浸渍石墨** |
 |-----|-----------|---------|-----------|----------------------|
 | 硬度 | HB 95 | HB 85 | HB 187 | HS 80 (≈ HB 120) |
 | 碰摩时损伤对象 | 铝齿磨损 | 黄铜齿磨损 | 不锈钢损伤轴套！ | **石墨磨损，不伤轴套** |
@@ -2870,7 +2870,7 @@ Chọn lõi: tần suất khởi động/dừng quyết định chất tẩm (>5
 | 加工精度 | ±0.02 mm | ±0.02 mm | ±0.03 mm | **±0.005 mm**（数控磨床精度） |
 | 使用寿命（迷宫齿） | 3-6 个月 | 4-8 个月 | 1-2 年 | **4-6 年** |
 
-### 2.2 华豪密封 M150Cu 青铜浸渍石墨
+### 2.2 华豪密封 青铜浸渍石墨
 
 迷宫密封镶片专用材料：
 
@@ -2936,7 +2936,7 @@ Chọn lõi: tần suất khởi động/dừng quyết định chất tẩm (>5
 2. **段间泄漏超标**：装置标定泄漏量 **2.8%**（按 API 标准应 ≤ 1.5%），每小时泄漏乙烯等物料约 0.8 t，年损失约 **1800 万元**
 3. **H₂S 腐蚀**：裂解气含 H₂S 80-120 ppm，3 段低温段（52℃）黄铜迷宫齿发生脱锌腐蚀，齿片脆化碎裂（2017 年一次检修发现 7 片碎齿）
 
-2018 年大检修期间，48 级迷宫密封全部改用华豪密封 **M150Cu 青铜浸渍石墨镶片 + 交错型结构（2-4 段）/直通型（1 段）+ 燕尾槽镶嵌 + 配套重新镀铬轴套** 方案：
+2018 年大检修期间，48 级迷宫密封全部改用华豪密封 **青铜浸渍石墨镶片 + 交错型结构（2-4 段）/直通型（1 段）+ 燕尾槽镶嵌 + 配套重新镀铬轴套** 方案：
 
 - **泄漏量**：大修后标定 **0.9%**（优于 API 1.5% 标准），乙烯等物料泄漏量减少 **1.9 t/小时**，年节约物料价值约 **1200 万元**（按乙烯 7500 元/吨计）
 - **密封寿命**：2018-2024 年经历 **6 次开停车**（其中 2 次全厂大检修），2024 年拆检石墨齿尖磨损量平均仅 **0.012 mm**（磨损率 0.002 mm/次），再用 4-6 年没问题（原铝齿已换 4 轮）
@@ -2975,7 +2975,7 @@ Traditional aluminum/brass labyrinth tooth failure statistics:
 
 ### 2.1 Carbon Graphite Advantage Comparison
 
-| Property | 6061-T6 Al | H62 Brass | 316L SS | **M150Cu Bronze Impregnated Graphite** |
+| Property | 6061-T6 Al | H62 Brass | 316L SS | **Bronze-Impregnated Graphite** |
 |----------|-----------|---------|---------|--------------------------------------|
 | Hardness | HB 95 | HB 85 | HB 187 | HS 80 (≈ HB 120) |
 | Damaged part on rubbing | Al teeth wear | Brass teeth wear | SS damages sleeve! | **Graphite wears, sleeve intact** |
@@ -2985,7 +2985,7 @@ Traditional aluminum/brass labyrinth tooth failure statistics:
 | Machining precision | ±0.02 mm | ±0.02 mm | ±0.03 mm | **±0.005 mm** (CNC grinder precision) |
 | Service life (labyrinth) | 3-6 mo | 4-8 mo | 1-2 yr | **4-6 yr** |
 
-### 2.2 Huahao Sealing M150Cu Bronze Impregnated Graphite
+### 2.2 Huahao Sealing Bronze-Impregnated Graphite
 
 Dedicated material for labyrinth seal inserts:
 
@@ -3051,7 +3051,7 @@ An 800000 t/year ethylene plant under a petrochemical group, the cracker gas com
 2. **Inter-stage leakage exceeding standard**: plant calibration leakage **2.8%** (API standard should be ≤ 1.5%), hourly leakage of ethylene and other materials about 0.8 t, annual loss about **18 million CNY**
 3. **H₂S corrosion**: cracker gas contains H₂S 80-120 ppm, stage 3 low-temperature section (52℃) brass labyrinth teeth suffered dezincification corrosion, teeth embrittled and fractured (during 2017 overhaul 7 fractured teeth found)
 
-During 2018 major overhaul, all 48 labyrinth seal stages fully replaced with Huahao Sealing's **M150Cu bronze impregnated graphite inserts + staggered structure (stages 2-4) / straight-through type (stage 1) + dovetail groove insert + matching re-chrome plated sleeves** solution:
+During 2018 major overhaul, all 48 labyrinth seal stages fully replaced with Huahao Sealing's ** bronze-impregnated graphite inserts + staggered structure (stages 2-4) / straight-through type (stage 1) + dovetail groove insert + matching re-chrome plated sleeves** solution:
 
 - **Leakage**: after overhaul calibration **0.9%** (better than API 1.5% standard), ethylene and other material leakage reduced **1.9 t/hour**, annual material value saving about **12 million CNY** (at ethylene 7500 CNY/t)
 - **Seal life**: 2018-2024 experienced **6 start-stops** (including 2 plant-wide overhauls), 2024 teardown inspection graphite tooth tip average wear only **0.012 mm** (wear rate 0.002 mm/time), good for another 4-6 years (original aluminum teeth already replaced 4 rounds)
@@ -3090,7 +3090,7 @@ Thống kê hỏng răng vòng kín mê cung nhôm/thau đồng truyền thống
 
 ### 2.1 So sánh ưu điểm than chì carbon
 
-| Đặc tính | Nhôm 6061-T6 | Thau đồng H62 | Thép không gỉ 316L | **Than chì tẩm đồng thau M150Cu** |
+| Đặc tính | Nhôm 6061-T6 | Thau đồng H62 | Thép không gỉ 316L | **Than chì tẩm đồng thau ** |
 |----------|-------------|--------------|-----------------|------------------------------|
 | Độ cứng | HB 95 | HB 85 | HB 187 | HS 80 (≈ HB 120) |
 | Bộ phận hỏng khi va chạm | Răng nhôm mòn | Răng thau đồng mòn | Thép hỏng ống lót! | **Than chì mòn, ống lót không hỏng** |
@@ -3100,7 +3100,7 @@ Thống kê hỏng răng vòng kín mê cung nhôm/thau đồng truyền thống
 | Độ chính xác gia công | ±0.02 mm | ±0.02 mm | ±0.03 mm | **±0.005 mm** (độ chính xác máy mài CNC) |
 | Tuổi thọ (vòng kín mê cung) | 3-6 tháng | 4-8 tháng | 1-2 năm | **4-6 năm** |
 
-### 2.2 Than chì tẩm đồng thau M150Cu của Huahao Sealing
+### 2.2 Than chì tẩm đồng thau  của Huahao Sealing
 
 Vật liệu chuyên dụng cho mảnh gắn vòng kín mê cung:
 
@@ -3166,7 +3166,7 @@ Nhà máy etylen 800000 tấn/năm thuộc Tập đoàn hóa dầu, máy nén kh
 2. **Rò rỉ liên cấp vượt chuẩn**: lượng rò rỉ hiệu chuẩn nhà máy **2.8%** (theo tiêu chuẩn API phải ≤ 1.5%), mỗi giờ rò rỉ etylen và các vật liệu khác khoảng 0.8 t, tổn thất hàng năm khoảng **18 triệu CNY**
 3. **Ăn mòn H₂S**: khí nứt chứa H₂S 80-120 ppm, răng vòng kín mê cung thau đồng ở đoạn nhiệt độ thấp cấp 3 (52℃) xảy ra ăn mòn khử kẽm, răng giòn và nứt (năm 2017 một lần bảo trì lớn tìm thấy 7 răng vỡ)
 
-Trong thời gian bảo trì lớn năm 2018, 48 cấp vòng kín mê cung toàn bộ thay thế bằng giải pháp **mảnh gắn than chì tẩm đồng thau M150Cu + cấu trúc kiểu xen kẽ (cấp 2-4) / kiểu thẳng (cấp 1) + nhét khớp nuốt chim + ống lót mạ crôm lại phù hợp** của Huahao Sealing:
+Trong thời gian bảo trì lớn năm 2018, 48 cấp vòng kín mê cung toàn bộ thay thế bằng giải pháp **mảnh gắn than chì tẩm đồng thau  + cấu trúc kiểu xen kẽ (cấp 2-4) / kiểu thẳng (cấp 1) + nhét khớp nuốt chim + ống lót mạ crôm lại phù hợp** của Huahao Sealing:
 
 - **Lượng rò rỉ**: sau bảo trì hiệu chuẩn **0.9%** (tốt hơn tiêu chuẩn API 1.5%), lượng rò rỉ etylen và vật liệu khác giảm **1.9 t/giờ**, tiết kiệm giá trị vật liệu hàng năm khoảng **12 triệu CNY** (tính theo etylen 7500 CNY/tấn)
 - **Tuổi thọ kín**: 2018-2024 trải qua **6 lần khởi động/dừng** (trong đó 2 lần bảo trì lớn toàn nhà máy), năm 2024 tháo kiểm mài mòn trung bình đỉnh răng than chì chỉ **0.012 mm** (tỷ lệ mài mòn 0.002 mm/lần), còn dùng được 4-6 năm nữa (răng nhôm ban đầu đã thay thế 4 đợt)
@@ -3205,7 +3205,7 @@ Chọn lõi: độ lớn rung trục quyết định vật liệu răng (rung tr
 
 ### 2.1 การเปรียบเทียบข้อได้เปรียบของคาร์บอนกราไฟต์
 
-| คุณสมบัติ | อลูมิเนียม 6061-T6 | บรอนซ์ H62 | สเตนเลส 316L | **กราไฟต์อิมเพรกเนตบรอนซ์ M150Cu** |
+| คุณสมบัติ | อลูมิเนียม 6061-T6 | บรอนซ์ H62 | สเตนเลส 316L | **กราไฟต์อิมเพรกเนตบรอนซ์ ** |
 |----------|-----------------|------------|-------------|----------------------------------|
 | ความแข็ง | HB 95 | HB 85 | HB 187 | HS 80 (≈ HB 120) |
 | ส่วนที่เสียหายเมื่อขัดถูก | ฟันอลูมิเนียมสึกหรอ | ฟันบรอนซ์สึกหรอ | สเตนเลสทำลายบูช! | **กราไฟต์สึกหรอ บูชไม่เสียหาย** |
@@ -3215,7 +3215,7 @@ Chọn lõi: độ lớn rung trục quyết định vật liệu răng (rung tr
 | ความแม่นยำในการขัดเงิน | ±0.02 มม. | ±0.02 มม. | ±0.03 มม. | **±0.005 มม.** (ความแม่นยำของเครื่องเจียร์ CNC) |
 | อายุการใช้งาน (ห้องคดเคี้ยว) | 3-6 เดือน | 4-8 เดือน | 1-2 ปี | **4-6 ปี** |
 
-### 2.2 กราไฟต์อิมเพรกเนตบรอนซ์ M150Cu ของ Huahao Sealing
+### 2.2 กราไฟต์อิมเพรกเนตบรอนซ์  ของ Huahao Sealing
 
 วัสดุเฉพาะสำหรับแผ่นเสริมซีลห้องคดเคี้ยว:
 
@@ -3281,7 +3281,7 @@ Chọn lõi: độ lớn rung trục quyết định vật liệu răng (rung tr
 2. **อัตราการรั่วระหว่างระดับเกินขอบเขต**: อัตราการรั่วที่ได้รับการสอบเทียบจากโรงงาน **2.8%** (ตามมาตรฐาน API ควรอยู่ที่ ≤ 1.5%) การรั่วเอทิลีนและวัสดุอื่นๆ ประมาณ 0.8 ตันต่อชั่วโมง สูญเสียประมาณ **18 ล้าน CNY ต่อปี**
 3. **การกัดกร่อน H₂S**: ก๊าซแคร็กเกอร์มี H₂S 80-120 ppm ฟันห้องคดเคี้ยวบรอนซ์ในส่วนอุณหภูมิต่ำของระดับ 3 (52℃) เกิดการกัดกร่อนถอดสังกะสี ฟันกลายเป็นเปราะและแตกหัก (ในช่วงบำรุงรักษาใหญ่ปี 2017 พบฟันแตกหัก 7 อัน)
 
-ในช่วงบำรุงรักษาใหญ่ปี 2018 ซีลห้องคดเคี้ยว 48 ระดับทั้งหมดถูกเปลี่ยนเป็นโซลูชัน **แผ่นเสริมกราไฟต์อิมเพรกเนตบรอนซ์ M150Cu + โครงสร้างสลับกัน (ระดับ 2-4) / ประเภทตรง (ระดับ 1) + การเสียบช่องรูปนกแก้ว + บูชชุบโครเมียมใหม่ที่เข้ากันได้** ของ Huahao Sealing:
+ในช่วงบำรุงรักษาใหญ่ปี 2018 ซีลห้องคดเคี้ยว 48 ระดับทั้งหมดถูกเปลี่ยนเป็นโซลูชัน **แผ่นเสริมกราไฟต์อิมเพรกเนตบรอนซ์  + โครงสร้างสลับกัน (ระดับ 2-4) / ประเภทตรง (ระดับ 1) + การเสียบช่องรูปนกแก้ว + บูชชุบโครเมียมใหม่ที่เข้ากันได้** ของ Huahao Sealing:
 
 - **อัตราการรั่ว**: หลังจากบำรุงรักษาและสอบเทียบ **0.9%** (ดีกว่ามาตรฐาน API 1.5%) การรั่วของเอทิลีนและวัสดุอื่นๆ ลดลง **1.9 ตัน/ชั่วโมง** ค่าประหยัดวัสดุต่อปีประมาณ **12 ล้าน CNY** (คำนวณตามเอทิลีน 7500 CNY/ตัน)
 - **อายุซีล**: 2018-2024 มีประสบการณ์ **6 ครั้งการเริ่ม-หยุด** (รวมถึงการบำรุงรักษาใหญ่ทั้งโรงงาน 2 ครั้ง) ในช่วงปี 2024 การถอดตรวจพบว่าการสึกหรอเฉลี่ยของปลายฟันกราไฟต์เพียง **0.012 มม.** (อัตราการสึกหรอ 0.002 มม./ครั้ง) ยังสามารถใช้งานต่อได้อีก 4-6 ปี (ฟันอลูมิเนียมเดิมถูกเปลี่ยนไปแล้ว 4 รอบ)

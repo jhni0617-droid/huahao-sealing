@@ -81,6 +81,9 @@ export default async function FAQPage({ params }: { params: Promise<{ locale: st
   const categories = faqCategoriesByLocale[locale] || faqCategoriesByLocale.en
   const techFormulas = faqFormulasByLocale[locale] || faqFormulasByLocale.en
 
+  // 各语言分类顺序一致，按索引挂锚点供导航深链使用
+  const categoryIds = ["selection", "clearance", "machining", "troubleshooting", "maintenance", "custom"]
+
   return (
     <>
       {/* FAQ Structured Data */}
@@ -132,8 +135,8 @@ export default async function FAQPage({ params }: { params: Promise<{ locale: st
           </div>
 
           <div className="space-y-8 max-w-4xl mx-auto">
-            {categories.map((cat) => (
-              <div key={cat.category}>
+            {categories.map((cat, ci) => (
+              <div key={cat.category} id={categoryIds[ci]} className="scroll-mt-28">
                 <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 bg-accent/10 flex items-center justify-center shrink-0">
                     <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">

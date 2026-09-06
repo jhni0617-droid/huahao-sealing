@@ -270,9 +270,9 @@ These combined properties make carbon graphite an irreplaceable sealing and bear
 2. 浸渍类型：树脂/金属/无浸渍
 3. 性能指标：硬度、抗压强度、气孔率、摩擦系数
 4. 适用工况：温度、压力、介质、转速
-5. 是否符合行业标准（如 JB/T 8896、API 682 等要求）
+5. 是否符合行业标准要求（如 API 682），牌号后缀与浸渍物对应关系以厂家样本为准
 
-华豪密封件有限公司提供 M106K、M254K、M179K 等主流牌号的碳石墨密封环、轴套与分段环，支持按图纸与样品定制加工，可提供材料性能检测报告。`,
+华豪密封件有限公司提供 M106K、M120K、M106H 等主流牌号的碳石墨密封环、轴套与分段环，支持按图纸与样品定制加工，可提供材料性能检测报告。`,
       en: `## Key Points
 
 - "Carbon" refers to material baked at 1000-1400°C without graphitization, with high hardness and wear resistance but poor lubricity
@@ -352,9 +352,9 @@ Confirm the following with your supplier to avoid material selection errors:
 2. Impregnation type: resin/metal/un-impregnated
 3. Performance indicators: hardness, compressive strength, porosity, friction coefficient
 4. Service conditions: temperature, pressure, media, speed
-5. Compliance with industry standards (e.g., JB/T 8896, API 682)
+5. Compliance with industry standards (e.g., API 682); suffix-to-impregnant mapping per the manufacturer datasheet
 
-Huahao Sealing Co., Ltd. supplies carbon graphite seal rings, bushings and segmented rings in mainstream grades such as M106K, M254K and M179K, with custom machining from drawings or samples and material test reports.`,
+Huahao Sealing Co., Ltd. supplies carbon graphite seal rings, bushings and segmented rings in grades such as M106K, M120K, M140K and M106D, with custom machining from drawings or samples and material test reports.`,
     },
   },
 
@@ -754,21 +754,21 @@ These combined advantages make "carbon graphite + SiC" the default pairing for o
   {
     slug: "select-graphite-grade-seal",
     title: {
-      zh: "如何为密封件选石墨牌号：M106K/M254K/M179K 选型决策指南",
-      en: "How to Select a Graphite Grade for Seals: M106K/M254K/M179K Selection Decision Guide",
+      zh: "如何为密封件选石墨牌号：M106D/M106K/M120K 选型决策指南",
+      en: "How to Select a Graphite Grade for Seals: M106D/M106K/M120K Selection Decision Guide",
     },
     excerpt: {
-      zh: "M106K、M254K、M179K 等牌号是碳石墨密封件最常用的材料牌号，但它们的浸渍类型、性能指标与适用工况各不相同。本文给出一份基于工况、介质、温度与压力的选型决策流程。",
-      en: "Grades like M106K, M254K and M179K are the most commonly used carbon graphite seal materials, but their impregnation types, performance and suitable service conditions differ. This article provides a selection decision process based on media, temperature and pressure.",
+      zh: "M106D、M106K、M120K 等牌号是碳石墨密封件最常用的材料牌号，但它们的浸渍类型、性能指标与适用工况各不相同。本文给出一份基于工况、介质、温度与压力的选型决策流程。",
+      en: "Grades like M106D, M106K and M120K are the most commonly used carbon graphite seal materials, but their impregnation types, performance and suitable service conditions differ. This article provides a selection decision process based on media, temperature and pressure.",
     },
     tag: "selection",
     date: "2026-08-28",
     content: {
       zh: `## 核心要点
 
-- M106K（锑浸渍）：耐高温 400℃+、高载荷，适用热油泵、高温介质，主流高温牌号
-- M254K（呋喃树脂浸渍）：耐酸碱腐蚀，适用化工泵、反应釜，主流耐腐牌号
-- M179K（环氧树脂浸渍）：通用型，机械强度高，适用清水泵、冷却水泵
+- M106D（锑浸渍）：耐高温 450-500℃、高载荷，适用热油泵、高温介质，高温工况首选牌号
+- M106K/M120K（呋喃树脂浸渍）：耐酸碱腐蚀，适用化工泵、反应釜，主流耐腐牌号
+- M106H（环氧树脂浸渍）：通用型，机械强度高，适用清水泵、冷却水泵
 - 选型四步法：① 确认介质类型与腐蚀性 → ② 确认温度范围 → ③ 确认压力与 PV 值 → ④ 确认转速与端面配对
 - 特殊工况选型：食品级选 PTFE 浸渍牌号；高磨损含颗粒介质选硬碳牌号；核电主泵选特殊高纯牌号
 
@@ -776,54 +776,50 @@ These combined advantages make "carbon graphite + SiC" the default pairing for o
 
 碳石墨密封件的材料牌号直接决定了密封的性能、寿命与可靠性。同一形状尺寸的密封环，使用不同牌号的碳石墨，其使用寿命可能相差 3-5 倍。错误的牌号选型是密封早期失效的最常见原因之一。
 
-国内密封件行业主流的碳石墨牌号遵循 JB/T 8896 标准，牌号字母与数字代表：
-
-- **M**：碳石墨类材料
-- **数字 1**：材料系列号（基体配方）
-- ****K**：浸渍类型（K=锑浸渍，F=酚醛树脂浸渍，H=环氧树脂浸渍，N=呋喃树脂浸渍等）
+国内机械用碳石墨牌号沿用电碳行业传统编号：**M 表示机械碳石墨材料，数字代表基体系列，后缀字母表示浸渍物——F=酚醛树脂、H=环氧树脂、K=呋喃树脂（糠醇）、D=锑金属**；巴氏合金、铜、PTFE 等特殊浸渍的代号各厂不同，选型时以厂家样本为准。
 
 ## 二、主流牌号对比
 
-### 2.1 M106K（锑浸渍碳石墨）
+### 2.1 M106D（锑浸渍碳石墨）
 
 - **基体**：高强碳石墨基体，经锑金属浸渍
-- **密度**：2.20-2.30 g/cm³
-- **肖氏硬度**：HS 75-90
-- **抗压强度**：260-340 MPa
+- **密度**：2.15-2.25 g/cm³（华豪检测 2.20）
+- **肖氏硬度**：HS 85-95（检测 92）
+- **抗压强度**：180-200 MPa（检测 190）
 - **气孔率**：<2%
-- **使用温度**：400-500℃（非氧化介质）
+- **使用温度**：450-500℃（非氧化介质）
 - **特点**：耐高温、高载荷，锑金属提供优异的导热性与承载能力
 - **典型应用**：热油泵密封、高温导热油介质、石化高温泵、蒸汽介质
 
-### 2.2 M254K（呋喃树脂浸渍碳石墨）
+### 2.2 M120K（呋喃树脂浸渍碳石墨）
 
 - **基体**：中强碳石墨基体，经呋喃树脂浸渍
 - **密度**：1.80-1.90 g/cm³
 - **肖氏硬度**：HS 55-75
 - **抗压强度**：180-240 MPa
 - **气孔率**：<2%
-- **使用温度**：200-250℃
+- **使用温度**：≤220℃
 - **特点**：耐酸碱腐蚀性能优异，呋喃树脂对强酸强碱稳定
 - **典型应用**：化工泵密封、酸碱介质、反应釜搅拌器、电镀设备
 
-### 2.3 M179K（环氧树脂浸渍碳石墨）
+### 2.3 M106H（环氧树脂浸渍碳石墨）
 
 - **基体**：通用碳石墨基体，经环氧树脂浸渍
 - **密度**：1.75-1.85 g/cm³
 - **肖氏硬度**：HS 50-70
 - **抗压强度**：170-220 MPa
 - **气孔率**：<2%
-- **使用温度**：180-220℃
+- **使用温度**：≤180℃
 - **特点**：机械强度均衡，耐中等腐蚀，性价比高
 - **典型应用**：清水泵、冷却水泵、循环泵、通用工业泵
 
 ### 2.4 其他常见牌号
 
-- **M106H**（环氧浸渍）：通用型，常温清水工况
-- **M254N**（呋喃浸渍）：强腐蚀工况，性能与 M254K 类似
-- **M120K**（锑浸渍）：高强基体，重载轴承应用
+- **M106F**（酚醛浸渍）：弱酸弱碱通用，使用温度 ≤200℃
+- **M140K**（呋喃浸渍）：华豪在产呋喃牌号，基体强度更高
+- **M191T**（碳化处理）：600℃ 极端高温，无需金属浸渍
 - **PTFE 浸渍牌号**：食品制药卫生级，化学惰性最佳
-- **铜浸渍牌号**：电气应用，导电导热性优
+- **铜/巴氏合金浸渍牌号**：导电导热或高速跑合工况，代号按厂家样本
 
 ## 三、选型四步法
 
@@ -831,23 +827,23 @@ These combined advantages make "carbon graphite + SiC" the default pairing for o
 
 | 介质类型 | 推荐浸渍 | 推荐牌号 |
 |---------|---------|---------|
-| 清水、冷却水 | 环氧树脂 | M179K |
-| 弱酸弱碱 | 酚醛或呋喃树脂 | M254K |
-| 强酸强碱 | 呋喃树脂 | M254K（N 浸渍） |
-| 高温油类 | 锑金属 | M106K |
+| 清水、冷却水 | 环氧树脂 | M106H |
+| 弱酸弱碱 | 酚醛或呋喃树脂 | M106F / M106K |
+| 强酸强碱 | 呋喃树脂 | M106K / M120K |
+| 高温油类 | 锑金属 | M106D |
 | 食品制药介质 | PTFE | 食品级牌号 |
-| 含颗粒介质 | 锑金属或无浸渍硬碳 | M106K 或硬碳 |
+| 含颗粒介质 | 锑金属或无浸渍硬碳 | M106D 或硬碳 |
 
 ### 第二步：确认温度范围
 
-- **<180℃**：可选树脂浸渍牌号（M179K/M254K），性价比高
-- **180-400℃**：必须选金属浸渍牌号（M106K），树脂浸渍会碳化失效
-- **>400℃**：需特殊高温牌号，咨询供应商定制
+- **<180℃**：可选树脂浸渍牌号（M106F/M106H/M106K），性价比高
+- **180-400℃**：必须选金属浸渍牌号（M106D），树脂浸渍会碳化失效
+- **>400℃**：选 M191T 碳化处理牌号或定制高温牌号
 
 ### 第三步：确认压力与 PV 值
 
 - **介质压力 <1.5 MPa**：可选非平衡型密封，所有牌号均适用
-- **介质压力 1.5-5 MPa**：需平衡型密封，选高强牌号（M106K/M254K）
+- **介质压力 1.5-5 MPa**：需平衡型密封，选高强牌号（M106K/M120K）
 - **PV 值校核**：PV = 端面比压 × 端面线速度，不得超过材料许用 PV 值
   - 碳石墨 vs 碳化硅：许用 PV 7-15 MPa·m/s
   - 碳石墨 vs 硬质合金：许用 PV 5-10 MPa·m/s
@@ -881,26 +877,26 @@ These combined advantages make "carbon graphite + SiC" the default pairing for o
 ### 4.4 真空泵干气密封
 
 - 介质：气体（无液膜润滑）
-- 推荐：锑浸渍高强牌号（M106K）+ 干气密封结构
+- 推荐：锑浸渍高强牌号（M106D）+ 干气密封结构
 - 说明：干摩擦工况需利用碳石墨自润滑性，金属浸渍提升承载能力
 
 ## 五、采购时的技术确认要点
 
 向供应商下单时建议确认：
 
-1. 牌号是否对应国内/国际标准（JB/T 8896、API 682）
+1. 牌号后缀字母与浸渍物的对应关系（F/H/K/D），以厂家样本为准
 2. 浸渍类型与浸渍后气孔率（应 <2%）
 3. 力学性能报告：硬度、抗压强度、抗折强度
 4. 是否提供材料性能检测报告与材质证明
 5. 批次稳定性：同一供应商不同批次性能差异应 <10%
 6. 是否支持按图纸与样品定制加工
 
-华豪密封件有限公司提供 M106K、M254K、M179K 等主流牌号及特殊浸渍定制，支持按图纸与样品定制加工碳石墨密封环、轴套与分段环，并提供完整的材料性能检测报告。`,
+华豪密封件有限公司提供 M106K、M120K、M140K、M106D 等牌号及特殊浸渍定制，支持按图纸与样品定制加工碳石墨密封环、轴套与分段环，并提供完整的材料性能检测报告。`,
       en: `## Key Points
 
-- M106K (antimony-impregnated): high temperature 400°C+, high load, for hot oil pumps and high-temperature media, mainstream high-temperature grade
-- M254K (furan resin-impregnated): acid/alkali corrosion resistance, for chemical pumps and reactors, mainstream corrosion-resistant grade
-- M179K (epoxy resin-impregnated): general-purpose, high mechanical strength, for clean water and cooling water pumps
+- M106D (antimony-impregnated): high temperature 450–500°C, high load, for hot oil pumps and high-temperature media, the first choice for high-temperature service
+- M106K/M120K (furan resin-impregnated): acid/alkali corrosion resistance, for chemical pumps and reactors, mainstream corrosion-resistant grades
+- M106H (epoxy resin-impregnated): general-purpose, high mechanical strength, for clean water and cooling water pumps
 - Four-step selection: ① confirm media type and corrosivity → ② confirm temperature range → ③ confirm pressure and PV value → ④ confirm speed and face pairing
 - Special service selection: food-grade → PTFE-impregnated; abrasive particulate media → hard carbon grades; nuclear primary pump → special high-purity grades
 
@@ -908,54 +904,50 @@ These combined advantages make "carbon graphite + SiC" the default pairing for o
 
 The carbon graphite grade directly determines seal performance, life and reliability. Sealing rings of identical dimensions using different carbon graphite grades may have 3-5x difference in service life. Incorrect grade selection is among the most common causes of premature seal failure.
 
-Mainstream domestic carbon graphite grades follow the JB/T 8896 standard. The grade letters and numbers represent:
-
-- **M**: carbon graphite material class
-- **Number 1**: material series number (matrix formulation)
-- **K**: impregnation type (K=antimony, F=phenolic resin, H=epoxy resin, N=furan resin, etc.)
+Domestic mechanical carbon graphite grades follow the traditional electric-carbon numbering: **M denotes mechanical carbon graphite, the number the matrix series, and the suffix letter the impregnant — F=phenolic resin, H=epoxy resin, K=furan (furfuryl alcohol) resin, D=antimony metal**. Special impregnations (babbitt, copper, PTFE) use factory-specific codes; check the manufacturer's datasheet.
 
 ## 2. Mainstream Grade Comparison
 
-### 2.1 M106K (Antimony-Impregnated Carbon Graphite)
+### 2.1 M106D (Antimony-Impregnated Carbon Graphite)
 
 - **Matrix**: high-strength carbon graphite matrix, antimony-impregnated
-- **Density**: 2.20-2.30 g/cm³
-- **Shore hardness**: HS 75-90
-- **Compressive strength**: 260-340 MPa
+- **Density**: 2.15-2.25 g/cm³ (2.20 per Huahao testing)
+- **Shore hardness**: HS 85-95 (92 tested)
+- **Compressive strength**: 180-200 MPa (190 tested)
 - **Porosity**: <2%
-- **Service temperature**: 400-500°C (non-oxidizing media)
+- **Service temperature**: 450-500°C (non-oxidizing media)
 - **Features**: high-temperature and high-load resistance; antimony provides excellent thermal conductivity and load capacity
 - **Typical applications**: hot oil pump seals, high-temperature thermal oil media, petrochemical high-temperature pumps, steam media
 
-### 2.2 M254K (Furan Resin-Impregnated Carbon Graphite)
+### 2.2 M120K (Furan Resin-Impregnated Carbon Graphite)
 
 - **Matrix**: medium-strength carbon graphite matrix, furan resin-impregnated
 - **Density**: 1.80-1.90 g/cm³
 - **Shore hardness**: HS 55-75
 - **Compressive strength**: 180-240 MPa
 - **Porosity**: <2%
-- **Service temperature**: 200-250°C
+- **Service temperature**: ≤220°C
 - **Features**: excellent acid/alkali corrosion resistance; furan resin is stable against strong acids and alkalis
 - **Typical applications**: chemical pump seals, acid/alkali media, reactor agitators, electroplating equipment
 
-### 2.3 M179K (Epoxy Resin-Impregnated Carbon Graphite)
+### 2.3 M106H (Epoxy Resin-Impregnated Carbon Graphite)
 
 - **Matrix**: general carbon graphite matrix, epoxy resin-impregnated
 - **Density**: 1.75-1.85 g/cm³
 - **Shore hardness**: HS 50-70
 - **Compressive strength**: 170-220 MPa
 - **Porosity**: <2%
-- **Service temperature**: 180-220°C
+- **Service temperature**: ≤180°C
 - **Features**: balanced mechanical strength, moderate corrosion resistance, cost-effective
 - **Typical applications**: clean water pumps, cooling water pumps, circulation pumps, general industrial pumps
 
 ### 2.4 Other Common Grades
 
-- **M106H** (epoxy-impregnated): general purpose, ambient clean water
-- **M254N** (furan-impregnated): strongly corrosive service, similar to M254K
-- **M120K** (antimony-impregnated): high-strength matrix, heavy-duty bearing applications
+- **M106F** (phenolic-impregnated): general weak acid/alkali service, ≤200°C
+- **M140K** (furan-impregnated): Huahao's in-production furan grade with a higher-strength matrix
+- **M191T** (carbonized): extreme 600°C service without metal impregnation
 - **PTFE-impregnated grades**: food/pharmaceutical sanitary grade, best chemical inertness
-- **Copper-impregnated grades**: electrical applications, excellent electrical/thermal conductivity
+- **Copper/babbitt-impregnated grades**: electrical or high-speed run-in service, codes vary by manufacturer
 
 ## 3. Four-Step Selection Method
 
@@ -963,23 +955,23 @@ Mainstream domestic carbon graphite grades follow the JB/T 8896 standard. The gr
 
 | Media type | Recommended impregnation | Recommended grade |
 |------------|--------------------------|-------------------|
-| Clean water, cooling water | Epoxy resin | M179K |
-| Weak acid/alkali | Phenolic or furan resin | M254K |
-| Strong acid/alkali | Furan resin | M254K (N impregnation) |
-| High-temperature oils | Antimony metal | M106K |
+| Clean water, cooling water | Epoxy resin | M106H |
+| Weak acid/alkali | Phenolic or furan resin | M106F / M106K |
+| Strong acid/alkali | Furan resin | M106K / M120K |
+| High-temperature oils | Antimony metal | M106D |
 | Food/pharmaceutical media | PTFE | Food-grade |
-| Particulate media | Antimony or un-impregnated hard carbon | M106K or hard carbon |
+| Particulate media | Antimony or un-impregnated hard carbon | M106D or hard carbon |
 
 ### Step 2: Confirm Temperature Range
 
-- **<180°C**: resin-impregnated grades available (M179K/M254K), cost-effective
-- **180-400°C**: must use metal-impregnated grades (M106K); resin impregnation carbonizes and fails
-- **>400°C**: special high-temperature grades needed; consult supplier for customization
+- **<180°C**: resin-impregnated grades available (M106F/M106H/M106K), cost-effective
+- **180-400°C**: must use metal-impregnated grades (M106D); resin impregnation carbonizes and fails
+- **>400°C**: M191T carbonized grade or custom high-temperature grade
 
 ### Step 3: Confirm Pressure and PV Value
 
 - **Media pressure <1.5 MPa**: unbalanced seal acceptable, all grades suitable
-- **Media pressure 1.5-5 MPa**: balanced seal needed, select high-strength grades (M106K/M254K)
+- **Media pressure 1.5-5 MPa**: balanced seal needed, select high-strength grades (M106K/M120K)
 - **PV verification**: PV = face pressure × face linear velocity, must not exceed material's allowable PV
   - Carbon graphite vs SiC: allowable PV 7-15 MPa·m/s
   - Carbon graphite vs hard alloy: allowable PV 5-10 MPa·m/s
@@ -1013,21 +1005,21 @@ Mainstream domestic carbon graphite grades follow the JB/T 8896 standard. The gr
 ### 4.4 Vacuum Pump Dry Gas Seal
 
 - Media: gas (no fluid film lubrication)
-- Recommendation: antimony-impregnated high-strength grade (M106K) + dry gas seal structure
+- Recommendation: antimony-impregnated high-strength grade (M106D) + dry gas seal structure
 - Note: dry friction service requires leveraging carbon graphite self-lubrication; metal impregnation enhances load capacity
 
 ## 5. Technical Verification Points for Procurement
 
 When ordering, recommend confirming:
 
-1. Grade compliance with domestic/international standards (JB/T 8896, API 682)
+1. The suffix-to-impregnant mapping (F/H/K/D), per the manufacturer datasheet
 2. Impregnation type and post-impregnation porosity (should be <2%)
 3. Mechanical property report: hardness, compressive strength, flexural strength
 4. Whether material property test reports and certificates are provided
 5. Batch stability: performance variation between batches from the same supplier should be <10%
 6. Whether custom machining from drawings and samples is supported
 
-Huahao Sealing Co., Ltd. supplies mainstream grades M106K, M254K, M179K and special impregnation customization, with custom machining of carbon graphite seal rings, bushings and segmented rings from drawings or samples, and complete material property test reports.`,
+Huahao Sealing Co., Ltd. supplies mainstream grades M106K, M120K, M106H and special impregnation customization, with custom machining of carbon graphite seal rings, bushings and segmented rings from drawings or samples, and complete material property test reports.`,
     },
   },
 ]

@@ -1,7 +1,6 @@
 import { getLocale } from "next-intl/server"
 import { getLocalized } from "@/lib/locale-data"
 import { factoryHighlightsByLocale } from "@/lib/translations"
-import CountUp from "@/components/ui/CountUp"
 
 const captionByLocale = {
   zh: "数说华豪",
@@ -36,9 +35,7 @@ export default async function StatsBand() {
                 i > 0 ? "border-l border-dashed border-border" : ""
               }`}
             >
-              <dd className="stat-num text-5xl text-primary sm:text-6xl lg:text-7xl">
-                <CountUp value={h.value} />
-              </dd>
+              <dd className="stat-num text-5xl text-primary sm:text-6xl lg:text-7xl">{h.value}</dd>
               <dt className="mt-3 text-xs font-medium tracking-wide text-muted sm:text-sm">
                 {h.label}
               </dt>

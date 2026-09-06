@@ -78,6 +78,20 @@ CREATE TABLE IF NOT EXISTS page_views (
   is_bot      INTEGER NOT NULL DEFAULT 0,
   visited_at  TEXT    NOT NULL DEFAULT (datetime('now'))
 );
+
+CREATE TABLE IF NOT EXISTS conversion_events (
+  id          INTEGER PRIMARY KEY AUTOINCREMENT,
+  event_type  TEXT    NOT NULL,
+  event_label TEXT    DEFAULT NULL,
+  path        TEXT    NOT NULL,
+  locale      TEXT    NOT NULL DEFAULT 'zh',
+  country     TEXT    DEFAULT NULL,
+  referrer    TEXT    DEFAULT NULL,
+  ip_hash     TEXT    DEFAULT NULL,
+  session_id  TEXT    DEFAULT NULL,
+  is_bot      INTEGER NOT NULL DEFAULT 0,
+  created_at  TEXT    NOT NULL DEFAULT (datetime('now'))
+);
 `
 
 // 索引单独定义，迁移完成后才执行（旧库表里还没有 ip_hash/country 列时直接建索引会报错）
@@ -85,6 +99,8 @@ const CREATE_INDEXES_SQL = `
 CREATE INDEX IF NOT EXISTS idx_page_views_visited_at ON page_views(visited_at);
 CREATE INDEX IF NOT EXISTS idx_page_views_ip_hash ON page_views(ip_hash);
 CREATE INDEX IF NOT EXISTS idx_page_views_country ON page_views(country);
+CREATE INDEX IF NOT EXISTS idx_conversion_events_type ON conversion_events(event_type);
+CREATE INDEX IF NOT EXISTS idx_conversion_events_created_at ON conversion_events(created_at);
 `
 
 // Turso/libSQL doesn't support function calls (e.g. datetime()) in DEFAULT
@@ -162,6 +178,20 @@ CREATE TABLE IF NOT EXISTS page_views (
   session_id  TEXT    DEFAULT NULL,
   is_bot      INTEGER NOT NULL DEFAULT 0,
   visited_at  TEXT
+);
+
+CREATE TABLE IF NOT EXISTS conversion_events (
+  id          INTEGER PRIMARY KEY AUTOINCREMENT,
+  event_type  TEXT    NOT NULL,
+  event_label TEXT    DEFAULT NULL,
+  path        TEXT    NOT NULL,
+  locale      TEXT    NOT NULL DEFAULT 'zh',
+  country     TEXT    DEFAULT NULL,
+  referrer    TEXT    DEFAULT NULL,
+  ip_hash     TEXT    DEFAULT NULL,
+  session_id  TEXT    DEFAULT NULL,
+  is_bot      INTEGER NOT NULL DEFAULT 0,
+  created_at  TEXT
 );
 `
 

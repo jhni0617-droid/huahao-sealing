@@ -55,8 +55,8 @@ export default async function ResourcesPage({ params }: { params: Promise<{ loca
         secondaryHref="/products"
         stats={[
           { value: "2", label: hero.stats[0] },
-          { value: "8+", label: hero.stats[1] },
-          { value: "40+", label: hero.stats[2] },
+          { value: "8", label: hero.stats[1] },
+          { value: "40", label: hero.stats[2] },
         ]}
       />
       <Breadcrumb items={[{ name: t("pageTitle"), url: "/resources" }]} locale={locale} />

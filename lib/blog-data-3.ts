@@ -29,7 +29,7 @@ export const blogPostsBatch3: BlogPost[] = [
 - 碳石墨磨损率比PTFE低1-2个数量级，使用寿命为PTFE的2-5倍，全生命周期综合成本更具竞争力
 - 强腐蚀性介质（浓硫酸、氢氟酸、王水）首选PTFE密封，高温高压高速综合工况首选碳石墨密封环，工程中常采用碳石墨+PTFE组合式密封结构
 
-在流体密封领域，碳石墨密封环与聚四氟乙烯（PTFE）密封是两类最常被工程师放在一起比较的非金属密封方案。作为霍邱县华豪密封件有限公司的技术工程师，我们在十余年的碳石墨密封环制造实践中，积累了大量关于这两种材料在不同工况下的对比数据。本文将从材料特性、耐温性能、摩擦学行为、化学稳定性、PV值承载能力以及成本效益六个维度，系统性地对碳石墨与PTFE密封进行对比分析，帮助选型工程师做出更科学的技术决策。
+高温工况选碳石墨，化学惰性优先选 PTFE——大多数选型纠结最后都落在这条线上，但边界数据很少被摆到一起：碳石墨耐温 -200~600℃，PTFE 上限只有 260℃；浸锑碳石墨许用 PV 值 10 MPa·m/s 以上，填充 PTFE 只有 0.5-1.0。本文把两种材料在材料特性、耐温、摩擦行为、化学稳定性、PV 承载、成本六个方面放进同一张表，并附各自的典型失效场景。
 
 ## 一、材料本征特性对比
 
@@ -76,7 +76,7 @@ PTFE材料成本相对较低，加工工艺成熟，可注塑、车削、模压�
 - Carbon graphite wear rate is 1-2 orders of magnitude lower than PTFE, with service life 2-5 times longer, offering competitive total lifecycle cost
 - PTFE is preferred for strongly corrosive media (concentrated sulfuric acid, hydrofluoric acid, aqua regia); carbon graphite seal rings excel in combined high-temperature, high-pressure, high-speed conditions; combined carbon graphite + PTFE structures are often used in engineering
 
-In the field of fluid sealing, carbon graphite seal rings and polytetrafluoroethylene (PTFE) seals are the two non-metallic sealing solutions most often compared by engineers. As technical engineers at Huahao Sealing Co., Ltd. (霍邱县华豪密封件有限公司), we have accumulated extensive comparative data on these two materials across diverse operating conditions over more than a decade of carbon graphite seal ring manufacturing. This article systematically compares carbon graphite and PTFE seals across six dimensions — material properties, temperature resistance, tribological behavior, chemical stability, PV value capacity, and cost-effectiveness — to help selection engineers make more scientific technical decisions.
+High temperature points to carbon graphite; chemical inertness points to PTFE — most selection debates end on this line, but the boundary data rarely gets laid out side by side: carbon graphite serves -200 to 600°C while PTFE tops out at 260°C; antimony-impregnated graphite allows PV values above 10 MPa·m/s versus 0.5–1.0 for filled PTFE. This article puts both materials in one table across six aspects — material properties, temperature, tribological behavior, chemical stability, PV capacity and cost — with typical failure scenarios for each.
 
 ## 1. Comparison of Intrinsic Material Properties
 
@@ -398,11 +398,11 @@ The application of carbon graphite seals in vacuum equipment exemplifies the cri
       zh: `## 核心要点
 
 - PV值（压力×速度）正比于单位面积摩擦发热功率，是碳石墨密封环承载能力评估与寿命预测的核心工程参数
-- 浸锑碳石墨M254K许用PV值5.0-8.0 MPa·m/s，纯碳石墨M106仅1.0-2.0 MPa·m/s，浸金属牌号承载能力显著更高
+- 浸锑碳石墨M106D许用PV值5.0-8.0 MPa·m/s，纯碳石墨M106仅1.0-2.0 MPa·m/s，浸金属牌号承载能力显著更高
 - 实际选型需引入温度修正f_T、介质修正f_M、几何修正f_G，并保持安全系数SF=1.5-3.0
-- 工程实例：2950 rpm、1.5 MPa碱液工况下M254K安全裕量仅1.04（低于SF=2.0），建议改用浸巴氏合金碳石墨或采用平衡型密封（K=0.75）将PV值降至4.86 MPa·m/s
+- 工程实例：2950 rpm、1.5 MPa碱液工况下M106D安全裕量仅1.04（低于SF=2.0），建议改用浸巴氏合金碳石墨或采用平衡型密封（K=0.75）将PV值降至4.86 MPa·m/s
 
-PV值（Pressure-Velocity，压力-速度乘积）是评价机械密封件和滑动轴承承载能力的最重要工程参数。准确的PV值计算不仅决定了碳石墨密封环能否安全运行，更是预测密封寿命、优化密封结构设计的基础。本文将系统介绍霍邱县华豪密封件有限公司工程团队采用的PV值计算方法，包括基础公式、工况修正系数、安全裕量选取以及寿命预测模型，并通过工程实例演示完整的计算流程。
+PV 值算不准，密封选型就是碰运气：浸锑碳石墨 M106D 许用 PV 值 5.0-8.0 MPa·m/s，纯碳石墨 M106 只有 1.0-2.0，超出许用值运行，端面很快热裂。实际工况还要叠加温度、介质、几何修正和安全裕量。本文从基础公式开始，给出各修正系数的取值依据、安全裕量选取和寿命预测模型，最后一个完整算例走完全流程。
 
 ## 一、PV值的基本概念与物理意义
 
@@ -413,7 +413,7 @@ PV值定义为密封端面比压P（MPa）与端面平均滑动速度V（m/s）�
 每种碳石墨材料都有其极限PV值（PV_limit）和许用PV值（PV_allowable）。极限PV值是指在该PV值下材料发生失效的临界值，许用PV值则为极限值除以安全系数。霍邱华豪的常见碳石墨牌号的许用PV值参考数据如下：
 - 纯碳石墨（M106）：1.0-2.0 MPa·m/s
 - 浸酚醛树脂碳石墨（M120H）：2.0-3.5 MPa·m/s
-- 浸锑碳石墨（M254K）：5.0-8.0 MPa·m/s
+- 浸锑碳石墨（M106D）：5.0-8.0 MPa·m/s
 - 浸巴氏合金碳石墨（M254B）：4.0-6.0 MPa·m/s
 - 浸呋喃树脂碳石墨（M163K）：3.0-5.0 MPa·m/s
 
@@ -509,7 +509,7 @@ PV_actual ≤ PV_allowable_corrected / SF
 6）实际PV值 = 0.636 × 10.81 = 6.88 MPa·m/s
 
 ### 5.3 选型校核
-选用M254K浸锑碳石墨，许用PV值=6.5 MPa·m/s
+选用M106D浸锑碳石墨，许用PV值=6.5 MPa·m/s
 温度修正（80°C）：f_T = 1.0
 介质修正（碱液类水介质）：f_M = 1.0
 几何修正（b/d_m = 5/70 = 0.071，窄端面）：f_G = 1.1
@@ -517,7 +517,7 @@ PV_actual ≤ PV_allowable_corrected / SF
 安全裕量 = 7.15 / 6.88 = 1.04，低于SF=2.0
 
 ### 5.4 优化建议
-该工况下M254K的安全裕量不足。建议方案：
+该工况下M106D的安全裕量不足。建议方案：
 - 方案一：改用浸巴氏合金碳石墨（PV_limit更高，可达8.0 MPa·m/s）
 - 方案二：采用平衡型密封结构（K=0.75），降低比压至0.45 MPa，PV值降至4.86 MPa·m/s
 - 方案三：增加冷却冲洗，降低密封腔温度至50°C以下
@@ -528,11 +528,11 @@ PV值计算是碳石墨密封件工程设计的核心工具，但工程实际远
       en: `## Key Takeaways
 
 - PV value (pressure × velocity) is directly proportional to frictional heat per unit area, the core parameter for carbon graphite seal ring load capacity evaluation and life prediction
-- Antimony-impregnated carbon graphite M254K has allowable PV of 5.0-8.0 MPa·m/s versus only 1.0-2.0 MPa·m/s for pure M106; metal-impregnated grades offer significantly higher load capacity
+- Antimony-impregnated carbon graphite M106D has allowable PV of 5.0-8.0 MPa·m/s versus only 1.0-2.0 MPa·m/s for pure M106; metal-impregnated grades offer significantly higher load capacity
 - Actual selection requires temperature correction factor f_T, medium correction factor f_M, and geometric correction factor f_G, with safety factor SF = 1.5-3.0
-- Worked example: at 2950 rpm and 1.5 MPa alkali conditions, M254K safety margin is only 1.04 (below SF=2.0); switching to Babbitt-impregnated carbon graphite or balanced seal (K=0.75) reduces PV to 4.86 MPa·m/s
+- Worked example: at 2950 rpm and 1.5 MPa alkali conditions, M106D safety margin is only 1.04 (below SF=2.0); switching to Babbitt-impregnated carbon graphite or balanced seal (K=0.75) reduces PV to 4.86 MPa·m/s
 
-The PV value (Pressure-Velocity product) is the most important engineering parameter for evaluating the load-bearing capacity of mechanical seals and sliding bearings. Accurate PV value calculation not only determines whether a carbon graphite seal ring can operate safely but also forms the basis for predicting seal life and optimizing seal structure design. This article systematically presents the PV value calculation methodology used by the engineering team at Huahao Sealing Co., Ltd., including basic formulas, operating condition correction factors, safety margin selection, and life prediction models, with worked engineering examples demonstrating the complete calculation process.
+If the PV value is calculated loosely, seal selection becomes guesswork: antimony-impregnated M106D allows 5.0–8.0 MPa·m/s while plain carbon graphite M106 allows only 1.0–2.0 — run past the allowable PV and the faces thermally crack in short order. Real service conditions also demand temperature, media and geometry correction factors plus a safety margin. Starting from the basic formula, this article walks through the basis for each correction factor, safety margin selection and a life prediction model, then closes with a complete worked example.
 
 ## 1. Basic Concepts and Physical Significance of PV Value
 
@@ -543,7 +543,7 @@ The PV value is defined as the product of seal face pressure P (MPa) and mean fa
 Each carbon graphite material has its limiting PV value (PV_limit) and allowable PV value (PV_allowable). The limiting PV value is the critical value at which material failure occurs; the allowable PV value is the limit divided by a safety factor. Reference allowable PV values for common carbon graphite grades from Huahao Sealing:
 - Pure carbon graphite (M106): 1.0-2.0 MPa·m/s
 - Phenolic resin-impregnated carbon graphite (M120H): 2.0-3.5 MPa·m/s
-- Antimony-impregnated carbon graphite (M254K): 5.0-8.0 MPa·m/s
+- Antimony-impregnated carbon graphite (M106D): 5.0-8.0 MPa·m/s
 - Babbitt-impregnated carbon graphite (M254B): 4.0-6.0 MPa·m/s
 - Furan resin-impregnated carbon graphite (M163K): 3.0-5.0 MPa·m/s
 
@@ -639,7 +639,7 @@ Mechanical seal operating conditions for a chemical centrifugal pump:
 6) Actual PV value = 0.636 × 10.81 = 6.88 MPa·m/s
 
 ### 5.3 Selection Verification
-Select M254K antimony-impregnated carbon graphite, allowable PV value = 6.5 MPa·m/s
+Select M106D antimony-impregnated carbon graphite, allowable PV value = 6.5 MPa·m/s
 Temperature correction (80°C): f_T = 1.0
 Medium correction (alkali solution, water-based): f_M = 1.0
 Geometric correction (b/d_m = 5/70 = 0.071, narrow face): f_G = 1.1
@@ -647,7 +647,7 @@ Corrected allowable PV value = 6.5 × 1.0 × 1.0 × 1.1 = 7.15 MPa·m/s
 Safety margin = 7.15 / 6.88 = 1.04, below SF=2.0
 
 ### 5.4 Optimization Recommendations
-Under these conditions, the safety margin for M254K is insufficient. Recommended solutions:
+Under these conditions, the safety margin for M106D is insufficient. Recommended solutions:
 - Option 1: Use Babbitt-impregnated carbon graphite (higher PV_limit up to 8.0 MPa·m/s)
 - Option 2: Adopt balanced seal structure (K=0.75), reducing pressure to 0.45 MPa, PV value to 4.86 MPa·m/s
 - Option 3: Add cooling flush, reducing seal chamber temperature below 50°C
@@ -698,7 +698,7 @@ PV value calculation is the core tool for engineering design of carbon graphite 
 NMP是一种强极性溶剂，对常规橡胶密封件有强烈的溶胀作用，导致密封失效。碳石墨材料由于其无机晶体结构，对NMP完全惰性，是NMP环境下的理想密封材料。我们的M163K浸呋喃树脂碳石墨轴套在多家客户搅拌设备上运行超过10,000小时，磨损量小于0.05 mm，性能优于进口产品。
 
 ### 2.2 匀浆与输送工序
-匀浆后的浆料通过齿轮泵或隔膜泵输送至涂布机。输送泵的轴密封采用碳石墨密封环，需承受浆料的磨蚀和NMP的腐蚀。建议采用浸锑碳石墨M254K，其较高的硬度和耐磨性可显著延长密封寿命。
+匀浆后的浆料通过齿轮泵或隔膜泵输送至涂布机。输送泵的轴密封采用碳石墨密封环，需承受浆料的磨蚀和NMP的腐蚀。建议采用浸锑碳石墨M106D，其较高的硬度和耐磨性可显著延长密封寿命。
 
 ### 2.3 涂布工序
 涂布是锂电池制造的核心工序，涂布机的模头、背辊、张力控制等关键部件都需要高精度密封。特别是狭缝模头内部的密封垫片，需要在高粘度浆料（10,000-50,000 mPa·s）下保持精确的密封压力分布。我们开发的高纯碳石墨涂布机模头密封件，平面度控制在0.003 mm以内，表面粗糙度Ra<0.2 μm，确保涂布均匀性。
@@ -760,7 +760,7 @@ Mixing of lithium battery positive and negative electrode slurries is the starti
 NMP is a strongly polar solvent that causes severe swelling of conventional rubber seals, leading to seal failure. Carbon graphite materials, due to their inorganic crystal structure, are completely inert to NMP, making them ideal sealing materials for NMP environments. Our M163K furan resin-impregnated carbon graphite bushings have operated for over 10,000 hours on customer mixing equipment, with wear less than 0.05 mm, outperforming imported products.
 
 ### 2.2 Slurry Preparation and Transfer Process
-Slurry is transferred to the coater through gear pumps or diaphragm pumps. Shaft seals for transfer pumps use carbon graphite seal rings that must withstand slurry abrasion and NMP corrosion. We recommend antimony-impregnated carbon graphite M254K, whose higher hardness and wear resistance can significantly extend seal life.
+Slurry is transferred to the coater through gear pumps or diaphragm pumps. Shaft seals for transfer pumps use carbon graphite seal rings that must withstand slurry abrasion and NMP corrosion. We recommend antimony-impregnated carbon graphite M106D, whose higher hardness and wear resistance can significantly extend seal life.
 
 ### 2.3 Coating Process
 Coating is the core process in lithium battery manufacturing. Key components of the coater including the die, backup roll, and tension control require high-precision seals. In particular, the sealing gaskets inside the slot die must maintain precise sealing pressure distribution under high-viscosity slurry (10,000-50,000 mPa·s). Our high-purity carbon graphite coater die seals have flatness controlled within 0.003 mm and surface roughness Ra<0.2 μm, ensuring coating uniformity.
@@ -1289,7 +1289,7 @@ Comprehensive packaging and transport standards are critical links in ensuring t
 
 - 碳石墨CTE仅为4-8×10⁻⁶/°C，显著低于不锈钢（16-17×10⁻⁶/°C），升温时金属件膨胀大于石墨件
 - φ100 mm碳石墨密封环0.10 mm过盈量在200°C时变为-0.08 mm间隙，配合松动会导致密封环转动或脱落
-- 浸锑碳石墨M254K的CTE为6-8×10⁻⁶/°C，浸铜石墨达8-12×10⁻⁶/°C，浸金属牌号CTE略高
+- 浸锑碳石墨M106D的CTE为6-8×10⁻⁶/°C，浸铜石墨达8-12×10⁻⁶/°C，浸金属牌号CTE略高
 - 碳石墨抗热冲击R值500-1500 W/m，明显优于陶瓷材料（100-500 W/m），但仍应避免超过200°C/s的剧烈温度变化
 - 高温工况建议采用钨钢（CTE 5-6×10⁻⁶/°C）与碳石墨匹配，并采用波形弹簧进行温度补偿
 
@@ -1316,7 +1316,7 @@ Comprehensive packaging and transport standards are critical links in ensuring t
 
 ### 2.3 浸金属碳石墨
 浸渍金属的碳石墨CTE取决于浸渍金属的种类和含量：
-- M254K浸锑（含锑15-20%）：6-8×10⁻⁶/°C
+- M106D浸锑（含锑15-20%）：6-8×10⁻⁶/°C
 - M254B浸巴氏合金：7-9×10⁻⁶/°C
 - 浸铜石墨：8-12×10⁻⁶/°C
 
@@ -1396,7 +1396,7 @@ R = σ_t × (1-ν) / (E × α)
 
 - Carbon graphite CTE is only 4-8×10⁻⁶/°C, significantly lower than stainless steel (16-17×10⁻⁶/°C); metal parts expand more than graphite parts during heating
 - A φ100 mm carbon graphite seal ring with 0.10 mm interference becomes a -0.08 mm gap at 200°C; fit loosening can cause ring rotation or detachment
-- Antimony-impregnated M254K CTE is 6-8×10⁻⁶/°C; copper-impregnated graphite reaches 8-12×10⁻⁶/°C; metal-impregnated grades have slightly higher CTE
+- Antimony-impregnated M106D CTE is 6-8×10⁻⁶/°C; copper-impregnated graphite reaches 8-12×10⁻⁶/°C; metal-impregnated grades have slightly higher CTE
 - Carbon graphite thermal shock resistance R value is 500-1500 W/m, significantly better than ceramics (100-500 W/m), but severe temperature changes exceeding 200°C/s should still be avoided
 - High-temperature applications should match carbon graphite with tungsten carbide (CTE 5-6×10⁻⁶/°C) and use wave springs for temperature compensation
 
@@ -1423,7 +1423,7 @@ After impregnation with phenolic, furan, or epoxy resins, the composite CTE slig
 
 ### 2.3 Metal-Impregnated Carbon Graphite
 The CTE of metal-impregnated carbon graphite depends on the impregnation metal type and content:
-- M254K antimony-impregnated (15-20% Sb): 6-8×10⁻⁶/°C
+- M106D antimony-impregnated (15-20% Sb): 6-8×10⁻⁶/°C
 - M254B Babbitt-impregnated: 7-9×10⁻⁶/°C
 - Copper-impregnated graphite: 8-12×10⁻⁶/°C
 
@@ -1519,8 +1519,8 @@ The thermal expansion coefficient is a parameter that must be taken seriously in
       zh: `## 核心要点
 
 - 100+真实案例归纳出碳石墨密封件五大典型失效模式：热裂、磨粒磨损、化学腐蚀、疲劳剥落、装配应力开裂
-- 热裂改进：M120H改用M254K浸锑碳石墨，导热系数从15 W/m·K提升至80 W/m·K，寿命提升6倍
-- 磨粒磨损介质含固量超3倍设计值导致纯碳石墨轴套2周磨损3 mm，改用M254K+旋流分离器后寿命延至6个月
+- 热裂改进：M120H改用M106D浸锑碳石墨，导热系数从15 W/m·K提升至80 W/m·K，寿命提升6倍
+- 磨粒磨损介质含固量超3倍设计值导致纯碳石墨轴套2周磨损3 mm，改用M106D+旋流分离器后寿命延至6个月
 - 30%盐酸+丙酮工况酚醛树脂会被降解，应改用浸呋喃树脂碳石墨M163K或碳化纯碳石墨
 - 装配应力开裂多源于过盈量超标（0.15 mm vs设计0.05-0.08 mm），应采用热装法+H7级壳体孔精度
 
@@ -1538,7 +1538,7 @@ The thermal expansion coefficient is a parameter that must be taken seriously in
 4）根因分析：酚醛树脂浸渍碳石墨的导热系数较低（约15 W/m·K），摩擦热难以快速散失，端面与本体之间形成大的温度梯度。频繁启停造成交变热应力，最终导致热疲劳开裂
 
 ### 1.3 改进对策
-1）改用浸锑碳石墨M254K，导热系数提升至80 W/m·K
+1）改用浸锑碳石墨M106D，导热系数提升至80 W/m·K
 2）增加密封冲洗冷却系统，控制密封腔温度<150°C
 3）优化启停程序，控制温升速率<10°C/min
 4）加装端面温度监测，超过设定阈值自动报警
@@ -1557,7 +1557,7 @@ The thermal expansion coefficient is a parameter that must be taken seriously in
 4）根因分析：材料选型不当（纯碳石墨硬度不足），介质条件与设计不符，缺乏过滤系统
 
 ### 2.3 改进对策
-1）改用浸锑碳石墨M254K，硬度由HS 50提升至HS 80
+1）改用浸锑碳石墨M106D，硬度由HS 50提升至HS 80
 2）在泵入口增设旋流分离器，将介质含固量降至5%以下
 3）优化轴套结构，增加螺旋槽设计，利用介质流动形成动压润滑
 4）建立定期监测机制，每周测量轴套磨损量
@@ -1595,7 +1595,7 @@ The thermal expansion coefficient is a parameter that must be taken seriously in
 
 ### 4.3 改进对策
 1）解决泵的轴向力平衡问题，更换平衡盘，降低轴向振动至0.02 mm以下
-2）改用浸锑碳石墨M254K，孔隙率更低，疲劳强度提升
+2）改用浸锑碳石墨M106D，孔隙率更低，疲劳强度提升
 3）优化弹簧设计，采用多弹簧结构，均化端面压力
 4）加装振动监测系统，实时监控设备状态
 
@@ -1643,8 +1643,8 @@ The thermal expansion coefficient is a parameter that must be taken seriously in
       en: `## Key Takeaways
 
 - 100+ real cases identify five typical carbon graphite seal failure modes: thermal cracking, abrasive wear, chemical corrosion, fatigue spalling, and assembly stress cracking
-- Thermal cracking fix: switching M120H to M254K antimony-impregnated carbon graphite raises thermal conductivity from 15 to 80 W/m·K, extending life 6-fold
-- Abrasive wear: medium solids 3× design value caused 3 mm wear in pure carbon graphite bushings in 2 weeks; M254K + hydrocyclone separator extended life to 6 months
+- Thermal cracking fix: switching M120H to M106D antimony-impregnated carbon graphite raises thermal conductivity from 15 to 80 W/m·K, extending life 6-fold
+- Abrasive wear: medium solids 3× design value caused 3 mm wear in pure carbon graphite bushings in 2 weeks; M106D + hydrocyclone separator extended life to 6 months
 - Phenolic resin degrades in 30% hydrochloric acid + acetone service; switch to furan resin-impregnated carbon graphite M163K or carbonized pure carbon graphite
 - Assembly stress cracking usually stems from excessive interference (0.15 mm vs. design 0.05-0.08 mm); thermal assembly with H7-grade housing bore accuracy is recommended
 
@@ -1662,7 +1662,7 @@ A chemical plant centrifugal pump transporting thermal heat transfer oil at 220�
 4) Root cause analysis: Phenolic resin-impregnated carbon graphite has low thermal conductivity (about 15 W/m·K), frictional heat cannot dissipate quickly, creating large temperature gradients between face and body. Frequent starts/stops cause alternating thermal stress, ultimately leading to thermal fatigue cracking
 
 ### 1.3 Improvement Countermeasures
-1) Switch to antimony-impregnated carbon graphite M254K, with thermal conductivity increased to 80 W/m·K
+1) Switch to antimony-impregnated carbon graphite M106D, with thermal conductivity increased to 80 W/m·K
 2) Add seal flush cooling system, controlling seal chamber temperature <150°C
 3) Optimize start/stop procedures, control heating rate <10°C/min
 4) Install face temperature monitoring with automatic alarm above set thresholds
@@ -1681,7 +1681,7 @@ A mining slurry pump used carbon graphite bushings, with medium containing about
 4) Root cause analysis: Improper material selection (pure carbon graphite insufficient hardness), medium conditions inconsistent with design, lack of filtration system
 
 ### 2.3 Improvement Countermeasures
-1) Switch to antimony-impregnated carbon graphite M254K, with hardness increased from HS 50 to HS 80
+1) Switch to antimony-impregnated carbon graphite M106D, with hardness increased from HS 50 to HS 80
 2) Install hydrocyclone separator at pump inlet, reducing medium solids content below 5%
 3) Optimize bushing structure with spiral groove design, using medium flow to create hydrodynamic lubrication
 4) Establish regular monitoring, measuring bushing wear weekly
@@ -1719,7 +1719,7 @@ A power plant feedwater pump mechanical seal used epoxy resin-impregnated carbon
 
 ### 4.3 Improvement Countermeasures
 1) Resolve pump axial force balance problem, replace balance disk, reduce axial vibration below 0.02 mm
-2) Switch to antimony-impregnated carbon graphite M254K with lower porosity and improved fatigue strength
+2) Switch to antimony-impregnated carbon graphite M106D with lower porosity and improved fatigue strength
 3) Optimize spring design, adopt multi-spring structure to equalize face pressure
 4) Install vibration monitoring system for real-time equipment status monitoring
 

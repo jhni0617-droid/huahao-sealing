@@ -29,17 +29,16 @@ export default function PageHero({
 }: PageHeroProps) {
   return (
     <section className="page-hero">
-      <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)", backgroundSize: "44px 44px" }} />
       <div className="container-wide relative py-16 md:py-20 lg:py-24">
         <div className="grid gap-10 lg:grid-cols-[1fr_360px] lg:items-end">
           <div className="max-w-3xl">
             {eyebrow && (
-              <div className="mb-5 inline-flex items-center gap-2 border border-white/12 bg-white/[0.06] px-3 py-1.5 text-xs font-bold uppercase tracking-[0.08em] text-white/72">
-                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                {eyebrow}
+              <div className="mb-5 inline-flex items-center gap-3">
+                <span className="h-8 w-[3px] bg-accent" aria-hidden />
+                <span className="en-caption text-xs sm:text-sm text-white/85">{eyebrow}</span>
               </div>
             )}
-            <h1 className="text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">{title}</h1>
+            <h1 className="font-serif-sc text-4xl font-bold leading-tight md:text-5xl lg:text-[3.4rem]">{title}</h1>
             <div className="industrial-divider" />
             <p className="max-w-2xl text-base leading-relaxed text-slate-300 md:text-lg">{subtitle}</p>
             {(primaryLabel || secondaryLabel) && (

@@ -61,11 +61,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   })
 }
 
-export default async function ProductsPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function ProductsPage({ params, searchParams }: { params: Promise<{ locale: string }>; searchParams?: Promise<{ category?: string }> }) {
   const { locale } = await params
   setRequestLocale(locale)
   const t = await getTranslations("products")
   const copy = getLocalized(heroCopy, locale)
+  const { category } = (await searchParams) ?? {}
 
   return (
     <>
@@ -84,7 +85,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
       />
       <Breadcrumb items={[{ name: t("pageTitle"), url: "/products" }]} locale={locale} />
 
-      <ProductsPageContent />
+      <ProductsPageContent initialCategory={category} />
     </>
   )
 }

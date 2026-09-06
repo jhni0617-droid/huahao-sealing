@@ -215,7 +215,7 @@ export default async function ApplicationsPage({ params }: { params: Promise<{ l
         secondaryLabel={hero.secondary}
         secondaryHref="/products"
         stats={[
-          { value: "8+", label: hero.stats[0] },
+          { value: "8", label: hero.stats[0] },
           { value: "600°C", label: hero.stats[1] },
           { value: "pH 0-14", label: hero.stats[2] },
         ]}
@@ -227,7 +227,7 @@ export default async function ApplicationsPage({ params }: { params: Promise<{ l
           {applications.map((app, idx) => {
             const detail = details[app.slug]
             return (
-              <div key={app.slug} id={app.slug} className={`mb-16 last:mb-0 ${idx > 0 ? "pt-8" : ""}`}>
+              <div key={app.slug} id={app.slug} className={`mb-16 scroll-mt-24 last:mb-0 ${idx > 0 ? "pt-8" : ""}`}>
                 <div className="grid lg:grid-cols-[1fr_420px] gap-8 items-stretch">
                   <div>
                     <div className="mb-3 text-xs font-bold uppercase tracking-[0.08em] text-accent">

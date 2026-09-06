@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import Image from "next/image"
 import { useLocale, useTranslations } from "next-intl"
 import { Link } from "@/i18n/routing"
@@ -17,6 +17,7 @@ import {
 } from "@/lib/translations-products"
 import { getLocalized, getLocalizedProductCategory } from "@/lib/locale-data"
 import CTASection from "@/components/CTASection"
+import VideoGallery from "@/components/VideoGallery"
 import Icon from "@/components/ui/Icon"
 import type { Product } from "@/lib/products"
 
@@ -294,7 +295,7 @@ function ProductCard({ product, locale }: { product: Product; locale: string }) 
   )
 }
 
-export default function ProductsPageContent() {
+export default function ProductsPageContent({ initialCategory }: { initialCategory?: string }) {
   const locale = useLocale()
   const t = useTranslations("products")
   const copy = getCopy(locale)
@@ -312,8 +313,17 @@ export default function ProductsPageContent() {
   const getItems = getItemsMap[locale] || getItemsMap.en
   const allProducts = productsByLocale[locale] || productsByLocale.en
 
-  const [activeCategory, setActiveCategory] = useState("all")
+  const knownSlugs = useMemo(() => new Set(catList.map((cat) => cat.slug)), [catList])
+  const validInitial = initialCategory && knownSlugs.has(initialCategory) ? initialCategory : "all"
+  const [activeCategory, setActiveCategory] = useState(validInitial)
   const [query, setQuery] = useState("")
+
+  // 兼容 /products#seal-rings 形式的锚点链接：命中分类时直接激活对应筛选
+  useEffect(() => {
+    if (validInitial !== "all") return
+    const hash = window.location.hash.slice(1)
+    if (hash && knownSlugs.has(hash)) setActiveCategory(hash)
+  }, [validInitial, knownSlugs])
 
   const categorySummaries = useMemo(
     () =>
@@ -373,8 +383,9 @@ export default function ProductsPageContent() {
                 {categorySummaries.map((cat) => (
                   <button
                     key={cat.slug}
+                    id={cat.slug}
                     onClick={() => setActiveCategory(cat.slug)}
-                    className={`w-full border px-3.5 py-3 text-left transition-colors ${
+                    className={`w-full scroll-mt-28 border px-3.5 py-3 text-left transition-colors ${
                       activeCategory === cat.slug
                         ? "border-primary bg-primary text-white"
                         : "border-border bg-white text-primary hover:border-accent hover:text-accent"
@@ -464,6 +475,8 @@ export default function ProductsPageContent() {
           )}
         </div>
       </section>
+
+      <VideoGallery />
 
       <CTASection title={t("ctaTitle")} subtitle={t("ctaSubtitle")} />
     </>

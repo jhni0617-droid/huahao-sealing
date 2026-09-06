@@ -4,6 +4,7 @@ import { useState } from "react"
 import { useTranslations } from "next-intl"
 import { siteConfig } from "@/lib/constants"
 import { getMetaBrowserCookies, trackPixelEvent } from "@/lib/meta/client"
+import { trackEvent } from "@/lib/track"
 import Icon from "@/components/ui/Icon"
 
 interface Props {
@@ -112,6 +113,8 @@ export default function ContactForm({ defaultProduct }: Props) {
           },
           metaEventId,
         )
+        // 自建统计：询盘提交转化事件（与 Pixel 独立，供后台漏斗分析）
+        trackEvent("inquiry_submit", defaultProduct)
       } else {
         const data = await res.json()
         setErrorMsg(data?.error || t("errorSend"))
@@ -145,6 +148,7 @@ export default function ContactForm({ defaultProduct }: Props) {
           href={`https://wa.me/${siteConfig.whatsapp}`}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackEvent("whatsapp_click", "form_success")}
           className="btn-secondary"
         >
           {t("successWhatsApp")}
@@ -310,6 +314,7 @@ export default function ContactForm({ defaultProduct }: Props) {
           href={`https://wa.me/${siteConfig.whatsapp}`}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackEvent("whatsapp_click", "form_bottom")}
           className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-primary transition-colors"
         >
           <Icon name="whatsapp" className="w-4 h-4" />

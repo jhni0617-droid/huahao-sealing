@@ -3,6 +3,7 @@
 import { useLocale } from "next-intl"
 import { Link } from "@/i18n/routing"
 import { siteConfig } from "@/lib/constants"
+import { trackEvent } from "@/lib/track"
 import Icon from "@/components/ui/Icon"
 import { getLocalized } from "@/lib/locale-data"
 
@@ -32,6 +33,7 @@ export default function QuickCTA() {
             href={`https://wa.me/${siteConfig.whatsapp}`}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackEvent("whatsapp_click", "quick_cta")}
             className="flex items-center gap-1.5 bg-green-600 text-white px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold rounded-md hover:bg-green-700 transition-colors whitespace-nowrap"
           >
             <Icon name="whatsapp" className="w-4 h-4 shrink-0" />

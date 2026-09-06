@@ -15,8 +15,8 @@ export const blogPostsBatch2: BlogPost[] = [
       en: "Resin vs Metal Impregnated Graphite: How to Choose the Right Impregnation Process",
     },
     excerpt: {
-      zh: "碳石墨浸渍工艺直接决定密封件的孔隙率、强度与耐温性能。本文从霍邱县华豪密封件有限公司的生产实践出发，系统对比树脂浸渍与金属浸渍两类工艺的差异，帮助工程师在化工、水泵、机械密封等场景中做出正确选型。",
-      en: "The impregnation process of carbon graphite directly determines porosity, mechanical strength, and temperature resistance. Drawing from Huahao Sealing Co., Ltd.'s production practice, this article systematically compares resin and metal impregnation to help engineers select the right material for chemical, pump, and mechanical seal applications.",
+      zh: "浸渍工艺直接决定密封件的孔隙率、强度与耐温：树脂浸渍把孔隙压到 2% 以下但 220℃ 左右分解，锑浸渍在 450℃ 下抗压强度仍达 180-240MPa。本文以实际工艺数据对比两条路线，给出化工、水泵、机械密封场景的选型结论。",
+      en: "Impregnation determines porosity, strength and temperature capability: resin impregnation drives porosity below 2% but decomposes near 220°C, while antimony impregnation holds 180–240 MPa compressive strength at 450°C. Comparing both routes with actual process data, this article concludes with selections for chemical, water pump and mechanical seal services.",
     },
     tag: "material",
     date: "2026-06-11",
@@ -24,19 +24,19 @@ export const blogPostsBatch2: BlogPost[] = [
       zh: `## 核心要点
 
 - 碳石墨浸渍工艺直接决定密封件的孔隙率、强度与耐温性能，是碳石墨密封环生产不可省略的关键工序
-- 树脂浸渍石墨（M106H）耐温上限约 220℃、耐酸碱腐蚀；锑浸渍石墨（M254G）耐温达 450℃、抗压强度 180~240 MPa
+- 树脂浸渍石墨（M106H）耐温上限约 220℃、耐酸碱腐蚀；锑浸渍石墨（M106D）耐温达 450℃、抗压强度 180~240 MPa
 - 高温锅炉给水泵、热油泵优先选金属浸渍石墨；强酸化工泵、食品级密封优先选树脂浸渍石墨
 - 选型应综合介质腐蚀性、工作温度、压力等级、对磨件材质与经济成本，两类浸渍石墨各有适用领域
 
-碳石墨材料因其独特的层状结构和自润滑特性，已成为机械密封、泵类轴套和旋转接头中的核心摩擦副材料。然而，未经浸渍的焙烧碳石墨内部存在大量连通孔隙，孔隙率通常在 10%~15% 之间，这会导致介质渗透、强度下降和密封失效。为消除孔隙并赋予材料新的性能，浸渍处理成为碳石墨生产中不可省略的关键工序。霍邱县华豪密封件有限公司在生产 BIA、BIM 等系列碳石墨密封环时，根据工况差异分别采用树脂浸渍和金属浸渍两种主流路线，下面结合实际工艺数据对二者进行系统比较。
+浸渍路线的选择，本质是在孔隙率与耐温性之间做交换：树脂浸渍工艺简单、成本低，能把气孔率压到 2% 以下，但树脂本身 220℃ 左右开始分解；金属浸渍（锑、巴氏合金）保住耐温与强度，450℃ 下抗压强度仍有 180-240MPa。华豪在生产 BIA、BIM 系列密封环时两条路线都在用，本文拿实际工艺数据把两条路线的差异摆出来：孔隙率、强度、耐温、成本，以及各自该装在什么泵上。
 
 ## 一、浸渍原理与工艺流程对比
 
 ### 1.1 树脂浸渍石墨的工艺原理
-树脂浸渍采用酚醛、环氧或呋喃树脂作为浸渍剂，在真空—加压浸渍釜中使液态树脂渗入石墨孔隙，随后在 130~180℃ 温度下固化。固化后的树脂在孔隙内形成连续网络，将开孔封闭。整个工艺对设备要求相对温和，固化温度不超过 200℃，能耗和设备投资均较低。霍邱县华豪密封件有限公司常用的酚醛浸渍石墨代号 M106H，其体积密度可由浸渍前的 1.65 g/cm³ 提升至 1.78 g/cm³ 以上，孔隙率降至 2% 以下。
+树脂浸渍采用酚醛、环氧或呋喃树脂作为浸渍剂，在真空—加压浸渍釜中使液态树脂渗入石墨孔隙，随后在 130~180℃ 温度下固化。固化后的树脂在孔隙内形成连续网络，将开孔封闭。整个工艺对设备要求相对温和，固化温度不超过 200℃，能耗和设备投资均较低。霍邱县华豪密封件有限公司常用的酚醛浸渍石墨代号 M106F，其体积密度可由浸渍前的 1.65 g/cm³ 提升至 1.78 g/cm³ 以上，孔隙率降至 2% 以下。
 
 ### 1.2 金属浸渍石墨的工艺原理
-金属浸渍则将巴氏合金、铜合金或锑金属在高于其熔点的温度下浸入石墨孔隙。常用锑浸渍石墨 M254G 的浸渍温度约为 630~680℃，需在保护气氛或真空下进行，以防止金属氧化。金属浸渍后材料体积密度可达 2.2~2.4 g/cm³，抗压强度显著提升，且具有更优的导热性能。由于浸渍温度高，对炉体耐热构件和气氛控制要求更高，生产成本相应上升。
+金属浸渍则将巴氏合金、铜合金或锑金属在高于其熔点的温度下浸入石墨孔隙。常用锑浸渍石墨 M106D 的浸渍温度约为 630~680℃，需在保护气氛或真空下进行，以防止金属氧化。金属浸渍后材料体积密度可达 2.2~2.4 g/cm³，抗压强度显著提升，且具有更优的导热性能。由于浸渍温度高，对炉体耐热构件和气氛控制要求更高，生产成本相应上升。
 
 ## 二、性能差异的工程解读
 
@@ -72,23 +72,23 @@ export const blogPostsBatch2: BlogPost[] = [
 
 ## 结语
 
-树脂浸渍与金属浸渍石墨各有其适用领域，不存在绝对的优劣之分。工程师在选型时应综合考虑介质腐蚀性、工作温度、压力等级、对磨件材质和经济成本等多重因素。霍邱县华豪密封件有限公司拥有完整的两条浸渍生产线，可根据客户工况提供从 M106H 树脂浸渍到 M254G 锑浸渍的全系列碳石墨密封环、轴套产品，并支持来图定制。如需进一步技术咨询或样品试用，欢迎联系我司技术部获取详细选型手册。`,
+树脂浸渍与金属浸渍石墨各有其适用领域，不存在绝对的优劣之分。工程师在选型时应综合考虑介质腐蚀性、工作温度、压力等级、对磨件材质和经济成本等多重因素。霍邱县华豪密封件有限公司拥有完整的两条浸渍生产线，可根据客户工况提供从 M106K 树脂浸渍到 M106D 锑浸渍的全系列碳石墨密封环、轴套产品，并支持来图定制。如需进一步技术咨询或样品试用，欢迎联系我司技术部获取详细选型手册。`,
       en: `## Key Takeaways
 
 - The impregnation process directly determines the porosity, mechanical strength, and temperature resistance of carbon graphite seal rings, making it an indispensable production step
-- Resin-impregnated graphite (M106H) tops out near 220°C with strong acid/alkali resistance; antimony-impregnated graphite (M254G) reaches 450°C with compressive strength of 180~240 MPa
+- Resin-impregnated graphite (M106H) tops out near 220°C with strong acid/alkali resistance; antimony-impregnated graphite (M106D) reaches 450°C with compressive strength of 180~240 MPa
 - Boiler feed pumps and hot-oil pumps should prioritize metal-impregnated graphite; acid-handling chemical pumps and food-grade seals favor resin-impregnated graphite
 - Selection must balance medium corrosivity, temperature, pressure, mating material, and cost — each impregnation route has its own optimal domain
 
-Carbon graphite has become a core friction-pair material in mechanical seals, pump bushings, and rotary joints thanks to its layered structure and self-lubricating behavior. However, baked carbon graphite before impregnation contains 10%~15% interconnected porosity that allows media penetration, reduces strength, and causes seal failure. To eliminate this porosity and add new properties, impregnation becomes an indispensable step in carbon graphite production. At Huahao Sealing Co., Ltd., we apply two mainstream impregnation routes — resin and metal — across our BIA and BIM series carbon graphite seal rings. The following is a systematic comparison based on our actual process data.
+Choosing an impregnation route is essentially a trade between porosity and temperature capability: resin impregnation is simpler and cheaper and drives porosity below 2%, but the resin itself starts to decompose around 220°C; metal impregnation (antimony, babbitt) preserves temperature and strength, holding 180–240 MPa compressive strength at 450°C. We use both routes across our BIA and BIM seal ring series. This article lays out the differences with actual process data — porosity, strength, temperature limits, cost — and where each route belongs on your pumps.
 
 ## 1. Principle and Process Comparison
 
 ### 1.1 Resin Impregnated Graphite
-Resin impregnation uses phenolic, epoxy, or furan resin as the impregnant. Liquid resin is forced into graphite pores inside a vacuum-pressure autoclave, then cured at 130~180°C. The cured resin forms a continuous network inside the pores, sealing the open cells. The process is relatively mild: curing temperature stays below 200°C, keeping energy and equipment investment low. Our commonly used phenolic-impregnated grade M106H sees its bulk density rise from a pre-impregnation 1.65 g/cm³ to above 1.78 g/cm³, with porosity reduced to below 2%.
+Resin impregnation uses phenolic, epoxy, or furan resin as the impregnant. Liquid resin is forced into graphite pores inside a vacuum-pressure autoclave, then cured at 130~180°C. The cured resin forms a continuous network inside the pores, sealing the open cells. The process is relatively mild: curing temperature stays below 200°C, keeping energy and equipment investment low. Our commonly used phenolic-impregnated grade M106F sees its bulk density rise from a pre-impregnation 1.65 g/cm³ to above 1.78 g/cm³, with porosity reduced to below 2%.
 
 ### 1.2 Metal Impregnated Graphite
-Metal impregnation uses Babbitt alloy, copper alloy, or antimony metal, impregnating the graphite above the metal's melting point. The widely used antimony-impregnated grade M254G is processed at 630~680°C under protective atmosphere or vacuum to prevent oxidation. After impregnation, bulk density reaches 2.2~2.4 g/cm³, compressive strength increases significantly, and thermal conductivity improves. The high processing temperature demands more from furnace heat-resistant components and atmosphere control, raising production cost.
+Metal impregnation uses Babbitt alloy, copper alloy, or antimony metal, impregnating the graphite above the metal's melting point. The widely used antimony-impregnated grade M106D is processed at 630~680°C under protective atmosphere or vacuum to prevent oxidation. After impregnation, bulk density reaches 2.2~2.4 g/cm³, compressive strength increases significantly, and thermal conductivity improves. The high processing temperature demands more from furnace heat-resistant components and atmosphere control, raising production cost.
 
 ## 2. Engineering Interpretation of Performance Differences
 
@@ -124,7 +124,7 @@ In production, impregnation quality depends not only on the impregnant type but 
 
 ## Conclusion
 
-Resin and metal impregnated graphite each have their own fields of application; neither is universally superior. Engineers should weigh medium corrosivity, working temperature, pressure class, mating material, and economic cost. Huahao Sealing Co., Ltd. operates complete resin and metal impregnation lines, offering everything from M106H resin-impregnated to M254G antimony-impregnated carbon graphite seal rings and bushings, with custom-drawing support. For technical consultation or sample trials, contact our engineering department for the full selection manual.`,
+Resin and metal impregnated graphite each have their own fields of application; neither is universally superior. Engineers should weigh medium corrosivity, working temperature, pressure class, mating material, and economic cost. Huahao Sealing Co., Ltd. operates complete resin and metal impregnation lines, offering everything from M106K resin-impregnated to M106D antimony-impregnated carbon graphite seal rings and bushings, with custom-drawing support. For technical consultation or sample trials, contact our engineering department for the full selection manual.`,
     },
   },
   {
@@ -135,7 +135,7 @@ Resin and metal impregnated graphite each have their own fields of application; 
     },
     excerpt: {
       zh: "碳石墨因其化学惰性被誉为通用型耐腐蚀材料，但不同浸渍方式的石墨在不同介质中的表现差异显著。本文基于霍邱县华豪密封件有限公司的实测数据，系统梳理碳石墨密封环、轴套在酸、碱、盐、有机溶剂等介质中的兼容性，为化工选型提供参考。",
-      en: "Carbon graphite is widely regarded as a chemically inert material, but performance varies significantly with impregnation type and medium. Based on test data from Huahao Sealing Co., Ltd., this guide systematically reviews the compatibility of carbon graphite seal rings and bushings across acids, alkalis, salts, and organic solvents.",
+      en: "The carbon graphite matrix itself shrugs off nearly all acids and alkalis — the weak link is almost always the impregnant: phenolic fails in alkali, furan survives acid/alkali cycling, antimony pits in chlorides. With a compatibility quick-reference table across acids, alkalis, salts and organic solvents, this guide helps pin down seal ring and bushing selection.",
     },
     tag: "material",
     date: "2026-06-12",
@@ -143,11 +143,11 @@ Resin and metal impregnated graphite each have their own fields of application; 
       zh: `## 核心要点
 
 - 碳石墨密封环的化学兼容性由碳本体与浸渍剂共同决定，浸渍剂常成为耐蚀性的"短板"
-- 酚醛浸渍石墨 M106H 耐盐酸、稀硫酸；呋喃浸渍 M106K 耐酸碱交替；锑浸渍 M254G 耐高温碱液但需慎用于含氯离子介质
+- 酚醛浸渍石墨 M106F 耐盐酸、稀硫酸；呋喃浸渍 M106K 耐酸碱交替；锑浸渍 M106D 耐高温碱液但需慎用于含氯离子介质
 - 选型须明确介质浓度、温度、流速与对磨件材质，参考化学兼容性速查表初步筛选
 - 强氧化性介质（>50% 硝酸、铬酸）下任何浸渍石墨均不适用，应改用碳化硅对磨件
 
-化工、制药、冶金等行业中，介质种类繁多，从强氧化性酸到高温碱液，从含氯有机溶剂到熔融盐，密封材料的化学兼容性直接决定设备能否长期稳定运行。碳石墨由于碳原子间强烈的共价键结合和层状晶体结构，对大多数介质表现出优异的耐蚀性。然而，浸渍剂作为石墨内部孔隙的填充物，其耐蚀性往往成为材料的"短板"。霍邱县华豪密封件有限公司结合多年化工泵、反应釜密封案例，整理出这份化学兼容性指南，供工程师选型时参考。
+碳石墨本体几乎不怕任何酸碱——真正的短板几乎都出在浸渍物上。酚醛浸渍耐盐酸、稀硫酸，碰上碱液就守不住；呋喃浸渍耐酸碱交替；锑浸渍扛得住高温碱液，却在含氯离子介质里要点蚀。选型时介质浓度、温度、流速、对磨件材质一样都不能省。本文整理了化工泵、反应釜场景下的兼容性速查表和典型失效案例，选型时可以直接对照。
 
 ## 一、未浸渍石墨的本征耐蚀性
 
@@ -174,7 +174,7 @@ Resin and metal impregnated graphite each have their own fields of application; 
 
 ## 三、金属浸渍石墨的耐蚀性能
 
-### 3.1 锑浸渍石墨（M254G）
+### 3.1 锑浸渍石墨（M106D）
 锑金属在碱液中相对稳定，对中低浓度硫酸耐受性良好。在以下工况中性能突出：
 
 - **氢氧化钠**：浓度 ≤ 50%，温度 ≤ 200℃
@@ -215,11 +215,11 @@ Resin and metal impregnated graphite each have their own fields of application; 
       en: `## Key Takeaways
 
 - The chemical compatibility of carbon graphite seal rings is jointly determined by the carbon body and the impregnant, with the impregnant often acting as the weak link
-- Phenolic-impregnated M106H resists HCl and dilute H2SO4; furan-impregnated M106K handles alternating acid-alkali service; antimony-impregnated M254G suits high-temperature alkalis but must be used cautiously in chloride media
+- Phenolic-impregnated M106H resists HCl and dilute H2SO4; furan-impregnated M106K handles alternating acid-alkali service; antimony-impregnated M106D suits high-temperature alkalis but must be used cautiously in chloride media
 - Selection must define medium concentration, temperature, flow velocity, and mating material, then use the compatibility quick-reference table for initial screening
 - In strong oxidizing media (>50% nitric acid, chromic acid), no impregnated graphite is suitable — switch to silicon carbide mating parts
 
-In chemical, pharmaceutical, and metallurgical industries, the variety of media — from strongly oxidizing acids to high-temperature alkalis, from chlorinated solvents to molten salts — means the chemical compatibility of a seal material often determines whether equipment can run reliably long-term. Carbon graphite, with its strong covalent carbon bonds and layered crystal structure, resists most media. However, the impregnant that fills the internal pores often becomes the material's weakest link. Based on years of experience in chemical pumps and reactor seals, Huahao Sealing Co., Ltd. has compiled this compatibility guide for engineers.
+The carbon graphite matrix itself shrugs off nearly all acids and alkalis — the real weak link is almost always the impregnant. Phenolic-impregnated graphite handles hydrochloric and dilute sulfuric acid but fails in alkali; furan survives alternating acid/alkali service; antimony withstands hot alkali yet pits in chloride-bearing media. Concentration, temperature, flow velocity and mating material all need pinning down before selection. This article compiles a compatibility quick-reference table plus documented failure cases from chemical pump and reactor service.
 
 ## 1. Inherent Corrosion Resistance of Unimpregnated Graphite
 
@@ -245,7 +245,7 @@ Epoxy offers good resistance to alkalis and many organic solvents, but temperatu
 
 ## 3. Corrosion Resistance of Metal-Impregnated Graphite
 
-### 3.1 Antimony-Impregnated Graphite (M254G)
+### 3.1 Antimony-Impregnated Graphite (M106D)
 Antimony is relatively stable in alkalis and tolerates mid-to-low concentration sulfuric acid. It excels in:
 - **Sodium hydroxide**: up to 50%, up to 200°C
 - **Sulfuric acid**: up to 60%, up to 120°C
@@ -300,9 +300,9 @@ The chemical compatibility of carbon graphite is the combined result of impregna
       zh: `## 核心要点
 
 - 石墨轴套凭借自润滑性、化学稳定性与低热膨胀系数，成为潜水泵导轴承的首选材料
-- 清水泵工况选树脂浸渍 M106H；污水泵选锑浸渍 M254G 硬度更高耐磨更优；海水工况避免锑浸渍以防氯离子点蚀
+- 清水泵工况选树脂浸渍 M106K；污水泵选锑浸渍 M106D 硬度更高耐磨更优；海水工况避免锑浸渍以防氯离子点蚀
 - 配合间隙取轴颈直径的 0.1%~0.15%，镶嵌式轴套过盈量约 0.05 mm，高温工况间隙需增大 0.02~0.03 mm
-- 实际案例：90 kW 潜污泵改用 M254G 锑浸渍石墨轴套并增加导流槽后，寿命从 8 个月延长至 24 个月
+- 实际案例：90 kW 潜污泵改用 M106D 锑浸渍石墨轴套并增加导流槽后，寿命从 8 个月延长至 24 个月
 
 潜水泵作为一种将电机与泵体集成于同一壳体内的设备，广泛应用于深井提水、市政排污、农田排灌、矿井排水和海上平台作业。由于电机和泵体共置，导轴承必须依靠介质本身（清水、污水或含砂水）进行润滑。金属或塑料轴套在干摩擦或边界润滑条件下磨损迅速，而碳石墨轴套凭借自润滑性、化学稳定性和良好的导热性，成为潜水泵导轴承的首选材料。霍邱县华豪密封件有限公司每年向国内主要潜水泵厂供应数十万件石墨轴套，本文结合实际应用总结选型要点。
 
@@ -334,10 +334,10 @@ The chemical compatibility of carbon graphite is the combined result of impregna
 ## 三、根据介质特性进行选型
 
 ### 3.1 清水泵工况
-深井泵、农用潜水泵输送清水，介质含固量低，可采用树脂浸渍石墨 M106H 或 M120H。运行参数：温度 ≤ 40℃，PV 值 ≤ 5 MPa·m/s。轴颈硬度建议 ≥ HRC 45，对磨面粗糙度 Ra ≤ 0.4 μm。
+深井泵、农用潜水泵输送清水，介质含固量低，可采用树脂浸渍石墨 M106K 或 M120H。运行参数：温度 ≤ 40℃，PV 值 ≤ 5 MPa·m/s。轴颈硬度建议 ≥ HRC 45，对磨面粗糙度 Ra ≤ 0.4 μm。
 
 ### 3.2 污水泵工况
-潜水排污泵输送含纤维、悬浮物的污水，介质对轴套有冲刷磨损。建议选用锑浸渍石墨 M254G，硬度更高，耐磨性更优。轴套可开设导流槽（宽 2 mm、深 1.5 mm、轴向均布 6~8 条），促进介质进入摩擦面。
+潜水排污泵输送含纤维、悬浮物的污水，介质对轴套有冲刷磨损。建议选用锑浸渍石墨 M106D，硬度更高，耐磨性更优。轴套可开设导流槽（宽 2 mm、深 1.5 mm、轴向均布 6~8 条），促进介质进入摩擦面。
 
 ### 3.3 海水工况
 海水含氯离子，对锑浸渍石墨有腐蚀风险，应选用树脂浸渍或铜浸渍石墨。轴颈建议采用 316L 不锈钢或双相不锈钢，对磨面进行氮化处理。
@@ -361,17 +361,17 @@ The chemical compatibility of carbon graphite is the combined result of impregna
 
 ## 五、霍邱县华豪密封件有限公司的供货案例
 
-为某市政污水提升泵站 90 kW 潜污泵提供的石墨轴套，原采用酚醛树脂浸渍，平均寿命 8 个月。改用锑浸渍石墨 M254G 并增加导流槽后，连续运行 24 个月，磨损量仅 0.15 mm，预计可继续使用至 30 个月。
+为某市政污水提升泵站 90 kW 潜污泵提供的石墨轴套，原采用酚醛树脂浸渍，平均寿命 8 个月。改用锑浸渍石墨 M106D 并增加导流槽后，连续运行 24 个月，磨损量仅 0.15 mm，预计可继续使用至 30 个月。
 
 ## 结语
 
-潜水泵石墨轴套的选型需综合考虑介质特性、泵功率、运行工况和维护便利性。霍邱县华豪密封件有限公司提供从 M106H 树脂浸渍到 M254G 锑浸渍的全系列石墨轴套，并支持来图定制。我们将根据您的具体工况提供个性化建议，欢迎联系我司技术部进行深度交流。`,
+潜水泵石墨轴套的选型需综合考虑介质特性、泵功率、运行工况和维护便利性。霍邱县华豪密封件有限公司提供从 M106K 树脂浸渍到 M106D 锑浸渍的全系列石墨轴套，并支持来图定制。我们将根据您的具体工况提供个性化建议，欢迎联系我司技术部进行深度交流。`,
       en: `## Key Takeaways
 
 - Graphite bushings, with self-lubricity, chemical stability, and low thermal expansion, have become the preferred guide bearing material for submersible pumps
-- Clear-water service uses resin-impregnated M106H; sewage service prefers harder, more wear-resistant antimony-impregnated M254G; seawater service should avoid antimony to prevent chloride pitting
+- Clear-water service uses resin-impregnated M106K; sewage service prefers harder, more wear-resistant antimony-impregnated M106D; seawater service should avoid antimony to prevent chloride pitting
 - Running clearance is 0.1%~0.15% of journal diameter; insert-type bushings use about 0.05 mm interference; high-temperature service needs 0.02~0.03 mm extra clearance
-- Case study: a 90 kW sewage pump switched to M254G antimony-impregnated graphite bushings with flutes, extending service life from 8 to 24 months
+- Case study: a 90 kW sewage pump switched to M106D antimony-impregnated graphite bushings with flutes, extending service life from 8 to 24 months
 
 A submersible pump integrates the motor and pump body in a single housing, widely used in deep-well water lifting, municipal sewage, agricultural drainage, mine dewatering, and offshore platform service. Because motor and pump share one body, the guide bearing must rely on the pumped medium itself (clear water, sewage, or sandy water) for lubrication. Metal or plastic bushings wear rapidly under dry or boundary lubrication, while carbon graphite bushings — thanks to self-lubricity, chemical stability, and good thermal conductivity — have become the preferred guide bearing material. Huahao Sealing Co., Ltd. supplies hundreds of thousands of graphite bushings annually to major domestic submersible pump makers; this article summarizes our selection insights.
 
@@ -406,7 +406,7 @@ For large vertical submersible pumps where shaft disassembly is impractical, thr
 Deep-well and agricultural pumps handle clean water with low solids. Resin-impregnated M106H or M120H is suitable. Parameters: temperature ≤ 40°C, PV ≤ 5 MPa·m/s. Journal hardness ≥ HRC 45; mating surface roughness Ra ≤ 0.4 μm.
 
 ### 3.2 Sewage Service
-Sewage pumps handle fibrous and suspended matter that abrades the bushing. Antimony-impregnated M254G is preferred for its higher hardness and wear resistance. Flutes (2 mm wide, 1.5 mm deep, 6~8 axial grooves) can be cut to promote medium entry.
+Sewage pumps handle fibrous and suspended matter that abrades the bushing. Antimony-impregnated M106D is preferred for its higher hardness and wear resistance. Flutes (2 mm wide, 1.5 mm deep, 6~8 axial grooves) can be cut to promote medium entry.
 
 ### 3.3 Seawater Service
 Chloride in seawater risks corroding antimony-impregnated graphite; resin or copper-impregnated grades should be used. Journal material should be 316L stainless or duplex stainless steel, with nitrided mating surface.
@@ -430,11 +430,11 @@ Long-term operation may loosen the outer-diameter interference fit between bushi
 
 ## 5. Huahao Sealing Supply Case
 
-A 90 kW municipal sewage lift pump originally used phenolic-impregnated bushings with an average life of 8 months. After switching to antimony-impregnated M254G with flutes, it ran continuously for 24 months with only 0.15 mm wear — projected to reach 30 months.
+A 90 kW municipal sewage lift pump originally used phenolic-impregnated bushings with an average life of 8 months. After switching to antimony-impregnated M106D with flutes, it ran continuously for 24 months with only 0.15 mm wear — projected to reach 30 months.
 
 ## Conclusion
 
-Submersible pump graphite bushing selection must integrate medium characteristics, pump power, operating duty, and maintainability. Huahao Sealing Co., Ltd. offers the full range of M106H resin-impregnated and M254G antimony-impregnated graphite bushings with custom-drawing support. We provide case-specific recommendations; please contact our engineering team for in-depth consultation.`,
+Submersible pump graphite bushing selection must integrate medium characteristics, pump power, operating duty, and maintainability. Huahao Sealing Co., Ltd. offers the full range of M106K resin-impregnated and M106D antimony-impregnated graphite bushings with custom-drawing support. We provide case-specific recommendations; please contact our engineering team for in-depth consultation.`,
     },
   },
   {
@@ -455,17 +455,17 @@ Submersible pump graphite bushing selection must integrate medium characteristic
 - 碳石墨密封环因耐海水腐蚀、自润滑与低磨损特性，成为船舶艉轴密封唇口与端面摩擦副的首选材料
 - 高盐度海水工况下锑浸渍石墨易发生点蚀，应选铜浸渍或树脂浸渍石墨，并配 316L 不锈钢或陶瓷涂层轴套
 - 艉轴密封端面平面度要求 ≤ 0.6 μm、粗糙度 Ra ≤ 0.1 μm，须采用单点金刚石车削加化学机械抛光
-- 8000 TEU 集装箱船端面密封用 M254G 锑浸渍石墨静环配碳化硅动环，泄漏量稳定在 2 L/24h 以内
+- 8000 TEU 集装箱船端面密封用 M106D 锑浸渍石墨静环配碳化硅动环，泄漏量稳定在 2 L/24h 以内
 
 船舶艉轴是连接主机与螺旋桨的关键传动部件，艉轴密封装置位于船体与水的交界处，工作条件极为苛刻：既要承受 0.1~0.3 MPa 的舷外水压，又要耐受轴系偏心、振动和螺旋桨脉动载荷，还必须满足国际海事组织（IMO）和 MARPOL 公约对润滑油泄漏的严格限制。碳石墨因其耐海水腐蚀、自润滑和低磨损特性，成为艉轴密封唇口或端面摩擦副的首选材料。霍邱县华豪密封件有限公司为国内多家船厂配套供应艉轴密封石墨环，本文梳理工程要点。
 
 ## 一、艉轴密封的典型结构
 
 ### 1.1 唇形密封（Lip Seal）
-唇形密封以橡胶唇口压紧艉轴表面实现密封，常用于中小型船舶。唇口下方通常设置一个石墨-铜合金组成的"备用密封"，在主密封失效时应急启用。霍邱县华豪密封件有限公司供应的备用密封石墨环采用锑浸渍 M254G，硬度高、耐磨性好，可在应急工况下短时间内支撑轴系运转。
+唇形密封以橡胶唇口压紧艉轴表面实现密封，常用于中小型船舶。唇口下方通常设置一个石墨-铜合金组成的"备用密封"，在主密封失效时应急启用。霍邱县华豪密封件有限公司供应的备用密封石墨环采用锑浸渍 M106D，硬度高、耐磨性好，可在应急工况下短时间内支撑轴系运转。
 
 ### 1.2 端面机械密封（Face Seal）
-端面机械密封以两个平行端面相互贴合形成密封，广泛应用于大型货轮、油轮。其动环通常为碳化硅或氧化铝陶瓷，静环为浸渍碳石墨。霍邱县华豪密封件有限公司为 5 万吨散货船提供的艉轴端面密封，采用 M254G 锑浸渍石墨静环与反应烧结碳化硅动环配对，PV 值达到 8 MPa·m/s，已连续运行 3 年无失效。
+端面机械密封以两个平行端面相互贴合形成密封，广泛应用于大型货轮、油轮。其动环通常为碳化硅或氧化铝陶瓷，静环为浸渍碳石墨。霍邱县华豪密封件有限公司为 5 万吨散货船提供的艉轴端面密封，采用 M106D 锑浸渍石墨静环与反应烧结碳化硅动环配对，PV 值达到 8 MPa·m/s，已连续运行 3 年无失效。
 
 ### 1.3 水润滑轴承式密封
 部分环保要求高的船舶采用水润滑 bearing 式密封，以海水作为润滑剂。此类密封的轴承材料常选用铜浸渍或树脂浸渍石墨，配合不锈钢或陶瓷涂层轴套。
@@ -474,7 +474,7 @@ Submersible pump graphite bushing selection must integrate medium characteristic
 
 ### 2.1 耐海水腐蚀性
 海水含约 3.5% 的溶解盐，氯离子浓度高达 19000 mg/L。锑浸渍石墨在长期浸泡中，锑金属可能发生选择性腐蚀。霍邱县华豪密封件有限公司推荐采用以下方案：
-- **树脂浸渍石墨 M106H**：清水或低盐度水域，温度 ≤ 60℃
+- **树脂浸渍石墨 M106K**：清水或低盐度水域，温度 ≤ 60℃
 - **铜浸渍石墨**：高盐度海水，需配合不锈钢或陶瓷涂层轴套
 - **碳化硅对磨**：高 PV 值、长寿命要求场合
 
@@ -493,7 +493,7 @@ Submersible pump graphite bushing selection must integrate medium characteristic
 某 2000 载重吨内河散货船采用 Simplex 型唇形密封，主密封为丁腈橡胶唇口，备用密封为石墨环。原锑浸渍石墨环在长江口咸淡水交替工况下，6 个月出现点蚀。改用我司铜浸渍石墨环后，运行 18 个月检查，无明显腐蚀，磨损量 0.08 mm。
 
 ### 3.2 远洋集装箱船（8000 TEU）
-某 8000 TEU 集装箱船采用端面机械密封，轴径 580 mm，转速 90 rpm，舷外水压 0.18 MPa。我司供应的 M254G 锑浸渍石墨静环，与碳化硅动环配对，泄漏量稳定在 2 L/24h 以内，符合 IMO MEPC.191(61) 规范。
+某 8000 TEU 集装箱船采用端面机械密封，轴径 580 mm，转速 90 rpm，舷外水压 0.18 MPa。我司供应的 M106D 锑浸渍石墨静环，与碳化硅动环配对，泄漏量稳定在 2 L/24h 以内，符合 IMO MEPC.191(61) 规范。
 
 ### 3.3 海洋平台工作船
 某海洋平台工作船采用全水润滑艉轴密封，介质为海水，温度 5~30℃。我司提供的树脂浸渍石墨轴承套，内径 320 mm，与镀铬不锈钢轴套配合，磨损率 0.02 mm/1000h，达到船级社 5 年大修周期要求。
@@ -524,17 +524,17 @@ Submersible pump graphite bushing selection must integrate medium characteristic
 - Carbon graphite seal rings, with seawater corrosion resistance, self-lubricity, and low wear, are the preferred friction-pair material for marine stern shaft seal lips and faces
 - In high-salinity seawater, antimony-impregnated graphite is prone to pitting — choose copper- or resin-impregnated graphite paired with 316L stainless or ceramic-coated sleeves
 - Stern shaft seal faces require flatness ≤ 0.6 μm and roughness Ra ≤ 0.1 μm, achieved by single-point diamond turning plus chemical-mechanical polishing
-- An 8000 TEU container ship face seal using M254G antimony-impregnated stationary ring with SiC rotary maintains leakage below 2 L/24h
+- An 8000 TEU container ship face seal using M106D antimony-impregnated stationary ring with SiC rotary maintains leakage below 2 L/24h
 
 A ship's stern shaft connects the main engine to the propeller, and the stern shaft seal sits at the interface between hull and seawater under very demanding conditions: it must withstand 0.1~0.3 MPa external water pressure, absorb shaft eccentricity, vibration, and propeller pulsation, and meet the strict lubricant-leakage limits set by IMO and MARPOL. Carbon graphite — with seawater corrosion resistance, self-lubricity, and low wear — has become the preferred friction-pair material for stern shaft seal lips or faces. Huahao Sealing Co., Ltd. supplies stern shaft seal graphite rings to many domestic shipyards; this article outlines engineering essentials.
 
 ## 1. Typical Stern Shaft Seal Structures
 
 ### 1.1 Lip Seal
-A lip seal presses a rubber lip against the shaft surface; it is common on small and medium vessels. A backup graphite-copper seal is often installed beneath the lip for emergency use. Our backup seal rings use antimony-impregnated M254G — high hardness and wear resistance for short-duration emergency operation.
+A lip seal presses a rubber lip against the shaft surface; it is common on small and medium vessels. A backup graphite-copper seal is often installed beneath the lip for emergency use. Our backup seal rings use antimony-impregnated M106D — high hardness and wear resistance for short-duration emergency operation.
 
 ### 1.2 Face Mechanical Seal
-Two parallel faces contact each other to seal, widely used on large cargo ships and tankers. The rotating face is typically silicon carbide or alumina ceramic; the stationary face is impregnated carbon graphite. For a 50,000 DWT bulk carrier we supply an antimony-impregnated M254G stationary ring paired with reaction-bonded silicon carbide — PV value reaches 8 MPa·m/s, with three years of failure-free operation.
+Two parallel faces contact each other to seal, widely used on large cargo ships and tankers. The rotating face is typically silicon carbide or alumina ceramic; the stationary face is impregnated carbon graphite. For a 50,000 DWT bulk carrier we supply an antimony-impregnated M106D stationary ring paired with reaction-bonded silicon carbide — PV value reaches 8 MPa·m/s, with three years of failure-free operation.
 
 ### 1.3 Water-Lubricated Bearing Seal
 Environmentally demanding vessels use water-lubricated bearings with seawater as the lubricant. The bearing material is often copper- or resin-impregnated graphite paired with stainless steel or ceramic-coated shaft sleeves.
@@ -562,7 +562,7 @@ Stern shaft seal face flatness ≤ 0.6 μm, roughness Ra ≤ 0.1 μm. We apply s
 A 2000 DWT inland bulk carrier uses a Simplex lip seal with NBR lip and graphite backup ring. The original antimony-impregnated ring pitted within 6 months in the brackish water of the Yangtze estuary. Switching to our copper-impregnated ring delivered 18 months of inspection-free service with only 0.08 mm wear.
 
 ### 3.2 Ocean-Going Container Ship (8000 TEU)
-An 8000 TEU container ship uses a face mechanical seal: shaft diameter 580 mm, speed 90 rpm, external water pressure 0.18 MPa. Our antimony-impregnated M254G stationary ring paired with silicon carbide rotary maintains leakage below 2 L/24h, conforming to IMO MEPC.191(61).
+An 8000 TEU container ship uses a face mechanical seal: shaft diameter 580 mm, speed 90 rpm, external water pressure 0.18 MPa. Our antimony-impregnated M106D stationary ring paired with silicon carbide rotary maintains leakage below 2 L/24h, conforming to IMO MEPC.191(61).
 
 ### 3.3 Offshore Platform Supply Vessel
 An offshore supply vessel uses a fully water-lubricated stern shaft seal with seawater at 5~30°C. Our resin-impregnated graphite bearing sleeve, inner diameter 320 mm, paired with chrome-plated stainless sleeve, wears at 0.02 mm/1000h — meeting classification society's 5-year overhaul cycle.
@@ -782,8 +782,8 @@ Compliance of food-grade carbon graphite seals involves materials, processes, te
       en: "Carbon Graphite Seal Friction Coefficient Analysis: A Multi-Dimensional Look from Material to Service Conditions",
     },
     excerpt: {
-      zh: "摩擦系数是衡量石墨密封件运行性能的关键指标。本文从材料配方、对磨件、润滑条件、工况参数四个维度，深入分析碳石墨密封环的摩擦学行为，为密封设计提供理论依据。",
-      en: "Friction coefficient is a key indicator of graphite seal performance. This article analyzes the tribological behavior of carbon graphite seal rings across four dimensions — material formulation, mating part, lubrication, and operating parameters — to support seal design.",
+      zh: "碳石墨摩擦系数并非定值：M106K 在 100℃ 为 0.08，200℃ 升到 0.15，PV 值超过 10 MPa·m/s 后急剧上升。本文按材料配方、对磨件、润滑条件与工况参数给出实测数据与设计边界。",
+      en: "The friction coefficient of carbon graphite is not a constant: M106K measures 0.08 at 100°C and 0.15 at 200°C, rising sharply once PV exceeds 10 MPa·m/s. This article provides measured data and design boundaries across material formulation, mating part, lubrication and operating parameters.",
     },
     tag: "process",
     date: "2026-06-16",
@@ -791,11 +791,11 @@ Compliance of food-grade carbon graphite seals involves materials, processes, te
       zh: `## 核心要点
 
 - 碳石墨密封件的摩擦系数受材料配方、对磨件、润滑条件、PV 值综合影响，并非固定值
-- 树脂浸渍石墨 M106H 在 100℃ 摩擦系数 0.08，升至 200℃ 时变为 0.15；锑浸渍 M254G 配碳化硅稳定在 0.06~0.10
+- 树脂浸渍石墨 M106K 在 100℃ 摩擦系数 0.08，升至 200℃ 时变为 0.15；锑浸渍 M106D 配碳化硅稳定在 0.06~0.10
 - PV 值超过 10 MPa·m/s 后摩擦系数急剧上升，15 MPa·m/s 为材料失效临界值
 - 相对湿度从 0% 升至 50% 可使石墨摩擦系数从 0.5 降至 0.1，水润滑工况有利于潜水泵石墨轴套
 
-摩擦系数是机械密封、泵类轴套、压缩机活塞环等摩擦副设计的核心参数。它直接影响密封件的发热量、磨损率和功率损耗。碳石墨因其层状晶体结构和自润滑特性，在大多数工况下摩擦系数低于 0.1，被誉为"最理想的密封材料之一"。然而，实际运行中的摩擦系数并非定值，而是受材料配方、对磨件、润滑条件、PV 值等多重因素综合影响的动态参数。霍邱县华豪密封件有限公司技术部结合多年摩擦磨损试验数据，对石墨密封件摩擦系数进行系统解读。
+“碳石墨摩擦系数低于 0.1”这句话只在特定条件下成立。同一对摩擦副，树脂浸渍石墨 M106K 在 100℃ 时摩擦系数 0.08，到 200℃ 就变成 0.15；PV 值一旦越过 10 MPa·m/s，摩擦系数急剧上升，发热和磨损跟着失控。把它当固定值去算密封功率和发热量，设计就会跑偏。本文按材料配方、对磨件、润滑条件、工况参数四条线，给出实测数据和使用边界。
 
 ## 一、碳石墨摩擦学基础
 
@@ -808,10 +808,10 @@ Compliance of food-grade carbon graphite seals involves materials, processes, te
 ## 二、材料配方对摩擦系数的影响
 
 ### 2.1 树脂浸渍石墨
-树脂浸渍使石墨孔隙被树脂填充，表面更光滑，初始摩擦系数较低（0.05~0.08）。但树脂本身导热性差，摩擦热积聚易使树脂软化，导致摩擦系数随温度升高而上升。霍邱县华豪密封件有限公司测试数据显示，M106H 酚醛浸渍石墨在 100℃ 时摩擦系数为 0.08，200℃ 时升至 0.15。
+树脂浸渍使石墨孔隙被树脂填充，表面更光滑，初始摩擦系数较低（0.05~0.08）。但树脂本身导热性差，摩擦热积聚易使树脂软化，导致摩擦系数随温度升高而上升。霍邱县华豪密封件有限公司测试数据显示，M106F 酚醛浸渍石墨在 100℃ 时摩擦系数为 0.08，200℃ 时升至 0.15。
 
 ### 2.2 金属浸渍石墨
-金属浸渍石墨硬度较高，导热性好，摩擦热可快速散出。但表面金属相的存在会增加微观切削效应。锑浸渍石墨 M254G 与碳化硅对磨时，摩擦系数稳定在 0.06~0.10，受温度影响较小。
+金属浸渍石墨硬度较高，导热性好，摩擦热可快速散出。但表面金属相的存在会增加微观切削效应。锑浸渍石墨 M106D 与碳化硅对磨时，摩擦系数稳定在 0.06~0.10，受温度影响较小。
 
 ### 2.3 树脂金属混合浸渍
 混合浸渍兼具树脂的低摩擦和金属的高导热，适用于高 PV 值工况。摩擦系数可控制在 0.05~0.08，且温度稳定性好。
@@ -883,11 +883,11 @@ PV 值（压力 × 速度）是反映摩擦副负载的综合指标。低 PV 值
       en: `## Key Takeaways
 
 - The friction coefficient of carbon graphite seals is influenced by material formulation, mating part, lubrication, and PV value — it is not a constant
-- Resin-impregnated M106H shows 0.08 at 100°C, rising to 0.15 at 200°C; antimony-impregnated M254G paired with SiC holds steady at 0.06~0.10
+- Resin-impregnated M106H shows 0.08 at 100°C, rising to 0.15 at 200°C; antimony-impregnated M106D paired with SiC holds steady at 0.06~0.10
 - Above 10 MPa·m/s the friction coefficient rises sharply; 15 MPa·m/s marks the material failure threshold
 - Raising relative humidity from 0% to 50% can drop graphite friction from 0.5 to 0.1, favoring water-lubricated submersible pump bushings
 
-Friction coefficient is a core parameter in the design of friction pairs such as mechanical seals, pump bushings, and compressor piston rings. It directly affects heat generation, wear rate, and power loss. Carbon graphite, thanks to its layered crystal structure and self-lubricity, maintains a friction coefficient below 0.1 in most conditions — making it "one of the most ideal sealing materials." However, the actual friction coefficient is not a constant but a dynamic parameter influenced by material formulation, mating part, lubrication, and PV value. Based on years of tribological test data, our engineering team presents a systematic analysis.
+"Carbon graphite has a friction coefficient below 0.1" only holds under specific conditions. For the same friction pair, resin-impregnated M106K measures 0.08 at 100°C but 0.15 at 200°C; once the PV value crosses 10 MPa·m/s the coefficient climbs sharply, and heat and wear follow it out of control. Treating it as a constant will skew your power and heat calculations. This article presents measured data and service boundaries across four variables: material formulation, mating part, lubrication and operating parameters.
 
 ## 1. Tribological Fundamentals of Carbon Graphite
 
@@ -900,10 +900,10 @@ Water vapor, oxygen, and organic molecules adsorbed on graphite surface in air f
 ## 2. Effect of Material Formulation
 
 ### 2.1 Resin-Impregnated Graphite
-Resin fills pores, smoothing the surface and lowering initial friction (0.05~0.08). However, resin has poor thermal conductivity, and accumulated frictional heat can soften it, raising friction with temperature. Our test data: M106H phenolic-impregnated graphite shows 0.08 at 100°C, rising to 0.15 at 200°C.
+Resin fills pores, smoothing the surface and lowering initial friction (0.05~0.08). However, resin has poor thermal conductivity, and accumulated frictional heat can soften it, raising friction with temperature. Our test data: M106F phenolic-impregnated graphite shows 0.08 at 100°C, rising to 0.15 at 200°C.
 
 ### 2.2 Metal-Impregnated Graphite
-Metal-impregnated graphite is harder with better thermal conductivity, allowing rapid heat dissipation. The metallic phase on the surface adds micro-cutting. Antimony-impregnated M254G paired with SiC maintains 0.06~0.10, with little temperature sensitivity.
+Metal-impregnated graphite is harder with better thermal conductivity, allowing rapid heat dissipation. The metallic phase on the surface adds micro-cutting. Antimony-impregnated M106D paired with SiC maintains 0.06~0.10, with little temperature sensitivity.
 
 ### 2.3 Resin-Metal Hybrid Impregnation
 Hybrid impregnation combines resin's low friction with metal's high thermal conductivity, suitable for high PV service. Friction coefficient holds at 0.05~0.08 with good temperature stability.
@@ -1016,7 +1016,7 @@ Carbon graphite seal friction coefficient is a function of material, mating part
 硬质合金刀具（YG6、YG8 等）成本低，通用性好，适用于小批量生产。但耐磨性有限，加工浸渍石墨时刀具寿命仅 1~3 小时。建议选用细颗粒硬质合金（晶粒 ≤ 0.5 μm），硬度 HRA 93 以上。
 
 ### 2.2 金刚石涂层刀具
-CVD 金刚石涂层刀具在硬质合金基体上沉积 5~15 μm 厚金刚石薄膜，兼具金刚石的耐磨性和硬质合金的韧性。加工石墨时寿命可达硬质合金的 10~30 倍。霍邱县华豪密封件有限公司采用金刚石涂层立铣刀加工 M254G 锑浸渍石墨，单刀加工件数从 30 件提升至 800 件。
+CVD 金刚石涂层刀具在硬质合金基体上沉积 5~15 μm 厚金刚石薄膜，兼具金刚石的耐磨性和硬质合金的韧性。加工石墨时寿命可达硬质合金的 10~30 倍。霍邱县华豪密封件有限公司采用金刚石涂层立铣刀加工 M106D 锑浸渍石墨，单刀加工件数从 30 件提升至 800 件。
 
 ### 2.3 PCD 刀具
 聚晶金刚石（PCD）刀具由金刚石颗粒与硬质合金基体在高温高压下烧结而成，硬度 HV 6000~8000，耐磨性极好。适用于大批量、高精度加工。但 PCD 不能加工含树脂浸渍的石墨，因为 PCD 与树脂会发生化学反应。
@@ -1136,7 +1136,7 @@ Graphite dust particles (1~10 μm) are highly mobile, harmful to environment and
 Carbide tools (YG6, YG8) are low-cost and versatile, suitable for small batch production. Wear resistance is limited, with tool life of only 1~3 hours on impregnated graphite. Fine-grain carbide (grain ≤ 0.5 μm) at HRA 93+ is recommended.
 
 ### 2.2 Diamond-Coated Tools
-CVD diamond coating deposits 5~15 μm of diamond film on a carbide substrate, combining diamond's wear resistance with carbide's toughness. Tool life on graphite is 10~30× that of carbide. We use diamond-coated end mills on M254G antimony-impregnated graphite, raising parts-per-tool from 30 to 800.
+CVD diamond coating deposits 5~15 μm of diamond film on a carbide substrate, combining diamond's wear resistance with carbide's toughness. Tool life on graphite is 10~30× that of carbide. We use diamond-coated end mills on M106D antimony-impregnated graphite, raising parts-per-tool from 30 to 800.
 
 ### 2.3 PCD Tools
 Polycrystalline diamond (PCD) tools — diamond particles sintered with carbide substrate at high temperature and pressure — reach HV 6000~8000 with excellent wear resistance. Suitable for large-volume, high-precision work. However, PCD cannot cut resin-impregnated graphite due to chemical reaction with the resin.
@@ -1236,8 +1236,8 @@ Tool selection and parameter optimization in CNC graphite machining are critical
       en: "Graphite Seal Surface Roughness Requirements: A Full-Spectrum Analysis from Ra to Rz",
     },
     excerpt: {
-      zh: "石墨密封件的表面粗糙度直接影响密封性能和磨损寿命。本文从粗糙度参数选择、不同部位的精度要求、检测方法和工艺控制四个维度，系统介绍石墨密封件的表面质量控制。",
-      en: "Surface roughness of graphite seals directly affects sealing performance and wear life. This article systematically reviews surface quality control across four dimensions: parameter selection, accuracy per region, measurement methods, and process control.",
+      zh: "端面粗糙度从 Ra 0.4μm 降到 0.05μm，泄漏量可减少 90%。本文给出机械密封端面、轴套内孔等不同部位的粗糙度要求、检测方法与工艺控制要点，含刀具更换阈值。",
+      en: "Reducing face roughness from Ra 0.4 μm to 0.05 μm cuts leakage by 90%. This article sets roughness requirements per region — seal faces, bushing bores and more — with measurement methods and process controls, including tool-replacement thresholds.",
     },
     tag: "precision",
     date: "2026-06-18",
@@ -1249,7 +1249,7 @@ Tool selection and parameter optimization in CNC graphite machining are critical
 - 刀具后刀面磨损量 VB ≥ 0.2 mm 时粗糙度显著上升，金刚石涂层刀具可获得 Ra ≤ 0.1 μm
 - 端面平面度须 ≤ 0.6 μm，用光学平晶检测应呈现均匀干涉条纹
 
-机械密封端面的表面粗糙度是决定密封性能的关键因素之一。研究表明，端面粗糙度从 Ra 0.4 μm 降至 0.05 μm，密封泄漏量可减少 90%。对于碳石墨密封环、轴套、三瓣环等精密密封件，表面粗糙度是出厂检验的必检项目。霍邱县华豪密封件有限公司对各类密封件的表面粗糙度有严格的标准和检测流程，本文系统介绍相关要求。
+端面粗糙度从 Ra 0.4μm 降到 0.05μm，泄漏量可以减少 90%——这正是表面粗糙度成为碳石墨密封环出厂必检项目的原因。但不同部位的要求并不一样：机械密封端面要求 Ra≤0.1μm 且要配合 Rz 评估抗磨损性，轴套内孔重点防划痕。本文给出各部位的粗糙度指标、检测方法和工艺控制手段，包括刀具磨损到什么程度必须换刀。
 
 ## 一、表面粗糙度参数详解
 
@@ -1393,7 +1393,7 @@ Rt 是评估长度内最大峰谷高度差。它反映表面最大不平度。
 - Flank wear of VB ≥ 0.2 mm significantly worsens roughness; diamond-coated tools achieve Ra ≤ 0.1 μm
 - Face flatness must be ≤ 0.6 μm, verified with an optical flat showing uniform interference bands
 
-Surface roughness of mechanical seal faces is one of the key determinants of sealing performance. Studies show that reducing face roughness from Ra 0.4 μm to 0.05 μm can cut leakage by 90%. For precision parts such as carbon graphite seal rings, bushings, and segmented rings, surface roughness is a mandatory outgoing inspection item. Huahao Sealing Co., Ltd. applies strict standards and inspection procedures; this article systematically presents the requirements.
+Refining face roughness from Ra 0.4 μm to 0.05 μm cuts leakage by 90% — which is exactly why surface roughness is a mandatory outgoing inspection item for carbon graphite seal rings. Requirements differ by region, though: mechanical seal faces need Ra ≤ 0.1 μm plus Rz evaluation for wear resistance, while bushing bores are inspected mainly for scratches. This article sets out roughness targets by part, measurement methods and process controls — including the tool-wear threshold at which cutters must be replaced.
 
 ## 1. Roughness Parameters Explained
 
@@ -1549,7 +1549,7 @@ Surface roughness control for graphite seals is a system engineering effort cove
 - 碳石墨在累积辐照剂量 10⁹ Gy 下性能无明显下降，是核电高辐照区域密封件的首选材料
 - 核主泵密封石墨环须纯度 ≥ 99.5%、经 1000℃ 真空除气、通过 10⁷ Gy 伽马辐照试验，端面平面度 ≤ 0.3 μm
 - 高温工况应选用金属浸渍石墨（锑浸渍 450℃、铜浸渍 500℃），严禁使用树脂浸渍石墨
-- 二回路给水泵锑浸渍 M254G-N 石墨密封环已运行 24000 小时，泄漏量 8 mL/h 优于标准要求
+- 二回路给水泵锑浸渍 M106D-N 石墨密封环已运行 24000 小时，泄漏量 8 mL/h 优于标准要求
 
 核电站是迄今人类工程中最复杂的能源系统之一。一回路主泵、应急堆芯冷却系统、安全壳贯穿件等部位的密封件一旦失效，可能引发放射性介质泄漏，造成难以估量的后果。碳石墨材料因其耐辐照性能、耐高温性、化学惰性和优异的自润滑特性，在核电关键密封部位发挥不可替代的作用。霍邱县华豪密封件有限公司虽不直接参与核电主泵密封供货，但基于核电行业标准研究开发了多款核电级石墨密封件，应用于二回路及辅助系统。本文系统介绍碳石墨在核电中的应用与要求。
 
@@ -1646,7 +1646,7 @@ Surface roughness control for graphite seals is a system engineering effort cove
 ## 四、霍邱县华豪密封件有限公司的核电能力
 
 ### 4.1 已开发产品
-- 核二回路给水泵密封石墨环（M254G 核级）
+- 核二回路给水泵密封石墨环（M106D 核级）
 - 辅助系统阀门密封石墨环
 - 废燃料水池密封件
 - 应急系统泵用石墨轴套
@@ -1663,7 +1663,7 @@ Surface roughness control for graphite seals is a system engineering effort cove
 
 ## 五、典型应用案例
 
-为某核电站二回路给水泵提供的锑浸渍石墨密封环（M254G-N），内径 110 mm，外径 140 mm，工作温度 220℃，压力 7.5 MPa。运行数据：
+为某核电站二回路给水泵提供的锑浸渍石墨密封环（M106D-N），内径 110 mm，外径 140 mm，工作温度 220℃，压力 7.5 MPa。运行数据：
 - 泄漏量：8 mL/h（标准要求 ≤ 30 mL/h）
 - 磨损率：0.02 mm/1000h
 - 累计运行：24000 小时
@@ -1690,7 +1690,7 @@ SMR 密封件尺寸更小、可靠性要求更高，需要开发新型石墨材�
 - Carbon graphite shows no significant performance degradation up to a cumulative radiation dose of 10⁹ Gy, making it the preferred material for high-radiation nuclear zones
 - RCP seal graphite rings require purity ≥ 99.5%, vacuum degassing at 1000°C, 10⁷ Gy gamma irradiation testing, and face flatness ≤ 0.3 μm
 - High-temperature service must use metal-impregnated graphite (antimony 450°C, copper 500°C); resin-impregnated graphite is prohibited
-- A secondary-loop feed pump antimony-impregnated M254G-N graphite seal ring has run 24,000 hours with 8 mL/h leakage, outperforming the standard
+- A secondary-loop feed pump antimony-impregnated M106D-N graphite seal ring has run 24,000 hours with 8 mL/h leakage, outperforming the standard
 
 A nuclear power plant is one of the most complex engineering systems ever built. Seal failure in the reactor coolant pump (RCP), emergency core cooling system (ECCS), or containment penetrations may release radioactive media with catastrophic consequences. Carbon graphite — with radiation resistance, high-temperature tolerance, chemical inertness, and self-lubricity — plays an irreplaceable role in critical nuclear seals. While Huahao Sealing Co., Ltd. does not directly supply RCP primary seals, we have developed several nuclear-grade graphite seals for secondary-loop and auxiliary systems based on nuclear industry standards. This article reviews graphite applications and requirements in nuclear power.
 
@@ -1782,7 +1782,7 @@ Feed pumps deliver deaerated demineralized water at 180~220°C, 6~8 MPa. Metal-i
 ## 4. Huahao Sealing Nuclear Capabilities
 
 ### 4.1 Developed Products
-- Secondary-loop feed pump graphite seal ring (M254G nuclear grade)
+- Secondary-loop feed pump graphite seal ring (M106D nuclear grade)
 - Auxiliary valve seal graphite rings
 - Spent fuel pool seals
 - Emergency system pump graphite bushings
@@ -1799,7 +1799,7 @@ Feed pumps deliver deaerated demineralized water at 180~220°C, 6~8 MPa. Metal-i
 
 ## 5. Typical Application Case
 
-A secondary-loop feed pump at a nuclear plant uses our antimony-impregnated graphite seal ring M254G-N: ID 110 mm, OD 140 mm, 220°C, 7.5 MPa. Operating data:
+A secondary-loop feed pump at a nuclear plant uses our antimony-impregnated graphite seal ring M106D-N: ID 110 mm, OD 140 mm, 220°C, 7.5 MPa. Operating data:
 - Leakage: 8 mL/h (spec ≤ 30 mL/h)
 - Wear rate: 0.02 mm/1000h
 - Cumulative operation: 24,000 hours

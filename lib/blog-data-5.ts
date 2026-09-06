@@ -29,7 +29,7 @@ export const blogPostsBatch5: BlogPost[] = [
 - 当PV值超过8 MPa·m/s时，建议采用双端面机械密封并配冲洗液系统，可有效带走摩擦热并隔离危险介质
 - 搪玻璃反应釜配套密封推荐M3系列浸树脂石墨静环，硬度HS 55-65，摩擦系数低于0.12，与搪玻璃对偶件匹配性最佳
 
-反应釜是化工、医药、农药、食品等行业的关键设备，其密封性能直接关系到生产安全和产品质量。霍邱县华豪密封件有限公司在为数千台反应釜配套碳石墨密封环的实践中，总结出一套基于压力、温度、介质三维变量的选型方法学。本文将系统性地介绍反应釜用石墨密封的选型要点，帮助工艺工程师和设备工程师做出科学决策。
+反应釜密封选型的难处在于变量跨度大：压力 0.1-30 MPa，温度 -50~450℃，介质从盐酸到氢氟酸都有。没有一种材料能全覆盖，选型就是把压力、温度、介质三个变量排清楚再做匹配：低压用纯石墨配陶瓷，中高压上浸锑石墨配硬质合金，强腐蚀介质避开浸金属石墨，PV 值超过 8 MPa·m/s 必须另行校核。本文按这个框架给出选型要点。
 
 ## 一、按压力等级选型
 
@@ -37,7 +37,7 @@ export const blogPostsBatch5: BlogPost[] = [
 低压反应釜常见于常压反应、中和反应、配料罐等场合。密封设计以结构简单、维护方便为主，可选用单端面机械密封或填料密封。静环材料可选用普通纯石墨（牌号M120），动环对偶件选用氧化铝陶瓷（Al₂O₃含量95%）。这一组合成本低，互换性好，已能满足0.1-0.6 MPa工况下的密封要求。
 
 ### 1.2 中压工况（0.6-6.4 MPa）
-中压工况涵盖大部分聚合釜、氢化釜和氨化釜。推荐采用单端面平衡型机械密封，静环升级为浸锑碳石墨（牌号M106K），硬度HS 70-80，抗压强度≥200 MPa。动环选用碳化硅（SiC）或硬质合金（YG6/YG8）。浸锑石墨的PV值可达8-12 MPa·m/s，能够承受中压工况下的较高PV值，同时保持低磨损率。
+中压工况涵盖大部分聚合釜、氢化釜和氨化釜。推荐采用单端面平衡型机械密封，静环升级为浸锑碳石墨（牌号M106D），硬度HS 70-80，抗压强度≥200 MPa。动环选用碳化硅（SiC）或硬质合金（YG6/YG8）。浸锑石墨的PV值可达8-12 MPa·m/s，能够承受中压工况下的较高PV值，同时保持低磨损率。
 
 ### 1.3 高压工况（≥6.4 MPa）
 高压反应釜（如高压聚乙烯釜、超临界萃取釜）必须采用双端面机械密封，并配置冲洗液系统。静环选用浸锑石墨或浸铜石墨，动环选用硬质合金或碳化硅。轴向密封圈采用氟橡胶或全氟醚橡胶（FFKM），承受高温高压介质。密封腔需设计冷却夹套，控制密封液温度不超过80°C，避免石墨件温升过高导致热裂。
@@ -77,7 +77,7 @@ export const blogPostsBatch5: BlogPost[] = [
 - When PV value exceeds 8 MPa·m/s, dual-face mechanical seals with a flushing liquid system are recommended to dissipate frictional heat and isolate hazardous media
 - Glass-lined reactors pair best with M3 series resin-impregnated graphite stationary rings, HS 55-65 hardness, friction coefficient below 0.12, with optimal mating compatibility against glass-lined surfaces
 
-Reactors are critical equipment in the chemical, pharmaceutical, pesticide and food industries, and their sealing performance directly affects production safety and product quality. In the course of supplying carbon graphite seal rings for thousands of reactors, Huahao Sealing Co., Ltd. (霍邱县华豪密封件有限公司) has developed a selection methodology based on three variables — pressure, temperature and media. This article systematically introduces selection criteria for graphite seals used in reactors, helping process and equipment engineers make scientific decisions.
+Reactor sealing is difficult because the variables span wide: pressure from 0.1 to 30 MPa, temperature from -50 to 450°C, media from hydrochloric to hydrofluoric acid. No single material covers it all — selection means ranking pressure, temperature and media first, then matching: plain graphite against ceramics for low pressure, antimony-impregnated graphite against tungsten carbide for medium-high pressure, metal-impregnated graphite avoided for strongly corrosive media, and a separate PV check wherever it exceeds 8 MPa·m/s. Following that framework, this article sets out the selection criteria.
 
 ## 1. Selection by Pressure Class
 
@@ -886,7 +886,7 @@ The heat dissipation design of graphite seal rings is key to ensuring reliable l
 ## 二、材料选择
 
 ### 2.1 静环材料
-汽车水泵静环推荐采用浸锑石墨（牌号M106K）：
+汽车水泵静环推荐采用浸锑石墨（牌号M106D）：
 - 密度：2.3-2.4 g/cm³
 - 硬度：HS 75-85
 - 抗压强度：≥200 MPa

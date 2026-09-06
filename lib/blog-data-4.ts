@@ -29,7 +29,7 @@ export const blogPostsBatch4: BlogPost[] = [
 - 端面平面度应≤0.0009 mm（3个光带），安装前必须用丙酮或无水乙醇清洁密封面，避免硬质颗粒嵌入造成泄漏通道
 - 拆卸时应将介质温度降至60°C以下、压力泄放至0 MPa后操作，热态拆卸易因热应力导致石墨环碎裂
 
-碳石墨密封环作为机械密封、填料密封的关键摩擦副元件，其安装与拆卸质量直接决定了密封件的运行可靠性和使用寿命。在霍邱县华豪密封件有限公司十余年的碳石墨密封件生产与服务实践中，我们发现超过35%的早期失效案例与不规范的安装或拆卸操作有关。本文将系统讲解碳石墨密封环在装配、调试、拆卸全过程中的关键技术要点，帮助设备维护人员避免常见错误，延长密封件使用寿命。
+碳石墨抗压强度 150-300MPa，抗拉强度却只有 30-50MPa——这种“耐压不耐拉”的特性，决定了它和金属件完全不同的安装规则：严禁锤击、严禁偏心受力，过盈量超过 0.2mm 就有周向开裂风险。华豪售后记录里超过 35% 的早期失效来自不规范的装拆。本文按装配、调试、拆卸三个环节列出技术要点和常见错误，维护人员可以直接对照执行。
 
 ## 一、安装前准备
 
@@ -114,7 +114,7 @@ export const blogPostsBatch4: BlogPost[] = [
 - Face flatness should be ≤0.0009 mm (3 light bands); seal faces must be cleaned with acetone or anhydrous ethanol before installation to prevent hard particles from creating leak paths
 - Disassembly should be performed only after media temperature drops below 60°C and pressure is fully vented to 0 MPa; hot-state removal can cause thermal-stress cracking
 
-As the key friction pair element in mechanical seals and packing seals, carbon graphite seal rings depend on correct installation and removal for operational reliability and service life. In over a decade of production and field service at Huahao Sealing Co., Ltd. (霍邱县华豪密封件有限公司), we have found that more than 35% of early seal failures are linked to improper installation or removal. This article systematically covers the technical essentials of carbon graphite seal ring assembly, commissioning, and disassembly, helping maintenance teams avoid common mistakes and extend seal service life.
+Carbon graphite has compressive strength of 150–300 MPa but tensile strength of only 30–50 MPa — and this "strong in compression, weak in tension" character dictates installation rules entirely different from metal parts: no hammering, no off-center loading, and circumferential cracking risk once interference exceeds 0.2 mm. Our after-sales records attribute more than 35% of early failures to improper installation or removal. This article lists technical essentials and common mistakes across assembly, commissioning and removal for maintenance teams to follow directly.
 
 ## 1. Pre-Installation Preparation
 
@@ -372,7 +372,7 @@ Carbon graphite materials offer unique value in seals, bearings, heating element
 - 弹簧比压通常取0.05-0.25 MPa,低压工况取上限,高压工况取下限,防止开泵瞬间密封面打开
 - 碳石墨密封环端面接触面积载荷超过许用PV值(浸锑牌号10 MPa·m/s)时,需考虑平衡型或差动型结构
 
-机械密封的端面比压是决定密封性能与使用寿命的核心参数。比压过大,密封面摩擦发热严重,磨损加剧甚至热裂;比压过小,密封面易打开泄漏。作为霍邱县华豪密封件有限公司的技术工程师,我们在长期的设计与现场服务实践中,积累了丰富的端面比压计算经验。本文将系统讲解机械密封端面比压的计算方法、关键参数取值,并结合实例演示完整计算流程,帮助工程师科学设计密封结构。
+端面比压是机械密封设计里最不能拍脑袋的参数：内装式推荐 0.3-0.6 MPa，外装式 0.15-0.35 MPa——比压过大，摩擦热把端面烧成放射状热裂；过小，端面打开直接泄漏。载荷系数 K、弹簧比压、膜压系数，每个量的取值都有依据。本文给出计算公式、参数取值原则和完整算例，设计完对照核一遍，能避开大部分现场问题。
 
 ## 一、端面比压的基本概念
 
@@ -497,7 +497,7 @@ PV = Pc × v = 0.5 × 10.79 = 5.4 MPa·m/s
 - Spring pressure typically 0.05-0.25 MPa — lower end for high-pressure conditions, upper end for low-pressure conditions, preventing face opening at pump start
 - When face loading exceeds allowable PV value (10 MPa·m/s for antimony-impregnated grades), balanced or differential structures must be considered
 
-Face pressure is the core parameter determining mechanical seal performance and service life. Excessive face pressure causes frictional heating, accelerated wear, and even thermal cracking; insufficient pressure causes face opening and leakage. As technical engineers at Huahao Sealing Co., Ltd. (霍邱县华豪密封件有限公司), we have accumulated extensive experience in face pressure calculation through design and field service practice. This article systematically explains calculation methods, key parameter selection, and demonstrates the complete calculation workflow with an example.
+Face pressure is the one mechanical seal parameter you should never set by feel: 0.3–0.6 MPa for internally mounted seals, 0.15–0.35 MPa for externally mounted — too high and friction heat cracks the faces in radial patterns; too low and the faces open and leak. Load coefficient K, spring pressure and film-pressure coefficient each have their own selection basis. This article provides the formulas, parameter selection principles and a complete worked example — check your design against it and most field problems can be avoided.
 
 ## 1. Basic Concepts of Face Pressure
 
@@ -639,7 +639,7 @@ Proper calculation and control of face pressure is the core of mechanical seal d
 - 跑合期(24-100小时)石墨轴套内径磨损0.01-0.03 mm,设计间隙应预留跑合余量
 - 轴颈表面硬度建议≥HRC45,粗糙度Ra 0.4-0.8 μm,过软或过糙都会加速石墨轴套磨损
 
-石墨轴套作为滑动轴承的关键摩擦副元件,其与轴的配合间隙直接决定了轴承的承载能力、运转精度和使用寿命。间隙过小,易发生抱轴、烧套;间隙过大,导致振动、噪声加剧,精度下降。作为霍邱县华豪密封件有限公司的精密加工工程师,我们在长期的生产实践中积累了丰富的间隙设计与公差控制经验。本文将系统讲解石墨轴套间隙的设计原则、不同介质下的推荐值,以及公差分配与检测方法。
+石墨轴套的配合间隙没有一张可以照抄的统一表格：水介质推荐 0.0015-0.0025×轴径，油介质 0.001-0.002×，气体介质 0.002-0.003×——这是起点不是终点。间隙过小抱轴烧套，过大振动噪声。碳石墨热膨胀只有钢的 1/3-1/2，高温工况还必须单独校核间隙变化，新轴套另有 24-100 小时跑合期。本文给出不同介质下的推荐值、公差分配方法和检测手段。
 
 ## 一、间隙设计的基本原则
 
@@ -767,7 +767,7 @@ Proper calculation and control of face pressure is the core of mechanical seal d
 - Run-in period (24-100 hours) bushing bore wear 0.01-0.03 mm; design clearance must reserve run-in allowance
 - Shaft journal hardness should be ≥HRC 45 with roughness Ra 0.4-0.8 μm; softer or rougher shafts accelerate graphite bushing wear
 
-As a key friction pair element of sliding bearings, the clearance between graphite bushings and shafts directly determines bearing load capacity, running accuracy, and service life. Too small clearance causes shaft seizure and bushing burnout; too large clearance causes vibration, noise, and accuracy loss. As precision machining engineers at Huahao Sealing Co., Ltd. (霍邱县华豪密封件有限公司), we have accumulated extensive clearance design and tolerance control experience. This article systematically explains graphite bushing clearance design principles, recommended values for different media, and tolerance allocation and inspection methods.
+There is no universal clearance table to copy for graphite bushings: 0.0015–0.0025 × shaft diameter for water, 0.001–0.002× for oil, 0.002–0.003× for gas are starting points, not final answers. Too tight and the bushing seizes and burns out; too loose and vibration and noise take over. Carbon graphite's thermal expansion is only 1/3 to 1/2 that of steel, high-temperature service needs a separate clearance check, and new bushings additionally require a 24–100 hour run-in. This article provides recommended values by media, tolerance allocation methods and inspection techniques.
 
 ## 1. Basic Principles of Clearance Design
 

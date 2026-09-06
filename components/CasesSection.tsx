@@ -24,7 +24,7 @@ export default async function CasesSection() {
         <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:gap-6">
           {items.map((c, i) => (
             <Reveal key={i} delay={(i % 3) * 90}>
-            <div className="card-static group flex h-full flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_18px_42px_rgba(23,25,29,0.12)]">
+            <div className="card-static group flex h-full flex-col overflow-hidden transition-colors duration-300 hover:border-muted-light">
               <div className="border-b border-border bg-white p-4 sm:p-5 lg:p-6">
                 <div className="en-caption mb-2 text-xs text-muted-light">{c.company}</div>
                 <h3 className="text-base font-bold text-primary line-clamp-2 transition-colors group-hover:text-accent sm:text-lg">{c.title}</h3>

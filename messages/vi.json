@@ -121,7 +121,7 @@
     "whyCarbon": {
       "tag": "Tại sao Carbon Graphite",
       "title": "Chi phí hư hỏng vs Lợi thế Carbon Graphite",
-      "description": "Nếu bạn đang đối mặt với sự cố phốt thường xuyên, carbon graphite có thể là câu trả lời.",
+      "description": "Sự cố phốt thường xuyên phần lớn bắt nguồn từ vật liệu. Dưới đây là cách than chì carbon xử lý mài mòn, nhiệt độ cao và ăn mòn — so sánh bằng số liệu.",
       "problemsTitle": "Vấn đề thường gặp",
       "solutionTitle": "Giải pháp Carbon Graphite",
       "ctaTitle": "Carbon Graphite — Giải quyết cả ba",
@@ -131,7 +131,7 @@
     "applicationsSection": {
       "tag": "Ứng dụng",
       "title": "Ngành phục vụ",
-      "description": "Giải pháp làm kín của chúng tôi được tin cậy trên toàn thế giới."
+      "description": "Ứng dụng cụ thể của phụ kiện than chì carbon trong bơm, hàng hải, hóa chất, luyện kim và nhiều ngành khác."
     },
     "casesSection": {
       "tag": "Nghiên cứu điển hình",
@@ -341,7 +341,10 @@
     "all": "Tất cả sản phẩm",
     "empty": "Không có sản phẩm trong danh mục này",
     "ctaTitle": "Cần giúp đỡ chọn sản phẩm phù hợp?",
-    "ctaSubtitle": "Mô tả điều kiện vận hành của bạn, đội ngũ kỹ thuật sẽ đề xuất giải pháp tốt nhất trong vòng 24 giờ."
+    "ctaSubtitle": "Mô tả điều kiện vận hành của bạn, đội ngũ kỹ thuật sẽ đề xuất giải pháp tốt nhất trong vòng 24 giờ.",
+    "videoOverline": "Video thực tế",
+    "videoTitle": "Trung tâm sản phẩm · Video thực tế",
+    "videoIntro": "Hình ảnh thực tế xưởng, thiết bị và sản phẩm: từ phôi, gia công đến thành phẩm và đóng gói."
   },
   "about": {
     "pageTitle": "Về Huahao Sealing",

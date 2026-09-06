@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { Link } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
 import { siteConfig } from "@/lib/constants"
+import { trackEvent } from "@/lib/track"
 import Icon from "@/components/ui/Icon"
 
 type SideItem = {
@@ -68,6 +69,7 @@ export default function FloatingCTA() {
             target={item.external ? "_blank" : undefined}
             rel={item.external ? "noopener noreferrer" : undefined}
             title={item.label}
+            onClick={item.key === "whatsapp" ? () => trackEvent("whatsapp_click", "side_dock") : undefined}
             className={`flex flex-col items-center gap-1.5 py-4 hover:bg-gray-50 transition-colors ${i > 0 ? "border-t border-border" : ""}`}
           >
             <span className={`flex h-10 w-10 items-center justify-center rounded-full text-white shadow-sm transition-transform hover:scale-110 ${item.color}`}>
@@ -82,6 +84,7 @@ export default function FloatingCTA() {
           <a
             href={`tel:${siteConfig.phone.replace(/[^+\d]/g, "")}`}
             title={t("hotline")}
+            onClick={() => trackEvent("phone_click", "side_dock")}
             className="flex flex-col items-center gap-1.5 py-4 hover:bg-gray-50 transition-colors"
           >
             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-white shadow-sm transition-transform group-hover:scale-110">
@@ -141,6 +144,7 @@ export default function FloatingCTA() {
             href={`https://wa.me/${siteConfig.whatsapp}?text=Hi%20HuaHao%20Sealing%2C%20I%27d%20like%20to%20inquire%20about%20your%20sealing%20products.`}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackEvent("whatsapp_click", "mobile_bar")}
             className="flex-1 flex items-center justify-center gap-2 py-3.5 bg-green-600 text-white font-semibold text-sm"
           >
             <Icon name="whatsapp" className="w-5 h-5" />

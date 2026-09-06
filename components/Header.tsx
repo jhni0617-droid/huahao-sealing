@@ -8,6 +8,7 @@ import LanguageSwitcher from "@/components/LanguageSwitcher"
 import Icon from "@/components/ui/Icon"
 import { getLocalized } from "@/lib/locale-data"
 import { siteConfig } from "@/lib/constants"
+import { trackEvent } from "@/lib/track"
 import type { IconName } from "@/components/ui/Icon"
 
 const brandCopy = {
@@ -137,10 +138,10 @@ export default function Header() {
         {
           title: t("nav.productMenu.groupProducts"),
           items: [
-            { label: t("nav.productMenu.raw"), href: "/products", icon: "box" },
-            { label: t("nav.productMenu.sealRings"), href: "/products", icon: "seal" },
-            { label: t("nav.productMenu.bushings"), href: "/products", icon: "gear" },
-            { label: t("nav.productMenu.splitRings"), href: "/products", icon: "droplet" },
+            { label: t("nav.productMenu.raw"), href: "/materials", icon: "box" },
+            { label: t("nav.productMenu.sealRings"), href: "/products?category=seal-rings", icon: "seal" },
+            { label: t("nav.productMenu.bushings"), href: "/products?category=carbon-graphite-sleeves", icon: "gear" },
+            { label: t("nav.productMenu.splitRings"), href: "/products?category=three-part-rings", icon: "droplet" },
             { label: t("nav.productMenu.custom"), href: "/contact", icon: "sparkles" },
           ],
         },
@@ -148,10 +149,10 @@ export default function Header() {
           title: t("nav.productMenu.groupSolutions"),
           items: [
             { label: t("nav.productMenu.solutions"), href: "/applications", icon: "layers" },
-            { label: t("nav.productMenu.ev"), href: "/applications", icon: "bolt" },
-            { label: t("nav.productMenu.semiconductor"), href: "/applications", icon: "atom" },
-            { label: t("nav.productMenu.chemical"), href: "/applications", icon: "flask" },
-            { label: t("nav.productMenu.metallurgy"), href: "/applications", icon: "fire" },
+            { label: t("nav.productMenu.ev"), href: "/blog/ev-lithium-battery-graphite-seal", icon: "bolt" },
+            { label: t("nav.productMenu.semiconductor"), href: "/applications/semiconductor", icon: "atom" },
+            { label: t("nav.productMenu.chemical"), href: "/applications#chemical-processing", icon: "flask" },
+            { label: t("nav.productMenu.metallurgy"), href: "/applications#mining-metallurgy", icon: "fire" },
           ],
         },
       ],
@@ -165,21 +166,19 @@ export default function Header() {
           title: t("nav.casesMenu.groupFactory"),
           items: [
             { label: t("nav.casesMenu.factory"), href: "/factory", icon: "factory" },
-            { label: t("nav.casesMenu.workshop"), href: "/factory", icon: "gear" },
-            { label: t("nav.casesMenu.quality"), href: "/factory", icon: "microscope" },
-            { label: t("nav.casesMenu.process"), href: "/factory", icon: "layers" },
-            { label: t("nav.casesMenu.capacity"), href: "/factory", icon: "clock" },
-            { label: t("nav.casesMenu.certificates"), href: "/factory", icon: "certificate" },
+            { label: t("nav.casesMenu.workshop"), href: "/factory#gallery", icon: "gear" },
+            { label: t("nav.casesMenu.quality"), href: "/factory#qc", icon: "microscope" },
+            { label: t("nav.casesMenu.process"), href: "/factory#process", icon: "layers" },
+            { label: t("nav.casesMenu.capacity"), href: "/about#buyer-faq", icon: "clock" },
+            { label: t("nav.casesMenu.certificates"), href: "/factory#certificates", icon: "certificate" },
           ],
         },
         {
           title: t("nav.casesMenu.groupCases"),
           items: [
             { label: t("nav.casesMenu.sealCases"), href: "/cases", icon: "seal" },
-            { label: t("nav.casesMenu.semiconductorCases"), href: "/cases", icon: "atom" },
-            { label: t("nav.casesMenu.moldCases"), href: "/cases", icon: "fire" },
-            { label: t("nav.casesMenu.exportCases"), href: "/cases", icon: "ship" },
-            { label: t("nav.casesMenu.customCases"), href: "/cases", icon: "clipboard" },
+            { label: t("nav.casesMenu.semiconductorCases"), href: "/applications/semiconductor", icon: "atom" },
+            { label: t("nav.casesMenu.exportCases"), href: "/markets", icon: "ship" },
           ],
         },
       ],
@@ -193,20 +192,20 @@ export default function Header() {
           title: t("nav.blogMenu.groupBlog"),
           items: [
             { label: t("nav.blogMenu.articles"), href: "/blog", icon: "news" },
-            { label: t("nav.blogMenu.process"), href: "/blog", icon: "gear" },
-            { label: t("nav.blogMenu.selection"), href: "/blog", icon: "check" },
-            { label: t("nav.blogMenu.precision"), href: "/blog", icon: "ruler" },
-            { label: t("nav.blogMenu.news"), href: "/blog", icon: "eye" },
+            { label: t("nav.blogMenu.process"), href: "/blog?tag=process", icon: "gear" },
+            { label: t("nav.blogMenu.selection"), href: "/blog?tag=selection", icon: "check" },
+            { label: t("nav.blogMenu.precision"), href: "/blog?tag=precision", icon: "ruler" },
+            { label: t("nav.blogMenu.news"), href: "/blog?tag=news", icon: "eye" },
           ],
         },
         {
           title: t("nav.blogMenu.groupFaq"),
           items: [
             { label: t("nav.blogMenu.faq"), href: "/faq", icon: "question" },
-            { label: t("nav.blogMenu.faqLeak"), href: "/faq", icon: "droplet" },
-            { label: t("nav.blogMenu.faqTolerance"), href: "/faq", icon: "ruler" },
-            { label: t("nav.blogMenu.faqMaterial"), href: "/faq", icon: "seal" },
-            { label: t("nav.blogMenu.faqSample"), href: "/faq", icon: "eye" },
+            { label: t("nav.blogMenu.faqLeak"), href: "/faq#troubleshooting", icon: "droplet" },
+            { label: t("nav.blogMenu.faqTolerance"), href: "/faq#clearance", icon: "ruler" },
+            { label: t("nav.blogMenu.faqMaterial"), href: "/faq#selection", icon: "seal" },
+            { label: t("nav.blogMenu.faqSample"), href: "/faq#custom", icon: "eye" },
           ],
         },
       ],
@@ -233,6 +232,9 @@ export default function Header() {
             { label: getLocalized({ zh: "宣传册", en: "Company Brochure", vi: "Tài liệu giới thiệu", th: "โบรชัวร์บริษัท", ru: "Брошюра компании", ja: "会社パンフレット", ko: "회사 브로슈어" }, locale), href: "/downloads/Huahao-Seals-Brochure.pdf", icon: "download" },
             { label: getLocalized({ zh: "产品目录", en: "Product Catalog", vi: "Danh mục sản phẩm", th: "แคตตาล็อกสินค้า", ru: "Каталог продукции", ja: "製品カタログ", ko: "제품 카탈로그" }, locale), href: "/downloads/huahao-product-catalog.pdf", icon: "download" },
             { label: getLocalized({ zh: "出口资料", en: "Export Documents", vi: "Tài liệu xuất khẩu", th: "เอกสารการส่งออก", ru: "Экспортные документы", ja: "輸出書類", ko: "수출 서류" }, locale), href: "/downloads/Huahao-Export-Declaration.docx", icon: "download" },
+            { label: getLocalized({ zh: "M120K 检测报告", en: "M120K Test Report", vi: "Báo cáo kiểm nghiệm M120K", th: "รายงานการทดสอบ M120K", ru: "Отчёт об испытаниях M120K", ja: "M120K 試験報告書", ko: "M120K 시험 성적서" }, locale), href: "/downloads/M120K.pdf", icon: "download" },
+            { label: getLocalized({ zh: "M106D 检测报告", en: "M106D Test Report", vi: "Báo cáo kiểm nghiệm M106D", th: "รายงานการทดสอบ M106D", ru: "Отчёт об испытаниях M106D", ja: "M106D 試験報告書", ko: "M106D 시험 성적서" }, locale), href: "/downloads/M106D.pdf", icon: "download" },
+            { label: getLocalized({ zh: "M140K 检测报告", en: "M140K Test Report", vi: "Báo cáo kiểm nghiệm M140K", th: "รายงานการทดสอบ M140K", ru: "Отчёт об испытаниях M140K", ja: "M140K 試験報告書", ko: "M140K 시험 성적서" }, locale), href: "/downloads/M140K.pdf", icon: "download" },
           ],
         },
       ],
@@ -246,9 +248,9 @@ export default function Header() {
           title: t("nav.aboutMenu.groupAbout"),
           items: [
             { label: t("nav.aboutMenu.intro"), href: "/about", icon: "building" },
-            { label: t("nav.aboutMenu.factory"), href: "/about", icon: "factory" },
-            { label: t("nav.aboutMenu.process"), href: "/about", icon: "check" },
-            { label: t("nav.aboutMenu.certifications"), href: "/about", icon: "certificate" },
+            { label: t("nav.aboutMenu.factory"), href: "/factory#gallery", icon: "factory" },
+            { label: t("nav.aboutMenu.process"), href: "/about#buyer-faq", icon: "check" },
+            { label: t("nav.aboutMenu.certifications"), href: "/factory#certificates", icon: "certificate" },
           ],
         },
       ],
@@ -395,7 +397,10 @@ export default function Header() {
                                 <a
                                   href={sub.href}
                                   download
-                                  onClick={() => setActiveDropdown(null)}
+                                  onClick={() => {
+                                    setActiveDropdown(null)
+                                    trackEvent("datasheet_download", sub.label)
+                                  }}
                                   className="group/sub flex items-center justify-between gap-3 px-3 py-2 transition-colors hover:bg-accent-subtle"
                                 >
                                   {item}
@@ -527,7 +532,10 @@ export default function Header() {
                                 href={sub.href}
                                 download
                                 className="flex items-center gap-2 py-2 px-3 text-sm text-gray-600 hover:text-accent hover:bg-gray-50 rounded-lg transition-colors"
-                                onClick={() => setOpen(false)}
+                                onClick={() => {
+                                  setOpen(false)
+                                  trackEvent("datasheet_download", sub.label)
+                                }}
                               >
                                 {mobileItem}
                               </a>

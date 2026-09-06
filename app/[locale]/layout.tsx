@@ -1,7 +1,25 @@
 import type { Metadata, Viewport } from "next"
 import { NextIntlClientProvider } from "next-intl"
 import { getMessages, setRequestLocale } from "next-intl/server"
-import { Inter, Plus_Jakarta_Sans, Bebas_Neue } from "next/font/google"
+// 字体自托管（fontsource，构建/加载不再依赖 Google Fonts 网络）
+// Inter 支持拉丁+西里尔，作为英文正文与俄语兜底
+import "@fontsource/inter/400.css"
+import "@fontsource/inter/500.css"
+import "@fontsource/inter/600.css"
+import "@fontsource/inter/700.css"
+import "@fontsource/plus-jakarta-sans/500.css"
+import "@fontsource/plus-jakarta-sans/600.css"
+import "@fontsource/plus-jakarta-sans/700.css"
+import "@fontsource/plus-jakarta-sans/800.css"
+import "@fontsource/bebas-neue/400.css"
+import "@fontsource/playfair-display/500.css"
+import "@fontsource/playfair-display/600.css"
+import "@fontsource/playfair-display/700.css"
+import "@fontsource/playfair-display/500-italic.css"
+import "@fontsource/noto-serif-sc/500.css"
+import "@fontsource/noto-serif-sc/600.css"
+import "@fontsource/noto-serif-sc/700.css"
+import "@fontsource/noto-serif-sc/900.css"
 import { routing } from "@/i18n/routing"
 import LayoutShell from "@/components/LayoutShell"
 import { OrganizationJsonLd } from "@/components/JsonLd"
@@ -9,28 +27,6 @@ import { notFound } from "next/navigation"
 import { siteConfig } from "@/lib/constants"
 import AnalyticsScripts from "@/components/AnalyticsScripts"
 import "../globals.css"
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-  weight: ["400", "500", "600", "700"],
-})
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-plus-jakarta",
-  weight: ["500", "600", "700", "800"],
-})
-
-/* 良工式大数字/英文标注展示字体（仅拉丁字符，用于数字与 EN caption） */
-const bebasNeue = Bebas_Neue({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-bebas",
-  weight: "400",
-})
 
 interface Props {
   children: React.ReactNode
@@ -59,8 +55,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ? "华豪密封 | 高品质碳石墨密封解决方案"
       : "Huahao Sealing | High-Quality Carbon Graphite Sealing Solutions",
     description: isZh
-      ? "专业生产碳石墨密封环、碳石墨轴套/轴承、碳石墨三瓣环。服务全球1000+客户，产品出口15+国家。"
-      : "Professional manufacturer of carbon graphite seal rings, bushings/bearings, and split rings. Serving 1,000+ global customers, exporting to 15+ countries.",
+      ? "专业生产碳石墨密封环、碳石墨轴套/轴承、碳石墨三瓣环。服务全球1,000+客户，产品出口10+国家。"
+      : "Professional manufacturer of carbon graphite seal rings, bushings/bearings, and split rings. Serving 1,000+ global customers, exporting to 10+ countries.",
     alternates: {
       canonical: canonicalUrl,
       languages: Object.fromEntries(
@@ -107,7 +103,7 @@ export const viewport: Viewport = {
 
 export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params
-  if (!routing.locales.includes(locale as any)) notFound()
+  if (!routing.locales.includes(locale as (typeof routing.locales)[number])) notFound()
 
   // Enable static rendering for this locale's routes
   setRequestLocale(locale)
@@ -130,7 +126,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   }
 
   return (
-    <html lang={locale} data-scroll-behavior="smooth" className={`h-full antialiased ${inter.variable} ${plusJakartaSans.variable} ${bebasNeue.variable} ${locale !== "zh" ? "locale-en" : ""}`}>
+    <html lang={locale} data-scroll-behavior="smooth" className={`h-full antialiased ${locale !== "zh" ? "locale-en" : ""}`}>
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider locale={locale} messages={clientMessages}>
           <OrganizationJsonLd locale={locale} />

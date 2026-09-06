@@ -54,7 +54,7 @@ export default async function MarketsPage({ params }: { params: Promise<{ locale
         secondaryLabel={hero.secondary}
         secondaryHref="/products"
         stats={[
-          { value: "6+", label: hero.stats[0] },
+          { value: "6", label: hero.stats[0] },
           { value: "7", label: hero.stats[1] },
           { value: "0%", label: hero.stats[2] },
         ]}
