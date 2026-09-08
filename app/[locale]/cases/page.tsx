@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { getLocale, getTranslations, setRequestLocale } from "next-intl/server"
 import { Link } from "@/i18n/routing"
 import CTASection from "@/components/CTASection"
@@ -28,6 +29,15 @@ interface CaseRow {
   solution: string
   result: string
 }
+
+const caseImages = [
+  "/images/stock/case-chemical-pump.webp",
+  "/images/stock/case-marine-pump.webp",
+  "/images/stock/case-power-pump.webp",
+  "/images/stock/case-food-mixer.webp",
+  "/images/stock/case-molten-salt.webp",
+  "/images/stock/case-oven.webp",
+]
 
 export default async function CasesPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -78,6 +88,16 @@ export default async function CasesPage({ params }: { params: Promise<{ locale: 
             <div key={i} className="card-static bg-white p-4 sm:p-6 md:p-8">
               <div className="mb-1 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.08em] text-accent">{c.company}</div>
               <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-primary mb-4 sm:mb-6">{c.title}</h2>
+
+              <div className="relative h-40 sm:h-48 md:h-56 mb-4 sm:mb-6 overflow-hidden border border-border">
+                <Image
+                  src={caseImages[i % caseImages.length]}
+                  alt={c.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 800px"
+                />
+              </div>
 
               <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
                 <div>

@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import { Link } from "@/i18n/routing"
 import { marketLandings } from "@/lib/markets-data"
@@ -18,6 +19,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     path: "/markets",
     locale,
   })
+}
+
+const marketImages: Record<string, string> = {
+  "vietnam": "/images/stock/industry-pump.webp",
+  "india": "/images/stock/industry-chemical.webp",
+  "middle-east": "/images/stock/industry-oil.webp",
+  "indonesia": "/images/stock/industry-marine.webp",
+  "brazil": "/images/stock/industry-mining.webp",
+  "russia": "/images/stock/industry-power.webp",
 }
 
 export default async function MarketsPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -68,8 +78,18 @@ export default async function MarketsPage({ params }: { params: Promise<{ locale
               <Link
                 key={market.slug}
                 href={`/markets/${market.slug}`}
-                className="card-static p-6 hover:border-accent transition-colors block flex flex-col"
+                className="card-static hover:border-accent transition-colors block flex flex-col overflow-hidden"
               >
+                <div className="relative h-48 overflow-hidden border-b border-border">
+                  <Image
+                    src={marketImages[market.slug] || "/images/stock/industry-general.webp"}
+                    alt={getLocalized(market.title, locale)}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </div>
+                <div className="p-6 flex flex-col flex-1">
                 <div className="flex items-center gap-3 mb-4">
                   <Icon name="globe" className="w-6 h-6 text-accent" />
                   <h2 className="text-lg font-bold text-primary leading-tight">
@@ -89,6 +109,7 @@ export default async function MarketsPage({ params }: { params: Promise<{ locale
                 <div className="text-xs text-accent font-semibold mt-4 inline-flex items-center gap-1">
                   {getLocalized({ zh: "查看详情", en: "View details", vi: "Xem chi tiết", th: "ดูรายละเอียด", ru: "Подробнее", ja: "詳細を見る", ko: "상세 보기" }, locale)}
                   <Icon name="arrow-right" className="w-3 h-3" />
+                </div>
                 </div>
               </Link>
             ))}

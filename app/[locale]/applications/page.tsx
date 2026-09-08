@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { getLocale, getTranslations, setRequestLocale } from "next-intl/server"
 import { Link } from "@/i18n/routing"
 import { applications } from "@/lib/constants"
@@ -190,6 +191,17 @@ const enDetails: Record<string, DetailData> = {
   },
 }
 
+const appImages: Record<string, string> = {
+  "pump-industry": "/images/applications/pump-industry.jpg",
+  "marine-industry": "/images/applications/marine-industry.jpg",
+  "chemical-processing": "/images/applications/chemical-processing.jpg",
+  "power-energy": "/images/applications/power-energy.jpg",
+  "food-pharma": "/images/applications/food-pharma.jpg",
+  "mining-metallurgy": "/images/applications/mining-metallurgy.jpg",
+  "oil-gas": "/images/applications/oil-gas.jpg",
+  "general-sealing": "/images/applications/general-sealing.jpg",
+}
+
 export default async function ApplicationsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   setRequestLocale(locale)
@@ -250,23 +262,36 @@ export default async function ApplicationsPage({ params }: { params: Promise<{ l
                     </div>
                   </div>
 
-                  <div className="card-static p-6 bg-white">
-                    <h3 className="font-semibold mb-4">{t("whyTitle", { industry: app.title })}</h3>
-                    <ul className="space-y-3">
-                      {(detail.reasons || [
-                        getLocalized({ zh: "自润滑 — 无需外部润滑", en: "Self-lubricating — no external lubrication", vi: "Tự bôi trơn — không cần bôi trơn ngoài", th: "หล่อลื่นตัวเอง — ไม่ต้องใช้สารหล่อลื่นภายนอก", ru: "Самосмазывание — без внешней смазки", ja: "自己潤滑 — 外部潤滑不要", ko: "자체 윤활 — 외부 윤활 불필요" }, locale),
-                        getLocalized({ zh: "恶劣环境中耐腐蚀", en: "Corrosion resistant in harsh environments", vi: "Chống ăn mòn trong môi trường khắc nghiệt", th: "ทนการกัดกร่อนในสภาพแวดล้อมรุนแรง", ru: "Коррозионная стойкость в тяжелых средах", ja: "過酷環境での耐食性", ko: "가혹 환경 내식성" }, locale),
-                        getLocalized({ zh: "耐高温和抗热冲击", en: "High temperature & thermal shock resistance", vi: "Chịu nhiệt và sốc nhiệt", th: "ทนความร้อนและช็อกความร้อน", ru: "Стойкость к высокой температуре и термошоку", ja: "高温・熱衝撃に強い", ko: "고온 및 열충격 저항" }, locale),
-                        getLocalized({ zh: "长寿命减少维护停机时间", en: "Long life reducing maintenance downtime", vi: "Tuổi thọ dài, giảm thời gian dừng máy", th: "อายุการใช้งานยาว ลดเวลาหยุดซ่อม", ru: "Долгий срок службы снижает простои", ja: "長寿命で保守停止を削減", ko: "긴 수명으로 유지보수 정지 감소" }, locale),
-                      ]).map((item, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm">
-                          <svg className="w-4 h-4 text-accent shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
+                  <div className="flex flex-col gap-4">
+                    {appImages[app.slug] && (
+                      <div className="relative h-56 overflow-hidden border border-border">
+                        <Image
+                          src={appImages[app.slug]}
+                          alt={app.title}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 1024px) 100vw, 420px"
+                        />
+                      </div>
+                    )}
+                    <div className="card-static p-6 bg-white flex-1">
+                      <h3 className="font-semibold mb-4">{t("whyTitle", { industry: app.title })}</h3>
+                      <ul className="space-y-3">
+                        {(detail.reasons || [
+                          getLocalized({ zh: "自润滑 — 无需外部润滑", en: "Self-lubricating — no external lubrication", vi: "Tự bôi trơn — không cần bôi trơn ngoài", th: "หล่อลื่นตัวเอง — ไม่ต้องใช้สารหล่อลื่นภายนอก", ru: "Самосмазывание — без внешней смазки", ja: "自己潤滑 — 外部潤滑不要", ko: "자체 윤활 — 외부 윤활 불필요" }, locale),
+                          getLocalized({ zh: "恶劣环境中耐腐蚀", en: "Corrosion resistant in harsh environments", vi: "Chống ăn mòn trong môi trường khắc nghiệt", th: "ทนการกัดกร่อนในสภาพแวดล้อมรุนแรง", ru: "Коррозионная стойкость в тяжелых средах", ja: "過酷環境での耐食性", ko: "가혹 환경 내식성" }, locale),
+                          getLocalized({ zh: "耐高温和抗热冲击", en: "High temperature & thermal shock resistance", vi: "Chịu nhiệt và sốc nhiệt", th: "ทนความร้อนและช็อกความร้อน", ru: "Стойкость к высокой температуре и термошоку", ja: "高温・熱衝撃に強い", ko: "고온 및 열충격 저항" }, locale),
+                          getLocalized({ zh: "长寿命减少维护停机时间", en: "Long life reducing maintenance downtime", vi: "Tuổi thọ dài, giảm thời gian dừng máy", th: "อายุการใช้งานยาว ลดเวลาหยุดซ่อม", ru: "Долгий срок службы снижает простои", ja: "長寿命で保守停止を削減", ko: "긴 수명으로 유지보수 정지 감소" }, locale),
+                        ]).map((item, i) => (
+                          <li key={i} className="flex items-start gap-2 text-sm">
+                            <svg className="w-4 h-4 text-accent shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
