@@ -13,8 +13,8 @@ const captionByLocale = {
 }
 
 /**
- * 良工式白色统计带：大号展示字体数字 + 虚线分隔。
- * 数字滚动由 CountUp 驱动，进入视口触发一次。
+ * 概念 A 统计带：白色底、超大展示体数字、细线竖分。
+ * 数据（factoryHighlightsByLocale）保持不变。
  */
 export default async function StatsBand() {
   const locale = await getLocale()
@@ -22,21 +22,21 @@ export default async function StatsBand() {
   const caption = getLocalized(captionByLocale, locale)
 
   return (
-    <section className="border-b border-border-light bg-white">
-      <div className="container-wide py-10 md:py-14">
-        <div className="en-caption mb-8 text-center text-xs text-muted-light" aria-hidden>
+    <section className="bg-white">
+      <div className="container-wide py-12 md:py-16">
+        <div className="en-caption mb-8 flex items-center gap-4 text-[11px] text-muted-light" aria-hidden>
+          <span className="h-px w-8 bg-border" />
           {caption}
+          <span className="h-px flex-1 bg-border-light" />
         </div>
         <dl className="grid grid-cols-3">
           {highlights.map((h, i) => (
             <div
               key={h.label}
-              className={`px-3 text-center sm:px-6 ${
-                i > 0 ? "border-l border-dashed border-border" : ""
-              }`}
+              className={`px-3 text-center sm:px-6 ${i > 0 ? "border-l border-border" : ""}`}
             >
-              <dd className="stat-num text-5xl text-primary sm:text-6xl lg:text-7xl">{h.value}</dd>
-              <dt className="mt-3 text-xs font-medium tracking-wide text-muted sm:text-sm">
+              <dd className="stat-num text-5xl leading-none text-primary sm:text-7xl lg:text-8xl">{h.value}</dd>
+              <dt className="mt-4 text-xs font-medium tracking-wide text-muted sm:text-sm">
                 {h.label}
               </dt>
             </div>

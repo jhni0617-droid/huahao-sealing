@@ -4,7 +4,11 @@ import { Link } from "@/i18n/routing"
 import { getLocalized } from "@/lib/locale-data"
 import Icon from "@/components/ui/Icon"
 import Reveal from "@/components/ui/Reveal"
-import SectionHead from "@/components/ui/SectionHead"
+import SectionRail, { HomeSection } from "@/components/home/SectionRail"
+
+const railLabel = {
+  zh: "产品中心", en: "Products", vi: "Sản phẩm", th: "สินค้า", ru: "Продукция", ja: "製品", ko: "제품",
+}
 
 const copy = {
   zh: {
@@ -154,23 +158,23 @@ export default async function HomeProductEntry() {
   const data = getLocalized(copy, locale)
 
   return (
-    <section className="section-padding bg-white">
-      <div className="container-wide">
-        <div className="mb-12 flex flex-wrap items-end justify-between gap-6 md:mb-16">
-          <div className="min-w-0 max-w-full flex-1 lg:max-w-[calc(100%-440px)]">
-            <SectionHead en="Products" title={data.title} />
-          </div>
-          <div className="lg:max-w-sm">
-            <p className="text-base leading-relaxed text-muted">{data.description}</p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link href="/contact" className="btn-primary text-sm">{data.quote}</Link>
-              <Link href="/products" className="btn-secondary text-sm">{data.viewAll}</Link>
-            </div>
-          </div>
-        </div>
+    <HomeSection className="bg-white">
+      <SectionRail locale={locale} index="01" label={getLocalized(railLabel, locale)} en="Products" href="/products" />
 
+      <div className="min-w-0">
         <Reveal>
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+          <h2 className="max-w-3xl font-serif-sc text-3xl font-bold leading-tight text-primary md:text-4xl">
+            {data.title}
+          </h2>
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted">{data.description}</p>
+          <div className="mt-7 flex flex-wrap gap-3">
+            <Link href="/contact" className="btn-primary text-sm">{data.quote}</Link>
+            <Link href="/products" className="btn-secondary text-sm">{data.viewAll}</Link>
+          </div>
+        </Reveal>
+
+        <Reveal delay={120}>
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3 lg:gap-6">
           {data.products.map((product, i) => (
             <Link
               key={product.title}
@@ -179,7 +183,7 @@ export default async function HomeProductEntry() {
             >
               {/* hover 时顶部红色压条 */}
               <span className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100" aria-hidden />
-              {/* 良工式大序号 */}
+              {/* 大序号 */}
               <span
                 className="stat-num pointer-events-none absolute right-4 top-4 z-10 text-4xl text-border-light transition-colors duration-300 group-hover:text-accent/70"
                 aria-hidden
@@ -192,12 +196,12 @@ export default async function HomeProductEntry() {
                   src={product.image}
                   alt={product.title}
                   fill
-                  className="object-contain p-4 transition-transform duration-500 group-hover:scale-105 sm:p-6 lg:p-8"
+                  className="object-contain p-4 transition-all duration-500 group-hover:scale-105 sm:p-6 lg:p-8"
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 33vw"
                 />
               </div>
               <div className="flex flex-1 flex-col border-t border-border p-5 sm:p-6">
-                <div className="en-caption mb-3 text-xs text-muted-light">{product.subtitle}</div>
+                <div className="en-caption mb-3 text-xs text-accent">{product.subtitle}</div>
                 <h3 className="text-lg font-bold text-primary transition-colors group-hover:text-accent md:text-xl">
                   {product.title}
                 </h3>
@@ -214,19 +218,33 @@ export default async function HomeProductEntry() {
         </div>
         </Reveal>
 
-        <Reveal delay={120}>
-        <div className="mt-6 grid gap-4 border border-border bg-background p-6 md:grid-cols-[1fr_auto] md:items-center md:p-8">
-          <div>
-            <h3 className="text-lg font-bold text-primary">{data.customTitle}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted">{data.customDesc}</p>
+        <Reveal delay={160}>
+        <div className="mt-6 grid gap-0 border border-border bg-background md:grid-cols-[minmax(0,2fr)_3fr] md:items-stretch">
+          <div className="relative min-h-52 overflow-hidden border-b border-border md:border-b-0 md:border-r">
+            <Image
+              src="/images/stock/custom-drawing.webp"
+              alt="Engineer working on a custom mechanical part drawing"
+              fill
+              className="object-cover transition-all duration-500"
+              sizes="(max-width: 768px) 100vw, 40vw"
+            />
           </div>
-          <Link href="/contact" className="btn-primary md:justify-self-end">
-            {data.quote}
-            <Icon name="arrow-right" className="h-4 w-4" />
-          </Link>
+          <div className="flex flex-col justify-center gap-5 p-6 md:flex-row md:items-center md:gap-8 md:p-8">
+            <div className="flex items-start gap-4 md:flex-1">
+              <span className="mt-1 h-8 w-[3px] shrink-0 bg-accent" aria-hidden />
+              <div>
+                <h3 className="text-lg font-bold text-primary">{data.customTitle}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{data.customDesc}</p>
+              </div>
+            </div>
+            <Link href="/contact" className="btn-primary md:ml-auto md:shrink-0">
+              {data.quote}
+              <Icon name="arrow-right" className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
         </Reveal>
       </div>
-    </section>
+    </HomeSection>
   )
 }

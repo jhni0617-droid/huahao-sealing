@@ -214,81 +214,68 @@ function getCategoryDescription(slug: string, locale: string) {
   return getLocalized(categoryNotes[slug] || { en: "" }, locale)
 }
 
-function ProductSpecMini({ icon, label, value }: { icon: "thermometer" | "gear" | "clock"; label: string; value?: string }) {
-  if (!value) return null
-
-  return (
-    <div className="min-w-0 border-l border-border pl-3">
-      <div className="mb-1 flex items-center gap-1.5 text-[11px] font-semibold uppercase text-muted">
-        <Icon name={icon} className="h-3.5 w-3.5 text-accent" />
-        {label}
-      </div>
-      <div className="truncate text-sm font-bold text-primary">{value}</div>
-    </div>
-  )
-}
-
 function ProductCard({ product, locale }: { product: Product; locale: string }) {
-  const t = useTranslations("productDetail")
   const copy = getCopy(locale)
   const tempSpec = getSpec(product, specLabelSets.temp)
   const pressureSpec = getSpec(product, specLabelSets.pressure)
   const speedSpec = getSpec(product, specLabelSets.speed)
+  const specLine = [tempSpec?.value, pressureSpec?.value, speedSpec?.value].filter(Boolean)
 
   return (
     <Link
       href={`/products/${product.slug}`}
-      className="group grid min-h-full overflow-hidden border border-border bg-white transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/45 hover:shadow-[0_18px_44px_rgba(7,21,37,0.08)] focus-ring sm:grid-rows-[auto_1fr] lg:grid-cols-[180px_1fr] lg:grid-rows-1"
+      className="group flex h-full flex-col border-r border-b border-border bg-white transition-colors duration-300 focus-ring hover:bg-[#fafafb]"
     >
-      <div className="relative flex min-h-32 sm:min-h-40 items-center justify-center border-b border-border bg-gradient-to-br from-white to-slate-50 lg:border-b-0 lg:border-r lg:min-h-full">
+      <div className="relative aspect-square overflow-hidden border-b border-border bg-[#f0f1f2]">
         {product.image ? (
           <Image
             src={product.image}
             alt={product.name}
             fill
-            className="object-contain p-4 sm:p-6 lg:p-8 transition-transform duration-300 group-hover:scale-[1.03]"
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 100vw, 180px"
+            className="object-contain p-8 transition-transform duration-300 group-hover:scale-[1.04]"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
         ) : (
-          <div className="px-4 sm:px-6 text-center text-[10px] sm:text-xs font-semibold uppercase tracking-[0.08em] text-muted-light">
+          <div className="flex h-full items-center justify-center px-6 text-center text-sm font-semibold tracking-[0.08em] text-muted">
             {copy.noImage}
           </div>
         )}
       </div>
 
-      <div className="flex min-w-0 flex-col p-3 sm:p-4 md:p-5 lg:p-6">
-        <div className="mb-2 sm:mb-3 flex flex-wrap items-center justify-between gap-2 sm:gap-3">
-          <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.08em] text-accent">
+      <div className="flex min-w-0 flex-1 flex-col p-5">
+        <div className="flex items-baseline justify-between gap-3">
+          <span className="font-mono text-lg font-bold tracking-tight text-primary">{product.model}</span>
+          <span className="truncate text-[11px] font-semibold uppercase tracking-[0.08em] text-muted">
             {getLocalizedProductCategory(product.category, locale)}
           </span>
-          <span className="border border-border bg-background px-2 py-0.5 text-[10px] sm:text-xs font-semibold text-muted">
-            {copy.model}: {product.model}
-          </span>
         </div>
 
-        <h3 className="text-sm sm:text-base lg:text-lg font-bold leading-snug text-primary transition-colors group-hover:text-accent line-clamp-2">
+        <h3 className="mt-1.5 font-serif-sc text-base font-bold leading-snug text-primary transition-colors group-hover:text-accent line-clamp-2">
           {product.name}
         </h3>
-        <p className="mt-1 sm:mt-2 line-clamp-2 text-xs sm:text-sm leading-relaxed text-muted">{product.shortDesc}</p>
 
-        <div className="mt-3 sm:mt-5 grid grid-cols-3 gap-1.5 sm:gap-3">
-          <ProductSpecMini icon="thermometer" label={t("specTemp")} value={tempSpec?.value} />
-          <ProductSpecMini icon="gear" label={t("specPressure")} value={pressureSpec?.value} />
-          <ProductSpecMini icon="clock" label={t("specSpeed")} value={speedSpec?.value} />
-        </div>
+        {specLine.length > 0 && (
+          <p className="mt-2.5 truncate text-xs text-muted" title={specLine.join(" · ")}>
+            {specLine.join(" · ")}
+          </p>
+        )}
 
-        <div className="mt-3 sm:mt-5 flex flex-wrap gap-1 sm:gap-2 border-t border-border pt-3 sm:pt-4">
-          {product.applications.slice(0, 3).map((app) => (
-            <span key={app} className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 border border-border rounded bg-background text-muted">
+        <div className="mt-4 flex flex-wrap gap-1.5 border-t border-border pt-4">
+          {product.applications.slice(0, 2).map((app) => (
+            <span key={app} className="border border-border bg-background px-2 py-0.5 text-[11px] text-muted">
               {app}
             </span>
           ))}
-          {product.applications.length > 3 && <span className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 border border-border rounded bg-background text-muted">+{product.applications.length - 3}</span>}
+          {product.applications.length > 2 && (
+            <span className="border border-border bg-background px-2 py-0.5 text-[11px] text-muted">
+              +{product.applications.length - 2}
+            </span>
+          )}
         </div>
 
-        <div className="mt-3 sm:mt-5 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm font-semibold text-accent">
+        <div className="mt-auto flex items-center gap-2 pt-4 text-xs font-semibold text-accent">
           {copy.view}
-          <Icon name="arrow-right" className="h-3 w-3 sm:h-4 sm:w-4 transition-transform group-hover:translate-x-1" />
+          <Icon name="arrow-right" className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
         </div>
       </div>
     </Link>
@@ -363,108 +350,75 @@ export default function ProductsPageContent({ initialCategory }: { initialCatego
   return (
     <>
       <section className="border-b border-border bg-white">
-        <div className="container-wide py-8 md:py-10">
-          <div className="grid gap-8 lg:grid-cols-[280px_1fr] lg:items-start">
-            <aside className="border border-border bg-background p-5">
-              <div className="mb-4 text-xs font-bold uppercase tracking-[0.08em] text-muted">{copy.catalog}</div>
-              <div className="space-y-2">
-                <button
-                  onClick={() => setActiveCategory("all")}
-                  className={`flex w-full items-center justify-between border px-3.5 py-3 text-left text-sm font-semibold transition-colors ${
-                    activeCategory === "all"
-                      ? "border-primary bg-primary text-white"
-                      : "border-border bg-white text-primary hover:border-accent hover:text-accent"
-                  }`}
-                >
-                  {t("all")}
-                  <span className="text-xs opacity-75">{allProducts.length}</span>
-                </button>
-
-                {categorySummaries.map((cat) => (
-                  <button
-                    key={cat.slug}
-                    id={cat.slug}
-                    onClick={() => setActiveCategory(cat.slug)}
-                    className={`w-full scroll-mt-28 border px-3.5 py-3 text-left transition-colors ${
-                      activeCategory === cat.slug
-                        ? "border-primary bg-primary text-white"
-                        : "border-border bg-white text-primary hover:border-accent hover:text-accent"
-                    }`}
-                  >
-                    <span className="flex items-center justify-between gap-4 text-sm font-semibold">
-                      {cat.name}
-                      <span className="text-xs opacity-75">{cat.count}</span>
-                    </span>
-                    <span className={`mt-1 block text-xs leading-relaxed ${activeCategory === cat.slug ? "text-white/68" : "text-muted"}`}>
-                      {cat.description}
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </aside>
-
-            <div>
-              <div className="grid gap-5 border border-border bg-white p-5 md:p-6 lg:grid-cols-[1fr_auto] lg:items-end">
-                <div className="max-w-3xl">
-                  <div className="text-xs font-bold uppercase tracking-[0.08em] text-accent">{copy.overline}</div>
-                  <h2 className="mt-2 text-2xl font-bold text-primary md:text-3xl">
-                    {t("productCount", { count: filteredProducts.length })}
-                  </h2>
-                  <p className="mt-3 text-sm leading-relaxed text-muted">{copy.intro}</p>
-                </div>
-
-                <div className="flex flex-wrap gap-3 lg:justify-end">
-                  <Link href="/contact" className="btn-primary">
-                    {copy.drawing}
-                    <Icon name="arrow-right" className="h-4 w-4" />
-                  </Link>
-                  <Link href="/applications" className="btn-secondary">
-                    {copy.applications}
-                  </Link>
-                </div>
-              </div>
-
-              <div className="mt-5 grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
-                <label className="relative block">
-                  <Icon name="search" className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" />
-                  <input
-                    value={query}
-                    onChange={(event) => setQuery(event.target.value)}
-                    className="form-input rounded-none pl-11"
-                    placeholder={copy.search}
-                    aria-label="Search products"
-                  />
-                </label>
-                <div className="text-xs leading-relaxed text-muted md:max-w-xs md:text-right">{copy.reference}</div>
-              </div>
-
-              <div className="mt-5 grid gap-3 md:grid-cols-3">
-                {[
-                  { title: copy.custom, desc: copy.customDesc, icon: "file-text" as const },
-                  { title: copy.material, desc: copy.materialDesc, icon: "chemical" as const },
-                  { title: copy.qc, desc: copy.qcDesc, icon: "shield" as const },
-                ].map((item) => (
-                  <div key={item.title} className="border border-border bg-background p-4">
-                    <Icon name={item.icon} className="mb-3 h-5 w-5 text-accent" />
-                    <div className="text-sm font-bold text-primary">{item.title}</div>
-                    <p className="mt-1 text-xs leading-relaxed text-muted">{item.desc}</p>
-                  </div>
-                ))}
-              </div>
+        <div className="container-wide py-10 md:py-14">
+          <div className="max-w-3xl">
+            <div className="mb-4 flex items-center gap-3">
+              <span className="h-[3px] w-10 bg-accent" aria-hidden />
+              <span className="en-caption text-sm text-muted">{copy.overline}</span>
             </div>
+            <h1 className="font-serif-sc text-3xl font-bold leading-tight text-primary md:text-4xl">
+              {t("pageTitle")}
+            </h1>
+            <p className="mt-4 text-base leading-relaxed text-muted">{copy.intro}</p>
+          </div>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
+            <label className="relative block">
+              <Icon name="search" className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" />
+              <input
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                className="form-input rounded-none pl-11"
+                placeholder={copy.search}
+                aria-label="Search products"
+              />
+            </label>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/contact" className="btn-primary">
+                {copy.drawing}
+                <Icon name="arrow-right" className="h-4 w-4" />
+              </Link>
+              <Link href="/applications" className="btn-secondary">
+                {copy.applications}
+              </Link>
+            </div>
+          </div>
+
+          <div className="mt-6 flex flex-wrap items-center gap-2">
+            <button
+              onClick={() => setActiveCategory("all")}
+              className={`border px-4 py-2 text-sm font-semibold transition-colors ${
+                activeCategory === "all"
+                  ? "border-accent bg-accent text-white"
+                  : "border-border bg-white text-primary hover:border-accent hover:text-accent"
+              }`}
+            >
+              {t("all")}
+              <span className="ml-2 text-xs opacity-70">{allProducts.length}</span>
+            </button>
+            {categorySummaries.map((cat) => (
+              <button
+                key={cat.slug}
+                id={cat.slug}
+                onClick={() => setActiveCategory(cat.slug)}
+                className={`scroll-mt-28 border px-4 py-2 text-sm font-semibold transition-colors ${
+                  activeCategory === cat.slug
+                    ? "border-accent bg-accent text-white"
+                    : "border-border bg-white text-primary hover:border-accent hover:text-accent"
+                }`}
+              >
+                {cat.name}
+                <span className="ml-2 text-xs opacity-70">{cat.count}</span>
+              </button>
+            ))}
+            <span className="ml-auto hidden text-xs leading-relaxed text-muted lg:block">{copy.reference}</span>
           </div>
         </div>
       </section>
 
       <section className="section-padding industrial-surface">
         <div className="container-wide">
-          {filteredProducts.length > 0 ? (
-            <div className="grid gap-4 sm:gap-5 grid-cols-2">
-              {filteredProducts.map((product) => (
-                <ProductCard key={product.slug} product={product} locale={locale} />
-              ))}
-            </div>
-          ) : (
+          {filteredProducts.length === 0 && (
             <div className="border border-border bg-white px-6 py-16 text-center">
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center border border-border bg-background text-accent">
                 <Icon name="search" className="h-5 w-5" />
@@ -473,6 +427,34 @@ export default function ProductsPageContent({ initialCategory }: { initialCatego
               <p className="mt-2 text-sm text-muted">{copy.emptyHint}</p>
             </div>
           )}
+
+          {/* 发丝线网格：用单元格边框而非 gap-px 底色，避免最后一行不满时露出灰块 */}
+          {filteredProducts.length > 0 && (
+            <div className="mt-12 grid border-l border-t border-border md:grid-cols-2 lg:grid-cols-3">
+              {filteredProducts.map((product) => (
+                <ProductCard key={product.slug} product={product} locale={locale} />
+              ))}
+            </div>
+          )}
+
+          <div className="mt-14 grid gap-px border border-border bg-border md:grid-cols-3">
+            {[
+              { title: copy.custom, desc: copy.customDesc, icon: "file-text" as const },
+              { title: copy.material, desc: copy.materialDesc, icon: "chemical" as const },
+              { title: copy.qc, desc: copy.qcDesc, icon: "shield" as const },
+            ].map((item, index) => (
+              <div key={item.title} className="flex items-start gap-5 bg-white p-6 md:p-8">
+                <span className="en-caption shrink-0 text-4xl font-bold leading-none text-accent">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div className="min-w-0">
+                  <div className="text-sm font-bold text-primary">{item.title}</div>
+                  <p className="mt-1.5 text-xs leading-relaxed text-muted">{item.desc}</p>
+                </div>
+                <Icon name={item.icon} className="ml-auto h-5 w-5 shrink-0 text-border" />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -4,9 +4,8 @@ import { resourceLandings } from "@/lib/resources-data"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 import CTASection from "@/components/CTASection"
-import PageHero from "@/components/PageHero"
 import Breadcrumb from "@/components/Breadcrumb"
-import { BreadcrumbJsonLd } from "@/components/JsonLd"
+import PageHead from "@/components/ui/PageHead"
 import Icon from "@/components/ui/Icon"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -24,74 +23,66 @@ export default async function ResourcesPage({ params }: { params: Promise<{ loca
   const { locale } = await params
   setRequestLocale(locale)
   const t = await getTranslations("resources")
-  const tnav = await getTranslations("nav")
 
   const hero = getLocalized({
-    zh: { eyebrow: "技术资源", primary: "描述工况获取选型", secondary: "查看产品", stats: ["技术资源", "牌号数据", "介质数据"] },
-    en: { eyebrow: "Technical Resources", primary: "Get Grade Selection", secondary: "View Products", stats: ["Resources", "Grade Data", "Media Data"] },
-    vi: { eyebrow: "Tài nguyên kỹ thuật", primary: "Tư vấn chọn vật liệu", secondary: "Xem sản phẩm", stats: ["Tài nguyên", "Vật liệu", "Môi trường"] },
-    th: { eyebrow: "แหล่งข้อมูลเทคนิค", primary: "รับคำแนะนำ", secondary: "ดูสินค้า", stats: ["แหล่งข้อมูล", "เกรด", "สื่อ"] },
-    ru: { eyebrow: "Технические ресурсы", primary: "Подбор марки", secondary: "Смотреть продукцию", stats: ["Ресурсы", "Марки", "Среды"] },
-    ja: { eyebrow: "技術リソース", primary: "材質選定相談", secondary: "製品を見る", stats: ["リソース", "グレード", "媒体"] },
-    ko: { eyebrow: "기술 자료", primary: "등급 선정 상담", secondary: "제품 보기", stats: ["자료", "등급", "매체"] },
+    zh: { eyebrow: "技术资源" },
+    en: { eyebrow: "Technical Resources" },
+    vi: { eyebrow: "Tài nguyên kỹ thuật" },
+    th: { eyebrow: "แหล่งข้อมูลเทคนิค" },
+    ru: { eyebrow: "Технические ресурсы" },
+    ja: { eyebrow: "技術リソース" },
+    ko: { eyebrow: "기술 자료" },
   }, locale)
 
   return (
     <>
-      <BreadcrumbJsonLd
-        locale={locale}
-        items={[
-          { name: tnav("home"), url: "" },
-          { name: t("pageTitle"), url: "/resources" },
-        ]}
-      />
-      <PageHero
-        eyebrow={hero.eyebrow}
-        title={t("pageTitle")}
-        subtitle={t("heroSubtitle")}
-        primaryLabel={hero.primary}
-        primaryHref="/contact"
-        secondaryLabel={hero.secondary}
-        secondaryHref="/products"
-        stats={[
-          { value: "2", label: hero.stats[0] },
-          { value: "8", label: hero.stats[1] },
-          { value: "40", label: hero.stats[2] },
-        ]}
-      />
       <Breadcrumb items={[{ name: t("pageTitle"), url: "/resources" }]} locale={locale} />
 
-      <section className="section-padding industrial-surface">
+      <PageHead en={hero.eyebrow} title={t("pageTitle")} description={t("heroSubtitle")} />
+
+      <section className="section-padding-sm bg-white">
         <div className="container-wide">
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid gap-px border border-border bg-border md:grid-cols-2 lg:grid-cols-3">
             {resourceLandings.map((resource) => (
               <Link
                 key={resource.slug}
                 href={`/resources/${resource.slug}`}
-                className="card-static p-6 hover:border-accent transition-colors block flex flex-col"
+                className="group flex flex-col bg-white p-6 transition-colors hover:bg-[#fafafb]"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <Icon name="file-text" className="w-6 h-6 text-accent" />
-                  <h2 className="text-lg font-bold text-primary leading-tight">
-                    {getLocalized(resource.title, locale)}
-                  </h2>
-                </div>
-                <p className="text-sm text-muted leading-relaxed line-clamp-4 mb-4 flex-1">
+                <Icon name="file-text" className="mb-4 h-5 w-5 text-accent" />
+                <h2 className="font-serif-sc text-lg font-bold leading-tight text-primary transition-colors group-hover:text-accent">
+                  {getLocalized(resource.title, locale)}
+                </h2>
+                <p className="mt-3 text-sm leading-relaxed text-muted line-clamp-4 flex-1">
                   {getLocalized(resource.description, locale)}
                 </p>
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {resource.sections.slice(0, 4).map((section, i) => (
-                    <span key={i} className="tag-accent text-xs">
-                      {getLocalized(section.heading, locale)}
-                    </span>
-                  ))}
-                </div>
-                <div className="text-xs text-accent font-semibold mt-4 inline-flex items-center gap-1">
+                <div className="mt-auto flex items-center gap-1.5 pt-4 text-xs font-semibold text-accent">
                   {getLocalized({ zh: "查看详情", en: "View details", vi: "Xem chi tiết", th: "ดูรายละเอียด", ru: "Подробнее", ja: "詳細を見る", ko: "상세 보기" }, locale)}
-                  <Icon name="arrow-right" className="w-3 h-3" />
+                  <Icon name="arrow-right" className="h-3 w-3 transition-transform group-hover:translate-x-1" />
                 </div>
               </Link>
             ))}
+
+            {/* 下载中心入口：目录/手册/检测报告 */}
+            <Link
+              href="/download"
+              className="group flex flex-col bg-white p-6 transition-colors hover:bg-[#fafafb]"
+            >
+              <Icon name="download" className="mb-4 h-5 w-5 text-accent" />
+              <h2 className="font-serif-sc text-lg font-bold leading-tight text-primary transition-colors group-hover:text-accent">
+                {getLocalized({ zh: "资料下载中心", en: "Downloads" }, locale)}
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-muted line-clamp-4 flex-1">
+                {getLocalized({
+                  zh: "产品目录、技术手册、图纸模板与 M106D/M120K/M140K 材料检测报告，在线直下。",
+                  en: "Product catalog, technical manual, drawing template, and M106D/M120K/M140K test reports — direct downloads.",
+                }, locale)}
+              </p>
+              <div className="mt-auto flex items-center gap-1.5 pt-4 text-xs font-semibold text-accent">
+                {getLocalized({ zh: "前往下载", en: "Go to downloads", vi: "Tải xuống", th: "ดาวน์โหลด", ru: "Скачать", ja: "ダウンロード", ko: "다운로드" }, locale)}
+                <Icon name="arrow-right" className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+              </div>
+            </Link>
           </div>
         </div>
       </section>

@@ -1,12 +1,25 @@
-import { getLocale, getTranslations, setRequestLocale } from "next-intl/server"
+import Image from "next/image"
+import { getTranslations, setRequestLocale } from "next-intl/server"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 import { blogPostsMeta } from "@/lib/blog-data"
 import Breadcrumb from "@/components/Breadcrumb"
-import PageHero from "@/components/PageHero"
+import PageHead from "@/components/ui/PageHead"
 import QuickCTA from "@/components/QuickCTA"
 import CTASection from "@/components/CTASection"
 import { Link } from "@/i18n/routing"
+
+/* 博客卡片封面：按标签映射现有实拍/产品图（Pexels stock 来源见 docs/image-credits-stock.md） */
+const tagCovers: Record<string, string> = {
+  process: "/images/videos/machining-ring.webp",
+  material: "/images/videos/impregnated-parts.webp",
+  selection: "/images/videos/custom-bushings.webp",
+  precision: "/images/videos/seal-faces.webp",
+  application: "/images/stock/industry-pump.webp",
+  maintenance: "/images/videos/hand-ring.webp",
+  faq: "/images/videos/seal-ring-batch.webp",
+  news: "/images/stock/industry-power.webp",
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -91,15 +104,13 @@ export default async function BlogPage({ params, searchParams }: { params: Promi
 
   return (
     <>
-      <PageHero
-        eyebrow={eyebrow}
-        title={t("pageTitle")}
-        subtitle={t("pageSubtitle")}
-      />
       <Breadcrumb items={[{ name: eyebrow, url: "/blog" }]} locale={locale} />
+
+      <PageHead en={eyebrow} title={t("pageTitle")} description={t("pageSubtitle")} />
+
       <QuickCTA />
 
-      <section className="section-padding industrial-surface">
+      <section className="section-padding-sm industrial-surface">
         <div className="container-wide">
           {activeTag && (
             <div className="mb-10 flex flex-wrap items-center gap-3 border border-border bg-white px-4 py-3">
@@ -115,26 +126,39 @@ export default async function BlogPage({ params, searchParams }: { params: Promi
           {months.map((ym) => (
             <div key={ym} className="mb-12 last:mb-0">
               <div className="flex items-center gap-3 mb-6">
-                <h2 className="text-2xl font-bold text-primary">{monthLabels(ym)}</h2>
+                <h2 className="font-serif-sc text-2xl font-bold text-primary">{monthLabels(ym)}</h2>
                 <span className="text-sm text-muted">({grouped[ym].length} {getLocalized({ zh: "篇", en: "posts" }, locale)})</span>
                 <div className="flex-1 h-px bg-border" />
               </div>
-              <div className="grid gap-3 sm:gap-4 md:gap-5 grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
                 {grouped[ym].map((post) => (
-                  <Link key={post.slug} href={`/blog/${post.slug}`} className="card-static bg-white p-3 sm:p-4 lg:p-5 block group hover:shadow-lg transition-shadow">
-                    <div className="flex items-center gap-2 mb-2 sm:mb-3">
-                      <span className="text-[10px] font-bold uppercase tracking-[0.08em] text-accent">
-                        {tagLabels[post.tag as keyof typeof tagLabels] || post.tag}
-                      </span>
-                      <span className="text-[10px] text-muted">{post.date.slice(5)}</span>
+                  <Link key={post.slug} href={`/blog/${post.slug}`} className="group flex flex-col bg-white">
+                    <div className="relative aspect-[16/9] overflow-hidden border-b border-border bg-background">
+                      <Image
+                        src={tagCovers[post.tag] || "/images/videos/semi-finished.webp"}
+                        alt=""
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
                     </div>
-                    <h3 className="text-sm sm:text-base font-bold text-primary mb-2 group-hover:text-accent transition-colors leading-snug line-clamp-2">{getLocalized(post.title, locale)}</h3>
-                    <p className="text-xs text-muted leading-relaxed line-clamp-2 sm:line-clamp-3">{getLocalized(post.excerpt, locale)}</p>
-                    <div className="mt-2 sm:mt-3 flex items-center gap-1 text-xs font-semibold text-accent">
-                      {t("readMore")}
-                      <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
+                    <div className="flex flex-1 flex-col p-5">
+                      <div className="flex items-center gap-2">
+                        <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-accent">
+                          {tagLabels[post.tag as keyof typeof tagLabels] || post.tag}
+                        </span>
+                        <span className="text-[11px] text-muted">{post.date.slice(5)}</span>
+                      </div>
+                      <h3 className="mt-2 font-serif-sc text-base font-bold leading-snug text-primary transition-colors group-hover:text-accent line-clamp-2">
+                        {getLocalized(post.title, locale)}
+                      </h3>
+                      <p className="mt-2 text-xs leading-relaxed text-muted line-clamp-3">{getLocalized(post.excerpt, locale)}</p>
+                      <div className="mt-auto flex items-center gap-1.5 pt-4 text-xs font-semibold text-accent">
+                        {t("readMore")}
+                        <svg className="h-3 w-3 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
                     </div>
                   </Link>
                 ))}

@@ -4,6 +4,8 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import DeleteDialog from "@/components/admin/DeleteDialog"
 
+export const dynamic = "force-dynamic"
+
 export default function AdminCasesPage() {
   const router = useRouter()
   const [cases, setCases] = useState<any[]>([])

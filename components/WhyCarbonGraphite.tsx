@@ -3,7 +3,11 @@ import { Link } from "@/i18n/routing"
 import { advantagesByLocale } from "@/lib/translations"
 import { getLocalized } from "@/lib/locale-data"
 import Reveal from "@/components/ui/Reveal"
-import SectionHead from "@/components/ui/SectionHead"
+import SectionRail, { HomeSection } from "@/components/home/SectionRail"
+
+const railLabel = {
+  zh: "材料优势", en: "Why Graphite", vi: "Ưu thế vật liệu", th: "จุดแข็งวัสดุ", ru: "Преимущества", ja: "材料の強み", ko: "소재 강점",
+}
 
 const problemsData = {
   zh: [
@@ -50,15 +54,22 @@ export default async function WhyCarbonGraphite() {
   const items = getLocalized(advantagesByLocale, locale)
 
   return (
-    <section className="section-padding bg-white">
-      <div className="container-wide">
-        <SectionHead en="Why Carbon Graphite" title={t("title")} description={t("description")} />
+    <HomeSection className="bg-background">
+      <SectionRail locale={locale} index="02" label={getLocalized(railLabel, locale)} en="Why Carbon Graphite" href="/materials" />
 
-        <div className="grid gap-px border border-border bg-border lg:grid-cols-2">
-          <Reveal>
+      <div className="min-w-0">
+        <Reveal>
+          <h2 className="max-w-3xl font-serif-sc text-3xl font-bold leading-tight text-primary md:text-4xl">
+            {t("title")}
+          </h2>
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted">{t("description")}</p>
+        </Reveal>
+
+        <div className="mt-10 grid gap-px border border-border bg-border lg:mt-12 lg:grid-cols-2">
+          <Reveal className="h-full">
           <div className="h-full bg-white p-5 md:p-7">
             <div className="mb-5 flex items-center gap-3">
-              <span className="h-6 w-[3px] bg-accent" aria-hidden />
+              <span className="stat-num text-2xl leading-none text-accent" aria-hidden>A</span>
               <h3 className="en-caption text-sm text-muted">{t("problemsTitle")}</h3>
             </div>
             <div className="space-y-4">
@@ -74,16 +85,16 @@ export default async function WhyCarbonGraphite() {
           </div>
           </Reveal>
 
-          <Reveal delay={150}>
+          <Reveal delay={150} className="h-full">
           <div className="h-full bg-white p-5 md:p-7">
             <div className="mb-5 flex items-center gap-3">
-              <span className="h-6 w-[3px] bg-accent" aria-hidden />
+              <span className="stat-num text-2xl leading-none text-primary" aria-hidden>B</span>
               <h3 className="en-caption text-sm text-muted">{t("solutionTitle")}</h3>
             </div>
             <div className="space-y-4">
               {items.map((adv, i) => (
                 <Reveal key={adv.title} delay={i * 90}>
-                <div className="border-l-2 border-l-accent bg-background p-4">
+                <div className="border-l-2 border-l-primary bg-background p-4">
                   <h4 className="font-bold text-sm text-primary mb-1">{adv.title}</h4>
                   <p className="text-xs text-muted leading-relaxed">{adv.description}</p>
                 </div>
@@ -94,14 +105,17 @@ export default async function WhyCarbonGraphite() {
           </Reveal>
         </div>
 
-        <Reveal className="mt-14 grid gap-4 border border-border bg-background p-8 md:grid-cols-[1fr_auto] md:items-center md:p-10">
-          <div>
-            <h3 className="text-xl font-bold text-primary mb-2">{t("ctaTitle")}</h3>
-            <p className="text-muted text-sm max-w-2xl leading-relaxed">{t("ctaDescription")}</p>
+        <Reveal className="mt-10 grid gap-4 border border-border bg-white p-6 md:grid-cols-[1fr_auto] md:items-center md:p-8 lg:mt-12">
+          <div className="flex items-start gap-4">
+            <span className="mt-1 h-8 w-[3px] shrink-0 bg-accent" aria-hidden />
+            <div>
+              <h3 className="text-xl font-bold text-primary mb-2">{t("ctaTitle")}</h3>
+              <p className="text-muted text-sm max-w-2xl leading-relaxed">{t("ctaDescription")}</p>
+            </div>
           </div>
           <Link href="/contact" className="btn-primary md:justify-self-end">{t("ctaButton")}</Link>
         </Reveal>
       </div>
-    </section>
+    </HomeSection>
   )
 }

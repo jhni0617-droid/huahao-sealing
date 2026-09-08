@@ -2,12 +2,13 @@ import Image from "next/image"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import { Link } from "@/i18n/routing"
 import { materialLandings } from "@/lib/materials-data"
+import { technicalData } from "@/lib/technical-data"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 import CTASection from "@/components/CTASection"
-import PageHero from "@/components/PageHero"
 import Breadcrumb from "@/components/Breadcrumb"
-import { BreadcrumbJsonLd } from "@/components/JsonLd"
+import PageHead from "@/components/ui/PageHead"
+import StepStrip from "@/components/ui/StepStrip"
 import Icon from "@/components/ui/Icon"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -32,90 +33,232 @@ const materialImages: Record<string, string> = {
   "metal-impregnated-graphite": "/images/videos/custom-bushings.webp",
 }
 
+const familyCards = [
+  { slug: "resin-impregnated-graphite", tag: "H · K" },
+  { slug: "antimony-impregnated-graphite", tag: "D" },
+  { slug: "copper-graphite", tag: "Cu" },
+]
+
+const heroCopy = {
+  zh: { eyebrow: "材料技术" },
+  en: { eyebrow: "Material Technology" },
+  vi: { eyebrow: "Công nghệ vật liệu" },
+  th: { eyebrow: "เทคโนโลยีวัสดุ" },
+  ru: { eyebrow: "Технология материалов" },
+  ja: { eyebrow: "材料技術" },
+  ko: { eyebrow: "소재 기술" },
+}
+
 export default async function MaterialsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   setRequestLocale(locale)
   const t = await getTranslations("materials")
-  const tnav = await getTranslations("nav")
+  const hero = getLocalized(heroCopy, locale)
 
-  const hero = getLocalized({
-    zh: { eyebrow: "材料技术", primary: "描述工况获取选型", secondary: "查看产品", stats: ["材料牌号", "耐温范围", "pH 覆盖"] },
-    en: { eyebrow: "Material Technology", primary: "Get Grade Selection", secondary: "View Products", stats: ["Material Grades", "Temperature Range", "pH Coverage"] },
-    vi: { eyebrow: "Công nghệ vật liệu", primary: "Tư vấn chọn vật liệu", secondary: "Xem sản phẩm", stats: ["Vật liệu", "Dải nhiệt", "Phạm vi pH"] },
-    th: { eyebrow: "เทคโนโลยีวัสดุ", primary: "รับคำแนะนำเลือกวัสดุ", secondary: "ดูสินค้า", stats: ["เกรดวัสดุ", "ช่วงอุณหภูมิ", "คลุม pH"] },
-    ru: { eyebrow: "Технология материалов", primary: "Подбор марки", secondary: "Смотреть продукцию", stats: ["Марки", "Температурный диапазон", "Диапазон pH"] },
-    ja: { eyebrow: "材料技術", primary: "材質選定相談", secondary: "製品を見る", stats: ["材質グレード", "耐温範囲", "pH 対応"] },
-    ko: { eyebrow: "소재 기술", primary: "등급 선정 상담", secondary: "제품 보기", stats: ["소재 등급", "온도 범위", "pH 범위"] },
+  const tableHead = getLocalized({
+    zh: ["牌号", "类型", "最高耐温", "最大压力", "最高线速度", "抗压强度"],
+    en: ["Grade", "Type", "Max temp.", "Max pressure", "Max speed", "Compressive"],
+    vi: ["Mác", "Loại", "Nhiệt tối đa", "Áp tối đa", "Tốc độ tối đa", "Cường độ nén"],
+    th: ["เกรด", "ประเภท", "อุณหภูมิสูงสุด", "แรงดันสูงสุด", "ความเร็วสูงสุด", "กำลังอัด"],
+    ru: ["Марка", "Тип", "Макс. темп.", "Макс. давление", "Макс. скорость", "Прочность"],
+    ja: ["グレード", "タイプ", "最高耐温", "最大圧力", "最高周速", "圧縮強度"],
+    ko: ["등급", "유형", "최고 온도", "최대 압력", "최고 속도", "압축 강도"],
+  }, locale) as string[]
+
+  const families = familyCards
+    .map((card) => ({ ...card, data: materialLandings.find((m) => m.slug === card.slug)! }))
+    .filter((f) => f.data)
+
+  const faq = technicalData.faq
+  const faqList = getLocalized({ zh: faq.zh, en: faq.en, vi: faq.vi, th: faq.th }, locale) ?? faq.en
+
+  const steps = getLocalized({
+    zh: [
+      { title: "提供工况", desc: "提交介质、温度、压力、转速等运行参数。" },
+      { title: "推荐牌号", desc: "结合工况与经验数据库，推荐合适的材料牌号。" },
+      { title: "样品验证", desc: "提供样品测试验证，确认材料性能。" },
+    ],
+    en: [
+      { title: "Share duty conditions", desc: "Submit media, temperature, pressure, and speed parameters." },
+      { title: "Grade recommendation", desc: "Engineers recommend a suitable grade from duty data and experience." },
+      { title: "Sample validation", desc: "Samples provided for testing to confirm material performance." },
+    ],
+    vi: [
+      { title: "Cung cấp điều kiện", desc: "Gửi môi trường, nhiệt độ, áp suất, tốc độ vận hành." },
+      { title: "Đề xuất mác", desc: "Kỹ sư đề xuất mác phù hợp theo dữ liệu và kinh nghiệm." },
+      { title: "Xác nhận mẫu", desc: "Cung cấp mẫu thử để xác nhận hiệu năng vật liệu." },
+    ],
+    th: [
+      { title: "แจ้งเงื่อนไข", desc: "ส่งตัวกลาง อุณหภูมิ แรงดัน และความเร็ว" },
+      { title: "แนะนำเกรด", desc: "วิศวกรแนะนำเกรดที่เหมาะสมจากฐานข้อมูล" },
+      { title: "ทดสอบตัวอย่าง", desc: "จัดเตรียมตัวอย่างเพื่อยืนยันประสิทธิภาพ" },
+    ],
+    ru: [
+      { title: "Условия работы", desc: "Укажите среду, температуру, давление и скорость." },
+      { title: "Рекомендация марки", desc: "Инженеры подберут марку по базе данных и опыту." },
+      { title: "Подтверждение образцом", desc: "Предоставим образцы для проверки характеристик." },
+    ],
+    ja: [
+      { title: "工况を提供", desc: "媒体・温度・圧力・速度などの運転参数を提出。" },
+      { title: "グレード推薦", desc: "条件と経験データベースから適切なグレードを推薦。" },
+      { title: "サンプル検証", desc: "サンプルで性能を確認し、材料を確定。" },
+    ],
+    ko: [
+      { title: "조건 제공", desc: "매체, 온도, 압력, 속도 등 운전 파라미터 제출." },
+      { title: "등급 추천", desc: "조건과 경험 데이터베이스로 적합한 등급을 추천." },
+      { title: "샘플 검증", desc: "샘플 테스트로 재료 성능을 확인." },
+    ],
   }, locale)
 
   return (
     <>
-      <BreadcrumbJsonLd
-        locale={locale}
-        items={[
-          { name: tnav("home"), url: "" },
-          { name: t("pageTitle"), url: "/materials" },
-        ]}
-      />
-      <PageHero
-        eyebrow={hero.eyebrow}
-        title={t("pageTitle")}
-        subtitle={t("heroSubtitle")}
-        primaryLabel={hero.primary}
-        primaryHref="/contact"
-        secondaryLabel={hero.secondary}
-        secondaryHref="/products"
-        stats={[
-          { value: "8", label: hero.stats[0] },
-          { value: "600°C", label: hero.stats[1] },
-          { value: "0-14", label: hero.stats[2] },
-        ]}
-      />
       <Breadcrumb items={[{ name: t("pageTitle"), url: "/materials" }]} locale={locale} />
 
-      <section className="section-padding industrial-surface">
+      <PageHead en={hero.eyebrow} title={t("pageTitle")} description={t("heroSubtitle")} />
+
+      {/* 三大浸渍家族卡，角标为真实牌号后缀 */}
+      <section className="section-padding-sm bg-white">
         <div className="container-wide">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid gap-px border border-border bg-border md:grid-cols-3">
+            {families.map((family) => (
+              <Link
+                key={family.slug}
+                href={`/materials/${family.slug}`}
+                className="group relative bg-white p-6 transition-colors hover:bg-[#fafafb] md:p-8"
+              >
+                <span className="en-caption absolute right-5 top-5 text-xl font-bold text-accent">{family.tag}</span>
+                <h2 className="font-serif-sc text-xl font-bold text-primary transition-colors group-hover:text-accent md:text-2xl">
+                  {getLocalized(family.data.title, locale)}
+                </h2>
+                <p className="mt-3 text-sm leading-relaxed text-muted line-clamp-3">
+                  {getLocalized(family.data.description, locale)}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 真实牌号数据表：technicalData，M106D 为第三方实测重点牌号 */}
+      <section className="section-padding-sm industrial-surface">
+        <div className="container-wide">
+          <div className="mb-8 flex items-center gap-3">
+            <span className="h-[3px] w-10 bg-accent" aria-hidden />
+            <span className="en-caption text-sm text-muted">
+              {getLocalized({ zh: "牌号技术参数", en: "Grade Data" }, locale)}
+            </span>
+          </div>
+          <div className="overflow-x-auto border border-border bg-white">
+            <table className="w-full min-w-[760px] border-collapse text-sm">
+              <thead>
+                <tr className="bg-primary text-left text-white">
+                  {tableHead.map((label) => (
+                    <th key={label} className="whitespace-nowrap px-4 py-3 text-xs font-bold uppercase tracking-[0.06em]">
+                      {label}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {technicalData.grades.map((grade, i) => (
+                  <tr key={grade.grade} className={`border-t border-border ${i % 2 === 1 ? "bg-[#f7f8f9]" : "bg-white"}`}>
+                    <td className="whitespace-nowrap px-4 py-3">
+                      <span className="flex items-center gap-2">
+                        {grade.grade === "M106D" && <span className="h-1.5 w-1.5 shrink-0 bg-accent" aria-hidden />}
+                        <span className="font-mono font-bold text-primary">{grade.grade}</span>
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 text-xs leading-relaxed text-muted">{grade.type}</td>
+                    <td className="whitespace-nowrap px-4 py-3 font-mono text-primary">{grade.tempMax}</td>
+                    <td className="whitespace-nowrap px-4 py-3 font-mono text-primary">{grade.pressureMax}</td>
+                    <td className="whitespace-nowrap px-4 py-3 font-mono text-primary">{grade.speedMax}</td>
+                    <td className={`whitespace-nowrap px-4 py-3 font-mono ${grade.grade === "M106D" ? "font-bold text-accent" : "text-primary"}`}>
+                      {grade.compressiveStrength}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-3 text-xs leading-relaxed text-muted">
+            {getLocalized({
+              zh: "M106D 抗压/抗折/硬度为第三方检测值；完整物理性能与应用工况见各牌号详情页。",
+              en: "M106D compressive/flexural/hardness values are third-party tested. Full physical properties per grade on detail pages.",
+            }, locale)}
+          </p>
+        </div>
+      </section>
+
+      {/* 按工况选牌号：真实 FAQ */}
+      <section className="section-padding-sm bg-white">
+        <div className="container-wide grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+          <div className="lg:sticky lg:top-24">
+            <div className="mb-4 flex items-center gap-3">
+              <span className="h-[3px] w-10 bg-accent" aria-hidden />
+              <span className="en-caption text-sm text-muted">SELECTION GUIDE</span>
+            </div>
+            <h2 className="font-serif-sc text-3xl font-bold leading-tight text-primary md:text-4xl">
+              {getLocalized({ zh: "按工况选牌号", en: "Grade selection by duty" }, locale)}
+            </h2>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">
+              {getLocalized({ zh: "常见工况的选型口径，拿不准的提交参数让工程师确认。", en: "Common selection guidance — submit your parameters for engineering confirmation." }, locale)}
+            </p>
+          </div>
+          <div>
+            {faqList.map((item, i) => (
+              <div key={i} className={`py-5 ${i > 0 ? "border-t border-border" : ""}`}>
+                <h3 className="font-serif-sc text-base font-bold text-primary md:text-lg">{item.q}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{item.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 全部材料卡片：入口到详情页 */}
+      <section className="section-padding-sm industrial-surface">
+        <div className="container-wide">
+          <div className="mb-8 flex items-center gap-3">
+            <span className="h-[3px] w-10 bg-accent" aria-hidden />
+            <span className="en-caption text-sm text-muted">{hero.eyebrow}</span>
+          </div>
+          <div className="grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
             {materialLandings.map((material) => (
               <Link
                 key={material.slug}
                 href={`/materials/${material.slug}`}
-                className="card-static hover:border-accent transition-colors block flex flex-col overflow-hidden"
+                className="group flex flex-col bg-white"
               >
-                <div className="relative h-48 overflow-hidden border-b border-border">
+                <div className="relative aspect-[4/3] overflow-hidden border-b border-border bg-background">
                   <Image
                     src={materialImages[material.slug] || "/images/products/graphite-bushing.webp"}
                     alt={getLocalized(material.title, locale)}
                     fill
                     className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
                 </div>
-                <div className="p-6 flex flex-col flex-1">
-                <div className="flex items-center gap-3 mb-4">
-                  <Icon name="layers" className="w-6 h-6 text-accent" />
-                  <h2 className="text-lg font-bold text-primary leading-tight">
+                <div className="flex flex-1 flex-col p-5">
+                  <h3 className="font-serif-sc font-bold text-primary transition-colors group-hover:text-accent">
                     {getLocalized(material.title, locale)}
-                  </h2>
-                </div>
-                <p className="text-sm text-muted leading-relaxed line-clamp-4 mb-4 flex-1">
-                  {getLocalized(material.description, locale)}
-                </p>
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {material.properties.slice(0, 3).map((prop, i) => (
-                    <span key={i} className="tag-accent text-xs">
-                      {prop.value}
-                    </span>
-                  ))}
-                </div>
-                <div className="text-xs text-accent font-semibold mt-4 inline-flex items-center gap-1">
-                  {getLocalized({ zh: "查看详情", en: "View details", vi: "Xem chi tiết", th: "ดูรายละเอียด", ru: "Подробнее", ja: "詳細を見る", ko: "상세 보기" }, locale)}
-                  <Icon name="arrow-right" className="w-3 h-3" />
-                </div>
+                  </h3>
+                  <p className="mt-2 text-xs leading-relaxed text-muted line-clamp-3">
+                    {getLocalized(material.description, locale)}
+                  </p>
+                  <div className="mt-auto flex items-center gap-1.5 pt-4 text-xs font-semibold text-accent">
+                    {getLocalized({ zh: "查看详情", en: "View details", vi: "Xem chi tiết", th: "ดูรายละเอียด", ru: "Подробнее", ja: "詳細を見る", ko: "상세 보기" }, locale)}
+                    <Icon name="arrow-right" className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+                  </div>
                 </div>
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section-padding-sm industrial-surface">
+        <div className="container-wide">
+          <StepStrip items={steps} />
         </div>
       </section>
 

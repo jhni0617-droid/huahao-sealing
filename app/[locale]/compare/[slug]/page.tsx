@@ -6,7 +6,7 @@ import {
   getAllComparisonSlugs,
 } from "@/lib/compare-data"
 import { FaqJsonLd, BreadcrumbJsonLd } from "@/components/JsonLd"
-import PageHero from "@/components/PageHero"
+import PageHead from "@/components/ui/PageHead"
 import CTASection from "@/components/CTASection"
 import FAQAccordion from "@/components/FAQAccordion"
 import { Link } from "@/i18n/routing"
@@ -163,19 +163,7 @@ export default async function ComparePage({ params }: Props) {
       />
       <FaqJsonLd questions={faqItems.map((f) => ({ q: f.q, a: f.a }))} />
 
-      <PageHero
-        eyebrow={ui.eyebrow}
-        title={title}
-        subtitle={description}
-        primaryLabel={ui.primaryLabel}
-        secondaryLabel={ui.secondaryLabel}
-        secondaryHref="/products"
-        stats={[
-          { value: String(comparison.rows.length), label: ui.statParams },
-          { value: "2", label: ui.statMaterials },
-          { value: "100%", label: ui.statData },
-        ]}
-      />
+      <PageHead en={ui.eyebrow} title={title} description={description}  />
 
       {/* Breadcrumb */}
       <section className="bg-gray-50 border-b border-border">

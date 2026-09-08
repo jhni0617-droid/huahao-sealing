@@ -4,7 +4,7 @@ import { comparisons } from "@/lib/compare-data"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 import Breadcrumb from "@/components/Breadcrumb"
-import PageHero from "@/components/PageHero"
+import PageHead from "@/components/ui/PageHead"
 import CTASection from "@/components/CTASection"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -58,18 +58,27 @@ export default async function CompareIndexPage({ params }: { params: Promise<{ l
   return (
     <>
       <Breadcrumb items={[{ name: pageTitle, url: "/compare" }]} locale={locale} />
-      <PageHero eyebrow={eyebrow} title={pageTitle} subtitle={subtitle} />
-      <section className="section-padding">
+
+      <PageHead en={eyebrow} title={pageTitle} description={subtitle} />
+
+      <section className="section-padding-sm bg-white">
         <div className="container-wide">
-          <div className="grid md:grid-cols-2 gap-6">
-            {comparisons.map((item) => (
+          <div className="grid gap-px border border-border bg-border md:grid-cols-2">
+            {comparisons.map((item, index) => (
               <Link
                 key={item.slug}
                 href={`/compare/${item.slug}`}
-                className="card-static p-6 hover:border-accent transition-colors block"
+                className="group flex items-start gap-5 bg-white p-6 transition-colors hover:bg-[#fafafb] md:p-8"
               >
-                <h2 className="text-xl font-bold text-primary mb-3">{getLocalized(item.title, locale)}</h2>
-                <p className="text-sm text-muted">{getLocalized(item.description, locale)}</p>
+                <span className="en-caption shrink-0 text-3xl font-bold leading-none text-border">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="min-w-0">
+                  <span className="block font-serif-sc text-lg font-bold text-primary transition-colors group-hover:text-accent md:text-xl">
+                    {getLocalized(item.title, locale)}
+                  </span>
+                  <span className="mt-2 block text-sm leading-relaxed text-muted">{getLocalized(item.description, locale)}</span>
+                </span>
               </Link>
             ))}
           </div>

@@ -8,6 +8,7 @@ const navItems = [
   { href: "/admin/products", label: "产品管理", icon: "📦" },
   { href: "/admin/inquiries", label: "询价记录", icon: "✉️" },
   { href: "/admin/cases", label: "案例管理", icon: "📋" },
+  { href: "/admin/imagegen", label: "AI 出图", icon: "🎨" },
 ]
 
 export default function AdminSidebar() {

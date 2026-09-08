@@ -35,6 +35,7 @@ export default async function Footer() {
               <li><Link href="/cases" className="text-gray-400 hover:text-white transition-colors">{t("nav.cases")}</Link></li>
               <li><Link href="/compare" className="text-gray-400 hover:text-white transition-colors">{getLocalized({ zh: "材料对比", en: "Comparisons", vi: "So sánh vật liệu", th: "เปรียบเทียบวัสดุ" }, locale)}</Link></li>
               <li><Link href="/technical-params" className="text-gray-400 hover:text-white transition-colors">{getLocalized({ zh: "技术参数", en: "Technical Specs", vi: "Thông số kỹ thuật", th: "ข้อมูลทางเทคนิค" }, locale)}</Link></li>
+              <li><Link href="/download" className="text-gray-400 hover:text-white transition-colors">{getLocalized({ zh: "资料下载", en: "Downloads", vi: "Tài liệu", th: "ดาวน์โหลด" }, locale)}</Link></li>
               <li><Link href="/faq" className="text-gray-400 hover:text-white transition-colors">{t("nav.faq")}</Link></li>
               <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">{t("nav.about")}</Link></li>
               <li><Link href="/contact" className="text-gray-400 hover:text-white transition-colors">{t("nav.contact")}</Link></li>

@@ -6,7 +6,8 @@ import CTASection from "@/components/CTASection"
 import { FaqJsonLd } from "@/components/JsonLd"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
-import PageHero from "@/components/PageHero"
+import PageHead from "@/components/ui/PageHead"
+import StatsRow from "@/components/ui/StatsRow"
 import Breadcrumb from "@/components/Breadcrumb"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -93,18 +94,17 @@ export default async function FAQPage({ params }: { params: Promise<{ locale: st
         )
       } />
 
-      <PageHero
-        eyebrow={hero.eyebrow}
-        title={t("pageTitle")}
-        subtitle={t("pageSubtitle")}
-        primaryLabel={hero.primary}
-        stats={[
+      <Breadcrumb items={[{ name: t("pageTitle"), url: "/faq" }]} locale={locale} />
+
+      <PageHead en={hero.eyebrow} title={t("pageTitle")} description={t("pageSubtitle")} />
+
+      <StatsRow
+        items={[
           { value: `${tables.length}`, label: hero.stats[0] },
           { value: `${categories.length}`, label: hero.stats[1] },
           { value: `${techFormulas.length}`, label: hero.stats[2] },
         ]}
       />
-      <Breadcrumb items={[{ name: t("pageTitle"), url: "/faq" }]} locale={locale} />
 
       {/* Part 1: Core Tables */}
       <section className="section-padding industrial-surface">

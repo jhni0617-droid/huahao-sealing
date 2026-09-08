@@ -1,19 +1,25 @@
 import Image from "next/image"
-import { getLocale, setRequestLocale } from "next-intl/server"
-import { Link } from "@/i18n/routing"
-import PageHero from "@/components/PageHero"
+import { setRequestLocale } from "next-intl/server"
 import Breadcrumb from "@/components/Breadcrumb"
 import CTASection from "@/components/CTASection"
 import TrackedLink from "@/components/TrackedLink"
+import PageHead from "@/components/ui/PageHead"
+import StepStrip from "@/components/ui/StepStrip"
 import Icon, { type IconName } from "@/components/ui/Icon"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 
 const content = {
   zh: {
+    headline: "从坯料到成品，全程自产",
+    plantTitle: "自有产线，公差受控",
+    mfg: [["01", "浸渍坯料", "树脂/锑/铜浸渍石墨坯料，二次浸渍提升致密性。"],
+       ["02", "精密车削", "数控车削密封环端面与内外圆，公差全程受控。"],
+       ["03", "品质检验", "尺寸、端面、外观与关键性能出厂前全检。"],
+       ["04", "成品包装", "标准型号与定制尺寸分类包装，批量出货。"]],
     metaTitle: "工厂实力",
     metaDescription: "华豪密封碳石墨密封件工厂能力、CNC加工、浸渍工艺、质量检测与OEM定制能力。",
-    eyebrow: "工厂实力",
+    eyebrow: "工厂与质量",
     title: "从材料、加工到检测的完整制造能力",
     subtitle:
       "华豪密封面向泵、机械密封、化工设备和OEM客户，提供碳石墨密封环、石墨轴套、石墨轴承及三瓣环的批量制造与按图加工。",
@@ -51,6 +57,12 @@ const content = {
     ],
   },
   en: {
+    headline: "From billet to finished part, all in-house",
+    plantTitle: "In-house lines, controlled tolerances",
+    mfg: [["01", "Impregnated billets", "Resin/antimony/copper impregnated graphite billets, re-impregnated for density."],
+       ["02", "Precision turning", "CNC turning of seal ring faces and I.D./O.D., tolerances controlled throughout."],
+       ["03", "Quality inspection", "Full dimensional, face, visual and key performance checks before shipment."],
+       ["04", "Packing & shipment", "Standard and custom sizes packed and shipped in batches."]],
     metaTitle: "Factory",
     metaDescription:
       "Huahao Sealing factory capability for carbon graphite seals, CNC machining, impregnation process, quality inspection, and OEM custom manufacturing.",
@@ -92,6 +104,12 @@ const content = {
     ],
   },
   vi: {
+    headline: "Từ phôi đến thành phẩm, tự sản toàn bộ",
+    plantTitle: "Dây chuyền tự có, dung sai được kiểm soát",
+    mfg: [["01", "Phôi tẩm", "Phôi graphite tẩm nhựa/antimon/đồng, tẩm lại để tăng độ đặc."],
+       ["02", "Tiện chính xác", "Tiện CNC mặt phớt và I.D./O.D., kiểm soát dung sai toàn quá trình."],
+       ["03", "Kiểm tra chất lượng", "Kiểm tra toàn bộ kích thước, mặt, ngoại quan trước khi xuất."],
+       ["04", "Đóng gói xuất hàng", "Đóng gói theo loại, xuất lô hàng loạt."]],
     metaTitle: "Nhà máy",
     metaDescription: "Năng lực nhà máy Huahao Sealing cho phớt than chì carbon, gia công CNC, tẩm vật liệu, kiểm tra chất lượng và OEM.",
     eyebrow: "Năng lực nhà máy",
@@ -125,6 +143,12 @@ const content = {
     qc: ["Ghi nhận kích thước và dung sai quan trọng", "Kiểm tra độ phẳng mặt phớt và ngoại quan", "Truy xuất cấp vật liệu và lô quy trình", "Nhãn đóng gói xuất khẩu và bảo vệ vận chuyển"],
   },
   th: {
+    headline: "จากพร้อนถึงชิ้นงาน ผลิตเองทั้งหมด",
+    plantTitle: "สายการผลิตของตัวเอง ควบคุมค่าคลาดเคลื่อน",
+    mfg: [["01", "พร้อนอิมพรีเกต", "พร้อนกราไฟต์อิมพรีเกตเรซิน/พลวง/ทองแดง อิมพรีเกตซ้ำเพิ่มความหนาแน่น"],
+       ["02", "กลึงแม่นยำ", "กลึง CNC หน้าซีลและ I.D./O.D. ควบคุมค่าคลาดเคลื่อนตลอดกระบวนการ"],
+       ["03", "ตรวจสอบคุณภาพ", "ตรวจขนาด หน้าซีล ลักษณะภายนอกครบก่อนส่งมอบ"],
+       ["04", "บรรจุและจัดส่ง", "บรรจุตามประเภท ส่งมอบเป็นล็อต"]],
     metaTitle: "โรงงาน",
     metaDescription: "ความสามารถโรงงาน Huahao Sealing สำหรับซีลคาร์บอนกราไฟต์ งาน CNC กระบวนการอัดซึม การตรวจคุณภาพ และ OEM",
     eyebrow: "ความสามารถโรงงาน",
@@ -158,6 +182,12 @@ const content = {
     qc: ["บันทึกขนาดและค่าความคลาดเคลื่อนสำคัญ", "ตรวจความเรียบหน้าซีลและลักษณะภายนอก", "ติดตามเกรดวัสดุและล็อตกระบวนการ", "ฉลากส่งออกและการป้องกันระหว่างขนส่ง"],
   },
   ru: {
+    headline: "От заготовки до готовой детали — всё на своём производстве",
+    plantTitle: "Собственные линии, контролируемые допуски",
+    mfg: [["01", "Пропитанные заготовки", "Заготовки из пропитанного графита (смола/сурьма/медь), повторная пропитка для плотности."],
+       ["02", "Точная обработка", "CNC точение торцов и I.D./O.D. колец, допуски под контролем."],
+       ["03", "Контроль качества", "Полная проверка размеров, торцов и внешнего вида перед отгрузкой."],
+       ["04", "Упаковка и отгрузка", "Стандартные и заказные размеры, партионная отгрузка."]],
     metaTitle: "Производство",
     metaDescription: "Производственные возможности Huahao Sealing: углерод-графитовые уплотнения, CNC обработка, пропитка, контроль качества и OEM.",
     eyebrow: "Возможности завода",
@@ -191,6 +221,12 @@ const content = {
     qc: ["Записи критических размеров и допусков", "Проверка плоскостности торцов и внешнего вида", "Прослеживаемость марки и партии процесса", "Экспортная маркировка и защита при перевозке"],
   },
   ja: {
+    headline: "坯料から成品まで、一貫自社生産",
+    plantTitle: "自社ライン、公差を管理",
+    mfg: [["01", "含浸坯料", "樹脂／アンチモン／銅含浸グラファイト坯料、再含浸で緻密化。"],
+       ["02", "精密旋削", "シールリングの端面と内外径をCNC旋削、公差を全工程管理。"],
+       ["03", "品質検査", "寸法・端面・外観・主要性能を出荷前に全数検査。"],
+       ["04", "梱包出荷", "標準品と定制品を仕分け梱包し、ロット出荷。"]],
     metaTitle: "工場",
     metaDescription: "Huahao Sealingのカーボングラファイトシール、CNC加工、含浸、品質検査、OEM製造能力。",
     eyebrow: "工場能力",
@@ -224,6 +260,12 @@ const content = {
     qc: ["重要寸法と公差記録", "シール面平面度と外観検査", "材料グレードと工程ロット追跡", "輸出梱包ラベルと輸送保護"],
   },
   ko: {
+    headline: "빌릿부터 완제품까지 전 과정 자체 생산",
+    plantTitle: "자체 라인, 공차 관리",
+    mfg: [["01", "함침 빌릿", "수지/안티몬/동 함침 그라파이트 빌릿, 재함침으로 조밀도 향상."],
+       ["02", "정밀 선삭", "씰 링 단면과 내외경을 CNC 선삭, 전 공정 공차 관리."],
+       ["03", "품질 검사", "출하 전 치수·단면·외관·핵심 성능 전수 검사."],
+       ["04", "포장 출하", "표준품과 맞춤품 분류 포장, 로트 단위 출하."]],
     metaTitle: "공장",
     metaDescription: "Huahao Sealing 카본 그라파이트 씰, CNC 가공, 함침 공정, 품질 검사 및 OEM 맞춤 제조 역량.",
     eyebrow: "공장 역량",
@@ -300,110 +342,136 @@ export default async function FactoryPage({ params }: { params: Promise<{ locale
 
   return (
     <>
-      <PageHero
-        eyebrow={copy.eyebrow}
-        title={copy.title}
-        subtitle={copy.subtitle}
-        primaryLabel={copy.primary}
-        secondaryLabel={copy.secondary}
-        secondaryHref="/products"
-        stats={copy.stats}
-      />
-      <Breadcrumb items={[{ name: copy.title, url: "/factory" }]} locale={locale} />
+      <Breadcrumb items={[{ name: copy.eyebrow, url: "/factory" }]} locale={locale} />
 
-      <section className="section-padding bg-white">
-        <div className="container-wide">
-          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-            <div>
-              <div className="text-xs font-bold uppercase tracking-[0.08em] text-accent">{copy.evidenceKicker}</div>
-              <h2 className="mt-3 text-3xl font-bold text-primary md:text-4xl">{copy.evidenceTitle}</h2>
-              <div className="industrial-divider" />
-              <p className="text-base leading-relaxed text-muted">{copy.evidenceText}</p>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {copy.capabilities.map((item) => (
-                <div key={item.title} className="border border-border bg-background p-5">
-                  <Icon name={item.icon as IconName} className="mb-4 h-6 w-6 text-accent" />
-                  <h3 className="font-bold text-primary">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+      <PageHead en={copy.eyebrow} title={copy.headline} description={copy.subtitle} />
+
+      {/* 通栏车间实拍 + 图注条 */}
+      <figure className="bg-white">
+        <div className="relative h-[420px] w-full overflow-hidden border-y border-border bg-background md:h-[520px]">
+          <Image
+            src="/images/实拍/IMG_20260517_193309.webp"
+            alt={getLocalized({ zh: "CNC 车间实拍", en: "CNC workshop" }, locale)}
+            fill
+            className="object-cover"
+            sizes="100vw"
+            priority
+          />
         </div>
-      </section>
+        <figcaption className="container-wide flex flex-wrap items-center justify-between gap-2 py-3 text-xs text-muted">
+          <span>{getLocalized({ zh: "工厂实拍 · CNC 车间", en: "Factory photo · CNC workshop" }, locale)}</span>
+          <span className="en-caption">HUAHAO SEALING WORKSHOP</span>
+        </figcaption>
+      </figure>
 
-      <section id="process" className="section-padding industrial-surface scroll-mt-24">
-        <div className="container-wide">
-          <div className="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-            <div>
-              <h2 className="text-3xl font-bold text-primary md:text-4xl">{copy.processTitle}</h2>
-              <div className="industrial-divider" />
+      {/* 左侧粘性标语 + 右侧制造流程编号列表 */}
+      <section id="process" className="section-padding-sm bg-white scroll-mt-24">
+        <div className="container-wide grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div className="lg:sticky lg:top-24">
+            <div className="mb-4 flex items-center gap-3">
+              <span className="h-[3px] w-10 bg-accent" aria-hidden />
+              <span className="en-caption text-sm text-muted">{copy.evidenceKicker}</span>
             </div>
-            <Link href="/contact" className="btn-primary md:self-start">
-              {copy.primary}
-              <Icon name="arrow-right" className="h-4 w-4" />
-            </Link>
+            <h2 className="font-serif-sc text-3xl font-bold leading-tight text-primary md:text-4xl">
+              {copy.plantTitle}
+            </h2>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-muted">{copy.evidenceText}</p>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-4">
-            {copy.process.map(([num, title, desc]) => (
-              <div key={num} className="border border-border bg-white p-5">
-                <div className="mb-5 text-sm font-bold text-accent">{num}</div>
-                <h3 className="font-bold text-primary">{title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted">{desc}</p>
+          <div>
+            {copy.mfg.map(([num, title, desc], i) => (
+              <div key={num} className={`flex items-start gap-6 py-6 md:py-7 ${i > 0 ? "border-t border-border" : ""}`}>
+                <span className="en-caption shrink-0 text-4xl font-bold leading-none text-border md:text-5xl">
+                  {num}
+                </span>
+                <div className="min-w-0 pt-1">
+                  <h3 className="font-serif-sc text-lg font-bold text-primary">{title}</h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-muted">{desc}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="gallery" className="section-padding bg-white scroll-mt-24">
+      {/* 能力四栏：发丝线分栏 */}
+      <section className="section-padding-sm industrial-surface">
         <div className="container-wide">
-          <div className="grid gap-10 lg:grid-cols-[1fr_360px]">
-            <div>
-              <h2 className="text-3xl font-bold text-primary md:text-4xl">{copy.galleryTitle}</h2>
-              <div className="industrial-divider" />
-              <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {gallery.map((src, index) => (
-                  <div key={src} className="relative aspect-[4/3] overflow-hidden border border-border bg-background">
+          <div className="grid gap-px border border-border bg-border md:grid-cols-2 lg:grid-cols-4">
+            {copy.capabilities.map((item) => (
+              <div key={item.title} className="bg-white p-6">
+                <Icon name={item.icon as IconName} className="mb-4 h-5 w-5 text-accent" />
+                <h3 className="text-sm font-bold text-primary">{item.title}</h3>
+                <p className="mt-2 text-xs leading-relaxed text-muted">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 实拍马赛克 + QC 侧栏 */}
+      <section id="gallery" className="section-padding-sm bg-white scroll-mt-24">
+        <div className="container-wide grid gap-10 lg:grid-cols-[1fr_360px]">
+          <div>
+            <div className="grid gap-px border border-border bg-border sm:grid-cols-2">
+              {gallery.slice(1).map((src, index) => (
+                <figure key={src} className="group relative bg-white">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-background">
                     <Image
                       src={src}
-                      alt={`${copy.galleryTitle} ${index + 1}`}
+                      alt={`${copy.galleryTitle} ${index + 2}`}
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
                   </div>
-                ))}
-              </div>
+                  <figcaption className="border-t border-border px-4 py-2.5 text-xs text-muted">
+                    {getLocalized({ zh: "工厂实拍", en: "Factory photo" }, locale)} {String(index + 2).padStart(2, "0")}
+                  </figcaption>
+                </figure>
+              ))}
             </div>
-
-            <aside id="qc" className="scroll-mt-24 border border-border bg-primary p-6 text-white lg:sticky lg:top-24">
-              <div className="text-xs font-bold uppercase tracking-[0.08em] text-white/56">QC</div>
-              <h3 className="mt-3 text-2xl font-bold">{copy.qcTitle}</h3>
-              <div className="my-5 h-px bg-white/12" />
-              <ul className="space-y-4">
-                {copy.qc.map((item) => (
-                  <li key={item} className="flex gap-3 text-sm leading-relaxed text-slate-300">
-                    <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </aside>
           </div>
+
+          <aside id="qc" className="scroll-mt-24 border border-border bg-primary p-6 text-white lg:sticky lg:top-24">
+            <div className="en-caption text-xs text-white/56">QC</div>
+            <h3 className="mt-3 font-serif-sc text-2xl font-bold">{copy.qcTitle}</h3>
+            <div className="my-5 h-px bg-white/12" />
+            <ul className="space-y-4">
+              {copy.qc.map((item) => (
+                <li key={item} className="flex gap-3 text-sm leading-relaxed text-slate-300">
+                  <span className="mt-[7px] h-1.5 w-1.5 shrink-0 bg-accent" aria-hidden />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </aside>
         </div>
       </section>
 
-      <section id="certificates" className="section-padding industrial-surface scroll-mt-24">
+      {/* 大数字条 */}
+      <section className="border-y border-border bg-white">
+        <div className="container-wide grid gap-px bg-border sm:grid-cols-3">
+          {copy.stats.map((stat) => (
+            <div key={stat.label} className="bg-white px-6 py-10 text-center">
+              <div className="stat-num text-4xl font-bold text-primary md:text-5xl">{stat.value}</div>
+              <div className="mt-2 text-xs leading-relaxed text-muted">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="certificates" className="section-padding-sm industrial-surface scroll-mt-24">
         <div className="container-wide">
           <div className="mb-8">
-            <h2 className="text-3xl font-bold text-primary md:text-4xl">{certCopy.title}</h2>
-            <div className="industrial-divider" />
+            <div className="mb-4 flex items-center gap-3">
+              <span className="h-[3px] w-10 bg-accent" aria-hidden />
+              <span className="en-caption text-sm text-muted">{getLocalized({ zh: "质量文件", en: "Quality Documents" }, locale)}</span>
+            </div>
+            <h2 className="font-serif-sc text-3xl font-bold text-primary md:text-4xl">{certCopy.title}</h2>
             <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted">{certCopy.desc}</p>
           </div>
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-px border border-border bg-border md:grid-cols-3">
             {["M120K", "M106D", "M140K"].map((model) => (
               <TrackedLink
                 key={model}
@@ -412,11 +480,11 @@ export default async function FactoryPage({ params }: { params: Promise<{ locale
                 rel="noopener noreferrer"
                 event="datasheet_download"
                 label={model}
-                className="group flex items-center justify-between gap-3 border border-border bg-white p-5 transition-colors hover:border-accent"
+                className="group flex items-center justify-between gap-3 bg-white p-5 transition-colors hover:bg-[#fafafb]"
               >
                 <span className="flex items-center gap-3">
-                  <Icon name="certificate" className="h-6 w-6 shrink-0 text-accent" />
-                  <span className="text-sm font-bold text-primary">
+                  <Icon name="certificate" className="h-5 w-5 shrink-0 text-accent" />
+                  <span className="font-mono text-sm font-bold text-primary">
                     {model} {certCopy.reportLabel}
                   </span>
                 </span>
@@ -427,7 +495,18 @@ export default async function FactoryPage({ params }: { params: Promise<{ locale
         </div>
       </section>
 
-      <CTASection />
+      <section className="section-padding-sm industrial-surface">
+        <div className="container-wide">
+          <StepStrip items={copy.process.map(([num, title, desc]) => ({ title, desc }))} />
+        </div>
+      </section>
+
+      <CTASection
+        title={getLocalized({ zh: "欢迎来厂考察或视频验厂", en: "Visit our factory or verify via video call" }, locale)}
+        subtitle={getLocalized({ zh: "透明的生产环境，严格的质量管理，支持来厂考察与远程视频看厂。", en: "Transparent production environment and strict quality control — on-site visits and remote video factory tours supported." }, locale)}
+        primaryLabel={getLocalized({ zh: "预约考察", en: "Book a visit" }, locale)}
+        primaryHref="/contact"
+      />
     </>
   )
 }

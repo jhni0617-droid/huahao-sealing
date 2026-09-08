@@ -2,11 +2,12 @@ import { setRequestLocale } from "next-intl/server"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 import { technicalData } from "@/lib/technical-data"
-import { FaqJsonLd, BreadcrumbJsonLd } from "@/components/JsonLd"
-import PageHero from "@/components/PageHero"
+import { FaqJsonLd } from "@/components/JsonLd"
+import Breadcrumb from "@/components/Breadcrumb"
 import CTASection from "@/components/CTASection"
+import PageHead from "@/components/ui/PageHead"
+import StatsRow from "@/components/ui/StatsRow"
 import FAQAccordion from "@/components/FAQAccordion"
-import { Link } from "@/i18n/routing"
 
 interface Props {
   params: Promise<{ locale: string }>
@@ -217,146 +218,137 @@ export default async function TechnicalParamsPage({ params }: Props) {
 
   return (
     <>
-      <BreadcrumbJsonLd
-        locale={locale}
-        items={[
-          { name: copy.home, url: "" },
-          { name: copy.title, url: "/technical-params" },
-        ]}
-      />
       <FaqJsonLd questions={faqItems.map((f) => ({ q: f.q, a: f.a }))} />
+      <Breadcrumb items={[{ name: copy.title, url: "/technical-params" }]} locale={locale} />
 
-      <PageHero
-        eyebrow={copy.eyebrow}
-        title={copy.title}
-        subtitle={copy.subtitle}
-        primaryLabel={copy.primaryLabel}
-        secondaryLabel={copy.secondaryLabel}
-        secondaryHref="/products"
-        stats={[
+      <PageHead en={copy.eyebrow} title={copy.title} description={copy.subtitle} />
+
+      <StatsRow
+        items={[
           { value: String(technicalData.grades.length), label: copy.statGrades },
           { value: "600°C", label: copy.statMaxTemp },
           { value: "99.9%", label: copy.statCarbon },
         ]}
       />
 
-      {/* Breadcrumb */}
-      <section className="bg-gray-50 border-b border-border">
-        <div className="container-wide py-4 text-sm text-muted">
-          <Link href="/" className="hover:text-primary">
-            {copy.home}
-          </Link>
-          <span className="mx-2">/</span>
-          <span className="text-foreground">{copy.eyebrow}</span>
+      <section className="section-padding-sm bg-white">
+        <div className="container-wide">
+          {/* 工况极限参数表 */}
+          <div className="mb-4 flex items-center gap-3">
+            <span className="h-[3px] w-10 bg-accent" aria-hidden />
+            <span className="en-caption text-sm text-muted">{copy.operatingLimits}</span>
+          </div>
+          <div className="overflow-x-auto border border-border bg-white">
+            <table className="w-full min-w-[720px] border-collapse text-sm">
+              <thead>
+                <tr className="bg-primary text-left text-white">
+                  {[copy.colGrade, copy.colType, copy.colTemp, copy.colPressure, copy.colSpeed].map((label) => (
+                    <th key={label} className="whitespace-nowrap px-4 py-3 text-xs font-bold uppercase tracking-[0.06em]">
+                      {label}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {technicalData.grades.map((g, i) => (
+                  <tr key={g.grade} className={`border-t border-border ${i % 2 === 1 ? "bg-[#f7f8f9]" : "bg-white"}`}>
+                    <td className="whitespace-nowrap px-4 py-3">
+                      <span className="flex items-center gap-2">
+                        {g.grade === "M106D" && <span className="h-1.5 w-1.5 shrink-0 bg-accent" aria-hidden />}
+                        <span className="font-mono font-bold text-primary">{g.grade}</span>
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 text-xs leading-relaxed text-muted">{g.type}</td>
+                    <td className={`whitespace-nowrap px-4 py-3 font-mono ${g.grade === "M106D" ? "font-bold text-accent" : "text-primary"}`}>{g.tempMax}</td>
+                    <td className="whitespace-nowrap px-4 py-3 font-mono text-primary">{g.pressureMax}</td>
+                    <td className="whitespace-nowrap px-4 py-3 font-mono text-primary">{g.speedMax}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* 力学与导热性能表 */}
+          <div className="mb-4 mt-12 flex items-center gap-3">
+            <span className="h-[3px] w-10 bg-accent" aria-hidden />
+            <span className="en-caption text-sm text-muted">{copy.mechanicalProps}</span>
+          </div>
+          <div className="overflow-x-auto border border-border bg-white">
+            <table className="w-full min-w-[560px] border-collapse text-sm">
+              <thead>
+                <tr className="bg-primary text-left text-white">
+                  {[copy.colGrade, copy.colCompressive, copy.colFlexural, copy.colThermal].map((label) => (
+                    <th key={label} className="whitespace-nowrap px-4 py-3 text-xs font-bold uppercase tracking-[0.06em]">
+                      {label}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {technicalData.grades.map((g, i) => (
+                  <tr key={g.grade} className={`border-t border-border ${i % 2 === 1 ? "bg-[#f7f8f9]" : "bg-white"}`}>
+                    <td className="whitespace-nowrap px-4 py-3 font-mono font-bold text-primary">{g.grade}</td>
+                    <td className="whitespace-nowrap px-4 py-3 font-mono text-primary">{g.compressiveStrength}</td>
+                    <td className="whitespace-nowrap px-4 py-3 font-mono text-primary">{g.flexuralStrength}</td>
+                    <td className="whitespace-nowrap px-4 py-3 font-mono text-primary">{g.thermalConductivity}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
 
-      {/* Operating Limits Table */}
-      <section className="section-padding industrial-surface">
-        <div className="container-wide max-w-6xl">
-          <h2 className="text-2xl font-bold text-primary mb-2">{copy.operatingLimits}</h2>
-          <div className="industrial-divider mb-8" />
-          <div className="card-static bg-white p-2 md:p-4 overflow-x-auto mb-12">
-            <table className="w-full text-sm">
-              <thead>
-                <tr>
-                  <th className="text-left p-3 bg-primary text-white whitespace-nowrap">{copy.colGrade}</th>
-                  <th className="text-left p-3 bg-primary text-white whitespace-nowrap">{copy.colType}</th>
-                  <th className="text-left p-3 bg-primary text-white whitespace-nowrap">{copy.colTemp}</th>
-                  <th className="text-left p-3 bg-primary text-white whitespace-nowrap">{copy.colPressure}</th>
-                  <th className="text-left p-3 bg-primary text-white whitespace-nowrap">{copy.colSpeed}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {technicalData.grades.map((g) => (
-                  <tr key={g.grade} className="hover:bg-gray-50 transition-colors">
-                    <td className="p-3 border-b font-bold text-primary whitespace-nowrap">{g.grade}</td>
-                    <td className="p-3 border-b text-muted">{g.type}</td>
-                    <td className="p-3 border-b text-accent font-semibold whitespace-nowrap">{g.tempMax}</td>
-                    <td className="p-3 border-b text-muted whitespace-nowrap">{g.pressureMax}</td>
-                    <td className="p-3 border-b text-muted whitespace-nowrap">{g.speedMax}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+      {/* 典型应用场景 */}
+      <section className="section-padding-sm industrial-surface">
+        <div className="container-wide">
+          <div className="mb-8 flex items-center gap-3">
+            <span className="h-[3px] w-10 bg-accent" aria-hidden />
+            <span className="en-caption text-sm text-muted">{copy.applications}</span>
           </div>
-
-          {/* Mechanical Properties Table */}
-          <h2 className="text-2xl font-bold text-primary mb-2">{copy.mechanicalProps}</h2>
-          <div className="industrial-divider mb-8" />
-          <div className="card-static bg-white p-2 md:p-4 overflow-x-auto mb-12">
-            <table className="w-full text-sm">
-              <thead>
-                <tr>
-                  <th className="text-left p-3 bg-primary text-white whitespace-nowrap">{copy.colGrade}</th>
-                  <th className="text-left p-3 bg-primary text-white whitespace-nowrap">{copy.colCompressive}</th>
-                  <th className="text-left p-3 bg-primary text-white whitespace-nowrap">{copy.colFlexural}</th>
-                  <th className="text-left p-3 bg-primary text-white whitespace-nowrap">{copy.colThermal}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {technicalData.grades.map((g) => (
-                  <tr key={g.grade} className="hover:bg-gray-50 transition-colors">
-                    <td className="p-3 border-b font-bold text-primary whitespace-nowrap">{g.grade}</td>
-                    <td className="p-3 border-b text-muted whitespace-nowrap">{g.compressiveStrength}</td>
-                    <td className="p-3 border-b text-muted whitespace-nowrap">{g.flexuralStrength}</td>
-                    <td className="p-3 border-b text-muted whitespace-nowrap">{g.thermalConductivity}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          {/* Applications Cards */}
-          <h2 className="text-2xl font-bold text-primary mb-2">{copy.applications}</h2>
-          <div className="industrial-divider mb-8" />
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-12">
-            {technicalData.grades.map((g) => {
-              const apps = getLocalized(g.applications, locale)
-              return (
-                <div key={g.grade} className="card-static bg-white p-5">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="tag-accent">{g.grade}</span>
-                    <span className="text-xs text-muted">{g.type}</span>
-                  </div>
-                  <p className="text-sm text-muted leading-relaxed">{apps}</p>
+          <div className="grid gap-px border border-border bg-border md:grid-cols-2 lg:grid-cols-3">
+            {technicalData.grades.map((g) => (
+              <div key={g.grade} className="bg-white p-6">
+                <div className="flex items-baseline gap-2.5">
+                  <span className="font-mono font-bold text-primary">{g.grade}</span>
+                  <span className="text-xs text-muted">{g.type}</span>
                 </div>
-              )
-            })}
+                <p className="mt-3 text-sm leading-relaxed text-muted">{getLocalized(g.applications, locale)}</p>
+              </div>
+            ))}
           </div>
+        </div>
+      </section>
 
-          {/* Physical Properties Table */}
-          <h2 className="text-2xl font-bold text-primary mb-2">{propsTitle}</h2>
-          <div className="industrial-divider mb-8" />
-          <div className="card-static bg-white p-2 md:p-4 overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr>
-                  <th className="text-left p-3 bg-primary text-white">{copy.colProperty}</th>
-                  <th className="text-left p-3 bg-primary text-white">{copy.colValue}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {technicalData.materialProperties.properties.map((p, i) => (
-                  <tr key={i} className="hover:bg-gray-50 transition-colors">
-                    <td className="p-3 border-b font-medium text-primary">{p.name}</td>
-                    <td className="p-3 border-b text-muted">
-                      <span className="font-semibold text-accent">{p.value}</span>
-                      <span className="ml-1 text-muted">{p.unit}</span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+      {/* 通用物理性能表 */}
+      <section className="section-padding-sm bg-white">
+        <div className="container-wide">
+          <div className="mb-8 flex items-center gap-3">
+            <span className="h-[3px] w-10 bg-accent" aria-hidden />
+            <span className="en-caption text-sm text-muted">{copy.physicalProps}</span>
+          </div>
+          <div className="grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+            {technicalData.materialProperties.properties.map((p) => (
+              <div key={p.name} className="bg-white p-5">
+                <div className="text-xs leading-relaxed text-muted">{p.name}</div>
+                <div className="mt-2 font-mono text-lg font-bold text-primary">
+                  {p.value}
+                  <span className="ml-1 text-xs font-semibold text-muted">{p.unit}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="section-padding bg-gray-50">
+      <section className="section-padding-sm industrial-surface">
         <div className="container-wide max-w-4xl">
-          <h2 className="text-2xl font-bold text-primary mb-8 text-center">{copy.faq}</h2>
-          <div className="space-y-4">
+          <div className="mb-8 flex items-center gap-3">
+            <span className="h-[3px] w-10 bg-accent" aria-hidden />
+            <span className="en-caption text-sm text-muted">{copy.faq}</span>
+          </div>
+          <div className="space-y-3">
             {faqItems.map((item, i) => (
               <FAQAccordion key={i} title={item.q}>
                 <p className="text-sm text-muted leading-relaxed">{item.a}</p>

@@ -8,8 +8,11 @@ import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 import { applicationsDetailsByLocale } from "@/lib/translations-app-details"
 import { industryLandings } from "@/lib/industry-landing-data"
-import PageHero from "@/components/PageHero"
 import Breadcrumb from "@/components/Breadcrumb"
+import HashScroll from "@/components/HashScroll"
+import PageHead from "@/components/ui/PageHead"
+import StepStrip from "@/components/ui/StepStrip"
+import Icon from "@/components/ui/Icon"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -217,82 +220,130 @@ export default async function ApplicationsPage({ params }: { params: Promise<{ l
     ko: { eyebrow: "응용 및 운전 조건", primary: "응용 상담 받기", secondary: "제품 보기", stats: ["산업 분야", "고온 범위", "매체 범위"] },
   }, locale)
 
+  const steps = getLocalized({
+    zh: [
+      { title: "提交工况", desc: "提供介质、温度、压力、转速等关键参数。" },
+      { title: "材料匹配", desc: "工程师进行材料与结构匹配分析。" },
+      { title: "方案确认", desc: "输出推荐方案与使用建议，双方确认。" },
+    ],
+    en: [
+      { title: "Submit duty conditions", desc: "Share media, temperature, pressure, and speed parameters." },
+      { title: "Material matching", desc: "Engineers analyze material and structure fit." },
+      { title: "Solution confirmed", desc: "We deliver a recommended solution for mutual confirmation." },
+    ],
+    vi: [
+      { title: "Gửi điều kiện vận hành", desc: "Cung cấp môi trường, nhiệt độ, áp suất, tốc độ." },
+      { title: "Ghép vật liệu", desc: "Kỹ sư phân tích vật liệu và kết cấu phù hợp." },
+      { title: "Xác nhận phương án", desc: "Đưa ra phương án đề xuất và khuyến nghị sử dụng." },
+    ],
+    th: [
+      { title: "ส่งเงื่อนไขการใช้งาน", desc: "แจ้งตัวกลาง อุณหภูมิ แรงดัน ความเร็ว" },
+      { title: "จับคู่วัสดุ", desc: "วิศวกรวิเคราะห์วัสดุและโครงสร้างที่เหมาะสม" },
+      { title: "ยืนยันโซลูชัน", desc: "เสนอแนวทางและคำแนะนำการใช้งาน" },
+    ],
+    ru: [
+      { title: "Отправьте условия", desc: "Укажите среду, температуру, давление, скорость." },
+      { title: "Подбор материала", desc: "Инженеры подберут материал и конструкцию." },
+      { title: "Согласование решения", desc: "Выдача рекомендаций и подтверждение решения." },
+    ],
+    ja: [
+      { title: "条件を提出", desc: "媒体・温度・圧力・速度などの参数を共有。" },
+      { title: "材料マッチング", desc: "エンジニアが材料と構造を分析。" },
+      { title: "案確定", desc: "推奨案と使用上の助言をご提示。" },
+    ],
+    ko: [
+      { title: "조건 제출", desc: "매체, 온도, 압력, 속도 등 핵심 파라미터 공유." },
+      { title: "재료 매칭", desc: "엔지니어가 재료와 구조를 분석." },
+      { title: "방안 확정", desc: "추천 방안과 사용 권장 사항을 전달." },
+    ],
+  }, locale)
+
   return (
     <>
-      <PageHero
-        eyebrow={hero.eyebrow}
-        title={t("pageTitle")}
-        subtitle={t("heroSubtitle")}
-        primaryLabel={hero.primary}
-        secondaryLabel={hero.secondary}
-        secondaryHref="/products"
-        stats={[
-          { value: "8", label: hero.stats[0] },
-          { value: "600°C", label: hero.stats[1] },
-          { value: "pH 0-14", label: hero.stats[2] },
-        ]}
-      />
+      <HashScroll />
       <Breadcrumb items={[{ name: t("pageTitle"), url: "/applications" }]} locale={locale} />
 
-      <section className="section-padding industrial-surface">
+      <PageHead en={hero.eyebrow} title={t("pageTitle")} description={t("heroSubtitle")} />
+
+      {/* 八大行业瓷砖：黑白实拍 + 红色序号，点击跳到同页详情行 */}
+      <section className="section-padding-sm bg-white">
+        <div className="container-wide">
+          <div className="grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+            {applications.map((app, idx) => (
+              <a key={app.slug} href={`#${app.slug}`} className="group relative block bg-white">
+                <div className="relative aspect-[4/3] overflow-hidden border-b border-border bg-background">
+                  <Image
+                    src={appImages[app.slug]}
+                    alt={app.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  />
+                  <span className="en-caption absolute left-3 top-3 text-sm font-bold text-accent">
+                    {String(idx + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between px-4 py-3">
+                  <span className="font-serif-sc text-sm font-bold text-primary transition-colors group-hover:text-accent">
+                    {app.title}
+                  </span>
+                  <span className="text-muted transition-transform group-hover:translate-x-0.5" aria-hidden>
+                    ↓
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding-sm industrial-surface">
         <div className="container-wide">
           {applications.map((app, idx) => {
             const detail = details[app.slug]
             return (
-              <div key={app.slug} id={app.slug} className={`mb-16 scroll-mt-24 last:mb-0 ${idx > 0 ? "pt-8" : ""}`}>
-                <div className="grid lg:grid-cols-[1fr_420px] gap-8 items-stretch">
-                  <div>
-                    <div className="mb-3 text-xs font-bold uppercase tracking-[0.08em] text-accent">
-                      0{idx + 1}
+              <div key={app.slug} id={app.slug} className="scroll-mt-24 border-t border-border py-10 first:border-t-0 first:pt-0 md:py-12">
+                <div className="grid gap-8 lg:grid-cols-[1fr_420px] lg:items-start">
+                  <div className="min-w-0">
+                    <div className="flex items-baseline gap-4">
+                      <span className="en-caption text-3xl font-bold leading-none text-border">
+                        {String(idx + 1).padStart(2, "0")}
+                      </span>
+                      <h2 className="font-serif-sc text-2xl font-bold text-primary md:text-3xl">{app.title}</h2>
                     </div>
-                    <h2 className="text-3xl font-bold text-primary mb-4">{app.title}</h2>
-                    <div className="industrial-divider" />
-                    <p className="text-muted mt-4 leading-relaxed">{detail.description}</p>
+                    <p className="mt-4 max-w-2xl leading-relaxed text-muted">{detail.description}</p>
 
-                    <div className="mt-6">
-                      <h3 className="font-semibold mb-3">{t("applicableProducts")}</h3>
-                      <div className="flex flex-wrap gap-2">
-                        <Link href="/products#seal-rings" className="tag-accent">
-                          {t("sealRings")}
-                        </Link>
-                        <Link href="/products#carbon-graphite-sleeves" className="tag-accent">
-                          {t("bushings")}
-                        </Link>
-                      </div>
+                    <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
+                      {(detail.reasons || []).map((item) => (
+                        <li key={item} className="flex items-start gap-2.5 text-sm leading-relaxed text-muted">
+                          <span className="mt-[7px] h-1.5 w-1.5 shrink-0 bg-accent" aria-hidden />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="mt-6 flex flex-wrap items-center gap-2 border-t border-border pt-5">
+                      <span className="text-xs font-semibold uppercase tracking-[0.08em] text-muted">{t("applicableProducts")}</span>
+                      <Link href="/products#seal-rings" className="tag-accent">
+                        {t("sealRings")}
+                      </Link>
+                      <Link href="/products#carbon-graphite-sleeves" className="tag-accent">
+                        {t("bushings")}
+                      </Link>
                     </div>
                   </div>
 
-                  <div className="flex flex-col gap-4">
-                    {appImages[app.slug] && (
-                      <div className="relative h-56 overflow-hidden border border-border">
-                        <Image
-                          src={appImages[app.slug]}
-                          alt={app.title}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 1024px) 100vw, 420px"
-                        />
-                      </div>
-                    )}
-                    <div className="card-static p-6 bg-white flex-1">
-                      <h3 className="font-semibold mb-4">{t("whyTitle", { industry: app.title })}</h3>
-                      <ul className="space-y-3">
-                        {(detail.reasons || [
-                          getLocalized({ zh: "自润滑 — 无需外部润滑", en: "Self-lubricating — no external lubrication", vi: "Tự bôi trơn — không cần bôi trơn ngoài", th: "หล่อลื่นตัวเอง — ไม่ต้องใช้สารหล่อลื่นภายนอก", ru: "Самосмазывание — без внешней смазки", ja: "自己潤滑 — 外部潤滑不要", ko: "자체 윤활 — 외부 윤활 불필요" }, locale),
-                          getLocalized({ zh: "恶劣环境中耐腐蚀", en: "Corrosion resistant in harsh environments", vi: "Chống ăn mòn trong môi trường khắc nghiệt", th: "ทนการกัดกร่อนในสภาพแวดล้อมรุนแรง", ru: "Коррозионная стойкость в тяжелых средах", ja: "過酷環境での耐食性", ko: "가혹 환경 내식성" }, locale),
-                          getLocalized({ zh: "耐高温和抗热冲击", en: "High temperature & thermal shock resistance", vi: "Chịu nhiệt và sốc nhiệt", th: "ทนความร้อนและช็อกความร้อน", ru: "Стойкость к высокой температуре и термошоку", ja: "高温・熱衝撃に強い", ko: "고온 및 열충격 저항" }, locale),
-                          getLocalized({ zh: "长寿命减少维护停机时间", en: "Long life reducing maintenance downtime", vi: "Tuổi thọ dài, giảm thời gian dừng máy", th: "อายุการใช้งานยาว ลดเวลาหยุดซ่อม", ru: "Долгий срок службы снижает простои", ja: "長寿命で保守停止を削減", ko: "긴 수명으로 유지보수 정지 감소" }, locale),
-                        ]).map((item, i) => (
-                          <li key={i} className="flex items-start gap-2 text-sm">
-                            <svg className="w-4 h-4 text-accent shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                            </svg>
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
+                  {appImages[app.slug] && (
+                    <div className="relative aspect-[4/3] overflow-hidden border border-border bg-background lg:mt-1">
+                      <Image
+                        src={appImages[app.slug]}
+                        alt={app.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 1024px) 100vw, 420px"
+                      />
                     </div>
-                  </div>
+                  )}
                 </div>
               </div>
             )
@@ -300,17 +351,80 @@ export default async function ApplicationsPage({ params }: { params: Promise<{ l
         </div>
       </section>
 
-      <section className="section-padding industrial-surface">
+      {/* 图文特性带：为工况选材料 */}
+      <section className="border-y border-border bg-white">
+        <div className="grid lg:grid-cols-2">
+          <div className="relative aspect-[16/10] overflow-hidden border-b border-border bg-background lg:aspect-auto lg:border-b-0 lg:border-r">
+            <Image
+              src="/images/stock/industry-pump.webp"
+              alt={getLocalized({ zh: "工业泵与管路设备", en: "Industrial pump and piping equipment" }, locale)}
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              loading="lazy"
+            />
+          </div>
+          <div className="flex flex-col justify-center p-6 md:p-10 lg:p-14">
+            <div className="mb-4 flex items-center gap-3">
+              <span className="h-[3px] w-10 bg-accent" aria-hidden />
+              <span className="en-caption text-sm text-muted">{getLocalized({ zh: "选型逻辑", en: "Selection Logic" }, locale)}</span>
+            </div>
+            <h2 className="font-serif-sc text-2xl font-bold leading-tight text-primary md:text-3xl">
+              {getLocalized({ zh: "为工况选材料，而非为目录卖型号", en: "Materials selected for your duty, not a catalog SKU" }, locale)}
+            </h2>
+            <ul className="mt-6 space-y-3.5">
+              {getLocalized({
+                zh: [
+                  "基于温度、压力、介质、转速等真实工况参数",
+                  "匹配合适的碳石墨材料、浸渍工艺与结构方案",
+                  "提升密封可靠性，降低维护与停机成本",
+                ],
+                en: [
+                  "Based on real duty parameters — temperature, pressure, media, speed",
+                  "Matching carbon graphite grade, impregnation, and structure",
+                  "Higher sealing reliability, lower maintenance and downtime cost",
+                ],
+              }, locale).map((item) => (
+                <li key={item} className="flex items-start gap-3 border-t border-border pt-3.5 text-sm leading-relaxed text-muted">
+                  <span className="mt-[7px] h-1.5 w-1.5 shrink-0 bg-accent" aria-hidden />
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <Link href="/contact" className="btn-primary mt-8 self-start">
+              {getLocalized({ zh: "提交工况获取建议", en: "Submit duty for advice" }, locale)}
+              <Icon name="arrow-right" className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding-sm bg-white">
         <div className="container-wide">
-          <h2 className="text-3xl font-bold text-primary mb-8">{getLocalized({ zh: "行业应用专题", en: "Industry Application Guides", vi: "Hướng dẫn ứng dụng ngành", th: "คู่มือการใช้งานอุตสาหกรรม" }, locale)}</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="mb-8 flex items-center gap-3">
+            <span className="h-[3px] w-10 bg-accent" aria-hidden />
+            <span className="en-caption text-sm text-muted">{getLocalized({ zh: "行业专题", en: "Industry Guides" }, locale)}</span>
+          </div>
+          <div className="grid gap-px border border-border bg-border md:grid-cols-2 lg:grid-cols-3">
             {industryLandings.map((industry) => (
-              <Link key={industry.slug} href={`/applications/${industry.slug}`} className="card-static p-5 hover:border-accent transition-colors block">
-                <h3 className="font-semibold text-primary mb-2">{getLocalized(industry.title, locale)}</h3>
-                <p className="text-sm text-muted line-clamp-2">{getLocalized(industry.description, locale)}</p>
+              <Link
+                key={industry.slug}
+                href={`/applications/${industry.slug}`}
+                className="group bg-white p-5 transition-colors hover:bg-[#fafafb]"
+              >
+                <h3 className="font-serif-sc font-bold text-primary transition-colors group-hover:text-accent">
+                  {getLocalized(industry.title, locale)}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted line-clamp-2">{getLocalized(industry.description, locale)}</p>
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section-padding-sm industrial-surface">
+        <div className="container-wide">
+          <StepStrip items={steps} />
         </div>
       </section>
 

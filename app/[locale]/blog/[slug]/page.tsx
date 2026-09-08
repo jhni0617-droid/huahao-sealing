@@ -4,7 +4,7 @@ import { getLocalized } from "@/lib/locale-data"
 import { blogPosts, getPostBySlug, getAllSlugs } from "@/lib/blog-data"
 import { siteConfig } from "@/lib/constants"
 import { ArticleJsonLd, BreadcrumbJsonLd, FaqJsonLd } from "@/components/JsonLd"
-import PageHero from "@/components/PageHero"
+import PageHead from "@/components/ui/PageHead"
 import CTASection from "@/components/CTASection"
 import { Link } from "@/i18n/routing"
 import { notFound } from "next/navigation"
@@ -237,12 +237,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
           { name: title, url: `/blog/${slug}` },
         ]}
       />
-      <PageHero
-        eyebrow={tagLabels[post.tag as keyof typeof tagLabels] || post.tag}
-        title={title}
-        subtitle={excerpt}
-        primaryLabel={t("ctaButton")}
-      />
+      <PageHead en={tagLabels[post.tag as keyof typeof tagLabels] || post.tag} title={title} description={excerpt} />
 
       <article className="section-padding industrial-surface">
         <div className="container-wide max-w-4xl">

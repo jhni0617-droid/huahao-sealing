@@ -4,6 +4,11 @@ import CertBadge from "@/components/ui/CertBadge"
 import Icon, { type IconName } from "@/components/ui/Icon"
 import Reveal from "@/components/ui/Reveal"
 import { getLocalized } from "@/lib/locale-data"
+import SectionRail, { HomeSection } from "@/components/home/SectionRail"
+
+const railLabel = {
+  zh: "工厂与质量", en: "Factory & Quality", vi: "Nhà máy & Chất lượng", th: "โรงงาน & คุณภาพ", ru: "Завод и качество", ja: "工場と品質", ko: "공장 & 품질",
+}
 
 const carouselImages = [
   { src: "/images/IMG_20260321_153130.webp", alt: "Huahao Sealing Factory · Overview" },
@@ -159,11 +164,17 @@ export default async function FactoryQuality() {
   const qcItems = getLocalized(qcItemsData, locale)
 
   return (
-    <section className="bg-primary text-white relative overflow-hidden">
+    <HomeSection
+      className="border-t border-white/[0.08] bg-primary text-white relative overflow-hidden"
+      bordered={false}
+    >
       <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `radial-gradient(circle at 1px 1px, #fff 1px, transparent 0)`, backgroundSize: "40px 40px" }} />
 
-      <div className="container-wide py-20 md:py-28">
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+      <SectionRail locale={locale} index="03" label={getLocalized(railLabel, locale)} en="Factory & Quality" href="/factory" dark />
+
+      <div className="relative z-10 min-w-0">
+        <div className="grid items-center gap-10 lg:grid-cols-2">
+          {/* 黑白实拍轮播 */}
           <div>
             <ImageCarousel
               images={carouselImages}
@@ -176,20 +187,16 @@ export default async function FactoryQuality() {
           </div>
 
           <Reveal>
-            <div className="mb-4 flex items-center gap-3">
-              <span className="h-[3px] w-10 bg-accent" aria-hidden />
-              <span className="en-caption text-sm text-slate-400">Factory & Quality</span>
-            </div>
-            <h2 className="font-serif-sc text-3xl md:text-[2.75rem] font-bold mb-5 leading-tight">
+            <h2 className="font-serif-sc text-3xl font-bold mb-5 leading-tight text-balance md:text-[2.5rem]">
               {t("title")}
             </h2>
             <p className="text-slate-300 leading-relaxed mb-8 text-base">
               {t("description")}
             </p>
 
-            <div className="grid grid-cols-2 gap-3 mb-8">
+            <div className="grid grid-cols-2 gap-px border border-white/[0.08] bg-white/[0.08]">
               {capabilities.map((item) => (
-                <div key={item.label} className="border border-white/[0.08] bg-white/[0.04] p-4">
+                <div key={item.label} className="bg-primary p-4">
                   <h3 className="font-semibold text-sm text-white">{item.label}</h3>
                   <p className="text-xs text-slate-400 mt-1">{item.desc}</p>
                 </div>
@@ -197,10 +204,10 @@ export default async function FactoryQuality() {
             </div>
 
             {/* 静态大数字：静的才笃定，不做滚动动画 */}
-            <div className="grid grid-cols-4">
+            <div className="mt-8 grid grid-cols-4">
               {stats.map((s, i) => (
-                <div key={s.value} className={`px-3 py-1 ${i > 0 ? "border-l border-dashed border-white/12" : "pl-0"}`}>
-                  <span className="stat-num block text-[2rem] text-white lg:text-5xl">{s.value}</span>
+                <div key={s.value} className={`px-3 py-1 ${i > 0 ? "border-l border-white/15" : "pl-0"}`}>
+                  <span className="stat-num block text-[2rem] leading-none text-white lg:text-5xl">{s.value}</span>
                   <div className="mt-2 truncate text-xs text-slate-400">{s.label}</div>
                 </div>
               ))}
@@ -208,16 +215,16 @@ export default async function FactoryQuality() {
           </Reveal>
         </div>
 
-        <div className="mb-12">
+        <div className="mt-14">
           <div className="flex items-center gap-4 mb-8">
-            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-            <span className="text-xs text-slate-400 tracking-[0.2em] uppercase">{getLocalized({ zh: "品控设备", en: "QC Equipment", vi: "Thiết bị QC", th: "อุปกรณ์ QC", ru: "Оборудование КК", ja: "品質管理設備", ko: "품질 관리 장비" }, locale)}</span>
-            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+            <div className="h-px flex-1 bg-white/10" />
+            <span className="en-caption text-[11px] text-slate-400">{getLocalized({ zh: "品控设备", en: "QC Equipment", vi: "Thiết bị QC", th: "อุปกรณ์ QC", ru: "Оборудование КК", ja: "品質管理設備", ko: "품질 관리 장비" }, locale)}</span>
+            <div className="h-px flex-1 bg-white/10" />
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 gap-px border border-white/[0.08] bg-white/[0.08] md:grid-cols-4">
             {qcItems.map((qc, i) => (
-              <Reveal key={qc.title} delay={i * 90}>
-                <div className="border border-white/[0.08] bg-white/[0.04] p-5 text-center">
+              <Reveal key={qc.title} delay={i * 90} className="h-full">
+                <div className="h-full bg-primary p-5 text-center">
                   <Icon name={qc.icon as IconName} className="w-7 h-7 text-slate-300 mx-auto mb-3" />
                   <h3 className="text-sm font-bold mb-1">{qc.title}</h3>
                   <p className="text-xs text-slate-400">{qc.desc}</p>
@@ -228,10 +235,10 @@ export default async function FactoryQuality() {
         </div>
 
         {/* Certification strip */}
-        <div className="flex flex-wrap items-center justify-center gap-2 pt-6 border-t border-white/[0.08]">
+        <div className="flex flex-wrap items-center justify-center gap-2 pt-6 mt-8 border-t border-white/[0.08]">
           <CertBadge locale={locale} />
         </div>
       </div>
-    </section>
+    </HomeSection>
   )
 }

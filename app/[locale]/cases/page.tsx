@@ -1,14 +1,14 @@
 import Image from "next/image"
-import { getLocale, getTranslations, setRequestLocale } from "next-intl/server"
-import { Link } from "@/i18n/routing"
-import CTASection from "@/components/CTASection"
-import FailureSolutionsSection from "@/components/FailureSolutionsSection"
-import { generateMeta } from "@/lib/utils"
-import { casesByLocale } from "@/lib/translations"
+import { getTranslations, setRequestLocale } from "next-intl/server"
 import { getDb, dbAll } from "@/lib/admin/db"
 import { getLocalized } from "@/lib/locale-data"
-import PageHero from "@/components/PageHero"
+import { generateMeta } from "@/lib/utils"
+import { casesByLocale } from "@/lib/translations"
 import Breadcrumb from "@/components/Breadcrumb"
+import FailureSolutionsSection from "@/components/FailureSolutionsSection"
+import CTASection from "@/components/CTASection"
+import PageHead from "@/components/ui/PageHead"
+import StepStrip from "@/components/ui/StepStrip"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -67,85 +67,141 @@ export default async function CasesPage({ params }: { params: Promise<{ locale: 
     }
   }
 
+  const steps = getLocalized({
+    zh: [
+      { title: "需求确认", desc: "沟通工况与要求，确认材质、尺寸与技术细节。" },
+      { title: "打样试制", desc: "快速打样验证性能与尺寸，确保方案可行。" },
+      { title: "批量交付", desc: "严格生产与检验，按期交付，保障稳定供应。" },
+    ],
+    en: [
+      { title: "Requirement review", desc: "Confirm material, dimensions, and technical details of the duty." },
+      { title: "Sampling & trial", desc: "Fast prototypes validate performance and dimensions before batch production." },
+      { title: "Batch delivery", desc: "Strict production and inspection, on-time delivery, stable supply." },
+    ],
+    vi: [
+      { title: "Xác nhận yêu cầu", desc: "Trao đổi điều kiện, xác nhận vật liệu, kích thước, chi tiết kỹ thuật." },
+      { title: "Làm mẫu thử", desc: "Mẫu nhanh kiểm chứng hiệu năng và kích thước trước sản xuất loạt." },
+      { title: "Giao hàng loạt", desc: "Sản xuất và kiểm tra nghiêm ngặt, giao đúng hạn, cung ứng ổn định." },
+    ],
+    th: [
+      { title: "ยืนยันความต้องการ", desc: "หารือเงื่อนไขและยืนยันวัสดุ ขนาด รายละเอียดวิศวกรรม" },
+      { title: "ผลิตตัวอย่าง", desc: "ทดสอบประสิทธิภาพและขนาดอย่างรวดเร็วก่อนผลิตจำนวนมาก" },
+      { title: "ส่งมอบจำนวนมาก", desc: "ผลิตและตรวจสอบอย่างเข้มงวด ส่งมอบตรงเวลา" },
+    ],
+    ru: [
+      { title: "Согласование требований", desc: "Обсуждаем условия, подтверждаем материал, размеры и техдетали." },
+      { title: "Опытный образец", desc: "Быстрое прототипирование подтверждает характеристики перед партией." },
+      { title: "Партия поставки", desc: "Строгое производство и контроль, поставка точно в срок." },
+    ],
+    ja: [
+      { title: "要件確認", desc: "条件をすり合わせ、材質・寸法・技術詳細を確定。" },
+      { title: "試作検証", desc: "短納期で試作し、性能と寸法を検証。" },
+      { title: "量産納品", desc: "厳格な生産と検査で、期日どおりに納品。" },
+    ],
+    ko: [
+      { title: "요구 확인", desc: "조건을 협의하고 재료, 치수, 기술 세부사항을 확정." },
+      { title: "샘플 시제", desc: "빠른 샘플로 성능과 치수를 검증." },
+      { title: "양산 납품", desc: "엄격한 생산과 검사로 기한 내 납품." },
+    ],
+  }, locale)
+
+  const [featured, ...archive] = cases
+
   return (
     <>
-      <PageHero
-        eyebrow={eyebrow}
-        title={t("pageTitle")}
-        subtitle={t("pageSubtitle")}
-        primaryLabel={t("ctaButton")}
-        stats={[
-          { value: "6x", label: t("metricLife") },
-          { value: "80%", label: t("metricCost") },
-          { value: "720h", label: t("metricRuntime") },
-        ]}
-      />
       <Breadcrumb items={[{ name: t("pageTitle"), url: "/cases" }]} locale={locale} />
 
-      <section className="section-padding industrial-surface">
-        <div className="container-wide space-y-6 sm:space-y-10">
-          {cases.map((c, i) => (
-            <div key={i} className="card-static bg-white p-4 sm:p-6 md:p-8">
-              <div className="mb-1 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.08em] text-accent">{c.company}</div>
-              <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-primary mb-4 sm:mb-6">{c.title}</h2>
+      <PageHead en={eyebrow} title={t("pageTitle")} description={t("pageSubtitle")} />
 
-              <div className="relative h-40 sm:h-48 md:h-56 mb-4 sm:mb-6 overflow-hidden border border-border">
-                <Image
-                  src={caseImages[i % caseImages.length]}
-                  alt={c.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 800px"
-                />
-              </div>
+      {featured && (
+        /* 置顶案例：左实拍右档案，只用真实字段 */
+        <section className="bg-white">
+          <div className="grid border-b border-border lg:grid-cols-2">
+            <div className="relative aspect-[16/10] overflow-hidden border-b border-border bg-background lg:aspect-auto lg:border-b-0 lg:border-r">
+              <Image
+                src={caseImages[0]}
+                alt={featured.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </div>
+            <div className="flex flex-col justify-center p-6 md:p-10 lg:p-14">
+              <div className="text-xs font-semibold uppercase tracking-[0.08em] text-accent">{featured.company}</div>
+              <h2 className="mt-3 font-serif-sc text-2xl font-bold leading-tight text-primary md:text-3xl">
+                {featured.title}
+              </h2>
 
-              <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-                <div>
-                  <h3 className="text-xs sm:text-sm font-semibold text-gray-900 mb-2 flex items-center gap-1.5">
-                    <span className="text-accent">{t("conditionLabel")}</span>
-                  </h3>
-                  <div className="text-xs sm:text-sm text-muted leading-relaxed whitespace-pre-line line-clamp-4 sm:line-clamp-none">{c.condition}</div>
+              <div className="mt-8 space-y-5">
+                {[
+                  { label: t("conditionLabel"), text: featured.condition },
+                  { label: t("diagnosisLabel"), text: featured.diagnosis },
+                  { label: t("solutionLabel"), text: featured.solution },
+                ].map((row) => (
+                  <div key={row.label} className="grid grid-cols-[88px_1fr] gap-4 border-t border-border pt-4">
+                    <div className="text-xs font-semibold text-muted">{row.label}</div>
+                    <div className="whitespace-pre-line text-sm leading-relaxed text-muted line-clamp-4">{row.text}</div>
+                  </div>
+                ))}
+                <div className="grid grid-cols-[88px_1fr] gap-4 border-t border-border pt-4">
+                  <div className="text-xs font-semibold text-muted">{t("keyResultLabel")}</div>
+                  <div className="whitespace-pre-line text-sm font-semibold leading-relaxed text-primary">{featured.result}</div>
                 </div>
-                <div>
-                  <h3 className="text-xs sm:text-sm font-semibold text-gray-900 mb-2 flex items-center gap-1.5">
-                    <span className="text-red-500">{t("diagnosisLabel")}</span>
-                  </h3>
-                  <div className="text-xs sm:text-sm text-muted leading-relaxed whitespace-pre-line line-clamp-4 sm:line-clamp-none">{c.diagnosis}</div>
-                </div>
-                <div className="sm:col-span-2 md:col-span-1">
-                  <h3 className="text-xs sm:text-sm font-semibold text-gray-900 mb-2 flex items-center gap-1.5">
-                    <span className="text-green-600">{t("solutionLabel")}</span>
-                  </h3>
-                  <div className="text-xs sm:text-sm text-muted leading-relaxed whitespace-pre-line line-clamp-4 sm:line-clamp-none">{c.solution}</div>
-                </div>
-              </div>
-
-              <div className="mt-4 sm:mt-6 bg-green-50 border border-green-200 p-3 sm:p-4">
-                <div className="text-[10px] sm:text-xs text-muted mb-1 flex items-center gap-2">
-                  <span className="w-2 h-2 bg-green-500 rounded-full" />
-                  {t("keyResultLabel")}
-                </div>
-                <div className="text-xs sm:text-sm font-semibold text-green-700 whitespace-pre-line">{c.result}</div>
-              </div>
-
-              {/* Metric badges */}
-              <div className="mt-3 sm:mt-4 flex flex-wrap gap-2 sm:gap-3">
-                {c.result.match(/\d+(?:[.-]\d+)?\s*x?/g)?.slice(0, 3).map((num, mi) => {
-                  const labels = [t("metricLife"), t("metricCost"), t("metricRuntime")]
-                  return (
-                    <div key={mi} className="inline-flex items-center gap-1 sm:gap-1.5 bg-white border border-green-200 px-2 sm:px-3 py-1 sm:py-1.5">
-                      <span className="text-[10px] sm:text-xs font-bold text-green-700">{num.trim()}{["倍", "%", "x"][mi] || ""}</span>
-                      <span className="text-[9px] sm:text-[10px] text-muted">{labels[mi % 3]}</span>
-                    </div>
-                  )
-                })}
               </div>
             </div>
-          ))}
+          </div>
+        </section>
+      )}
 
-          {cases.length === 0 && (
-            <div className="text-center py-16 text-muted">{t("emptyText")}</div>
-          )}
+      {archive.length > 0 && (
+        <section className="section-padding-sm industrial-surface">
+          <div className="container-wide">
+            <div className="mb-8 flex items-center gap-3">
+              <span className="h-[3px] w-10 bg-accent" aria-hidden />
+              <span className="en-caption text-sm text-muted">
+                {getLocalized({ zh: "更多交付记录", en: "More delivery records" }, locale)}
+              </span>
+            </div>
+            <div className="grid gap-px border border-border bg-border md:grid-cols-2">
+              {archive.map((c, i) => (
+                <article key={i} className="group flex flex-col bg-white">
+                  <div className="relative aspect-[16/7] overflow-hidden border-b border-border bg-background">
+                    <Image
+                      src={caseImages[(i + 1) % caseImages.length]}
+                      alt={c.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col p-5 md:p-6">
+                    <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-muted">{c.company}</div>
+                    <h3 className="mt-1.5 font-serif-sc text-lg font-bold leading-snug text-primary transition-colors group-hover:text-accent">
+                      {c.title}
+                    </h3>
+                    <p className="mt-3 text-xs leading-relaxed text-muted line-clamp-2">{c.condition}</p>
+                    <p className="mt-2 text-xs leading-relaxed text-muted line-clamp-2">{c.solution}</p>
+                    <div className="mt-auto flex items-start gap-2 border-t border-border pt-4 text-xs font-semibold leading-relaxed text-primary">
+                      <span className="mt-[5px] h-1.5 w-1.5 shrink-0 bg-accent" aria-hidden />
+                      <span className="whitespace-pre-line">{c.result}</span>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {cases.length === 0 && (
+        <section className="section-padding bg-white">
+          <div className="container-wide text-center text-muted">{t("emptyText")}</div>
+        </section>
+      )}
+
+      <section className="section-padding-sm industrial-surface">
+        <div className="container-wide">
+          <StepStrip items={steps} />
         </div>
       </section>
 

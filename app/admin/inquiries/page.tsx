@@ -1,6 +1,8 @@
 import Link from "next/link"
 import { getDb, dbAll } from "@/lib/admin/db"
 
+export const dynamic = "force-dynamic"
+
 export default async function AdminInquiriesPage({
   searchParams,
 }: {

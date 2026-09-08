@@ -9,7 +9,7 @@ import WhyCarbonGraphite from "@/components/WhyCarbonGraphite"
 import FactoryQuality from "@/components/FactoryQuality"
 import ApplicationsSection from "@/components/ApplicationsSection"
 import CasesSection from "@/components/CasesSection"
-import CTASection from "@/components/CTASection"
+import HomeCTA from "@/components/home/HomeCTA"
 
 const ClientsSection = dynamic(() => import("@/components/ClientsSection"), {
   loading: () => <div className="section-padding bg-gray-50" />,
@@ -62,7 +62,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <ClientsSection />
       <ApplicationsSection />
       <CasesSection />
-      <CTASection />
+      <HomeCTA />
     </>
   )
 }

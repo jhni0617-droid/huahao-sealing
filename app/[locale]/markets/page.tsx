@@ -5,9 +5,9 @@ import { marketLandings } from "@/lib/markets-data"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 import CTASection from "@/components/CTASection"
-import PageHero from "@/components/PageHero"
 import Breadcrumb from "@/components/Breadcrumb"
-import { BreadcrumbJsonLd } from "@/components/JsonLd"
+import PageHead from "@/components/ui/PageHead"
+import StatsRow from "@/components/ui/StatsRow"
 import Icon from "@/components/ui/Icon"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -34,7 +34,6 @@ export default async function MarketsPage({ params }: { params: Promise<{ locale
   const { locale } = await params
   setRequestLocale(locale)
   const t = await getTranslations("markets")
-  const tnav = await getTranslations("nav")
 
   const hero = getLocalized({
     zh: { eyebrow: "全球市场", primary: "描述工况获取选型", secondary: "查看产品", stats: ["出口市场", "语言支持", "FTA 优惠"] },
@@ -48,39 +47,28 @@ export default async function MarketsPage({ params }: { params: Promise<{ locale
 
   return (
     <>
-      <BreadcrumbJsonLd
-        locale={locale}
+      <Breadcrumb items={[{ name: t("pageTitle"), url: "/markets" }]} locale={locale} />
+
+      <PageHead en={hero.eyebrow} title={t("pageTitle")} description={t("heroSubtitle")} />
+
+      <StatsRow
         items={[
-          { name: tnav("home"), url: "" },
-          { name: t("pageTitle"), url: "/markets" },
-        ]}
-      />
-      <PageHero
-        eyebrow={hero.eyebrow}
-        title={t("pageTitle")}
-        subtitle={t("heroSubtitle")}
-        primaryLabel={hero.primary}
-        primaryHref="/contact"
-        secondaryLabel={hero.secondary}
-        secondaryHref="/products"
-        stats={[
           { value: "6", label: hero.stats[0] },
           { value: "7", label: hero.stats[1] },
           { value: "0%", label: hero.stats[2] },
         ]}
       />
-      <Breadcrumb items={[{ name: t("pageTitle"), url: "/markets" }]} locale={locale} />
 
-      <section className="section-padding industrial-surface">
+      <section className="section-padding-sm bg-white">
         <div className="container-wide">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {marketLandings.map((market) => (
+          <div className="grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+            {marketLandings.map((market, index) => (
               <Link
                 key={market.slug}
                 href={`/markets/${market.slug}`}
-                className="card-static hover:border-accent transition-colors block flex flex-col overflow-hidden"
+                className="group flex flex-col bg-white"
               >
-                <div className="relative h-48 overflow-hidden border-b border-border">
+                <div className="relative aspect-[4/3] overflow-hidden border-b border-border bg-background">
                   <Image
                     src={marketImages[market.slug] || "/images/stock/industry-general.webp"}
                     alt={getLocalized(market.title, locale)}
@@ -88,28 +76,24 @@ export default async function MarketsPage({ params }: { params: Promise<{ locale
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
+                  <span className="en-caption absolute left-3 top-3 text-sm font-bold text-accent">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                 </div>
-                <div className="p-6 flex flex-col flex-1">
-                <div className="flex items-center gap-3 mb-4">
-                  <Icon name="globe" className="w-6 h-6 text-accent" />
-                  <h2 className="text-lg font-bold text-primary leading-tight">
+                <div className="flex flex-1 flex-col p-5">
+                  <h2 className="font-serif-sc text-lg font-bold leading-tight text-primary transition-colors group-hover:text-accent">
                     {getLocalized(market.title, locale)}
                   </h2>
-                </div>
-                <p className="text-sm text-muted leading-relaxed line-clamp-4 mb-4 flex-1">
-                  {getLocalized(market.description, locale)}
-                </p>
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {market.marketStats.slice(0, 3).map((stat, i) => (
-                    <span key={i} className="tag-accent text-xs">
-                      {stat.value}
-                    </span>
-                  ))}
-                </div>
-                <div className="text-xs text-accent font-semibold mt-4 inline-flex items-center gap-1">
-                  {getLocalized({ zh: "查看详情", en: "View details", vi: "Xem chi tiết", th: "ดูรายละเอียด", ru: "Подробнее", ja: "詳細を見る", ko: "상세 보기" }, locale)}
-                  <Icon name="arrow-right" className="w-3 h-3" />
-                </div>
+                  <p className="mt-2.5 text-sm leading-relaxed text-muted line-clamp-4 flex-1">
+                    {getLocalized(market.description, locale)}
+                  </p>
+                  <div className="mt-auto flex flex-wrap gap-1.5 border-t border-border pt-4">
+                    {market.marketStats.slice(0, 3).map((stat, i) => (
+                      <span key={i} className="border border-border bg-background px-2 py-0.5 text-[11px] text-muted">
+                        {stat.value}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </Link>
             ))}

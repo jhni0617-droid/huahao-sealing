@@ -6,7 +6,7 @@ import { productsByLocale } from "@/lib/translations-products"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/JsonLd"
-import PageHero from "@/components/PageHero"
+import PageHead from "@/components/ui/PageHead"
 import CTASection from "@/components/CTASection"
 import FAQAccordion from "@/components/FAQAccordion"
 import Icon from "@/components/ui/Icon"
@@ -138,15 +138,7 @@ export default async function IndustryLandingPage({ params }: Props) {
         </div>
       </section>
 
-      <PageHero
-        eyebrow={headings.eyebrow}
-        title={title}
-        subtitle={description}
-        primaryLabel={tnav("contact")}
-        primaryHref="/contact"
-        secondaryLabel={tnav("products")}
-        secondaryHref="/products"
-      />
+      <PageHead en={headings.eyebrow} title={title} description={description}  />
 
       {/* Challenges */}
       <section className="section-padding bg-white">

@@ -6,7 +6,8 @@ import FAQAccordion from "@/components/FAQAccordion"
 import { FaqJsonLd } from "@/components/JsonLd"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
-import PageHero from "@/components/PageHero"
+import PageHead from "@/components/ui/PageHead"
+import StatsRow from "@/components/ui/StatsRow"
 import Breadcrumb from "@/components/Breadcrumb"
 import Icon, { type IconName } from "@/components/ui/Icon"
 
@@ -614,20 +615,17 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
   return (
     <>
-      <PageHero
-        eyebrow={copy.eyebrow}
-        title={t("pageTitle")}
-        subtitle={t("pageSubtitle")}
-        primaryLabel={copy.primary}
-        secondaryLabel={copy.secondary}
-        secondaryHref="/products"
-        stats={[
+      <Breadcrumb items={[{ name: t("pageTitle"), url: "/about" }]} locale={locale} />
+
+      <PageHead en={copy.eyebrow} title={t("pageTitle")} description={t("pageSubtitle")} />
+
+      <StatsRow
+        items={[
           { value: "2006", label: copy.stats[0] },
           { value: "CNC", label: copy.stats[1] },
           { value: "100%", label: copy.stats[2] },
         ]}
       />
-      <Breadcrumb items={[{ name: t("pageTitle"), url: "/about" }]} locale={locale} />
 
       <section className="section-padding bg-white">
         <div className="container-wide">

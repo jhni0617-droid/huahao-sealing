@@ -4,6 +4,8 @@ import Link from "next/link"
 import { getDb, dbGet, dbAll } from "@/lib/admin/db"
 import { getCountryName } from "@/lib/country-names"
 
+export const dynamic = "force-dynamic"
+
 export default async function AdminDashboardPage() {
   const db = await getDb()
 

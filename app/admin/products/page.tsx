@@ -1,6 +1,8 @@
 import Link from "next/link"
 import { getDb, dbAll } from "@/lib/admin/db"
 
+export const dynamic = "force-dynamic"
+
 export default async function AdminProductsPage() {
   const db = await getDb()
   const products = await dbAll("SELECT * FROM products ORDER BY created_at DESC", []) as any[]

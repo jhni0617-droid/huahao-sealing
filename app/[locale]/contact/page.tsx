@@ -1,16 +1,18 @@
-import { getLocale, getTranslations, setRequestLocale } from "next-intl/server"
+import Image from "next/image"
+import { getTranslations, setRequestLocale } from "next-intl/server"
 import ContactForm from "@/components/ContactForm"
-import ImageCarousel from "@/components/ui/ImageCarousel"
 import Icon from "@/components/ui/Icon"
 import { siteConfig, enSiteConfig } from "@/lib/constants"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
-import PageHero from "@/components/PageHero"
+import PageHead from "@/components/ui/PageHead"
+import StatsRow from "@/components/ui/StatsRow"
 import Breadcrumb from "@/components/Breadcrumb"
 import TrackedLink from "@/components/TrackedLink"
 
 const contactCopy = {
   zh: {
+    headline: "提交图纸，工程师当天回复",
     eyebrow: "工程询盘",
     stats: ["响应", "图纸支持", "定制加工"],
     route: "询盘路径",
@@ -24,6 +26,7 @@ const contactCopy = {
     promise: "建议提供：介质、温度、压力、转速、内外径/高度、年用量。",
   },
   en: {
+    headline: "Submit drawings — engineers reply same day",
     eyebrow: "Engineering inquiry",
     stats: ["Response", "Drawing support", "Custom machining"],
     route: "Inquiry route",
@@ -37,6 +40,7 @@ const contactCopy = {
     promise: "Useful details: media, temperature, pressure, speed, I.D./O.D./height, annual quantity.",
   },
   vi: {
+    headline: "Gửi bản vẽ — kỹ sư phản hồi trong ngày",
     eyebrow: "Yêu cầu kỹ thuật",
     stats: ["Phản hồi", "Hỗ trợ bản vẽ", "Gia công tùy chỉnh"],
     route: "Quy trình yêu cầu",
@@ -50,6 +54,7 @@ const contactCopy = {
     promise: "Thông tin hữu ích: môi trường, nhiệt độ, áp suất, tốc độ, I.D./O.D./chiều cao, số lượng năm.",
   },
   th: {
+    headline: "ส่งแบบ — วิศวกรตอบภายในวัน",
     eyebrow: "สอบถามทางวิศวกรรม",
     stats: ["ตอบกลับ", "รองรับ PDF/CAD", "ผลิตตามแบบ"],
     route: "เส้นทางการสอบถาม",
@@ -63,6 +68,7 @@ const contactCopy = {
     promise: "ข้อมูลที่ควรระบุ: ตัวกลาง อุณหภูมิ แรงดัน ความเร็ว I.D./O.D./ความสูง และปริมาณต่อปี",
   },
   ru: {
+    headline: "Отправьте чертёж — ответ в тот же день",
     eyebrow: "Инженерный запрос",
     stats: ["Ответ", "Поддержка PDF/CAD", "Изготовление на заказ"],
     route: "Маршрут запроса",
@@ -76,6 +82,7 @@ const contactCopy = {
     promise: "Полезные данные: среда, температура, давление, скорость, I.D./O.D./высота, годовой объем.",
   },
   ja: {
+    headline: "図面送付 — 当日回答",
     eyebrow: "技術問い合わせ",
     stats: ["対応", "PDF/CAD対応", "カスタム加工"],
     route: "問い合わせフロー",
@@ -89,6 +96,7 @@ const contactCopy = {
     promise: "推奨情報: 媒体、温度、圧力、速度、内外径/高さ、年間数量。",
   },
   ko: {
+    headline: "도면 제출 — 당일 회신",
     eyebrow: "엔지니어링 문의",
     stats: ["응답", "PDF/CAD 지원", "맞춤 가공"],
     route: "문의 흐름",
@@ -126,144 +134,133 @@ export default async function ContactPage(props: { params: Promise<{ locale: str
 
   return (
     <>
-      <PageHero
-        eyebrow={copy.eyebrow}
-        title={t("pageTitle")}
-        subtitle={t("pageSubtitle")}
-        stats={[
+      <Breadcrumb items={[{ name: t("pageTitle"), url: "/contact" }]} locale={locale} />
+
+      <PageHead en={copy.eyebrow} title={copy.headline} description={t("pageSubtitle")} />
+
+      <StatsRow
+        items={[
           { value: "24h", label: copy.stats[0] },
-          { value: "PDF/CAD", label: copy.stats[1] },
+          { value: "7", label: getLocalized({ zh: "语言支持", en: "Languages" }, locale) },
           { value: "OEM", label: copy.stats[2] },
         ]}
       />
-      <Breadcrumb items={[{ name: t("pageTitle"), url: "/contact" }]} locale={locale} />
 
-      <section className="section-padding industrial-surface">
-        <div className="container-wide">
-          <div className="grid lg:grid-cols-5 gap-8">
-            {/* 移动端先显示表单 */}
-            <div className="lg:col-span-3 order-1 lg:order-2">
-              <div className="mb-6 border-l-2 border-accent pl-4">
-                <h2 className="text-2xl font-bold text-primary">{t("formTitle")}</h2>
-                <p className="text-sm text-muted mt-1">{t("formDesc")}</p>
-              </div>
-              <ContactForm defaultProduct={defaultProduct} />
+      {/* 主分栏：左表单（白），右深色面板（询盘路径 + 联系方式） */}
+      <section className="border-b border-border bg-white">
+        <div className="grid gap-px bg-border lg:grid-cols-[1.15fr_0.85fr]">
+          {/* 移动端先显示表单 */}
+          <div className="order-1 bg-white p-6 md:p-10 lg:p-14">
+            <div className="mb-6 flex items-center gap-3">
+              <span className="h-[3px] w-10 bg-accent" aria-hidden />
+              <span className="en-caption text-sm text-muted">{t("formTitle")}</span>
             </div>
+            <ContactForm defaultProduct={defaultProduct} />
+          </div>
 
-            <div className="lg:col-span-2 order-2 lg:order-1 space-y-6">
-              <div className="border border-border bg-primary p-6 text-white">
-                <div className="text-xs font-bold uppercase tracking-[0.08em] text-white/55">{copy.route}</div>
-                <h2 className="mt-3 text-2xl font-bold">{copy.routeTitle}</h2>
-                <p className="mt-3 text-sm leading-relaxed text-slate-300">{copy.routeDesc}</p>
-                <div className="mt-6 space-y-4">
-                  {copy.steps.map(([num, title, desc]) => (
-                    <div key={num} className="flex gap-3 border-t border-white/10 pt-4">
-                      <div className="text-sm font-bold text-accent">{num}</div>
-                      <div>
-                        <div className="text-sm font-bold">{title}</div>
-                        <div className="mt-1 text-xs leading-relaxed text-slate-400">{desc}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <p className="mt-6 border border-white/10 bg-white/[0.04] p-3 text-xs leading-relaxed text-slate-300">
-                  {copy.promise}
-                </p>
-              </div>
+          <aside className="order-2 bg-primary p-6 text-white md:p-10 lg:p-14">
+            <div className="flex items-center gap-3">
+              <span className="h-[3px] w-10 bg-accent" aria-hidden />
+              <span className="en-caption text-sm text-white/60">{copy.route}</span>
+            </div>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-slate-300">{copy.routeDesc}</p>
 
-              <div className="card-static p-6 bg-white">
-                <h2 className="font-bold mb-4 text-primary">{t("infoTitle")}</h2>
-                <div className="space-y-4 text-sm">
-                  <div>
-                    <div className="text-muted text-xs tracking-wider mb-1">{t("emailLabel")}</div>
-                    <TrackedLink href={`mailto:${cfg.email}`} event="email_click" label="contact_page" className="text-primary font-medium hover:underline">
-                      {cfg.email}
-                    </TrackedLink>
-                  </div>
-                  <div>
-                    <div className="text-muted text-xs tracking-wider mb-1">{t("phoneLabel")}</div>
-                    <p>{cfg.phone}</p>
-                  </div>
-                  <div>
-                    <div className="text-muted text-xs tracking-wider mb-1">WhatsApp</div>
-                    <TrackedLink
-                      href={`https://wa.me/${cfg.whatsapp}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      event="whatsapp_click"
-                      label="contact_page"
-                      className="text-primary font-medium hover:underline"
-                    >
-                      {cfg.whatsapp}
-                    </TrackedLink>
-                  </div>
-                  <div>
-                    <div className="text-muted text-xs tracking-wider mb-1">{t("facebookLabel")}</div>
-                    <div className="space-y-1">
-                      <a
-                        href={cfg.facebookPage}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block text-primary font-medium hover:underline"
-                      >
-                        {t("facebookPageLabel")}
-                      </a>
-                      <a
-                        href={cfg.facebookProfile}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block text-primary font-medium hover:underline"
-                      >
-                        {t("facebookProfileLabel")}
-                      </a>
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-muted text-xs tracking-wider mb-1">{t("zaloLabel")}</div>
-                    <a
-                      href={`https://zalo.me/${cfg.zalo.replace(/\D/g, "")}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary font-medium hover:underline"
-                    >
-                      {cfg.zalo}
-                    </a>
-                  </div>
-                  <div>
-                    <div className="text-muted text-xs tracking-wider mb-1">{t("addressLabel")}</div>
-                    <p>{cfg.address}</p>
+            <div className="mt-8">
+              {copy.steps.map(([num, title, desc], i) => (
+                <div key={num} className={`flex items-start gap-5 py-5 ${i > 0 ? "border-t border-white/10" : ""}`}>
+                  <span className="en-caption shrink-0 text-3xl font-bold leading-none text-accent md:text-4xl">{num}</span>
+                  <div className="min-w-0 pt-0.5">
+                    <div className="text-sm font-bold">{title}</div>
+                    <div className="mt-1 text-xs leading-relaxed text-slate-400">{desc}</div>
                   </div>
                 </div>
-              </div>
-
-              <div className="card-static p-6 bg-white">
-                <h2 className="font-bold mb-3 text-primary">{t("whyTitle")}</h2>
-                <ul className="space-y-2 text-sm text-muted">
-                  {[1, 2, 3, 4].map((i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <Icon name="check" className="w-4 h-4 text-accent shrink-0 mt-0.5" />
-                      {t(`reason${i}`)}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <ImageCarousel
-                images={[
-                  { src: "/images/实拍/IMG_20260518_214858.webp", alt: getLocalized(altText, locale) },
-                  { src: "/images/实拍/IMG_20260518_215335.webp", alt: getLocalized(altText, locale) },
-                  { src: "/images/实拍/IMG_20260518_215353.webp", alt: getLocalized(altText, locale) },
-                  { src: "/images/实拍/IMG_20260517_193309.webp", alt: getLocalized(altText, locale) },
-                ]}
-                aspectRatio="16/10"
-                variant="solid"
-                autoPlay
-                interval={4000}
-              />
+              ))}
             </div>
+
+            <p className="border border-white/10 bg-white/[0.04] p-3 text-xs leading-relaxed text-slate-300">
+              {copy.promise}
+            </p>
+
+            {/* 联系方式列表：发丝线行 */}
+            <div className="mt-8">
+              <div className="en-caption mb-2 text-xs text-white/50">{t("infoTitle")}</div>
+              {[
+                { label: t("emailLabel"), value: cfg.email, href: `mailto:${cfg.email}`, tracked: true, event: "email_click" },
+                { label: t("phoneLabel"), value: cfg.phone },
+                { label: "WhatsApp", value: cfg.whatsapp, href: `https://wa.me/${cfg.whatsapp}`, tracked: true, event: "whatsapp_click" },
+                { label: t("zaloLabel"), value: cfg.zalo, href: `https://zalo.me/${cfg.zalo.replace(/\D/g, "")}` },
+                { label: t("addressLabel"), value: cfg.address },
+              ].map((row) => (
+                <div key={row.label} className="grid grid-cols-[92px_1fr] items-baseline gap-4 border-t border-white/10 py-3.5 first:border-t-0">
+                  <span className="text-xs text-slate-400">{row.label}</span>
+                  {row.href ? (
+                    row.tracked ? (
+                      <TrackedLink
+                        href={row.href}
+                        target={row.href.startsWith("mailto:") ? undefined : "_blank"}
+                        rel="noopener noreferrer"
+                        event={row.event}
+                        label="contact_page"
+                        className="break-all text-sm font-medium text-white hover:text-accent"
+                      >
+                        {row.value}
+                      </TrackedLink>
+                    ) : (
+                      <a href={row.href} target={row.href.startsWith("mailto:") ? undefined : "_blank"} rel="noopener noreferrer" className="break-all text-sm font-medium text-white hover:text-accent">
+                        {row.value}
+                      </a>
+                    )
+                  ) : (
+                    <span className="break-words text-sm leading-relaxed text-slate-200">{row.value}</span>
+                  )}
+                </div>
+              ))}
+              <div className="grid grid-cols-[92px_1fr] items-baseline gap-4 border-t border-white/10 py-3.5">
+                <span className="text-xs text-slate-400">Facebook</span>
+                <span className="space-y-1">
+                  <a href={cfg.facebookPage} target="_blank" rel="noopener noreferrer" className="block break-all text-sm font-medium text-white hover:text-accent">
+                    {t("facebookPageLabel")}
+                  </a>
+                  <a href={cfg.facebookProfile} target="_blank" rel="noopener noreferrer" className="block break-all text-sm font-medium text-white hover:text-accent">
+                    {t("facebookProfileLabel")}
+                  </a>
+                </span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      {/* Why us：发丝线四栏 */}
+      <section className="bg-white">
+        <div className="container-wide py-10">
+          <div className="grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="flex items-start gap-3 bg-white p-5">
+                <span className="mt-[7px] h-1.5 w-1.5 shrink-0 bg-accent" aria-hidden />
+                <span className="text-sm leading-relaxed text-muted">{t(`reason${i}`)}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
+
+      {/* 通栏工厂实拍 + 图注条 */}
+      <figure>
+        <div className="relative h-[380px] w-full overflow-hidden border-y border-border bg-background md:h-[460px]">
+          <Image
+            src="/images/实拍/IMG_20260517_193309.webp"
+            alt={getLocalized(altText, locale)}
+            fill
+            className="object-cover"
+            sizes="100vw"
+            loading="lazy"
+          />
+        </div>
+        <figcaption className="bg-primary px-6 py-3 text-center text-xs tracking-wide text-white/70">
+          {getLocalized({ zh: "精密制造 · 严苛检测 · 稳定交付 — 碳石墨密封环专业制造商", en: "Precision machining · Strict inspection · Stable delivery — carbon graphite seal ring manufacturer" }, locale)}
+        </figcaption>
+      </figure>
     </>
   )
 }
