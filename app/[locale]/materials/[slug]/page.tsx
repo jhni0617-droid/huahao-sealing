@@ -16,9 +16,12 @@ interface Props {
   params: Promise<{ locale: string; slug: string }>
 }
 
+// 构建期不预渲染，首次访问时静态渲染并缓存一天（ISR），控制部署产物文件数
 export async function generateStaticParams() {
-  return materialLandings.map((item) => ({ slug: item.slug }))
+  return []
 }
+
+export const revalidate = 86400
 
 export async function generateMetadata({ params }: Props) {
   const { slug, locale } = await params
