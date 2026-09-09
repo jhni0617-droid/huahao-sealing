@@ -307,7 +307,18 @@ const gallery = [
   "/images/实拍/IMG_20260518_215335.webp",
   "/images/密封环/IMG_20260410_141247.webp",
   "/images/轴套/IMG_20260408_150153.webp",
+  "/images/factory/workshop-wide.webp",
+  "/images/factory/cnc-turning.webp",
+  "/images/factory/qc-inspection.webp",
+  "/images/factory/packing-shipment.webp",
 ]
+
+const galleryLabels: Record<string, { zh: string; en: string }> = {
+  "/images/factory/workshop-wide.webp": { zh: "CNC 车间全景", en: "CNC workshop overview" },
+  "/images/factory/cnc-turning.webp": { zh: "数控车削密封环", en: "CNC turning of a seal ring" },
+  "/images/factory/qc-inspection.webp": { zh: "成品尺寸检测", en: "Dimensional inspection" },
+  "/images/factory/packing-shipment.webp": { zh: "出口木箱包装发货", en: "Export packing & shipment" },
+}
 
 function getCopy(locale: string) {
   return getLocalized(content, locale)
@@ -413,23 +424,26 @@ export default async function FactoryPage({ params }: { params: Promise<{ locale
       <section id="gallery" className="section-padding-sm bg-white scroll-mt-24">
         <div className="container-wide grid gap-10 lg:grid-cols-[1fr_360px]">
           <div>
-            <div className="grid gap-px border border-border bg-border sm:grid-cols-2">
-              {gallery.slice(1).map((src, index) => (
+            <div className="grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+              {gallery.slice(1).map((src, index) => {
+                const label = galleryLabels[src]
+                return (
                 <figure key={src} className="group relative bg-white">
                   <div className="relative aspect-[4/3] overflow-hidden bg-background">
                     <Image
                       src={src}
-                      alt={`${copy.galleryTitle} ${index + 2}`}
+                      alt={label ? getLocalized(label, locale) : `${copy.galleryTitle} ${index + 2}`}
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
                   </div>
                   <figcaption className="border-t border-border px-4 py-2.5 text-xs text-muted">
-                    {getLocalized({ zh: "工厂实拍", en: "Factory photo" }, locale)} {String(index + 2).padStart(2, "0")}
+                    {label ? getLocalized(label, locale) : `${getLocalized({ zh: "工厂实拍", en: "Factory photo" }, locale)} ${String(index + 2).padStart(2, "0")}`}
                   </figcaption>
                 </figure>
-              ))}
+                )
+              })}
             </div>
           </div>
 
