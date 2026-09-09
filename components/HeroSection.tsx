@@ -117,9 +117,9 @@ const slides: { bg: string; content?: SlideContent; original?: boolean }[] = [
       subline: { zh: "树脂/锑/铜浸渍牌号 · 材料批次可追溯", en: "Resin/antimony/copper grades · batch traceable", vi: "Cấp tẩm nhựa/antimon/đồng · truy xuất lô được", th: "เกรดเรซิน/พลวง/ทองแดง · ติดตามล็อตได้", ru: "Марки смола/сурьма/медь · прослеживаемость партий", ja: "樹脂/アンチモン/銅含浸グレード・ロット追跡可能", ko: "수지/안티몬/구리 함침 등급 · 로트 추적 가능" },
     },
   },
-  // 第 4 张：精工细磨
+  // 第 4 张：精工细磨（抛光机）
   {
-    bg: "/images/hero/hero-grinding-sparks.png",
+    bg: "/images/hero/hero-polishing-machine.png",
     content: {
       eyebrow: { zh: "精工细磨", en: "CRAFTSMANSHIP", vi: "TINH CHỈNH", th: "ฝีมืออาชีพ", ru: "МАСТЕРСТВО", ja: "匠の技", ko: "장인 정신" },
       title: { zh: "端面研磨", en: "Face Lapping", vi: "Mài mặt", th: "เจียรหน้า", ru: "Притирка торцов", ja: "端面ラップ", ko: "단면 랩핑" },
@@ -145,7 +145,7 @@ const slides: { bg: string; content?: SlideContent; original?: boolean }[] = [
   },
 ]
 
-const AUTO_PLAY_MS = 6500
+const AUTO_PLAY_MS = 5800
 
 export default function HeroSection() {
   const locale = useLocale()
