@@ -311,6 +311,12 @@ const gallery = [
   "/images/factory/cnc-turning.webp",
   "/images/factory/qc-inspection.webp",
   "/images/factory/packing-shipment.webp",
+  "/images/factory/cnc-turning-graphite.png",
+  "/images/factory/graphite-impregnation.png",
+  "/images/factory/qc-inspection-caliper.png",
+  "/images/factory/finished-rings-stack.png",
+  "/images/factory/packing-shipment.png",
+  "/images/factory/workshop-overview.png",
 ]
 
 const galleryLabels: Record<string, { zh: string; en: string }> = {
@@ -318,6 +324,12 @@ const galleryLabels: Record<string, { zh: string; en: string }> = {
   "/images/factory/cnc-turning.webp": { zh: "数控车削密封环", en: "CNC turning of a seal ring" },
   "/images/factory/qc-inspection.webp": { zh: "成品尺寸检测", en: "Dimensional inspection" },
   "/images/factory/packing-shipment.webp": { zh: "出口木箱包装发货", en: "Export packing & shipment" },
+  "/images/factory/cnc-turning-graphite.png": { zh: "数控车削石墨密封环", en: "CNC turning graphite seal ring" },
+  "/images/factory/graphite-impregnation.png": { zh: "石墨浸渍工序", en: "Graphite impregnation process" },
+  "/images/factory/qc-inspection-caliper.png": { zh: "游标卡尺检测密封环尺寸", en: "Caliper inspection of seal ring" },
+  "/images/factory/finished-rings-stack.png": { zh: "成品石墨密封环堆叠", en: "Finished graphite seal rings" },
+  "/images/factory/packing-shipment.png": { zh: "木箱包装发货", en: "Wooden case packing & shipment" },
+  "/images/factory/workshop-overview.png": { zh: "工厂车间全景", en: "Factory workshop overview" },
 }
 
 function getCopy(locale: string) {
