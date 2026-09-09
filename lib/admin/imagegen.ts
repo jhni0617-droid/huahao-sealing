@@ -10,7 +10,7 @@
 
 export const IMAGEGEN_BASE_URL = "https://api.apiyi.com/v1"
 export const IMAGEGEN_MODEL = "gpt-image-2"
-export const IMAGEGEN_TIMEOUT_MS = 360_000
+export const IMAGEGEN_TIMEOUT_MS = 295_000
 
 export type ImageGenQuality = "low" | "medium" | "high"
 

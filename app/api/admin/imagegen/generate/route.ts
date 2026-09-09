@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { generateImage, type ImageGenQuality } from "@/lib/admin/imagegen"
 
-export const maxDuration = 360
+export const maxDuration = 300
 
 const QUALITIES: ImageGenQuality[] = ["low", "medium", "high"]
 
