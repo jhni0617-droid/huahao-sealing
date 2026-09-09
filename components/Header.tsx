@@ -57,6 +57,11 @@ export default function Header() {
     return pathname.startsWith(href)
   }
 
+  // 判断是否在首页（用于 hero 顶部透明白字导航）
+  const isHome = /^\/[a-z]{2}(\/)?$/.test(pathname)
+  // hero 顶部透明态：首页 + 未滚动
+  const heroTransparent = isHome && !scrolled
+
   const heroNav = Object.entries(heroNavLabels).map(([href, labels]) => ({
     href,
     label: getLocalized(labels, locale),
@@ -64,14 +69,16 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 border-b ${
-        scrolled
-          ? "border-border bg-white/95 shadow-sm backdrop-blur"
-          : "border-border/60 bg-white/95 backdrop-blur"
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        heroTransparent
+          ? "border-b border-transparent bg-transparent"
+          : scrolled
+            ? "border-b border-border bg-white/95 shadow-sm backdrop-blur"
+            : "border-b border-border/60 bg-white/95 backdrop-blur"
       }`}
     >
       <div className="flex h-16 w-full items-center justify-between px-6 md:h-[72px] md:px-10 xl:px-[4.5vw]">
-        <Link href="/" className="flex shrink-0 items-center rounded-[4px] bg-white p-1.5 shadow-sm ring-1 ring-black/5">
+        <Link href="/" className="flex shrink-0 items-center gap-3 rounded-[4px]">
           <Image
             src="/images/logo.webp"
             alt={t("company.name")}
@@ -80,6 +87,11 @@ export default function Header() {
             className="h-9 w-auto object-contain md:h-10"
             priority
           />
+          {/* 左上角公司名（hero 透明态显示） */}
+          <div className={`hidden flex-col leading-tight transition-colors md:flex ${heroTransparent ? "text-white" : "text-primary-dark"}`}>
+            <span className="font-serif-sc text-[15px] font-bold tracking-wide">{brand.name}</span>
+            <span className="text-[11px] opacity-70">{brand.desc}</span>
+          </div>
         </Link>
 
         {/* 桌面端：六个直达导航项，右对齐收在 logo 对称边距处 */}
@@ -89,7 +101,13 @@ export default function Header() {
               key={item.href}
               href={item.href}
               className={`text-[15px] font-medium transition-colors xl:text-base ${
-                isActive(item.href) ? "text-accent" : "text-muted-dark hover:text-accent"
+                heroTransparent
+                  ? isActive(item.href)
+                    ? "text-white"
+                    : "text-white/85 hover:text-white"
+                  : isActive(item.href)
+                    ? "text-accent"
+                    : "text-muted-dark hover:text-accent"
               }`}
             >
               {item.label}
@@ -100,7 +118,14 @@ export default function Header() {
         {/* 右侧语言切换与询价按钮（桌面端） */}
         <div className="ml-3 hidden items-center gap-3 lg:flex">
           <LanguageSwitcher />
-          <Link href="/contact" className="btn-primary flex items-center gap-1.5 text-sm">
+          <Link
+            href="/contact"
+            className={`flex items-center gap-1.5 rounded-full px-5 py-2 text-sm font-medium transition-colors ${
+              heroTransparent
+                ? "bg-white/15 text-white backdrop-blur hover:bg-white/25 ring-1 ring-white/30"
+                : "btn-primary"
+            }`}
+          >
             <Icon name="mail" className="h-4 w-4" />
             {t("nav.quote")}
           </Link>
@@ -110,7 +135,7 @@ export default function Header() {
         <div className="flex items-center gap-2 lg:hidden">
           <LanguageSwitcher />
           <button
-            className="rounded-lg p-2 text-primary-dark transition-colors hover:bg-gray-100"
+            className={`rounded-lg p-2 transition-colors ${heroTransparent ? "text-white hover:bg-white/10" : "text-primary-dark hover:bg-gray-100"}`}
             onClick={() => setOpen(!open)}
             aria-label="Menu"
             aria-expanded={open}

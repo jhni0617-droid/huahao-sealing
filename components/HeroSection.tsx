@@ -195,7 +195,8 @@ export default function HeroSection() {
 
   return (
     <section
-      className="relative flex min-h-[100svh] items-center overflow-hidden bg-hero-bg text-white"
+      // 负 margin 上移到 Header 后方，让背景图覆盖整个视口（含 Header 区域）
+      className="relative -mt-16 flex min-h-[100svh] items-center overflow-hidden bg-hero-bg text-white md:-mt-[72px]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -213,19 +214,19 @@ export default function HeroSection() {
             fill
             priority={idx === 0}
             sizes="100vw"
-            className={`object-cover object-center [filter:brightness(0.78)] ${
+            className={`object-cover object-center [filter:brightness(0.82)] ${
               idx === current ? "hero-kenburns" : ""
             }`}
           />
         </div>
       ))}
 
-      {/* 左深右浅可读性遮罩 + 底部收边 */}
-      <div className="absolute inset-0 z-20 bg-gradient-to-r from-[#0a0c0f]/95 via-[#0a0c0f]/70 to-[#0a0c0f]/30" />
-      <div className="absolute inset-x-0 bottom-0 z-20 h-32 bg-gradient-to-t from-black/55 to-transparent" />
+      {/* 轻量可读性遮罩：左侧文字区微暗 + 底部收边，不压暗整张图 */}
+      <div className="absolute inset-0 z-20 bg-gradient-to-r from-black/55 via-black/15 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 z-20 h-40 bg-gradient-to-t from-black/60 to-transparent" />
 
       {/* 文字内容：用 key 重挂载以重播动画 */}
-      <div className="relative z-30 w-full px-6 pb-20 pt-32 md:px-10 md:pb-24 md:pt-36 xl:px-[4.5vw]">
+      <div className="relative z-30 w-full px-6 pb-24 pt-32 md:px-10 md:pb-28 md:pt-40 xl:px-[4.5vw]">
         <div key={current}>
           {/* ============ 第 0 张：原始内容，不动 ============ */}
           {current === 0 && (
@@ -330,8 +331,8 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* 轮播指示器 */}
-      <div className="absolute bottom-8 left-1/2 z-30 flex -translate-x-1/2 items-center gap-3">
+      {/* 轮播指示器：大圆点，当前项红色填充 */}
+      <div className="absolute bottom-10 left-1/2 z-30 flex -translate-x-1/2 items-center gap-3 md:bottom-12 md:gap-4">
         {slides.map((_, idx) => (
           <button
             key={idx}
@@ -341,9 +342,9 @@ export default function HeroSection() {
             className="group flex items-center"
           >
             {idx === current ? (
-              <span className="block h-[3px] w-8 rounded-full bg-accent" />
+              <span className="block h-4 w-4 rounded-full bg-accent shadow-[0_0_0_3px_rgba(230,0,18,0.25)] transition-all md:h-5 md:w-5" />
             ) : (
-              <span className="block h-[3px] w-4 rounded-full bg-white/40 transition-colors group-hover:bg-white/70" />
+              <span className="block h-4 w-4 rounded-full border-2 border-white/60 bg-transparent transition-all group-hover:border-white group-hover:bg-white/30 md:h-5 md:w-5" />
             )}
           </button>
         ))}
