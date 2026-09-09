@@ -9,16 +9,11 @@ import QuickCTA from "@/components/QuickCTA"
 import CTASection from "@/components/CTASection"
 import { Link } from "@/i18n/routing"
 
-/* 博客卡片封面：按标签映射现有实拍/产品图（Pexels stock 来源见 docs/image-credits-stock.md） */
-const tagCovers: Record<string, string> = {
-  process: "/images/videos/machining-ring.webp",
-  material: "/images/videos/impregnated-parts.webp",
-  selection: "/images/videos/custom-bushings.webp",
-  precision: "/images/videos/seal-faces.webp",
-  application: "/images/stock/industry-pump.webp",
-  maintenance: "/images/videos/hand-ring.webp",
-  faq: "/images/videos/seal-ring-batch.webp",
-  news: "/images/stock/industry-power.webp",
+/* 置顶公司新闻封面：按 slug 映射工厂实拍图（见 public/images/factory/） */
+const pinnedCovers: Record<string, string> = {
+  "huahao-relocated-to-luan-2018": "/images/factory/company-plaque-2018.png",
+  "cnc-machining-upgrade-2020": "/images/factory/cnc-turning-graphite.png",
+  "self-built-factory-2021": "/images/factory/factory-aerial-2021.png",
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -63,9 +58,14 @@ export default async function BlogPage({ params, searchParams }: { params: Promi
   const validTags = new Set(Object.keys(tagLabels))
   const activeTag = tag && validTags.has(tag) ? tag : null
 
-  // 按年月分组
+  // 置顶公司新闻（带封面图）
+  const pinnedPosts = blogPostsMeta.filter((post) => post.pinned && (!activeTag || post.tag === activeTag))
+
+  // 按年月分组（普通文章，不含置顶）
   const grouped: Record<string, typeof blogPostsMeta> = {}
-  const listedPosts = activeTag ? blogPostsMeta.filter((post) => post.tag === activeTag) : blogPostsMeta
+  const listedPosts = activeTag
+    ? blogPostsMeta.filter((post) => post.tag === activeTag && !post.pinned)
+    : blogPostsMeta.filter((post) => !post.pinned)
   for (const post of listedPosts) {
     const ym = post.date.slice(0, 7) // "2026-06"
     if (!grouped[ym]) grouped[ym] = []
@@ -102,6 +102,19 @@ export default async function BlogPage({ params, searchParams }: { params: Promi
     locale
   )
 
+  const pinnedCopy = getLocalized(
+    {
+      zh: "公司新闻",
+      en: "Company News",
+      vi: "Tin công ty",
+      th: "ข่าวบริษัท",
+      ru: "Новости компании",
+      ja: "会社ニュース",
+      ko: "회사 소식",
+    },
+    locale
+  )
+
   return (
     <>
       <Breadcrumb items={[{ name: eyebrow, url: "/blog" }]} locale={locale} />
@@ -123,6 +136,49 @@ export default async function BlogPage({ params, searchParams }: { params: Promi
               </Link>
             </div>
           )}
+          {/* 置顶公司新闻（带封面图） */}
+          {pinnedPosts.length > 0 && (
+            <div className="mb-12">
+              <div className="flex items-center gap-3 mb-6">
+                <h2 className="font-serif-sc text-2xl font-bold text-primary">{pinnedCopy}</h2>
+                <div className="flex-1 h-px bg-border" />
+              </div>
+              <div className="grid gap-6 md:grid-cols-3">
+                {pinnedPosts.map((post) => (
+                  <Link key={post.slug} href={`/blog/${post.slug}`} className="group flex flex-col overflow-hidden border border-border bg-white transition-shadow hover:shadow-lg">
+                    <div className="relative aspect-[16/9] overflow-hidden bg-background">
+                      <Image
+                        src={pinnedCovers[post.slug]}
+                        alt={getLocalized(post.title, locale)}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, (min-width: 768px) 33vw"
+                      />
+                    </div>
+                    <div className="flex flex-1 flex-col p-5">
+                      <div className="flex items-center gap-2">
+                        <span className="border border-accent/30 bg-accent/5 px-2 py-0.5 text-[11px] font-bold uppercase tracking-[0.08em] text-accent">
+                          {tagLabels[post.tag as keyof typeof tagLabels] || post.tag}
+                        </span>
+                        <span className="text-[11px] text-muted">{post.date}</span>
+                      </div>
+                      <h3 className="mt-2 font-serif-sc text-lg font-bold leading-snug text-primary transition-colors line-clamp-2 group-hover:text-accent">
+                        {getLocalized(post.title, locale)}
+                      </h3>
+                      <p className="mt-2 text-xs leading-relaxed text-muted line-clamp-3">{getLocalized(post.excerpt, locale)}</p>
+                      <div className="mt-auto flex items-center gap-1.5 pt-4 text-xs font-semibold text-accent">
+                        {t("readMore")}
+                        <svg className="h-3 w-3 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
           {months.map((ym) => (
             <div key={ym} className="mb-12 last:mb-0">
               <div className="flex items-center gap-3 mb-6">
@@ -133,15 +189,6 @@ export default async function BlogPage({ params, searchParams }: { params: Promi
               <div className="grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
                 {grouped[ym].map((post) => (
                   <Link key={post.slug} href={`/blog/${post.slug}`} className="group flex flex-col bg-white">
-                    <div className="relative aspect-[16/9] overflow-hidden border-b border-border bg-background">
-                      <Image
-                        src={tagCovers[post.tag] || "/images/videos/semi-finished.webp"}
-                        alt=""
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      />
-                    </div>
                     <div className="flex flex-1 flex-col p-5">
                       <div className="flex items-center gap-2">
                         <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-accent">

@@ -7,6 +7,7 @@ import { blogPostsBatch6 } from "./blog-data-6"
 import { blogPostsBatch7 } from "./blog-data-7"
 import { blogPostsBatch8 } from "./blog-data-8"
 import { blogPostsBatch9 } from "./blog-data-9"
+import { blogPostsBatch10 } from "./blog-data-10"
 
 export interface BlogPost {
   slug: string
@@ -14,6 +15,7 @@ export interface BlogPost {
   excerpt: { zh: string; en: string; vi?: string; th?: string; ru?: string; ja?: string; ko?: string }
   tag: string
   date: string
+  pinned?: boolean
   content: { zh: string; en: string; vi?: string; th?: string; ru?: string; ja?: string; ko?: string }
 }
 
@@ -23,6 +25,7 @@ export interface BlogPostMeta {
   excerpt: { zh: string; en: string; vi?: string; th?: string; ru?: string; ja?: string; ko?: string }
   tag: string
   date: string
+  pinned?: boolean
 }
 
 // 翻译结果 JSON（由 scripts/translate-blog.ts 增量生成）
@@ -39,6 +42,7 @@ export const blogPosts: BlogPost[] = [
   ...blogPostsBatch7,
   ...blogPostsBatch8,
   ...blogPostsBatch9,
+  ...blogPostsBatch10,
 ].map((post) => {
   const t = (blogTranslations as Record<string, any>)[post.slug]
   if (!t) return post
