@@ -8,13 +8,11 @@ import { Link } from "@/i18n/routing"
  * Hero 下方产品分类行 —— 还原上海良工阀门（lgvf.com）的 hover 展开动效。
  *
  * 动效要点（与良工原版一致）：
- * - 默认 6 列等宽（每列 1/6 ≈ 16.66%）
- * - hover 时被 hover 项展宽到 1/4（25%），其余 5 项收窄到 15%
+ * - 默认 5 列等宽（每列 1/5 = 20%）
+ * - hover 时被 hover 项展宽到 1/4（25%），其余 4 项收窄到 15%
  * - 被 hover 项背景变 bg-accent（#e60012），文字变白
  * - "MORE" 按钮默认 opacity:0 + top:24px，hover 时上移 + 淡入，0.5s 延迟
  * - 全程 transition: all 0.5s
- *
- * 当前为骨架版：标题与图片均为占位，等产品名/图片就位后替换 placeholderItems 与 Image 占位框即可。
  */
 
 type Item = {
@@ -24,7 +22,6 @@ type Item = {
   image?: string
 }
 
-// 第 1、2 个已就位，其余 4 个为占位
 const items: Item[] = [
   {
     title: "浸锑石墨毛坯",
@@ -38,11 +35,24 @@ const items: Item[] = [
     href: "/products",
     image: "/images/products/resin-graphite-blank.webp",
   },
-  ...Array.from({ length: 4 }, (_, i) => ({
-    title: `产品 ${String(i + 3).padStart(2, "0")}`,
-    subtitle: `Product ${String(i + 3).padStart(2, "0")}`,
+  {
+    title: "碳石墨轴承",
+    subtitle: "Carbon Graphite Bearing",
     href: "/products",
-  })),
+    image: "/images/products/carbon-graphite-bearing.webp",
+  },
+  {
+    title: "碳石墨密封环",
+    subtitle: "Carbon Graphite Seal Ring",
+    href: "/products",
+    image: "/images/products/carbon-graphite-seal-ring.webp",
+  },
+  {
+    title: "碳石墨三瓣环",
+    subtitle: "Carbon Graphite Three-Segment Ring",
+    href: "/products",
+    image: "/images/products/carbon-graphite-three-segment.webp",
+  },
 ]
 
 export default function ProductCategoryRail() {
