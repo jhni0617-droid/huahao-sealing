@@ -340,6 +340,59 @@ main {
   }
 }
 
+/* Hero carousel text animations */
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(32px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes hero-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes hero-slide-left {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes hero-accent-glow {
+  0%, 100% { text-shadow: 0 0 0 transparent; }
+  50% { text-shadow: 0 0 24px rgba(230, 0, 18, 0.55); }
+}
+@keyframes hero-line-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes hero-kenburns {
+  from { transform: scale(1); }
+  to { transform: scale(1.12); }
+}
+@keyframes hero-dot-pulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+
+@utility hero-text-fade-up {
+  opacity: 0;
+  animation: hero-fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@utility hero-text-fade-in {
+  opacity: 0;
+  animation: hero-fade-in 0.9s ease-out forwards;
+}
+@utility hero-text-slide-left {
+  opacity: 0;
+  animation: hero-slide-left 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@utility hero-accent-glow {
+  animation: hero-accent-glow 2.8s ease-in-out infinite;
+}
+@utility hero-line-grow {
+  transform-origin: left center;
+  animation: hero-line-grow 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@utility hero-kenburns {
+  animation: hero-kenburns 8s ease-out forwards;
+}
+
 /* Subtle shimmer loading */
 @utility shimmer {
   background: linear-gradient(90deg, var(--color-border-light) 25%, var(--color-border) 50%, var(--color-border-light) 75%);
