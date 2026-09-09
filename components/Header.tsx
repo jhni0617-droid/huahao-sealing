@@ -32,13 +32,19 @@ const heroNavLabels = {
 export default function Header() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  // 初始假设为首页（服务端默认透明，避免 SSR 白底闪烁），客户端用 location 修正
+  const [isHome, setIsHome] = useState(true)
   const pathname = usePathname()
   const t = useTranslations()
   const locale = useLocale()
   const brand = getLocalized(brandCopy, locale)
 
+  // 客户端修正首页判断 + 滚动监听（阈值放大，确保 hero 区域内保持透明）
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
+    const re = /^\/[a-z]{2}(\/)?$/
+    setIsHome(re.test(window.location.pathname))
+    const onScroll = () => setScrolled(window.scrollY > 80)
+    onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
@@ -57,8 +63,6 @@ export default function Header() {
     return pathname.startsWith(href)
   }
 
-  // 判断是否在首页（用于 hero 顶部透明白字导航）
-  const isHome = /^\/[a-z]{2}(\/)?$/.test(pathname)
   // hero 顶部透明态：首页 + 未滚动
   const heroTransparent = isHome && !scrolled
 

@@ -75,10 +75,23 @@ type SlideContent = {
   subline: Record<string, string>
 }
 
-const slides: { bg: string; content?: SlideContent }[] = [
-  // 第 0 张：原始内容，不动
-  { bg: "/images/实拍/IMG_20260517_193309.webp" },
-  // 第 1 张：精密制造
+const slides: { bg: string; content?: SlideContent; original?: boolean }[] = [
+  // 第 0 张：匠心传承（从最后移到第一）
+  {
+    bg: "/images/hero/hero-vintage-workshop.png",
+    content: {
+      eyebrow: { zh: "匠心传承", en: "HERITAGE & CRAFT", vi: "TRUYỀN THỪA NGHIỆP", th: "อาชีพสืบทอด", ru: "НАСЛЕДИЕ И МАСТЕРСТВО", ja: "匠の伝承", ko: "장인 정신" },
+      title: { zh: "始于", en: "Since", vi: "Từ năm", th: "ตั้งแต่", ru: "С", ja: "創業", ko: "설립" },
+      accent: { zh: "2006", en: "2006", vi: "2006", th: "2006", ru: "2006", ja: "2006", ko: "2006" },
+      stat: "20",
+      statUnit: "年",
+      statLabel: { zh: "专注碳石墨密封件制造", en: "Focused on carbon graphite seal manufacturing", vi: "Tập trung sản xuất phớt than chì carbon", th: "มุ่งผลิตซีลคาร์บอนกราไฟต์", ru: "Фокус на углерод-графитовых уплотнениях", ja: "カーボングラファイトシール専門", ko: "카본 그라파이트 씰 전문" },
+      subline: { zh: "从材料 · 浸渍 · 加工到检测的完整制造能力", en: "Integrated capability from material, impregnation, machining to inspection", vi: "Năng lực tích hợp từ vật liệu, tẩm, gia công đến kiểm tra", th: "ความสามารถครบวงจรตั้งแต่วัสดุ อิมพรีเกต กลึง ถึงตรวจสอบ", ru: "Полный цикл: материал, пропитка, обработка, контроль", ja: "材料・含浸・加工・検査までの一貫製造", ko: "소재 · 함침 · 가공 · 검사 일관 제조" },
+    },
+  },
+  // 第 1 张：原始内容（CNC 车间实拍 + 600°C）
+  { bg: "/images/实拍/IMG_20260517_193309.webp", original: true },
+  // 第 2 张：精密制造
   {
     bg: "/images/hero/hero-cnc-machining-dark.png",
     content: {
@@ -91,7 +104,7 @@ const slides: { bg: string; content?: SlideContent }[] = [
       subline: { zh: "CNC车削 · 内外径 · 端面研磨 · 开槽异形", en: "CNC turning · I.D./O.D. · face lapping · grooves & custom profiles", vi: "Tiện CNC · I.D./O.D. · mài mặt · rãnh và biên dạng", th: "กลึง CNC · I.D./O.D. · เจียรหน้า · ร่องและรูปพิเศษ", ru: "CNC точение · I.D./O.D. · притирка · канавки и профили", ja: "CNC旋削・内外径・端面ラップ・溝・異形", ko: "CNC 선삭 · 내외경 · 면 랩핑 · 홈 및 특수 형상" },
     },
   },
-  // 第 2 张：品质如一
+  // 第 3 张：品质如一
   {
     bg: "/images/hero/hero-graphite-rings-dramatic.png",
     content: {
@@ -104,7 +117,7 @@ const slides: { bg: string; content?: SlideContent }[] = [
       subline: { zh: "树脂/锑/铜浸渍牌号 · 材料批次可追溯", en: "Resin/antimony/copper grades · batch traceable", vi: "Cấp tẩm nhựa/antimon/đồng · truy xuất lô được", th: "เกรดเรซิน/พลวง/ทองแดง · ติดตามล็อตได้", ru: "Марки смола/сурьма/медь · прослеживаемость партий", ja: "樹脂/アンチモン/銅含浸グレード・ロット追跡可能", ko: "수지/안티몬/구리 함침 등급 · 로트 추적 가능" },
     },
   },
-  // 第 3 张：精工细磨
+  // 第 4 张：精工细磨
   {
     bg: "/images/hero/hero-grinding-sparks.png",
     content: {
@@ -115,19 +128,6 @@ const slides: { bg: string; content?: SlideContent }[] = [
       statUnit: "μm",
       statLabel: { zh: "密封端面粗糙度", en: "Seal face roughness", vi: "Độ nhám mặt làm kín", th: "ความหยาบหน้าซีล", ru: "Шероховатость уплотнительной поверхности", ja: "シール面粗さ", ko: "씰 면 조도" },
       subline: { zh: "树脂/锑/铜浸渍牌号 · 自润滑耐高温", en: "Resin/antimony/copper grades · self-lubricating & heat resistant", vi: "Cấp tẩm nhựa/antimon/đồng · tự bôi trơn chịu nhiệt", th: "เกรดเรซิน/พลวง/ทองแดง · หล่อลื่นตัวเองทนความร้อน", ru: "Марки смола/сурьма/медь · самосмазка и жаростойкость", ja: "樹脂/アンチモン/銅含浸・自己潤滑・耐熱", ko: "수지/안티몬/구리 함침 · 자체 윤활 내열" },
-    },
-  },
-  // 第 4 张：服务全球工业
-  {
-    bg: "/images/hero/hero-industrial-plant.png",
-    content: {
-      eyebrow: { zh: "全球工业", en: "GLOBAL INDUSTRY", vi: "CÔNG NGHIỆP TOÀN CẦU", th: "อุตสาหกรรมโลก", ru: "МИРОВАЯ ПРОМЫШЛЕННОСТЬ", ja: "グローバル産業", ko: "글로벌 산업" },
-      title: { zh: "服务全球", en: "Serving", vi: "Phục vụ", th: "ให้บริการ", ru: "Обслуживаем", ja: "サービス", ko: "서비스" },
-      accent: { zh: "工业客户", en: "Industry", vi: "Công nghiệp", th: "อุตสาหกรรม", ru: "Промышленность", ja: "産業", ko: "산업" },
-      stat: "20",
-      statUnit: "+",
-      statLabel: { zh: "产品出口国家与地区", en: "Countries & regions we export to", vi: "Quốc gia và vùng lãnh thổ xuất khẩu", th: "ประเทศและภูมิภาคที่ส่งออก", ru: "Стран и регионов экспорта", ja: "輸出先国・地域", ko: "수출 국가 및 지역" },
-      subline: { zh: "泵业 · 船舶 · 化工 · 电力 · 矿山", en: "Pumps · Marine · Chemical · Power · Mining", vi: "Bơm · Hàng hải · Hóa chất · Điện lực · Khai khoáng", th: "ปั๊ม · เรือ · เคมี · พลังงาน · เหมืองแร่", ru: "Насосы · Судостроение · Химия · Энергетика · Горное дело", ja: "ポンプ・船舶・化学・電力・鉱山", ko: "펌프 · 선박 · 화학 · 발전 · 광산" },
     },
   },
   // 第 5 张：出口全球
@@ -141,19 +141,6 @@ const slides: { bg: string; content?: SlideContent }[] = [
       statUnit: "h",
       statLabel: { zh: "工程技术响应时效", en: "Engineering response time", vi: "Thời gian phản hồi kỹ thuật", th: "เวลาตอบสนองทางวิศวกรรม", ru: "Срок инженерного ответа", ja: "技術対応時間", ko: "기술 대응 시간" },
       subline: { zh: "图纸 · 样品 · 批量规格 · 替代型号 · 长期供货", en: "Drawings · samples · batch specs · replacements · long-term supply", vi: "Bản vẽ · mẫu · thông số lô · thay thế · cung ứng dài hạn", th: "แบบ · ตัวอย่าง · สเปกล็อต · ทดแทน · จัดหาระยะยาว", ru: "Чертежи · образцы · партии · замены · долгосрочные поставки", ja: "図面・サンプル・ロット仕様・代替・長期供給", ko: "도면 · 샘플 · 로트 사양 · 대체 · 장기 공급" },
-    },
-  },
-  // 第 6 张：匠心传承
-  {
-    bg: "/images/hero/hero-vintage-workshop.png",
-    content: {
-      eyebrow: { zh: "匠心传承", en: "HERITAGE & CRAFT", vi: "TRUYỀN THỪA NGHIỆP", th: "อาชีพสืบทอด", ru: "НАСЛЕДИЕ И МАСТЕРСТВО", ja: "匠の伝承", ko: "장인 정신" },
-      title: { zh: "始于", en: "Since", vi: "Từ năm", th: "ตั้งแต่", ru: "С", ja: "創業", ko: "설립" },
-      accent: { zh: "2006", en: "2006", vi: "2006", th: "2006", ru: "2006", ja: "2006", ko: "2006" },
-      stat: "20",
-      statUnit: "年",
-      statLabel: { zh: "专注碳石墨密封件制造", en: "Focused on carbon graphite seal manufacturing", vi: "Tập trung sản xuất phớt than chì carbon", th: "มุ่งผลิตซีลคาร์บอนกราไฟต์", ru: "Фокус на углерод-графитовых уплотнениях", ja: "カーボングラファイトシール専門", ko: "카본 그라파이트 씰 전문" },
-      subline: { zh: "从材料 · 浸渍 · 加工到检测的完整制造能力", en: "Integrated capability from material, impregnation, machining to inspection", vi: "Năng lực tích hợp từ vật liệu, tẩm, gia công đến kiểm tra", th: "ความสามารถครบวงจรตั้งแต่วัสดุ อิมพรีเกต กลึง ถึงตรวจสอบ", ru: "Полный цикл: материал, пропитка, обработка, контроль", ja: "材料・含浸・加工・検査までの一貫製造", ko: "소재 · 함침 · 가공 · 검사 일관 제조" },
     },
   },
 ]
@@ -228,8 +215,8 @@ export default function HeroSection() {
       {/* 文字内容：用 key 重挂载以重播动画 */}
       <div className="relative z-30 w-full px-6 pb-24 pt-32 md:px-10 md:pb-28 md:pt-40 xl:px-[4.5vw]">
         <div key={current}>
-          {/* ============ 第 0 张：原始内容，不动 ============ */}
-          {current === 0 && (
+          {/* ============ 原始内容（CNC 车间实拍 + 600°C） ============ */}
+          {slide.original && (
             <div className="animate-reveal">
               <div className="inline-flex items-center gap-4">
                 <span className="h-7 w-[3px] bg-accent" aria-hidden />
@@ -265,7 +252,7 @@ export default function HeroSection() {
           )}
 
           {/* ============ 第 1-6 张：艺术文字 + 入场动效 ============ */}
-          {current !== 0 && slide.content && (
+          {!slide.original && slide.content && (
             <div>
               {/* eyebrow */}
               <div className="hero-text-fade-up inline-flex items-center gap-4" style={{ animationDelay: "0.1s" }}>
