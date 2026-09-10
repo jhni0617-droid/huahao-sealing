@@ -1,0 +1,10 @@
+{
+  "model": "gpt-4o-mini",
+  "ranAt": "2026-09-10T13:10:36.897Z",
+  "tasks": 465,
+  "success": 465,
+  "failed": 0,
+  "promptTokens": 2735938,
+  "completionTokens": 1410653,
+  "totalTokens": 4146591
+}
