@@ -208,7 +208,11 @@ export default function HeroSection() {
   return (
     <section
       // 负 margin 上移到 Header 后方，让背景图覆盖整个视口（含 Header 区域）
-      className="relative -mt-16 flex min-h-[100svh] items-center overflow-hidden bg-hero-bg text-white md:-mt-[72px]"
+      //
+      // md:max-h-[100svh]：桌面端把区块高度锁死在视口高。
+      // 配合 hero-pad 的 svh 自适应留白，这样即使视口极矮，锚在区块底部的轮播指示器
+      // 也一定落在首屏内。内容超出时由内边距吸收，不会裁到文字（已验证到 500px 高）。
+      className="relative -mt-16 flex min-h-[100svh] items-center overflow-hidden bg-hero-bg text-white md:-mt-[72px] md:max-h-[100svh]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -240,7 +244,9 @@ export default function HeroSection() {
       <div className="absolute inset-x-0 bottom-0 z-20 h-40 bg-gradient-to-t from-black/60 to-transparent" />
 
       {/* 文字内容：用 key 重挂载以重播动画 */}
-      <div className="relative z-30 w-full px-6 pb-24 pt-32 md:px-10 md:pb-28 md:pt-40 xl:px-[4.5vw]">
+      {/* 垂直留白用 hero-pad（见 app/globals.css）：随视口高度自适应，避免矮屏下 Hero
+          被内容撑得比视口更高，把锚在区块底部的轮播指示器推出首屏。 */}
+      <div className="hero-pad relative z-30 w-full px-6 md:px-10 xl:px-[4.5vw]">
         <div key={current}>
           {/* ============ 原始内容（CNC 车间实拍 + 600°C） ============ */}
           {slide.original && (

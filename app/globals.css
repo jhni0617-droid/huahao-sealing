@@ -110,6 +110,23 @@ main {
   }
 }
 
+/*
+  Hero 区块的垂直留白：随视口高度自适应。
+
+  为什么需要它：Hero 是 min-h-[100svh]，而轮播指示器是 absolute bottom-10（锚在**区块**底部）。
+  一旦「内容 + 内边距」超过视口高度，区块就被撑得比视口更高，指示器随之掉到首屏之外 ——
+  实测 1440×650 / 1280×600 这类较矮的窗口下，6 张幻灯片的指示器全部看不到。
+
+  改用 max(下限, xsvh)：矮屏自动收紧留白，区块高度收敛回视口内；高屏取到 svh 项，观感与原来基本一致。
+
+  注意：不要改写成 Tailwind 的任意值写法 pt-[max(5rem,17svh)] —— 实测 v4 不会为这种
+  含 max() 的任意值生成任何 CSS 规则（类名在、样式不在），改动会静默失效。
+*/
+@utility hero-pad {
+  padding-top: max(4.5rem, 16svh);
+  padding-bottom: max(3.5rem, 11svh);
+}
+
 @utility industrial-divider {
   height: 2px;
   background: linear-gradient(90deg, var(--color-accent), transparent);
