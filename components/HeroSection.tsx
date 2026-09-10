@@ -197,13 +197,103 @@ export default function HeroSection() {
     startTimer()
   }, [markMounted, startTimer])
 
-  useEffect(() => {
-    if (!paused) startTimer()
-    return stopTimer
-  }, [paused, startTimer, stopTimer])
+  /** 相对当前位置前后翻一张（左右滑动用） */
+  const stepBy = useCallback((dir: 1 | -1) => {
+    const next = (currentRef.current + dir + slides.length) % slides.length
+    currentRef.current = next
+    setCurrent(next)
+    markMounted(next)
+    startTimer()
+  }, [markMounted, startTimer])
+
+  /** 只挂载指定一张（滑动的反方向那张需要提前就位） */
+  const mountOne = useCallback((idx: number) => {
+    setMountedSlides((prev) => (prev.includes(idx) ? prev : [...prev, idx]))
+  }, [])
+
+  /* ── 左右滑动切换（鼠标拖拽 + 触摸滑动，用 Pointer Events 统一处理） ──
+     dragX：当前拖拽位移，用于让画面跟手
+     dragW：起手时记下视口宽度，用于算阈值与限位（不在渲染里读 window，避免 SSR 不一致）
+     位移放在 slide 的外层 wrapper 上，而不是直接改图片元素 —— 图片上有 Ken Burns 的
+     transform 动画，两者写在同一个元素上会互相覆盖。 */
+  const [dragX, setDragX] = useState(0)
+  const [dragging, setDragging] = useState(false)
+  const [dragW, setDragW] = useState(1440)
+  const [dragLimit, setDragLimit] = useState(120)
+  const dragRef = useRef<{ x: number; y: number; active: boolean; moved: boolean; dx: number } | null>(null)
+  // 松手后紧跟的那次 click 要吞掉，否则会误触到落点下方的圆点/链接
+  const suppressClickRef = useRef(false)
+
+  const onPointerDown = (e: React.PointerEvent) => {
+    if (e.pointerType === "mouse" && e.button !== 0) return
+    const w = window.innerWidth
+    dragRef.current = { x: e.clientX, y: e.clientY, active: true, moved: false, dx: 0 }
+    setDragW(w)
+    // 阈值取视口宽度的 8%，且不小于 40px
+    setDragLimit(Math.max(40, w * 0.08))
+    // 反方向那张往往还没挂载（渐进挂载只保证「当前 + 下一张」），起手就补上，
+    // 给图片留出加载时间，否则往回拖松手会看到空白
+    mountOne((currentRef.current - 1 + slides.length) % slides.length)
+  }
+
+  const onPointerMove = (e: React.PointerEvent) => {
+    const d = dragRef.current
+    if (!d || !d.active) return
+    const dx = e.clientX - d.x
+    const dy = e.clientY - d.y
+
+    // 纵向意图优先：若是上下滑，直接放弃接管，让页面正常滚动
+    if (!d.moved && Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 8) {
+      d.active = false
+      setDragging(false)
+      setDragX(0)
+      return
+    }
+
+    if (!d.moved && Math.abs(dx) > 6) {
+      d.moved = true
+      setDragging(true)
+    }
+    if (d.moved) {
+      d.dx = dx
+      setDragX(dx)
+    }
+  }
+
+  const endDrag = () => {
+    const d = dragRef.current
+    dragRef.current = null
+    if (!d) return
+    setDragging(false)
+    setDragX(0)
+    if (!d.active || !d.moved) return
+
+    suppressClickRef.current = true
+    window.setTimeout(() => { suppressClickRef.current = false }, 0)
+
+    if (d.dx <= -dragLimit) stepBy(1)
+    else if (d.dx >= dragLimit) stepBy(-1)
+  }
 
   const slide = slides[current]
   const isMounted = (idx: number) => mountedSlides.includes(idx)
+
+  // 拖拽中的视觉：整叠跟手位移（限位 ±25% 视口宽，避免飞出屏幕），
+  // 同时按拖拽进度把目标那张淡入 —— 只位移不淡入的话，边缘会露出底色显得空。
+  const dragProgress = dragging ? Math.min(1, Math.abs(dragX) / dragLimit) : 0
+  const dragDir = dragX < 0 ? 1 : -1
+  const dragNeighbor = dragging && dragX !== 0
+    ? (current + dragDir + slides.length) % slides.length
+    : -1
+  const visualOffset = dragging
+    ? Math.max(-dragW * 0.25, Math.min(dragW * 0.25, dragX))
+    : 0
+
+  // 悬停或拖拽中都暂停自动播放，避免手感被打断
+  useEffect(() => {
+    if (!paused && !dragging) startTimer()
+    return stopTimer
+  }, [paused, dragging, startTimer, stopTimer])
 
   return (
     <section
@@ -212,32 +302,74 @@ export default function HeroSection() {
       // md:max-h-[100svh]：桌面端把区块高度锁死在视口高。
       // 配合 hero-pad 的 svh 自适应留白，这样即使视口极矮，锚在区块底部的轮播指示器
       // 也一定落在首屏内。内容超出时由内边距吸收，不会裁到文字（已验证到 500px 高）。
-      className="relative -mt-16 flex min-h-[100svh] items-center overflow-hidden bg-hero-bg text-white md:-mt-[72px] md:max-h-[100svh]"
+      //
+      // touch-pan-y：横向手势交给下面的拖拽逻辑，纵向仍交给浏览器滚动，
+      // 否则手机上左右滑会被当成页面滚动而收不到事件。
+      className={`relative -mt-16 flex min-h-[100svh] items-center overflow-hidden bg-hero-bg text-white md:-mt-[72px] md:max-h-[100svh] touch-pan-y ${
+        dragging ? "select-none" : ""
+      }`}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={endDrag}
+      onPointerCancel={endDrag}
+      onPointerLeave={endDrag}
+      // 拖拽刚结束时吞掉落点上的一次 click，避免误触圆点或链接
+      onClickCapture={(e) => {
+        if (suppressClickRef.current) {
+          e.preventDefault()
+          e.stopPropagation()
+        }
+      }}
     >
       {/* 背景图层：交叉淡入 + 当前层 Ken Burns（仅挂载已就绪的层） */}
-      {slides.map((s, idx) =>
-        isMounted(idx) ? (
-          <div
-            key={s.bg}
-            className={`absolute inset-0 transition-opacity duration-[1200ms] ease-in-out ${
-              idx === current ? "opacity-100 z-10" : "opacity-0 z-0"
-            }`}
-          >
-            <Image
-              src={s.bg}
-              alt="Huahao Sealing"
-              fill
-              priority={idx === 0}
-              sizes="100vw"
-              className={`object-cover object-center [filter:brightness(0.82)] ${
-                idx === current ? "hero-kenburns" : ""
+      {/* 背景图层：交叉淡入 + 当前层 Ken Burns（仅挂载已就绪的层）。
+          外面这层 wrapper 只负责左右拖拽的跟手位移 —— 放在这里而不是图片元素上，
+          是因为图片带 Ken Burns 的 transform 动画，两个 transform 写在同一元素会互相覆盖。
+          松手后 wrapper 回到 0 时带 300ms 过渡，所以小幅拖拽的回弹是平滑的。 */}
+      <div
+        className={`absolute inset-0 ${dragging ? "cursor-grabbing" : "cursor-grab"} ${
+          dragging ? "" : "transition-transform duration-300 ease-out"
+        }`}
+        style={{ transform: `translate3d(${visualOffset}px, 0, 0)` }}
+      >
+        {slides.map((s, idx) => {
+          if (!isMounted(idx)) return null
+          const isCurrent = idx === current
+          const isNeighbor = idx === dragNeighbor
+          return (
+            <div
+              key={s.bg}
+              className={`absolute inset-0 ${
+                // 拖拽中不做过渡，否则跟手会延迟；且此时正在按进度改透明度，必须即时生效
+                dragging ? "" : "transition-opacity duration-[1200ms] ease-in-out"
+              } ${
+                // 拖拽时把目标那张提到最上层并按进度淡入（只位移不淡入的话边缘会露底色）
+                isNeighbor && dragProgress > 0 ? "z-20" : isCurrent ? "opacity-100 z-10" : "opacity-0 z-0"
               }`}
-            />
-          </div>
-        ) : null
-      )}
+              style={
+                isNeighbor && dragProgress > 0
+                  ? { opacity: dragProgress }
+                  : isCurrent && dragging && dragProgress > 0
+                    ? { opacity: Math.max(0.35, 1 - dragProgress * 0.65) }
+                    : undefined
+              }
+            >
+              <Image
+                src={s.bg}
+                alt="Huahao Sealing"
+                fill
+                priority={idx === 0}
+                sizes="100vw"
+                className={`object-cover object-center [filter:brightness(0.82)] ${
+                  isCurrent ? "hero-kenburns" : ""
+                }`}
+              />
+            </div>
+          )
+        })}
+      </div>
 
       {/* 轻量可读性遮罩：左侧文字区微暗 + 底部收边，不压暗整张图 */}
       <div className="absolute inset-0 z-20 bg-gradient-to-r from-black/55 via-black/15 to-transparent" />
