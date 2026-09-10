@@ -61,3 +61,6 @@ auth-wal
 # local tooling & scratch
 .video_agent/
 components/test-write.txt
+
+# agent workspace: local memory, perf measurement scripts, backups of removed files
+.workbuddy/

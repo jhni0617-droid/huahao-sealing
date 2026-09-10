@@ -16,10 +16,11 @@ import "@fontsource/playfair-display/500.css"
 import "@fontsource/playfair-display/600.css"
 import "@fontsource/playfair-display/700.css"
 import "@fontsource/playfair-display/500-italic.css"
-import "@fontsource/noto-serif-sc/500.css"
-import "@fontsource/noto-serif-sc/600.css"
-import "@fontsource/noto-serif-sc/700.css"
-import "@fontsource/noto-serif-sc/900.css"
+// ⚠️ 不要引入 @fontsource/noto-serif-sc。
+// 该 CJK 字体 4 个字重 × 101 个子集 = 404 条 @font-face / 808 个文件引用，
+// 占首页 gzip CSS 的约 89%（135KB / 152KB）；而 globals.css 里 html.locale-en 已把
+// --font-serif-sc 覆盖为 Plus Jakarta Sans，en/vi/th/ru/ja/ko 六种语言根本用不到它。
+// 中文标题改用 globals.css 中已有的系统衬线兜底：Songti SC / STSong / SimSun。
 import { routing } from "@/i18n/routing"
 import LayoutShell from "@/components/LayoutShell"
 import { OrganizationJsonLd } from "@/components/JsonLd"

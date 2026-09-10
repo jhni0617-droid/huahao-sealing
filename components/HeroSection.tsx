@@ -78,7 +78,7 @@ type SlideContent = {
 const slides: { bg: string; content?: SlideContent; original?: boolean }[] = [
   // 第 0 张：匠心传承（从最后移到第一）
   {
-    bg: "/images/hero/hero-vintage-workshop.png",
+    bg: "/images/hero/hero-vintage-workshop.webp",
     content: {
       eyebrow: { zh: "匠心传承", en: "HERITAGE & CRAFT", vi: "TRUYỀN THỪA NGHIỆP", th: "อาชีพสืบทอด", ru: "НАСЛЕДИЕ И МАСТЕРСТВО", ja: "匠の伝承", ko: "장인 정신" },
       title: { zh: "始于", en: "Since", vi: "Từ năm", th: "ตั้งแต่", ru: "С", ja: "創業", ko: "설립" },
@@ -93,7 +93,7 @@ const slides: { bg: string; content?: SlideContent; original?: boolean }[] = [
   { bg: "/images/实拍/IMG_20260517_193309.webp", original: true },
   // 第 2 张：精密制造
   {
-    bg: "/images/hero/hero-cnc-machining-dark.png",
+    bg: "/images/hero/hero-cnc-machining-dark.webp",
     content: {
       eyebrow: { zh: "精密制造", en: "PRECISION MANUFACTURING", vi: "CHẾ TẠO CHÍNH XÁC", th: "การผลิตแม่นยำ", ru: "ТОЧНОЕ ПРОИЗВОДСТВО", ja: "精密製造", ko: "정밀 제조" },
       title: { zh: "公差受控", en: "Tolerance", vi: "Dung sai", th: "ค่าคลาดเคลื่อน", ru: "Допуск", ja: "公差管理", ko: "공차 관리" },
@@ -106,7 +106,7 @@ const slides: { bg: string; content?: SlideContent; original?: boolean }[] = [
   },
   // 第 3 张：品质如一
   {
-    bg: "/images/hero/hero-graphite-rings-dramatic.png",
+    bg: "/images/hero/hero-graphite-rings-dramatic.webp",
     content: {
       eyebrow: { zh: "品质保证", en: "QUALITY ASSURED", vi: "CHẤT LƯỢNG ĐẢM BẢO", th: "คุณภาพมั่นใจ", ru: "ГАРАНТИЯ КАЧЕСТВА", ja: "品質保証", ko: "품질 보증" },
       title: { zh: "全检出厂", en: "Full Inspection", vi: "Kiểm tra toàn bộ", th: "ตรวจสอบทั้งหมด", ru: "Полный контроль", ja: "全数検査", ko: "전수 검사" },
@@ -119,7 +119,7 @@ const slides: { bg: string; content?: SlideContent; original?: boolean }[] = [
   },
   // 第 4 张：精工细磨（抛光机）
   {
-    bg: "/images/hero/hero-polishing-machine.png",
+    bg: "/images/hero/hero-polishing-machine.webp",
     content: {
       eyebrow: { zh: "精工细磨", en: "CRAFTSMANSHIP", vi: "TINH CHỈNH", th: "ฝีมืออาชีพ", ru: "МАСТЕРСТВО", ja: "匠の技", ko: "장인 정신" },
       title: { zh: "端面研磨", en: "Face Lapping", vi: "Mài mặt", th: "เจียรหน้า", ru: "Притирка торцов", ja: "端面ラップ", ko: "단면 랩핑" },
@@ -132,7 +132,7 @@ const slides: { bg: string; content?: SlideContent; original?: boolean }[] = [
   },
   // 第 5 张：出口全球
   {
-    bg: "/images/hero/hero-global-map.png",
+    bg: "/images/hero/hero-global-map.webp",
     content: {
       eyebrow: { zh: "全球出口", en: "WORLDWIDE EXPORT", vi: "XUẤT KHẨU TOÀN CẦU", th: "ส่งออกโลก", ru: "ЭКСПОРТ ПО ВСЕМУ МИРУ", ja: "世界輸出", ko: "글로벌 수출" },
       title: { zh: "持续供货", en: "Steady Supply", vi: "Cung ứng ổn định", th: "จัดหาอย่างต่อเนื่อง", ru: "Стабильные поставки", ja: "安定供給", ko: "안정 공급" },
@@ -153,6 +153,17 @@ export default function HeroSection() {
   const [current, setCurrent] = useState(0)
   const [paused, setPaused] = useState(false)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  // 定时器回调里读「当前是第几张」，避免在 setState updater 里做副作用
+  const currentRef = useRef(0)
+
+  /**
+   * 渐进挂载：只渲染已经需要出现的图层。
+   * 6 张背景图都是 absolute inset-0，在浏览器看来全部处于视口内，
+   * 一次性挂载会 6 张同时抢首屏带宽（首图 LCP 被拖慢）。
+   * 初始只挂载第 0、1 张（当前 + 下一张），之后每切换一张再挂载新的一张。
+   * 因为有「下一张」前瞻，轮播推进时目标图必定已就绪，交叉淡入不会空白。
+   */
+  const [mountedSlides, setMountedSlides] = useState<number[]>([0, 1])
 
   const stopTimer = useCallback(() => {
     if (timerRef.current) {
@@ -161,17 +172,30 @@ export default function HeroSection() {
     }
   }, [])
 
+  /** 标记「这一张 + 下一张」需要挂载（下一张提前就位，交叉淡入不空白） */
+  const markMounted = useCallback((idx: number) => {
+    setMountedSlides((prev) =>
+      prev.includes(idx) ? prev : [...new Set([...prev, idx, (idx + 1) % slides.length])]
+    )
+  }, [])
+
   const startTimer = useCallback(() => {
     stopTimer()
     timerRef.current = setInterval(() => {
-      setCurrent((c) => (c + 1) % slides.length)
+      const next = (currentRef.current + 1) % slides.length
+      currentRef.current = next
+      setCurrent(next)
+      markMounted(next)
     }, AUTO_PLAY_MS)
-  }, [stopTimer])
+  }, [stopTimer, markMounted])
 
   const goTo = useCallback((idx: number) => {
+    // 点击圆点跳转时立即挂载目标张，避免跳到未挂载的幻灯片出现空白
+    currentRef.current = idx
     setCurrent(idx)
+    markMounted(idx)
     startTimer()
-  }, [startTimer])
+  }, [markMounted, startTimer])
 
   useEffect(() => {
     if (!paused) startTimer()
@@ -179,6 +203,7 @@ export default function HeroSection() {
   }, [paused, startTimer, stopTimer])
 
   const slide = slides[current]
+  const isMounted = (idx: number) => mountedSlides.includes(idx)
 
   return (
     <section
@@ -187,26 +212,28 @@ export default function HeroSection() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {/* 背景图层：交叉淡入 + 当前层 Ken Burns */}
-      {slides.map((s, idx) => (
-        <div
-          key={s.bg}
-          className={`absolute inset-0 transition-opacity duration-[1200ms] ease-in-out ${
-            idx === current ? "opacity-100 z-10" : "opacity-0 z-0"
-          }`}
-        >
-          <Image
-            src={s.bg}
-            alt="Huahao Sealing"
-            fill
-            priority={idx === 0}
-            sizes="100vw"
-            className={`object-cover object-center [filter:brightness(0.82)] ${
-              idx === current ? "hero-kenburns" : ""
+      {/* 背景图层：交叉淡入 + 当前层 Ken Burns（仅挂载已就绪的层） */}
+      {slides.map((s, idx) =>
+        isMounted(idx) ? (
+          <div
+            key={s.bg}
+            className={`absolute inset-0 transition-opacity duration-[1200ms] ease-in-out ${
+              idx === current ? "opacity-100 z-10" : "opacity-0 z-0"
             }`}
-          />
-        </div>
-      ))}
+          >
+            <Image
+              src={s.bg}
+              alt="Huahao Sealing"
+              fill
+              priority={idx === 0}
+              sizes="100vw"
+              className={`object-cover object-center [filter:brightness(0.82)] ${
+                idx === current ? "hero-kenburns" : ""
+              }`}
+            />
+          </div>
+        ) : null
+      )}
 
       {/* 轻量可读性遮罩：左侧文字区微暗 + 底部收边，不压暗整张图 */}
       <div className="absolute inset-0 z-20 bg-gradient-to-r from-black/55 via-black/15 to-transparent" />
