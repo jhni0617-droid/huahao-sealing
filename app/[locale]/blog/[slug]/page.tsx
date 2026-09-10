@@ -46,31 +46,63 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   }
 }
 
-function extractTakeaways(content: string): string[] {
-  const lines = content.split("\n")
-  const items: string[] = []
-  let inTakeaways = false
-  const takeawayHeaders = ["## 核心要点", "## Key Takeaways", "## Điều chính", "## ประเด็นหลัก"]
-  for (const line of lines) {
-    const trimmed = line.trim()
-    if (takeawayHeaders.some((h) => trimmed.startsWith(h))) {
-      inTakeaways = true
-      continue
-    }
-    if (inTakeaways) {
-      if (trimmed.startsWith("## ") || trimmed.startsWith("### ")) break
-      if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) items.push(trimmed.slice(2))
+/**
+ * 定位文章开头的「核心要点 / Key Takeaways」区块。
+ *
+ * 这段内容在全部 7 个语种版本里都是正文的第一个二级标题，紧随其后是若干条列表项。
+ * 因此按「第一个二级标题 + 至少两条列表项」判定，而不是匹配写死的标题文本 ——
+ * 这样越南语 / 泰语 / 俄语 / 日语 / 韩语等译文标题无论怎么翻译，都能被正确识别。
+ * （旧实现写死了 "## 核心要点" / "## Key Takeaways" 等 4 个标题，
+ *   译文标题一改，要点框和 GEO FAQ schema 就会静默失效。）
+ */
+function findTakeawaysRange(lines: string[]): { headingIdx: number; itemIdxs: number[] } | null {
+  const headingIdx = lines.findIndex((l) => l.trim().startsWith("## "))
+  if (headingIdx === -1) return null
+
+  const itemIdxs: number[] = []
+  for (let i = headingIdx + 1; i < lines.length; i++) {
+    const t = lines[i].trim()
+    if (t.startsWith("## ") || t.startsWith("### ")) break
+    if (t.startsWith("- ") || t.startsWith("* ")) {
+      itemIdxs.push(i)
+    } else if (t !== "" && itemIdxs.length > 0) {
+      break // 列表之后出现正文段落，说明要点区块已结束
     }
   }
-  return items
+  return itemIdxs.length >= 2 ? { headingIdx, itemIdxs } : null
 }
 
-function renderContent(content: string) {
+function extractTakeaways(content: string): string[] {
+  const lines = content.split("\n")
+  const range = findTakeawaysRange(lines)
+  if (!range) return []
+  return range.itemIdxs.map((i) => lines[i].trim().slice(2))
+}
+
+/** 「核心要点」小标题按语种展示（译文正文里的标题由翻译结果决定，这里只是 UI 标签） */
+const TAKEAWAYS_LABEL: Record<string, string> = {
+  zh: "核心要点",
+  en: "Key Takeaways",
+  vi: "Điểm chính",
+  th: "ประเด็นสำคัญ",
+  ru: "Ключевые выводы",
+  ja: "重要なポイント",
+  ko: "주요 내용",
+}
+
+function renderContent(content: string, locale: string) {
   const lines = content.split("\n")
   const elements: React.ReactNode[] = []
   let listItems: string[] = []
-  let inKeyTakeaways = false
-  let takeawayItems: string[] = []
+
+  // 预先定位「核心要点」区块，主循环里跳过这些行，由 flushTakeaways 单独渲染成高亮卡片
+  const takeawaysRange = findTakeawaysRange(lines)
+  const takeawayHeadingIdx = takeawaysRange?.headingIdx ?? -1
+  const takeawayItemSet = new Set(takeawaysRange?.itemIdxs ?? [])
+  const takeawayItems: string[] = takeawaysRange
+    ? takeawaysRange.itemIdxs.map((i) => lines[i].trim().slice(2))
+    : []
+  let takeawaysRendered = false
 
   const flushList = (key: string) => {
     if (listItems.length > 0) {
@@ -86,52 +118,40 @@ function renderContent(content: string) {
   }
 
   const flushTakeaways = () => {
-    if (takeawayItems.length > 0) {
-      elements.push(
-        <div key="key-takeaways" id="key-takeaways" className="my-6 p-5 bg-accent-subtle border-l-4 border-accent rounded-r-lg">
-          <div className="flex items-center gap-2 mb-3">
-            <svg className="h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span className="font-bold text-primary text-sm uppercase tracking-wide">核心要点 / Key Takeaways</span>
-          </div>
-          <ul className="space-y-2">
-            {takeawayItems.map((item, i) => (
-              <li key={i} className="text-sm text-primary leading-relaxed flex gap-2">
-                <span className="text-accent shrink-0 mt-0.5">▸</span>
-                <span dangerouslySetInnerHTML={{ __html: parseInline(item) }} />
-              </li>
-            ))}
-          </ul>
+    if (takeawaysRendered || takeawayItems.length === 0) return
+    takeawaysRendered = true
+    elements.push(
+      <div key="key-takeaways" id="key-takeaways" className="my-6 p-5 bg-accent-subtle border-l-4 border-accent rounded-r-lg">
+        <div className="flex items-center gap-2 mb-3">
+          <svg className="h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span className="font-bold text-primary text-sm uppercase tracking-wide">
+            {TAKEAWAYS_LABEL[locale] ?? TAKEAWAYS_LABEL.en}
+          </span>
         </div>
-      )
-      takeawayItems = []
-    }
+        <ul className="space-y-2">
+          {takeawayItems.map((item, i) => (
+            <li key={i} className="text-sm text-primary leading-relaxed flex gap-2">
+              <span className="text-accent shrink-0 mt-0.5">▸</span>
+              <span dangerouslySetInnerHTML={{ __html: parseInline(item) }} />
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
   }
 
   lines.forEach((line, idx) => {
     const trimmed = line.trim()
 
-    if (trimmed.startsWith("## 核心要点") || trimmed.startsWith("## Key Takeaways")) {
+    // 「核心要点」区块：标题行渲染成卡片，条目行已收集，直接跳过
+    if (idx === takeawayHeadingIdx) {
       flushList(`list-${idx}`)
-      inKeyTakeaways = true
+      flushTakeaways()
       return
     }
-
-    if (inKeyTakeaways) {
-      if (trimmed.startsWith("## ") || trimmed.startsWith("### ")) {
-        flushTakeaways()
-        inKeyTakeaways = false
-      } else if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
-        takeawayItems.push(trimmed.slice(2))
-        return
-      } else if (trimmed === "") {
-        return
-      } else {
-        flushTakeaways()
-        inKeyTakeaways = false
-      }
-    }
+    if (takeawayItemSet.has(idx)) return
 
     if (trimmed.startsWith("### ")) {
       flushList(`list-${idx}`)
@@ -259,7 +279,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
           </div>
 
           <div className="prose prose-lg max-w-none">
-            {renderContent(content)}
+            {renderContent(content, locale)}
           </div>
 
           <div className="mt-12 pt-8 border-t border-border">
