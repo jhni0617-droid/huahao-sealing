@@ -11,14 +11,12 @@ const railLabel = {
 }
 
 const carouselImages = [
-  { src: "/images/IMG_20260321_153130.webp", alt: "Huahao Sealing Factory · Overview" },
-  { src: "/images/实拍/IMG_20260517_193443.webp", alt: "Huahao Sealing · Workshop" },
-  { src: "/images/实拍/IMG_20260518_215113.webp", alt: "Huahao Sealing · Production Equipment" },
-  { src: "/images/实拍/IMG_20260517_192804.webp", alt: "Huahao Sealing · Processing" },
-  { src: "/images/实拍/IMG_20260517_192907.webp", alt: "Huahao Sealing · Workshop Detail" },
-  { src: "/images/实拍/IMG_20260517_193309.webp", alt: "Huahao Sealing · Machining" },
-  { src: "/images/实拍/IMG_20260517_193327.webp", alt: "Huahao Sealing · Quality Control" },
-  { src: "/images/实拍/IMG_20260517_193418.webp", alt: "Huahao Sealing · Facility" },
+  { src: "/images/factory/workshop-overview.png", alt: "Huahao Sealing · Workshop Overview" },
+  { src: "/images/factory/cnc-turning-graphite.png", alt: "Huahao Sealing · CNC Turning Graphite" },
+  { src: "/images/factory/graphite-impregnation.png", alt: "Huahao Sealing · Impregnation Process" },
+  { src: "/images/factory/qc-inspection-caliper.png", alt: "Huahao Sealing · QC Inspection" },
+  { src: "/images/factory/finished-rings-stack.png", alt: "Huahao Sealing · Finished Rings" },
+  { src: "/images/factory/packing-shipment.png", alt: "Huahao Sealing · Packing & Shipment" },
 ]
 
 const capabilitiesData = {

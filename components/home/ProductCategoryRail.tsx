@@ -25,12 +25,12 @@ const items: Item[] = [
   {
     title: "浸锑石墨毛坯",
     href: "/products",
-    image: "/images/products/antimony-graphite-blank.webp",
+    image: "/images/products/antimony-blank.webp",
   },
   {
     title: "浸树脂石墨毛坯",
     href: "/products",
-    image: "/images/products/resin-graphite-blank.webp",
+    image: "/images/products/resin-blank.webp",
   },
   {
     title: "碳石墨轴承",
@@ -66,7 +66,7 @@ export default function ProductCategoryRail() {
             ? "w-1/5"
             : isHovered
               ? "w-1/4"
-              : "w-[15%]"
+              : "w-[18.75%]"
           return (
             <li
               key={i}
@@ -82,8 +82,8 @@ export default function ProductCategoryRail() {
                   isHovered ? "bg-accent" : "bg-white"
                 }`}
               >
-                {/* 标题区（对齐良工原版 padding-top:110px padding-left:50px） */}
-                <div className="absolute left-[40px] right-[40px] top-[100px] z-10 lg:left-[50px] lg:top-[110px]">
+                {/* 标题区 */}
+                <div className="absolute left-[40px] right-[40px] top-[50px] z-10 lg:left-[50px] lg:top-[60px]">
                   <b
                     className={`block text-[22px] font-bold leading-tight transition-colors duration-500 lg:text-[26px] ${
                       isHovered ? "text-white" : "text-primary"

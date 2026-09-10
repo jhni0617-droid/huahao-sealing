@@ -1,20 +1,13 @@
 import type { Metadata } from "next"
-import dynamic from "next/dynamic"
 import { setRequestLocale } from "next-intl/server"
 import { getLocalized } from "@/lib/locale-data"
 import HeroSection from "@/components/HeroSection"
 import ProductCategoryRail from "@/components/home/ProductCategoryRail"
-import StatsBand from "@/components/StatsBand"
-import HomeProductEntry from "@/components/HomeProductEntry"
-import WhyCarbonGraphite from "@/components/WhyCarbonGraphite"
+import NewsSection from "@/components/NewsSection"
 import FactoryQuality from "@/components/FactoryQuality"
+import CustomOrderCTA from "@/components/CustomOrderCTA"
 import ApplicationsSection from "@/components/ApplicationsSection"
-import CasesSection from "@/components/CasesSection"
 import HomeCTA from "@/components/home/HomeCTA"
-
-const ClientsSection = dynamic(() => import("@/components/ClientsSection"), {
-  loading: () => <div className="section-padding bg-gray-50" />,
-})
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params
@@ -57,13 +50,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     <>
       <HeroSection />
       <ProductCategoryRail />
-      <StatsBand />
-      <HomeProductEntry />
-      <WhyCarbonGraphite />
+      <NewsSection />
       <FactoryQuality />
-      <ClientsSection />
+      <CustomOrderCTA />
       <ApplicationsSection />
-      <CasesSection />
       <HomeCTA />
     </>
   )
