@@ -17,7 +17,6 @@ import { Link } from "@/i18n/routing"
 
 type Item = {
   title: string
-  subtitle: string
   href: string
   image?: string
 }
@@ -25,31 +24,26 @@ type Item = {
 const items: Item[] = [
   {
     title: "浸锑石墨毛坯",
-    subtitle: "Antimony Graphite Blank",
     href: "/products",
     image: "/images/products/antimony-graphite-blank.webp",
   },
   {
     title: "浸树脂石墨毛坯",
-    subtitle: "Resin-Impregnated Graphite Blank",
     href: "/products",
     image: "/images/products/resin-graphite-blank.webp",
   },
   {
     title: "碳石墨轴承",
-    subtitle: "Carbon Graphite Bearing",
     href: "/products",
     image: "/images/products/carbon-graphite-bearing.webp",
   },
   {
     title: "碳石墨密封环",
-    subtitle: "Carbon Graphite Seal Ring",
     href: "/products",
     image: "/images/products/carbon-graphite-seal-ring.webp",
   },
   {
     title: "碳石墨三瓣环",
-    subtitle: "Carbon Graphite Three-Segment Ring",
     href: "/products",
     image: "/images/products/carbon-graphite-three-segment.webp",
   },
@@ -69,7 +63,7 @@ export default function ProductCategoryRail() {
         {items.map((item, i) => {
           const isHovered = hovered === i
           const widthClass = !anyHovered
-            ? "w-1/6"
+            ? "w-1/5"
             : isHovered
               ? "w-1/4"
               : "w-[15%]"
@@ -96,13 +90,6 @@ export default function ProductCategoryRail() {
                     }`}
                   >
                     {item.title}
-                    <em
-                      className={`mt-3 block not-italic text-[14px] font-normal tracking-wide transition-colors duration-500 lg:text-[16px] ${
-                        isHovered ? "text-white/80" : "text-muted"
-                      }`}
-                    >
-                      {item.subtitle}
-                    </em>
                   </b>
                 </div>
 
@@ -155,9 +142,6 @@ export default function ProductCategoryRail() {
             >
               <b className="block text-[16px] font-bold leading-tight text-primary">
                 {item.title}
-                <em className="mt-2 block not-italic text-[12px] font-normal tracking-wide text-muted">
-                  {item.subtitle}
-                </em>
               </b>
               <span className="mt-4 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.14em] text-accent">
                 MORE →
