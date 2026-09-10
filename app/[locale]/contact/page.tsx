@@ -1,3 +1,4 @@
+import { Suspense } from "react"
 import Image from "next/image"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import ContactForm from "@/components/ContactForm"
@@ -122,9 +123,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   })
 }
 
-export default async function ContactPage(props: { params: Promise<{ locale: string }>; searchParams?: Promise<{ product?: string }> }) {
-  const searchParams = await props.searchParams
-  const defaultProduct = searchParams?.product
+/**
+ * 注意：这里**不读 searchParams**。
+ * 之前 `await searchParams` 取 ?product= 会让整个路由退化为「每请求 SSR」。
+ * 现在取参搬到 ContactForm 内部用 useSearchParams()，页面恢复静态预渲染。
+ */
+export default async function ContactPage(props: { params: Promise<{ locale: string }> }) {
   const { locale } = await props.params
   setRequestLocale(locale)
   const t = await getTranslations("contact")
@@ -155,7 +159,10 @@ export default async function ContactPage(props: { params: Promise<{ locale: str
               <span className="h-[3px] w-10 bg-accent" aria-hidden />
               <span className="en-caption text-sm text-muted">{t("formTitle")}</span>
             </div>
-            <ContactForm defaultProduct={defaultProduct} />
+            {/* ContactForm 内部用 useSearchParams() 读 ?product=，需要 Suspense 边界 */}
+            <Suspense fallback={<div className="h-96 animate-pulse bg-border-light" />}>
+              <ContactForm />
+            </Suspense>
           </div>
 
           <aside className="order-2 bg-primary p-6 text-white md:p-10 lg:p-14">

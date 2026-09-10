@@ -3,19 +3,13 @@
 import { useEffect, useMemo, useState } from "react"
 import Image from "next/image"
 import { useLocale, useTranslations } from "next-intl"
+import { useSearchParams } from "next/navigation"
 import { Link } from "@/i18n/routing"
-import { getProductsByCategory } from "@/lib/products"
-import { getEnProductsByCategory } from "@/lib/products-en"
-import {
-  productsByLocale,
-  categoriesByLocale,
-  getViProductsByCategory,
-  getThProductsByCategory,
-  getRuProductsByCategory,
-  getJaProductsByCategory,
-  getKoProductsByCategory,
-} from "@/lib/translations-products"
+// 只保留类型与轻量工具；产品数据一律由服务端按语言取好后经 props 传入。
+// ⚠️ 不要在这里 import @/lib/products、@/lib/products-en、@/lib/translations-products，
+// 那些模块含 7 种语言的全量文案，会把客户端包撑大 250KB+。
 import { getLocalized, getLocalizedProductCategory } from "@/lib/locale-data"
+import type { ProductsPageData } from "@/lib/products-page-data"
 import CTASection from "@/components/CTASection"
 import VideoGallery from "@/components/VideoGallery"
 import Icon from "@/components/ui/Icon"
@@ -282,33 +276,48 @@ function ProductCard({ product, locale }: { product: Product; locale: string }) 
   )
 }
 
-export default function ProductsPageContent({ initialCategory }: { initialCategory?: string }) {
+/**
+ * 外层只负责读 URL 查询参数，并把它交给内层组件。
+ *
+ * 用 `key` 而不是 `useEffect` 来让筛选状态跟随 URL 变化：
+ * URL 上的 ?category= 一变，key 就变，内层组件整体重挂载、useState 重新初始化。
+ * 这样既覆盖了浏览器前进/后退，又避免了「在 effect 里同步 setState」造成的级联渲染。
+ */
+export default function ProductsPageContent(props: ProductsPageData) {
+  // 取参放在客户端读：页面不再 await searchParams，从而保持静态预渲染（SSG）。
+  // 需要外层 <Suspense> 包裹，见 app/[locale]/products/page.tsx。
+  const searchParams = useSearchParams()
+  const initialCategory = searchParams.get("category") ?? "all"
+
+  return <ProductsDirectory key={initialCategory} {...props} initialCategory={initialCategory} />
+}
+
+function ProductsDirectory({
+  categories,
+  allProducts,
+  productsByCategory,
+  initialCategory,
+}: ProductsPageData & { initialCategory: string }) {
   const locale = useLocale()
   const t = useTranslations("products")
   const copy = getCopy(locale)
 
-  const catList = categoriesByLocale[locale] || categoriesByLocale.en
-  const getItemsMap: Record<string, (slug: string) => Product[]> = {
-    zh: getProductsByCategory,
-    en: getEnProductsByCategory,
-    vi: getViProductsByCategory,
-    th: getThProductsByCategory,
-    ru: getRuProductsByCategory,
-    ja: getJaProductsByCategory,
-    ko: getKoProductsByCategory,
-  }
-  const getItems = getItemsMap[locale] || getItemsMap.en
-  const allProducts = productsByLocale[locale] || productsByLocale.en
+  const catList = categories
 
   const knownSlugs = useMemo(() => new Set(catList.map((cat) => cat.slug)), [catList])
   const validInitial = initialCategory && knownSlugs.has(initialCategory) ? initialCategory : "all"
   const [activeCategory, setActiveCategory] = useState(validInitial)
   const [query, setQuery] = useState("")
 
-  // 兼容 /products#seal-rings 形式的锚点链接：命中分类时直接激活对应筛选
+  // 兼容 /products#seal-rings 形式的锚点链接：命中分类时直接激活对应筛选。
+  // 必须放在 effect 里而不是 useState 惰性初始化 —— 服务端渲染时读不到 hash，
+  // 若在初始化阶段读会与 SSR 结果不一致，导致 hydration mismatch。
   useEffect(() => {
     if (validInitial !== "all") return
     const hash = window.location.hash.slice(1)
+    // 这里读的是浏览器地址栏（React 之外的外部状态），且必须在挂载后执行；
+    // 上面的注释解释了为什么不能改成惰性初始化。规则属于启发式误报，故本地放行。
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (hash && knownSlugs.has(hash)) setActiveCategory(hash)
   }, [validInitial, knownSlugs])
 
@@ -316,14 +325,14 @@ export default function ProductsPageContent({ initialCategory }: { initialCatego
     () =>
       catList.map((cat) => ({
         ...cat,
-        count: getItems(cat.slug).length,
+        count: (productsByCategory[cat.slug] ?? []).length,
         description: getCategoryDescription(cat.slug, locale),
       })),
-    [catList, getItems, locale],
+    [catList, productsByCategory, locale],
   )
 
   const filteredProducts = useMemo(() => {
-    const base = activeCategory === "all" ? allProducts : getItems(activeCategory)
+    const base = activeCategory === "all" ? allProducts : (productsByCategory[activeCategory] ?? [])
     const q = query.trim().toLowerCase()
     if (!q) return base
 
@@ -345,7 +354,7 @@ export default function ProductsPageContent({ initialCategory }: { initialCatego
 
       return haystack.includes(q)
     })
-  }, [activeCategory, allProducts, getItems, query])
+  }, [activeCategory, allProducts, productsByCategory, query, locale])
 
   return (
     <>

@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { useTranslations } from "next-intl"
+import { useSearchParams } from "next/navigation"
 import { siteConfig } from "@/lib/constants"
 import { getMetaBrowserCookies, trackPixelEvent } from "@/lib/meta/client"
 import { trackEvent } from "@/lib/track"
@@ -15,7 +16,13 @@ interface Props {
 // 与 app/api/contact/route.ts 保持一致，前后端共用同一规格
 const EMAIL_RE = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
-export default function ContactForm({ defaultProduct }: Props) {
+export default function ContactForm({ defaultProduct: defaultProductProp }: Props) {
+  // ?product= 放在客户端读：这样 /contact 页不再 await searchParams，
+  // 可以保持静态预渲染。props 入口保留，方便以后从其它页面直接指定。
+  // 使用 useSearchParams() 的组件必须被 <Suspense> 包裹（见 app/[locale]/contact/page.tsx）。
+  const searchParams = useSearchParams()
+  const defaultProduct = searchParams.get("product") ?? defaultProductProp
+
   const [step, setStep] = useState(1)
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)

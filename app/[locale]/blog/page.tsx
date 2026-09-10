@@ -1,20 +1,13 @@
-import Image from "next/image"
+import { Suspense } from "react"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
-import { blogPostsMeta } from "@/lib/blog-data"
+import { getBlogListData } from "@/lib/blog-list-data"
 import Breadcrumb from "@/components/Breadcrumb"
 import PageHead from "@/components/ui/PageHead"
 import QuickCTA from "@/components/QuickCTA"
 import CTASection from "@/components/CTASection"
-import { Link } from "@/i18n/routing"
-
-/* 置顶公司新闻封面：按 slug 映射工厂实拍图（见 public/images/factory/） */
-const pinnedCovers: Record<string, string> = {
-  "huahao-relocated-to-luan-2018": "/images/factory/company-plaque-2018.png",
-  "cnc-machining-upgrade-2020": "/images/factory/cnc-turning-graphite.png",
-  "self-built-factory-2021": "/images/factory/factory-aerial-2021.png",
-}
+import BlogList from "./blog-list"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -27,11 +20,29 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   })
 }
 
-export default async function BlogPage({ params, searchParams }: { params: Promise<{ locale: string }>; searchParams?: Promise<{ tag?: string }> }) {
+/** 列表骨架，避免 <Suspense> 期间布局跳动 */
+function BlogListFallback() {
+  return (
+    <div className="container-wide">
+      <div className="grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+        {Array.from({ length: 9 }).map((_, i) => (
+          <div key={i} className="h-48 animate-pulse bg-white" />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+/**
+ * 注意：这里**不读 searchParams**。
+ * 之前 `await searchParams` 取 ?tag= 会让整个路由退化为「每请求 SSR」。
+ * 现在标签筛选搬到客户端组件（blog-list.tsx）里用 useSearchParams()，
+ * 页面恢复静态预渲染；代价是要用 <Suspense> 包裹该组件。
+ */
+export default async function BlogPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   setRequestLocale(locale)
   const t = await getTranslations("blog")
-  const { tag } = (await searchParams) ?? {}
   const eyebrow = getLocalized({
     zh: "技术博客",
     en: "Technical Blog",
@@ -42,78 +53,8 @@ export default async function BlogPage({ params, searchParams }: { params: Promi
     ko: "기술 블로그",
   }, locale)
 
-  const tagLabels = getLocalized(
-    {
-      zh: { process: "加工工艺", selection: "材料选型", precision: "精度控制", news: "行业动态", faq: "技术问答", application: "应用案例", maintenance: "维护保养", material: "材料特性" },
-      en: { process: "Process", selection: "Selection", precision: "Precision", news: "News", faq: "FAQ", application: "Application", maintenance: "Maintenance", material: "Material" },
-      vi: { process: "Công nghệ", selection: "Chọn vật liệu", precision: "Chính xác", news: "Tin tức", faq: "FAQ", application: "Ứng dụng", maintenance: "Bảo trì", material: "Vật liệu" },
-      th: { process: "กระบวนการ", selection: "เลือกวัสดุ", precision: "ความแม่นยำ", news: "ข่าวสาร", faq: "FAQ", application: "การประยุกต์", maintenance: "บำรุงรักษา", material: "วัสดุ" },
-      ru: { process: "Процессы", selection: "Выбор", precision: "Точность", news: "Новости", faq: "FAQ", application: "Применение", maintenance: "Обслуживание", material: "Материал" },
-      ja: { process: "加工技術", selection: "材料選択", precision: "精密", news: "ニュース", faq: "FAQ", application: "応用", maintenance: "メンテナンス", material: "材料" },
-      ko: { process: "공정", selection: "재료 선택", precision: "정밀", news: "뉴스", faq: "FAQ", application: "응용", maintenance: "유지보수", material: "재료" },
-    },
-    locale
-  )
-
-  const validTags = new Set(Object.keys(tagLabels))
-  const activeTag = tag && validTags.has(tag) ? tag : null
-
-  // 置顶公司新闻（带封面图）
-  const pinnedPosts = blogPostsMeta.filter((post) => post.pinned && (!activeTag || post.tag === activeTag))
-
-  // 按年月分组（普通文章，不含置顶）
-  const grouped: Record<string, typeof blogPostsMeta> = {}
-  const listedPosts = activeTag
-    ? blogPostsMeta.filter((post) => post.tag === activeTag && !post.pinned)
-    : blogPostsMeta.filter((post) => !post.pinned)
-  for (const post of listedPosts) {
-    const ym = post.date.slice(0, 7) // "2026-06"
-    if (!grouped[ym]) grouped[ym] = []
-    grouped[ym].push(post)
-  }
-  const months = Object.keys(grouped).sort((a, b) => b.localeCompare(a))
-
-  const monthLabels = getLocalized(
-    {
-      zh: (ym: string) => `${ym.slice(0, 4)}年${parseInt(ym.slice(5, 7))}月`,
-      en: (ym: string) => {
-        const names = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-        return `${names[parseInt(ym.slice(5, 7)) - 1]} ${ym.slice(0, 4)}`
-      },
-      vi: (ym: string) => `Tháng ${parseInt(ym.slice(5, 7))} ${ym.slice(0, 4)}`,
-      th: (ym: string) => `เดือน ${parseInt(ym.slice(5, 7))} ${ym.slice(0, 4)}`,
-      ru: (ym: string) => `${ym.slice(0, 4)} г. ${parseInt(ym.slice(5, 7))} мес.`,
-      ja: (ym: string) => `${ym.slice(0, 4)}年${parseInt(ym.slice(5, 7))}月`,
-      ko: (ym: string) => `${ym.slice(0, 4)}년 ${parseInt(ym.slice(5, 7))}월`,
-    },
-    locale
-  )
-
-  const filterCopy = getLocalized(
-    {
-      zh: { filter: "当前筛选", clear: "清除筛选" },
-      en: { filter: "Filtered by", clear: "Clear filter" },
-      vi: { filter: "Đang lọc", clear: "Xóa bộ lọc" },
-      th: { filter: "กำลังกรอง", clear: "ล้างตัวกรอง" },
-      ru: { filter: "Фильтр", clear: "Сбросить фильтр" },
-      ja: { filter: "絞り込み", clear: "フィルタを解除" },
-      ko: { filter: "필터", clear: "필터 해제" },
-    },
-    locale
-  )
-
-  const pinnedCopy = getLocalized(
-    {
-      zh: "公司新闻",
-      en: "Company News",
-      vi: "Tin công ty",
-      th: "ข่าวบริษัท",
-      ru: "Новости компании",
-      ja: "会社ニュース",
-      ko: "회사 소식",
-    },
-    locale
-  )
+  // 服务端按当前语言解析好 title/excerpt，只传当前语言
+  const { items, monthLabels } = getBlogListData(locale)
 
   return (
     <>
@@ -124,95 +65,9 @@ export default async function BlogPage({ params, searchParams }: { params: Promi
       <QuickCTA />
 
       <section className="section-padding-sm industrial-surface">
-        <div className="container-wide">
-          {activeTag && (
-            <div className="mb-10 flex flex-wrap items-center gap-3 border border-border bg-white px-4 py-3">
-              <span className="text-sm text-muted">{filterCopy.filter}</span>
-              <span className="border border-accent/30 bg-accent/5 px-2.5 py-1 text-xs font-bold text-accent">
-                {tagLabels[activeTag as keyof typeof tagLabels] || activeTag}
-              </span>
-              <Link href="/blog" className="ml-auto text-xs font-semibold text-accent hover:underline">
-                {filterCopy.clear}
-              </Link>
-            </div>
-          )}
-          {/* 置顶公司新闻（带封面图） */}
-          {pinnedPosts.length > 0 && (
-            <div className="mb-12">
-              <div className="flex items-center gap-3 mb-6">
-                <h2 className="font-serif-sc text-2xl font-bold text-primary">{pinnedCopy}</h2>
-                <div className="flex-1 h-px bg-border" />
-              </div>
-              <div className="grid gap-6 md:grid-cols-3">
-                {pinnedPosts.map((post) => (
-                  <Link key={post.slug} href={`/blog/${post.slug}`} className="group flex flex-col overflow-hidden border border-border bg-white transition-shadow hover:shadow-lg">
-                    <div className="relative aspect-[16/9] overflow-hidden bg-background">
-                      <Image
-                        src={pinnedCovers[post.slug]}
-                        alt={getLocalized(post.title, locale)}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, (min-width: 768px) 33vw"
-                      />
-                    </div>
-                    <div className="flex flex-1 flex-col p-5">
-                      <div className="flex items-center gap-2">
-                        <span className="border border-accent/30 bg-accent/5 px-2 py-0.5 text-[11px] font-bold uppercase tracking-[0.08em] text-accent">
-                          {tagLabels[post.tag as keyof typeof tagLabels] || post.tag}
-                        </span>
-                        <span className="text-[11px] text-muted">{post.date}</span>
-                      </div>
-                      <h3 className="mt-2 font-serif-sc text-lg font-bold leading-snug text-primary transition-colors line-clamp-2 group-hover:text-accent">
-                        {getLocalized(post.title, locale)}
-                      </h3>
-                      <p className="mt-2 text-xs leading-relaxed text-muted line-clamp-3">{getLocalized(post.excerpt, locale)}</p>
-                      <div className="mt-auto flex items-center gap-1.5 pt-4 text-xs font-semibold text-accent">
-                        {t("readMore")}
-                        <svg className="h-3 w-3 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {months.map((ym) => (
-            <div key={ym} className="mb-12 last:mb-0">
-              <div className="flex items-center gap-3 mb-6">
-                <h2 className="font-serif-sc text-2xl font-bold text-primary">{monthLabels(ym)}</h2>
-                <span className="text-sm text-muted">({grouped[ym].length} {getLocalized({ zh: "篇", en: "posts" }, locale)})</span>
-                <div className="flex-1 h-px bg-border" />
-              </div>
-              <div className="grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
-                {grouped[ym].map((post) => (
-                  <Link key={post.slug} href={`/blog/${post.slug}`} className="group flex flex-col bg-white">
-                    <div className="flex flex-1 flex-col p-5">
-                      <div className="flex items-center gap-2">
-                        <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-accent">
-                          {tagLabels[post.tag as keyof typeof tagLabels] || post.tag}
-                        </span>
-                        <span className="text-[11px] text-muted">{post.date.slice(5)}</span>
-                      </div>
-                      <h3 className="mt-2 font-serif-sc text-base font-bold leading-snug text-primary transition-colors group-hover:text-accent line-clamp-2">
-                        {getLocalized(post.title, locale)}
-                      </h3>
-                      <p className="mt-2 text-xs leading-relaxed text-muted line-clamp-3">{getLocalized(post.excerpt, locale)}</p>
-                      <div className="mt-auto flex items-center gap-1.5 pt-4 text-xs font-semibold text-accent">
-                        {t("readMore")}
-                        <svg className="h-3 w-3 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+        <Suspense fallback={<BlogListFallback />}>
+          <BlogList items={items} monthLabels={monthLabels} locale={locale} readMore={t("readMore")} />
+        </Suspense>
       </section>
 
       <CTASection />

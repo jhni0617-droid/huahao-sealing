@@ -195,14 +195,14 @@ const enDetails: Record<string, DetailData> = {
 }
 
 const appImages: Record<string, string> = {
-  "pump-industry": "/images/applications/pump-industry.jpg",
-  "marine-industry": "/images/applications/marine-industry.jpg",
-  "chemical-processing": "/images/applications/chemical-processing.jpg",
-  "power-energy": "/images/applications/power-energy.jpg",
-  "food-pharma": "/images/applications/food-pharma.jpg",
-  "mining-metallurgy": "/images/applications/mining-metallurgy.jpg",
-  "oil-gas": "/images/applications/oil-gas.jpg",
-  "general-sealing": "/images/applications/general-sealing.jpg",
+  "pump-industry": "/images/applications/pump-industry.webp",
+  "marine-industry": "/images/applications/marine-industry.webp",
+  "chemical-processing": "/images/applications/chemical-processing.webp",
+  "power-energy": "/images/applications/power-energy.webp",
+  "food-pharma": "/images/applications/food-pharma.webp",
+  "mining-metallurgy": "/images/applications/mining-metallurgy.webp",
+  "oil-gas": "/images/applications/oil-gas.webp",
+  "general-sealing": "/images/applications/general-sealing.webp",
 }
 
 export default async function ApplicationsPage({ params }: { params: Promise<{ locale: string }> }) {

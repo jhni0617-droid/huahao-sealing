@@ -2,7 +2,7 @@ import Image from "next/image"
 import { getLocale, getTranslations } from "next-intl/server"
 import { Link } from "@/i18n/routing"
 import { getLocalized } from "@/lib/locale-data"
-import { blogPostsMeta } from "@/lib/blog-data"
+import { pinnedBlogPosts } from "@/lib/blog-pinned"
 import Reveal from "@/components/ui/Reveal"
 import SectionRail, { HomeSection } from "@/components/home/SectionRail"
 
@@ -11,15 +11,17 @@ const railLabel = {
 }
 
 const pinnedCovers: Record<string, string> = {
-  "huahao-relocated-to-luan-2018": "/images/factory/company-plaque-2018.png",
-  "cnc-machining-upgrade-2020": "/images/factory/cnc-turning-graphite.png",
-  "self-built-factory-2021": "/images/factory/factory-aerial-2021.png",
+  "huahao-relocated-to-luan-2018": "/images/factory/company-plaque-2018.webp",
+  "cnc-machining-upgrade-2020": "/images/factory/cnc-turning-graphite.webp",
+  "self-built-factory-2021": "/images/factory/factory-aerial-2021.webp",
 }
 
 export default async function NewsSection() {
   const locale = await getLocale()
   const t = await getTranslations("blog")
-  const posts = blogPostsMeta.filter((p) => p.pinned).slice(0, 3)
+  // 只取置顶的 3 条公司新闻，数据来自轻量模块 lib/blog-pinned.ts（36KB），
+  // 而不是 lib/blog-data.ts（会聚合全部 10 个分片、约 1.6MB）
+  const posts = pinnedBlogPosts
 
   return (
     <HomeSection className="bg-background">

@@ -11,12 +11,12 @@ const railLabel = {
 }
 
 const carouselImages = [
-  { src: "/images/factory/workshop-overview.png", alt: "Huahao Sealing · Workshop Overview" },
-  { src: "/images/factory/cnc-turning-graphite.png", alt: "Huahao Sealing · CNC Turning Graphite" },
-  { src: "/images/factory/graphite-impregnation.png", alt: "Huahao Sealing · Impregnation Process" },
-  { src: "/images/factory/qc-inspection-caliper.png", alt: "Huahao Sealing · QC Inspection" },
-  { src: "/images/factory/finished-rings-stack.png", alt: "Huahao Sealing · Finished Rings" },
-  { src: "/images/factory/packing-shipment.png", alt: "Huahao Sealing · Packing & Shipment" },
+  { src: "/images/factory/workshop-overview.webp", alt: "Huahao Sealing · Workshop Overview" },
+  { src: "/images/factory/cnc-turning-graphite.webp", alt: "Huahao Sealing · CNC Turning Graphite" },
+  { src: "/images/factory/graphite-impregnation.webp", alt: "Huahao Sealing · Impregnation Process" },
+  { src: "/images/factory/qc-inspection-caliper.webp", alt: "Huahao Sealing · QC Inspection" },
+  { src: "/images/factory/finished-rings-stack.webp", alt: "Huahao Sealing · Finished Rings" },
+  { src: "/images/factory/packing-shipment.webp", alt: "Huahao Sealing · Packing & Shipment" },
 ]
 
 const capabilitiesData = {
