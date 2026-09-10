@@ -49,11 +49,70 @@ export default async function AdminDashboardPage() {
      GROUP BY country ORDER BY count DESC LIMIT 15`,
     [],
   ) as any[]
-
   const byCountryWithNames = byCountry.map((c: any) => ({
     ...c,
     displayName: c.country === 'Unknown' ? '未知' : getCountryName(c.country),
   }))
+
+  // ── 真实用户性能（Web Vitals，近 7 天，已排除爬虫）──────────────
+  // 用「排序 + OFFSET」算精确 p75（SQLite 没有 percentile 函数）。
+  // 时间下界在 JS 里算好当参数传，避免依赖 SQLite 的日期函数（Turso/libSQL 兼容性更稳）。
+  const vitalsSince = new Date(Date.now() - 7 * 24 * 3600 * 1000)
+    .toISOString()
+    .replace("T", " ")
+    .slice(0, 19)
+
+  async function vitalsP75(metric: string): Promise<number | null> {
+    const row = (await dbGet(
+      `SELECT value FROM web_vitals
+       WHERE metric = ? AND is_bot = 0 AND created_at >= ?
+       ORDER BY value
+       LIMIT 1 OFFSET (
+         SELECT CAST(COUNT(*) * 75 / 100 AS INTEGER) FROM web_vitals
+         WHERE metric = ? AND is_bot = 0 AND created_at >= ?
+       )`,
+      [metric, vitalsSince, metric, vitalsSince],
+    )) as { value?: number } | undefined
+    return row && typeof row.value === "number" ? row.value : null
+  }
+
+  const vitalsSampleCount =
+    ((await dbGet(
+      "SELECT COUNT(*) as count FROM web_vitals WHERE is_bot = 0 AND created_at >= ?",
+      [vitalsSince],
+    )) as { count?: number } | undefined)?.count ?? 0
+
+  const lcpP75 = await vitalsP75("LCP")
+  const clsP75 = await vitalsP75("CLS")
+  const inpP75 = await vitalsP75("INP")
+  const ttfbP75 = await vitalsP75("TTFB")
+
+  /** 按 Google 的 Core Web Vitals 阈值给出颜色与评价 */
+  function lcpRating(v: number | null) {
+    if (v === null) return { text: "—", cls: "text-gray-400" }
+    if (v <= 2500) return { text: "良好", cls: "text-green-600" }
+    if (v <= 4000) return { text: "需改进", cls: "text-amber-600" }
+    return { text: "较差", cls: "text-red-600" }
+  }
+  function clsRating(v: number | null) {
+    if (v === null) return { text: "—", cls: "text-gray-400" }
+    if (v <= 0.1) return { text: "良好", cls: "text-green-600" }
+    if (v <= 0.25) return { text: "需改进", cls: "text-amber-600" }
+    return { text: "较差", cls: "text-red-600" }
+  }
+  function inpRating(v: number | null) {
+    if (v === null) return { text: "—", cls: "text-gray-400" }
+    if (v <= 200) return { text: "良好", cls: "text-green-600" }
+    if (v <= 500) return { text: "需改进", cls: "text-amber-600" }
+    return { text: "较差", cls: "text-red-600" }
+  }
+
+  const vitalsCards = [
+    { label: "LCP p75（最大内容绘制）", value: lcpP75 === null ? "—" : (lcpP75 / 1000).toFixed(2) + " s", r: lcpRating(lcpP75) },
+    { label: "INP p75（交互响应）", value: inpP75 === null ? "—" : Math.round(inpP75) + " ms", r: inpRating(inpP75) },
+    { label: "CLS p75（布局偏移）", value: clsP75 === null ? "—" : clsP75.toFixed(3), r: clsRating(clsP75) },
+    { label: "TTFB p75（首字节）", value: ttfbP75 === null ? "—" : Math.round(ttfbP75) + " ms", r: { text: "参考", cls: "text-gray-400" } },
+  ]
 
   // 来源分布
   const byReferrer = await dbAll(
@@ -104,6 +163,34 @@ export default async function AdminDashboardPage() {
           ℹ️ 升级后旧的访问记录没有国家/来源/爬虫标记。从这里开始，所有新访问都会带上这些字段。
         </div>
       )}
+
+      {/* 真实用户性能（Web Vitals，近 7 天 p75） */}
+      <div className="mb-6">
+        <div className="flex flex-wrap items-baseline justify-between gap-2 mb-3">
+          <h2 className="text-sm font-semibold text-gray-900">真实用户性能（近 7 天 p75）</h2>
+          <span className="text-xs text-gray-400">
+            {vitalsSampleCount > 0
+              ? `共 ${vitalsSampleCount} 条样本，来自真实访客设备`
+              : "暂无样本"}
+          </span>
+        </div>
+        {vitalsSampleCount < 20 ? (
+          <div className="p-4 rounded-lg bg-gray-50 border border-gray-200 text-sm text-gray-600">
+            ℹ️ 样本还不够多（当前 {vitalsSampleCount} 条）。Core Web Vitals 的 p75 需要有几十条以上样本才稳定可信，
+            在样本积累起来之前，请以构建期的 <code className="px-1 bg-white border border-gray-200 rounded">npm run perf</code> 结果为准。
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {vitalsCards.map((c) => (
+              <div key={c.label} className="bg-white rounded-xl border border-gray-200 p-5">
+                <div className="text-2xl font-bold text-gray-900">{c.value}</div>
+                <div className="text-sm text-gray-500 mt-0.5">{c.label}</div>
+                <div className={`text-xs font-semibold mt-1 ${c.r.cls}`}>{c.r.text}</div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
 
       {/* 7 天趋势 + 热门页面 */}
       <div className="grid lg:grid-cols-2 gap-6 mb-6">
