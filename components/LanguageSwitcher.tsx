@@ -101,7 +101,14 @@ function FlagIcon({ code }: { code: string }) {
   )
 }
 
-export default function LanguageSwitcher() {
+/**
+ * 语言切换。
+ *
+ * @param transparent 首页 Hero 顶部（Header 透明态）时传 true：
+ *   按钮改为半透明玻璃质感，与背景图融合，和右侧「在线询价」按钮的处理保持一致。
+ *   默认（其它页面/滚动后）仍是实心白底，保证白底页面上有足够对比度。
+ */
+export default function LanguageSwitcher({ transparent = false }: { transparent?: boolean }) {
   const pathname = usePathname()
   const router = useRouter()
   const locale = useLocale()
@@ -135,13 +142,27 @@ export default function LanguageSwitcher() {
         type="button"
         onClick={() => setOpen((value) => !value)}
         disabled={isPending}
-        className="inline-flex h-9 items-center gap-2 border border-border bg-white px-2.5 text-sm font-medium text-primary transition-colors hover:border-accent/50 focus:outline-none focus-visible:border-accent disabled:opacity-60"
+        className={`inline-flex h-9 items-center gap-2 border px-2.5 text-sm font-medium transition-colors focus:outline-none disabled:opacity-60 ${
+          transparent
+            ? "border-white/30 bg-white/15 text-white backdrop-blur hover:bg-white/25 focus-visible:border-white/70"
+            : "border-border bg-white text-primary hover:border-accent/50 focus-visible:border-accent"
+        }`}
         aria-label="选择语言 / Select language"
         aria-expanded={open}
       >
         <FlagIcon code={current.code} />
-        <span className="hidden sm:inline">{current.label}</span>
-        <svg className={`h-3.5 w-3.5 text-muted transition-transform ${open ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+        {/* 语言名在 xl 以下隐藏，只留国旗 + 箭头：
+            这一块在 7 种语言下都是固定宽度，是头部最占地方的整块之一。
+            俄语 8 项导航在 1024/1280px 本来只剩 8px 富余，省掉这 64px 后余量约 72px，
+            才能保证任何语言都不会把询价按钮挤出容器。下拉里仍显示完整语言名。 */}
+        <span className="hidden xl:inline">{current.label}</span>
+        <svg
+          className={`h-3.5 w-3.5 ${transparent ? "text-white/70" : "text-muted"} transition-transform ${open ? "rotate-180" : ""}`}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          strokeWidth={2}
+        >
           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
         </svg>
       </button>
