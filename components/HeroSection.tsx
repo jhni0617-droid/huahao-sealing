@@ -145,7 +145,8 @@ const slides: { bg: string; content?: SlideContent; original?: boolean }[] = [
   },
 ]
 
-const AUTO_PLAY_MS = 5800
+// 轮播自动切换间隔：2.5 秒（交叉淡入 1200ms，切换时不会出现半透明叠影）
+const AUTO_PLAY_MS = 2500
 
 export default function HeroSection() {
   const locale = useLocale()
