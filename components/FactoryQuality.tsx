@@ -201,10 +201,10 @@ export default async function FactoryQuality() {
               ))}
             </div>
 
-            {/* 静态大数字：静的才笃定，不做滚动动画 */}
-            <div className="mt-8 grid grid-cols-4">
+            {/* 静态大数字：静的才笃定，不做滚动动画。平板（<lg）收成 2×2，避免 4 列 label 被截断 */}
+            <div className="mt-8 grid grid-cols-2 gap-y-6 lg:grid-cols-4">
               {stats.map((s, i) => (
-                <div key={s.value} className={`px-3 py-1 ${i > 0 ? "border-l border-white/15" : "pl-0"}`}>
+                <div key={s.value} className={`px-3 py-1 ${i > 0 && i < 4 ? "border-l border-white/15" : "pl-0"} ${i === 2 ? "max-lg:pl-0 max-lg:border-l-0" : ""}`}>
                   <span className="stat-num block text-[2rem] leading-none text-white lg:text-5xl">{s.value}</span>
                   <div className="mt-2 truncate text-xs text-slate-400">{s.label}</div>
                 </div>
@@ -219,7 +219,7 @@ export default async function FactoryQuality() {
             <span className="en-caption text-[11px] text-slate-400">{getLocalized({ zh: "品控设备", en: "QC Equipment", vi: "Thiết bị QC", th: "อุปกรณ์ QC", ru: "Оборудование КК", ja: "品質管理設備", ko: "품질 관리 장비" }, locale)}</span>
             <div className="h-px flex-1 bg-white/10" />
           </div>
-          <div className="grid grid-cols-2 gap-px border border-white/[0.08] bg-white/[0.08] md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-px border border-white/[0.08] bg-white/[0.08] lg:grid-cols-4">
             {qcItems.map((qc, i) => (
               <Reveal key={qc.title} delay={i * 90} className="h-full">
                 <div className="h-full bg-primary p-5 text-center">

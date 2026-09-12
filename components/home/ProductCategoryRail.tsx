@@ -155,8 +155,11 @@ export default function ProductCategoryRail() {
       aria-label={copy.label}
       className="border-t border-border bg-white"
     >
-      {/* ============ 桌面端：5 列 + hover 展开 ============ */}
-      <ul className="hidden md:flex">
+      {/* ============ 桌面端（≥1024px）：5 列 + hover 展开 ============
+          门槛必须是 lg 而非 md：5 列版式按 1240px 容器设计，
+          768–1023px 的平板上每列只剩 ~164px，标题/描述全被截断，
+          且 hover 展开在触屏上无效 —— 平板回落到下方 2 列网格。 */}
+      <ul className="hidden lg:flex">
         {items.map((item, i) => {
           const isHovered = hovered === i
           const t = copy.items[item.key]
@@ -208,9 +211,9 @@ export default function ProductCategoryRail() {
                 </div>
 
                 {/* MORE 按钮：默认隐藏，hover 时上移 + 淡入，0.5s 延迟。
-                    whitespace-nowrap：md 断点下列宽只有 ~153px，英/越/俄的长按钮文案
-                    会被压成两行、把按钮底部顶到标题上；禁止换行 + md 收紧右间距即可。
-                    字号/间距 md 用 11px、lg 恢复 12px，保证各语种都不溢出、不裁字。 */}
+                    whitespace-nowrap：列宽较窄时（如 1024–1280px）英/越/俄的长按钮文案
+                    会被压成两行、把按钮底部顶到标题上；禁止换行 + 收紧右间距即可。
+                    字号/间距 1024–1280px 用 11px、lg(1280 视口起列宽充足)恢复 12px，保证各语种都不溢出、不裁字。 */}
                 <span
                   className={`absolute right-[24px] top-[24px] z-10 inline-flex items-center gap-2 whitespace-nowrap text-[11px] font-bold uppercase tracking-[0.14em] text-white transition-all duration-500 lg:right-[50px] lg:text-xs ${
                     isHovered ? "-translate-y-6 opacity-100" : "translate-y-0 opacity-0"
@@ -228,8 +231,8 @@ export default function ProductCategoryRail() {
         })}
       </ul>
 
-      {/* ============ 移动端：2 列网格（不展开） ============ */}
-      <ul className="grid grid-cols-2 md:hidden">
+      {/* ============ 移动端/平板：2 列网格（不展开） ============ */}
+      <ul className="grid grid-cols-2 lg:hidden">
         {items.map((item) => {
           const t = copy.items[item.key]
           return (

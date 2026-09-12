@@ -60,7 +60,7 @@ export default function FloatingCTA() {
     <>
       {/* Desktop side dock (lgvf-style vertical pill) */}
       <div
-        className="hidden md:flex fixed right-5 top-1/2 -translate-y-1/2 z-50 flex-col w-[84px] bg-white rounded-2xl shadow-[0_6px_28px_rgba(0,0,0,0.18)] border border-border"
+        className="hidden lg:flex fixed right-5 top-1/2 -translate-y-1/2 z-50 flex-col w-[84px] bg-white rounded-2xl shadow-[0_6px_28px_rgba(0,0,0,0.18)] border border-border"
       >
         {sideItems.map((item, i) => (
           <a
@@ -135,7 +135,7 @@ export default function FloatingCTA() {
 
       {/* Mobile bottom bar */}
       <div
-        className={`md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-border shadow-lg safe-bottom transition-all duration-500 ${
+        className={`lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-border shadow-lg safe-bottom transition-all duration-500 ${
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-full"
         }`}
       >
