@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     en: {
       title: "Huahao Sealing | High-Quality Carbon Graphite Sealing Solutions",
-      description: "Founded in 2006, Huahao Sealing custom-machines carbon graphite seal rings, bushings/bearings and split rings to your drawings, exporting to 20 countries for pumps, marine, chemical and industrial applications.",
+      description: "Founded in 2006, Huahao Sealing custom-machines carbon graphite seal rings, bushings and split rings to your drawings for pumps, marine, chemical and industrial use.",
     },
     vi: {
       title: "Huahao Sealing | Giải pháp làm kín than chì carbon chất lượng cao",

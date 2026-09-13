@@ -1,4 +1,4 @@
-import { getTranslations, setRequestLocale } from "next-intl/server"
+import { setRequestLocale } from "next-intl/server"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 import { blogPosts, getPostBySlug } from "@/lib/blog-data"
@@ -206,8 +206,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
     notFound()
   }
 
-  const t = await getTranslations("blog")
-
   const tagLabels = getLocalized(
     {
       zh: { process: "加工工艺", selection: "材料选型", precision: "精度控制", news: "行业动态", faq: "技术问答", application: "应用案例", maintenance: "维护保养", material: "材料特性" },
@@ -242,6 +240,16 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
   const currentIdx = blogPosts.findIndex((p) => p.slug === slug)
   const prevPost = currentIdx > 0 ? blogPosts[currentIdx - 1] : null
   const nextPost = currentIdx < blogPosts.length - 1 ? blogPosts[currentIdx + 1] : null
+
+  // 相关阅读（SEO/GEO 内链集群）：同标签中日期最接近的 3 篇
+  const relatedPosts = blogPosts
+    .filter((p) => p.slug !== slug && p.tag === post.tag)
+    .sort(
+      (a, b) =>
+        Math.abs(Date.parse(a.date) - Date.parse(post.date)) -
+        Math.abs(Date.parse(b.date) - Date.parse(post.date))
+    )
+    .slice(0, 3)
 
   return (
     <>
@@ -281,6 +289,24 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
           <div className="prose prose-lg max-w-none">
             {renderContent(content, locale)}
           </div>
+
+          {relatedPosts.length > 0 && (
+            <div className="mt-12 pt-8 border-t border-border">
+              <h3 className="text-lg font-bold text-primary mb-4">{getLocalized({ zh: "相关阅读", en: "Related Articles" }, locale)}</h3>
+              <div className="grid gap-4 sm:grid-cols-3">
+                {relatedPosts.map((p) => (
+                  <Link key={p.slug} href={`/blog/${p.slug}`} className="card-static bg-white p-4 group hover:shadow-lg transition-shadow">
+                    <div className="text-[11px] font-bold uppercase tracking-[0.08em] text-accent mb-1">
+                      {tagLabels[p.tag as keyof typeof tagLabels] || p.tag}
+                    </div>
+                    <div className="text-sm font-semibold leading-snug text-primary group-hover:text-accent transition-colors line-clamp-3">
+                      {getLocalized(p.title, locale)}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="mt-12 pt-8 border-t border-border">
             <h3 className="text-lg font-bold text-primary mb-4">{getLocalized({ zh: "继续阅读", en: "Continue Reading" }, locale)}</h3>

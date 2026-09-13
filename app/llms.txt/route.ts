@@ -1,5 +1,6 @@
 import { productsByLocale } from "@/lib/translations-products"
 import { siteConfig, enSiteConfig } from "@/lib/constants"
+import { blogPosts } from "@/lib/blog-data"
 
 /**
  * llms.txt（GEO）：面向 AI / 生成式引擎的站点摘要与关键链接清单。
@@ -35,6 +36,13 @@ export function GET() {
     `- [Technical Blog](${base}/en/blog): seal selection, machining precision and maintenance guides.`,
     `- [About](${base}/en/about): company profile and certifications.`,
     `- [Contact / RFQ](${base}/en/contact): send a drawing for a quote.`,
+    "",
+    "## Technical Blog Highlights",
+    // GEO：AI 爬虫优先引用可直接访问的内容页，这里按日期倒序暴露最新 12 篇
+    ...[...blogPosts]
+      .sort((a, b) => b.date.localeCompare(a.date))
+      .slice(0, 12)
+      .map((p) => `- [${p.title.en}](${base}/en/blog/${p.slug}) (${p.date}): ${p.excerpt.en}`),
     "",
     "## Contact",
     `- Email: ${cfg.email}`,
