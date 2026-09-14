@@ -676,7 +676,7 @@ When vetting a supplier, don't just ask "is there QC" — look for three things:
   {
     slug: "carbon-graphite-vs-silicon-carbide-vs-tungsten",
     title: {
-      zh: "碳石墨、碳化硅、硬质合金怎么配对：软硬搭配原则、常见组合与禁忌",
+      zh: "碳石墨、碳化硅、碳化钨（硬质合金）机械密封怎么配对：软硬搭配原则、常见组合与禁忌",
       en: "Pairing Carbon Graphite, Silicon Carbide and Tungsten Carbide: The Soft-Hard Principle, Common Combinations and What to Avoid",
     },
     excerpt: {
