@@ -108,17 +108,20 @@ export default function FloatingCTA() {
           </div>
         </div>
 
-        {/* Online inquiry */}
-        <Link
-          href="/contact"
-          title={t("onlineConsult")}
+        {/* YouTube channel */}
+        <a
+          href={siteConfig.youtube}
+          target="_blank"
+          rel="noopener noreferrer"
+          title={t("youtubeChannel")}
+          onClick={() => trackEvent("youtube_click", "side_dock")}
           className="flex flex-col items-center gap-1.5 py-4 border-t border-border hover:bg-gray-50 transition-colors"
         >
           <span className="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-white shadow-sm transition-transform hover:scale-110">
-            <Icon name="chat" className="w-6 h-6" />
+            <Icon name="youtube" className="w-6 h-6" />
           </span>
-          <span className="text-[11px] font-semibold text-primary leading-none">{t("onlineConsult")}</span>
-        </Link>
+          <span className="text-[11px] font-semibold text-primary leading-none">{t("youtubeChannel")}</span>
+        </a>
 
         {/* Back to top */}
         <button

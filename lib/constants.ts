@@ -10,6 +10,7 @@ export const siteConfig = {
   zalo: "+86 19556167860",
   facebookProfile: "https://www.facebook.com/profile.php?id=61585729740434",
   facebookPage: "https://www.facebook.com/profile.php?id=61583759223569",
+  youtube: "https://www.youtube.com/@jhni-d3s",
   address: "中国安徽省六安市霍邱县龙潭镇产业园14号",
   website: "https://huahaoindustrial.com",
 }
@@ -26,6 +27,7 @@ export const enSiteConfig = {
   zalo: "+86 19556167860",
   facebookProfile: "https://www.facebook.com/profile.php?id=61585729740434",
   facebookPage: "https://www.facebook.com/profile.php?id=61583759223569",
+  youtube: "https://www.youtube.com/@jhni-d3s",
   address: "No.14, Longtan Town Industrial Park, Huoqiu County, Lu'an, Anhui, China",
   website: "https://huahaoindustrial.com",
 }
