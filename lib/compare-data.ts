@@ -31,8 +31,8 @@ export const comparisons: ComparisonData[] = [
   {
     slug: "antimony-vs-resin-impregnated-graphite",
     title: {
-      zh: "锑浸渍石墨 vs 树脂浸渍石墨：高温密封选材对比",
-      en: "Antimony-Impregnated vs Resin-Impregnated Graphite: High-Temperature Seal Material Comparison",
+      zh: "锑浸渍 vs 树脂浸渍石墨：耐温 500℃ vs 220℃ 怎么选",
+      en: "Antimony vs Resin Impregnated Graphite: 500°C vs 220°C and Cost Compared",
       vi: "Than chì ngâm Antimon vs Than chì ngầm Nhựa: So sánh vật liệu kín nhiệt độ cao",
       th: "กราไฟต์อิมพรีเกเตดพลวง vs กราไฟต์อิมพรีเกเตดเรซิน: เปรียบเทียบวัสดุซีลอุณหภูมิสูง"
     },
@@ -238,8 +238,8 @@ export const comparisons: ComparisonData[] = [
   {
     slug: "sic-vs-wc-mating-materials",
     title: {
-      zh: "碳化硅 vs 碳化钨：机械密封配对面材料对比",
-      en: "Silicon Carbide vs Tungsten Carbide: Mechanical Seal Mating Face Material Comparison",
+      zh: "碳化硅 vs 碳化钨密封环：导热 150 vs 100 W/(m·K) 对比",
+      en: "Silicon Carbide vs Tungsten Carbide Seal Faces: 150 vs 100 W/(m·K) Compared",
       vi: "Carbur Silic vs Carbur Vonfram: So sánh vật liệu mặt ghép kín cơ",
       th: "ซิลิคอนคาร์ไบด์ vs ทังสเตนคาร์ไบด์: เปรียบเทียบวัสดุผิวคู่ซีลกลไก"
     },

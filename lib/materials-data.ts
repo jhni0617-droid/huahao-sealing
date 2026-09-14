@@ -29,7 +29,7 @@ export const materialLandings: MaterialLanding[] = [
     slug: "carbon-graphite",
     title: {
       zh: "碳石墨材料 | 性能参数、牌号选型与工业应用",
-      en: "Carbon Graphite Material | Properties, Grade Selection & Industrial Applications",
+      en: "Carbon Graphite Material & Grades | Properties, Selection, Applications",
       vi: "Vật liệu than chì carbon | Thông số, lựa chọn vật liệu và ứng dụng",
       th: "วัสดุคาร์บอนกราไฟต์ | คุณสมบัติ การเลือกเกรดและการใช้งานอุตสาหกรรม",
     },
@@ -486,7 +486,7 @@ export const materialLandings: MaterialLanding[] = [
     slug: "babbitt-impregnated-graphite",
     title: {
       zh: "巴氏合金浸渍石墨 | 高速精密密封材料",
-      en: "Babbitt Impregnated Carbon Graphite | High-Speed Precision Sealing Material",
+      en: "Babbitt Impregnated Carbon Graphite | Low-Friction Seal for High-Speed Pumps",
       vi: "Than chì impregnation babbitt | Vật liệu kín chính xác tốc độ cao",
       th: "กราไฟต์อิมเพรกเนชันบาบิต | วัสดุซีลความเร็วสูงความแม่นยำ",
     },
