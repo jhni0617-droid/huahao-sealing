@@ -916,6 +916,132 @@ export const materialLandings: MaterialLanding[] = [
       ],
     },
   },
+
+  // 9. 浸渍石墨坯料与机加工下料（坯料采购/机加工口径，供机加工车间与修磨厂下料，非材料科普）
+  {
+    slug: "impregnated-graphite-blanks-for-machining",
+    title: {
+      zh: "浸渍石墨坯料与机加工下料 | 棒料、管料、环坯与块料",
+      en: "Impregnated Graphite Blanks for Machining | Rod, Tube, Ring & Block Stock",
+      vi: "Phôi than chì impregnation cho gia công | Phôi thanh, ống, vòng và khối",
+      th: "บล็อกกราไฟต์อิมเพรกเนชันสำหรับการกัดกลึง | แท่ง ท่อ แหวน และบล็อก",
+    },
+    description: {
+      zh: "浸渍石墨坯料面向自行下料加工的机加工车间、密封件修磨厂和零部件代工厂。华豪密封自2006年生产碳石墨，可供挤压圆棒与管料、模压环坯、等静压块料和近净成形坯料，浸渍状态按需选择：未浸渍、酚醛/呋喃/环氧树脂浸渍、锑、铜或巴氏合金浸渍。未浸渍基体密度1.55-1.70 g/cm³、气孔率8-15%，浸渍后孔隙率<2%。可按客户图纸加工至最终尺寸，并提供浸渍前后加工路径、刀具选择（硬质合金/PCD）与去应力处理建议。",
+      en: "Impregnated graphite blanks for shops that machine their own carbon graphite parts — job shops, seal reconditioning works and component OEMs. Huahao Sealing has produced carbon graphite since 2006 and supplies extruded rod and tube, molded ring blanks, isostatic block stock and near-net-shape blanks, in unimpregnated, phenolic/furan/epoxy resin, antimony, copper or Babbitt impregnated condition. Unimpregnated base density 1.55-1.70 g/cm³ with 8-15% porosity, below 2% after impregnation. We machine to customer drawing and advise on pre- versus post-impregnation machining routes, carbide versus PCD tooling and stress relief.",
+      vi: "Phôi than chì impregnation dành cho xưởng tự gia công chi tiết carbon graphite — xưởng cơ khí, xưởng phục hồi vòng kín và OEM linh kiện. Huahao Sealing sản xuất than chì carbon từ năm 2006, cung cấp thanh và ống ép đùn, phôi vòng ép khuôn, phôi khối isostatic và phôi gần kích thước, ở trạng thái chưa impregnation hoặc impregnation nhựa phenolic/furan/epoxy, antimony, đồng, babbitt. Nền chưa impregnation mật độ 1.55-1.70 g/cm³, độ rỗng 8-15%, sau impregnation dưới 2%. Nhận gia công theo bản vẽ và tư vấn lộ trình gia công trước/sau impregnation, dao hợp kim cứng hoặc PCD, xử lý khử ứng suất.",
+      th: "บล็อกกราไฟต์อิมเพรกเนชันสำหรับโรงงานที่กลึงชิ้นส่วนคาร์บอนกราไฟต์เอง — โรงงานกัดกลึง โรงซ่อมสร้างซีล และ OEM ชิ้นส่วน Huahao Sealing ผลิตคาร์บอนกราไฟต์ตั้งแต่ปี 2006 จัดหาแท่งและท่อรีด บล็อกแหวนอัดแม่พิมพ์ บล็อก isostatic และบล็อกรูปทรงใกล้สำเร็จ ในสถานะไม่อิมเพรกเนตหรืออิมเพรกเนตเรซิน phenolic/furan/epoxy พลวง ทองแด บาบิต เนื้อฐานไม่อิมเพรกเนตความหนาแน่น 1.55-1.70 g/cm³ รูพรุน 8-15% หลังอิมเพรกเนชันต่ำกว่า 2% รับกัดตามแบบและแนะนำเส้นทางกัดก่อน/หลังอิมเพรกเนชัน มีดคาร์ไบด์หรือ PCD และการคลายความเค้น",
+    },
+    properties: [
+      { label: "Blank Forms", value: "Extruded rod & tube / molded ring / isostatic block / near-net-shape" },
+      { label: "Base Density", value: "1.55 – 1.70 g/cm³ (unimpregnated) / 1.75 – 1.80 (resin) / up to 2.20 (antimony)" },
+      { label: "Porosity", value: "8 – 15% before impregnation, < 2% after impregnation" },
+      { label: "Impregnant Options", value: "None / Phenolic / Furan / Epoxy / Antimony / Copper / Babbitt" },
+      { label: "Machining Hardness", value: "60 – 95 HS (unimpregnated) / 70 – 105 HS (impregnated)" },
+      { label: "Service Temperature", value: "-200°C ~ 220°C (resin) / 400°C (copper) / 500°C (antimony) / 600°C (carbonized)" },
+      { label: "Thermal Conductivity", value: "8 – 70 W/m·K (grade and direction dependent)" },
+      { label: "CTE Anisotropy", value: "≈ 1 × 10⁻⁶/°C within layer planes vs ≈ 27 × 10⁻⁶/°C across layers" },
+    ],
+    advantages: {
+      zh: [
+        "四种坯料形态——挤压圆棒与管料、模压环坯、等静压块料、近净成形坯料，覆盖密封环、轴套、三瓣环与非标件的下料需求",
+        "浸渍状态按需交货——未浸渍最易切削，树脂/锑/铜/巴氏合金浸渍可选在粗加工后或成品前完成，减少二次装夹",
+        "预去应力与预加工验证——石墨在2500℃以上石墨化，冷却时面内CTE约1×10⁻⁶/℃、层间约27×10⁻⁶/℃，加上浸渍层CTE失配，坯料内部会锁住可观残余应力，粗加工后释放变形，故坯料出厂前完成去应力与粗加工验证",
+        "批次一致性可验——按批提供取样密度与孔隙率数据（基体1.55-1.70 g/cm³、气孔率8-15%），避免气孔率超标导致浸渍不透、密度不均导致加工后壁厚偏差",
+        "省料省工时——近净成形坯料把余量收到最终精磨所需，减少贵价石墨去除量与PCD刀工时，批量件综合成本更低",
+      ],
+      en: [
+        "Four blank forms — extruded rod and tube, molded ring blank, isostatic block and near-net-shape stock, covering seal rings, bushings, three-part rings and custom parts",
+        "Impregnation state as ordered — unimpregnated cuts easiest; phenolic/furan/epoxy resin, antimony, copper or Babbitt can be applied after roughing or before finishing to avoid a second setup",
+        "Pre-relieved stress and pre-machining verification — graphite is graphitized above 2500°C, where in-plane CTE is about 1 × 10⁻⁶/°C against about 27 × 10⁻⁶/°C across the layers; cooling plus impregnant cure locks residual stress into the blank, which releases and distorts after roughing, so blanks are stress-relieved and rough-verified before shipment",
+        "Batch-to-batch consistency you can check — lot sampling reports for density and porosity (base 1.55-1.70 g/cm³, 8-15% porosity) prevent out-of-spec porosity that blocks impregnant penetration and density scatter that shows up as wall-thickness variation after machining",
+        "Material and machine time saved — near-net-shape blanks hold stock down to what final grinding needs, cutting expensive graphite removal and PCD cycle time on production quantities",
+      ],
+      vi: [
+        "Bốn dạng phôi — thanh và ống ép đùn, phôi vòng ép khuôn, phôi khối isostatic và phôi gần kích thước, phủ nhu cầu cắt phôi cho vòng kín, bạc lót, vòng ba mảnh và chi tiết tùy chỉnh",
+        "Trạng thái impregnation theo yêu cầu — chưa impregnation dễ gia công nhất; nhựa phenolic/furan/epoxy, antimony, đồng hoặc babbitt có thể làm sau thô hoặc trước tinh để tránh gá lần hai",
+        "Khử ứng suất trước và xác nhận gia công thô — than chì graphitized trên 2500°C, CTE trong lớp khoảng 1 × 10⁻⁶/°C so với khoảng 27 × 10⁻⁶/°C theo hướng vuông lớp; nguội và đóng rắn nhựa khóa ứng suất dư trong phôi, biến dạng sau khi gia công thô, nên phôi được khử ứng suất và kiểm chứng gia công thô trước khi giao",
+        "Nhất quán theo lô — báo cáo lấy mẫu mật độ và độ rỗng theo lô (nền 1.55-1.70 g/cm³, độ rỗng 8-15%), tránh độ rỗng vượt chuẩn làm impregnation không thấu và mật độ không đều gây sai chiều dày thành sau gia công",
+        "Tiết kiệm vật liệu và thời gian máy — phôi gần kích thước giữ lượng dư đúng mức mài tinh cần, giảm lượng than chì phải cắt bỏ và thời gian dao PCD cho lô sản xuất",
+      ],
+      th: [
+        "บล็อก 4 รูปแบบ — แท่งและท่อบีดรีด บล็อกแหวนอัดแม่พิมพ์ บล็อก isostatic และบล็อกรูปทรงใกล้สำเร็จ ครบการตัดป้อนสำหรับแหวนซีล บุชชิ่ง แหวนสามชิ้นและชิ้นงานเฉพาะ",
+        "สถานะอิมเพรกเนชันตามสั่ง — ไม่อิมเพรกเนตกะเทาะง่ายสุด เรซิน phenolic/furan/epoxy พลวง ทองแดหรือบาบิตทำหลังหยาบหรือก่อนละเอียดได้เพื่อลดการจับตั้งครั้งที่สอง",
+        "คลายความเค้นล่วงหน้าและตรวจรับการกลึงหยาบ — กราไฟต์กราไฟต์ไนซ์เหนือ 2500°C ค่า CTE ในชั้นราว 1 × 10⁻⁶/°C ขณะที่ตั้งฉากกับชั้นราว 27 × 10⁻⁶/°C การเย็นตัวและบ่มเรซินล็อกความเค้นตกค้างไว้ในบล็อก ปล่อยตัวจนบิดหลังกลึงหยาบ จึงคลายความเค้นและตรวจรับการกลึงก่อนส่ง",
+        "ความสม่ำเสมอรายล็อต — รายงานสุ่มตรวจความหนาแน่นและรูพรุนรายล็อต (เนื้อฐาน 1.55-1.70 g/cm³ รูพรุน 8-15%) กันรูพรุนเกินที่ทำให้ซึมไม่ทะลุ และความหนาแน่นต่างที่ทำให้ผนังหนาเพี้ยนหลังกลึง",
+        "เซฟวัสดุและเวลาเครื่อง — บล็อกใกล้สำเร็จคงเศษเท่าที่เจียระไนสุดท้ายต้องการ ลดปริมาณกราไฟต์ที่ต้องตัดทิ้งและเวลา PCD ในล็อตผลิต",
+      ],
+    },
+    applications: {
+      zh: [
+        "密封环自制——机加工车间从环坯车外圆、磨端面，自制泵用碳石墨密封环",
+        "轴套与导向套下料——从挤压圆棒镗削泵轴支撑套，替代金属铜套",
+        "三瓣环与分体密封——从管料切断、开槽，加工弹性分体环",
+        "非标件代工——数控车间按终端客户图纸加工定制碳石墨件",
+        "失效件修磨与备件——测绘旧件后重新下料，急件小批不断线",
+      ],
+      en: [
+        "In-house seal rings — machine shops turn the OD and grind the face of molded ring blanks to make pump seal rings",
+        "Bushing and guide-sleeve stock — bored from extruded rod to replace metallic bushings on pump shafts",
+        "Three-part and split seals — cut to length and slotted from tube stock to make spring-loaded split rings",
+        "Contract manufacturing — CNC shops machine custom carbon graphite parts to end-user drawings",
+        "Spares and reconditioning — reverse-engineer a failed part and re-cut blanks so small urgent lots stay on schedule",
+      ],
+      vi: [
+        "Tự gia công vòng kín — xưởng tiện ngoài và mài mặt đầu phôi vòng để tự tạo vòng kín bơm",
+        "Phôi bạc lót và ống lót dẫn hướng — doa từ thanh ép đùn thay bạc kim loại trên trục bơm",
+        "Vòng ba mảnh và kín phân đôi — cắt lự và rãnh từ phôi ống tạo vòng phân đôi có lò xo",
+        "Gia công theo hợp đồng — xưởng CNC gia công chi tiết than chì carbon tùy chỉnh theo bản vẽ khách hàng cuối",
+        "Phụ tùng và phục hồi — đo vẽ chi tiết hỏng và cắt phôi mới để lô gấp đúng tiến độ",
+      ],
+      th: [
+        "ผลิตแหวนซีลเอง — โรงงานกลึงด้านนอกและเจียระไนหน้าบล็อกแหวนเพื่อทำแหวนซีลปั๊ม",
+        "ป้อนงานบุชชิ่งและปลอกนำ — เจาะจากแท่งบีดรีดแทนบุชโลหะบนเพลาปั๊ม",
+        "แหวนสามชิ้นและซีลแยกซีก — ตัดความยาวและเซาะจากร่องบล็อกท่อทำแหวนแยกซีก",
+        "รับจ้างผลิต — โรงงาน CNC กัดชิ้นส่วนคาร์บอนกราไฟต์เฉพาะตามแบบของผู้ใช้สุดท้าย",
+        "อะไหล่และการซ่อมสร้าง — วาดคืนชิ้นงานที่เสียหายและตัดบล็อกใหม่ให้ล็อตเร่งด่วนทันเวลา",
+      ],
+    },
+    grades: [
+      { code: "Unimpregnated", temp: "350°C", note: { zh: "最好切削，硬质合金刀即可；气孔率8-15%，最终件需补浸渍并留精修余量", en: "Cuts easiest, carbide tooling is enough; 8-15% porosity means the finished part still needs impregnation and finishing stock", vi: "Dễ gia công nhất, dao hợp kim cứng là đủ; độ rỗng 8-15% nên chi tiết cuối vẫn cần impregnation và lượng dư mài", th: "ตัดง่ายสุด ใช้มีดคาร์ไบด์ได้; รูพรุน 8-15% ชิ้นสุดท้ายยังต้องอิมเพรกเนชันและเหลือเศษเจียระไน" } },
+      { code: "Phenolic resin", temp: "220°C", note: { zh: "Tg 160-190℃，切削热过高会软化树脂层，需降切速并冷却，先精加工后浸渍最稳", en: "Tg 160-190°C — excessive cutting heat softens the resin skin; drop the speed, cool the cut, or finish before impregnating", vi: "Tg 160-190°C — nhiệt cắt quá cao làm mềm lớp nhựa; giảm tốc độ, làm mát, hoặc gia công tinh trước khi impregnation", th: "Tg 160-190°C — ความร้อนจากตัดสูงเกินไปทำชั้นเรซินอ่อนตัว ลดรอบ ทำเย็น หรือเจียระไนก่อนอิมเพรกเนต" } },
+      { code: "Furan resin", temp: "220°C", note: { zh: "Tg 260-300℃、Td5 340℃、残炭率65%，切削热下比酚醛更稳，是加工后浸渍的常用选择", en: "Tg 260-300°C, Td5 340°C, 65% char yield — holds up better than phenolic at the cutting edge, the usual choice for post-machining impregnation", vi: "Tg 260-300°C, Td5 340°C, hiệu suất than 65% — chịu nhiệt cắt tốt hơn phenolic, lựa chọn thông dụng cho impregnation sau gia công", th: "Tg 260-300°C, Td5 340°C, ผลผลิตคาร์บอน 65% — ทนความร้อนจากการตัดดีกว่า phenolic เลือกใช้ทั่วไปสำหรับการอิมเพรกเนชันหลังกลึง" } },
+      { code: "Antimony", temp: "500°C", note: { zh: "85-105 HS，刀具磨损最快，宜用PCD并预留粗加工余量，不要从浸渍态直接开粗", en: "85-105 HS — highest tool wear; run PCD and leave roughing stock rather than roughing from the impregnated condition", vi: "85-105 HS — mòn dao nhanh nhất; dùng PCD và để lượng dư thô, không gia công thô từ phôi đã impregnation", th: "85-105 HS — มีดสึกมากที่สุด ใช้ PCD และเหลือเศษหยาบ ไม่กลึงหยาบจากบล็อกที่อิมเพรกเนตแล้ว" } },
+      { code: "Copper", temp: "400°C", note: { zh: "80-100 HS，铜相易粘刀让表面发毛，用锋利前角与大排屑槽控制断屑", en: "80-100 HS — the copper phase smears and loads the tool; use a sharp rake and generous chip clearance for clean surfaces", vi: "80-100 HS — pha đồng dễ bám dao làm xấu bề mặt; dùng góc trước bén và thoát phoi rộng để bề mặt sạch", th: "80-100 HS — เฟสทองแดติดมีดทำให้ผิวไม่เรียบ ใช้มุมคมและช่องคายเศษกว้าง" } },
+      { code: "Babbitt", temp: "200°C", note: { zh: "70-90 HS，合金软、让刀让尺寸偏，精磨用小切深多道走刀", en: "70-90 HS — soft alloy deflects under the cut; take light multi-pass finishing depths to hold size", vi: "70-90 HS — hợp kim mềm, dễ bị đẩy dao khi mài tinh; dùng chiều sâu nhỏ, nhiều lượt dao", th: "70-90 HS — โลหะอ่อน ยุบตัวใต้มีดตัด ใช้ลึกน้อยหลายรอบเพื่อคุมขนาด" } },
+    ],
+    relatedProducts: ["109-series", "graphite-bushing", "graphite-thrust-disc", "three-part-series"],
+    faq: {
+      zh: [
+        { q: "石墨坯料最小起订量是多少？可以单件散料下料吗？", a: "按规格、浸渍状态与数量核算报价，不设统一门槛。单件试制和小批修磨下料可以承接；等静压块料与近净成形坯料按零件图形和余量单独计算，批量件的综合成本通常低于用全尺寸棒料。请提供件数、外形尺寸、内孔与浸渍要求，我们按图给出下料规格。" },
+        { q: "能否按图纸预加工，只留精磨余量？", a: "可以，供货状态分三档：纯坯料（锯切下料）、近净成形坯料（留精磨余量）、按图加工至最终尺寸（含去应力、浸渍、精磨与检测）。图纸或样品均可接收，薄壁件、带内腔件和细长轴套建议先做一件验证变形再放量。" },
+        { q: "浸渍前加工还是浸渍后加工？", a: "看公差优先还是性能优先。要保证气孔被填满、最终性能一致，先精加工后浸渍最稳妥；批量大、尺寸稳定性优先，就买浸渍态坯料一次装夹完成。未浸渍坯料硬度60-95 HS、气孔率8-15%，最好切，硬质合金刀即可；锑浸渍后85-105 HS、铜浸渍80-100 HS，刀具磨损明显上升，宜用PCD并预留粗加工余量。树脂类要控切削热：酚醛Tg 160-190℃，呋喃Tg 260-300℃、Td5 340℃、残炭率65%，耐热性更好。" },
+        { q: "怎么验证坯料的密度和孔隙率是否一致？", a: "三步：要求按批提供取样密度与孔隙率数据（未浸渍基体1.55-1.70 g/cm³、气孔率8-15%，浸渍后孔隙率<2%）；同批混放时逐件称重比对，偏差异常说明压制或焙烧不均；切开看断面颗粒是否均匀、有无分层。密度不均会直接导致浸渍不透和加工后壁厚偏差，这两项是坯料最常见的踩坑点。" },
+        { q: "石墨脆，运输崩边、边缘崩口怎么处理？", a: "碳石墨抗冲击能力低，薄壁环、三瓣环和尖角位置最容易崩口。坯料按件独立缓冲分隔装箱、避免相互碰撞和叠压；收货时对外圆和端面做目检，发现崩边先拍照并保留包装与衬垫，我们按件判定可以精磨修掉还是需补发。设计端把尖角改为小圆角、避免过薄壁厚，也能显著降低运输与装夹损耗。" },
+      ],
+      en: [
+        { q: "What is the minimum order quantity for graphite blanks — can I buy single pieces?", a: "Pricing is quoted per specification, impregnation condition and quantity, with no fixed threshold. Single prototypes and small reconditioning lots are accepted. Isostatic block and near-net-shape blanks are quoted individually from the part geometry and stock allowance, and on production volumes they usually cost less overall than machining from full-size rod. Send quantities, outer and bore dimensions and the impregnation requirement, and we will propose the blank size." },
+        { q: "Can you pre-machine to my drawing and leave only grinding stock?", a: "Yes, in three supply conditions: raw blank (sawn to length), near-net-shape blank (grinding stock left), or machined to final drawing (stress relief, impregnation, finishing and inspection included). Drawings or samples are both accepted. For thin-wall parts, internal cavities and long bushings we recommend one verification piece to confirm distortion before releasing the full order." },
+        { q: "Machine before or after impregnation?", a: "Decide by whether tolerance or final property consistency governs. To guarantee the pores are filled and properties are uniform, finish first and impregnate after. For larger volumes where dimensional stability matters most, buy impregnated stock and finish in one setup. Unimpregnated blanks at 60-95 HS and 8-15% porosity cut freely with carbide tooling; antimony-impregnated material at 85-105 HS and copper at 80-100 HS raise tool wear sharply, so use PCD and leave roughing stock. With resin grades control cutting heat: phenolic Tg is 160-190°C, furan Tg 260-300°C with Td5 340°C and 65% char yield, so furan tolerates the cutting zone better." },
+        { q: "How do I verify blank density and porosity consistency before machining?", a: "Three checks: require lot-by-lot sampled density and porosity data (unimpregnated base 1.55-1.70 g/cm³, 8-15% porosity; below 2% porosity after impregnation); weigh every piece in a mixed lot and compare — outliers point to uneven pressing or baking; cut a section and inspect grain uniformity and lamination. Uneven density is what causes impregnant that will not penetrate and wall-thickness variation after machining, so these two checks catch most blank failures." },
+        { q: "Graphite is brittle — how are chipped edges and corner breakage in transit handled?", a: "Carbon graphite has low impact resistance, and thin walls, three-part rings and sharp corners chip first. Blanks are packed individually with cushioning separators so they cannot touch or stack under load; inspect OD and faces on receipt, and if chipping appears photograph it and keep the packaging and inserts so each piece can be judged as grindable or needing replacement. On the design side, breaking sharp corners into small radii and avoiding very thin walls cuts transit and clamping losses noticeably." },
+      ],
+      vi: [
+        { q: "MOQ của phôi than chì là bao nhiêu, có nhận cắt lẻ từng chi tiết?", a: "Báo giá theo quy cách, trạng thái impregnation và số lượng, không có ngưỡng cố định. Nhận đơn thử nghiệm đơn chiếc và lô nhỏ phục hồi. Phôi khối isostatic và phôi gần kích thước báo riêng theo hình dạng chi tiết và lượng dư; với lô sản xuất, tổng chi phí thường thấp hơn gia công từ thanh nguyên kích thước. Hãy gửi số lượng, kích thước ngoài và lỗ, yêu cầu impregnation để chúng tôi đề xuất quy cách phôi." },
+        { q: "Có gia công sẵn theo bản vẽ, chỉ để lượng dư mài tinh?", a: "Có, ba trạng thái cung cấp: phôi thô (cắt theo chiều dài), phôi gần kích thước (để lượng dư mài tinh), gia công hoàn thiện theo bản vẽ (khử ứng suất, impregnation, mài tinh và kiểm tra). Nhận bản vẽ hoặc mẫu. Với chi tiết thành mỏng, có khoang trong và bạc dài, nên làm một chi tiết xác nhận biến dạng trước khi ra đơn đầy đủ." },
+        { q: "Gia công trước hay sau impregnation?", a: "Xem dung sai hay tính chất cuối quyết định. Muốn lỗ rỗng được lấp đầy và tính chất đồng nhất thì gia công tinh trước, impregnation sau. Lô lớn ưu tiên ổn định kích thước thì mua phôi đã impregnation và hoàn thiện một lần gá. Phôi chưa impregnation 60-95 HS, độ rỗng 8-15% cắt tốt với dao hợp kim cứng; antimony 85-105 HS và đồng 80-100 HS mòn dao nhanh hơn nhiều, nên dùng PCD và để lượng dư thô. Với nhựa phải kiểm soát nhiệt cắt: phenolic Tg 160-190°C, furan Tg 260-300°C, Td5 340°C, hiệu suất than 65% — furan chịu vùng cắt tốt hơn." },
+        { q: "Kiểm tra mật độ và độ rỗng của phôi trước khi gia công thế nào?", a: "Ba bước: yêu cầu số liệu mật độ và độ rỗng lấy mẫu theo lô (nền chưa impregnation 1.55-1.70 g/cm³, độ rỗng 8-15%, sau impregnation dưới 2%); cân từng chi tiết trong lô trộn và so lệch, chi tiết bất thường cho thấy ép hoặc nung không đều; cắt mặt cắt kiểm tra hạt và phân lớp. Mật độ không đều chính là nguyên nhân impregnation không thấu và sai chiều dày thành sau gia công." },
+        { q: "Than chì giòn, sứt mẻ cạnh khi vận chuyển xử lý ra sao?", a: "Carbon graphite chịu va đập thấp, thành mỏng, vòng ba mảnh và góc nhọn dễ sứt nhất. Phôi đóng gói từng chi tiết có đệm ngăn cách, không chạm nhau và không xếp chồng chịu tải; khi nhận kiểm tra mặt ngoài và mặt đầu, nếu sứt thì chụp ảnh và giữ bao bì cùng vật liệu chèn để đánh giá từng chi tiết có mài sửa được hay phải bổ sung. Về thiết kế, bo góc nhọn và tránh thành quá mỏng giảm rõ tổn thất khi vận chuyển và khi gá." },
+      ],
+      th: [
+        { q: "MOQ ของบล็อกกราไฟต์เท่าไร รับตัดปลีกเป็นชิ้นไหม?", a: "เสนอราคาตามสเปก สถานะอิมเพรกเนชันและจำนวน ไม่มีเกณฑ์ตายตัว รับชิ้นทดลองและล็อตเล็กสำหรับงานซ่อมสร้าง บล็อก isostatic และบล็อกรูปทรงใกล้สำเร็จคิดแยกตามรูปชิ้นงานและเศษเหลือ ในล็อตผลิตต้นทุนรวมมักต่ำกว่ากลึงจากแท่งเต็มขนาด ส่งจำนวน ขนาดนอก ขนาดรู และเงื่อนไขอิมเพรกเนต แล้วเราจะเสนอขนาดบล็อก" },
+        { q: "กัดเตรียมตามแบบ เหลือเศษเจียระไนสุดท้ายได้ไหม?", a: "ได้ 3 สถานะจัดส่ง: บล็อกดิบ (ตัดตามความยาว) บล็อกใกล้สำเร็จ (เหลือเศษเจียระไน) และกัดสำเร็จตามแบบ (คลายความเค้น อิมเพรกเนชัน เจียระไน ตรวจสอบ) รับทั้งแบบและชิ้นตัวอย่าง สำหรับชิ้นผนังบาง ช่องภายใน และบุชชิ่งยาว แนะนำทำหนึ่งชิ้นยืนยันการบิดตัวก่อนสั่งเต็ม" },
+        { q: "กัดก่อนหรือหลังอิมเพรกเนชัน?", a: "ดูว่าค่าทนหรือสมบัติสุดท้ายเป็นตัวตัดสิน ถ้าต้องการให้รูพรุนถูกเติมสนิทและสมบัติคงที่ ให้เจียระไนก่อนแล้วอิมเพรกเนตภายหลัง ล็อตใหญ่ที่เน้นความคงตัวของขนาด ซื้อบล็อกที่อิมเพรกเนตแล้วกัดจบในครั้งเดียว บล็อกไม่อิมเพรกเนตแข็ง 60-95 HS รูพรุน 8-15% ตัดง่ายด้วยมีดคาร์ไบด์; พลวง 85-105 HS และทองแด 80-100 HS มีดสึกเร็วขึ้นมาก ควรใช้ PCD และเหลือเศษกลึงหยาบ ฝ่ายเรซินต้องคุมความร้อนตัด: phenolic Tg 160-190°C, furan Tg 260-300°C, Td5 340°C, ผลผลิตคาร์บอน 65% — furan ทนโซนตัดได้ดีกว่า" },
+        { q: "ตรวจความหนาแน่นและรูพรุนของบล็อกก่อนกลึงอย่างไร?", a: "สามขั้น: ขอข้อมูลสุ่มตรวจความหนาแน่นและรูพรุนรายล็อต (เนื้อฐานไม่อิมเพรกเนต 1.55-1.70 g/cm³ รูพรุน 8-15% หลังอิมเพรกเนชันต่ำกว่า 2%) ชั่งเทียบทุกชิ้นในล็อตผสม ชิ้นที่ต่างบอกว่าการอัดหรือการเผาไม่สม่ำเสมอ ตัดหน้าตัดดูเกร็ดและชั้น ความหนาแน่นไม่สม่ำเสมอคือเหตุที่ทำให้อิมเพรกเนตไม่ทะลุและผนังหนาเพี้ยนหลังกลึง" },
+        { q: "กราไฟต์เปราะ ขอบบิ่นระหว่างการขนส่งจัดการอย่างไร?", a: "คาร์บอนกราไฟต์ทนแรงกระแทกต่ำ ผนังบาง แหวนสามชิ้น และมุมแหลมบิ่นง่ายที่สุด บล็อกบรรจุแยกชิ้นพร้อมตัวกันกระแทกไม่ให้ชนหรือซ้อนกด เมื่อรับงานตรวจผิวด้านนอกและหน้า ถ้าบิ่นให้ถ่ายรูปและเก็บบรรจุภัณฑ์กับตัวคั่นไว้ เพื่อประเมินเป็นชิ้นว่าเจียระไนแก้ได้หรือต้องส่งชดเชย ด้านการออกแบบปัดมุมแหลมเป็นรัศมีเล็กและเลี่ยงผนังบางเกินไป จะลดความเสียหายจากการขนส่งและการจับตั้งได้ชัดเจน" },
+      ],
+    },
+  },
 ]
 
 export function getMaterialBySlug(slug: string): MaterialLanding | undefined {

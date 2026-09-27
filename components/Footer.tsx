@@ -46,9 +46,11 @@ export default async function Footer() {
           <div>
             <h4 className="font-semibold text-sm uppercase tracking-wider text-gray-300 mb-4">{t("footer.productSeries")}</h4>
             <ul className="space-y-3 text-sm">
-              <li><Link href="/products#seal-rings" className="text-gray-400 hover:text-white transition-colors">{t("footer.sealRings")}</Link></li>
-              <li><Link href="/products#carbon-graphite-sleeves" className="text-gray-400 hover:text-white transition-colors">{t("footer.bushings")}</Link></li>
-              <li><Link href="/products#three-part-rings" className="text-gray-400 hover:text-white transition-colors">{t("footer.splitRings")}</Link></li>
+              <li><Link href="/products/seal-rings" className="text-gray-400 hover:text-white transition-colors">{t("footer.sealRings")}</Link></li>
+              <li><Link href="/products/carbon-graphite-bushings" className="text-gray-400 hover:text-white transition-colors">{t("footer.bushings")}</Link></li>
+              <li><Link href="/products/carbon-graphite-bearings" className="text-gray-400 hover:text-white transition-colors">{t("footer.bearings")}</Link></li>
+              <li><Link href="/products/three-piece-carbon-seal-rings" className="text-gray-400 hover:text-white transition-colors">{t("footer.splitRings")}</Link></li>
+              <li><Link href="/custom" className="text-gray-400 hover:text-white transition-colors">{t("footer.customMachining")}</Link></li>
             </ul>
           </div>
 

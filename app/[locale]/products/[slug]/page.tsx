@@ -12,6 +12,8 @@ import { ProductJsonLd, BreadcrumbJsonLd } from "@/components/JsonLd"
 import { generateMeta } from "@/lib/utils"
 import { siteConfig } from "@/lib/constants"
 import { getLocalized, getLocalizedProductCategory } from "@/lib/locale-data"
+import { getProductCategoryBySlug, getCategorySlugForProduct } from "@/lib/product-category-data"
+import ProductCategoryPage from "./category-page"
 
 interface Props {
   params: Promise<{ locale: string; slug: string }>
@@ -26,6 +28,16 @@ export const revalidate = 86400
 
 export async function generateMetadata({ params }: Props) {
   const { slug, locale } = await params
+  const category = getProductCategoryBySlug(slug)
+  if (category) {
+    return generateMeta({
+      title: getLocalized(category.title, locale),
+      description: getLocalized(category.description, locale),
+      path: `/products/${slug}`,
+      locale,
+      image: category.image ? `${siteConfig.website}${category.image}` : undefined,
+    })
+  }
   const product = (productsByLocale[locale] || productsByLocale.en).find((p) => p.slug === slug)
   if (!product) return {}
   return generateMeta({
@@ -40,6 +52,13 @@ export async function generateMetadata({ params }: Props) {
 export default async function ProductDetailPage({ params }: Props) {
   const { slug, locale } = await params
   setRequestLocale(locale)
+
+  const category = getProductCategoryBySlug(slug)
+  if (category) {
+    const tnav = await getTranslations("nav")
+    return <ProductCategoryPage category={category} locale={locale} tnav={tnav} />
+  }
+
   const product = (productsByLocale[locale] || productsByLocale.en).find((p) => p.slug === slug)
   if (!product) notFound()
 
@@ -51,6 +70,10 @@ export default async function ProductDetailPage({ params }: Props) {
 
   const isSealRing = product.category === "碳石墨密封环" || product.category === "Seal Rings"
   const displayCategory = getLocalizedProductCategory(product.category, locale)
+
+  const parentCategorySlug = getCategorySlugForProduct(product)
+  const parentCategory = parentCategorySlug ? getProductCategoryBySlug(parentCategorySlug) : undefined
+  const parentCategoryName = parentCategory ? getLocalized(parentCategory.name, locale) : ""
 
   // GEO：答案优先的关键事实摘要（标签多语言），便于 AI 引擎与精选摘要直接引用
   const keyFactLabels = getLocalized({
@@ -77,6 +100,7 @@ export default async function ProductDetailPage({ params }: Props) {
       <BreadcrumbJsonLd locale={locale} items={[
         { name: tnav("home"), url: "" },
         { name: tnav("products"), url: "/products" },
+        ...(parentCategorySlug ? [{ name: parentCategoryName, url: `/products/${parentCategorySlug}` }] : []),
         { name: product.name, url: `/products/${slug}` },
       ]} />
       <ProductJsonLd
@@ -97,6 +121,12 @@ export default async function ProductDetailPage({ params }: Props) {
           <Link href="/" className="hover:text-primary">{tnav("home")}</Link>
           <span className="mx-2">/</span>
           <Link href="/products" className="hover:text-primary">{tnav("products")}</Link>
+          {parentCategorySlug && (
+            <>
+              <span className="mx-2">/</span>
+              <Link href={`/products/${parentCategorySlug}`} className="hover:text-primary">{parentCategoryName}</Link>
+            </>
+          )}
           <span className="mx-2">/</span>
           <span className="text-foreground">{product.name}</span>
         </div>

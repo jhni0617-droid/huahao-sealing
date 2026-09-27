@@ -24,6 +24,7 @@ const localizedCopy = {
     drawing: "发送图纸 / 询价",
     applications: "查看应用工况",
     reference: "规格为选型参考，最终材料牌号按介质、温度、压力和转速确认。",
+    guides: "按类别浏览选型指南：",
     catalog: "目录",
     capability: "选型能力",
     custom: "按图加工",
@@ -45,6 +46,7 @@ const localizedCopy = {
     drawing: "Send Drawing / Quote",
     applications: "View Applications",
     reference: "Specifications are for selection reference. Final grade depends on media, temperature, pressure, and speed.",
+    guides: "Browse by category:",
     catalog: "Catalog",
     capability: "Selection support",
     custom: "Drawing-based OEM",
@@ -65,6 +67,7 @@ const localizedCopy = {
     drawing: "Gửi bản vẽ / báo giá",
     applications: "Xem điều kiện ứng dụng",
     reference: "Thông số chỉ để tham khảo chọn mẫu. Cấp vật liệu cuối cùng phụ thuộc vào môi trường, nhiệt độ, áp suất và tốc độ.",
+    guides: "Xem theo nhóm:",
     catalog: "Danh mục",
     capability: "Hỗ trợ chọn mẫu",
     custom: "Gia công theo bản vẽ",
@@ -85,6 +88,7 @@ const localizedCopy = {
     drawing: "ส่งแบบ / ขอราคา",
     applications: "ดูสภาวะการใช้งาน",
     reference: "ข้อมูลสเปกใช้เพื่ออ้างอิงการเลือก รุ่นวัสดุสุดท้ายขึ้นอยู่กับตัวกลาง อุณหภูมิ แรงดัน และความเร็ว",
+    guides: "ดูตามหมวด:",
     catalog: "แคตตาล็อก",
     capability: "สนับสนุนการเลือก",
     custom: "ผลิตตามแบบ",
@@ -105,6 +109,7 @@ const localizedCopy = {
     drawing: "Отправить чертеж / запрос",
     applications: "Смотреть условия применения",
     reference: "Характеристики справочные. Итоговая марка зависит от среды, температуры, давления и скорости.",
+    guides: "Выбор по категориям:",
     catalog: "Каталог",
     capability: "Подбор",
     custom: "Изготовление по чертежу",
@@ -125,6 +130,7 @@ const localizedCopy = {
     drawing: "図面送付 / 見積依頼",
     applications: "用途条件を見る",
     reference: "仕様は選定参考です。最終材料グレードは媒体、温度、圧力、速度で確認します。",
+    guides: "カテゴリ別に見る：",
     catalog: "カタログ",
     capability: "選定サポート",
     custom: "図面加工",
@@ -145,6 +151,7 @@ const localizedCopy = {
     drawing: "도면 / 견적 보내기",
     applications: "응용 조건 보기",
     reference: "사양은 선정 참고용입니다. 최종 재료 등급은 매체, 온도, 압력, 속도에 따라 확정됩니다.",
+    guides: "카테고리별 보기:",
     catalog: "카탈로그",
     capability: "선정 지원",
     custom: "도면 기반 가공",
@@ -296,6 +303,7 @@ function ProductsDirectory({
   categories,
   allProducts,
   productsByCategory,
+  categoryGuides,
   initialCategory,
 }: ProductsPageData & { initialCategory: string }) {
   const locale = useLocale()
@@ -422,6 +430,23 @@ function ProductsDirectory({
             ))}
             <span className="ml-auto hidden text-xs leading-relaxed text-muted lg:block">{copy.reference}</span>
           </div>
+
+          {/* 类别落地页入口：/products 与各 /products/{类别} 之间的父子内链 */}
+          {categoryGuides.length > 0 && (
+            <div className="mt-5 flex flex-wrap items-center gap-2">
+              <span className="text-xs font-semibold uppercase tracking-[0.08em] text-muted">{copy.guides}</span>
+              {categoryGuides.map((g) => (
+                <Link
+                  key={g.href}
+                  href={g.href}
+                  className="inline-flex items-center gap-1.5 border border-primary/20 bg-white px-3 py-1.5 text-xs font-semibold text-primary transition-colors hover:border-accent hover:text-accent"
+                >
+                  {g.name}
+                  <Icon name="arrow-right" className="h-3 w-3" />
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

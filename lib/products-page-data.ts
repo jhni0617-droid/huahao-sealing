@@ -11,6 +11,8 @@
 import type { Product } from "@/lib/products"
 import { getProductsByCategory } from "@/lib/products"
 import { getEnProductsByCategory } from "@/lib/products-en"
+import { productCategoryLandings } from "@/lib/product-category-data"
+import { getLocalized } from "@/lib/locale-data"
 import {
   productsByLocale,
   categoriesByLocale,
@@ -23,6 +25,9 @@ import {
 
 export type ProductCategory = { slug: string; name: string }
 
+/** 类别落地页链接：只带 href 与短名，避免把落地页全文塞进 RSC 载荷 */
+export type CategoryGuideLink = { href: string; name: string }
+
 export type ProductsPageData = {
   /** 当前语言 */
   locale: string
@@ -32,6 +37,8 @@ export type ProductsPageData = {
   allProducts: Product[]
   /** 按分类 slug 预分组，避免客户端再遍历筛选 */
   productsByCategory: Record<string, Product[]>
+  /** 分类筛选按钮下方的类别落地页入口 */
+  categoryGuides: CategoryGuideLink[]
 }
 
 /** 各语言的「按分类取产品」函数表 */
@@ -59,5 +66,10 @@ export function getProductsPageData(locale: string): ProductsPageData {
     productsByCategory[cat.slug] = getItems(cat.slug)
   }
 
-  return { locale, categories, allProducts, productsByCategory }
+  const categoryGuides = productCategoryLandings.map((c) => ({
+    href: `/products/${c.slug}`,
+    name: getLocalized(c.name, locale),
+  }))
+
+  return { locale, categories, allProducts, productsByCategory, categoryGuides }
 }

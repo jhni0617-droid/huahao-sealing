@@ -324,10 +324,10 @@ export default async function ApplicationsPage({ params }: { params: Promise<{ l
 
                     <div className="mt-6 flex flex-wrap items-center gap-2 border-t border-border pt-5">
                       <span className="text-xs font-semibold uppercase tracking-[0.08em] text-muted">{t("applicableProducts")}</span>
-                      <Link href="/products#seal-rings" className="tag-accent">
+                      <Link href="/products/seal-rings" className="tag-accent">
                         {t("sealRings")}
                       </Link>
-                      <Link href="/products#carbon-graphite-sleeves" className="tag-accent">
+                      <Link href="/products/carbon-graphite-bushings" className="tag-accent">
                         {t("bushings")}
                       </Link>
                     </div>

@@ -236,13 +236,13 @@ export const industryLandings: IndustryLanding[] = [
     title: {
       zh: "造纸行业碳石墨密封与轴承 | 黑液泵与烘缸冷凝水密封方案",
       en: "Pulp & Paper Carbon Graphite Seals & Bearings | Black Liquor Pump & Dryer Condensate Sealing Solutions",
-      vi: "Vòng đệm & vòng bi than chì carbon cho giấy | Bơm dung dịch đen và ngưng tụ烘 cuộn",
+      vi: "Vòng đệm & vòng bi than chì carbon cho giấy | Bơm dung dịch đen và nước ngưng xi lanh sấy",
       th: "ซีลและแบริ่งคาร์บอนกราไฟต์สำหรับกระดาษ | ปั๊มของเหลวดำและคอนเดนเสทลูกกลิ้งอบแห้ง",
     },
     description: {
       zh: "华豪密封为造纸行业提供碳石墨密封环、轴套与推力盘，适配黑液泵、白液泵、烘缸冷凝水排出泵、压榨辊轴承等关键设备。浸锑牌号耐温500℃，耐碱液腐蚀，抗纤维与填料颗粒磨粒磨损，延长大修周期至12个月以上。",
       en: "Huahao Sealing provides carbon graphite seal rings, bushings and thrust discs for the pulp & paper industry — black liquor pumps, white liquor pumps, dryer condensate pumps and press roll bearings. Antimony grades handle 500°C, resist caustic corrosion and abrasive fiber/filler wear, extending overhaul cycles beyond 12 months.",
-      vi: "Huahao Sealing cung cấp vòng đệm, bạc lót và đĩa hãm than chì carbon cho ngành giấy — bơm dung dịch đen, bơm dung dịch trắng, bơm ngưng tụ烘 cuộn và vòng bi trục ép. Vật liệu antimony chịu 500°C, kháng kiềm và mài mòn sợi, kéo dài chu kỳ đại tu quá 12 tháng.",
+      vi: "Huahao Sealing cung cấp vòng đệm, bạc lót và đĩa hãm than chì carbon cho ngành giấy — bơm dung dịch đen, bơm dung dịch trắng, bơm nước ngưng xi lanh sấy và vòng bi trục ép. Vật liệu antimony chịu 500°C, kháng kiềm và mài mòn sợi, kéo dài chu kỳ đại tu quá 12 tháng.",
       th: "Huahao Sealing จัดหาแหวนซีล บุชชิ่งและจานหนุนคาร์บอนกราไฟต์สำหรับอุตสาหกรรมกระดาษ — ปั๊มของเหลวดำ ปั๊มของเหลวขาว ปั๊มคอนเดนเสทลูกกลิ้งอบแห้งและแบริ่งลูกกลิ้งอัด วัสดุ antimony ทน 500°C ต้านด่างและการสึกจากเส้นใย ยืดอายุการซ่อมใหญ่เกิน 12 เดือน",
     },
     challenges: {
@@ -260,7 +260,7 @@ export const industryLandings: IndustryLanding[] = [
       ],
       vi: [
         "Bơm dung dịch đen truyền nồng độ 50-65% có kiềm (NaOH/Na₂S) và hữu cơ ở 120-180°C — ăn mòn và mài mòn cùng tồn tại",
-        "Bơm ngưng tụ烘 cuộn hoạt động trong hơi 150-200°C; vòng kín bị oxy hóa nhiệt và mất đàn hồi",
+        "Bơm nước ngưng xi lanh sấy hoạt động trong hơi 150-200°C; vòng kín bị oxy hóa nhiệt và mất đàn hồi",
         "Bơm dung dịch trắng truyền kiềm mạnh (pH 13-14); bạc kim loại bị giòn kiềm và ăn mòn",
         "Bột giấy có sợi và hạt fillers lọt vào mặt kín gây mài mòn",
       ],
@@ -288,7 +288,7 @@ export const industryLandings: IndustryLanding[] = [
         "Vật liệu antimony impregnation (M106H) chịu 500°C trơ hóa học chống kiềm dung dịch đen/trắng",
         "Tự bôi trơn than chì tránh sợi lắng trong kênh bôi trơn giảm mài mòn mặt kín",
         "Ghép mặt SiC cứng HV2500 chống mài mòn sợi và hạt fillers",
-        "Đĩa hãm than chì chịu tải trục cho bơm ngưng tụ烘 cuộn đứng chạy không bôi trơn dài hạn",
+        "Đĩa hãm than chì chịu tải trục cho bơm nước ngưng xi lanh sấy đứng chạy không bôi trơn dài hạn",
       ],
       th: [
         "วัสดุ antimony impregnation (M106H) ทน 500°C เฉื่อยทางเคมีต้านด่างของเหลวดำ/ขาว",
@@ -321,7 +321,7 @@ export const industryLandings: IndustryLanding[] = [
       ],
       vi: [
         { q: "Tuổi thọ kín bơm dung dịch đen ngắn, rò rỉ sau 3 tháng?", a: "Chọn M106H antimony ghép mặt SiC. Than chì antimony chịu 500°C trơ kiềm dung dịch đen; SiC HV2500 chống mài mòn hữu cơ và hạt. Tuổi thọ 12-18 tháng." },
-        { q: "Vật liệu kín cho bơm ngưng tụ烘 cuộn 180°C hơi?", a: "M106H antimony có chống oxy hóa, chịu 500°C vượt 180°C. Than chì không oxy hóa不失 đàn hồi trong hơi, ổn định dài hạn." },
+        { q: "Vật liệu kín cho bơm nước ngưng xi lanh sấy 180°C hơi?", a: "M106H antimony có chống oxy hóa, chịu 500°C vượt 180°C. Than chì không oxy hóa, không mất đàn hồi trong hơi, ổn định dài hạn." },
         { q: "Bạc than chì dùng cho bơm dung dịch trắng (pH 14) được không?", a: "Được. Than chì trơ pH 0-14, kiềm mạnh không ăn mòn. Chọn antimony chống mài mòn, ghép trục 316L, khe hở 0.10-0.15mm." },
         { q: "Sợi và hạt fillers lọt vào mặt kín xử lý thế nào?", a: "Ghép SiC chống mài mòn hạt. Mặt kín có rãnh xả nước sạch hoặc nước trắng xả hạt. Tự bôi trơn tránh mỡ bị sợi bẩn." },
       ],
@@ -469,7 +469,7 @@ export const industryLandings: IndustryLanding[] = [
       vi: [
         "Máy nhuộm nhiệt cao thuốc nhuộm 130-180°C có axit kiềm chất khử và hạt nhuộm — ăn mòn và mài mòn cùng tồn",
         "Bơm tuần hoàn thuốc nhuộm chạy dài hạn; dầu rò rỉ bẩn vải gây hủy lô",
-        "Trục dẫn vải定形 chạy 200°C; mỡ bạc thông thường bị carbon hóa hỏng",
+        "Trục dẫn vải định hình chạy 200°C; mỡ bạc thông thường bị carbon hóa hỏng",
         "Hạt nhuộm lọt vào mặt kín gây mài mòn, tuổi thọ ngắn",
       ],
       th: [
@@ -571,7 +571,7 @@ export const industryLandings: IndustryLanding[] = [
         "During in-port layup, bearings run dry; unlubricated startup causes severe damage",
       ],
       vi: [
-        "Kín trục đuôi ngâm nước biển dài hạn; ion clo ăn mòn bạc kim loại严重 ăn mòn điện hóa",
+        "Kín trục đuôi ngâm nước biển dài hạn; ion clo ăn mòn bạc kim loại, ăn mòn điện hóa nghiêm trọng",
         "Bơm nước biển có bùn cát; chu kỳ ướt-khô làm mòn kín nhanh hơn",
         "Bạc bánh lái chịu tải va đập và rung; bạc kim loại dễ kẹt",
         "Khi tàu cập cảng bạc chạy khô; khởi động không bôi trơn gây hư nặng",
@@ -781,7 +781,7 @@ export const industryLandings: IndustryLanding[] = [
       vi: [
         "Bơm nước tuần hoàn nhà máy điện trục lớn (120mm+) tốc độ cao; bạc kim loại tích nhiệt ma sát mòn nhanh",
         "Bơm dầu tuabin hoạt động 200-300°C; kín mất đàn hồi nhiệt và oxy hóa",
-        "Nước tuần hoàn có bùn cát; bạc kim loại mòn nặng,每月 dừng sửa",
+        "Nước tuần hoàn có bùn cát; bạc kim loại mòn nặng, phải dừng máy sửa hằng tháng",
         "Vùng nhiệt cao yêu cầu không dầu; dầu rò rỉ nguy cơ cháy cao",
       ],
       th: [
@@ -1058,6 +1058,226 @@ export const industryLandings: IndustryLanding[] = [
         { q: "เลือกเกรดใดสำหรับคอมเพรสเซอร์ลูกสูบแรงดัน 25 MPa?", a: "แนะนำ M106H antimony-impregnated ทน 500°C ความแข็งแรงอัดสูง อายุการสึกยาวใต้แรงดันสูงเสียดสีแห้ง จับคู่ SiC หรือโครเมียมแข็ง อายุซีล 12-18 เดือน" },
         { q: "ซีลกราไฟต์ถูกกัดกร่อนในก๊าซธรรมชาติมี H₂S หรือไม่?", a: "ไม่ เกรด carbonized (M191T) เฉื่อยทางเคมีทน H₂S และ CO₂ ไม่เกิดร้าวแรงเครียด กราไฟต์เป็นวัสดุอโลหะไม่เกิดกัดกร่อนกัลวานิก เหมาะสำหรับบริการก๊าซเปรี้ยว" },
         { q: "เลือกวัสดุผิวซีลก๊าซแห้งคอมเพรสเซอร์เซนทริฟิวัดอย่างไร?", a: "กราไฟต์จับคู่ SiC เป็นชุดมาตรฐานสำหรับซีลก๊าซแห้ง SiC นำความร้อนสูงระบายความร้อน ป้องกันร้าวจากความร้อนเสียดสีแห้งความเร็วสูง กราไฟต์ตัวหล่อลื่นตัวเองลดสัมประสิทธิ์การเสียดสีสำหรับความเร็วสูง" },
+      ],
+    },
+  },
+
+  // 11. 磁力泵轴套与石墨轴承
+  {
+    slug: "magnetic-pump-bushings",
+    title: {
+      zh: "磁力泵碳石墨轴套 | 耐干启动磁力驱动泵石墨轴承与内磁转子滑动轴承",
+      en: "Carbon Graphite Bushings for Magnetic Pumps | Dry-Run-Resistant Graphite Bearings for Magnetic Drive Pumps",
+      vi: "Bạc lót than chì carbon cho bơm dẫn động từ | Bạc graphite chịu chạy khô cho rotor trong bơm từ tính",
+      th: "บุชชิ่งคาร์บอนกราไฟต์สำหรับปั๊มแม่เหล็ก | แบริ่งกราไฟต์ทนการวิ่งแห้งสำหรับปั๊มขับด้วยแม่เหล็ก",
+    },
+    description: {
+      zh: "华豪密封为磁力驱动泵内磁转子提供碳石墨轴套、滑动轴承与止推盘。呋喃树脂浸渍牌号以Tg 260-300℃、Td5 340℃、700℃残炭率65%替代酚醛浸渍，把无液干启动耐受时间延长约2.4倍；锑浸渍牌号（M106D/M106H）耐温500℃，用于高温段。石墨自润滑摩擦系数0.04-0.15，导热8-70 W/m·K带走摩擦热，可按CQB等系列与原厂轴承室尺寸配型，非标来图加工。",
+      en: "Huahao Sealing supplies carbon graphite bushings, journal bearings and thrust washers for the inner rotor of magnetic drive pumps. Furan-resin-impregnated grades replace phenolic with Tg 260-300°C, Td5 340°C and 65% char yield at 700°C, extending dry-start tolerance by about 2.4×; antimony-impregnated grades (M106D/M106H) cover the 500°C high-temperature sections. Self-lubricating at friction coefficient 0.04-0.15 with 8-70 W/m·K thermal conductivity, sized to CQB-series and OEM bearing housings, custom-built from your drawing.",
+      vi: "Huahao Sealing cung cấp bạc lót, bạc trượt và đĩa hãm than chì carbon cho rotor trong của bơm dẫn động từ. Vật liệu impregnation nhựa furan thay nhựa phenolic với Tg 260-300°C, Td5 340°C, lượng coke 65% ở 700°C, kéo dài thời gian chịu chạy khô khoảng 2.4 lần; vật liệu impregnation antimony (M106D/M106H) chịu 500°C cho đoạn nhiệt cao. Tự bôi trơn hệ số ma sát 0.04-0.15, dẫn nhiệt 8-70 W/m·K, gia công theo buồng bạc của bơm series CQB và kích thước nguyên bản.",
+      th: "Huahao Sealing จัดหาบุชชิ่ง แบริ่งเลื่อน และจานหนุนคาร์บอนกราไฟต์สำหรับโรเตอร์ด้านในของปั๊มขับด้วยแม่เหล็ก เกรดอิมเพรกเนตเรซิน furan แทน phenolic ด้วย Tg 260-300°C, Td5 340°C และ char yield 65% ที่ 700°C ยืดเวลาทนการวิ่งแห้งขึ้นราว 2.4 เท่า เกรดอิมเพรกเนตพลวง (M106D/M106H) ทน 500°C สำหรับช่วงอุณหภูมิสูง หล่อลื่นตัวเองด้วยสัมประสิทธิ์การเสียดสี 0.04-0.15 นำความร้อน 8-70 W/m·K จับคู่ขนาดตามห้องแบริ่งของปั๊มตระกูล CQB และขนาดเดิมของเครื่อง",
+    },
+    challenges: {
+      zh: [
+        "磁力泵靠内、外磁转子隔着隔离套传递扭矩，取消了动密封点，也就取消了泄漏预警通道——无液干启动最初几秒完全没有可见迹象，发现时轴承往往已经烧毁",
+        "干启动后0.3s即进入完全干摩擦，PV值瞬间冲到2.1 MPa·m/s，远超酚醛浸渍碳石墨0.8-1.2 MPa·m/s的推荐上限，端面温度8秒内越过浸渍树脂Tg=180℃",
+        "内磁转子的滑动轴承（journal bearing）不能外接油脂润滑，只能靠被输送介质自身润滑与冷却，一旦断流、汽化或夹气，轴承材料就是整台泵的单点故障",
+        "隔离套在交变磁场下产生涡流发热，热量直接排进轴承间隙的介质里，既减薄液膜又加速浸渍层老化",
+        "浸渍层被端面剪切剥离后，裸露的石墨气孔与树脂碎屑在轴与套之间形成三体磨粒磨损，含颗粒介质下磨损速率成倍上升",
+      ],
+      en: [
+        "Magnetic pumps transmit torque across the containment can between inner and outer rotors, eliminating the dynamic seal point — and with it the leakage warning channel. A liquid-free start shows no visible symptom for the first seconds; by the time it is noticed the bearing is already burned.",
+        "Full dry friction is established 0.3 s after a dry start, PV spikes instantly to 2.1 MPa·m/s — far above the 0.8-1.2 MPa·m/s recommended limit for phenolic-impregnated carbon graphite — and the face temperature crosses the resin Tg of 180°C within 8 seconds.",
+        "The inner-rotor journal bearing cannot be grease-lubricated from outside; it is lubricated and cooled only by the pumped medium itself, so the bearing material becomes the single point of failure of the whole pump.",
+        "Eddy-current heating in the containment can is dumped straight into the medium in the bearing gap, thinning the liquid film and accelerating ageing of the impregnant.",
+        "Once the impregnation layer is sheared off, exposed graphite pores and resin debris form three-body abrasive wear between shaft and bushing, multiplying the wear rate in solids-bearing media.",
+      ],
+      vi: [
+        "Bơm từ tính truyền mô-men qua vách ngăn giữa rotor trong và rotor ngoài, loại bỏ điểm kín động và luôn cả cảnh báo rò rỉ; khởi động không dung dịch không có dấu hiệu gì trong vài giây đầu, phát hiện ra thì bạc đã cháy.",
+        "Ma sát khô hoàn toàn thiết lập sau 0.3 s, PV vọt tới 2.1 MPa·m/s — vượt xa giới hạn 0.8-1.2 MPa·m/s của than chì impregnation nhựa phenolic — nhiệt độ bề mặt vượt Tg=180°C của nhựa trong 8 giây.",
+        "Bạc trượt rotor trong không được bôi trơn ngoài bằng mỡ, chỉ dựa vào chính môi chất để bôi trơn và làm mát, nên vật liệu bạc là điểm hỏng duy nhất của cả bơm khi đứt dòng hoặc hóa hơi.",
+        "Nhiệt dòng xoáy ở vách ngăn thải thẳng vào môi chất trong khe bạc, làm mỏng màng lỏng và đẩy nhanh lão hóa lớp impregnation.",
+        "Khi lớp impregnation bị cắt bóc, lỗ rỗng graphite lộ ra cùng mảnh vụn nhựa gây mài mòn ba thể giữa trục và bạc, tốc độ mòn tăng gấp bội với môi chất có hạt.",
+      ],
+      th: [
+        "ปั๊มแม่เหล็กส่งแรงบิดข้ามปลอกกั้นระหว่างโรเตอร์ในและโรเตอร์นอก จึงไม่มีจุดซีลไดนามิกและไม่มีช่องทางแจ้งเตือนการรั่ว การสตาร์ตแบบไม่มีของเหลวไม่มีสัญญาณที่มองเห็นได้ในไม่กี่วินาทีแรก เมื่อรู้ตัวอีกทีแบริ่งก็ไหม้ไปแล้ว",
+        "การเสียดสีแห้งเต็มรูปแบบเกิดขึ้นใน 0.3 s ค่า PV พุ่งขึ้นเป็น 2.1 MPa·m/s เกินขีดแนะนำ 0.8-1.2 MPa·m/s ของกราไฟต์อิมเพรกเนตเรซิน phenolic และอุณหภูมิผิวหน้าข้าม Tg=180°C ภายใน 8 วินาที",
+        "แบริ่งเลื่อนของโรเตอร์ในไม่สามารถเติมน้ำมันหรือจาระบีจากภายนอกได้ ต้องอาศัยตัวกลางที่สูบในการหล่อลื่นและระบายความร้อนเท่านั้น วัสดุแบริ่งจึงกลายเป็นจุดล้มเหลวจุดเดียวของทั้งปั๊มเมื่อของเหลวขาดหรือระเหยเป็นไอ",
+        "ความร้อนจากกระแสไหลวนในปลอกกั้นถูกระบายเข้าไปในตัวกลางในช่องแบริ่งโดยตรง ทำให้ฟิล์มของเหลวบางลงและชั้นอิมเพรกเนชันเสื่อมเร็วขึ้น",
+        "เมื่อชั้นอิมเพรกเนตถูกแรงเฉือนลอกออก รูพรุนกราไฟต์ที่โผล่กับเศษเรซินทำให้เกิดการสึกแบบสามวัตถุระหว่างเพลาและบุช อัตราการสึกเพิ่มขึ้นหลายเท่าในตัวกลางที่มีอนุภาค",
+      ],
+    },
+    solutions: {
+      zh: [
+        "呋喃树脂浸渍轴套牌号（M140K / M120K）以Tg 260-300℃、Td5 340℃、700℃残炭率65%替代酚醛浸渍，干启动耐受时间约延长2.4倍，裂解后残留的炭质膜还能继续润滑",
+        "高温或长周期工况改用锑浸渍牌号（M106D / M106H），耐温500℃、无树脂玻璃化转变这一步骤，配抗氧化处理长期稳定运行",
+        "石墨层状晶体在轴面形成自润滑转移膜，摩擦系数0.04-0.15，断流瞬间仍保持润滑能力，避免金属对磨拉伤轴颈",
+        "导热率8-70 W/m·K把摩擦热从轴承间隙导出，抑制热斑与热裂；配SiC对偶面进一步散热并抵抗颗粒冲刷",
+        "按CQB等磁力泵系列与原厂轴承室尺寸配型轴套，可开纵向槽/螺旋纹排颗粒并建立液膜，来图非标研磨至微米级公差",
+      ],
+      en: [
+        "Furan-resin-impregnated bushing grades (M140K / M120K) substitute phenolic with Tg 260-300°C, Td5 340°C and 65% char yield at 700°C, extending dry-start tolerance about 2.4× while the residual carbon film keeps lubricating after decomposition",
+        "For hot or long-duty service, switch to antimony-impregnated grades (M106D / M106H) rated 500°C, which have no resin glass-transition step at all and run stably with anti-oxidation treatment",
+        "The layered graphite crystal forms a self-lubricating transfer film on the shaft — friction coefficient 0.04-0.15 — so lubrication persists at the instant of flow loss and the journal is not smeared",
+        "Thermal conductivity of 8-70 W/m·K drains friction heat out of the bearing gap, suppressing hot spots and thermal cracking; pairing with a SiC counterface dissipates further and resists particle erosion",
+        "Bushings are fitted to CQB-series and OEM bearing-housing dimensions, with optional axial grooves or spiral helices to flush particles and establish a liquid film, custom-ground to micron tolerances from your drawing",
+      ],
+      vi: [
+        "Vật liệu bạc impregnation nhựa furan (M140K / M120K) thay phenolic với Tg 260-300°C, Td5 340°C, lượng coke 65% ở 700°C, kéo dài khả năng chịu chạy khô khoảng 2.4 lần; màng carbon dư vẫn tiếp tục bôi trơn sau khi phân nhiệt",
+        "Cho điều kiện nhiệt cao hoặc chạy dài hạn, chuyển sang vật liệu impregnation antimony (M106D / M106H) chịu 500°C, không có bước chuyển hóa thủy tinh của nhựa, ổn định nhờ xử lý chống oxy hóa",
+        "Cấu trúc tinh thể lớp của graphite tạo màng chuyển tự bôi trơn trên trục, hệ số ma sát 0.04-0.15, vẫn bôi trơn ngay thời điểm mất dòng, không làm trầy cổ trục",
+        "Dẫn nhiệt 8-70 W/m·K đưa nhiệt ma sát ra khỏi khe bạc, chống điểm nóng và nứt nhiệt; ghép mặt đối SiC tăng tản nhiệt và chống hạt mài",
+        "Bạc lót phối theo kích thước buồng bạc của bơm series CQB và bản gốc, có thể khía rãnh dọc hoặc xoáy để đẩy hạt và tạo màng lỏng, mài phi tiêu chuẩn theo bản vẽ tới dung sai micromet",
+      ],
+      th: [
+        "เกรดบุชอิมเพรกเนตเรซิน furan (M140K / M120K) แทน phenolic ด้วย Tg 260-300°C, Td5 340°C และ char yield 65% ที่ 700°C ทนการวิ่งแห้งได้นานขึ้นราว 2.4 เท่า และฟิล์มคาร์บอนที่เหลือยังหล่อลื่นต่อหลังการสลายตัวด้วยความร้อน",
+        "งานอุณหภูมิสูงหรือเดินต่อเนื่องยาว เปลี่ยนไปใช้เกรดอิมเพรกเนตพลวง (M106D / M106H) ทน 500°C ซึ่งไม่มีขั้น glass transition ของเรซินเลย เสถียรในระยะยาวด้วยการป้องกันออกซิเดชัน",
+        "ผลึกกราไฟต์แบบชั้นสร้างฟิล์มถ่ายทอดหล่อลื่นตัวเองบนผิวเพลา สัมประสิทธิ์การเสียดสี 0.04-0.15 ยังคงหล่อลื่นได้ในช่วงที่การไหลขาดทันที และไม่ทำให้คอเพลาเป็นรอย",
+        "การนำความร้อน 8-70 W/m·K ถ่ายความร้อนจากการเสียดสีออกจากช่องแบริ่ง ลดจุดร้อนและรอยร้าวจากความร้อน จับคู่ผิว SiC ยิ่งระบายความร้อนได้ดีและต้านอนุภาค",
+        "จับคู่ขนาดบุชตามห้องแบริ่งของปั๊มตระกูล CQB และขนาดเดิม มีตัวเลือกเซาะร่องตามยาวหรือร่องเกลียวเพื่อขับอนุภาคและสร้างฟิล์มของเหลว กัดแต่งงานนอกมาตรฐานตามแบบเขียนจนถึงระดับไมโครเมตร",
+      ],
+    },
+    specs: [
+      { label: "Temperature", value: "-50°C ~ 500°C (grade dependent)" },
+      { label: "PV Value", value: "0.8 – 1.2 MPa·m/s continuous; 2.1 MPa·m/s dry-start spike" },
+      { label: "Dry-Start Tolerance", value: "~13.5 s on furan grade vs ~4 s on phenolic" },
+      { label: "Coefficient of Friction", value: "0.04 – 0.15 (dry)" },
+      { label: "Grade", value: "M140K / M120K (Furan) / M106D / M106H (Sb)" },
+      { label: "Mating Face", value: "SiC / WC" },
+    ],
+    relatedProducts: ["graphite-bushing", "graphite-bearing", "graphite-thrust-disc", "109-series"],
+    faq: {
+      zh: [
+        { q: "磁力泵的石墨轴承能不能直接用SiC替代？", a: "两者的边界不同。SiC硬度高（HV2500）、耐磨耐蚀，但脆性大且不自润滑，一旦干转或颗粒卡入容易崩边；碳石墨靠层状结构自润滑，能耐受短时干启动，并可容纳细小颗粒而不拉伤轴颈。磁力泵内磁转子滑动轴承通常仍以碳石墨为主，SiC更适合持续浸液、介质洁净的场合，或作为碳石墨的对偶面使用。" },
+        { q: "干启动之后怎么判断轴套已经损坏？", a: "先看运行侧：隔离套内外两侧温差异常升高（正常稳定在5-8℃，≥12℃即可作为预警）往往早于端面温度报警。拆机看三点：轴套内孔径向磨损与椭圆度、表面变色与放射状裂纹、轴颈被拉伤的痕迹。碳石墨套属于牺牲件，经历过断流干启动后建议直接更换并复测单边间隙，不要凭手感继续使用。" },
+        { q: "呋喃浸渍和酚醛浸渍怎么选择？", a: "关键看温度裕量。酚醛浸渍Tg约180℃、Td5约260℃，干启动约8秒就越过玻璃化转变；呋喃浸渍Tg 260-300℃、Td5约340℃、700℃残炭率65%，干启动耐受时间约延长2.4倍，且裂解残留的炭质膜还能继续润滑。常温洁净介质选酚醛已够用；有断流风险、介质易汽化或温度偏高时选呋喃；超过220℃直接选锑浸渍牌号。" },
+        { q: "输送含颗粒介质，轴套能用多久？", a: "寿命主要取决于颗粒浓度与粒径，而不只是材料本身。工程上最有效的三件事：一是选硬度更高的浸锑或耐热的呋喃浸渍牌号；二是轴承面开纵向槽或螺旋纹并适当放大间隙，让颗粒随介质排出而不是被碾入磨面；三是在轴承进口侧加过滤或反向冲洗。把介质的颗粒含量、粒径分布和温度提供给我们的工程师，可以给出具体牌号和预期更换周期。" },
+      ],
+      en: [
+        { q: "Can SiC simply replace the graphite bearing in a magnetic pump?", a: "The two have different boundaries. SiC is very hard (HV2500), wear and corrosion resistant, but brittle and not self-lubricating — chipping is likely under dry running or when particles jam. Carbon graphite self-lubricates through its layered structure, survives short dry starts and can absorb fine particles without smearing the journal. Inner-rotor journal bearings in magnetic pumps therefore stay on carbon graphite in most cases; SiC suits continuously flooded, clean media, or serves as the counterface." },
+        { q: "How do I know the bushing is damaged after a dry start?", a: "Check the running side first: an abnormal temperature difference across the containment can (normally stable at 5-8°C; ≥12°C works as an early warning) usually appears before the face temperature alarm. On teardown inspect three things — radial wear and out-of-roundness of the bush bore, discoloration and radial cracking of the surface, and smear marks on the journal. The graphite bushing is a sacrificial part: after a dry-run event, replace it and re-measure the diametral clearance instead of judging by hand." },
+        { q: "How to choose between furan and phenolic impregnation?", a: "It comes down to thermal margin. Phenolic impregnation has Tg around 180°C and Td5 about 260°C, so a dry start crosses glass transition in roughly 8 seconds. Furan impregnation has Tg 260-300°C, Td5 about 340°C and a 65% char yield at 700°C, extending dry-start tolerance about 2.4×, and the residual carbon film keeps lubricating after decomposition. Phenolic is sufficient for cool, clean media; choose furan where dry-run risk, vaporization or elevated temperature exists; above 220°C go straight to antimony-impregnated grades." },
+        { q: "How long does a graphite bushing last in solids-laden media?", a: "Life is governed mainly by solids concentration and particle size rather than the material alone. Three measures matter most: select harder antimony or heat-resistant furan impregnated grades; cut axial grooves or spiral helices and open the clearance slightly so particles are flushed out instead of crushed into the interface; and add filtration or reverse flushing at the bearing inlet. Send us the solids content, particle size distribution and temperature and our engineers will specify the grade and the expected replacement interval." },
+      ],
+      vi: [
+        { q: "Có thể thay bạc graphite của bơm từ tính bằng SiC được không?", a: "Giới hạn của hai vật liệu khác nhau. SiC rất cứng (HV2500), chống mòn và ăn mòn nhưng giòn và không tự bôi trơn, dễ mẻ khi chạy khô hoặc khi hạt kẹt vào. Than chì carbon tự bôi trơn nhờ cấu trúc lớp, chịu được chạy khô ngắn hạn và dung nạp hạt mịn mà không làm trầy cổ trục. Bạc trượt rotor trong của bơm từ tính vì vậy vẫn dùng than chì carbon là chính; SiC phù hợp khi luôn ngập dung dịch và sạch, hoặc dùng làm mặt đối." },
+        { q: "Sau một lần chạy khô, làm sao biết bạc đã hỏng?", a: "Xem phía vận hành trước: chênh lệch nhiệt độ hai bên vách ngăn tăng bất thường (bình thường ổn định 5-8°C, ≥12°C dùng làm cảnh báo sớm) thường xuất hiện trước báo động nhiệt mặt kín. Khi tháo máy kiểm tra ba điểm: mòn hướng kính và ô van của lỗ bạc, đổi màu và nứt tia trên bề mặt, vết trầy trên cổ trục. Bạc than chì là chi tiết hy sinh — sau sự cố mất dòng nên thay mới và đo lại khe hở, không đánh giá bằng cảm giác tay." },
+        { q: "Chọn impregnation furan hay phenolic?", a: "Quyết định ở dự trữ nhiệt. Phenolic có Tg khoảng 180°C, Td5 khoảng 260°C, chạy khô vượt chuyển hóa thủy tinh trong khoảng 8 giây. Furan có Tg 260-300°C, Td5 khoảng 340°C, lượng coke 65% ở 700°C, kéo dài khả năng chịu chạy khô khoảng 2.4 lần và màng carbon dư vẫn bôi trơn sau phân nhiệt. Dung dịch mát và sạch chọn phenolic là đủ; có nguy cơ chạy khô, hóa hơi hoặc nhiệt cao thì chọn furan; trên 220°C dùng thẳng antimony." },
+        { q: "Bạc graphite chạy môi chất có hạt được bao lâu?", a: "Tuổi thọ phụ thuộc chủ yếu vào nồng độ và kích thước hạt chứ không chỉ vào vật liệu. Ba biện pháp hiệu quả nhất: chọn grade antimony cứng hơn hoặc furan chịu nhiệt; khía rãnh dọc hoặc xoáy và mở rộng khe hở để hạt bị đẩy ra thay vì nghiền vào mặt mài; thêm lọc hoặc rửa ngược ở cửa vào bạc. Gửi hàm lượng hạt, phân bố kích thước và nhiệt độ, kỹ sư của chúng tôi sẽ chỉ định vật liệu và chu kỳ thay." },
+      ],
+      th: [
+        { q: "เปลี่ยนแบริ่งกราไฟต์ของปั๊มแม่เหล็กเป็น SiC ได้ไหม?", a: "ขอบเขตการใช้งานต่างกัน SiC แข็งมาก (HV2500) ทนการสึกและทนการกัดกร่อนแต่เปราะและไม่หล่อลื่นตัวเอง จึงบิ่นง่ายเมื่อวิ่งแห้งหรือมีอนุภาคเข้าไปค้าง กราไฟต์คาร์บอนหล่อลื่นตัวเองจากโครงสร้างชั้น ทนการวิ่งแห้งช่วงสั้นและรับอนุภาคละเอียดได้โดยไม่ทำให้เพลาเป็นรอย แบริ่งเลื่อนของโรเตอร์ในปั๊มแม่เหล็กจึงยังใช้คาร์บอนกราไฟต์เป็นหลัก ส่วน SiC เหมาะกับกรณีที่แช่ในตัวกลางตลอดและสะอาด หรือใช้เป็นผิวคู่กัน" },
+        { q: "หลังวิ่งแห้งจะรู้ได้อย่างไรว่าบุชเสียหายแล้ว?", a: "ดูฝั่งการทำงานก่อน: ผลต่างอุณหภูมิสองข้างของปลอกกั้นสูงขึ้นผิดปกติ (ปกติคงที่ 5-8°C ถ้าถึง 12°C ใช้เป็นการแจ้งเตือนล่วงหน้า) มักเกิดก่อนสัญญาณเตือนที่ผิวซีล เมื่อถอดเครื่องให้ตรวจสามข้อ คือ การสึกตามรัศมีและความรีของรูบุช การเปลี่ยนสีและรอยร้าวแฉกบนผิว และรอยครูดบนคอเพลา บุชกราไฟต์เป็นชิ้นส่วนเสียสละ หลังเหตุการณ์ขาดของเหลวควรเปลี่ยนใหม่และวัดค่าช่องว่างอีกครั้ง อย่าตัดสินจากการหมุนด้วยมือ" },
+        { q: "เลือกอิมเพรกเนต furan หรือ phenolic?", a: "อยู่ที่ค่าเผื่ออุณหภูมิ phenolic มี Tg ราว 180°C และ Td5 ราว 260°C การวิ่งแห้งจะข้าม glass transition ภายในประมาณ 8 วินาที furan มี Tg 260-300°C, Td5 ราว 340°C และ char yield 65% ที่ 700°C ทนการวิ่งแห้งได้นานขึ้นราว 2.4 เท่า และฟิล์มคาร์บอนที่เหลือยังหล่อลื่นต่อหลังการสลายตัว ตัวกลางเย็นและสะอาดใช้ phenolic พอ ถ้ามีความเสี่ยงวิ่งแห้ง ระเหย หรืออุณหภูมิสูงให้เลือก furan เกิน 220°C ใช้เกรดพลวงโดยตรง" },
+        { q: "บุชกราไฟต์ในตัวกลางที่มีอนุภาคมีอายุเท่าไร?", a: "อายุขึ้นกับความเข้มข้นและขนาดอนุภาคเป็นหลัก ไม่ใช่ตัววัสดุเพียงอย่างเดียว วิธีที่ได้ผลที่สุดสามอย่างคือ เลือกเกรดพลวงที่แข็งกว่าหรือ furan ที่ทนร้อน เซาะร่องตามยาวหรือร่องเกลียวและเพิ่มช่องว่างเล็กน้อยให้อนุภาคถูกชะออกไปแทนที่จะถูกบดบนผิวสึก และเพิ่มการกรองหรือการล้างย้อนที่ทางเข้าแบริ่ง ส่งข้อมูลปริมาณอนุภาค การกระจายขนาด และอุณหภูมิมา วิศวกรของเราจะระบุเกรดและรอบการเปลี่ยน" },
+      ],
+    },
+  },
+
+  // 12. 化工泵碳石墨轴承
+  {
+    slug: "chemical-pump-bearings",
+    title: {
+      zh: "化工泵碳石墨轴承 | 耐酸碱自润滑石墨轴套与止推盘",
+      en: "Carbon Bearings for Chemical Pumps | Self-Lubricating Graphite Bushings for Chemical Process Pumps",
+      vi: "Vòng bi than chì carbon cho bơm hóa chất | Bạc lót graphite tự bôi trơn chống ăn mòn cho bơm quy trình",
+      th: "แบริ่งคาร์บอนกราไฟต์สำหรับปั๊มเคมี | บุชชิ่งกราไฟต์หล่อลื่นตัวเองสำหรับปั๊มกระบวนการเคมี",
+    },
+    description: {
+      zh: "华豪密封为化工流程泵提供碳石墨轴承、轴套与推力盘，介质覆盖酸、碱、盐和有机溶剂。碳石墨为非金属材料，不发生电化学腐蚀，pH 0-14 化学惰性；自润滑摩擦系数0.04-0.15，无需外部润滑，适配制药、食品与电子级禁油工况。浸渍类型决定耐温边界：树脂220℃、锑500℃、碳化处理600℃，可按ANSI、HG、IMC、FZB等型式轴承室尺寸直接替换。",
+      en: "Huahao Sealing supplies carbon graphite bearings, bushings and thrust discs for chemical process pumps handling acids, alkalis, salts and organic solvents. Carbon graphite is non-metallic, so there is no galvanic or pitting corrosion, and it is chemically inert across pH 0-14. Self-lubrication at friction coefficient 0.04-0.15 removes external lubrication for oil-free pharmaceutical, food and electronic-grade duty. Impregnation sets the temperature boundary — resin 220°C, antimony 500°C, carbonized 600°C — and parts drop into ANSI, HG, IMC and FZB bearing housings.",
+      vi: "Huahao Sealing cung cấp vòng bi, bạc lót và đĩa hãm than chì carbon cho bơm hóa chất xử lý axit, kiềm, muối và dung môi hữu cơ. Than chì carbon phi kim nên không ăn mòn điện hóa hay rỗ, trơ hóa học trong pH 0-14. Tự bôi trơn hệ số ma sát 0.04-0.15, không cần bôi trơn ngoài cho dược phẩm, thực phẩm và cấp điện tử yêu cầu không dầu. Impregnation quyết định giới hạn nhiệt — nhựa 220°C, antimony 500°C, carbonized 600°C — và lắp vừa buồng bạc ANSI, HG, IMC, FZB.",
+      th: "Huahao Sealing จัดหาแบริ่ง บุชชิ่ง และจานหนุนคาร์บอนกราไฟต์สำหรับปั๊มกระบวนการเคมีที่ส่งกรด ด่าง เกลือ และตัวทำละลายอินทรีย์ คาร์บอนกราไฟต์เป็นอโลหะจึงไม่เกิดการกัดกร่อนกัลวานิกหรือกัดกร่อนเป็นรู และเฉื่อยทางเคมีตลอดช่วง pH 0-14 หล่อลื่นตัวเองด้วยสัมประสิทธิ์การเสียดสี 0.04-0.15 จึงไม่ต้องหล่อลื่นภายนอกในงานเภสัช อาหาร และเกรดอิเล็กทรอนิกส์ที่ห้ามมีน้ำมันปนเปื้อน การอิมเพรกเนชันกำหนดขอบอุณหภูมิ — เรซิน 220°C พลวง 500°C carbonized 600°C — และเปลี่ยนตรงเข้ากับห้องแบริ่ง ANSI HG IMC FZB",
+    },
+    challenges: {
+      zh: [
+        "化工泵介质覆盖酸、碱、盐与有机溶剂，金属轴承的失效往往是电化学腐蚀与磨粒磨损耦合——点蚀坑一旦形成，颗粒嵌入后加速，间隙迅速扩大直至抱轴",
+        "稀液、无液或易汽化介质（轻烃、有机溶剂、气液混送）无法在轴承间隙建立稳定液膜，材料必须自带润滑能力",
+        "工况温度跨度大，从低温溶剂到高温热媒与反应釜循环液，同一台泵的轴承要同时满足耐温与耐化学两条边界",
+        "ANSI、HG、IMC、FZB等不同化工泵型式的轴承室直径、长度与配合公差互不通用，替换件必须按原厂尺寸与公差配型，否则同轴度超差引起偏磨",
+        "制药、食品与电子级介质禁止任何外部润滑污染，轴承只能靠材料自身运行，且浸渍层不能向介质析出组分",
+      ],
+      en: [
+        "Chemical pump media span acids, alkalis, salts and organic solvents; metallic bearings fail by galvanic corrosion coupled with abrasive wear — once a pit forms, particles embed in it, the wear accelerates and clearance widens until the shaft seizes",
+        "Lean liquid, no liquid or easily vaporized media (light hydrocarbons, organic solvents, gas-liquid mixtures) cannot build a stable film in the bearing gap, so the material itself must supply lubrication",
+        "Service temperature spans a wide band, from cold solvents to hot oil and reactor circulation loops, so one bearing must satisfy both the temperature and the chemical resistance boundary at the same time",
+        "ANSI, HG, IMC and FZB chemical pump types use non-interchangeable housing diameters, lengths and fits; replacements must match OEM dimensions and tolerances or misalignment produces one-sided wear",
+        "Pharmaceutical, food and electronic-grade media forbid any external lubricant contamination — the bearing runs on its own material, and the impregnant must not leach into the medium",
+      ],
+      vi: [
+        "Môi chất bơm hóa chất trải rộng axit, kiềm, muối và dung môi hữu cơ; bạc kim loại hỏng do ăn mòn điện hóa kết hợp mài mòn — điểm rỗ vừa hình thành là hạt bám vào, mòn tăng nhanh và khe hở mở rộng tới khi kẹt trục",
+        "Dung dịch loãng, không dung dịch hoặc dễ hóa hơi (hydrocarbon nhẹ, dung môi hữu cơ, hỗn hợp khí-lỏng) không tạo được màng lỏng ổn định trong khe bạc, vật liệu phải tự bôi trơn",
+        "Nhiệt độ làm việc dải rộng, từ dung môi lạnh đến dầu nóng và vòng tuần hoàn bồn phản ứng, một bạc phải đáp ứng đồng thời giới hạn nhiệt và giới hạn hóa học",
+        "Bơm hóa chất kiểu ANSI, HG, IMC, FZB có đường kính, chiều dài và dung sai buồng bạc không tương đương nhau; vật thay thế phải theo kích thước nguyên bản, nếu không đồng tâm kém sẽ mòn một bên",
+        "Dược phẩm, thực phẩm và cấp điện tử cấm nhiễm bẩn dầu bôi trơn ngoài — bạc chỉ chạy bằng vật liệu của nó và lớp impregnation không được tan vào môi chất",
+      ],
+      th: [
+        "ตัวกลางของปั๊มเคมีครอบคลุมกรด ด่าง เกลือ และตัวทำละลายอินทรีย์ แบริ่งโลหะล้มเหลวจากการกัดกร่อนกัลวานิกคู่กับการสึกจากอนุภาค เมื่อเกิดหลุมกัดกร่อน อนุภาคจะฝังตัวทำให้สึกเร็วและช่องว่างขยายจนเพลาติด",
+        "ของเหลวเจือจาง ไม่มีของเหลว หรือระเหยง่าย (ไฮโดรคาร์บอนเบา ตัวทำละลายอินทรีย์ ระบบแก๊สปนของเหลว) สร้างฟิล์มของเหลวในช่องแบริ่งไม่ได้ วัสดุจึงต้องหล่อลื่นตัวเอง",
+        "ช่วงอุณหภูมิงานกว้าง ตั้งแต่ตัวทำละลายเย็นถึงน้ำมันร้อนและวงจรหมุนเวียนถังปฏิกิริยา แบริ่งชิ้นเดียวต้องผ่านทั้งขีดจำกัดอุณหภูมิและขีดจำกัดความทนสารเคมีพร้อมกัน",
+        "ปั๊มเคมีแบบ ANSI HG IMC FZB ใช้เส้นผ่านศูนย์กลาง ความยาว และค่าเผื่อขนาดห้องแบริ่งที่แทนกันไม่ได้ ชิ้นเปลี่ยนต้องตรงกับขนาดเดิม ไม่เช่นนั้นจะเกิดการสึกข้างเดียว",
+        "งานเภสัช อาหาร และเกรดอิเล็กทรอนิกส์ห้ามการปนเปื้อนจากสารหล่อลื่นภายนอก แบริ่งต้องทำงานด้วยเนื้อวัสดุของมันเอง และชั้นอิมเพรกเนตต้องไม่ละลายออกสู่ตัวกลาง",
+      ],
+    },
+    solutions: {
+      zh: [
+        "碳石墨为非金属材料体系，不发生电化学腐蚀与点蚀，pH 0-14全范围化学惰性，耐大多数酸、碱、盐和有机溶剂，从根源上取消金属轴承的腐蚀-磨损耦合失效",
+        "按温度与介质选浸渍类型：树脂浸渍220℃、锑浸渍500℃、碳化处理600℃，超出树脂边界的高温段直接改用锑浸渍或碳化牌号，化学惰性更高",
+        "自润滑转移膜使摩擦系数低至0.04-0.15，无油与稀液工况无需外部润滑，彻底杜绝润滑剂对介质的污染；导热8-70 W/m·K带走摩擦热",
+        "按ANSI、HG、IMC、FZB等型式提供轴承室尺寸替换件，来图定制外径、内孔、长度与排屑槽，研磨公差控制到微米级，装配无需二次修配",
+      ],
+      en: [
+        "Carbon graphite is a non-metallic material system — no galvanic corrosion, no pitting — and remains chemically inert across pH 0-14 against most acids, alkalis, salts and solvents, removing the corrosion-wear coupling that kills metal bearings",
+        "Select the impregnation by temperature and media: resin 220°C, antimony 500°C, carbonized 600°C; above the resin boundary switch directly to antimony or carbonized grades for higher chemical inertness",
+        "The transfer film keeps the friction coefficient at 0.04-0.15, so oil-free and lean-liquid duty needs no external lubrication and the medium stays uncontaminated, while 8-70 W/m·K thermal conductivity carries friction heat away",
+        "Drop-in bearing sizes for ANSI, HG, IMC and FZB housings, custom-finished outer diameter, bore, length and debris grooves from your drawing, ground to micron tolerance so no rework is needed at assembly",
+      ],
+      vi: [
+        "Than chì carbon là hệ vật liệu phi kim — không ăn mòn điện hóa, không rỗ — trơ hóa học suốt dải pH 0-14 với hầu hết axit, kiềm, muối và dung môi, loại bỏ cơ chế hỏng liên hợp ăn mòn-mài của bạc kim loại",
+        "Chọn loại impregnation theo nhiệt độ và môi chất: nhựa 220°C, antimony 500°C, carbonized 600°C; vượt giới hạn nhựa thì chuyển thẳng sang antimony hoặc carbonized để có trơ hóa học cao hơn",
+        "Màng chuyển giữ hệ số ma sát ở 0.04-0.15, nên chạy không dầu hoặc thiếu dịch không cần bôi trơn ngoài, môi chất không nhiễm bẩn; dẫn nhiệt 8-70 W/m·K đưa nhiệt ma sát ra ngoài",
+        "Cung cấp kích thước bạc thay thế cho buồng ANSI, HG, IMC, FZB; gia công theo bản vẽ về đường ngoài, lỗ, chiều dài và rãnh thoát phoi, mài tới dung sai micromet nên không phải sửa khi lắp",
+      ],
+      th: [
+        "คาร์บอนกราไฟต์เป็นระบบวัสดุอโลหะ ไม่เกิดการกัดกร่อนกัลวานิกและไม่เป็นรู เฉื่อยทางเคมีตลอดช่วง pH 0-14 ต่อกรด ด่าง เกลือ และตัวทำละลายส่วนใหญ่ จึงตัดกลไกความล้มเหลวแบบกัดกร่อนร่วมกับการสึกของแบริ่งโลหะออกไปได้",
+        "เลือกชนิดอิมเพรกเนตตามอุณหภูมิและตัวกลาง เรซิน 220°C พลวง 500°C carbonized 600°C ถ้าเกินขอบของเรซินให้เปลี่ยนเป็นเกรดพลวงหรือคาร์บอไนซ์โดยตรงเพื่อให้เฉื่อยเคมีสูงขึ้น",
+        "ฟิล์มถ่ายทอดคงสัมประสิทธิ์การเสียดสีที่ 0.04-0.15 งานที่ไม่มีน้ำมันหรือมีของเหลวน้อยจึงไม่ต้องหล่อลื่นภายนอก ตัวกลางจึงไม่ปนเปื้อน และการนำความร้อน 8-70 W/m·K พาความร้อนจากการเสียดสีออกไป",
+        "มีขนาดแบริ่งเปลี่ยนตรงสำหรับห้อง ANSI HG IMC FZB และรับสร้างตามแบบเขียน ทั้งเส้นผ่านศูนย์กลางนอก รู ความยาว และร่องคายเศษ กัดถึงระดับไมโครเมตรจึงไม่ต้องแก้อีกตอนประกอบ",
+      ],
+    },
+    specs: [
+      { label: "Temperature", value: "-50°C ~ 600°C (grade dependent)" },
+      { label: "Media", value: "Acids, alkalis, salts, organic solvents" },
+      { label: "pH Resistance", value: "0 – 14" },
+      { label: "Radial Load", value: "≤ 20 MPa (GB series)" },
+      { label: "Grade", value: "M106K (Resin) / M106D / M106H (Sb) / M191T (Carbonized)" },
+      { label: "Pump Types", value: "ANSI / HG / IMC / FZB bearing housings" },
+    ],
+    relatedProducts: ["graphite-bearing", "graphite-bushing", "graphite-thrust-disc", "m7n-series"],
+    faq: {
+      zh: [
+        { q: "碳石墨轴承在酸、碱介质里会被腐蚀吗？", a: "不会发生电化学腐蚀。碳石墨是非金属材料，主成分是碳，常温下对大多数酸、碱、盐和有机溶剂呈化学惰性，pH 0-14 范围内稳定，不存在金属轴承的点蚀、脱锌与电偶腐蚀，也不会在点蚀坑里诱发颗粒嵌入型磨损。唯一需要单独评估的是强氧化性介质，见下一条。" },
+        { q: "能否直接替换化工泵原厂的铜套或石墨环？", a: "可以，但必须按原厂轴承室尺寸配型。我们提供ANSI、HG、IMC、FZB等型式常用规格，也开来图定制，需要确认四项：外径与轴承室的配合方式、内孔与轴的单边间隙（常取0.10-0.15mm）、总长与退刀槽、排屑槽或冲洗槽位置。研磨公差控制到微米级，装配时不需二次修配；碳石墨比铜脆，压装必须用导套均匀加压，禁止直接锤击。" },
+        { q: "输送强氧化性介质要注意什么？", a: "浓硝酸、铬酸、过氧化物、次氯酸盐等强氧化性介质会先侵蚀浸渍树脂，再缓慢氧化碳基体。此时应避开酚醛与环氧浸渍，改用碳化处理或锑浸渍牌号并降低使用温度；批量前建议做同温浸泡失重试验确认。碳石墨在空气中的氧化起始温度分档：未浸渍约420℃、树脂浸渍约500-550℃、锑浸渍约600-650℃，高温加氧化性介质要按这条边界校核。" },
+        { q: "化工泵碳石墨轴承的寿命与PV限值怎么定？", a: "关键看实际PV是否连续低于材料允许上限。树脂浸渍牌号连续运行推荐0.8-1.2 MPa·m/s，而无液或断流工况的瞬时PV可冲到2.1 MPa·m/s，因此频繁启停的泵应选呋喃浸渍或锑浸渍牌号并留出温度裕量；浸锑牌号硬度达85-105 HS，承载与耐磨更好，适合重载化工泵。把介质温度、颗粒含量与启停频率发给工程师，可给出具体牌号和预期寿命区间。" },
+      ],
+      en: [
+        { q: "Do carbon graphite bearings corrode in acid or alkali media?", a: "No electrochemical corrosion occurs. Carbon graphite is non-metallic and its base is carbon, so it is chemically inert toward most acids, alkalis, salts and organic solvents and stable across pH 0-14. There is no pitting, dezincification or galvanic attack as on metal bearings, and no pit-initiated particle embedment. Only strongly oxidizing media need a separate assessment — see the next question." },
+        { q: "Can it drop in over the OEM bronze bushing or graphite ring?", a: "Yes, provided it is fitted to the original bearing-housing dimensions. We stock common ANSI, HG, IMC and FZB sizes and build from drawings; four items must be confirmed — the outer diameter fit in the housing, the single-side radial clearance to the shaft (typically 0.10-0.15 mm), overall length and relief grooves, and the position of purge or debris grooves. Parts are ground to micron tolerance so no rework is needed at assembly. Carbon graphite is more brittle than bronze, so press it in with a guide sleeve under even load — never hammer it." },
+        { q: "What should I watch for with strongly oxidizing media?", a: "Strong oxidizers such as concentrated nitric acid, chromic acid, peroxides and hypochlorites attack the impregnation resin first and then slowly oxidize the carbon matrix. Avoid phenolic and epoxy impregnation in this duty, switch to carbonized or antimony-impregnated grades and keep the temperature down; a weight-loss immersion test at service temperature is recommended before series supply. Oxidation onset in air: roughly 420°C unimpregnated, 500-550°C resin-impregnated, 600-650°C antimony-impregnated — check hot oxidizing service against that boundary." },
+        { q: "How are chemical pump graphite bearing life and PV limits defined?", a: "The controlling factor is whether the actual PV stays continuously below what the material allows. Resin-impregnated grades are recommended at 0.8-1.2 MPa·m/s for continuous duty, while a dry or broken-flow instant can drive PV to 2.1 MPa·m/s, so frequently started pumps should take furan or antimony impregnation with thermal margin. Antimony grades reach 85-105 HS and carry heavier loads better. Send us medium temperature, solids content and start-stop frequency and we will specify the grade and an expected life range." },
+      ],
+      vi: [
+        { q: "Bạc than chì carbon có bị ăn mòn trong axit, kiềm không?", a: "Không ăn mòn điện hóa. Than chì carbon là vật liệu phi kim, nền là carbon nên trơ hóa học với hầu hết axit, kiềm, muối và dung môi hữu cơ, ổn định trong pH 0-14. Không có rỗ, không khử kẽm, không ăn mòn cặp kim loại như bạc kim loại, cũng không có cơ chế hạt bám vào điểm rỗ. Chỉ môi chất oxy hóa mạnh cần đánh giá riêng, xem câu tiếp theo." },
+        { q: "Có thay trực tiếp bạc đồng hoặc vòng graphite nguyên bản được không?", a: "Được, nhưng phải phối theo kích thước buồng bạc nguyên bản. Chúng tôi có sẵn kích thước thông dụng ANSI, HG, IMC, FZB và gia công theo bản vẽ; cần xác nhận bốn mục: lắp của đường ngoài với buồng bạc, khe hở hướng kính một bên với trục (thường 0.10-0.15 mm), chiều dài tổng và rãnh thoát, vị trí rãnh xả phoi hoặc rãnh rửa. Chi tiết mài tới dung sai micromet nên không phải sửa khi lắp. Than chì carbon giòn hơn đồng, phải dùng ống dẫn ép đều, tuyệt đối không gõ búa." },
+        { q: "Chú ý gì với môi chất oxy hóa mạnh?", a: "Môi chất oxy hóa mạnh như axit nitric đặc, axit chromic, peoxit và hypochlorite sẽ tấn công lớp nhựa impregnation trước rồi oxy hóa chậm nền carbon. Nên tránh impregnation phenolic và epoxy, chuyển sang carbonized hoặc antimony và hạ nhiệt độ làm việc; khuyến nghị thử ngâm đo mất khối lượng ở nhiệt độ vận hành trước khi cung cấp loạt. Nhiệt bắt đầu oxy hóa trong không khí: chưa impregnation khoảng 420°C, nhựa khoảng 500-550°C, antimony khoảng 600-650°C." },
+        { q: "Xác định tuổi thọ và giới hạn PV của bạc graphite bơm hóa chất thế nào?", a: "Yếu tố quyết định là PV thực tế có liên tục nằm dưới giới hạn cho phép của vật liệu hay không. Nhựa impregnation khuyến nghị 0.8-1.2 MPa·m/s khi chạy liên tục, còn thời điểm mất dòng hoặc chạy khô có thể đạt 2.1 MPa·m/s, nên bơm khởi động dừng thường xuyên hãy chọn furan hoặc antimony và giữ dự trữ nhiệt. Vật liệu antimony đạt độ cứng 85-105 HS, chịu tải nặng tốt hơn. Gửi nhiệt độ môi chất, hàm lượng hạt và tần suất khởi dừng, chúng tôi sẽ chỉ định vật liệu và khoảng tuổi thọ." },
+      ],
+      th: [
+        { q: "แบริ่งคาร์บอนกราไฟต์ถูกกัดกร่อนในตัวกลางกรดหรือด่างหรือไม่?", a: "ไม่เกิดการกัดกร่อนทางไฟฟ้าเคมี คาร์บอนกราไฟต์เป็นวัสดุอโลหะ เนื้อหลักคือคาร์บอน จึงเฉื่อยทางเคมีต่อกรด ด่าง เกลือ และตัวทำละลายอินทรีย์ส่วนใหญ่ คงตัวในช่วง pH 0-14 ไม่มีทั้งการกัดกร่อนแบบเป็นรู การชะละลายสังกะสี และการกัดกร่อนคู่โลหะแบบแบริ่งโลหะ และไม่เกิดกลไกอนุภาคฝังในหลุมกัดกร่อน สิ่งเดียวที่ต้องประเมินแยกคือตัวกลางออกซิไดซ์แรง ดูคำถามถัดไป" },
+        { q: "เปลี่ยนแทนบุชทองแดงหรือวงกราไฟต์เดิมของปั๊มเคมีได้ทันทีไหม?", a: "ได้ แต่ต้องจับคู่ตามขนาดห้องแบริ่งเดิม เรามีขนาดที่นิยมของ ANSI HG IMC FZB และรับสร้างตามแบบเขียน ต้องยืนยันสี่รายการ คือ การสวมของเส้นผ่านศูนย์กลางนอกกับห้องแบริ่ง ช่องว่างรัศมีด้านเดียวกับเพลา (มักใช้ 0.10-0.15 mm) ความยาวรวมกับร่องถอด และตำแหน่งร่องคายเศษหรือร่องล้าง ชิ้นงานกัดถึงระดับไมโครเมตรจึงไม่ต้องแก้อีกตอนประกอบ คาร์บอนกราไฟต์เปราะกว่าทองแดง ต้องใช้ปลอกนำกดเข้าอย่างสม่ำเสมอ ห้ามตีโดยตรง" },
+        { q: "ส่งตัวกลางออกซิไดซ์แรงต้องระวังอะไร?", a: "ตัวกลางออกซิไดซ์แรง เช่น กรดไนตริกเข้มข้น กรดโครมิก เพอร์ออกไซด์ และไฮโปคลอไรต์ จะทำลายชั้นเรซินอิมเพรกเนตก่อน แล้วจึงออกซิไดซ์เนื้อคาร์บอนอย่างช้าๆ กรณีนี้ควรเลี่ยงอิมเพรกเนต phenolic และ epoxy เปลี่ยนเป็นเกรด carbonized หรือเกรดพลวงและลดอุณหภูมิใช้งานลง แนะนำให้ทดสอบแช่แล้วชั่งน้ำหนักที่สูญเสียที่อุณหภูมิงานก่อนส่งมอบเป็นล็อต อุณหภูมิเริ่มออกซิไดซ์ในอากาศ: ยังไม่อิมเพรกเนตราว 420°C เรซินราว 500-550°C พลวงราว 600-650°C" },
+        { q: "กำหนดอายุการใช้งานและขีดจำกัด PV ของแบริ่งกราไฟต์ปั๊มเคมีอย่างไร?", a: "ตัวควบคุมหลักคือค่า PV จริงอยู่ใต้ขีดที่วัสดุรับได้ต่อเนื่องหรือไม่ เกรดอิมเพรกเนตเรซินแนะนำที่ 0.8-1.2 MPa·m/s สำหรับการเดินต่อเนื่อง ขณะที่ช่วงขาดของเหลวหรือวิ่งแห้งอาจพุ่งถึง 2.1 MPa·m/s ปั๊มที่สตาร์ต-สตอปบ่อยจึงควรเลือกอิมเพรกเนต furan หรือพลวงและเว้นค่าเผื่ออุณหภูมิไว้ เกรดพลวงมีความแข็ง 85-105 HS รับโหลดหนักได้ดีกว่า ส่งข้อมูลอุณหภูมิตัวกลาง ปริมาณอนุภาค และความถี่การเปิดปิดมา วิศวกรของเราจะระบุเกรดและช่วงอายุที่คาดไว้" },
       ],
     },
   },

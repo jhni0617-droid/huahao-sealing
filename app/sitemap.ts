@@ -1,4 +1,5 @@
 import { products } from "@/lib/products"
+import { productCategoryLandings } from "@/lib/product-category-data"
 import { blogPosts } from "@/lib/blog-data"
 import { industryLandings } from "@/lib/industry-landing-data"
 import { comparisons } from "@/lib/compare-data"
@@ -15,6 +16,7 @@ const CONTENT_LAST_MODIFIED = "2026-06-01"
 const staticRoutes = [
   { path: "", priority: "1.0" },
   { path: "/products", priority: "0.9" },
+  { path: "/custom", priority: "0.8" },
   { path: "/materials", priority: "0.8" },
   { path: "/markets", priority: "0.8" },
   { path: "/resources", priority: "0.8" },
@@ -62,6 +64,23 @@ export default async function sitemap() {
           [
             ["x-default", `${baseUrl}/en/products/${p.slug}`],
             ...locales.map((l) => [l, `${baseUrl}/${l}/products/${p.slug}`]),
+          ]
+        ),
+      },
+    }))
+  )
+
+  const categoryRoutes = productCategoryLandings.flatMap((c) =>
+    locales.map((locale) => ({
+      url: `${baseUrl}/${locale}/products/${c.slug}`,
+      lastModified: CONTENT_LAST_MODIFIED,
+      changeFrequency: "monthly" as const,
+      priority: "0.8" as const,
+      alternates: {
+        languages: Object.fromEntries(
+          [
+            ["x-default", `${baseUrl}/en/products/${c.slug}`],
+            ...locales.map((l) => [l, `${baseUrl}/${l}/products/${c.slug}`]),
           ]
         ),
       },
@@ -170,5 +189,5 @@ export default async function sitemap() {
     }))
   )
 
-  return [...routes, ...productRoutes, ...blogRoutes, ...industryRoutes, ...comparisonRoutes, ...materialRoutes, ...marketRoutes, ...resourceRoutes]
+  return [...routes, ...productRoutes, ...categoryRoutes, ...blogRoutes, ...industryRoutes, ...comparisonRoutes, ...materialRoutes, ...marketRoutes, ...resourceRoutes]
 }

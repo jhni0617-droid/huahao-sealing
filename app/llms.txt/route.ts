@@ -1,4 +1,5 @@
 import { productsByLocale } from "@/lib/translations-products"
+import { productCategoryLandings } from "@/lib/product-category-data"
 import { siteConfig, enSiteConfig } from "@/lib/constants"
 import { blogPosts } from "@/lib/blog-data"
 
@@ -24,6 +25,17 @@ export function GET() {
       (p) =>
         `- [${p.name} (${p.model})](${base}/en/products/${p.slug}): ${p.shortDesc}`
     ),
+    "",
+    "## Product Categories",
+    ...productCategoryLandings.map(
+      (c) => `- [${c.name.en}](${base}/en/products/${c.slug}): ${c.description.en}`
+    ),
+    "",
+    "## Duty-Specific Pages",
+    `- [Carbon Graphite Bushings for Magnetic Pumps](${base}/en/applications/magnetic-pump-bushings): dry-run and high-PV selection for magnetic drive pump journal bearings and sleeves.`,
+    `- [Carbon Bearings for Chemical Pumps](${base}/en/applications/chemical-pump-bearings): corrosion-resistant graphite bearings for acid, alkali, solvent and oil-free duty.`,
+    `- [Impregnated Graphite Blanks for Machining](${base}/en/materials/impregnated-graphite-blanks-for-machining): rod, tube, ring and block stock; machine before or after impregnation.`,
+    `- [Custom Machining to Drawing](${base}/en/custom): non-standard bushings, seal rings and segmented parts from a drawing or sample.`,
     "",
     "## Key Pages",
     `- [All Products](${base}/en/products): full carbon graphite product catalog by category.`,
