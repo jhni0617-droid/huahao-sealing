@@ -8,6 +8,8 @@
  * 数值口径取自 lib/products.ts 的 SKU 规格与 lib/materials-data.ts 的牌号表，不新增未验证参数。
  */
 
+import { applyLandingTranslations } from "./landing-translations"
+
 type Loc = { zh: string; en: string; vi?: string; th?: string }
 
 export interface ProductCategoryLanding {
@@ -41,7 +43,7 @@ const sealRingSkus = [
   "527-series", "press-series", "dyeing-machine-series", "oil-pump-double-seal",
 ]
 
-export const productCategoryLandings: ProductCategoryLanding[] = [
+const RAW_ITEMS: ProductCategoryLanding[] = [
   // 1. 碳石墨密封环
   {
     slug: "seal-rings",
@@ -616,3 +618,11 @@ export function getCategorySlugForProduct(product: { slug: string; category: str
   }
   return undefined
 }
+
+/**
+ * productCategoryLandings 补齐俄/日/韩三语种后的对外导出。
+ * 原数组只写了 zh/en/vi/th，categories 的 /ru /ja /ko 页面因此整段吐英文，
+ * 被 Search Console 判成「重复网页，Google 选择的规范网页与用户指定的不同」。
+ * 译文来自 content/landing-translations.json（scripts/translate-landings.ts 增量生成）。
+ */
+export const productCategoryLandings = applyLandingTranslations("categories", RAW_ITEMS)

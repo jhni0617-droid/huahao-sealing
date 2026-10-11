@@ -5,13 +5,17 @@ User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /api/
+# 产品页「询价」按钮带的 ?product= 变体页无需抓取（canonical 已指向无参数的 /contact）
+Disallow: /*?product=
 
 # 搜索引擎
 User-agent: Googlebot
 Allow: /
+Disallow: /*?product=
 
 User-agent: Bingbot
 Allow: /
+Disallow: /*?product=
 
 User-agent: Baiduspider
 Allow: /

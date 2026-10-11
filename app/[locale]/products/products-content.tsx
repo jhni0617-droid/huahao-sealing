@@ -1,19 +1,13 @@
-"use client"
-
-import { useEffect, useMemo, useState } from "react"
 import Image from "next/image"
-import { useLocale, useTranslations } from "next-intl"
-import { useSearchParams } from "next/navigation"
+import { getTranslations } from "next-intl/server"
 import { Link } from "@/i18n/routing"
-// 只保留类型与轻量工具；产品数据一律由服务端按语言取好后经 props 传入。
-// ⚠️ 不要在这里 import @/lib/products、@/lib/products-en、@/lib/translations-products，
-// 那些模块含 7 种语言的全量文案，会把客户端包撑大 250KB+。
-import { getLocalized, getLocalizedProductCategory } from "@/lib/locale-data"
+import { getLocalizedProductCategory } from "@/lib/locale-data"
 import type { ProductsPageData } from "@/lib/products-page-data"
+import type { Product } from "@/lib/products"
 import CTASection from "@/components/CTASection"
 import VideoGallery from "@/components/VideoGallery"
 import Icon from "@/components/ui/Icon"
-import type { Product } from "@/lib/products"
+import ProductsFilters from "./products-filters"
 
 const localizedCopy = {
   zh: {
@@ -33,7 +27,6 @@ const localizedCopy = {
     materialDesc: "树脂、锑、铜浸渍及配对面材料建议。",
     qc: "质量确认",
     qcDesc: "尺寸、端面、外观与关键性能出厂检查。",
-    model: "型号",
     view: "查看详情",
     noImage: "定制石墨零部件",
     emptyHint: "换一个关键词，或直接发送工况让工程师匹配型号。",
@@ -55,7 +48,6 @@ const localizedCopy = {
     materialDesc: "Resin, antimony, copper impregnation and mating face guidance.",
     qc: "QC confirmation",
     qcDesc: "Dimensional, face, visual, and key performance checks before shipment.",
-    model: "Model",
     view: "View Details",
     noImage: "Custom graphite component",
     emptyHint: "Try another keyword or send duty conditions for engineering selection.",
@@ -76,7 +68,6 @@ const localizedCopy = {
     materialDesc: "Tư vấn tẩm nhựa, antimon, đồng và vật liệu bề mặt đối tiếp.",
     qc: "Xác nhận QC",
     qcDesc: "Kiểm tra kích thước, mặt làm kín, ngoại quan và hiệu suất trước xuất xưởng.",
-    model: "Model",
     view: "Xem chi tiết",
     noImage: "Linh kiện than chì tùy chỉnh",
     emptyHint: "Thử từ khóa khác hoặc gửi điều kiện vận hành để kỹ sư chọn mẫu.",
@@ -97,7 +88,6 @@ const localizedCopy = {
     materialDesc: "แนะนำการอัดซึมเรซิน พลวง ทองแดง และวัสดุผิวคู่",
     qc: "ยืนยันคุณภาพ",
     qcDesc: "ตรวจสอบขนาด หน้าซีล ลักษณะภายนอก และสมรรถนะก่อนส่งออก",
-    model: "รุ่น",
     view: "ดูรายละเอียด",
     noImage: "ชิ้นส่วนกราไฟต์แบบกำหนดเอง",
     emptyHint: "ลองคำค้นอื่น หรือส่งสภาวะให้วิศวกรช่วยเลือกรุ่น",
@@ -118,7 +108,6 @@ const localizedCopy = {
     materialDesc: "Рекомендации по пропитке смолой, сурьмой, медью и сопряженным поверхностям.",
     qc: "Контроль качества",
     qcDesc: "Проверка размеров, торцов, внешнего вида и ключевых параметров перед отгрузкой.",
-    model: "Модель",
     view: "Подробнее",
     noImage: "Графитовая деталь на заказ",
     emptyHint: "Попробуйте другой запрос или отправьте условия работы для подбора.",
@@ -139,7 +128,6 @@ const localizedCopy = {
     materialDesc: "樹脂、アンチモン、銅含浸および相手材の提案。",
     qc: "品質確認",
     qcDesc: "寸法、端面、外観、主要性能を出荷前に検査。",
-    model: "型番",
     view: "詳細を見る",
     noImage: "カスタムグラファイト部品",
     emptyHint: "別のキーワードを試すか、運転条件を送って選定相談してください。",
@@ -160,40 +148,9 @@ const localizedCopy = {
     materialDesc: "수지, 안티몬, 동 함침 및 상대면 재료 제안.",
     qc: "품질 확인",
     qcDesc: "출하 전 치수, 단면, 외관 및 핵심 성능 검사.",
-    model: "모델",
     view: "상세 보기",
     noImage: "맞춤형 그라파이트 부품",
     emptyHint: "다른 키워드를 시도하거나 운전 조건을 보내 선정 상담을 받으세요.",
-  },
-}
-
-const categoryNotes: Record<string, Record<string, string>> = {
-  "seal-rings": {
-    zh: "机械密封动静环、泵用密封端面及标准互换型号。",
-    en: "Mechanical seal faces, pump seal rings, and interchangeable standard models.",
-    vi: "Mặt phớt cơ khí, vòng phớt bơm và model tiêu chuẩn thay thế.",
-    th: "หน้าซีลกล แหวนซีลปั๊ม และรุ่นมาตรฐานทดแทน",
-    ru: "Торцевые уплотнения, кольца для насосов и взаимозаменяемые модели.",
-    ja: "メカニカルシール面、ポンプ用シールリング、標準互換型番。",
-    ko: "기계식 씰 페이스, 펌프 씰 링 및 표준 호환 모델.",
-  },
-  "carbon-graphite-sleeves": {
-    zh: "自润滑轴套、轴承和止推件，适合无油、水下和腐蚀工况。",
-    en: "Self-lubricating bushings, bearings, and thrust parts for oil-free, submerged, and corrosive duty.",
-    vi: "Bạc lót, ổ trục và chi tiết chặn tự bôi trơn cho môi trường không dầu, ngập nước và ăn mòn.",
-    th: "บูช แบริ่ง และชิ้นส่วนรับแรงแบบหล่อลื่นตัวเอง สำหรับงานไร้น้ำมัน ใต้น้ำ และกัดกร่อน",
-    ru: "Самосмазывающиеся втулки, подшипники и упорные детали для безмасляных, погружных и коррозионных условий.",
-    ja: "無給油、水中、腐食条件向けの自己潤滑ブッシング、軸受、スラスト部品。",
-    ko: "무급유, 수중 및 부식 조건용 자체 윤활 부싱, 베어링, 스러스트 부품.",
-  },
-  "three-part-rings": {
-    zh: "分瓣结构，适合无法从轴端安装的封闭腔体。",
-    en: "Segmented rings for enclosed cavities where shaft-end installation is not possible.",
-    vi: "Vòng phân đoạn cho khoang kín không thể lắp từ đầu trục.",
-    th: "วงแหวนแบ่งชิ้นสำหรับช่องปิดที่ไม่สามารถติดตั้งจากปลายเพลาได้",
-    ru: "Сегментные кольца для закрытых полостей, где монтаж с конца вала невозможен.",
-    ja: "軸端から取り付けできない密閉空間向けの分割リング。",
-    ko: "축 끝에서 설치할 수 없는 밀폐 공간용 분할 링.",
   },
 }
 
@@ -204,18 +161,14 @@ const specLabelSets = {
 }
 
 function getCopy(locale: string) {
-  return getLocalized(localizedCopy, locale)
+  return localizedCopy[(locale as keyof typeof localizedCopy)] ?? localizedCopy.en
 }
 
 function getSpec(product: Product, labels: string[]) {
   return product.specs.find((s) => labels.includes(s.label))
 }
 
-function getCategoryDescription(slug: string, locale: string) {
-  return getLocalized(categoryNotes[slug] || { en: "" }, locale)
-}
-
-function ProductCard({ product, locale }: { product: Product; locale: string }) {
+function ProductCard({ product, locale, cats }: { product: Product; locale: string; cats: string[] }) {
   const copy = getCopy(locale)
   const tempSpec = getSpec(product, specLabelSets.temp)
   const pressureSpec = getSpec(product, specLabelSets.pressure)
@@ -225,6 +178,8 @@ function ProductCard({ product, locale }: { product: Product; locale: string }) 
   return (
     <Link
       href={`/products/${product.slug}`}
+      data-product-slug={product.slug}
+      data-cats={cats.join(" ")}
       className="group flex h-full flex-col border-r border-b border-border bg-white transition-colors duration-300 focus-ring hover:bg-[#fafafb]"
     >
       <div className="relative aspect-square overflow-hidden border-b border-border bg-[#f0f1f2]">
@@ -283,86 +238,44 @@ function ProductCard({ product, locale }: { product: Product; locale: string }) 
   )
 }
 
+const capabilityCards = (copy: (typeof localizedCopy)["en"]) => [
+  { title: copy.custom, desc: copy.customDesc, icon: "file-text" as const },
+  { title: copy.material, desc: copy.materialDesc, icon: "chemical" as const },
+  { title: copy.qc, desc: copy.qcDesc, icon: "shield" as const },
+]
+
 /**
- * 外层只负责读 URL 查询参数，并把它交给内层组件。
+ * 产品目录页主体（服务端组件）。
  *
- * 用 `key` 而不是 `useEffect` 来让筛选状态跟随 URL 变化：
- * URL 上的 ?category= 一变，key 就变，内层组件整体重挂载、useState 重新初始化。
- * 这样既覆盖了浏览器前进/后退，又避免了「在 effect 里同步 setState」造成的级联渲染。
+ * 关键约束：**全部**产品卡片都在这里渲染进 HTML，分类与搜索只是客户端对已渲染卡片的显隐。
+ * 改造前整个目录在客户端组件里，靠 useSearchParams + <Suspense> 才渲染，
+ * 静态路由下服务端只吐骨架，/products 交付的 HTML 里一条产品链接都没有。
  */
-export default function ProductsPageContent(props: ProductsPageData) {
-  // 取参放在客户端读：页面不再 await searchParams，从而保持静态预渲染（SSG）。
-  // 需要外层 <Suspense> 包裹，见 app/[locale]/products/page.tsx。
-  const searchParams = useSearchParams()
-  const initialCategory = searchParams.get("category") ?? "all"
-
-  return <ProductsDirectory key={initialCategory} {...props} initialCategory={initialCategory} />
-}
-
-function ProductsDirectory({
+export default async function ProductsPageContent({
+  locale,
   categories,
   allProducts,
   productsByCategory,
   categoryGuides,
-  initialCategory,
-}: ProductsPageData & { initialCategory: string }) {
-  const locale = useLocale()
-  const t = useTranslations("products")
+  searchIndex,
+}: ProductsPageData) {
+  const t = await getTranslations({ locale, namespace: "products" })
   const copy = getCopy(locale)
 
-  const catList = categories
+  // 反向索引：产品 slug → 所属分类 slug 列表，供客户端按分类隐藏卡片
+  const catsByProduct: Record<string, string[]> = {}
+  for (const [catSlug, list] of Object.entries(productsByCategory)) {
+    for (const product of list) {
+      if (!catsByProduct[product.slug]) catsByProduct[product.slug] = []
+      catsByProduct[product.slug].push(catSlug)
+    }
+  }
 
-  const knownSlugs = useMemo(() => new Set(catList.map((cat) => cat.slug)), [catList])
-  const validInitial = initialCategory && knownSlugs.has(initialCategory) ? initialCategory : "all"
-  const [activeCategory, setActiveCategory] = useState(validInitial)
-  const [query, setQuery] = useState("")
-
-  // 兼容 /products#seal-rings 形式的锚点链接：命中分类时直接激活对应筛选。
-  // 必须放在 effect 里而不是 useState 惰性初始化 —— 服务端渲染时读不到 hash，
-  // 若在初始化阶段读会与 SSR 结果不一致，导致 hydration mismatch。
-  useEffect(() => {
-    if (validInitial !== "all") return
-    const hash = window.location.hash.slice(1)
-    // 这里读的是浏览器地址栏（React 之外的外部状态），且必须在挂载后执行；
-    // 上面的注释解释了为什么不能改成惰性初始化。规则属于启发式误报，故本地放行。
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    if (hash && knownSlugs.has(hash)) setActiveCategory(hash)
-  }, [validInitial, knownSlugs])
-
-  const categorySummaries = useMemo(
-    () =>
-      catList.map((cat) => ({
-        ...cat,
-        count: (productsByCategory[cat.slug] ?? []).length,
-        description: getCategoryDescription(cat.slug, locale),
-      })),
-    [catList, productsByCategory, locale],
-  )
-
-  const filteredProducts = useMemo(() => {
-    const base = activeCategory === "all" ? allProducts : (productsByCategory[activeCategory] ?? [])
-    const q = query.trim().toLowerCase()
-    if (!q) return base
-
-    return base.filter((product) => {
-      const haystack = [
-        product.name,
-        product.model,
-        getLocalizedProductCategory(product.category, locale),
-        product.shortDesc,
-        product.description,
-        ...product.specs.flatMap((spec) => [spec.label, spec.value]),
-        ...(product.applications || []),
-        ...(product.features || []),
-        ...(product.materials || []),
-      ]
-        .filter(Boolean)
-        .join(" ")
-        .toLowerCase()
-
-      return haystack.includes(q)
-    })
-  }, [activeCategory, allProducts, productsByCategory, query, locale])
+  const categoryTabs = categories.map((cat) => ({
+    slug: cat.slug,
+    name: cat.name,
+    count: (productsByCategory[cat.slug] ?? []).length,
+  }))
 
   return (
     <>
@@ -379,57 +292,16 @@ function ProductsDirectory({
             <p className="mt-4 text-base leading-relaxed text-muted">{copy.intro}</p>
           </div>
 
-          <div className="mt-8 grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
-            <label className="relative block">
-              <Icon name="search" className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" />
-              <input
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                className="form-input rounded-none pl-11"
-                placeholder={copy.search}
-                aria-label="Search products"
-              />
-            </label>
-            <div className="flex flex-wrap gap-3">
-              <Link href="/contact" className="btn-primary">
-                {copy.drawing}
-                <Icon name="arrow-right" className="h-4 w-4" />
-              </Link>
-              <Link href="/applications" className="btn-secondary">
-                {copy.applications}
-              </Link>
-            </div>
-          </div>
-
-          <div className="mt-6 flex flex-wrap items-center gap-2">
-            <button
-              onClick={() => setActiveCategory("all")}
-              className={`border px-4 py-2 text-sm font-semibold transition-colors ${
-                activeCategory === "all"
-                  ? "border-accent bg-accent text-white"
-                  : "border-border bg-white text-primary hover:border-accent hover:text-accent"
-              }`}
-            >
-              {t("all")}
-              <span className="ml-2 text-xs opacity-70">{allProducts.length}</span>
-            </button>
-            {categorySummaries.map((cat) => (
-              <button
-                key={cat.slug}
-                id={cat.slug}
-                onClick={() => setActiveCategory(cat.slug)}
-                className={`scroll-mt-28 border px-4 py-2 text-sm font-semibold transition-colors ${
-                  activeCategory === cat.slug
-                    ? "border-accent bg-accent text-white"
-                    : "border-border bg-white text-primary hover:border-accent hover:text-accent"
-                }`}
-              >
-                {cat.name}
-                <span className="ml-2 text-xs opacity-70">{cat.count}</span>
-              </button>
-            ))}
-            <span className="ml-auto hidden text-xs leading-relaxed text-muted lg:block">{copy.reference}</span>
-          </div>
+          <ProductsFilters
+            categoryTabs={categoryTabs}
+            allLabel={t("all")}
+            allCount={allProducts.length}
+            searchPlaceholder={copy.search}
+            drawingLabel={copy.drawing}
+            applicationsLabel={copy.applications}
+            referenceNote={copy.reference}
+            searchIndex={searchIndex}
+          />
 
           {/* 类别落地页入口：/products 与各 /products/{类别} 之间的父子内链 */}
           {categoryGuides.length > 0 && (
@@ -452,31 +324,28 @@ function ProductsDirectory({
 
       <section className="section-padding industrial-surface">
         <div className="container-wide">
-          {filteredProducts.length === 0 && (
-            <div className="border border-border bg-white px-6 py-16 text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center border border-border bg-background text-accent">
-                <Icon name="search" className="h-5 w-5" />
-              </div>
-              <div className="font-bold text-primary">{t("empty")}</div>
-              <p className="mt-2 text-sm text-muted">{copy.emptyHint}</p>
+          <div id="products-empty" style={{ display: "none" }} className="border border-border bg-white px-6 py-16 text-center">
+            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center border border-border bg-background text-accent">
+              <Icon name="search" className="h-5 w-5" />
             </div>
-          )}
+            <div className="font-bold text-primary">{t("empty")}</div>
+            <p className="mt-2 text-sm text-muted">{copy.emptyHint}</p>
+          </div>
 
           {/* 发丝线网格：用单元格边框而非 gap-px 底色，避免最后一行不满时露出灰块 */}
-          {filteredProducts.length > 0 && (
-            <div className="mt-12 grid border-l border-t border-border md:grid-cols-2 lg:grid-cols-3">
-              {filteredProducts.map((product) => (
-                <ProductCard key={product.slug} product={product} locale={locale} />
-              ))}
-            </div>
-          )}
+          <div id="products-grid" className="mt-12 grid border-l border-t border-border md:grid-cols-2 lg:grid-cols-3">
+            {allProducts.map((product) => (
+              <ProductCard
+                key={product.slug}
+                product={product}
+                locale={locale}
+                cats={catsByProduct[product.slug] ?? []}
+              />
+            ))}
+          </div>
 
           <div className="mt-14 grid gap-px border border-border bg-border md:grid-cols-3">
-            {[
-              { title: copy.custom, desc: copy.customDesc, icon: "file-text" as const },
-              { title: copy.material, desc: copy.materialDesc, icon: "chemical" as const },
-              { title: copy.qc, desc: copy.qcDesc, icon: "shield" as const },
-            ].map((item, index) => (
+            {capabilityCards(copy).map((item, index) => (
               <div key={item.title} className="flex items-start gap-5 bg-white p-6 md:p-8">
                 <span className="en-caption shrink-0 text-4xl font-bold leading-none text-accent">
                   {String(index + 1).padStart(2, "0")}

@@ -6,6 +6,8 @@
  * 本地化语义由 feature 标签承载，确保表格在所有语言下均可读。
  */
 
+import { applyLandingTranslations } from "./landing-translations"
+
 export interface ComparisonData {
   slug: string
   title: { zh: string; en: string; vi?: string; th?: string }
@@ -27,7 +29,7 @@ export interface ComparisonData {
   }
 }
 
-export const comparisons: ComparisonData[] = [
+const RAW_ITEMS: ComparisonData[] = [
   {
     slug: "antimony-vs-resin-impregnated-graphite",
     title: {
@@ -313,3 +315,11 @@ export function getComparisonBySlug(slug: string): ComparisonData | undefined {
 export function getAllComparisonSlugs(): string[] {
   return comparisons.map((c) => c.slug)
 }
+
+/**
+ * comparisons 补齐俄/日/韩三语种后的对外导出。
+ * 原数组只写了 zh/en/vi/th，compare 的 /ru /ja /ko 页面因此整段吐英文，
+ * 被 Search Console 判成「重复网页，Google 选择的规范网页与用户指定的不同」。
+ * 译文来自 content/landing-translations.json（scripts/translate-landings.ts 增量生成）。
+ */
+export const comparisons = applyLandingTranslations("compare", RAW_ITEMS)

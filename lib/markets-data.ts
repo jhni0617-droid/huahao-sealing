@@ -6,6 +6,8 @@
  * 参考：越南化工泵市场、印度石化 API 682、中东油气防腐、印尼造纸与化肥、巴西乙醇与制糖、俄罗斯极寒工业。
  */
 
+import { applyLandingTranslations } from "./landing-translations"
+
 export interface MarketLanding {
   slug: string
   title: { zh: string; en: string; vi?: string; th?: string }
@@ -22,7 +24,7 @@ export interface MarketLanding {
   }
 }
 
-export const marketLandings: MarketLanding[] = [
+const RAW_ITEMS: MarketLanding[] = [
   // 1. 越南市场
   {
     slug: "vietnam",
@@ -685,3 +687,11 @@ export const marketLandings: MarketLanding[] = [
     },
   },
 ]
+
+/**
+ * marketLandings 补齐俄/日/韩三语种后的对外导出。
+ * 原数组只写了 zh/en/vi/th，markets 的 /ru /ja /ko 页面因此整段吐英文，
+ * 被 Search Console 判成「重复网页，Google 选择的规范网页与用户指定的不同」。
+ * 译文来自 content/landing-translations.json（scripts/translate-landings.ts 增量生成）。
+ */
+export const marketLandings = applyLandingTranslations("markets", RAW_ITEMS)

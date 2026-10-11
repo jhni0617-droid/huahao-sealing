@@ -5,6 +5,8 @@
  * 参考：锑浸渍石墨耐温 500℃、树脂浸渍耐温 220℃、碳化处理 600℃、SiC 配对面、API 标准、FDA 食品级。
  */
 
+import { applyLandingTranslations } from "./landing-translations"
+
 export interface IndustryLanding {
   slug: string
   title: { zh: string; en: string; vi?: string; th?: string }
@@ -21,7 +23,7 @@ export interface IndustryLanding {
   }
 }
 
-export const industryLandings: IndustryLanding[] = [
+const RAW_ITEMS: IndustryLanding[] = [
   // 1. 石油炼化
   {
     slug: "petroleum-refining",
@@ -1282,3 +1284,11 @@ export const industryLandings: IndustryLanding[] = [
     },
   },
 ]
+
+/**
+ * industryLandings 补齐俄/日/韩三语种后的对外导出。
+ * 原数组只写了 zh/en/vi/th，applications 的 /ru /ja /ko 页面因此整段吐英文，
+ * 被 Search Console 判成「重复网页，Google 选择的规范网页与用户指定的不同」。
+ * 译文来自 content/landing-translations.json（scripts/translate-landings.ts 增量生成）。
+ */
+export const industryLandings = applyLandingTranslations("applications", RAW_ITEMS)

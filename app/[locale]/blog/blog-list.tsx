@@ -1,8 +1,4 @@
-"use client"
-
-import { useMemo } from "react"
 import Image from "next/image"
-import { useSearchParams } from "next/navigation"
 import { Link } from "@/i18n/routing"
 import type { BlogListItem } from "@/lib/blog-list-data"
 
@@ -27,13 +23,13 @@ const tagLabelsByLocale: Record<string, Record<string, string>> = {
 // 注意：`posts`（文章计数单位）故意只区分中英两种 —— 与原实现保持一致，
 // 不在这里新增未经校对的其它语言译文（原先非中文/英文语言也是回落到 "posts"）。
 const copy = {
-  zh: { filter: "当前筛选", clear: "清除筛选", pinned: "公司新闻" },
-  en: { filter: "Filtered by", clear: "Clear filter", pinned: "Company News" },
-  vi: { filter: "Đang lọc", clear: "Xóa bộ lọc", pinned: "Tin công ty" },
-  th: { filter: "กำลังกรอง", clear: "ล้างตัวกรอง", pinned: "ข่าวบริษัท" },
-  ru: { filter: "Фильтр", clear: "Сбросить фильтр", pinned: "Новости компании" },
-  ja: { filter: "絞り込み", clear: "フィルタを解除", pinned: "会社ニュース" },
-  ko: { filter: "필터", clear: "필터 해제", pinned: "회사 소식" },
+  zh: { pinned: "公司新闻" },
+  en: { pinned: "Company News" },
+  vi: { pinned: "Tin công ty" },
+  th: { pinned: "ข่าวบริษัท" },
+  ru: { pinned: "Новости компании" },
+  ja: { pinned: "会社ニュース" },
+  ko: { pinned: "회사 소식" },
 } as const
 
 type Props = {
@@ -44,53 +40,31 @@ type Props = {
 }
 
 /**
- * 博客列表（含标签筛选）。
+ * 博客列表。
  *
- * 标签筛选放在客户端：`useSearchParams()` 读取 ?tag=，从而让页面本身保持静态预渲染。
- * 外层必须用 <Suspense> 包裹，见 app/[locale]/blog/page.tsx。
+ * 服务端组件：全部文章的 <a href> 必须出现在交付的 HTML 里。
+ * 之前这里是 "use client" + useSearchParams()，被外层 <Suspense> 包住，
+ * 静态路由下服务端只吐骨架，爬虫拿不到任何一条文章链接，
+ * 882 个博客 URL 因此无法通过内链被发现。
  */
 export default function BlogList({ items, monthLabels, locale, readMore }: Props) {
-  const searchParams = useSearchParams()
   const c = copy[(locale as keyof typeof copy)] ?? copy.en
   const tagLabels = tagLabelsByLocale[locale] ?? tagLabelsByLocale.en
   const postsUnit = locale === "zh" ? "篇" : "posts"
 
-  const { activeTag, pinnedPosts, grouped, months } = useMemo(() => {
-    const rawTag = searchParams.get("tag")
-    const valid = rawTag && tagLabels[rawTag] ? rawTag : null
+  const pinnedPosts = items.filter((p) => p.pinned)
+  const listed = items.filter((p) => !p.pinned)
 
-    const pinned = items.filter((p) => p.pinned && (!valid || p.tag === valid))
-    const listed = valid ? items.filter((p) => p.tag === valid && !p.pinned) : items.filter((p) => !p.pinned)
-
-    const g: Record<string, BlogListItem[]> = {}
-    for (const post of listed) {
-      const ym = post.date.slice(0, 7) // "2026-06"
-      if (!g[ym]) g[ym] = []
-      g[ym].push(post)
-    }
-
-    return {
-      activeTag: valid,
-      pinnedPosts: pinned,
-      grouped: g,
-      months: Object.keys(g).sort((a, b) => b.localeCompare(a)),
-    }
-  }, [items, searchParams, tagLabels])
+  const grouped: Record<string, BlogListItem[]> = {}
+  for (const post of listed) {
+    const ym = post.date.slice(0, 7) // "2026-06"
+    if (!grouped[ym]) grouped[ym] = []
+    grouped[ym].push(post)
+  }
+  const months = Object.keys(grouped).sort((a, b) => b.localeCompare(a))
 
   return (
     <div className="container-wide">
-      {activeTag && (
-        <div className="mb-10 flex flex-wrap items-center gap-3 border border-border bg-white px-4 py-3">
-          <span className="text-sm text-muted">{c.filter}</span>
-          <span className="border border-accent/30 bg-accent/5 px-2.5 py-1 text-xs font-bold text-accent">
-            {tagLabels[activeTag] || activeTag}
-          </span>
-          <Link href="/blog" className="ml-auto text-xs font-semibold text-accent hover:underline">
-            {c.clear}
-          </Link>
-        </div>
-      )}
-
       {/* 置顶公司新闻（带封面图） */}
       {pinnedPosts.length > 0 && (
         <div className="mb-12">

@@ -6,6 +6,8 @@
  * 参考：锑浸渍耐温 500℃、树脂浸渍耐温 220℃、碳化处理 600℃、SiC 配对面、自润滑。
  */
 
+import { applyLandingTranslations } from "./landing-translations"
+
 export interface MaterialLanding {
   slug: string
   title: { zh: string; en: string; vi?: string; th?: string }
@@ -23,7 +25,7 @@ export interface MaterialLanding {
   }
 }
 
-export const materialLandings: MaterialLanding[] = [
+const RAW_ITEMS: MaterialLanding[] = [
   // 1. 碳石墨材料总览
   {
     slug: "carbon-graphite",
@@ -1047,3 +1049,11 @@ export const materialLandings: MaterialLanding[] = [
 export function getMaterialBySlug(slug: string): MaterialLanding | undefined {
   return materialLandings.find((m) => m.slug === slug)
 }
+
+/**
+ * materialLandings 补齐俄/日/韩三语种后的对外导出。
+ * 原数组只写了 zh/en/vi/th，materials 的 /ru /ja /ko 页面因此整段吐英文，
+ * 被 Search Console 判成「重复网页，Google 选择的规范网页与用户指定的不同」。
+ * 译文来自 content/landing-translations.json（scripts/translate-landings.ts 增量生成）。
+ */
+export const materialLandings = applyLandingTranslations("materials", RAW_ITEMS)
