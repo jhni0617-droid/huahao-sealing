@@ -4,7 +4,7 @@ export const siteConfig = {
   slogan: "高品质碳石墨密封解决方案",
   description:
     "专业生产碳石墨密封环、碳石墨轴套/轴承、碳石墨三瓣环，应用于泵类、船舶设备、化工处理和通用工业领域。",
-  email: "seals@huahaoindustrial.com",
+  email: "ni@hhseal.cn",
   phone: "+86-199-5646-8316",
   whatsapp: "8619956468316",
   zalo: "+86 19556167860",
@@ -21,7 +21,7 @@ export const enSiteConfig = {
   slogan: "High-Quality Carbon Graphite Sealing Solutions",
   description:
     "Professional manufacturer of carbon graphite seal rings, bushings/bearings, and split rings for pumps, marine equipment, chemical processing, and general industry.",
-  email: "seals@huahaoindustrial.com",
+  email: "ni@hhseal.cn",
   phone: "+86-199-5646-8316",
   whatsapp: "8619956468316",
   zalo: "+86 19556167860",
