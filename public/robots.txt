@@ -1,4 +1,4 @@
-# https://huahaoindustrial.com
+# https://hhseal.cn
 # 全站开放抓取；显式放行主流搜索引擎与 AI 抓取爬虫（GEO）
 
 User-agent: *
@@ -79,4 +79,4 @@ Allow: /
 Disallow: /admin
 Disallow: /api/
 
-Sitemap: https://huahaoindustrial.com/sitemap.xml
+Sitemap: https://hhseal.cn/sitemap.xml

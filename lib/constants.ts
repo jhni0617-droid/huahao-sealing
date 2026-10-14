@@ -12,7 +12,7 @@ export const siteConfig = {
   facebookPage: "https://www.facebook.com/profile.php?id=61583759223569",
   youtube: "https://www.youtube.com/@jhni-d3s",
   address: "中国安徽省六安市霍邱县龙潭镇产业园14号",
-  website: "https://huahaoindustrial.com",
+  website: "https://hhseal.cn",
 }
 
 export const enSiteConfig = {
@@ -29,7 +29,7 @@ export const enSiteConfig = {
   facebookPage: "https://www.facebook.com/profile.php?id=61583759223569",
   youtube: "https://www.youtube.com/@jhni-d3s",
   address: "No.14, Longtan Town Industrial Park, Huoqiu County, Lu'an, Anhui, China",
-  website: "https://huahaoindustrial.com",
+  website: "https://hhseal.cn",
 }
 
 export const advantages = [

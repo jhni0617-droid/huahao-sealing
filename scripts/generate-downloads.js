@@ -320,10 +320,10 @@ function generateProductCatalog() {
     { label: 'Company Name', value: 'Huahao Sealing Co., Ltd.' },
     { label: '地址', value: '安徽省六安市霍邱县' },
     { label: 'Address', value: 'Huoqiu, Lu\'an, Anhui, China' },
-    { label: '邮箱 / Email', value: 'info@huahao-sealing.com' },
+    { label: '邮箱 / Email', value: 'seals@huahaoindustrial.com' },
     { label: '电话 / Tel', value: '+86 xxx xxxx xxxx' },
     { label: 'WhatsApp', value: '+86 xxx xxxx xxxx' },
-    { label: '网站 / Website', value: 'www.huahao-sealing.com' },
+    { label: '网站 / Website', value: 'hhseal.cn' },
   ];
 
   contacts.forEach(c => {
@@ -583,7 +583,7 @@ function generateTechnicalManual() {
   doc.text('技术支持邮箱 / Technical Support:', 60, y);
   doc.fillColor('#0f172a');
   doc.fontSize(12);
-  doc.text('engineer@huahao-sealing.com', 220, y - 1);
+  doc.text('seals@huahaoindustrial.com', 220, y - 1);
   doc.restore();
 
   doc.end();

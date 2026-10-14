@@ -74,8 +74,8 @@ export async function POST(request: NextRequest) {
       from: `Huahao Website Inquiry <${process.env.SMTP_USER}>`,
       to: process.env.SMTP_USER,
       replyTo: email,
-      subject: `New Inquiry from ${name}${company ? ` (${company})` : ""} - huahaoindustrial.com`,
-      text: `New inquiry received from huahaoindustrial.com contact form:
+      subject: `New Inquiry from ${name}${company ? ` (${company})` : ""} - hhseal.cn`,
+      text: `New inquiry received from hhseal.cn contact form:
 
 ${bodyText}
 

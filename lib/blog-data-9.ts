@@ -3286,7 +3286,7 @@ Hermle车削后Ra0.06μm、TIR1.5μm、平面度2.1μm，还是达不到12000r/m
 - 活动截止：2025年12月31日
 - 适用客户：外贸采购商、设备主机厂、密封代理商（个人DIY除外）
 - 免费内容：任意规格石墨件（最多1件）按4μm体系全工序免费加工（含M106D坯，如需更高级M140K/M206K补差价即可）+ 全检数据报告（关卡1-5全数据+Taylor Hobson原始曲线+蔡司三坐标报告+高速动态台架测试数据1小时）+ 顺丰空运到付
-- 申请方式：官网（www.huahao-sealing.com）下载《高速4μm首件免费申请表》，填写工况参数+数量预期，24小时内响应，7个工作日内发货
+- 申请方式：官网（hhseal.cn）下载《高速4μm首件免费申请表》，填写工况参数+数量预期，24小时内响应，7个工作日内发货
 - 2025年预计开放：200家，10万件？不对——200家×1件/家=200件首件，但批量委托200家合计10万件，符合任务书"200家/10万件委托"宣传。
 
 （任务书宣传口径："200家/10万件委托"=2025年全年预计对外完成200家客户的委托加工合同，累计10万件，完全匹配。）
@@ -3490,7 +3490,7 @@ Huahao 4-μm System commitments:
 - Deadline: 31 December 2025
 - Eligible: Overseas importers, OEM equipment builders, seal trade agencies (no end-consumer DIY)
 - Coverage: ANY-spec graphite piece (1 pc max) → complete 4-μm process FREE (M106D blank included; upgrade to M140K/M206K → pay only grade diff). PLUS: Full Gate 1–5 inspection report + Taylor Hobson raw profile curves + Zeiss CMM report + 1-hr high-speed dynamic bench data. SF Air freight collect.
-- Apply: www.huahao-sealing.com → download "High-Speed 4-μm First-Piece FREE Form"; specify duty conditions, expected volumes. 24-hr reply, 7-working-day shipment.
+- Apply: hhseal.cn → download "High-Speed 4-μm First-Piece FREE Form"; specify duty conditions, expected volumes. 24-hr reply, 7-working-day shipment.
 - 2025 quota: 200 companies / 100,000 pcs total external batch volume.
 
 外协加工业务按上述质量体系运行，接受客户验厂与批次审计。

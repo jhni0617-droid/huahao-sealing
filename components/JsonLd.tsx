@@ -1,7 +1,7 @@
 import { siteConfig } from "@/lib/constants"
 import { getLocalizedProductCategory, getLocalizedSiteConfig } from "@/lib/locale-data"
 
-const baseUrl = "https://huahaoindustrial.com"
+const baseUrl = "https://hhseal.cn"
 
 interface JsonLdProps {
   locale?: string

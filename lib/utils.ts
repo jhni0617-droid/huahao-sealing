@@ -18,7 +18,7 @@ export function generateMeta({
   const ogImage = image || `${cfg.website}/images/og-banner.jpg`
   const fullTitle = `${title} | ${cfg.name}`
   // localePrefix: "always" —— 所有语言（含默认语言 en）的规范 URL 都带语言前缀，
-  // 如 https://huahaoindustrial.com/en/about。无前缀 URL 会 307 重定向到带前缀版本，不能作为 canonical。
+  // 如 https://hhseal.cn/en/about。无前缀 URL 会 307 重定向到带前缀版本，不能作为 canonical。
   const url = path
     ? locale
       ? `${cfg.website}/${locale}${path}`

@@ -8,7 +8,7 @@ import { marketLandings } from "@/lib/markets-data"
 import { resourceLandings } from "@/lib/resources-data"
 import { routing } from "@/i18n/routing"
 
-const baseUrl = "https://huahaoindustrial.com"
+const baseUrl = "https://hhseal.cn"
 
 // 内容页面更新不频繁，使用稳定的最后修改日期（而非每次构建都变的 new Date()）
 const CONTENT_LAST_MODIFIED = "2026-06-01"
@@ -34,7 +34,7 @@ const staticRoutes = [
 export default async function sitemap() {
   const locales = routing.locales
 
-  // localePrefix: "always" —— 所有语言（含默认语言 en）都带前缀，规范 URL 如 https://huahaoindustrial.com/en/products
+  // localePrefix: "always" —— 所有语言（含默认语言 en）都带前缀，规范 URL 如 https://hhseal.cn/en/products
   const routes = staticRoutes.flatMap((r) => {
     const entries = locales.map((locale) => ({
       url: `${baseUrl}/${locale}${r.path}`,

@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const isZh = locale === "zh"
   const locales = routing.locales
   const defaultLocale = routing.defaultLocale
-  // localePrefix: "always" —— 规范 URL 统一带语言前缀（含默认语言 en）：https://huahaoindustrial.com/en
+  // localePrefix: "always" —— 规范 URL 统一带语言前缀（含默认语言 en）：https://hhseal.cn/en
   const canonicalUrl = `${siteConfig.website}/${locale}`
 
   return {
