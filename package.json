@@ -24,7 +24,8 @@
     "translate:blog:check": "tsx scripts/translate-blog.ts --dry-run",
     "translate:blog:verify": "tsx scripts/verify-blog-translations.ts",
     "translate:landings": "tsx scripts/translate-landings.ts",
-    "translate:landings:check": "tsx scripts/translate-landings.ts --dry-run"
+    "translate:landings:check": "tsx scripts/translate-landings.ts --dry-run",
+    "indexnow": "node scripts/indexnow.mjs"
   },
   "dependencies": {
     "@fontsource/bebas-neue": "^5.3.0",
