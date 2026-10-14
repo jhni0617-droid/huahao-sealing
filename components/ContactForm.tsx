@@ -1,8 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useTranslations } from "next-intl"
-import { useSearchParams } from "next/navigation"
 import { siteConfig } from "@/lib/constants"
 import { getMetaBrowserCookies, trackPixelEvent } from "@/lib/meta/client"
 import { trackEvent } from "@/lib/track"
@@ -17,11 +16,15 @@ interface Props {
 const EMAIL_RE = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
 export default function ContactForm({ defaultProduct: defaultProductProp }: Props) {
-  // ?product= 放在客户端读：这样 /contact 页不再 await searchParams，
-  // 可以保持静态预渲染。props 入口保留，方便以后从其它页面直接指定。
-  // 使用 useSearchParams() 的组件必须被 <Suspense> 包裹（见 app/[locale]/contact/page.tsx）。
-  const searchParams = useSearchParams()
-  const defaultProduct = searchParams.get("product") ?? defaultProductProp
+  // ?product= 只在提交时用来给询盘打标签，不参与渲染，所以从 window.location 读。
+  // 不用 useSearchParams()：它会让整棵表单子树退出 SSR，联系页的 HTML 里就没有
+  // 任何 input，Google 和 AI 抓取器看不到表单（同「列表内链必须 SSR」那条规矩）。
+  const productRef = useRef<string | undefined>(defaultProductProp)
+  useEffect(() => {
+    const fromUrl = new URLSearchParams(window.location.search).get("product")
+    if (fromUrl) productRef.current = fromUrl
+  }, [])
+  const defaultProduct = productRef.current
 
   const [step, setStep] = useState(1)
   const [submitted, setSubmitted] = useState(false)
