@@ -138,32 +138,53 @@ export function ProductJsonLd({
   locale?: string
 }) {
   const cfg = { ...siteConfig, ...getLocalizedSiteConfig(locale) }
+  const url = slug ? `${baseUrl}/${locale}/products/${slug}` : undefined
+
+  // 注意：不使用 schema.org 的 Product 类型。
+  // 本站是询价制 B2B（无公开价格、无评价），而 Google 的产品摘要要求 Product 必须
+  // 提供 offers / review / aggregateRating 三者之一，且 Offer.price 为必填 —— 无法合规满足。
+  // 因此改为 ItemPage + Thing：结构化数据依旧可被 AI 引擎与垂直搜索读取，
+  // 但不再触发 Search Console 的“产品摘要”严重错误。
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Product",
+    "@type": "ItemPage",
+    "@id": url,
+    url,
     name,
-    model,
-    sku: model,
     description,
-    url: slug ? `${baseUrl}/${locale}/products/${slug}` : undefined,
-    image: image ? (image.startsWith("http") ? image : `${baseUrl}${image}`) : undefined,
-    category: getLocalizedProductCategory(category, locale),
-    brand: {
-      "@type": "Brand",
-      name: cfg.name,
+    inLanguage: locale,
+    isPartOf: {
+      "@type": "WebSite",
+      "@id": `${baseUrl}/#website`,
+      url: baseUrl,
     },
-    manufacturer: {
-      "@type": "Organization",
-      "@id": `${baseUrl}/#organization`,
-      name: cfg.fullName,
+    mainEntity: {
+      "@type": "Thing",
+      "@id": url ? `${url}#item` : undefined,
+      name,
+      alternateName: model,
+      identifier: model,
+      description,
+      url,
+      image: image ? (image.startsWith("http") ? image : `${baseUrl}${image}`) : undefined,
+      category: getLocalizedProductCategory(category, locale),
+      brand: {
+        "@type": "Brand",
+        name: cfg.name,
+      },
+      manufacturer: {
+        "@type": "Organization",
+        "@id": `${baseUrl}/#organization`,
+        name: cfg.fullName,
+      },
+      material: materials?.length ? materials.join(", ") : "carbon graphite",
+      // GEO：规格以结构化属性输出，便于 AI 引擎与垂直搜索直接摘取
+      additionalProperty: specs?.slice(0, 8).map((s) => ({
+        "@type": "PropertyValue",
+        name: s.label,
+        value: s.value,
+      })),
     },
-    material: materials?.length ? materials.join(", ") : "carbon graphite",
-    // GEO：规格以结构化属性输出，便于 AI 引擎与垂直搜索直接摘取
-    additionalProperty: specs?.slice(0, 8).map((s) => ({
-      "@type": "PropertyValue",
-      name: s.label,
-      value: s.value,
-    })),
   }
 
   return (
