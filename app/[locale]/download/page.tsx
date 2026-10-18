@@ -14,8 +14,8 @@ const copy = {
   zh: {
     eyebrow: "资料下载",
     title: "技术资料下载",
-    description: "产品目录、宣传册、检测报告与报关参考资料，全部可在线查看与下载；其他牌号报告可按需提供。",
-    imageAlt: "产品目录、宣传册与石墨密封环图纸",
+    description: "产品目录、检测报告与报关参考资料，全部可在线查看与下载；其他牌号报告可按需提供。",
+    imageAlt: "产品目录、检测报告与石墨密封环图纸",
     listTitle: "全部文件",
     fallbackDesc: "技术资料，点击在线查看或下载",
     steps: [
@@ -27,8 +27,8 @@ const copy = {
   en: {
     eyebrow: "Downloads",
     title: "Technical Downloads",
-    description: "Product catalog, brochure, test reports, and customs reference — all viewable and downloadable online. Reports for other grades available on request.",
-    imageAlt: "Product catalog, brochure, and graphite seal ring drawing",
+    description: "Product catalog, test reports, and customs reference — all viewable and downloadable online. Reports for other grades available on request.",
+    imageAlt: "Product catalog, test reports, and graphite seal ring drawing",
     listTitle: "All files",
     fallbackDesc: "Technical document — click to view or download",
     steps: [
@@ -46,7 +46,6 @@ const hiddenFiles = new Set(["huahao-technical-manual.pdf", "huahao-drawing-temp
 
 const fileMeta: Record<string, { zh: { title: string; desc: string }; en: { title: string; desc: string } }> = {
   "huahao-product-catalog.pdf": { zh: { title: "产品目录", desc: "密封环、轴套、分瓣环与非标件全系列型号" }, en: { title: "Product Catalog", desc: "Full range of seal rings, bushings, split rings, and custom parts" } },
-  "Huahao-Seals-Brochure.pdf": { zh: { title: "公司宣传册", desc: "工厂能力、工艺流程与质量体系概览" }, en: { title: "Company Brochure", desc: "Factory capability, process, and quality system overview" } },
   "M106D.pdf": { zh: { title: "M106D 检测报告", desc: "第三方实测：密度 2.20 g/cm³、抗压 190 MPa" }, en: { title: "M106D Test Report", desc: "Third-party tested: density 2.20 g/cm³, 190 MPa compressive" } },
   "M120K.pdf": { zh: { title: "M120K 检测报告", desc: "材料性能第三方检测数据" }, en: { title: "M120K Test Report", desc: "Third-party material performance data" } },
   "M140K.pdf": { zh: { title: "M140K 检测报告", desc: "材料性能第三方检测数据" }, en: { title: "M140K Test Report", desc: "Third-party material performance data" } },
@@ -55,7 +54,6 @@ const fileMeta: Record<string, { zh: { title: string; desc: string }; en: { titl
 
 const fileOrder = [
   "huahao-product-catalog.pdf",
-  "Huahao-Seals-Brochure.pdf",
   "M106D.pdf",
   "M120K.pdf",
   "M140K.pdf",
