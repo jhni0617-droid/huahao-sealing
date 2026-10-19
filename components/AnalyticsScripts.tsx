@@ -43,6 +43,9 @@ export default function AnalyticsScripts() {
 
   const nothingConfigured = !CLARITY_ID && !META_PIXEL_ID && !GOOGLE_ADS_ID
 
+  // 全部使用 lazyOnload：营销/分析脚本在浏览器空闲后加载，不与首屏 LCP 图片抢带宽。
+  // PSI 实测：afterInteractive 会在 <head> 里 preload GTM（162 KiB），
+  // 在 4G 下把 hero 图的资源加载延迟拉到 2.6s。B2B 询价站可接受秒级转化延迟。
   return (
     <>
       {/* Google Ads (gtag.js) — conversion tracking */}
@@ -50,12 +53,12 @@ export default function AnalyticsScripts() {
         <>
           <Script
             id="google-ads-init"
-            strategy="afterInteractive"
+            strategy="lazyOnload"
             src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}
           />
           <Script
             id="google-ads-config"
-            strategy="afterInteractive"
+            strategy="lazyOnload"
             dangerouslySetInnerHTML={{
               __html: `
                 window.dataLayer = window.dataLayer || [];
@@ -76,7 +79,7 @@ export default function AnalyticsScripts() {
         <>
           <Script
             id="meta-pixel-init"
-            strategy="afterInteractive"
+            strategy="lazyOnload"
             dangerouslySetInnerHTML={{
               __html: `
                 !function(f,b,e,v,n,t,s){
@@ -108,7 +111,7 @@ export default function AnalyticsScripts() {
       {CLARITY_ID && (
         <Script
           id="clarity-init"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               (function(c,l,a,r,i,t,y){
@@ -125,7 +128,7 @@ export default function AnalyticsScripts() {
       {!nothingConfigured && (
         <Script
           id="analytics-locale"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `window.__analyticsLocale = "${locale}";`,
           }}

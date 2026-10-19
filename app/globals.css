@@ -370,9 +370,11 @@ main {
   from { opacity: 0; transform: translateX(-40px); }
   to { opacity: 1; transform: translateX(0); }
 }
-@keyframes hero-accent-glow {
-  0%, 100% { text-shadow: 0 0 0 transparent; }
-  50% { text-shadow: 0 0 24px rgba(230, 0, 18, 0.55); }
+/* 光晕常驻（text-shadow 不参与动画），脉动只改 opacity —— 合成层属性。
+   原写法每帧重绘 text-shadow，触发 Lighthouse「未合成的动画」paint 告警。 */
+@keyframes hero-accent-pulse {
+  0%, 100% { opacity: 0.78; }
+  50% { opacity: 1; }
 }
 @keyframes hero-line-grow {
   from { transform: scaleX(0); }
@@ -400,7 +402,8 @@ main {
   animation: hero-slide-left 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 @utility hero-accent-glow {
-  animation: hero-accent-glow 2.8s ease-in-out infinite;
+  text-shadow: 0 0 24px rgba(230, 0, 18, 0.45);
+  animation: hero-accent-pulse 2.8s ease-in-out infinite;
 }
 @utility hero-line-grow {
   transform-origin: left center;

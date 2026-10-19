@@ -1,0 +1,2047 @@
+{
+ "mobile": {
+  "gauges": {
+   "性能": 71,
+   "无障碍": 69,
+   "最佳做法": 96,
+   "SEO": 82
+  },
+  "metrics": {
+   "First Contentful Paint": "2.5 秒",
+   "Largest Contentful Paint": "4.1 秒",
+   "Total Blocking Time": "260 毫秒",
+   "Cumulative Layout Shift": "0",
+   "Speed Index": "7.1 秒"
+  },
+  "categories": {
+   "性能": {
+    "数据分析": [
+     {
+      "title": "渲染阻塞请求",
+      "saving": "预计缩短 150 毫秒",
+      "desc": "请求正在屏蔽网页的初始渲染，这可能会延迟 LCP。延迟或内嵌可以将这些网络请求移出关键路径。LCPFCP不计分",
+      "detail": [
+       "hhseal.cn 第一方 | 18.6 KiB | 750毫秒",
+       "…chunks/0j7zt77kd49db.css(hhseal.cn) | 15.5 KiB | 600毫秒",
+       "…chunks/041hoq_234bmw.css(hhseal.cn) | 3.1 KiB | 150毫秒"
+      ]
+     },
+     {
+      "title": "LCP 细分",
+      "saving": "",
+      "desc": "每个子部分都有特定的改进策略。理想情况下，LCP 的大部分时间应该用于加载资源，而不是消耗在延迟上。LCP不计分",
+      "detail": [
+       "第一字节时间 (Time to First Byte) | 10毫秒",
+       "资源加载延迟 | 2,610毫秒",
+       "资源加载时长 | 420毫秒",
+       "元素渲染延迟 | 570毫秒"
+      ]
+     },
+     {
+      "title": "发现 LCP 请求",
+      "saving": "",
+      "desc": "使 LCP 图像能够立即从 HTML 中被发现，并避免延迟加载，以此优化 LCPLCP不计分",
+      "detail": []
+     },
+     {
+      "title": "网络依赖关系树",
+      "saving": "",
+      "desc": "避免链接关键请求，方法是缩短链长、缩减资源的下载文件大小，或者推迟下载不必要的资源，从而提高网页加载速度。LCP不计分",
+      "detail": [
+       "https://hhseal.cn/ | "
+      ]
+     },
+     {
+      "title": "改进图片传送",
+      "saving": "预计节省 35 KiB",
+      "desc": "缩短图片下载时间可优化网页的感知加载时间和 LCP。详细了解图片大小优化LCPFCP不计分",
+      "detail": [
+       "hhseal.cn 第一方 |  | 60.9 KiB | 34.5 KiB",
+       "Huahao Sealing · Workshop Overview<img alt=\"Huahao Sealing · Workshop Overview\" decoding=\"async\" dat | /_next/image?url=…(hhseal.cn) | 39.1 KiB | 28.4 KiB",
+       " | 此图片文件的大小 (768x768) 超过了所需显示大小 (401x401)。请使用自适应图片来缩减图片下载大小。 |  | 28.4 KiB",
+       "Huahao Sealing<img alt=\"Huahao Sealing\" decoding=\"async\" data-nimg=\"fill\" class=\"object-cover object | /_next/image?url=…(hhseal.cn) | 21.8 KiB | 6.1 KiB",
+       " | 提高图片压缩因子可以优化此图片的下载大小。 |  | 6.1 KiB"
+      ]
+     },
+     {
+      "title": "旧版 JavaScript",
+      "saving": "预计节省 14 KiB",
+      "desc": "Polyfill 和 transform 让旧版浏览器能够使用新的 JavaScript 功能。不过，其中的很多函数对现代浏览器而言并不是必需的。请考虑修改 JavaScript 构建流程，以便不转译 Baseline 功能，除非您知道必须支持旧版浏览器。了解为什么大多数网站可以部署 ES6+ 代码而无需转译LCPFCP不计分",
+      "detail": [
+       "hhseal.cn 第一方 |  | 13.7 KiB",
+       "…chunks/0m_p1bxtorv5i.js(hhseal.cn) |  | 13.7 KiB",
+       "…chunks/0m_p1bxtorv5i.js:1:5472(hhseal.cn) | Array.prototype.at | ",
+       "…chunks/0m_p1bxtorv5i.js:1:4860(hhseal.cn) | Array.prototype.flat | ",
+       "…chunks/0m_p1bxtorv5i.js:1:4973(hhseal.cn) | Array.prototype.flatMap | ",
+       "…chunks/0m_p1bxtorv5i.js:1:5349(hhseal.cn) | Object.fromEntries | ",
+       "…chunks/0m_p1bxtorv5i.js:1:5607(hhseal.cn) | Object.hasOwn | ",
+       "…chunks/0m_p1bxtorv5i.js:1:4602(hhseal.cn) | String.prototype.trimEnd | ",
+       "…chunks/0m_p1bxtorv5i.js:1:4517(hhseal.cn) | String.prototype.trimStart | "
+      ]
+     },
+     {
+      "title": "布局偏移原因",
+      "saving": "",
+      "desc": "当元素在没有任何用户互动的情况下移动时，就会发生布局偏移。调查布局偏移的原因，例如在网页加载时添加、移除元素或元素字体发生了变化。CLS不计分",
+      "detail": [
+       "总计 | 0.000",
+       "20年<span class=\"font-num-serif italic leading-none text-white [font-size:clamp(3.4rem,6vw,…\"> | 0.000",
+       "…media/playfair-display-latin-500-italic.0auxg4vh.3tne.woff2(hhseal.cn) | 网络字体"
+      ]
+     },
+     {
+      "title": "优化 DOM 大小",
+      "saving": "",
+      "desc": "大型 DOM 可能会增加样式计算和布局自动重排的用时，从而影响网页响应速度。大型 DOM 也会增加内存用量。了解如何避免 DOM 规模过大。不计分",
+      "detail": [
+       "元素总数 |  | 668",
+       "DOM 深度 | div.absolute > button.absolute > svg.w-5 > path<path stroke-linecap=\"round\" stroke-linejoin=\"round\"  | 13",
+       "子级数量上限 | body<body> | 54"
+      ]
+     },
+     {
+      "title": "第三方",
+      "saving": "",
+      "desc": "第三方代码可能会显著影响加载性能。请减少并推迟加载第三方代码，以优先渲染您的网页内容。不计分",
+      "detail": [
+       "Google Tag Manager tag-manager | 162 KiB | 0毫秒",
+       "/gtag/js?id=AW-183…(www.googletagmanager.com) | 162 KiB | 0毫秒"
+      ]
+     }
+    ],
+    "诊断结果": [
+     {
+      "title": "最大限度地减少主线程工作",
+      "saving": "4.8 秒",
+      "desc": "建议您减少为解析、编译和执行 JS 而花费的时间。您可能会发现，提供较小的 JS 载荷有助于实现此目标。了解如何尽可能减少主线程工作TBT不计分",
+      "detail": [
+       "Script Evaluation | 2,279毫秒",
+       "Style & Layout | 824毫秒",
+       "Other | 696毫秒",
+       "Garbage Collection | 539毫秒",
+       "Rendering | 315毫秒",
+       "Script Parsing & Compilation | 85毫秒",
+       "Parse HTML & CSS | 43毫秒"
+      ]
+     },
+     {
+      "title": "缩短 JavaScript 执行用时",
+      "saving": "2.3 秒",
+      "desc": "建议您减少为解析、编译和执行 JS 而花费的时间。您可能会发现，提供较小的 JS 载荷有助于实现此目标。了解如何缩短 JavaScript 执行时间。TBT不计分",
+      "detail": [
+       "hhseal.cn 第一方 | 4,548毫秒 | 2,268毫秒 | 35毫秒",
+       "…chunks/0m_p1bxtorv5i.js(hhseal.cn) | 3,004毫秒 | 2,260毫秒 | 26毫秒",
+       "/en(hhseal.cn) | 1,545毫秒 | 8毫秒 | 9毫秒",
+       "无法归因 | 141毫秒 | 3毫秒 | 0毫秒",
+       "Unattributable | 141毫秒 | 3毫秒 | 0毫秒"
+      ]
+     },
+     {
+      "title": "减少未使用的 JavaScript",
+      "saving": "预计节省 49 KiB",
+      "desc": "请减少未使用的 JavaScript，并等到需要使用时再加载脚本，以减少网络活动耗用的字节数。了解如何减少未使用的 JavaScript。LCPFCP不计分",
+      "detail": [
+       "hhseal.cn 第一方 | 108.9 KiB | 49.4 KiB",
+       "…chunks/0m_p1bxtorv5i.js(hhseal.cn) | 70.3 KiB | 27.3 KiB",
+       "…chunks/0c7h~x4_chf35.js(hhseal.cn) | 38.6 KiB | 22.1 KiB"
+      ]
+     },
+     {
+      "title": "应避免出现长时间运行的主线程任务",
+      "saving": "发现了 6 项长时间运行的任务",
+      "desc": "列出了主线程中运行时间最长的任务，有助于识别出导致输入延迟的最主要原因。了解如何避免出现长时间运行的主线程任务TBT不计分",
+      "detail": [
+       "hhseal.cn 第一方 |  | 737毫秒",
+       "…chunks/0m_p1bxtorv5i.js(hhseal.cn) | 4,513毫秒 | 163毫秒",
+       "…chunks/0m_p1bxtorv5i.js(hhseal.cn) | 5,662毫秒 | 137毫秒",
+       "/en(hhseal.cn) | 1,016毫秒 | 126毫秒",
+       "…chunks/0m_p1bxtorv5i.js(hhseal.cn) | 5,405毫秒 | 124毫秒",
+       "…chunks/0m_p1bxtorv5i.js(hhseal.cn) | 5,046毫秒 | 103毫秒",
+       "…chunks/0m_p1bxtorv5i.js(hhseal.cn) | 5,281毫秒 | 84毫秒"
+      ]
+     },
+     {
+      "title": "避免使用未合成的动画",
+      "saving": "发现了 1 个动画元素",
+      "desc": "未合成的动画可能会卡顿并增加 CLS。了解如何避免使用未合成的动画CLS不计分",
+      "detail": [
+       "· 2006<span class=\"hero-accent-glow text-accent\"> | ",
+       "不受支持的 CSS 属性：text-shadow | hero-accent-glow"
+      ]
+     }
+    ],
+    "已通过的审核": [
+     {
+      "title": "使用高效的缓存生命周期",
+      "saving": "",
+      "desc": "延长缓存生命周期可加快网页重访速度。详细了解缓存。LCPFCP不计分",
+      "detail": []
+     },
+     {
+      "title": "文档请求延迟",
+      "saving": "",
+      "desc": "您的第一个网络请求最为重要。您可通过避免重定向、确保服务器快速响应以及启用文本压缩来缩短其延迟时间。LCPFCP不计分",
+      "detail": []
+     },
+     {
+      "title": "重复的 JavaScript",
+      "saving": "",
+      "desc": "从软件包中移除重复的大型 JavaScript 模块，即可避免网络活动带来不必要的字节消耗。LCPFCP不计分",
+      "detail": []
+     },
+     {
+      "title": "字体显示",
+      "saving": "",
+      "desc": "建议您将 font-display 设为 swap 或 optional，确保文本始终可见。通过替换字体指标可进一步优化 swap，缓解布局偏移。不计分",
+      "detail": []
+     },
+     {
+      "title": "强制自动重排",
+      "saving": "",
+      "desc": "当 DOM 状态发生更改导致样式失效后，如果 JavaScript 查询几何属性（例如 offsetWidth），会引发强制自动重排。这可能会导致效果不佳。详细了解强制自动重排及可能的缓解措施。不计分",
+      "detail": []
+     },
+     {
+      "title": "INP 细分",
+      "saving": "",
+      "desc": "请从持续时间最长的子部分开始检查，了解如何改进 INP。不计分",
+      "detail": []
+     },
+     {
+      "title": "针对移动设备优化视口",
+      "saving": "",
+      "desc": "如果视口未针对移动设备进行优化，点按互动可能会延迟最多 300 毫秒。不计分",
+      "detail": [
+       ""
+      ]
+     },
+     {
+      "title": "缩减 CSS",
+      "saving": "",
+      "desc": "缩减 CSS 文件大小可缩减网络载荷规模。了解如何缩减 CSS 的大小。LCPFCP不计分",
+      "detail": []
+     },
+     {
+      "title": "缩减 JavaScript",
+      "saving": "",
+      "desc": "缩减 JavaScript 文件大小不仅可以缩减载荷规模，还能缩短脚本解析用时。了解如何缩减 JavaScript 的大小。LCPFCP不计分",
+      "detail": []
+     },
+     {
+      "title": "减少未使用的 CSS",
+      "saving": "",
+      "desc": "请从样式表中减少未使用的规则，并延迟加载首屏内容未用到的 CSS，以减少网络活动耗用的字节数。了解如何减少未使用的 CSS。LCPFCP不计分",
+      "detail": []
+     },
+     {
+      "title": "避免网络负载过大",
+      "saving": "总大小为 846 KiB",
+      "desc": "网络载荷过大不仅会让用户付出真金白银，还极有可能会延长加载用时。了解如何缩减载荷大小。不计分",
+      "detail": [
+       "hhseal.cn 第一方 | 330.1 KiB",
+       "…chunks/0m_p1bxtorv5i.js(hhseal.cn) | 71.0 KiB",
+       "/_next/image?url=…(hhseal.cn) | 42.6 KiB",
+       "/_next/image?url=…(hhseal.cn) | 39.7 KiB",
+       "…chunks/0c7h~x4_chf35.js(hhseal.cn) | 39.2 KiB",
+       "/_next/image?url=…(hhseal.cn) | 32.1 KiB",
+       "/_next/image?url=…(hhseal.cn) | 29.2 KiB",
+       "/en(hhseal.cn) | 27.5 KiB",
+       "…media/inter-latin-600-normal.0rm8x4lrq0d8z.woff2(hhseal.cn) | 24.5 KiB",
+       "…media/inter-latin-700-normal.17~mssnzv.d-8.woff2(hhseal.cn) | 24.4 KiB"
+      ]
+     },
+     {
+      "title": "User Timing 标记和测量结果",
+      "saving": "",
+      "desc": "建议使用 User Timing API 对您的应用进行插桩，从而衡量应用在关键用户体验中的实际性能。详细了解 User Timing 标记。不计分",
+      "detail": []
+     },
+     {
+      "title": "图片元素都有明确的width和height",
+      "saving": "",
+      "desc": "请为图片元素设置明确的宽度值和高度值，以减少布局偏移并改善 CLS。了解如何设置图片尺寸CLS不计分",
+      "detail": []
+     },
+     {
+      "title": "文档 <body> 中没有 [aria-hidden=\"true\"]",
+      "saving": "",
+      "desc": "在文档 <body> 上设置 aria-hidden=\"true\" 后，辅助技术（如屏幕阅读器）的工作方式不一致。了解 aria-hidden 对文档正文的影响。",
+      "detail": []
+     },
+     {
+      "title": "按钮有可供访问的名称",
+      "saving": "",
+      "desc": "当某个按钮没有无障碍名称时，屏幕阅读器会将它读为“按钮”，这会导致依赖屏幕阅读器的用户无法使用它。了解如何让按钮更便于使用。",
+      "detail": []
+     },
+     {
+      "title": "背景色和前景色具有足够高的对比度",
+      "saving": "",
+      "desc": "对于许多用户而言，对比度低的文字都是难以阅读或无法阅读的。了解如何提供足够高的颜色对比度。",
+      "detail": []
+     },
+     {
+      "title": "触摸目标的尺寸和间距足够大。",
+      "saving": "",
+      "desc": "如果触摸目标的尺寸和间距足够大，就能帮助难以精准触按小控件的用户激活相应目标。详细了解触摸目标。",
+      "detail": []
+     },
+     {
+      "title": "标题元素按降序显示",
+      "saving": "",
+      "desc": "未跳过任何等级且排序正确的标题会准确传达页面的语义结构，从而使得相应页面在使用辅助技术时更易于浏览和理解。详细了解标题顺序。",
+      "detail": []
+     },
+     {
+      "title": "使用 HTTPS",
+      "saving": "",
+      "desc": "所有网站都应该通过 HTTPS 来保护，即使网站不处理敏感数据，也应如此。这包括要避免使用混合内容（即：通过 HTTPS 实现初始请求，但却通过 HTTP 加载某些资源）。HTTPS 可防止入侵程序篡改或被动地监听您的应用与用户之间的通信，它是 HTTP/2 和许多新的网络平台 API 的先决条件。详细了解 HTTPS。",
+      "detail": []
+     },
+     {
+      "title": "请勿使用已弃用的 API",
+      "saving": "",
+      "desc": "已弃用的 API 最终将从浏览器中移除。详细了解已弃用的 API。",
+      "detail": []
+     },
+     {
+      "title": "避免使用第三方 Cookie",
+      "saving": "",
+      "desc": "在某些情况下，第三方 Cookie 可能会被屏蔽。详细了解如何为第三方 Cookie 限制做好准备。",
+      "detail": []
+     },
+     {
+      "title": "允许用户将内容粘贴到输入字段中",
+      "saving": "",
+      "desc": "禁用粘贴式输入功能会对用户体验产生不良影响，停用密码管理工具则会降低安全性。详细了解方便用户使用的输入字段。",
+      "detail": []
+     },
+     {
+      "title": "避免在网页加载时请求地理定位权限",
+      "saving": "",
+      "desc": "如果网站在没有说明缘由的情况下请求获取位置信息，往往会引起用户的不信任或困惑。不妨改为在用户执行某项操作时再触发请求。详细了解地理定位权限。此外，还可以考虑使用 <geolocation> 元素。",
+      "detail": []
+     },
+     {
+      "title": "避免在网页加载时请求通知权限",
+      "saving": "",
+      "desc": "如果网站在缺少上下文的情况下请求发送通知，会导致用户不信任网站或感到困惑。建议将请求与用户手势进行绑定。详细了解如何以负责任的方式获取通知权限。",
+      "detail": []
+     },
+     {
+      "title": "显示的图像宽高比正确",
+      "saving": "",
+      "desc": "图像显示尺寸应与自然宽高比相匹配。详细了解图片宽高比。",
+      "detail": []
+     },
+     {
+      "title": "所提供的图片都采用了合适的分辨率",
+      "saving": "",
+      "desc": "图片的自然尺寸应与显示屏大小及像素比成正比，这样才能令图片达到最清晰的显示效果。了解如何提供自适应图片。",
+      "detail": []
+     },
+     {
+      "title": "页面包含 HTML DOCTYPE",
+      "saving": "",
+      "desc": "指定 DOCTYPE 可阻止浏览器切换到 Quirks 模式。详细了解 DOCTYPE 声明。",
+      "detail": []
+     },
+     {
+      "title": "正确地设定了字符集",
+      "saving": "",
+      "desc": "必须声明字符编码。您可以在 HTML 的前 1024 个字节中使用 <meta> 标记来声明，也可以在 HTTP 响应标头 Content-Type 中进行声明。详细了解如何声明字符编码。",
+      "detail": []
+     },
+     {
+      "title": "Chrome Devtools 的“Issues”面板中无任何问题",
+      "saving": "",
+      "desc": "Chrome Devtools 的“Issues”面板中记录的问题表明有未解决的问题。这些问题的起因可能是网络请求失败、安全控件不足和其他浏览器问题。如需详细了解每个问题，请打开 Chrome Devtools 的“Issues”面板。",
+      "detail": []
+     },
+     {
+      "title": "页面包含有效的源代码映射",
+      "saving": "",
+      "desc": "源代码映射会将缩减了大小的代码转换成原始源代码。这有助于开发者在正式版中调试。此外，Lighthouse 还能提供进一步的数据分析。建议部署源代码映射以充分利用这些好处。详细了解源代码映射。不计分",
+      "detail": []
+     },
+     {
+      "title": "页面未被屏蔽，可编入索引",
+      "saving": "",
+      "desc": "如果搜索引擎无权抓取您的网页，则无法将它们添加到搜索结果中。详细了解抓取工具指令。",
+      "detail": []
+     },
+     {
+      "title": "页面返回了有效的 HTTP 状态代码",
+      "saving": "",
+      "desc": "返回无效 HTTP 状态代码的页面可能无法被正确编入索引。详细了解 HTTP 状态代码。",
+      "detail": []
+     },
+     {
+      "title": "链接有描述性文字",
+      "saving": "",
+      "desc": "描述性链接文字有助于搜索引擎理解您的内容。了解如何让链接更便于使用。",
+      "detail": []
+     },
+     {
+      "title": "链接都是可抓取的",
+      "saving": "",
+      "desc": "搜索引擎可能会使用链接中的 href 属性来抓取网站。请确保锚元素的 href 属性链接到合适的目标网站，以便搜索引擎发现该网站上的更多网页。了解如何使链接可供抓取",
+      "detail": []
+     },
+     {
+      "title": "robots.txt 有效",
+      "saving": "",
+      "desc": "如果 robots.txt 文件的格式不正确，抓取工具可能无法理解您希望以何种方式抓取网站内容或将其编入索引。详细了解 robots.txt。",
+      "detail": []
+     },
+     {
+      "title": "文档的 hreflang 有效",
+      "saving": "",
+      "desc": "hreflang 链接用于告知搜索引擎应在特定语言或地区的搜索结果中显示哪种版本的网页。详细了解 hreflang。",
+      "detail": []
+     },
+     {
+      "title": "Cumulative Layout Shift",
+      "saving": "0",
+      "desc": "Cumulative Layout Shift 旨在衡量可见元素在视口内的移动情况。详细了解 Cumulative Layout Shift 指标。",
+      "detail": []
+     },
+     {
+      "title": "llms.txt 符合建议",
+      "saving": "",
+      "desc": "如果 llms.txt 文件不符合建议的准则，大语言模型可能无法理解您对网站抓取或模型训练的具体意图。llms.txt 文件应采用 Markdown 格式，并至少包含一个 H1 标题。详细了解 llms.txt 审核。",
+      "detail": []
+     }
+    ],
+    "名称和标签": [
+     {
+      "title": "文档不含 <title> 元素",
+      "saving": "",
+      "desc": "屏幕阅读器用户可借助标题来大致了解某个页面的内容，搜索引擎用户则非常依赖标题来确定某个页面是否与其搜索相关。详细了解文档标题。",
+      "detail": [
+       "html#__next_error__<html id=\"__next_error__\">"
+      ]
+     }
+    ],
+    "国际化和本地化": [
+     {
+      "title": "<html> 元素缺少 [lang] 属性",
+      "saving": "",
+      "desc": "如果页面未指定 lang 属性，屏幕阅读器便会假定该页面采用的是用户在设置屏幕阅读器时选择的默认语言。如果该页面实际上并未采用默认语言，屏幕阅读器可能无法正确读出该页面中的文字。详细了解 lang 属性。",
+      "detail": [
+       "html#__next_error__<html id=\"__next_error__\">"
+      ]
+     }
+    ],
+    "最佳做法": [
+     {
+      "title": "文档缺少主要位置标记。",
+      "saving": "",
+      "desc": "主要位置标记有助于屏幕阅读器用户浏览网页。详细了解位置标记。",
+      "detail": [
+       "html#__next_error__<html id=\"__next_error__\">"
+      ]
+     }
+    ],
+    "待手动检查的其他项": [
+     {
+      "title": "Interactive controls are keyboard focusable",
+      "saving": "",
+      "desc": "Custom interactive controls are keyboard focusable and display a focus indicator. Learn how to make custom controls focusable.不计分",
+      "detail": []
+     },
+     {
+      "title": "Interactive elements indicate their purpose and state",
+      "saving": "",
+      "desc": "Interactive elements, such as links and buttons, should indicate their state and be distinguishable from non-interactive elements. Learn how to decorate interactive elements with affordance hints.不计分",
+      "detail": []
+     },
+     {
+      "title": "The page has a logical tab order",
+      "saving": "",
+      "desc": "Tabbing through the page follows the visual layout. Users cannot focus elements that are offscreen. Learn more about logical tab ordering.不计分",
+      "detail": []
+     },
+     {
+      "title": "Visual order on the page follows DOM order",
+      "saving": "",
+      "desc": "DOM order matches the visual order, improving navigation for assistive technology. Learn more about DOM and visual ordering.不计分",
+      "detail": []
+     },
+     {
+      "title": "User focus is not accidentally trapped in a region",
+      "saving": "",
+      "desc": "A user can tab into and out of any control or region without accidentally trapping their focus. Learn how to avoid focus traps.不计分",
+      "detail": []
+     },
+     {
+      "title": "The user's focus is directed to new content added to the page",
+      "saving": "",
+      "desc": "If new content, such as a dialog, is added to the page, the user's focus is directed to it. Learn how to direct focus to new content.不计分",
+      "detail": []
+     },
+     {
+      "title": "HTML5 landmark elements are used to improve navigation",
+      "saving": "",
+      "desc": "Landmark elements (<main>, <nav>, etc.) are used to improve the keyboard navigation of the page for assistive technology. Learn more about landmark elements.不计分",
+      "detail": []
+     },
+     {
+      "title": "Offscreen content is hidden from assistive technology",
+      "saving": "",
+      "desc": "Offscreen content is hidden with display: none or aria-hidden=true. Learn how to properly hide offscreen content.不计分",
+      "detail": []
+     },
+     {
+      "title": "Custom controls have associated labels",
+      "saving": "",
+      "desc": "Custom interactive controls have associated labels, provided by aria-label or aria-labelledby. Learn more about custom controls and labels.不计分",
+      "detail": []
+     },
+     {
+      "title": "Custom controls have ARIA roles",
+      "saving": "",
+      "desc": "Custom interactive controls have appropriate ARIA roles. Learn how to add roles to custom controls.不计分",
+      "detail": []
+     },
+     {
+      "title": "结构化数据有效",
+      "saving": "",
+      "desc": "运行结构化数据测试工具可验证结构化数据。详细了解结构化数据。不计分",
+      "detail": []
+     }
+    ],
+    "不适用": [
+     {
+      "title": "“[accesskey]”值是独一无二的",
+      "saving": "",
+      "desc": "快捷键可让用户快速转到页面的某个部分。为确保正确进行导航，每个快捷键都必须是独一无二的。详细了解快捷键。不计分",
+      "detail": []
+     },
+     {
+      "title": "[aria-*] 属性与其角色匹配",
+      "saving": "",
+      "desc": "每个 ARIA“role”都支持一部分特定的“aria-*”属性。如果这些项不匹配，会导致“aria-*”属性无效。了解如何将 ARIA 属性与其角色进行匹配。不计分",
+      "detail": []
+     },
+     {
+      "title": "button、link 和 menuitem 元素都有可供访问的名称",
+      "saving": "",
+      "desc": "如果某个元素没有无障碍名称，屏幕阅读器会将它读为通用名称，这会导致依赖屏幕阅读器的用户无法使用它。了解如何让命令元素更便于使用。不计分",
+      "detail": []
+     },
+     {
+      "title": "按照指定方式在元素角色中使用了 ARIA 属性",
+      "saving": "",
+      "desc": "只能在特定条件下使用元素的某些 ARIA 属性。详细了解条件性 ARIA 属性。不计分",
+      "detail": []
+     },
+     {
+      "title": "未使用已弃用的 ARIA 角色",
+      "saving": "",
+      "desc": "辅助技术可能无法正确处理已弃用的 ARIA 角色。详细了解已弃用的 ARIA 角色。不计分",
+      "detail": []
+     },
+     {
+      "title": "具有 role=\"dialog\" 或 role=\"alertdialog\" 的元素均有无障碍名称。",
+      "saving": "",
+      "desc": "如果 ARIA 对话框元素缺少无障碍名称，可能会妨碍屏幕阅读器用户理解这些元素的用途。了解如何让 ARIA 对话框元素更符合无障碍需求。不计分",
+      "detail": []
+     },
+     {
+      "title": "[aria-hidden=\"true\"] 元素都不含可聚焦的下级元素",
+      "saving": "",
+      "desc": "有一个 [aria-hidden=\"true\"] 元素包含可聚焦的下级元素，导致这些交互式元素都无法被辅助技术（如屏幕阅读器）用户使用。了解 aria-hidden 如何影响可聚焦的元素。不计分",
+      "detail": []
+     },
+     {
+      "title": "ARIA 输入字段都有可供访问的名称",
+      "saving": "",
+      "desc": "如果某个输入字段没有无障碍名称，屏幕阅读器会将它读为通用名称，这会导致依赖屏幕阅读器的用户无法使用它。详细了解输入字段标签。不计分",
+      "detail": []
+     },
+     {
+      "title": "ARIA meter 元素都有可供访问的名称",
+      "saving": "",
+      "desc": "如果某个 meter 元素没有无障碍名称，屏幕阅读器会将它读为通用名称，这会导致依赖屏幕阅读器的用户无法使用它。了解如何为 meter 元素命名。不计分",
+      "detail": []
+     },
+     {
+      "title": "ARIA progressbar 元素都有可供访问的名称",
+      "saving": "",
+      "desc": "如果某个 progressbar 元素没有无障碍名称，屏幕阅读器会将它读为通用名称，这会导致依赖屏幕阅读器的用户无法使用它。了解如何为 progressbar 元素添加标签。不计分",
+      "detail": []
+     },
+     {
+      "title": "元素仅使用允许的 ARIA 属性",
+      "saving": "",
+      "desc": "在禁止使用 ARIA 属性的角色中使用 ARIA 属性可能会导致重要信息无法传达给使用辅助技术的用户。详细了解被禁止的 ARIA 角色。不计分",
+      "detail": []
+     },
+     {
+      "title": "[role] 具备所有必需的 [aria-*] 属性",
+      "saving": "",
+      "desc": "一些 ARIA 角色有必需属性，这些属性向屏幕阅读器描述了相应元素的状态。详细了解角色和必需属性。不计分",
+      "detail": []
+     },
+     {
+      "title": "具有 ARIA [role]且要求子元素必须包含特定[role]的元素包含全部必需子元素。",
+      "saving": "",
+      "desc": "一些 ARIA 父角色必须包含特定子角色，才能执行它们的预期无障碍功能。详细了解角色和必需的子元素。不计分",
+      "detail": []
+     },
+     {
+      "title": "[role] 包含在其必需的父元素中",
+      "saving": "",
+      "desc": "一些 ARIA 子角色必须包含在特定的父角色中，才能正确执行它们的预期无障碍功能。详细了解 ARIA 角色和必需的父元素。不计分",
+      "detail": []
+     },
+     {
+      "title": "[role] 值有效",
+      "saving": "",
+      "desc": "ARIA 角色必须具备有效值，才能执行它们的预期无障碍功能。详细了解有效的 ARIA 角色。不计分",
+      "detail": []
+     },
+     {
+      "title": "具有 role=text 属性的元素缺少可聚焦后代元素。",
+      "saving": "",
+      "desc": "在一个被标记分隔的文本节点周围添加 role=text 后，VoiceOver 会将该文本元素视为一个短语，但不会读出它的可聚焦后代元素。详细了解 role=text 属性。不计分",
+      "detail": []
+     },
+     {
+      "title": "ARIA 切换字段都有可供访问的名称",
+      "saving": "",
+      "desc": "如果某个切换字段没有无障碍名称，屏幕阅读器会将它读为通用名称，这会导致依赖屏幕阅读器的用户无法使用它。详细了解切换字段。不计分",
+      "detail": []
+     },
+     {
+      "title": "ARIA tooltip 元素都有可供访问的名称",
+      "saving": "",
+      "desc": "如果某个 tooltip 元素没有无障碍名称，屏幕阅读器会将它读为通用名称，这会导致依赖屏幕阅读器的用户无法使用它。了解如何为 tooltip 元素命名。不计分",
+      "detail": []
+     },
+     {
+      "title": "ARIA treeitem 元素都有可供访问的名称",
+      "saving": "",
+      "desc": "如果某个 treeitem 元素没有无障碍名称，屏幕阅读器会将它读为通用名称，这会导致依赖屏幕阅读器的用户无法使用它。详细了解如何为 treeitem 元素添加标签。不计分",
+      "detail": []
+     },
+     {
+      "title": "[aria-*] 属性具备有效值",
+      "saving": "",
+      "desc": "辅助技术（如屏幕阅读器）无法解读值无效的 ARIA 属性。详细了解 ARIA 属性的有效值。不计分",
+      "detail": []
+     },
+     {
+      "title": "[aria-*] 属性有效且拼写正确",
+      "saving": "",
+      "desc": "辅助技术（如屏幕阅读器）无法解读名称无效的 ARIA 属性。详细了解有效的 ARIA 属性。不计分",
+      "detail": []
+     },
+     {
+      "title": "该页面包含一个标题、跳过链接或地标区域",
+      "saving": "",
+      "desc": "添加用于绕过重复内容的方式有助于键盘用户更高效地浏览页面。详细了解如何绕过内容块。不计分",
+      "detail": []
+     },
+     {
+      "title": "<dl> 只包含经过适当排序的 <dt> 和 <dd> 组及 <script>、<template> 或 <div> 元素。",
+      "saving": "",
+      "desc": "如果未正确标记定义列表，屏幕阅读器读出的内容可能会令人困惑或不准确。了解如何正确构建定义列表。不计分",
+      "detail": []
+     },
+     {
+      "title": "定义列表项已封装在 <dl> 元素中",
+      "saving": "",
+      "desc": "定义列表项（<dt> 和 <dd>）必须封装在父 <dl> 元素中，以确保屏幕阅读器可以正确地读出它们。了解如何正确构建定义列表。不计分",
+      "detail": []
+     },
+     {
+      "title": "ARIA ID 都是独一无二的",
+      "saving": "",
+      "desc": "ARIA ID 的值必须独一无二，才能防止其他实例被辅助技术忽略。了解如何修正重复的 ARIA ID。不计分",
+      "detail": []
+     },
+     {
+      "title": "表单字段都没有多个标签",
+      "saving": "",
+      "desc": "有多个标签的表单字段可能会被辅助技术（如屏幕阅读器）以令人困惑的方式播报出来，因为这些辅助技术可能会使用第一个标签或最后一个标签，也可能会使用所有标签。了解如何使用表单标签。不计分",
+      "detail": []
+     },
+     {
+      "title": "<frame> 或 <iframe> 元素有标题",
+      "saving": "",
+      "desc": "屏幕阅读器用户依靠框架标题来描述框架的内容。详细了解框架标题。不计分",
+      "detail": []
+     },
+     {
+      "title": "<html> 元素的 [lang] 属性具备有效值",
+      "saving": "",
+      "desc": "指定有效的 BCP 47 语言有助于屏幕阅读器正确读出文字。了解如何使用 lang 属性。不计分",
+      "detail": []
+     },
+     {
+      "title": "<html> 元素的 [xml:lang] 属性与 [lang] 属性使用了相同的基本语言。",
+      "saving": "",
+      "desc": "如果网页未指定一致的语言，屏幕阅读器可能无法正确读出相应网页上的文本。详细了解 lang 属性。不计分",
+      "detail": []
+     },
+     {
+      "title": "图片元素具备 [alt] 属性",
+      "saving": "",
+      "desc": "说明性元素应力求使用简短的描述性替代文字。未指定 alt 属性的装饰性元素可被忽略。详细了解 alt 属性。不计分",
+      "detail": []
+     },
+     {
+      "title": "输入按钮具有可识别的文本。",
+      "saving": "",
+      "desc": "向输入按钮添加可识别的无障碍文本可帮助屏幕阅读器用户了解输入按钮的用途。详细了解输入按钮。不计分",
+      "detail": []
+     },
+     {
+      "title": "<input type=\"image\"> 元素有对应的 [alt] 文字",
+      "saving": "",
+      "desc": "将图片用作 <input> 按钮时，提供替代文字有助于屏幕阅读器用户了解该按钮的用途。了解输入图片替代文字。不计分",
+      "detail": []
+     },
+     {
+      "title": "表单元素具有关联的标签",
+      "saving": "",
+      "desc": "标签可确保辅助技术（如屏幕阅读器）正确读出表单控件。详细了解表单元素标签。不计分",
+      "detail": []
+     },
+     {
+      "title": "无需依赖颜色即可辨识链接。",
+      "saving": "",
+      "desc": "对许多用户而言，对比度低的文本都是难以阅读或无法阅读的。清晰可辨的链接文本可改善低视力用户的体验。了解如何让链接容易辨识。不计分",
+      "detail": []
+     },
+     {
+      "title": "链接具备可识别的名称",
+      "saving": "",
+      "desc": "请确保链接文字（以及用作链接的图片替代文字）可识别、独一无二且可聚焦，这样做会提升屏幕阅读器用户的导航体验。了解如何使链接可供访问。不计分",
+      "detail": []
+     },
+     {
+      "title": "列表只包含 <li> 元素和脚本支持元素（<script> 和 <template>）。",
+      "saving": "",
+      "desc": "屏幕阅读器会采用特定的方法来读出列表内容。确保列表结构正确有助于屏幕阅读器顺利读出相应内容。详细了解适当的列表结构。不计分",
+      "detail": []
+     },
+     {
+      "title": "列表项 (<li>) 包含在 <ul>、<ol> 或 <menu> 父元素中",
+      "saving": "",
+      "desc": "屏幕阅读器要求列表项 (<li>) 必须包含在父 <ul>、<ol> 或 <menu> 中，这样才能正确读出它们。详细了解适当的列表结构。不计分",
+      "detail": []
+     },
+     {
+      "title": "文档未使用 <meta http-equiv=\"refresh\">",
+      "saving": "",
+      "desc": "用户并不希望网页自动刷新，因为自动刷新会不断地将焦点移回到页面顶部。这可能会让用户感到沮丧或困惑。详细了解刷新元标记。不计分",
+      "detail": []
+     },
+     {
+      "title": "[user-scalable=\"no\"] 未用在 <meta name=\"viewport\"> 元素中，并且 [maximum-scale] 属性不小于 5。",
+      "saving": "",
+      "desc": "对于必须依靠放大屏幕才能清晰看到网页内容的低视力用户而言，停用缩放功能会给他们带来问题。详细了解视口元标记。不计分",
+      "detail": []
+     },
+     {
+      "title": "<object> 元素有对应的替代文字",
+      "saving": "",
+      "desc": "屏幕阅读器无法转换非文字内容。通过向 <object> 元素添加替代文字，可帮助屏幕阅读器将含义传达给用户。详细了解 object 元素的替代文字。不计分",
+      "detail": []
+     },
+     {
+      "title": "select 元素具有关联的标签元素。",
+      "saving": "",
+      "desc": "如果表单元素缺少有效标签，可能会给屏幕阅读器用户带来糟糕的体验。详细了解 select 元素。不计分",
+      "detail": []
+     },
+     {
+      "title": "跳转链接可聚焦。",
+      "saving": "",
+      "desc": "添加跳转链接可帮助用户跳至主要内容以节省时间。详细了解跳转链接。不计分",
+      "detail": []
+     },
+     {
+      "title": "所有元素的 [tabindex] 值都不大于 0",
+      "saving": "",
+      "desc": "值大于 0 意味着明确的导航顺序。尽管这在技术上可行，但往往会让依赖辅助技术的用户感到沮丧。详细了解 tabindex 属性。不计分",
+      "detail": []
+     },
+     {
+      "title": "<table> 元素中使用 [headers] 属性的单元格引用的是同一表格中的单元格。",
+      "saving": "",
+      "desc": "屏幕阅读器提供了更便于用户浏览表格内容的功能。请确保那些使用 [headers] 属性的 <td> 单元格仅引用同一个表格中的其他单元格，这样做可提升屏幕阅读器用户的体验。详细了解 headers 属性。不计分",
+      "detail": []
+     },
+     {
+      "title": "<th> 元素和 [role=\"columnheader\"/\"rowheader\"] 的元素具备它们所描述的数据单元格。",
+      "saving": "",
+      "desc": "屏幕阅读器提供了更便于用户浏览表格内容的功能。确保表格标头始终引用特定一组单元格可以提升屏幕阅读器用户的体验。详细了解表格标头。不计分",
+      "detail": []
+     },
+     {
+      "title": "[lang] 属性的值有效",
+      "saving": "",
+      "desc": "为元素指定有效的 BCP 47 语言有助于确保屏幕阅读器正确读出文字。了解如何使用 lang 属性。不计分",
+      "detail": []
+     },
+     {
+      "title": "<video> 元素包含带 [kind=\"captions\"] 的 <track> 元素",
+      "saving": "",
+      "desc": "如果视频提供了字幕，失聪用户和听障用户便能更轻松地获取此视频中的信息。详细了解视频字幕。不计分",
+      "detail": []
+     },
+     {
+      "title": "autocomplete 属性已正确使用",
+      "saving": "",
+      "desc": "autocomplete 属性值必须有效且应用得当，屏幕阅读器才能正常运行。详细了解有效的自动补全值。不计分",
+      "detail": []
+     },
+     {
+      "title": "具有“role=\"none\"”或“role=\"presentation\"”的元素不存在冲突",
+      "saving": "",
+      "desc": "在某些情况下，具有“role=\"none\"”或“role=\"presentation\"”的元素的语义角色不会解析为“none”或“presentation”。为确保该元素始终不出现在无障碍树中，请勿向该元素添加任何全局 ARIA 属性，也不要将其设为可聚焦。详细了解“presentation”角色冲突。不计分",
+      "detail": []
+     },
+     {
+      "title": "具有“img”角色的 SVG 元素拥有无障碍替代文本",
+      "saving": "",
+      "desc": "确保具有“img”“graphics-document”或“graphics-symbol”角色的 SVG 元素拥有无障碍替代文本。详细了解 SVG 替代文本。不计分",
+      "detail": []
+     },
+     {
+      "title": "相关表格的 summary 属性和 <caption> 具有不同的内容。",
+      "saving": "",
+      "desc": "summary 属性应描述表格结构，而 <caption> 应含有屏幕上显示的标题。准确的表格标记对屏幕阅读器用户有帮助。详细了解 summary 和 caption。不计分",
+      "detail": []
+     },
+     {
+      "title": "所有标题元素均包含内容。",
+      "saving": "",
+      "desc": "如果标题元素未包含任何内容或包含无法读取的文本，屏幕阅读器用户将难以获取网页的结构信息。详细了解标题。不计分",
+      "detail": []
+     },
+     {
+      "title": "使用 ARIA 角色的元素均为兼容元素",
+      "saving": "",
+      "desc": "许多 HTML 元素只能设置特定的 ARIA 角色。在禁止使用 ARIA 角色的位置使用 ARIA 角色可能会干扰网页的无障碍功能。详细了解 ARIA 角色。不计分",
+      "detail": []
+     },
+     {
+      "title": "图片元素没有属于多余文本的 [alt] 属性。",
+      "saving": "",
+      "desc": "说明性元素应力求使用简短的描述性替代文本。如果替代文本与链接或图片旁边的文本完全相同，可能会让屏幕阅读器用户感到困惑，因为他们会听到两次同样的内容。详细了解 alt 属性。不计分",
+      "detail": []
+     },
+     {
+      "title": "相同链接的用途一致。",
+      "saving": "",
+      "desc": "指向相同目标位置的链接应具有相同的说明，这有助于用户了解链接的用途并决定是否要访问它。详细了解相同链接。不计分",
+      "detail": []
+     },
+     {
+      "title": "将 HTTP 流量重定向到 HTTPS",
+      "saving": "",
+      "desc": "请务必将所有 HTTP 流量都重定向到 HTTPS，以便为所有用户启用安全的网络功能。了解详情。不计分",
+      "detail": []
+     },
+     {
+      "title": "已检测到的 JavaScript 库",
+      "saving": "",
+      "desc": "页面上检测到的所有前端 JavaScript 库。详细了解此 JavaScript 库检测诊断审核。不计分",
+      "detail": []
+     },
+     {
+      "title": "图片元素具备 [alt] 属性",
+      "saving": "",
+      "desc": "说明性元素应力求使用简短的描述性替代文字。未指定 alt 属性的装饰性元素可被忽略。详细了解 alt 属性。不计分",
+      "detail": []
+     },
+     {
+      "title": "文档的 rel=canonical 有效",
+      "saving": "",
+      "desc": "规范链接用于建议应在搜索结果中显示哪个网址。详细了解规范链接。不计分",
+      "detail": []
+     },
+     {
+      "title": "WebMCP 表单覆盖率",
+      "saving": "",
+      "desc": "请考虑为下方列出的表单添加 WebMCP 注释。这有助于 AI 智能体更可靠地识别这些表单并与其互动。不计分",
+      "detail": []
+     },
+     {
+      "title": "已注册 WebMCP 工具",
+      "saving": "",
+      "desc": "列出分析时注册的 WebMCP 工具。不计分",
+      "detail": []
+     },
+     {
+      "title": "WebMCP 架构有效",
+      "saving": "",
+      "desc": "AI 智能体必须使用有效的 WebMCP 架构，才能准确理解并顺畅调用各项工具。请修正浏览器报告的所有错误或警告。不计分",
+      "detail": []
+     },
+     {
+      "title": "ai-catalog.json 架构有效",
+      "saving": "",
+      "desc": "自主 AI 智能体和注册数据库需要有效的 ai-catalog.json 清单，才能发现和验证您的资源。详细了解 ARD 规范。不计分",
+      "detail": []
+     }
+    ],
+    "常规": [
+     {
+      "title": "控制台日志中已记录浏览器错误",
+      "saving": "",
+      "desc": "控制台中记录的错误表明有未解决的问题。这些问题的起因可能是网络请求失败和其他浏览器问题。在控制台诊断审核中详细了解此错误",
+      "detail": [
+       "hhseal.cn 第一方 | ",
+       "…chunks/turbopack-0-~.hsa75__8q.js:1:6095(hhseal.cn) | ChunkLoadError: Failed to load chunk /_next/static/chunks/06qyyol51~5i2.js from module 64893 at http",
+       "…chunks/06qyyol51~5i2.js:1:0(hhseal.cn) | Failed to load resource: net::ERR_CONNECTION_FAILED",
+       "…media/inter-greek-400-normal.16tk2qho83alr.woff2:1:0(hhseal.cn) | Failed to load resource: net::ERR_CONNECTION_FAILED"
+      ]
+     }
+    ],
+    "信任与安全": [
+     {
+      "title": "请确保 CSP 能够有效地抵御 XSS 攻击",
+      "saving": "",
+      "desc": "强有力的内容安全政策 (CSP) 可显著降低遭遇跨站脚本攻击 (XSS) 的风险。了解如何使用 CSP 来防止 XSS不计分",
+      "detail": [
+       "找不到任何处于强制模式的 CSP |  | 高"
+      ]
+     },
+     {
+      "title": "使用严格 HSTS 政策",
+      "saving": "",
+      "desc": "部署 HSTS 标头可显著降低 HTTP 连接降级和窃听攻击的风险。建议分阶段部署，从较低的 max-age 开始。详细了解如何使用严格 HSTS 政策。不计分",
+      "detail": [
+       "未找到 `includeSubDomains` 指令 | includeSubDomains | 中",
+       "未找到 `preload` 指令 | preload | 中"
+      ]
+     },
+     {
+      "title": "确保通过 COOP 实现适当的源隔离",
+      "saving": "",
+      "desc": "Cross-Origin-Opener-Policy (COOP) 可用于将顶级窗口与其他文档（例如弹出式窗口）隔离。详细了解如何部署 COOP 标头。不计分",
+      "detail": [
+       "未找到 COOP 标头 |  | 高"
+      ]
+     },
+     {
+      "title": "使用 XFO 或 CSP 缓解点击劫持问题",
+      "saving": "",
+      "desc": "X-Frame-Options (XFO) 标头或 Content-Security-Policy (CSP) 标头中的 frame-ancestors 指令控制网页可嵌入的位置。这些设置可以阻止部分或全部网站嵌入网页，从而缓解点击劫持攻击。详细了解如何缓解点击劫持。不计分",
+      "detail": [
+       "未找到任何框架控制政策 | 高"
+      ]
+     },
+     {
+      "title": "使用 Trusted Types 缓解基于 DOM 的 XSS 攻击",
+      "saving": "",
+      "desc": "Content-Security-Policy (CSP) 标头中的 require-trusted-types-for 指令会指示用户代理控制传递给 DOM XSS 接收器函数的数据。详细了解如何使用 Trusted Types 缓解基于 DOM 的 XSS 攻击。不计分",
+      "detail": [
+       "未找到包含 Trusted Types 指令的 `Content-Security-Policy` 标头 | 高"
+      ]
+     }
+    ],
+    "浏览器兼容性": [
+     {
+      "title": "Baseline 功能",
+      "saving": "",
+      "desc": "列出网页上使用的 Web 功能及其截至 2026-09-17的 Baseline 状态。详细了解 Baseline。不计分",
+      "detail": [
+       "hhseal.cn 第一方 |  | ",
+       "scrollend | Newly Available (2025-12-12) | …chunks/0m_p1bxtorv5i.js:1:162513(hhseal.cn)",
+       "fetch-priority | Newly Available (2024-10-29) | /en:-1:-2(hhseal.cn)",
+       "text-wrap | Newly Available (2024-10-17) | /en:-1:-2(hhseal.cn)",
+       "relative-color | Newly Available (2024-09-16) | /en:-1:-2(hhseal.cn)",
+       "backdrop-filter | Newly Available (2024-09-16) | /en:-1:-2(hhseal.cn)",
+       "registered-custom-properties | Newly Available (2024-07-09) | /en:-1:-2(hhseal.cn)",
+       "gradient-interpolation | Newly Available (2024-06-11) | /en:-1:-2(hhseal.cn)",
+       "text-wrap-balance | Newly Available (2024-05-13) | /en:-1:-2(hhseal.cn)",
+       "avif | Widely Available (2024-01-25) | /en:-1:-2(hhseal.cn)"
+      ]
+     }
+    ],
+    "内容最佳做法": [
+     {
+      "title": "文档不含 <title> 元素",
+      "saving": "",
+      "desc": "屏幕阅读器用户可借助标题来大致了解某个页面的内容，搜索引擎用户则非常依赖标题来确定某个页面是否与其搜索相关。详细了解文档标题。",
+      "detail": [
+       "html#__next_error__<html id=\"__next_error__\">"
+      ]
+     },
+     {
+      "title": "文档缺少 meta 描述",
+      "saving": "",
+      "desc": "元描述可能会被包含在搜索结果中，以简要概括网页内容。详细了解元描述。",
+      "detail": []
+     }
+    ],
+    "智能体无障碍性": [
+     {
+      "title": "无障碍功能树格式不正确",
+      "saving": "",
+      "desc": "结构良好的无障碍功能树可帮助 AI 智能体浏览网页并与之互动。",
+      "detail": [
+       "Documents must have <title> element to aid in navigation | html#__next_error__<html id=\"__next_error__\">"
+      ]
+     }
+    ]
+   }
+  }
+ },
+ "desktop": {
+  "gauges": {
+   "性能": 81,
+   "无障碍": 96,
+   "最佳做法": 100,
+   "SEO": 100
+  },
+  "metrics": {
+   "First Contentful Paint": "0.4 秒",
+   "Largest Contentful Paint": "1.3 秒",
+   "Total Blocking Time": "190 毫秒",
+   "Cumulative Layout Shift": "0.021",
+   "Speed Index": "6.1 秒"
+  },
+  "categories": {
+   "性能": {
+    "数据分析": [
+     {
+      "title": "渲染阻塞请求",
+      "saving": "预计缩短 300 毫秒",
+      "desc": "请求正在屏蔽网页的初始渲染，这可能会延迟 LCP。延迟或内嵌可以将这些网络请求移出关键路径。LCPFCP不计分",
+      "detail": [
+       "hhseal.cn 第一方 | 18.6 KiB | 320毫秒",
+       "…chunks/041hoq_234bmw.css(hhseal.cn) | 3.1 KiB | 60毫秒",
+       "…chunks/0j7zt77kd49db.css(hhseal.cn) | 15.5 KiB | 250毫秒"
+      ]
+     },
+     {
+      "title": "强制自动重排",
+      "saving": "",
+      "desc": "当 DOM 状态发生更改导致样式失效后，如果 JavaScript 查询几何属性（例如 offsetWidth），会引发强制自动重排。这可能会导致效果不佳。详细了解强制自动重排及可能的缓解措施。不计分",
+      "detail": [
+       "…chunks/0u-4f-sles6da.js:2:16780(hhseal.cn) | 3毫秒",
+       "[未归因] | 62毫秒",
+       "…chunks/0u-4f-sles6da.js:1:16839(hhseal.cn) | 4毫秒"
+      ]
+     },
+     {
+      "title": "LCP 细分",
+      "saving": "",
+      "desc": "每个子部分都有特定的改进策略。理想情况下，LCP 的大部分时间应该用于加载资源，而不是消耗在延迟上。LCP不计分",
+      "detail": [
+       "第一字节时间 (Time to First Byte) | 0毫秒",
+       "资源加载延迟 | 3,340毫秒",
+       "资源加载时长 | 470毫秒",
+       "元素渲染延迟 | 1,080毫秒"
+      ]
+     },
+     {
+      "title": "发现 LCP 请求",
+      "saving": "",
+      "desc": "使 LCP 图像能够立即从 HTML 中被发现，并避免延迟加载，以此优化 LCPLCP不计分",
+      "detail": []
+     },
+     {
+      "title": "网络依赖关系树",
+      "saving": "",
+      "desc": "避免链接关键请求，方法是缩短链长、缩减资源的下载文件大小，或者推迟下载不必要的资源，从而提高网页加载速度。LCP不计分",
+      "detail": [
+       "https://hhseal.cn/ | head > link<link rel=\"preconnect\" href=\"/\" crossorigin=\"\">",
+       "https://ad.doubleclick.net | 80毫秒"
+      ]
+     },
+     {
+      "title": "使用高效的缓存生命周期",
+      "saving": "预计节省 233 KiB",
+      "desc": "延长缓存生命周期可加快网页重访速度。详细了解缓存。LCPFCP不计分",
+      "detail": [
+       "Facebook social |  | 264 KiB",
+       "…config/102…?v=…(connect.facebook.net) | 20分钟 | 148 KiB",
+       "/en_US/fbevents.js(connect.facebook.net) | 20分钟 | 115 KiB",
+       "/tr/?id=…(www.facebook.com) | None | 0 KiB"
+      ]
+     },
+     {
+      "title": "改进图片传送",
+      "saving": "预计节省 156 KiB",
+      "desc": "缩短图片下载时间可优化网页的感知加载时间和 LCP。详细了解图片大小优化LCPFCP不计分",
+      "detail": [
+       "hhseal.cn 第一方 |  | 181.9 KiB | 155.6 KiB",
+       " | /_next/image?url=…(hhseal.cn) | 39.2 KiB | 34.0 KiB",
+       " | 此图片文件的大小 (768x768) 超过了所需显示大小 (280x280)。请使用自适应图片来缩减图片下载大小。 |  | 34.0 KiB",
+       "Huahao Sealing · Workshop Overview<img alt=\"Huahao Sealing · Workshop Overview\" decoding=\"async\" dat | /_next/image?url=…(hhseal.cn) | 39.1 KiB | 33.9 KiB",
+       " | 此图片文件的大小 (768x768) 超过了所需显示大小 (280x280)。请使用自适应图片来缩减图片下载大小。 |  | 33.9 KiB",
+       "Huahao Sealing · CNC Turning Graphite<img alt=\"Huahao Sealing · CNC Turning Graphite\" loading=\"lazy\" | /_next/image?url=…(hhseal.cn) | 31.5 KiB | 27.3 KiB",
+       " | 此图片文件的大小 (768x768) 超过了所需显示大小 (280x280)。请使用自适应图片来缩减图片下载大小。 |  | 27.3 KiB",
+       " | /_next/image?url=…(hhseal.cn) | 28.5 KiB | 24.8 KiB",
+       " | 此图片文件的大小 (768x768) 超过了所需显示大小 (280x280)。请使用自适应图片来缩减图片下载大小。 |  | 24.8 KiB",
+       " | /_next/image?url=…(hhseal.cn) | 27.0 KiB | 23.4 KiB"
+      ]
+     },
+     {
+      "title": "旧版 JavaScript",
+      "saving": "预计节省 26 KiB",
+      "desc": "Polyfill 和 transform 让旧版浏览器能够使用新的 JavaScript 功能。不过，其中的很多函数对现代浏览器而言并不是必需的。请考虑修改 JavaScript 构建流程，以便不转译 Baseline 功能，除非您知道必须支持旧版浏览器。了解为什么大多数网站可以部署 ES6+ 代码而无需转译LCPFCP不计分",
+      "detail": [
+       "hhseal.cn 第一方 |  | 13.7 KiB",
+       "…chunks/0m_p1bxtorv5i.js(hhseal.cn) |  | 13.7 KiB",
+       "…chunks/0m_p1bxtorv5i.js:1:5472(hhseal.cn) | Array.prototype.at | ",
+       "…chunks/0m_p1bxtorv5i.js:1:4860(hhseal.cn) | Array.prototype.flat | ",
+       "…chunks/0m_p1bxtorv5i.js:1:4973(hhseal.cn) | Array.prototype.flatMap | ",
+       "…chunks/0m_p1bxtorv5i.js:1:5349(hhseal.cn) | Object.fromEntries | ",
+       "…chunks/0m_p1bxtorv5i.js:1:5607(hhseal.cn) | Object.hasOwn | ",
+       "…chunks/0m_p1bxtorv5i.js:1:4602(hhseal.cn) | String.prototype.trimEnd | ",
+       "…chunks/0m_p1bxtorv5i.js:1:4517(hhseal.cn) | String.prototype.trimStart | ",
+       "Facebook social |  | 12.4 KiB"
+      ]
+     },
+     {
+      "title": "布局偏移原因",
+      "saving": "",
+      "desc": "当元素在没有任何用户互动的情况下移动时，就会发生布局偏移。调查布局偏移的原因，例如在网页加载时添加、移除元素或元素字体发生了变化。CLS不计分",
+      "detail": [
+       "总计 | 0.001",
+       "Home Products Applications Factory & Quality Cases Blog Downloads Contact<nav class=\"ml-auto hidden  | 0.001",
+       "Huahao Sealing<img alt=\"Huahao Sealing\" width=\"160\" height=\"52\" decoding=\"async\" data-nimg=\"1\" class | 未设置尺寸的图片元素",
+       "…media/inter-latin-500-normal.0frew35n-hgkk.woff2(hhseal.cn) | 网络字体",
+       "…media/inter-latin-400-normal.0vig85~_2mxl3.woff2(hhseal.cn) | 网络字体",
+       "…media/plus-jakarta-sans-latin-600-normal.07tlnqgx6s_gz.woff2(hhseal.cn) | 网络字体",
+       "…media/inter-latin-600-normal.0rm8x4lrq0d8z.woff2(hhseal.cn) | 网络字体",
+       "总计 | 0.021",
+       "PRECISION MANUFACTURING Tolerance · Controlled ±0.01mm Dimensional tolerance, c…<div class=\"hero-pad | 0.021",
+       "总计 | 0.021"
+      ]
+     },
+     {
+      "title": "第三方",
+      "saving": "",
+      "desc": "第三方代码可能会显著影响加载性能。请减少并推迟加载第三方代码，以优先渲染您的网页内容。不计分",
+      "detail": [
+       "Facebook social | 264 KiB | 275毫秒",
+       "…config/102…?v=…(connect.facebook.net) | 148 KiB | 145毫秒",
+       "/en_US/fbevents.js(connect.facebook.net) | 115 KiB | 130毫秒",
+       "/tr/?id=…(www.facebook.com) | 0 KiB | 0毫秒",
+       "Google Tag Manager tag-manager | 162 KiB | 153毫秒",
+       "/gtag/js?id=AW-183…(www.googletagmanager.com) | 162 KiB | 153毫秒",
+       "Google/Doubleclick Ads ad | 4 KiB | 2毫秒",
+       "…viewthrou…/183…?random=…(googleads.g.doubleclick.net) | 4 KiB | 2毫秒",
+       "…s/collect?auid=…(ad.doubleclick.net) | 1 KiB | 0毫秒",
+       "Other Google APIs/SDKs utility | 2 KiB | 0毫秒"
+      ]
+     }
+    ],
+    "诊断结果": [
+     {
+      "title": "最大限度地减少主线程工作",
+      "saving": "3.8 秒",
+      "desc": "建议您减少为解析、编译和执行 JS 而花费的时间。您可能会发现，提供较小的 JS 载荷有助于实现此目标。了解如何尽可能减少主线程工作TBT不计分",
+      "detail": [
+       "Other | 1,326毫秒",
+       "Style & Layout | 933毫秒",
+       "Script Evaluation | 756毫秒",
+       "Rendering | 521毫秒",
+       "Script Parsing & Compilation | 173毫秒",
+       "Garbage Collection | 35毫秒",
+       "Parse HTML & CSS | 13毫秒"
+      ]
+     },
+     {
+      "title": "减少未使用的 JavaScript",
+      "saving": "预计节省 167 KiB",
+      "desc": "请减少未使用的 JavaScript，并等到需要使用时再加载脚本，以减少网络活动耗用的字节数。了解如何减少未使用的 JavaScript。LCPFCP不计分",
+      "detail": [
+       "Facebook social | 255.4 KiB | 83.5 KiB",
+       "…config/102…?v=…(connect.facebook.net) | 144.1 KiB | 43.6 KiB",
+       "/en_US/fbevents.js(connect.facebook.net) | 111.2 KiB | 39.9 KiB",
+       "Google Tag Manager tag-manager | 161.2 KiB | 58.4 KiB",
+       "/gtag/js?id=AW-183…(www.googletagmanager.com) | 161.2 KiB | 58.4 KiB",
+       "hhseal.cn 第一方 | 70.3 KiB | 25.5 KiB",
+       "…chunks/0m_p1bxtorv5i.js(hhseal.cn) | 70.3 KiB | 25.5 KiB"
+      ]
+     },
+     {
+      "title": "应避免出现长时间运行的主线程任务",
+      "saving": "发现了 4 项长时间运行的任务",
+      "desc": "列出了主线程中运行时间最长的任务，有助于识别出导致输入延迟的最主要原因。了解如何避免出现长时间运行的主线程任务TBT不计分",
+      "detail": [
+       "Facebook social |  | 296毫秒",
+       "…config/102…?v=…(connect.facebook.net) | 1,769毫秒 | 152毫秒",
+       "/en_US/fbevents.js(connect.facebook.net) | 1,345毫秒 | 144毫秒",
+       "Google Tag Manager tag-manager |  | 150毫秒",
+       "/gtag/js?id=AW-183…(www.googletagmanager.com) | 863毫秒 | 76毫秒",
+       "/gtag/js?id=AW-183…(www.googletagmanager.com) | 939毫秒 | 74毫秒"
+      ]
+     },
+     {
+      "title": "避免使用未合成的动画",
+      "saving": "发现了 7 个动画元素",
+      "desc": "未合成的动画可能会卡顿并增加 CLS。了解如何避免使用未合成的动画CLS不计分",
+      "detail": [
+       "section.relative > div.absolute > button.group > span.block<span class=\"block h-4 w-4 rounded-full b | ",
+       "不受支持的 CSS 属性：border-left-color | border-left-color",
+       "不受支持的 CSS 属性：border-left-width | border-left-width",
+       "不受支持的 CSS 属性：border-right-color | border-right-color",
+       "不受支持的 CSS 属性：border-right-width | border-right-width",
+       "不受支持的 CSS 属性：border-top-color | border-top-color",
+       "不受支持的 CSS 属性：border-bottom-color | border-bottom-color",
+       "不受支持的 CSS 属性：border-top-width | border-top-width",
+       "不受支持的 CSS 属性：box-shadow | box-shadow",
+       "不受支持的 CSS 属性：border-bottom-width | border-bottom-width"
+      ]
+     }
+    ],
+    "已通过的审核": [
+     {
+      "title": "文档请求延迟",
+      "saving": "",
+      "desc": "您的第一个网络请求最为重要。您可通过避免重定向、确保服务器快速响应以及启用文本压缩来缩短其延迟时间。LCPFCP不计分",
+      "detail": []
+     },
+     {
+      "title": "优化 DOM 大小",
+      "saving": "",
+      "desc": "大型 DOM 可能会增加样式计算和布局自动重排的用时，从而影响网页响应速度。大型 DOM 也会增加内存用量。了解如何避免 DOM 规模过大。不计分",
+      "detail": [
+       "元素总数 |  | 679",
+       "DOM 深度 | div.absolute > button.absolute > svg.w-5 > path<path stroke-linecap=\"round\" stroke-linejoin=\"round\"  | 13",
+       "子级数量上限 | body.min-h-full<body class=\"min-h-full flex flex-col\"> | 58"
+      ]
+     },
+     {
+      "title": "重复的 JavaScript",
+      "saving": "",
+      "desc": "从软件包中移除重复的大型 JavaScript 模块，即可避免网络活动带来不必要的字节消耗。LCPFCP不计分",
+      "detail": []
+     },
+     {
+      "title": "字体显示",
+      "saving": "",
+      "desc": "建议您将 font-display 设为 swap 或 optional，确保文本始终可见。通过替换字体指标可进一步优化 swap，缓解布局偏移。不计分",
+      "detail": []
+     },
+     {
+      "title": "INP 细分",
+      "saving": "",
+      "desc": "请从持续时间最长的子部分开始检查，了解如何改进 INP。不计分",
+      "detail": []
+     },
+     {
+      "title": "针对移动设备优化视口",
+      "saving": "",
+      "desc": "如果视口未针对移动设备进行优化，点按互动可能会延迟最多 300 毫秒。不计分",
+      "detail": [
+       "head > meta<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
+      ]
+     },
+     {
+      "title": "缩减 CSS",
+      "saving": "",
+      "desc": "缩减 CSS 文件大小可缩减网络载荷规模。了解如何缩减 CSS 的大小。LCPFCP不计分",
+      "detail": []
+     },
+     {
+      "title": "缩减 JavaScript",
+      "saving": "",
+      "desc": "缩减 JavaScript 文件大小不仅可以缩减载荷规模，还能缩短脚本解析用时。了解如何缩减 JavaScript 的大小。LCPFCP不计分",
+      "detail": []
+     },
+     {
+      "title": "减少未使用的 CSS",
+      "saving": "",
+      "desc": "请从样式表中减少未使用的规则，并延迟加载首屏内容未用到的 CSS，以减少网络活动耗用的字节数。了解如何减少未使用的 CSS。LCPFCP不计分",
+      "detail": []
+     },
+     {
+      "title": "避免网络负载过大",
+      "saving": "总大小为 1,623 KiB",
+      "desc": "网络载荷过大不仅会让用户付出真金白银，还极有可能会延长加载用时。了解如何缩减载荷大小。不计分",
+      "detail": [
+       "hhseal.cn 第一方 | 349.8 KiB",
+       "…chunks/0m_p1bxtorv5i.js(hhseal.cn) | 70.9 KiB",
+       "/_next/image?url=…(hhseal.cn) | 59.7 KiB",
+       "/_next/image?url=…(hhseal.cn) | 51.9 KiB",
+       "/_next/image?url=…(hhseal.cn) | 48.7 KiB",
+       "/_next/image?url=…(hhseal.cn) | 39.8 KiB",
+       "/_next/image?url=…(hhseal.cn) | 39.7 KiB",
+       "…chunks/0c7h~x4_chf35.js(hhseal.cn) | 39.2 KiB",
+       "Facebook social | 263.6 KiB",
+       "…config/102…?v=…(connect.facebook.net) | 148.5 KiB"
+      ]
+     },
+     {
+      "title": "User Timing 标记和测量结果",
+      "saving": "",
+      "desc": "建议使用 User Timing API 对您的应用进行插桩，从而衡量应用在关键用户体验中的实际性能。详细了解 User Timing 标记。不计分",
+      "detail": []
+     },
+     {
+      "title": "JavaScript 执行用时",
+      "saving": "0.8 秒",
+      "desc": "建议您减少为解析、编译和执行 JS 而花费的时间。您可能会发现，提供较小的 JS 载荷有助于实现此目标。了解如何缩短 JavaScript 执行时间。TBT不计分",
+      "detail": [
+       "hhseal.cn 第一方 | 3,008毫秒 | 373毫秒 | 29毫秒",
+       "/en(hhseal.cn) | 2,204毫秒 | 7毫秒 | 6毫秒",
+       "…chunks/0m_p1bxtorv5i.js(hhseal.cn) | 706毫秒 | 295毫秒 | 16毫秒",
+       "…chunks/0c7h~x4_chf35.js(hhseal.cn) | 97毫秒 | 70毫秒 | 8毫秒",
+       "Facebook social | 297毫秒 | 210毫秒 | 67毫秒",
+       "…config/102…?v=…(connect.facebook.net) | 153毫秒 | 113毫秒 | 34毫秒",
+       "/en_US/fbevents.js(connect.facebook.net) | 144毫秒 | 97毫秒 | 33毫秒",
+       "无法归因 | 196毫秒 | 10毫秒 | 0毫秒",
+       "Unattributable | 196毫秒 | 10毫秒 | 0毫秒",
+       "Google Tag Manager tag-manager | 155毫秒 | 103毫秒 | 50毫秒"
+      ]
+     },
+     {
+      "title": "图片元素都有明确的width和height",
+      "saving": "",
+      "desc": "请为图片元素设置明确的宽度值和高度值，以减少布局偏移并改善 CLS。了解如何设置图片尺寸CLS不计分",
+      "detail": []
+     },
+     {
+      "title": "[aria-*] 属性与其角色匹配",
+      "saving": "",
+      "desc": "每个 ARIA“role”都支持一部分特定的“aria-*”属性。如果这些项不匹配，会导致“aria-*”属性无效。了解如何将 ARIA 属性与其角色进行匹配。",
+      "detail": []
+     },
+     {
+      "title": "文档 <body> 中没有 [aria-hidden=\"true\"]",
+      "saving": "",
+      "desc": "在文档 <body> 上设置 aria-hidden=\"true\" 后，辅助技术（如屏幕阅读器）的工作方式不一致。了解 aria-hidden 对文档正文的影响。",
+      "detail": []
+     },
+     {
+      "title": "[role] 具备所有必需的 [aria-*] 属性",
+      "saving": "",
+      "desc": "一些 ARIA 角色有必需属性，这些属性向屏幕阅读器描述了相应元素的状态。详细了解角色和必需属性。",
+      "detail": []
+     },
+     {
+      "title": "[role] 值有效",
+      "saving": "",
+      "desc": "ARIA 角色必须具备有效值，才能执行它们的预期无障碍功能。详细了解有效的 ARIA 角色。",
+      "detail": []
+     },
+     {
+      "title": "[aria-*] 属性具备有效值",
+      "saving": "",
+      "desc": "辅助技术（如屏幕阅读器）无法解读值无效的 ARIA 属性。详细了解 ARIA 属性的有效值。",
+      "detail": []
+     },
+     {
+      "title": "[aria-*] 属性有效且拼写正确",
+      "saving": "",
+      "desc": "辅助技术（如屏幕阅读器）无法解读名称无效的 ARIA 属性。详细了解有效的 ARIA 属性。",
+      "detail": []
+     },
+     {
+      "title": "按钮有可供访问的名称",
+      "saving": "",
+      "desc": "当某个按钮没有无障碍名称时，屏幕阅读器会将它读为“按钮”，这会导致依赖屏幕阅读器的用户无法使用它。了解如何让按钮更便于使用。",
+      "detail": []
+     },
+     {
+      "title": "图片元素具备 [alt] 属性",
+      "saving": "",
+      "desc": "说明性元素应力求使用简短的描述性替代文字。未指定 alt 属性的装饰性元素可被忽略。详细了解 alt 属性。",
+      "detail": []
+     },
+     {
+      "title": "[user-scalable=\"no\"] 未用在 <meta name=\"viewport\"> 元素中，并且 [maximum-scale] 属性不小于 5。",
+      "saving": "",
+      "desc": "对于必须依靠放大屏幕才能清晰看到网页内容的低视力用户而言，停用缩放功能会给他们带来问题。详细了解视口元标记。",
+      "detail": []
+     },
+     {
+      "title": "按照指定方式在元素角色中使用了 ARIA 属性",
+      "saving": "",
+      "desc": "只能在特定条件下使用元素的某些 ARIA 属性。详细了解条件性 ARIA 属性。",
+      "detail": []
+     },
+     {
+      "title": "[aria-hidden=\"true\"] 元素都不含可聚焦的下级元素",
+      "saving": "",
+      "desc": "有一个 [aria-hidden=\"true\"] 元素包含可聚焦的下级元素，导致这些交互式元素都无法被辅助技术（如屏幕阅读器）用户使用。了解 aria-hidden 如何影响可聚焦的元素。",
+      "detail": []
+     },
+     {
+      "title": "元素仅使用允许的 ARIA 属性",
+      "saving": "",
+      "desc": "在禁止使用 ARIA 属性的角色中使用 ARIA 属性可能会导致重要信息无法传达给使用辅助技术的用户。详细了解被禁止的 ARIA 角色。",
+      "detail": []
+     },
+     {
+      "title": "文档包含 <title> 元素",
+      "saving": "",
+      "desc": "屏幕阅读器用户可借助标题来大致了解某个页面的内容，搜索引擎用户则非常依赖标题来确定某个页面是否与其搜索相关。详细了解文档标题。",
+      "detail": []
+     },
+     {
+      "title": "<html> 元素包含 [lang] 属性",
+      "saving": "",
+      "desc": "如果页面未指定 lang 属性，屏幕阅读器便会假定该页面采用的是用户在设置屏幕阅读器时选择的默认语言。如果该页面实际上并未采用默认语言，屏幕阅读器可能无法正确读出该页面中的文字。详细了解 lang 属性。",
+      "detail": []
+     },
+     {
+      "title": "<html> 元素的 [lang] 属性具备有效值",
+      "saving": "",
+      "desc": "指定有效的 BCP 47 语言有助于屏幕阅读器正确读出文字。了解如何使用 lang 属性。",
+      "detail": []
+     },
+     {
+      "title": "链接具备可识别的名称",
+      "saving": "",
+      "desc": "请确保链接文字（以及用作链接的图片替代文字）可识别、独一无二且可聚焦，这样做会提升屏幕阅读器用户的导航体验。了解如何使链接可供访问。",
+      "detail": []
+     },
+     {
+      "title": "列表只包含 <li> 元素和脚本支持元素（<script> 和 <template>）。",
+      "saving": "",
+      "desc": "屏幕阅读器会采用特定的方法来读出列表内容。确保列表结构正确有助于屏幕阅读器顺利读出相应内容。详细了解适当的列表结构。",
+      "detail": []
+     },
+     {
+      "title": "列表项 (<li>) 包含在 <ul>、<ol> 或 <menu> 父元素中",
+      "saving": "",
+      "desc": "屏幕阅读器要求列表项 (<li>) 必须包含在父 <ul>、<ol> 或 <menu> 中，这样才能正确读出它们。详细了解适当的列表结构。",
+      "detail": []
+     },
+     {
+      "title": "触摸目标的尺寸和间距足够大。",
+      "saving": "",
+      "desc": "如果触摸目标的尺寸和间距足够大，就能帮助难以精准触按小控件的用户激活相应目标。详细了解触摸目标。",
+      "detail": []
+     },
+     {
+      "title": "标题元素按降序显示",
+      "saving": "",
+      "desc": "未跳过任何等级且排序正确的标题会准确传达页面的语义结构，从而使得相应页面在使用辅助技术时更易于浏览和理解。详细了解标题顺序。",
+      "detail": []
+     },
+     {
+      "title": "文档有一个主要位置标记。",
+      "saving": "",
+      "desc": "主要位置标记有助于屏幕阅读器用户浏览网页。详细了解位置标记。",
+      "detail": []
+     },
+     {
+      "title": "未使用已弃用的 ARIA 角色",
+      "saving": "",
+      "desc": "辅助技术可能无法正确处理已弃用的 ARIA 角色。详细了解已弃用的 ARIA 角色。",
+      "detail": []
+     },
+     {
+      "title": "使用 HTTPS",
+      "saving": "",
+      "desc": "所有网站都应该通过 HTTPS 来保护，即使网站不处理敏感数据，也应如此。这包括要避免使用混合内容（即：通过 HTTPS 实现初始请求，但却通过 HTTP 加载某些资源）。HTTPS 可防止入侵程序篡改或被动地监听您的应用与用户之间的通信，它是 HTTP/2 和许多新的网络平台 API 的先决条件。详细了解 HTTPS。",
+      "detail": []
+     },
+     {
+      "title": "请勿使用已弃用的 API",
+      "saving": "",
+      "desc": "已弃用的 API 最终将从浏览器中移除。详细了解已弃用的 API。",
+      "detail": []
+     },
+     {
+      "title": "避免使用第三方 Cookie",
+      "saving": "",
+      "desc": "在某些情况下，第三方 Cookie 可能会被屏蔽。详细了解如何为第三方 Cookie 限制做好准备。",
+      "detail": []
+     },
+     {
+      "title": "允许用户将内容粘贴到输入字段中",
+      "saving": "",
+      "desc": "禁用粘贴式输入功能会对用户体验产生不良影响，停用密码管理工具则会降低安全性。详细了解方便用户使用的输入字段。",
+      "detail": []
+     },
+     {
+      "title": "避免在网页加载时请求地理定位权限",
+      "saving": "",
+      "desc": "如果网站在没有说明缘由的情况下请求获取位置信息，往往会引起用户的不信任或困惑。不妨改为在用户执行某项操作时再触发请求。详细了解地理定位权限。此外，还可以考虑使用 <geolocation> 元素。",
+      "detail": []
+     },
+     {
+      "title": "避免在网页加载时请求通知权限",
+      "saving": "",
+      "desc": "如果网站在缺少上下文的情况下请求发送通知，会导致用户不信任网站或感到困惑。建议将请求与用户手势进行绑定。详细了解如何以负责任的方式获取通知权限。",
+      "detail": []
+     },
+     {
+      "title": "显示的图像宽高比正确",
+      "saving": "",
+      "desc": "图像显示尺寸应与自然宽高比相匹配。详细了解图片宽高比。",
+      "detail": []
+     },
+     {
+      "title": "所提供的图片都采用了合适的分辨率",
+      "saving": "",
+      "desc": "图片的自然尺寸应与显示屏大小及像素比成正比，这样才能令图片达到最清晰的显示效果。了解如何提供自适应图片。",
+      "detail": []
+     },
+     {
+      "title": "页面包含 HTML DOCTYPE",
+      "saving": "",
+      "desc": "指定 DOCTYPE 可阻止浏览器切换到 Quirks 模式。详细了解 DOCTYPE 声明。",
+      "detail": []
+     },
+     {
+      "title": "正确地设定了字符集",
+      "saving": "",
+      "desc": "必须声明字符编码。您可以在 HTML 的前 1024 个字节中使用 <meta> 标记来声明，也可以在 HTTP 响应标头 Content-Type 中进行声明。详细了解如何声明字符编码。",
+      "detail": []
+     },
+     {
+      "title": "控制台日志中未记录浏览器错误",
+      "saving": "",
+      "desc": "控制台中记录的错误表明有未解决的问题。这些问题的起因可能是网络请求失败和其他浏览器问题。在控制台诊断审核中详细了解此错误",
+      "detail": []
+     },
+     {
+      "title": "Chrome Devtools 的“Issues”面板中无任何问题",
+      "saving": "",
+      "desc": "Chrome Devtools 的“Issues”面板中记录的问题表明有未解决的问题。这些问题的起因可能是网络请求失败、安全控件不足和其他浏览器问题。如需详细了解每个问题，请打开 Chrome Devtools 的“Issues”面板。",
+      "detail": []
+     },
+     {
+      "title": "页面包含有效的源代码映射",
+      "saving": "",
+      "desc": "源代码映射会将缩减了大小的代码转换成原始源代码。这有助于开发者在正式版中调试。此外，Lighthouse 还能提供进一步的数据分析。建议部署源代码映射以充分利用这些好处。详细了解源代码映射。不计分",
+      "detail": []
+     },
+     {
+      "title": "页面未被屏蔽，可编入索引",
+      "saving": "",
+      "desc": "如果搜索引擎无权抓取您的网页，则无法将它们添加到搜索结果中。详细了解抓取工具指令。",
+      "detail": []
+     },
+     {
+      "title": "文档包含 <title> 元素",
+      "saving": "",
+      "desc": "屏幕阅读器用户可借助标题来大致了解某个页面的内容，搜索引擎用户则非常依赖标题来确定某个页面是否与其搜索相关。详细了解文档标题。",
+      "detail": []
+     },
+     {
+      "title": "文档有 meta 描述",
+      "saving": "",
+      "desc": "元描述可能会被包含在搜索结果中，以简要概括网页内容。详细了解元描述。",
+      "detail": []
+     },
+     {
+      "title": "页面返回了有效的 HTTP 状态代码",
+      "saving": "",
+      "desc": "返回无效 HTTP 状态代码的页面可能无法被正确编入索引。详细了解 HTTP 状态代码。",
+      "detail": []
+     },
+     {
+      "title": "链接有描述性文字",
+      "saving": "",
+      "desc": "描述性链接文字有助于搜索引擎理解您的内容。了解如何让链接更便于使用。",
+      "detail": []
+     },
+     {
+      "title": "链接都是可抓取的",
+      "saving": "",
+      "desc": "搜索引擎可能会使用链接中的 href 属性来抓取网站。请确保锚元素的 href 属性链接到合适的目标网站，以便搜索引擎发现该网站上的更多网页。了解如何使链接可供抓取",
+      "detail": []
+     },
+     {
+      "title": "robots.txt 有效",
+      "saving": "",
+      "desc": "如果 robots.txt 文件的格式不正确，抓取工具可能无法理解您希望以何种方式抓取网站内容或将其编入索引。详细了解 robots.txt。",
+      "detail": []
+     },
+     {
+      "title": "图片元素具备 [alt] 属性",
+      "saving": "",
+      "desc": "说明性元素应力求使用简短的描述性替代文字。未指定 alt 属性的装饰性元素可被忽略。详细了解 alt 属性。",
+      "detail": []
+     },
+     {
+      "title": "文档的 hreflang 有效",
+      "saving": "",
+      "desc": "hreflang 链接用于告知搜索引擎应在特定语言或地区的搜索结果中显示哪种版本的网页。详细了解 hreflang。",
+      "detail": []
+     },
+     {
+      "title": "文档的 rel=canonical 有效",
+      "saving": "",
+      "desc": "规范链接用于建议应在搜索结果中显示哪个网址。详细了解规范链接。",
+      "detail": []
+     },
+     {
+      "title": "无障碍功能树格式正确",
+      "saving": "所有审核均已通过",
+      "desc": "结构良好的无障碍功能树可帮助 AI 智能体浏览网页并与之互动。",
+      "detail": []
+     },
+     {
+      "title": "Cumulative Layout Shift",
+      "saving": "0.021",
+      "desc": "Cumulative Layout Shift 旨在衡量可见元素在视口内的移动情况。详细了解 Cumulative Layout Shift 指标。",
+      "detail": []
+     },
+     {
+      "title": "llms.txt 符合建议",
+      "saving": "",
+      "desc": "如果 llms.txt 文件不符合建议的准则，大语言模型可能无法理解您对网站抓取或模型训练的具体意图。llms.txt 文件应采用 Markdown 格式，并至少包含一个 H1 标题。详细了解 llms.txt 审核。",
+      "detail": []
+     }
+    ],
+    "对比度": [
+     {
+      "title": "背景色和前景色没有足够高的对比度。",
+      "saving": "",
+      "desc": "对于许多用户而言，对比度低的文字都是难以阅读或无法阅读的。了解如何提供足够高的颜色对比度。",
+      "detail": [
+       "COMPANY NEWS<div class=\"en-caption mt-1.5 text-[10px] lg:text-[11px] text-muted-light\">",
+       "02 Company News COMPANY NEWS View more NEWS 2018-06-01 2018: Huahao Sealing Rel…<section class=\"bord",
+       "CUSTOM SERVICE<div class=\"en-caption mt-1.5 text-[10px] lg:text-[11px] text-muted-light\">",
+       "04 Custom Service CUSTOM SERVICE View more Custom-Made to Drawings or Samples …<section class=\"borde",
+       "APPLICATIONS<div class=\"en-caption mt-1.5 text-[10px] lg:text-[11px] text-muted-light\">",
+       "05 Applications APPLICATIONS View more Industries Served Where carbon graphite…<section class=\"borde",
+       "Facebook<a href=\"https://www.facebook.com/profile.php?id=61583759223569\" target=\"_blank\" rel=\"noopen",
+       "Huahao Sealing Professional manufacturer of carbon graphite seal rings, bushin…<footer class=\"bg-pri",
+       "Zalo<a href=\"https://zalo.me/8619556167860\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-",
+       "Huahao Sealing Professional manufacturer of carbon graphite seal rings, bushin…<footer class=\"bg-pri"
+      ]
+     }
+    ],
+    "名称和标签": [
+     {
+      "title": "图片元素没有属于多余文本的 [alt] 属性。",
+      "saving": "",
+      "desc": "说明性元素应力求使用简短的描述性替代文本。如果替代文本与链接或图片旁边的文本完全相同，可能会让屏幕阅读器用户感到困惑，因为他们会听到两次同样的内容。详细了解 alt 属性。不计分",
+      "detail": [
+       "Huahao Sealing<img alt=\"Huahao Sealing\" width=\"160\" height=\"52\" decoding=\"async\" data-nimg=\"1\" class"
+      ]
+     }
+    ],
+    "最佳做法": [
+     {
+      "title": "相同链接的用途一致。",
+      "saving": "",
+      "desc": "指向相同目标位置的链接应具有相同的说明，这有助于用户了解链接的用途并决定是否要访问它。详细了解相同链接。不计分",
+      "detail": [
+       "View more<a class=\"group mt-4 hidden items-center gap-1.5 text-xs font-medium tracking-wide l…\" href",
+       "View more<a class=\"group mt-4 hidden items-center gap-1.5 text-xs font-medium tracking-wide l…\" href",
+       "View more<a class=\"group mt-4 hidden items-center gap-1.5 text-xs font-medium tracking-wide l…\" href",
+       "View more<a class=\"group mt-4 hidden items-center gap-1.5 text-xs font-medium tracking-wide l…\" href"
+      ]
+     }
+    ],
+    "待手动检查的其他项": [
+     {
+      "title": "Interactive controls are keyboard focusable",
+      "saving": "",
+      "desc": "Custom interactive controls are keyboard focusable and display a focus indicator. Learn how to make custom controls focusable.不计分",
+      "detail": []
+     },
+     {
+      "title": "Interactive elements indicate their purpose and state",
+      "saving": "",
+      "desc": "Interactive elements, such as links and buttons, should indicate their state and be distinguishable from non-interactive elements. Learn how to decorate interactive elements with affordance hints.不计分",
+      "detail": []
+     },
+     {
+      "title": "The page has a logical tab order",
+      "saving": "",
+      "desc": "Tabbing through the page follows the visual layout. Users cannot focus elements that are offscreen. Learn more about logical tab ordering.不计分",
+      "detail": []
+     },
+     {
+      "title": "Visual order on the page follows DOM order",
+      "saving": "",
+      "desc": "DOM order matches the visual order, improving navigation for assistive technology. Learn more about DOM and visual ordering.不计分",
+      "detail": []
+     },
+     {
+      "title": "User focus is not accidentally trapped in a region",
+      "saving": "",
+      "desc": "A user can tab into and out of any control or region without accidentally trapping their focus. Learn how to avoid focus traps.不计分",
+      "detail": []
+     },
+     {
+      "title": "The user's focus is directed to new content added to the page",
+      "saving": "",
+      "desc": "If new content, such as a dialog, is added to the page, the user's focus is directed to it. Learn how to direct focus to new content.不计分",
+      "detail": []
+     },
+     {
+      "title": "HTML5 landmark elements are used to improve navigation",
+      "saving": "",
+      "desc": "Landmark elements (<main>, <nav>, etc.) are used to improve the keyboard navigation of the page for assistive technology. Learn more about landmark elements.不计分",
+      "detail": []
+     },
+     {
+      "title": "Offscreen content is hidden from assistive technology",
+      "saving": "",
+      "desc": "Offscreen content is hidden with display: none or aria-hidden=true. Learn how to properly hide offscreen content.不计分",
+      "detail": []
+     },
+     {
+      "title": "Custom controls have associated labels",
+      "saving": "",
+      "desc": "Custom interactive controls have associated labels, provided by aria-label or aria-labelledby. Learn more about custom controls and labels.不计分",
+      "detail": []
+     },
+     {
+      "title": "Custom controls have ARIA roles",
+      "saving": "",
+      "desc": "Custom interactive controls have appropriate ARIA roles. Learn how to add roles to custom controls.不计分",
+      "detail": []
+     },
+     {
+      "title": "结构化数据有效",
+      "saving": "",
+      "desc": "运行结构化数据测试工具可验证结构化数据。详细了解结构化数据。不计分",
+      "detail": []
+     }
+    ],
+    "不适用": [
+     {
+      "title": "“[accesskey]”值是独一无二的",
+      "saving": "",
+      "desc": "快捷键可让用户快速转到页面的某个部分。为确保正确进行导航，每个快捷键都必须是独一无二的。详细了解快捷键。不计分",
+      "detail": []
+     },
+     {
+      "title": "button、link 和 menuitem 元素都有可供访问的名称",
+      "saving": "",
+      "desc": "如果某个元素没有无障碍名称，屏幕阅读器会将它读为通用名称，这会导致依赖屏幕阅读器的用户无法使用它。了解如何让命令元素更便于使用。不计分",
+      "detail": []
+     },
+     {
+      "title": "具有 role=\"dialog\" 或 role=\"alertdialog\" 的元素均有无障碍名称。",
+      "saving": "",
+      "desc": "如果 ARIA 对话框元素缺少无障碍名称，可能会妨碍屏幕阅读器用户理解这些元素的用途。了解如何让 ARIA 对话框元素更符合无障碍需求。不计分",
+      "detail": []
+     },
+     {
+      "title": "ARIA 输入字段都有可供访问的名称",
+      "saving": "",
+      "desc": "如果某个输入字段没有无障碍名称，屏幕阅读器会将它读为通用名称，这会导致依赖屏幕阅读器的用户无法使用它。详细了解输入字段标签。不计分",
+      "detail": []
+     },
+     {
+      "title": "ARIA meter 元素都有可供访问的名称",
+      "saving": "",
+      "desc": "如果某个 meter 元素没有无障碍名称，屏幕阅读器会将它读为通用名称，这会导致依赖屏幕阅读器的用户无法使用它。了解如何为 meter 元素命名。不计分",
+      "detail": []
+     },
+     {
+      "title": "ARIA progressbar 元素都有可供访问的名称",
+      "saving": "",
+      "desc": "如果某个 progressbar 元素没有无障碍名称，屏幕阅读器会将它读为通用名称，这会导致依赖屏幕阅读器的用户无法使用它。了解如何为 progressbar 元素添加标签。不计分",
+      "detail": []
+     },
+     {
+      "title": "具有 ARIA [role]且要求子元素必须包含特定[role]的元素包含全部必需子元素。",
+      "saving": "",
+      "desc": "一些 ARIA 父角色必须包含特定子角色，才能执行它们的预期无障碍功能。详细了解角色和必需的子元素。不计分",
+      "detail": []
+     },
+     {
+      "title": "[role] 包含在其必需的父元素中",
+      "saving": "",
+      "desc": "一些 ARIA 子角色必须包含在特定的父角色中，才能正确执行它们的预期无障碍功能。详细了解 ARIA 角色和必需的父元素。不计分",
+      "detail": []
+     },
+     {
+      "title": "具有 role=text 属性的元素缺少可聚焦后代元素。",
+      "saving": "",
+      "desc": "在一个被标记分隔的文本节点周围添加 role=text 后，VoiceOver 会将该文本元素视为一个短语，但不会读出它的可聚焦后代元素。详细了解 role=text 属性。不计分",
+      "detail": []
+     },
+     {
+      "title": "ARIA 切换字段都有可供访问的名称",
+      "saving": "",
+      "desc": "如果某个切换字段没有无障碍名称，屏幕阅读器会将它读为通用名称，这会导致依赖屏幕阅读器的用户无法使用它。详细了解切换字段。不计分",
+      "detail": []
+     },
+     {
+      "title": "ARIA tooltip 元素都有可供访问的名称",
+      "saving": "",
+      "desc": "如果某个 tooltip 元素没有无障碍名称，屏幕阅读器会将它读为通用名称，这会导致依赖屏幕阅读器的用户无法使用它。了解如何为 tooltip 元素命名。不计分",
+      "detail": []
+     },
+     {
+      "title": "ARIA treeitem 元素都有可供访问的名称",
+      "saving": "",
+      "desc": "如果某个 treeitem 元素没有无障碍名称，屏幕阅读器会将它读为通用名称，这会导致依赖屏幕阅读器的用户无法使用它。详细了解如何为 treeitem 元素添加标签。不计分",
+      "detail": []
+     },
+     {
+      "title": "该页面包含一个标题、跳过链接或地标区域",
+      "saving": "",
+      "desc": "添加用于绕过重复内容的方式有助于键盘用户更高效地浏览页面。详细了解如何绕过内容块。不计分",
+      "detail": []
+     },
+     {
+      "title": "<dl> 只包含经过适当排序的 <dt> 和 <dd> 组及 <script>、<template> 或 <div> 元素。",
+      "saving": "",
+      "desc": "如果未正确标记定义列表，屏幕阅读器读出的内容可能会令人困惑或不准确。了解如何正确构建定义列表。不计分",
+      "detail": []
+     },
+     {
+      "title": "定义列表项已封装在 <dl> 元素中",
+      "saving": "",
+      "desc": "定义列表项（<dt> 和 <dd>）必须封装在父 <dl> 元素中，以确保屏幕阅读器可以正确地读出它们。了解如何正确构建定义列表。不计分",
+      "detail": []
+     },
+     {
+      "title": "ARIA ID 都是独一无二的",
+      "saving": "",
+      "desc": "ARIA ID 的值必须独一无二，才能防止其他实例被辅助技术忽略。了解如何修正重复的 ARIA ID。不计分",
+      "detail": []
+     },
+     {
+      "title": "表单字段都没有多个标签",
+      "saving": "",
+      "desc": "有多个标签的表单字段可能会被辅助技术（如屏幕阅读器）以令人困惑的方式播报出来，因为这些辅助技术可能会使用第一个标签或最后一个标签，也可能会使用所有标签。了解如何使用表单标签。不计分",
+      "detail": []
+     },
+     {
+      "title": "<frame> 或 <iframe> 元素有标题",
+      "saving": "",
+      "desc": "屏幕阅读器用户依靠框架标题来描述框架的内容。详细了解框架标题。不计分",
+      "detail": []
+     },
+     {
+      "title": "<html> 元素的 [xml:lang] 属性与 [lang] 属性使用了相同的基本语言。",
+      "saving": "",
+      "desc": "如果网页未指定一致的语言，屏幕阅读器可能无法正确读出相应网页上的文本。详细了解 lang 属性。不计分",
+      "detail": []
+     },
+     {
+      "title": "输入按钮具有可识别的文本。",
+      "saving": "",
+      "desc": "向输入按钮添加可识别的无障碍文本可帮助屏幕阅读器用户了解输入按钮的用途。详细了解输入按钮。不计分",
+      "detail": []
+     },
+     {
+      "title": "<input type=\"image\"> 元素有对应的 [alt] 文字",
+      "saving": "",
+      "desc": "将图片用作 <input> 按钮时，提供替代文字有助于屏幕阅读器用户了解该按钮的用途。了解输入图片替代文字。不计分",
+      "detail": []
+     },
+     {
+      "title": "表单元素具有关联的标签",
+      "saving": "",
+      "desc": "标签可确保辅助技术（如屏幕阅读器）正确读出表单控件。详细了解表单元素标签。不计分",
+      "detail": []
+     },
+     {
+      "title": "无需依赖颜色即可辨识链接。",
+      "saving": "",
+      "desc": "对许多用户而言，对比度低的文本都是难以阅读或无法阅读的。清晰可辨的链接文本可改善低视力用户的体验。了解如何让链接容易辨识。不计分",
+      "detail": []
+     },
+     {
+      "title": "文档未使用 <meta http-equiv=\"refresh\">",
+      "saving": "",
+      "desc": "用户并不希望网页自动刷新，因为自动刷新会不断地将焦点移回到页面顶部。这可能会让用户感到沮丧或困惑。详细了解刷新元标记。不计分",
+      "detail": []
+     },
+     {
+      "title": "<object> 元素有对应的替代文字",
+      "saving": "",
+      "desc": "屏幕阅读器无法转换非文字内容。通过向 <object> 元素添加替代文字，可帮助屏幕阅读器将含义传达给用户。详细了解 object 元素的替代文字。不计分",
+      "detail": []
+     },
+     {
+      "title": "select 元素具有关联的标签元素。",
+      "saving": "",
+      "desc": "如果表单元素缺少有效标签，可能会给屏幕阅读器用户带来糟糕的体验。详细了解 select 元素。不计分",
+      "detail": []
+     },
+     {
+      "title": "跳转链接可聚焦。",
+      "saving": "",
+      "desc": "添加跳转链接可帮助用户跳至主要内容以节省时间。详细了解跳转链接。不计分",
+      "detail": []
+     },
+     {
+      "title": "所有元素的 [tabindex] 值都不大于 0",
+      "saving": "",
+      "desc": "值大于 0 意味着明确的导航顺序。尽管这在技术上可行，但往往会让依赖辅助技术的用户感到沮丧。详细了解 tabindex 属性。不计分",
+      "detail": []
+     },
+     {
+      "title": "<table> 元素中使用 [headers] 属性的单元格引用的是同一表格中的单元格。",
+      "saving": "",
+      "desc": "屏幕阅读器提供了更便于用户浏览表格内容的功能。请确保那些使用 [headers] 属性的 <td> 单元格仅引用同一个表格中的其他单元格，这样做可提升屏幕阅读器用户的体验。详细了解 headers 属性。不计分",
+      "detail": []
+     },
+     {
+      "title": "<th> 元素和 [role=\"columnheader\"/\"rowheader\"] 的元素具备它们所描述的数据单元格。",
+      "saving": "",
+      "desc": "屏幕阅读器提供了更便于用户浏览表格内容的功能。确保表格标头始终引用特定一组单元格可以提升屏幕阅读器用户的体验。详细了解表格标头。不计分",
+      "detail": []
+     },
+     {
+      "title": "[lang] 属性的值有效",
+      "saving": "",
+      "desc": "为元素指定有效的 BCP 47 语言有助于确保屏幕阅读器正确读出文字。了解如何使用 lang 属性。不计分",
+      "detail": []
+     },
+     {
+      "title": "<video> 元素包含带 [kind=\"captions\"] 的 <track> 元素",
+      "saving": "",
+      "desc": "如果视频提供了字幕，失聪用户和听障用户便能更轻松地获取此视频中的信息。详细了解视频字幕。不计分",
+      "detail": []
+     },
+     {
+      "title": "autocomplete 属性已正确使用",
+      "saving": "",
+      "desc": "autocomplete 属性值必须有效且应用得当，屏幕阅读器才能正常运行。详细了解有效的自动补全值。不计分",
+      "detail": []
+     },
+     {
+      "title": "具有“role=\"none\"”或“role=\"presentation\"”的元素不存在冲突",
+      "saving": "",
+      "desc": "在某些情况下，具有“role=\"none\"”或“role=\"presentation\"”的元素的语义角色不会解析为“none”或“presentation”。为确保该元素始终不出现在无障碍树中，请勿向该元素添加任何全局 ARIA 属性，也不要将其设为可聚焦。详细了解“presentation”角色冲突。不计分",
+      "detail": []
+     },
+     {
+      "title": "具有“img”角色的 SVG 元素拥有无障碍替代文本",
+      "saving": "",
+      "desc": "确保具有“img”“graphics-document”或“graphics-symbol”角色的 SVG 元素拥有无障碍替代文本。详细了解 SVG 替代文本。不计分",
+      "detail": []
+     },
+     {
+      "title": "相关表格的 summary 属性和 <caption> 具有不同的内容。",
+      "saving": "",
+      "desc": "summary 属性应描述表格结构，而 <caption> 应含有屏幕上显示的标题。准确的表格标记对屏幕阅读器用户有帮助。详细了解 summary 和 caption。不计分",
+      "detail": []
+     },
+     {
+      "title": "所有标题元素均包含内容。",
+      "saving": "",
+      "desc": "如果标题元素未包含任何内容或包含无法读取的文本，屏幕阅读器用户将难以获取网页的结构信息。详细了解标题。不计分",
+      "detail": []
+     },
+     {
+      "title": "使用 ARIA 角色的元素均为兼容元素",
+      "saving": "",
+      "desc": "许多 HTML 元素只能设置特定的 ARIA 角色。在禁止使用 ARIA 角色的位置使用 ARIA 角色可能会干扰网页的无障碍功能。详细了解 ARIA 角色。不计分",
+      "detail": []
+     },
+     {
+      "title": "将 HTTP 流量重定向到 HTTPS",
+      "saving": "",
+      "desc": "请务必将所有 HTTP 流量都重定向到 HTTPS，以便为所有用户启用安全的网络功能。了解详情。不计分",
+      "detail": []
+     },
+     {
+      "title": "WebMCP 表单覆盖率",
+      "saving": "",
+      "desc": "请考虑为下方列出的表单添加 WebMCP 注释。这有助于 AI 智能体更可靠地识别这些表单并与其互动。不计分",
+      "detail": []
+     },
+     {
+      "title": "已注册 WebMCP 工具",
+      "saving": "",
+      "desc": "列出分析时注册的 WebMCP 工具。不计分",
+      "detail": []
+     },
+     {
+      "title": "WebMCP 架构有效",
+      "saving": "",
+      "desc": "AI 智能体必须使用有效的 WebMCP 架构，才能准确理解并顺畅调用各项工具。请修正浏览器报告的所有错误或警告。不计分",
+      "detail": []
+     },
+     {
+      "title": "ai-catalog.json 架构有效",
+      "saving": "",
+      "desc": "自主 AI 智能体和注册数据库需要有效的 ai-catalog.json 清单，才能发现和验证您的资源。详细了解 ARD 规范。不计分",
+      "detail": []
+     }
+    ],
+    "信任与安全": [
+     {
+      "title": "请确保 CSP 能够有效地抵御 XSS 攻击",
+      "saving": "",
+      "desc": "强有力的内容安全政策 (CSP) 可显著降低遭遇跨站脚本攻击 (XSS) 的风险。了解如何使用 CSP 来防止 XSS不计分",
+      "detail": [
+       "找不到任何处于强制模式的 CSP |  | 高"
+      ]
+     },
+     {
+      "title": "使用严格 HSTS 政策",
+      "saving": "",
+      "desc": "部署 HSTS 标头可显著降低 HTTP 连接降级和窃听攻击的风险。建议分阶段部署，从较低的 max-age 开始。详细了解如何使用严格 HSTS 政策。不计分",
+      "detail": [
+       "未找到 `includeSubDomains` 指令 | includeSubDomains | 中",
+       "未找到 `preload` 指令 | preload | 中"
+      ]
+     },
+     {
+      "title": "确保通过 COOP 实现适当的源隔离",
+      "saving": "",
+      "desc": "Cross-Origin-Opener-Policy (COOP) 可用于将顶级窗口与其他文档（例如弹出式窗口）隔离。详细了解如何部署 COOP 标头。不计分",
+      "detail": [
+       "未找到 COOP 标头 |  | 高"
+      ]
+     },
+     {
+      "title": "使用 XFO 或 CSP 缓解点击劫持问题",
+      "saving": "",
+      "desc": "X-Frame-Options (XFO) 标头或 Content-Security-Policy (CSP) 标头中的 frame-ancestors 指令控制网页可嵌入的位置。这些设置可以阻止部分或全部网站嵌入网页，从而缓解点击劫持攻击。详细了解如何缓解点击劫持。不计分",
+      "detail": [
+       "未找到任何框架控制政策 | 高"
+      ]
+     },
+     {
+      "title": "使用 Trusted Types 缓解基于 DOM 的 XSS 攻击",
+      "saving": "",
+      "desc": "Content-Security-Policy (CSP) 标头中的 require-trusted-types-for 指令会指示用户代理控制传递给 DOM XSS 接收器函数的数据。详细了解如何使用 Trusted Types 缓解基于 DOM 的 XSS 攻击。不计分",
+      "detail": [
+       "未找到包含 Trusted Types 指令的 `Content-Security-Policy` 标头 | 高"
+      ]
+     }
+    ],
+    "浏览器兼容性": [
+     {
+      "title": "Baseline 功能",
+      "saving": "",
+      "desc": "列出网页上使用的 Web 功能及其截至 2026-09-17的 Baseline 状态。详细了解 Baseline。不计分",
+      "detail": [
+       "hhseal.cn 第一方 |  | ",
+       "beforeunload | Limited Availability | …chunks/0u-4f-sles6da.js:1:17045(hhseal.cn)",
+       "referencetarget | Limited Availability | …chunks/0m_p1bxtorv5i.js:1:211147(hhseal.cn)",
+       "layout-instability | Limited Availability | …chunks/0u-4f-sles6da.js:23:1929(hhseal.cn)",
+       "scrollend | Newly Available (2025-12-12) | …chunks/0m_p1bxtorv5i.js:1:162513(hhseal.cn)",
+       "fetch-priority | Newly Available (2024-10-29) | /en:-1:-2(hhseal.cn)",
+       "text-wrap | Newly Available (2024-10-17) | /en:-1:-2(hhseal.cn)",
+       "relative-color | Newly Available (2024-09-16) | /en:-1:-2(hhseal.cn)",
+       "backdrop-filter | Newly Available (2024-09-16) | /en:-1:-2(hhseal.cn)",
+       "registered-custom-properties | Newly Available (2024-07-09) | /en:-1:-2(hhseal.cn)"
+      ]
+     }
+    ],
+    "常规": [
+     {
+      "title": "已检测到的 JavaScript 库",
+      "saving": "",
+      "desc": "页面上检测到的所有前端 JavaScript 库。详细了解此 JavaScript 库检测诊断审核。不计分",
+      "detail": [
+       "core-js | core-js-pure@3.32.2"
+      ]
+     }
+    ]
+   }
+  }
+ },
+ "_env": {
+  "createdAt": "2026年10月19日 22:23:12",
+  "lighthouse": "13.5.0",
+  "url": "https://hhseal.cn/en"
+ }
+}

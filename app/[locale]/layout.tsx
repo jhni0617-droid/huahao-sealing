@@ -1,26 +1,36 @@
 import type { Metadata, Viewport } from "next"
 import { NextIntlClientProvider } from "next-intl"
 import { getMessages, setRequestLocale } from "next-intl/server"
-// 字体自托管（fontsource，构建/加载不再依赖 Google Fonts 网络）
-// Inter 支持拉丁+西里尔，作为英文正文与俄语兜底
-import "@fontsource/inter/400.css"
-import "@fontsource/inter/500.css"
-import "@fontsource/inter/600.css"
-import "@fontsource/inter/700.css"
-import "@fontsource/plus-jakarta-sans/500.css"
-import "@fontsource/plus-jakarta-sans/600.css"
-import "@fontsource/plus-jakarta-sans/700.css"
-import "@fontsource/plus-jakarta-sans/800.css"
-import "@fontsource/bebas-neue/400.css"
-import "@fontsource/playfair-display/500.css"
-import "@fontsource/playfair-display/600.css"
-import "@fontsource/playfair-display/700.css"
-import "@fontsource/playfair-display/500-italic.css"
-// ⚠️ 不要引入 @fontsource/noto-serif-sc。
-// 该 CJK 字体 4 个字重 × 101 个子集 = 404 条 @font-face / 808 个文件引用，
-// 占首页 gzip CSS 的约 89%（135KB / 152KB）；而 globals.css 里 html.locale-en 已把
-// --font-serif-sc 覆盖为 Plus Jakarta Sans，en/vi/th/ru/ja/ko 六种语言根本用不到它。
-// 中文标题改用 globals.css 中已有的系统衬线兜底：Songti SC / STSong / SimSun。
+// 字体自托管（fontsource，构建/加载不再依赖 Google Fonts 网络）。
+// 按子集细粒度引入，砍掉用不到的 @font-face 声明（全量 import 每个字重 8+ 子集，
+// 阻塞渲染的 CSS 从 ~15.5KB 砍到 ~6KB）：
+//   Inter      → latin + vietnamese + cyrillic（en/vi/ru 正文；th/ja/ko/zh 系统兜底）
+//   Jakarta    → latin + vietnamese（非 zh 标题；ru 标题回退 Inter 西里尔）
+//   Bebas      → latin（display 英文）
+//   Playfair   → latin（仅数字与单位符号）
+// ⚠️ 不要引入 @fontsource/noto-serif-sc：4 字重 × 101 子集会占首页 CSS 约 89%，
+// 而 zh 的 --font-serif-sc 本就走系统衬线兜底（Songti SC / STSong / SimSun）。
+import "@fontsource/inter/latin-400.css"
+import "@fontsource/inter/latin-500.css"
+import "@fontsource/inter/latin-600.css"
+import "@fontsource/inter/latin-700.css"
+import "@fontsource/inter/vietnamese-400.css"
+import "@fontsource/inter/vietnamese-500.css"
+import "@fontsource/inter/vietnamese-700.css"
+import "@fontsource/inter/cyrillic-400.css"
+import "@fontsource/inter/cyrillic-500.css"
+import "@fontsource/inter/cyrillic-700.css"
+import "@fontsource/plus-jakarta-sans/latin-500.css"
+import "@fontsource/plus-jakarta-sans/latin-600.css"
+import "@fontsource/plus-jakarta-sans/latin-700.css"
+import "@fontsource/plus-jakarta-sans/latin-800.css"
+import "@fontsource/plus-jakarta-sans/vietnamese-500.css"
+import "@fontsource/plus-jakarta-sans/vietnamese-700.css"
+import "@fontsource/bebas-neue/latin-400.css"
+import "@fontsource/playfair-display/latin-500.css"
+import "@fontsource/playfair-display/latin-600.css"
+import "@fontsource/playfair-display/latin-700.css"
+import "@fontsource/playfair-display/latin-500-italic.css"
 import { routing } from "@/i18n/routing"
 import LayoutShell from "@/components/LayoutShell"
 import { OrganizationJsonLd } from "@/components/JsonLd"

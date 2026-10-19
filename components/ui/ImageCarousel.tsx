@@ -82,7 +82,6 @@ export default function ImageCarousel({
                   fill
                   className="object-contain p-6"
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  priority={idx === 0}
                 />
               )}
             </div>

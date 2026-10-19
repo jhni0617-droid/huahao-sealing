@@ -53,7 +53,7 @@ const heroUi = {
     tempLabel: "非酸化性媒体中での長期使用温度",
     lead: "カーボングラファイトシール",
     accent: "図面から製作",
-    subline: "シールリング・ブッシング/軸受・分割リング — レジン・アンチモン・銅含浸グレード",
+    subline: "シールリング・ブッシュ/軸受・分割リング — レジン・アンチモン・銅含浸グレード",
     cta: "図面を送って見積もり",
   },
   ko: {
@@ -362,6 +362,7 @@ export default function HeroSection() {
                 alt="Huahao Sealing"
                 fill
                 priority={idx === 0}
+                fetchPriority={idx === 0 ? "high" : "auto"}
                 sizes="100vw"
                 className={`object-cover object-center [filter:brightness(0.82)] ${
                   isCurrent ? "hero-kenburns" : ""
@@ -495,9 +496,9 @@ export default function HeroSection() {
             className="group flex items-center"
           >
             {idx === current ? (
-              <span className="block h-4 w-4 rounded-full bg-accent shadow-[0_0_0_3px_rgba(230,0,18,0.25)] transition-all md:h-5 md:w-5" />
+              <span className="block h-4 w-4 rounded-full bg-accent shadow-[0_0_0_3px_rgba(230,0,18,0.25)] transition-opacity duration-300 md:h-5 md:w-5" />
             ) : (
-              <span className="block h-4 w-4 rounded-full border-2 border-white/60 bg-transparent transition-all group-hover:border-white group-hover:bg-white/30 md:h-5 md:w-5" />
+              <span className="block h-4 w-4 rounded-full border-2 border-white/60 bg-transparent transition-opacity duration-300 group-hover:border-white group-hover:bg-white/30 md:h-5 md:w-5" />
             )}
           </button>
         ))}
