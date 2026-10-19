@@ -96,3 +96,36 @@ Google Tag Manager（AW-183… 转化跟踪）阻塞主线程。
 ---
 
 *附：原始 Lighthouse 数据已存 `scripts/psi_report.json`（mobile/desktop 全量 audit），提取脚本 `scripts/psi_read.mjs` 可重复运行。*
+
+---
+
+# 七、优化执行记录（2026-10-19 · 已部署上线）
+
+commit `b6ef570`，Vercel 已构建上线。**线上 HTML 逐项验证通过**：
+
+| # | 改动 | 文件 | 上线验证证据 |
+|---|---|---|---|
+| 1 | GTM/Pixel/Clarity 全改 `lazyOnload` | `components/AnalyticsScripts.tsx` | head 中 `googletagmanager.com/gtag/js` preload 从 1 → **0** |
+| 2 | 非首屏工厂轮播去 preload | `components/ui/ImageCarousel.tsx` | `workshop-overview` preload 移除；图片 preload 从 3 组（logo+hero+workshop）→ **2 组**（logo+hero） |
+| 3 | Hero 首图 `fetchPriority="high"` | `components/HeroSection.tsx` | 线上 img 标签已输出 `fetchPriority="high"` |
+| 4 | 字体 CSS 子集级 import | `app/[locale]/layout.tsx` | 阻塞 CSS chunk：18.6KB → **5.2KB（-72%）**，两个 chunk 合并为一个 |
+| 5 | accent-glow 动画 text-shadow→opacity | `app/globals.css` | 消除 paint 动画（Lighthouse 本地复测 non-composited-animations **pass**） |
+| 6 | `removeConsole` 生产移除 | `next.config.ts` | 构建已通过（Vercel） |
+| 7 | 安全 headers 六项 | `vercel.json` | 线上响应头全部生效：HSTS / XFO / XCTO / Referrer-Policy / COOP / Permissions-Policy + CSP Report-Only |
+
+本地复测说明：Lighthouse 13.5.0 本地直连跑过（`scripts/lh_after2.json`），但本地机器/网络口径与 PSI 服务器不同，**分数不可比**，仅确认「未合成动画」等 audit 已转 pass。
+
+## PSI 分数复测状态：待刷新
+
+- **阻塞原因**：PSI 对 `analysis?url=` 新提交返回服务端缓存（71 分旧数据），强制重跑时 Google 服务器抓取 hhseal.cn **持续返回"无法解析"**（Google 侧从国内 Vercel 边缘抓取间歇失败，22:23 的 permalink 分析是抓到成功窗口生成的）。
+- **手动复测方法**（任选）：
+  1. 浏览器打开 https://pagespeed.web.dev/ ，输入框输 `https://hhseal.cn/en` 回车（多试几次，Google 抓取是间歇性的）；
+  2. 或等几小时 PSI 缓存过期后自动恢复；
+  3. 复测脚本：`node scripts/psi_retest.mjs https://hhseal.cn/en`（自动填输入框+轮询等报告）。
+- **预期**：本轮改动直接命中 PSI 报告里每一条 performance 建议（带宽抢占源已移除、阻塞 CSS -72%、图片 preload 收敛、动画去 paint），LCP 4.1s / TBT 260ms 应显著改善；A11y/SEO 分数不变（三项缺失为流式渲染误报，线上 HTML 已验证 lang/title/meta/main 均存在）。
+
+## 未做项（需人工或下轮）
+
+- `0m_p1bxtorv5i.js` 2.3s 执行：首页 client bundle 含 next-intl 全量 messages（layout 级 provider，7 语言共用），进一步拆分需按路由嵌套 provider，属架构改动，风险高，留待下轮评估。
+- CSP 当前为 Report-Only（不阻断），观察 GSC/console 无违规后可升级为强制。
+- CrUX 字段数据样本不足，PSI「真实用户体验」区暂时无数据，随流量积累会出现。
