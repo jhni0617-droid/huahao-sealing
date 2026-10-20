@@ -14,7 +14,7 @@ const brandCopy = {
   vi: { name: "Huahao Sealing", desc: "Phớt graphite · bạc lót · gia công OEM" },
   th: { name: "Huahao Sealing", desc: "ซีลกราไฟต์ · บูช · งาน OEM" },
   ru: { name: "Huahao Sealing", desc: "Графитовые уплотнения · втулки · OEM" },
-  ja: { name: "Huahao Sealing", desc: "グラファイトシール · ブッシング · OEM加工" },
+  ja: { name: "Huahao Sealing", desc: "グラファイトシール · ブッシュ · OEM加工" },
   ko: { name: "Huahao Sealing", desc: "그라파이트 씰 · 부싱 · OEM 가공" },
 }
 

@@ -1,7 +1,7 @@
 {
   "nav": {
     "home": "Trang chủ",
-    "products": "Sản phẩm Graphite",
+    "products": "Sản phẩm than chì carbon",
     "applications": "Ứng dụng",
     "cases": "Nhà máy & Trường hợp",
     "faq": "Câu hỏi",
@@ -17,16 +17,16 @@
     "productMenu": {
       "groupProducts": "Sản phẩm",
       "groupSolutions": "Giải pháp ngành",
-      "raw": "Nguyên liệu Graphite tẩm",
-      "sealRings": "Vòng đệm than chì",
-      "bushings": "Bạc lót than chì",
-      "splitRings": "Vòng chia than chì",
-      "custom": "Phát triển theo yêu cầu",
+      "raw": "Nguyên liệu than chì carbon ngâm tẩm",
+      "sealRings": "Vòng đệm than chì carbon",
+      "bushings": "Bạc lót than chì carbon",
+      "splitRings": "Vòng phân đoạn than chì carbon",
+      "custom": "Gia công than chì carbon theo bản vẽ",
       "solutions": "Giải pháp theo ngành",
-      "ev": "Giải pháp EV",
-      "semiconductor": "Giải pháp bán dẫn",
-      "chemical": "Giải pháp hóa chất",
-      "metallurgy": "Giải pháp nhiệt luyện"
+      "ev": "Giải pháp graphite cho pin EV",
+      "semiconductor": "Giải pháp chân không bán dẫn",
+      "chemical": "Giải pháp chống ăn mòn hóa chất",
+      "metallurgy": "Giải pháp luyện kim nhiệt độ cao"
     },
     "casesMenu": {
       "groupFactory": "Năng lực nhà máy",
@@ -34,14 +34,14 @@
       "factory": "Khả năng nhà máy",
       "workshop": "Xưởng chế tạo",
       "quality": "Kiểm soát chất lượng",
-      "process": "Quy trình tẩm",
+      "process": "Quy trình ngâm tẩm",
       "capacity": "Năng lực giao hàng",
       "certificates": "Chứng nhận",
       "sealCases": "Trường hợp đệm",
       "semiconductorCases": "Trường hợp bán dẫn",
       "moldCases": "Trường hợp khuôn",
       "exportCases": "Đơn hàng xuất khẩu",
-      "customCases": "Trường hợp phát triển"
+      "customCases": "Trường hợp gia công theo bản vẽ"
     },
     "blogMenu": {
       "groupBlog": "Blog kỹ thuật",
@@ -54,7 +54,7 @@
       "news": "Tin tức ngành",
       "faq": "Câu hỏi kỹ thuật",
       "faqLeak": "Giải pháp rò rỉ",
-      "faqTolerance": "Kiểm soát sai số",
+      "faqTolerance": "Kiểm soát dung sai",
       "faqMaterial": "Chọn vật liệu",
       "faqSample": "Câu hỏi mẫu",
       "download": "Tải tài liệu",
@@ -99,7 +99,7 @@
     "email": "Email",
     "phone": "Điện thoại",
     "address": "Địa chỉ",
-    "copyright": "Đã đăng ký bản quyền"
+    "copyright": "Bảo lưu mọi quyền"
   },
   "common": {
     "ctaTitle": "Sẵn sàng tối ưu giải pháp làm kín?",
@@ -113,8 +113,8 @@
   "home": {
     "hero": {
       "tag": "Tự bôi trơn · Chịu nhiệt · Chống ăn mòn · Chống mài mòn",
-      "title1": "Than chì Carbon",
-      "title2": "Chất lượng cao",
+      "title1": "Than chì carbon chất lượng cao",
+      "title2": "Giải pháp làm kín",
       "description": "Nhà sản xuất chuyên nghiệp vòng đệm than chì, bạc lót than chì và vòng chia than chì. Hỗ trợ gia công tùy chỉnh theo bản vẽ.",
       "ctaQuote": "Báo giá",
       "ctaWhatsApp": "WhatsApp",
@@ -123,12 +123,12 @@
     "whyCarbon": {
       "tag": "Tại sao Carbon Graphite",
       "title": "Chi phí hư hỏng vs Lợi thế Carbon Graphite",
-      "description": "Sự cố phốt thường xuyên phần lớn bắt nguồn từ vật liệu. Dưới đây là cách than chì carbon xử lý mài mòn, nhiệt độ cao và ăn mòn — so sánh bằng số liệu.",
+      "description": "Sự cố phớt thường xuyên phần lớn bắt nguồn từ vật liệu. Dưới đây là cách than chì carbon xử lý mài mòn, nhiệt độ cao và ăn mòn — so sánh bằng số liệu.",
       "problemsTitle": "Vấn đề thường gặp",
       "solutionTitle": "Giải pháp Carbon Graphite",
       "ctaTitle": "Carbon Graphite — Giải quyết cả ba",
-      "ctaDescription": "Tự bôi trơn, chống mài mòn, chống ăn mòn — Phốt carbon graphite Huahao kéo dài tuổi thọ gấp 3-6 lần, loại bỏ rò rỉ, giảm thời gian ngừng máy.",
-      "ctaButton": "Giải quyết vấn đề phốt của tôi"
+      "ctaDescription": "Tự bôi trơn, chống mài mòn, chống ăn mòn — Phớt carbon graphite Huahao kéo dài tuổi thọ gấp 3-6 lần, loại bỏ rò rỉ, giảm thời gian ngừng máy.",
+      "ctaButton": "Giải quyết vấn đề phớt của tôi"
     },
     "applicationsSection": {
       "tag": "Ứng dụng",
@@ -153,12 +153,12 @@
     "factory": {
       "tag": "Năng lực của chúng tôi",
       "title": "20 năm chuyên môn về làm kín Carbon Graphite",
-      "description": "Với hơn 20 năm kinh nghiệm sản xuất chuyên ngành, chúng tôi sử dụng trung tâm gia công CNC tiên tiến và thiết bị kiểm tra chính xác."
+      "description": "Với hơn 20 năm kinh nghiệm sản xuất chuyên ngành, chúng tôi sử dụng trung tâm gia công CNC tiên tiến và thiết bị kiểm tra chính xác. Mỗi chuyên gia đều trải qua kiểm soát chất lượng nghiêm ngặt trước khi xuất xưởng."
     }
   },
   "company": {
-    "name": "Công ty TNHH Phốt Hoa Hào",
-    "tagline": "Giải pháp bịt kín"
+    "name": "Huahao Sealing",
+    "tagline": "Giải pháp làm kín"
   },
   "notFound": {
     "title": "Không tìm thấy trang",
@@ -180,13 +180,13 @@
     "diagnosisLabel": "▸ Chẩn đoán",
     "solutionLabel": "▸ Giải pháp",
     "keyResultLabel": "Kết quả chính",
-    "ctaTitle": "Muốn trở thành thành công tiếp theo?",
+    "ctaTitle": "Muốn trở thành câu chuyện thành công tiếp theo?",
     "ctaSubtitle": "Liên hệ để thảo luận cách giải pháp của chúng tôi giải quyết thách thức của bạn.",
     "ctaButton": "Bắt đầu dự án",
     "emptyText": "Chưa có nghiên cứu",
     "metricLife": "Kéo dài tuổi thọ",
     "metricCost": "Giảm chi phí",
-    "metricRuntime": "Cải thiện thời gian"
+    "metricRuntime": "Tăng thời gian vận hành"
   },
   "contact": {
     "pageTitle": "Liên hệ | Nhận báo giá",
@@ -284,13 +284,13 @@
   },
   "faq": {
     "pageTitle": "Câu hỏi | Huahao Sealing",
-    "pageSubtitle": "Lựa chọn, lắp ráp, xử lý sự cố, công thức — tài liệu tham khảo kỹ thuật làm kín than chì một điểm.",
+    "pageSubtitle": "Lựa chọn, lắp ráp, xử lý sự cố, công thức — tài liệu tham khảo kỹ thuật làm kín than chì trọn gói.",
     "tablesTitle": "Bảng tham khảo chính",
     "tablesSubtitle": "Dữ liệu tham khảo cần thiết cho lựa chọn, thiết kế, lắp đặt và xử lý sự cố.",
     "categoriesTitle": "Danh mục câu hỏi",
     "categoriesSubtitle": "Duyệt câu hỏi theo danh mục để nhanh chóng tìm câu trả lời.",
     "formulasTitle": "Công thức kỹ thuật",
-    "formulasSubtitle": "Công thức kỹ thuật phổ biến cho thiết kế và phân tích hư hỏng phốt.",
+    "formulasSubtitle": "Công thức kỹ thuật phổ biến cho thiết kế và phân tích hư hỏng phớt.",
     "itemsLabel": "mục",
     "symbolLabel": "Ký hiệu",
     "meaningLabel": "Ý nghĩa",
@@ -300,7 +300,7 @@
   },
   "failure": {
     "tag": "Giải pháp kỹ thuật",
-    "title": "Hư hỏng phốt thường gặp — Giải pháp của chúng tôi",
+    "title": "Hư hỏng phớt thường gặp — Giải pháp của chúng tôi",
     "description": "Hàng thập kỷ kinh nghiệm thực tế. Với mọi dạng hư hỏng phổ biến, chúng tôi đều có giải pháp đã được kiểm chứng.",
     "collapse": "Thu gọn",
     "expand": "Xem giải pháp",
@@ -350,10 +350,10 @@
   },
   "about": {
     "pageTitle": "Về Huahao Sealing",
-    "pageSubtitle": "Hơn một thập kỷ kinh nghiệm sản xuất phốt than chì — chất lượng bạn có thể tin cậy.",
+    "pageSubtitle": "Hơn một thập kỷ kinh nghiệm sản xuất phớt than chì — chất lượng bạn có thể tin cậy.",
     "companyTitle": "Hồ sơ công ty",
-    "companyPara1": "Huahao Sealing Co., Ltd. tọa lạc tại huyện Hoắc Khâu, thành phố Lục An, tỉnh An Huy. Thành lập năm 2019, tiền thân là Chiết Giang Gia Thiện Tiên Phong Carbon. Nhà sản xuất chuyên nghiệp phốt than chì và bạc lót than chì.",
-    "companyPara2": "Tận dụng lợi thế tài nguyên địa phương, chúng tôi cung cấp các giải pháp làm kín và chống mài mòn hiệu suất cao, độ tin cậy cao cho thiết bị công nghiệp trên toàn thế giới. Sản phẩm của chúng tôi có đặc tính tự bôi trơn, chịu nhiệt cao, chống ăn mòn và tiết kiệm chi phí, được ứng dụng rộng rãi trong bơm, van, máy nén, lò phản ứng, hóa chất luyện kim và phốt cơ khí.",
+    "companyPara1": "Huahao Sealing Co., Ltd. tọa lạc tại huyện Hoắc Khâu, thành phố Lục An, tỉnh An Huy. Thành lập năm 2019, tiền thân là Chiết Giang Gia Thiện Tiên Phong Carbon. Nhà sản xuất chuyên nghiệp phớt than chì và bạc lót than chì.",
+    "companyPara2": "Tận dụng lợi thế tài nguyên địa phương, chúng tôi cung cấp các giải pháp làm kín và chống mài mòn hiệu suất cao, độ tin cậy cao cho thiết bị công nghiệp trên toàn thế giới. Sản phẩm của chúng tôi có đặc tính tự bôi trơn, chịu nhiệt cao, chống ăn mòn và tiết kiệm chi phí, được ứng dụng rộng rãi trong bơm, van, máy nén, lò phản ứng, hóa chất luyện kim và đệm kín cơ khí.",
     "companyPara3": "Chúng tôi cung cấp gia công tùy chỉnh theo bản vẽ hoặc mẫu để đáp ứng các điều kiện vận hành đa dạng. Hỗ trợ gửi mẫu thử miễn phí. Huahao Sealing luôn ưu tiên chất lượng và uy tín, hướng tới hợp tác toàn cầu!",
     "faqTitle": "Câu hỏi thường gặp",
     "faqSubtitle": "Các câu hỏi phổ biến về sản phẩm, tùy chỉnh và hợp tác.",
@@ -387,7 +387,7 @@
   },
   "markets": {
     "pageTitle": "Thị trường toàn cầu | Giải pháp kín than chì carbon theo khu vực",
-    "pageSubtitle": "Huahao Sealing phục 6+ thị trường xuất khẩu với đối thoại đa ngôn ngữ, chứng nhận xuất xứ FTA và logistics nhanh. Việt Nam, Ấn Độ, Trung Đông, Indonesia, Brazil, Nga.",
+    "pageSubtitle": "Huahao Sealing phục vụ 6+ thị trường xuất khẩu với đối thoại đa ngôn ngữ, chứng nhận xuất xứ FTA và logistics nhanh. Việt Nam, Ấn Độ, Trung Đông, Indonesia, Brazil, Nga.",
     "heroSubtitle": "6+ thị trường, 7 ngôn ngữ, ASEAN-China FTA 0%.",
     "ctaTitle": "Không thấy thị trường? Liên hệ kỹ sư",
     "ctaSubtitle": "Bất cứ nơi đâu, chúng tôi hỗ trợ đa ngôn ngữ, chứng nhận xuất xứ và logistics."

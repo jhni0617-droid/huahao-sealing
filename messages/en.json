@@ -94,7 +94,7 @@
     "sealRings": "Carbon Graphite Seal Rings",
     "bushings": "Carbon Graphite Bushings",
     "bearings": "Carbon Graphite Bearings",
-    "splitRings": "Three-Piece Carbon Seal Rings",
+    "splitRings": "Carbon Graphite Split Rings",
     "customMachining": "Custom Machining to Drawing",
     "email": "Email",
     "phone": "Phone",
@@ -383,7 +383,7 @@
     "faq": "Frequently Asked Questions",
     "viewDetails": "View details",
     "ctaTitle": "Not sure which grade? Let our engineers help",
-    "ctaSubtitle": "Submit your duty parameters — engineers reply with grade selection and quotation within 24 hours."
+    "ctaSubtitle": "Submit your operating parameters — engineers reply with grade selection and quotation within 24 hours."
   },
   "markets": {
     "pageTitle": "Global Markets | Regional Carbon Graphite Sealing Solutions",
@@ -397,6 +397,6 @@
     "pageSubtitle": "Carbon graphite grade selection guide and chemical resistance chart for 40+ media (acids, alkalis, salts, solvents). Engineering reference for chemical pumps, reactors, compressor seals.",
     "heroSubtitle": "2 technical resources, 8+ grade data points, 40+ media resistance ratings.",
     "ctaTitle": "Don't see the data you need? Contact our engineers",
-    "ctaSubtitle": "Submit duty parameters — engineers provide personalized selection and resistance data."
+    "ctaSubtitle": "Submit operating parameters — engineers provide personalized selection and resistance data."
   }
 }
