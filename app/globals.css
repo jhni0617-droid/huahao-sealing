@@ -531,6 +531,18 @@ main {
     transform: translateX(-50%);
   }
 }
+/* 第二行：倒序内容 + 反方向滚动（从右往左退回），两行视觉上形成对流 */
+.product-rail-track-reverse {
+  animation-name: product-rail-scroll-reverse;
+}
+@keyframes product-rail-scroll-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
 .product-rail-mask {
   -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%);
   mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%);

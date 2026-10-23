@@ -25,7 +25,6 @@ const copy = {
 export default async function ProductRail() {
   const locale = await getLocale()
   const t = getLocalized(copy, locale)
-  const track = [...productRail, ...productRail]
 
   return (
     <section className="overflow-hidden border-y border-border bg-white py-5 md:py-6">
@@ -45,26 +44,38 @@ export default async function ProductRail() {
         </Link>
       </div>
 
-      <div className="product-rail-mask">
-        <div className="product-rail-track flex w-max">
-          {track.map((src, i) => (
-            <div
-              key={`${src}-${i}`}
-              aria-hidden={i >= productRail.length}
-              className="relative mr-2 aspect-[4/3] w-[130px] shrink-0 overflow-hidden bg-[#f0f1f2] sm:w-[170px] md:mr-3 md:w-[210px]"
-            >
-              <Image
-                src={src}
-                alt=""
-                fill
-                sizes="210px"
-                loading="lazy"
-                className="object-cover"
-              />
-            </div>
-          ))}
-        </div>
+      <div className="product-rail-mask space-y-2 md:space-y-3">
+        <RailRow items={productRail} direction="forward" />
+        {/* 第二行：从产品中心最后一张开始倒序排列，反向滚动 */}
+        <RailRow items={[...productRail].reverse()} direction="reverse" />
       </div>
     </section>
+  )
+}
+
+function RailRow({ items, direction }: { items: string[]; direction: "forward" | "reverse" }) {
+  // 复制两份，靠 translateX(-50%) 循环；卡片用 mr 而非父级 gap，两份宽度才严格相等
+  const track = [...items, ...items]
+  const cls = direction === "forward" ? "product-rail-track" : "product-rail-track product-rail-track-reverse"
+
+  return (
+    <div className={`${cls} flex w-max`}>
+      {track.map((src, i) => (
+        <div
+          key={`${src}-${i}`}
+          aria-hidden={i >= items.length}
+          className="relative mr-2 aspect-[4/3] w-[130px] shrink-0 overflow-hidden bg-[#f0f1f2] sm:w-[170px] md:mr-3 md:w-[210px]"
+        >
+          <Image
+            src={src}
+            alt=""
+            fill
+            sizes="210px"
+            loading="lazy"
+            className="object-cover"
+          />
+        </div>
+      ))}
+    </div>
   )
 }
