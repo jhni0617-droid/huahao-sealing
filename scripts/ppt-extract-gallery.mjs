@@ -56,7 +56,7 @@ for (let i = 0; i < files.length; i++) {
   kept.push({ file: out, page: item.page, w: info.width, h: info.height, kb: Math.round(info.size / 1024) })
 }
 
-fs.writeFileSync(path.join(DEST, "_manifest.json"), JSON.stringify(kept, null, 1))
+fs.writeFileSync("C:/Users/倪/Desktop/vibe codeing/huahao-sealing/scripts/ppt-gallery-manifest.json", JSON.stringify(kept, null, 1))
 const totalKb = kept.reduce((a, b) => a + b.kb, 0)
 console.log(`kept ${kept.length} / dropped ${DROP.size} / total ${(totalKb / 1024).toFixed(1)} MB`)
 console.log("sample:", kept.slice(0, 3).map((k) => `${k.file} ${k.w}x${k.h} ${k.kb}KB`).join(" | "))
