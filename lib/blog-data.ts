@@ -12,6 +12,8 @@ import { blogPostsBatch11 } from "./blog-data-11"
 import { blogPostsBatch12 } from "./blog-data-12"
 import { blogPostsBatch13 } from "./blog-data-13"
 import { blogPostsBatch14 } from "./blog-data-14"
+import { blogPostsBatch15 } from "./blog-data-15"
+import { blogPostsBatch16 } from "./blog-data-16"
 
 export interface BlogPost {
   slug: string
@@ -51,6 +53,8 @@ export const blogPosts: BlogPost[] = [
   ...blogPostsBatch12,
   ...blogPostsBatch13,
   ...blogPostsBatch14,
+  ...blogPostsBatch15,
+  ...blogPostsBatch16,
 ].map((post) => {
   const t = (blogTranslations as Record<string, any>)[post.slug]
   if (!t) return post
