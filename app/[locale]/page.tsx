@@ -3,6 +3,7 @@ import { setRequestLocale } from "next-intl/server"
 import { getLocalized } from "@/lib/locale-data"
 import HeroSection from "@/components/HeroSection"
 import ProductCategoryRail from "@/components/home/ProductCategoryRail"
+import ProductRail from "@/components/ProductRail"
 import NewsSection from "@/components/NewsSection"
 import FactoryQuality from "@/components/FactoryQuality"
 import CustomOrderCTA from "@/components/CustomOrderCTA"
@@ -50,6 +51,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     <>
       <HeroSection />
       <ProductCategoryRail />
+      <ProductRail />
       <NewsSection />
       <FactoryQuality />
       <CustomOrderCTA />
