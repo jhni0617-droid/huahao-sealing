@@ -11,7 +11,7 @@ const railLabel = {
 }
 
 const pinnedCovers: Record<string, string> = {
-  "huahao-relocated-to-luan-2018": "/images/factory/company-plaque-2018.webp",
+  "huahao-relocated-to-luan-2018": "/images/factory/company-team-huoqiu.webp",
   "cnc-machining-upgrade-2020": "/images/factory/cnc-turning-graphite.webp",
   "self-built-factory-2021": "/images/factory/factory-aerial-2021.webp",
 }
