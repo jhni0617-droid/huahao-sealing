@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { getLocale } from "next-intl/server"
 import { getLocalized } from "@/lib/locale-data"
-import { productRail } from "@/lib/product-rail"
+import { productRailModels, productRailGallery } from "@/lib/product-rail"
 import { Link } from "@/i18n/routing"
 
 /**
@@ -9,7 +9,12 @@ import { Link } from "@/i18n/routing"
  *
  * 纯 CSS 动画，无客户端 JS —— 服务端输出两遍同样的图片，靠 translateX(-50%) 循环。
  * 每个卡片自带右侧内边距而不靠父级 gap，两份宽度才严格相等，循环处不会出现半格错位。
- * 101 张全部压到 360px/8KB，lazy 加载；区块位于首页第二屏，不会抢首屏带宽。
+ *
+ * 两行图片源刻意拆开、内容零重叠：
+ *   第一行 = 23 张型号图（正序、向左）
+ *   第二行 = 78 张车间实拍倒序（从最后一张开始、向右）
+ * 共用同一批图会因两行方向相反在中途交汇，导致同一张图上下同时出现。
+ * 动画时长按各自轨道长度换算，保持相同的线速度（约 86px/s）。
  */
 
 const copy = {
@@ -45,21 +50,29 @@ export default async function ProductRail() {
       </div>
 
       <div className="product-rail-mask space-y-2 md:space-y-3">
-        <RailRow items={productRail} direction="forward" />
-        {/* 第二行：从产品中心最后一张开始倒序排列，反向滚动 */}
-        <RailRow items={[...productRail].reverse()} direction="reverse" />
+        <RailRow items={productRailModels} direction="forward" duration={59} />
+        {/* 第二行：实拍图倒序，从产品中心最后一张开始，反方向滚动 */}
+        <RailRow items={[...productRailGallery].reverse()} direction="reverse" duration={202} />
       </div>
     </section>
   )
 }
 
-function RailRow({ items, direction }: { items: string[]; direction: "forward" | "reverse" }) {
+function RailRow({
+  items,
+  direction,
+  duration,
+}: {
+  items: string[]
+  direction: "forward" | "reverse"
+  duration: number
+}) {
   // 复制两份，靠 translateX(-50%) 循环；卡片用 mr 而非父级 gap，两份宽度才严格相等
   const track = [...items, ...items]
   const cls = direction === "forward" ? "product-rail-track" : "product-rail-track product-rail-track-reverse"
 
   return (
-    <div className={`${cls} flex w-max`}>
+    <div className={`${cls} flex w-max`} style={{ animationDuration: `${duration}s` }}>
       {track.map((src, i) => (
         <div
           key={`${src}-${i}`}

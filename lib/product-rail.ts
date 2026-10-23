@@ -1,11 +1,14 @@
 /**
- * 首页「产品图片轮播」的图片序列。
+ * 首页「产品图片轮播」的两组图片序列（两行各用一组，内容不重叠）。
  *
- * 来源 = 产品中心的全部图片：23 张型号/品类产品图 + 78 张车间实拍，共 101 张。
- * 已统一压到 360px 宽 webp（合计约 0.79MB，平均 8KB/张），生成脚本 scripts/build-product-rail.mjs。
- * 顺序即轮播顺序，前段是带型号的产品图，后段是实拍。
+ * - productRailModels：23 张型号/品类产品图，第一行使用
+ * - productRailGallery：78 张车间实拍，第二行使用（倒序播放）
+ *
+ * 全部压到 360px 宽 webp（合计约 0.79MB，平均 8KB/张），
+ * 原始文件与顺序见 scripts/ppt-rail-manifest.json，生成脚本 scripts/build-product-rail.mjs。
  */
-export const productRail: string[] = [
+
+export const productRailModels: string[] = [
   "/images/products/rail/rail-001.webp",
   "/images/products/rail/rail-002.webp",
   "/images/products/rail/rail-003.webp",
@@ -29,6 +32,9 @@ export const productRail: string[] = [
   "/images/products/rail/rail-021.webp",
   "/images/products/rail/rail-022.webp",
   "/images/products/rail/rail-023.webp",
+]
+
+export const productRailGallery: string[] = [
   "/images/products/rail/rail-024.webp",
   "/images/products/rail/rail-025.webp",
   "/images/products/rail/rail-026.webp",
