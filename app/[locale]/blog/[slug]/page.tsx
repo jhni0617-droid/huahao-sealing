@@ -202,11 +202,19 @@ function renderContent(content: string, locale: string) {
 }
 
 function parseInline(text: string): string {
-  return text
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/\*\*(.+?)\*\*/g, '<strong class="font-bold text-primary">$1</strong>')
+  return (
+    text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/\*\*(.+?)\*\*/g, '<strong class="font-bold text-primary">$1</strong>')
+      // 行内链接：[锚文本](https://...)
+      // 只放行 http/https，且排除空格、引号、尖括号，避免属性逃逸
+      .replace(
+        /\[([^\]]+)\]\((https?:\/\/[^)\s"'<>]+)\)/g,
+        '<a href="$2" class="text-accent font-medium underline underline-offset-2 decoration-accent/40 hover:text-accent-hover hover:decoration-accent" target="_blank" rel="noopener">$1</a>'
+      )
+  )
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {

@@ -1525,4 +1525,188 @@ Sampling: first article 100% visual and key dimensions; 3–5 pieces destructive
 FAI for graphite seal rings reduces to one sentence: **full dimensional inspection, face quality as the priority, sampled impregnation checks, documents and retained samples**. Four items, half a day's work — and they set the quality level for dozens of later batches. With a new supplier, the strictness of the first article is your pricing of the whole relationship: let one defect through, and the market will send you the supplier's bill.`,
     },
   },
+  // 10. October 23, 2026 - When to drop grease entirely: graphite bearing selection
+  {
+    slug: "when-to-drop-grease-graphite-bearings",
+    title: {
+      zh: "什么时候该彻底放弃润滑脂：碳石墨轴承的适用边界",
+      en: "When to Drop Grease Entirely: The Working Envelope of Carbon Graphite Bearings",
+    },
+    excerpt: {
+      zh: "润滑脂失效有三个前提条件：能补脂、温度在基油允许区间、污染物能容忍。三者缺一，脂就会先于轴承坏掉。这篇文章讲哪五类工位从设计上就该放弃脂、碳石墨轴承靠什么工作、它的边界又在哪里，以及石墨与含油轴承、陶瓷、工程塑料之间的取舍顺序。",
+      en: "Grease fails when three preconditions break: it can be replenished, the temperature sits inside the base-oil window, and contamination can be tolerated. Lose any one and the grease dies before the bearing does. This article covers five station types that should never rely on grease, how carbon graphite bearings actually work, where their limits are, and how to choose between graphite, oil-impregnated bronze, ceramic and engineering plastics.",
+    },
+    tag: "selection",
+    date: "2026-10-23",
+    content: {
+      zh: `## 核心要点
+
+- 润滑脂能用，需要同时满足三件事：**能补脂、温度在基油允许区间、污染物能容忍**。三者缺一，脂会先于轴承失效
+- 五类工位从设计上就该放弃脂：高温炉窑与烘箱、液下与浸没机构、真空与洁净腔体、食品医药直触部位、结构上根本接近不了的部位
+- 碳石墨轴承靠转移膜工作，不需要外部润滑剂；代价是 **PV 值有上限**，且需要微量水分或气体参与成膜
+- 它不是"万能无油轴承"：高于某一速度的干摩擦、强冲击、强氧化介质、干燥惰性气体环境，都要单独评估
+- 选型顺序：先定温度与介质 → 再看能否补脂 → 再算 PV → 最后才在石墨、含油粉末冶金、陶瓷、工程塑料之间挑
+
+## 一、润滑脂失效的三个前提
+
+工程上讨论"用什么润滑脂"，默认了一个前提：**这个轴承是可以维护的**。整条润滑脂选型知识体系——锂基还是复合锂、矿物油还是聚 α 烯烃（PAO）、NLGI 号数、补脂周期——只有在下面三件事同时成立时才有意义：
+
+1. **补脂通道存在**：有油嘴、有空间、有人排进维护计划
+2. **温度落在基油窗口内**：矿物油基锂基脂的常用区间约 -20 °C 到 120 °C，合成烃基（PAO）可拓到 -50 °C 到 150 °C 量级
+3. **污染物不致命**：粉尘、水、化学品、清洗剂不会持续破坏皂基结构
+
+润滑脂选型本身已有相当成熟的工程讨论，温度边界和基油差异可以参照行业内的系统整理，例如 [Bearing Grease: Lithium vs. Synthetic](https://tflbearing.com/blog/bearing-grease-lithium-vs-synthetic-comparison.html)。但要注意，那类讨论的前提仍然是"这个轴承还在加脂"。当上面三条里的任何一条断掉，继续在脂的品类里优化，方向本身就错了——该换的不是脂，是轴承类型。
+
+## 二、五类从设计上就该放弃脂的工位
+
+### 2.1 高温炉窑与烘箱
+
+辊道窑、网带炉、烘干线、烧结炉的输送辊与风机构件，环境温度常在 200~600 °C。这个区间没有任何常规润滑脂能存活：矿物油在 120 °C 以上加速氧化，150 °C 以上皂基开始析油、结焦，最终留下的是碳化残渣——比没有润滑更糟，因为它会把滚动体卡死。
+
+这类工位要么用高温固体润滑（石墨、二硫化钼），要么直接把轴承做成石墨件。
+
+### 2.2 液下与浸没机构
+
+潜水泵、液下辊、反应釜搅拌、清洗线传动。浸没工况下润滑脂会被介质冲刷、乳化、稀释，而且补脂完全不可行。选脂在这里是死路，只能选耐介质的自润滑材料。
+
+### 2.3 真空与洁净腔体
+
+半导体设备、镀膜机、真空炉、电子束焊机。真空环境下润滑脂会挥发，挥发物直接污染腔体和工件；同时脂的蒸气压成为真空度上限。真空腔内通常禁用一切油脂，必须用干膜润滑或石墨、陶瓷等固体润滑件。
+
+### 2.4 食品、医药、饮用水直触部位
+
+这里的问题不是失效，是合规。一次泄漏就是整批产品召回。虽然存在 H1 食品级润滑脂，但更彻底的做法是在直触或近触部位取消油脂，从源头消除污染路径。
+
+### 2.5 结构上无法接近的工位
+
+封闭减速箱内的支撑件、埋入式机构、高空或水下免维护部件。维护成本高于零件成本时，脂的经济性就是负的——每补一次脂的停机与人工，够换几次轴承。
+
+## 三、碳石墨轴承靠什么工作
+
+碳石墨轴承（浸树脂、浸金属或浸锑石墨）不靠外部润滑剂，靠的是**转移膜**：石墨在摩擦过程中，把自身微晶片层转移并附着到对偶金属表面，形成一层低剪切强度的固体膜，之后的摩擦就发生在石墨与这层膜之间。
+
+摩擦系数通常在 0.10~0.20（干态，对钢），这个数值无法与油膜润滑的 0.001~0.01 相比——所以它换来的从来不是"更低的摩擦"，而是**免维护、耐温、耐介质、不污染**。
+
+有两个常被忽略的成膜条件：
+
+- **需要微量水分或氧气参与**。完全干燥的惰性气体环境（干氮、干氩）里，石墨的转移膜难以形成，磨损率会显著上升。这类工况要改用含二硫化钼或特殊浸渍的牌号，或干脆换材料
+- **需要跑合**。新件初期磨合阶段摩擦系数偏高、会有少量石墨粉脱落，设计上应留出跑合余量，并在关键场合做预跑合
+
+## 四、它的边界在哪里
+
+碳石墨不是"无油场景的通用答案"。下面这些情况必须先算再选：
+
+1. **PV 值上限**。每种牌号都有允许的 PV（压力 × 速度）上限，浸树脂牌号通常低于浸金属牌号。速度一高、比压一大，磨损率会非线性上升，还会因摩擦热导致浸渍剂软化
+2. **强冲击与频繁启停**。石墨是脆性材料，抗冲击远不如金属；冲击载荷下可能崩边，崩边碎屑进入间隙会造成二次磨损
+3. **强氧化介质**。高温下的浓硝酸、浓硫酸、次氯酸盐会侵蚀石墨基体与浸渍剂
+4. **颗粒磨料环境**。含砂水流、浆料中，石墨磨损率会成倍上升，此时应考虑陶瓷或碳化硅
+5. **需要承受径向冲击的旋转件**。纯石墨套的抗弯强度有限，长悬臂结构要加金属支撑或改结构
+
+## 五、和另外三种"无油方案"的取舍
+
+- **含油粉末冶金轴承（ oil-impregnated bronze）**：靠毛细孔储油，成本低、承载好；但油会耗尽，温度上限约 80~120 °C，真空与洁净场合不可用
+- **陶瓷轴承（氧化锆、氮化硅）**：耐温、耐腐蚀、刚性好；但价格高、脆性大、对配合精度敏感，干摩擦下对偶件磨损严重
+- **工程塑料（PEEK、PTFE 复合、聚甲醛）**：轻、耐化学、成本低；但耐温通常低于 250 °C，蠕变与热膨胀明显，承载有限
+- **碳石墨**：耐温最高（惰性气氛可达 400 °C 以上）、自润滑、耐大多数化学品、导热好；代价是脆、抗冲击差、PV 受限
+
+## 六、选型顺序
+
+1. **定温度与介质**——这是唯一不可妥协的两条。温度超了脂的窗口，介质会溶解或侵蚀材料，其它参数都无意义
+2. **判断能否补脂**——不能补脂，直接进入无油材料路线，不必再讨论脂的牌号
+3. **估算 PV**——用实际比压与实际线速度，不要用额定值。留 30% 以上裕度
+4. **确认成膜条件**——干态、真空、惰性气体、含油雾，分别对应不同浸渍牌号
+5. **算配合与间隙**——石墨热膨胀系数与钢差一个量级，高温工况的冷态间隙必须放大
+6. **确认合规**——食品、医药、饮用水场景要材料声明与析出测试
+
+## 结论
+
+判断一个工位该不该继续用脂，只需要问三个问题：**能不能补？温度扛不扛得住？污染能不能忍？** 三个都是"能"，就在脂的品类里优化；任何一个"不能"，就该把轴承类型换掉，而不是换脂。
+
+碳石墨轴承解决的是"无法润滑的工位"，不是"想省润滑成本的工位"。把它用在对的地方，它是唯一可行的方案；用错地方，它的脆性和 PV 限制会立刻反噬。`,
+      en: `## Key Takeaways
+
+- Grease only works when three preconditions hold at once: **it can be replenished, the temperature sits inside the base-oil window, and contamination can be tolerated**. Break any one and the grease fails before the bearing does
+- Five station types should never rely on grease by design: kilns and ovens, submerged or immersed mechanisms, vacuum and clean-chamber equipment, food and pharma contact zones, and positions nobody can physically reach
+- Carbon graphite bearings work through a transfer film and need no external lubricant; the price is a **PV limit** and a requirement for trace moisture or gas to form that film
+- They are not a universal oil-free answer: dry running above a certain speed, heavy shock, strongly oxidising media and dry inert-gas atmospheres all need separate evaluation
+- Selection order: fix temperature and medium first, then ask whether regreasing is possible at all, then calculate PV, and only then choose between graphite, oil-impregnated bronze, ceramic and engineering plastics
+
+## 1. Three Preconditions Behind Every Grease Decision
+
+Engineering discussions about grease quietly assume something: **that this bearing can be maintained**. The entire body of grease knowledge — lithium versus lithium complex, mineral versus polyalphaolefin (PAO) base oil, NLGI grade, relubrication interval — only means anything when all three of the following hold:
+
+1. **A replenishment path exists** — a nipple, access, and a maintenance schedule somebody actually follows
+2. **Temperature sits inside the base-oil window** — roughly -20 °C to 120 °C for mineral-oil lithium grease, extended to about -50 °C to 150 °C for synthetic hydrocarbon (PAO) bases
+3. **Contaminants are survivable** — dust, water, chemicals and washdown agents do not continuously destroy the soap structure
+
+Grease selection is well documented as a discipline in its own right; temperature envelopes and base-oil differences are covered systematically elsewhere, for example in [Bearing Grease: Lithium vs. Synthetic](https://tflbearing.com/blog/bearing-grease-lithium-vs-synthetic-comparison.html). But note the premise those discussions rest on: the bearing is still being greased. Once any one of the three preconditions breaks, optimising within the grease category is the wrong direction — what has to change is the bearing type, not the grease.
+
+## 2. Five Stations That Should Never Depend on Grease
+
+### 2.1 Kilns and Ovens
+
+Conveyor rollers, fans and drive components in roller-hearth kilns, mesh-belt furnaces, drying lines and sintering furnaces routinely see 200–600 °C. No conventional grease survives that: mineral oil oxidises rapidly above 120 °C, soap thickeners bleed and coke above 150 °C, and what remains is carbonised residue — worse than no lubricant at all, because it seizes the rolling elements.
+
+These positions need high-temperature solid lubrication (graphite, molybdenum disulfide) or a graphite part in the first place.
+
+### 2.2 Submerged and Immersed Mechanisms
+
+Submersible pumps, submerged rolls, reactor agitators, washing-line drives. Under immersion the grease is washed out, emulsified or diluted, and relubrication is physically impossible. Choosing a grease here is a dead end; the only path is a medium-resistant self-lubricating material.
+
+### 2.3 Vacuum and Clean Chambers
+
+Semiconductor tools, coating machines, vacuum furnaces, electron-beam welders. In vacuum, grease outgasses and the outgassed products contaminate the chamber and the workpiece; the grease vapour pressure also sets a floor on achievable vacuum. Vacuum chambers normally ban all greases and require dry-film or solid lubricants such as graphite and ceramics.
+
+### 2.4 Food, Pharma and Drinking-Water Contact
+
+The problem here is not failure, it is compliance. One leak means a batch recall. H1 food-grade greases exist, but the more robust approach is to eliminate grease from the contact or near-contact zone entirely and remove the contamination path at the source.
+
+### 2.5 Positions Nobody Can Reach
+
+Supports inside sealed gearboxes, buried mechanisms, high-altitude or underwater maintenance-free parts. When maintenance cost exceeds part cost, grease economics turn negative — the downtime and labour for one relubrication event buys several bearings.
+
+## 3. How Carbon Graphite Bearings Actually Work
+
+Carbon graphite bearings (resin-impregnated, metal-impregnated or antimony-impregnated) carry no external lubricant. They rely on a **transfer film**: during running, graphite transfers its own crystallite platelets onto the mating metal surface, building a low-shear solid film, after which friction takes place between graphite and that film.
+
+The friction coefficient is typically 0.10–0.20 dry against steel. That cannot compete with the 0.001–0.01 of a hydrodynamic oil film — so what graphite buys you has never been lower friction. It is **maintenance freedom, temperature capability, medium resistance and zero contamination**.
+
+Two film-formation conditions are routinely overlooked:
+
+- **Trace moisture or oxygen is needed.** In completely dry inert atmospheres (dry nitrogen, dry argon) the transfer film forms poorly and wear rate climbs sharply. Such cases need molybdenum-disulfide or specially impregnated grades, or a different material altogether
+- **Running-in is required.** Friction is higher during the initial bedding period and a small amount of graphite powder is shed; design in running-in allowance and pre-run critical parts
+
+## 4. Where the Limits Are
+
+Carbon graphite is not the generic answer to every oil-free requirement. These cases must be calculated before they are specified:
+
+1. **PV ceiling.** Every grade has an allowable pressure × velocity limit, and resin-impregnated grades sit below metal-impregnated ones. Push speed or contact pressure and wear rate rises non-linearly, while frictional heat can soften the impregnant
+2. **Shock and frequent starts.** Graphite is brittle and far weaker in impact than metal; edges chip under shock, and chips entering the clearance cause secondary wear
+3. **Strongly oxidising media.** Hot concentrated nitric or sulfuric acid and hypochlorite attack both the graphite matrix and the impregnant
+4. **Abrasive particle service.** In sand-laden water or slurry, graphite wear rate multiplies; silicon carbide or ceramic is the better answer
+5. **Cantilevered rotating parts under radial shock.** Bending strength of plain graphite is limited — long overhangs need metal backing or a design change
+
+## 5. Choosing Against the Other Oil-Free Options
+
+- **Oil-impregnated bronze (powder metallurgy)**: stores oil in capillary pores, low cost, good load capacity; but the oil is finite, temperature tops out around 80–120 °C, and it is unusable in vacuum or clean service
+- **Ceramic (zirconia, silicon nitride)**: temperature and corrosion resistant, stiff; but expensive, brittle, sensitive to fit accuracy, and aggressive to the mating surface when run dry
+- **Engineering plastics (PEEK, PTFE compounds, POM)**: light, chemically resistant, cheap; but generally below 250 °C, with pronounced creep and thermal expansion, and limited load capacity
+- **Carbon graphite**: highest temperature capability (above 400 °C in inert atmosphere), self-lubricating, resistant to most chemicals, thermally conductive; the price is brittleness, poor impact resistance and a bounded PV envelope
+
+## 6. Selection Sequence
+
+1. **Fix temperature and medium** — the only two non-negotiables. Exceed the grease window or let the medium attack the material and every other parameter is moot
+2. **Decide whether regreasing is possible** — if it is not, go straight to the oil-free material route and stop discussing grease grades
+3. **Estimate PV** — use real contact pressure and real surface speed, not catalogue ratings, and keep at least 30% margin
+4. **Confirm film-formation conditions** — dry, vacuum, inert gas and oil-mist service each map to different impregnation grades
+5. **Work out fits and clearance** — graphite thermal expansion differs from steel by an order of magnitude, so cold clearance must be opened up for high-temperature duty
+6. **Confirm compliance** — food, pharma and drinking-water service need material declarations and extraction testing
+
+## Conclusion
+
+Deciding whether a station should keep using grease takes three questions: **can it be replenished, will the temperature hold, can the contamination be tolerated?** Three yes answers mean optimise within the grease category. Any single no means the bearing type has to change — not the grease.
+
+Carbon graphite bearings solve stations that cannot be lubricated. They are not a way to save on lubrication cost. Applied where they belong, they are the only workable option; applied where they do not, their brittleness and PV ceiling will bite immediately.`,
+    },
+  },
 ]
