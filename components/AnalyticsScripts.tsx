@@ -1,18 +1,29 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useLocale } from "next-intl"
 import { usePathname } from "next/navigation"
 import Script from "next/script"
+import {
+  CONSENT_CHANGE_EVENT,
+  getVisitorCountry,
+  readConsent,
+  needsConsentFor,
+  type ConsentRecord,
+} from "@/lib/consent"
 
 const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID
 const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID
 const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID
 
+/** 同意闸门：undefined = 还在判定；对象 = 已确定（true 才允许写对应类型的 Cookie） */
+type Gate = { analytics: boolean; ads: boolean }
+
 export default function AnalyticsScripts() {
   const locale = useLocale()
   const pathname = usePathname()
   const prevPath = useRef(pathname)
+  const [gate, setGate] = useState<Gate | undefined>(undefined)
 
   // 环境变量缺失告警（防止部署后因漏配 Vercel env 导致追踪全无）
   useEffect(() => {
@@ -30,16 +41,82 @@ export default function AnalyticsScripts() {
     }
   }, [])
 
+  /**
+   * 初始闸门判定（三选一）：
+   * 1. 用户已选过 → 按保存的选择
+   * 2. 未选 + 不在 EEA/UK/CH → 直接放行（GDPR 不适用，不为非欧访客牺牲转化）
+   * 3. 未选 + 在管辖区 → 一律关闭，等 CookieConsent 里的用户选择
+   */
+  useEffect(() => {
+    // 放进 async 上下文：localStorage 只能在客户端读，必须等 hydration 之后再定闸门，
+    // 否则 SSR 与首帧渲染出的 script 标签会不一致。判定完成前 gate 为 undefined，
+    // 意味着 Meta Pixel / Clarity 都不加载（安全默认）。
+    let cancelled = false
+    const decide = async () => {
+      const saved = readConsent()
+      if (cancelled) return
+      if (saved) {
+        setGate({ analytics: saved.analytics, ads: saved.ads })
+        return
+      }
+      const country = await getVisitorCountry()
+      if (cancelled) return
+      const needsConsent = needsConsentFor(country)
+      setGate({ analytics: !needsConsent, ads: !needsConsent })
+    }
+    void decide()
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  // 用户在横幅里改选 → 同步闸门
+  useEffect(() => {
+    const onChange = (event: Event) => {
+      const detail = (event as CustomEvent<ConsentRecord>).detail
+      if (!detail) return
+      setGate({ analytics: Boolean(detail.analytics), ads: Boolean(detail.ads) })
+    }
+    window.addEventListener(CONSENT_CHANGE_EVENT, onChange)
+    return () => window.removeEventListener(CONSENT_CHANGE_EVENT, onChange)
+  }, [])
+
+  /**
+   * Google Consent Mode v2：把闸门状态同步给 gtag。
+   * 默认态在下面的内联脚本里已经写成 denied，这里只负责在用户做出选择后 update。
+   * 即便 gtag.js 尚未加载完，push 进 dataLayer 也会被库读取时补上。
+   */
+  useEffect(() => {
+    if (!GOOGLE_ADS_ID || !gate) return
+    const w = window as unknown as {
+      dataLayer?: unknown[]
+      gtag?: (...args: unknown[]) => void
+    }
+    w.dataLayer = w.dataLayer || []
+    if (typeof w.gtag !== "function") {
+      w.gtag = function gtag() {
+        // eslint-disable-next-line prefer-rest-params
+        w.dataLayer!.push(arguments)
+      }
+    }
+    w.gtag("consent", "update", {
+      ad_storage: gate.ads ? "granted" : "denied",
+      ad_user_data: gate.ads ? "granted" : "denied",
+      ad_personalization: gate.ads ? "granted" : "denied",
+      analytics_storage: gate.analytics ? "granted" : "denied",
+    })
+  }, [gate])
+
   // SPA 路由切换不会重新加载 Pixel 脚本，这里在路径变化时补发 PageView
   useEffect(() => {
-    if (!META_PIXEL_ID) return
+    if (!META_PIXEL_ID || !gate?.ads) return
     if (prevPath.current === pathname) return
     prevPath.current = pathname
     const w = window as unknown as { fbq?: (...args: unknown[]) => void }
     if (typeof w.fbq === "function") {
       w.fbq("track", "PageView")
     }
-  }, [pathname])
+  }, [pathname, gate?.ads])
 
   const nothingConfigured = !CLARITY_ID && !META_PIXEL_ID && !GOOGLE_ADS_ID
 
@@ -48,7 +125,8 @@ export default function AnalyticsScripts() {
   // 在 4G 下把 hero 图的资源加载延迟拉到 2.6s。B2B 询价站可接受秒级转化延迟。
   return (
     <>
-      {/* Google Ads (gtag.js) — conversion tracking */}
+      {/* Google Ads (gtag.js) — conversion tracking
+          库照常加载，但 Consent Mode 默认全部 denied：用户同意前不写广告 Cookie。 */}
       {GOOGLE_ADS_ID && (
         <>
           <Script
@@ -63,6 +141,13 @@ export default function AnalyticsScripts() {
               __html: `
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
+                gtag('consent', 'default', {
+                  ad_storage: 'denied',
+                  ad_user_data: 'denied',
+                  ad_personalization: 'denied',
+                  analytics_storage: 'denied',
+                  wait_for_update: 500
+                });
                 gtag('js', new Date());
                 gtag('config', '${GOOGLE_ADS_ID}');
               `,
@@ -72,10 +157,11 @@ export default function AnalyticsScripts() {
       )}
 
       {/* Meta Pixel — advertising conversion tracking
-         主脚本在 JS 环境加载后注入 fbq 并触发第一次 PageView。
+         Meta 不认 Consent Mode，只能由我们决定是否 init：未同意广告类就完全不加载。
+         同意后：主脚本在 JS 环境加载后注入 fbq 并触发第一次 PageView。
          <noscript> fallback 为关闭 JS 的浏览器或脚本提前中断场景保留上报通道，
          通过 1x1 图片直接访问 Meta /tr 端点携带 PageView 事件，防止 LPV 丢失。 */}
-      {META_PIXEL_ID && (
+      {META_PIXEL_ID && gate?.ads && (
         <>
           <Script
             id="meta-pixel-init"
@@ -107,8 +193,8 @@ export default function AnalyticsScripts() {
         </>
       )}
 
-      {/* Microsoft Clarity — heatmaps, session recordings */}
-      {CLARITY_ID && (
+      {/* Microsoft Clarity — heatmaps, session recordings（分析类，需 analytics 同意） */}
+      {CLARITY_ID && gate?.analytics && (
         <Script
           id="clarity-init"
           strategy="lazyOnload"

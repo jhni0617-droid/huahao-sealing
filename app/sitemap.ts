@@ -29,6 +29,7 @@ const staticRoutes = [
   { path: "/contact", priority: "0.8" },
   { path: "/technical-params", priority: "0.7" },
   { path: "/compare", priority: "0.7" },
+  { path: "/privacy", priority: "0.3" },
 ]
 
 export default async function sitemap() {

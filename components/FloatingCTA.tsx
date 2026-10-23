@@ -138,7 +138,7 @@ export default function FloatingCTA() {
 
       {/* Mobile bottom bar */}
       <div
-        className={`lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-border shadow-lg safe-bottom transition-all duration-500 ${
+        className={`lg:hidden fixed bottom-[var(--consent-offset,0px)] left-0 right-0 z-50 bg-white border-t border-border shadow-lg safe-bottom transition-all duration-500 ${
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-full"
         }`}
       >

@@ -37,6 +37,7 @@ import { OrganizationJsonLd } from "@/components/JsonLd"
 import { notFound } from "next/navigation"
 import { siteConfig } from "@/lib/constants"
 import AnalyticsScripts from "@/components/AnalyticsScripts"
+import CookieConsent from "@/components/CookieConsent"
 import WebVitalsReporter from "@/components/WebVitalsReporter"
 import "../globals.css"
 
@@ -144,6 +145,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           <OrganizationJsonLd locale={locale} />
           <LayoutShell>{children}</LayoutShell>
           <AnalyticsScripts />
+          <CookieConsent />
           <WebVitalsReporter />
         </NextIntlClientProvider>
       </body>

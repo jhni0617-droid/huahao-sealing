@@ -5,6 +5,17 @@ import { factoryHighlightsByLocale } from "@/lib/translations"
 import { getLocalized, getLocalizedSiteConfig } from "@/lib/locale-data"
 import Icon from "@/components/ui/Icon"
 import TrackedLink from "@/components/TrackedLink"
+import CookieSettingsButton from "@/components/CookieSettingsButton"
+
+const privacyLabels: Record<string, string> = {
+  zh: "隐私政策",
+  en: "Privacy Policy",
+  vi: "Chính sách quyền riêng tư",
+  th: "นโยบายความเป็นส่วนตัว",
+  ru: "Политика конфиденциальности",
+  ja: "プライバシーポリシー",
+  ko: "개인정보 처리방침",
+}
 
 export default async function Footer() {
   const t = await getTranslations()
@@ -119,6 +130,18 @@ export default async function Footer() {
           <p className="text-center text-sm text-gray-500">
             &copy; {new Date().getFullYear()} {cfg.fullName}. {t("footer.copyright")}.
           </p>
+          <div className="mt-3 flex flex-wrap items-center justify-center gap-3 text-xs">
+            <Link
+              href="/privacy"
+              className="text-gray-500 underline underline-offset-2 transition-colors hover:text-gray-300"
+            >
+              {getLocalized(privacyLabels, locale)}
+            </Link>
+            <span className="text-gray-600" aria-hidden>
+              /
+            </span>
+            <CookieSettingsButton />
+          </div>
         </div>
       </div>
     </footer>
