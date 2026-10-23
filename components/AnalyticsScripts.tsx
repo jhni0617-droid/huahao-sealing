@@ -82,15 +82,19 @@ export default function AnalyticsScripts() {
   }, [])
 
   /**
-   * Google Consent Mode v2：把闸门状态同步给 gtag。
-   * 默认态在下面的内联脚本里已经写成 denied，这里只负责在用户做出选择后 update。
-   * 即便 gtag.js 尚未加载完，push 进 dataLayer 也会被库读取时补上。
+   * Google Consent Mode v2。
+   *
+   * ⚠️ default 与 update 的入队顺序必须是 default 在前 —— gtag 按 dataLayer 顺序消费，
+   * 后到的会覆盖先到的。若把 default 留在下面 lazyOnload 的 config 脚本里，
+   * 它会在 window load 之后才入队，反而把这里已经推入的 update 覆盖成 denied，
+   * 非欧洲访客的广告追踪就全废了（实测踩过）。所以 default 也在本 effect 里先推。
    */
   useEffect(() => {
-    if (!GOOGLE_ADS_ID || !gate) return
+    if (!GOOGLE_ADS_ID) return
     const w = window as unknown as {
       dataLayer?: unknown[]
       gtag?: (...args: unknown[]) => void
+      __hhConsentDefault?: boolean
     }
     w.dataLayer = w.dataLayer || []
     if (typeof w.gtag !== "function") {
@@ -99,6 +103,19 @@ export default function AnalyticsScripts() {
         w.dataLayer!.push(arguments)
       }
     }
+
+    if (!w.__hhConsentDefault) {
+      w.__hhConsentDefault = true
+      w.gtag("consent", "default", {
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+        analytics_storage: "denied",
+        wait_for_update: 500,
+      })
+    }
+
+    if (!gate) return
     w.gtag("consent", "update", {
       ad_storage: gate.ads ? "granted" : "denied",
       ad_user_data: gate.ads ? "granted" : "denied",
@@ -139,15 +156,9 @@ export default function AnalyticsScripts() {
             strategy="lazyOnload"
             dangerouslySetInnerHTML={{
               __html: `
+                // consent default 由 React effect 提前入队，这里只做常规初始化
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
-                gtag('consent', 'default', {
-                  ad_storage: 'denied',
-                  ad_user_data: 'denied',
-                  ad_personalization: 'denied',
-                  analytics_storage: 'denied',
-                  wait_for_update: 500
-                });
                 gtag('js', new Date());
                 gtag('config', '${GOOGLE_ADS_ID}');
               `,
