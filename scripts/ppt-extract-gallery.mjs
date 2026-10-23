@@ -50,8 +50,8 @@ for (let i = 0; i < files.length; i++) {
   idx++
   const out = `gallery-${String(idx).padStart(2, "0")}.webp`
   const info = await sharp(item.file)
-    .resize({ width: 1200, withoutEnlargement: true })
-    .webp({ quality: 80, effort: 5 })
+    .resize({ width: 720, withoutEnlargement: true })
+    .webp({ quality: 76, effort: 6 })
     .toFile(path.join(DEST, out))
   kept.push({ file: out, page: item.page, w: info.width, h: info.height, kb: Math.round(info.size / 1024) })
 }

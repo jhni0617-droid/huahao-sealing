@@ -6,6 +6,7 @@ import type { ProductsPageData } from "@/lib/products-page-data"
 import type { Product } from "@/lib/products"
 import CTASection from "@/components/CTASection"
 import VideoGallery from "@/components/VideoGallery"
+import ProductGallery from "@/components/ProductGallery"
 import Icon from "@/components/ui/Icon"
 import ProductsFilters from "./products-filters"
 
@@ -180,7 +181,7 @@ function ProductCard({ product, locale, cats }: { product: Product; locale: stri
       href={`/products/${product.slug}`}
       data-product-slug={product.slug}
       data-cats={cats.join(" ")}
-      className="group flex h-full flex-col border-r border-b border-border bg-white transition-colors duration-300 focus-ring hover:bg-[#fafafb]"
+      className="group flex h-full min-w-0 flex-col border-r border-b border-border bg-white transition-colors duration-300 focus-ring hover:bg-[#fafafb]"
     >
       <div className="relative aspect-square overflow-hidden border-b border-border bg-[#f0f1f2]">
         {product.image ? (
@@ -188,8 +189,8 @@ function ProductCard({ product, locale, cats }: { product: Product; locale: stri
             src={product.image}
             alt={product.name}
             fill
-            className="object-contain p-8 transition-transform duration-300 group-hover:scale-[1.04]"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-contain p-5 transition-transform duration-300 group-hover:scale-[1.04]"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           />
         ) : (
           <div className="flex h-full items-center justify-center px-6 text-center text-sm font-semibold tracking-[0.08em] text-muted">
@@ -198,15 +199,15 @@ function ProductCard({ product, locale, cats }: { product: Product; locale: stri
         )}
       </div>
 
-      <div className="flex min-w-0 flex-1 flex-col p-5">
+      <div className="flex min-w-0 flex-1 flex-col p-4">
         <div className="flex items-baseline justify-between gap-3">
-          <span className="font-mono text-lg font-bold tracking-tight text-primary">{product.model}</span>
-          <span className="truncate text-[11px] font-semibold uppercase tracking-[0.08em] text-muted">
+          <span className="min-w-0 flex-1 truncate whitespace-nowrap font-mono text-base font-bold tracking-tight text-primary" title={product.model}>{product.model}</span>
+          <span className="hidden max-w-[45%] shrink-0 truncate text-[10px] font-semibold uppercase tracking-[0.06em] text-muted 2xl:block">
             {getLocalizedProductCategory(product.category, locale)}
           </span>
         </div>
 
-        <h3 className="mt-1.5 font-serif-sc text-base font-bold leading-snug text-primary transition-colors group-hover:text-accent line-clamp-2">
+        <h3 className="mt-1.5 font-serif-sc text-sm font-bold leading-snug text-primary transition-colors group-hover:text-accent line-clamp-2">
           {product.name}
         </h3>
 
@@ -333,7 +334,7 @@ export default async function ProductsPageContent({
           </div>
 
           {/* 发丝线网格：用单元格边框而非 gap-px 底色，避免最后一行不满时露出灰块 */}
-          <div id="products-grid" className="mt-12 grid border-l border-t border-border md:grid-cols-2 lg:grid-cols-3">
+          <div id="products-grid" className="mt-12 grid border-l border-t border-border sm:grid-cols-2 lg:grid-cols-4">
             {allProducts.map((product) => (
               <ProductCard
                 key={product.slug}
@@ -360,6 +361,8 @@ export default async function ProductsPageContent({
           </div>
         </div>
       </section>
+
+      <ProductGallery />
 
       <VideoGallery />
 

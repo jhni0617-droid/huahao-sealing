@@ -112,9 +112,9 @@ export default function ProductGallery() {
   if (productGallery.length === 0) return null
 
   return (
-    <section className="bg-white pb-16 md:pb-20">
+    <section className="section-padding industrial-surface border-t border-border">
       <div className="container-wide">
-        <div className="mb-8 border-t border-border pt-10 md:pt-12">
+        <div className="mb-8">
           <div className="mb-3 flex items-center gap-3">
             <span className="h-[3px] w-10 bg-accent" aria-hidden />
             <span className="en-caption text-sm text-muted">{t.eyebrow}</span>

@@ -1,6 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import ProductsPageContent from "./products-content"
-import ProductGallery from "@/components/ProductGallery"
 import { generateMeta } from "@/lib/utils"
 import Breadcrumb from "@/components/Breadcrumb"
 import { getProductsPageData } from "@/lib/products-page-data"
@@ -37,7 +36,6 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
       <Breadcrumb items={[{ name: t("pageTitle"), url: "/products" }]} locale={locale} />
 
       <ProductsPageContent {...data} />
-      <ProductGallery />
     </>
   )
 }
