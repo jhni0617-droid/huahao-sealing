@@ -2,6 +2,7 @@ import { setRequestLocale } from "next-intl/server"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 import { blogPosts, getPostBySlug } from "@/lib/blog-data"
+import { getRelatedProductsForPost } from "@/lib/product-linking"
 import { siteConfig } from "@/lib/constants"
 import { ArticleJsonLd, BreadcrumbJsonLd, FaqJsonLd } from "@/components/JsonLd"
 import PageHead from "@/components/ui/PageHead"
@@ -88,6 +89,17 @@ const TAKEAWAYS_LABEL: Record<string, string> = {
   ru: "Ключевые выводы",
   ja: "重要なポイント",
   ko: "주요 내용",
+}
+
+/** 「相关产品」小标题与入口文案按语种展示 */
+const PRODUCT_LINK_LABELS: Record<string, { title: string; view: string }> = {
+  zh: { title: "相关产品", view: "查看产品详情" },
+  en: { title: "Related Products", view: "View Product" },
+  vi: { title: "Sản phẩm liên quan", view: "Xem sản phẩm" },
+  th: { title: "สินค้าที่เกี่ยวข้อง", view: "ดูสินค้า" },
+  ru: { title: "Сопутствующая продукция", view: "Смотреть продукцию" },
+  ja: { title: "関連製品", view: "製品詳細を見る" },
+  ko: { title: "관련 제품", view: "제품 상세 보기" },
 }
 
 function renderContent(content: string, locale: string) {
@@ -251,6 +263,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
     )
     .slice(0, 3)
 
+  // 相关产品（收录修复）：正文里只硬编码了 4 个品类页链接，
+  // 24 个型号页从 889 个博客页面里拿不到任何入口，7 语言全部「已发现 - 尚未编入索引」。
+  // 这里按关键词相关度补上型号页入口（排除已链过的品类页）。
+  const relatedProducts = getRelatedProductsForPost(post, locale, 3)
+
   return (
     <>
       <ArticleJsonLd
@@ -301,6 +318,31 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
                     </div>
                     <div className="text-sm font-semibold leading-snug text-primary group-hover:text-accent transition-colors line-clamp-3">
                       {getLocalized(p.title, locale)}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {relatedProducts.length > 0 && (
+            <div className="mt-12 pt-8 border-t border-border">
+              <h3 className="text-lg font-bold text-primary mb-4">
+                {(PRODUCT_LINK_LABELS[locale] ?? PRODUCT_LINK_LABELS.en).title}
+              </h3>
+              <div className="grid gap-4 sm:grid-cols-3">
+                {relatedProducts.map((p) => (
+                  <Link
+                    key={p.slug}
+                    href={`/products/${p.slug}`}
+                    className="card-static bg-white p-4 group hover:shadow-lg transition-shadow flex flex-col"
+                  >
+                    <div className="font-mono text-xs font-bold text-accent mb-1">{p.model}</div>
+                    <div className="text-sm font-semibold leading-snug text-primary group-hover:text-accent transition-colors line-clamp-3">
+                      {p.name}
+                    </div>
+                    <div className="mt-auto pt-3 text-xs font-semibold text-accent">
+                      {(PRODUCT_LINK_LABELS[locale] ?? PRODUCT_LINK_LABELS.en).view}
                     </div>
                   </Link>
                 ))}
