@@ -13,13 +13,13 @@ const heroTrustIcons = ["clock", "globe", "gear"] as const
 
 /** Hero 配图 alt：图为海外客户到厂、工程师现场讲解加工设备 */
 const heroImageAlt = {
-  zh: "华豪工程师在车间向海外客户讲解碳石墨密封件加工设备",
-  en: "Huahao engineer explaining carbon graphite seal machining to overseas customers on the shop floor",
-  vi: "Kỹ sư Huahao giải thích gia công seal than chì carbon cho khách hàng nước ngoài tại xưởng",
-  th: "วิศวกร Huahao อธิบายการผลิตซีลคาร์บอนกราไฟต์ให้ลูกค้าต่างประเทศในโรงงาน",
-  ru: "Инженер Huahao объясняет обработку углеродного графита зарубежным клиентам в цехе",
-  ja: "華豪の技術者が工場で海外顧客にカーボングラファイトシールの加工を説明",
-  ko: "화하오 엔지니어가 공장에서 해외 고객에게 카본 그라파이트 씰 가공을 설명",
+  zh: "工程师围看碳石墨密封件图纸，讨论材料选型与密封结构方案",
+  en: "Engineers reviewing a carbon graphite seal drawing and discussing material grade and sealing structure",
+  vi: "Kỹ sư xem bản vẽ seal than chì carbon và thảo luận cấp vật liệu, kết cấu làm kín",
+  th: "วิศวกรตรวจแบบซีลคาร์บอนกราไฟต์และหารือเรื่องเกรดวัสดุและโครงสร้างการซีล",
+  ru: "Инженеры обсуждают чертёж уплотнения из углеродного графита, марку материала и конструкцию",
+  ja: "技術者がカーボングラファイトシールの図面を囲み、材料グレードとシール構造を検討",
+  ko: "엔지니어들이 카본 그라파이트 씰 도면을 보며 재료 등급과 밀봉 구조를 논의",
 }
 
 const contactCopy = {
@@ -199,7 +199,7 @@ export default async function ContactPage(props: { params: Promise<{ locale: str
         {/* 桌面：右侧满高出血实拍 */}
         <div className="absolute inset-y-0 right-0 hidden w-[48%] lg:block">
           <Image
-            src="/images/实拍/IMG_20260518_215113.webp"
+            src="/images/hero/hero-engineers-drawings.webp"
             alt={getLocalized(heroImageAlt, locale)}
             fill
             priority
@@ -212,7 +212,7 @@ export default async function ContactPage(props: { params: Promise<{ locale: str
         {/* 移动/平板：图在文字下方，通栏 */}
         <figure className="relative aspect-[16/10] w-full overflow-hidden bg-background sm:aspect-[16/9] lg:hidden">
           <Image
-            src="/images/实拍/IMG_20260518_215113.webp"
+            src="/images/hero/hero-engineers-drawings.webp"
             alt={getLocalized(heroImageAlt, locale)}
             fill
             priority
