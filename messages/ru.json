@@ -212,7 +212,7 @@
       "nameOptional": "(необязательно)",
       "namePlaceholder": "Ваше имя",
       "email": "Email",
-      "emailRequired": "*Обязательно",
+      "emailRequired": "*",
       "emailPlaceholder": "your@email.com",
       "emailInvalid": "Пожалуйста, введите корректный адрес электронной почты",
       "phone": "Телефон",
@@ -251,10 +251,10 @@
       "quantityOptional": "(необязательно)",
       "quantityPlaceholder": "например 100 шт/год",
       "message": "Сообщение",
-      "messageRequired": "*Обязательно",
+      "messageRequired": "*",
       "messagePlaceholder": "Опишите требования, размеры или технические параметры...",
       "upload": "Загрузить чертеж",
-      "uploadOptional": "(необязательно, поддержка PDF/Word/Excel/Изображения/CAD, макс 5МБ)",
+      "uploadOptional": "PDF / DWG / STEP / JPG / PNG / Office, до 5 МБ на файл",
       "uploadButton": "Выбрать файл",
       "uploadRemove": "Удалить",
       "uploadError": "Размер файла не должен превышать 5МБ",
@@ -267,7 +267,10 @@
       "successWhatsApp": "Получить быстрый ответ через WhatsApp",
       "whatsappLink": "Или свяжитесь с нами через WhatsApp",
       "nextStep": "Далее · Условия эксплуатации →",
-      "prevStep": "← Основная информация"
+      "prevStep": "← Основная информация",
+      "requiredHint": "* Обязательные поля",
+      "uploadDrop": "Нажмите или перетащите чертёж сюда",
+      "charCount": "симв."
     }
   },
   "applicationConditions": {

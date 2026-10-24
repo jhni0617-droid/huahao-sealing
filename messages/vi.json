@@ -212,7 +212,7 @@
       "nameOptional": "(không bắt buộc)",
       "namePlaceholder": "Tên của bạn",
       "email": "Email",
-      "emailRequired": "*Bắt buộc",
+      "emailRequired": "*",
       "emailPlaceholder": "your@email.com",
       "emailInvalid": "Vui lòng nhập địa chỉ email hợp lệ",
       "phone": "Điện thoại",
@@ -251,10 +251,10 @@
       "quantityOptional": "(không bắt buộc)",
       "quantityPlaceholder": "VD: 100 cái/năm",
       "message": "Nội dung",
-      "messageRequired": "*Bắt buộc",
+      "messageRequired": "*",
       "messagePlaceholder": "Mô tả yêu cầu, kích thước hoặc thông số kỹ thuật...",
       "upload": "Tải bản vẽ",
-      "uploadOptional": "(không bắt buộc, hỗ trợ PDF/Word/Excel/Ảnh/CAD, tối đa 5MB)",
+      "uploadOptional": "PDF / DWG / STEP / JPG / PNG / Office, tối đa 5MB/tệp",
       "uploadButton": "Chọn tệp",
       "uploadRemove": "Xóa",
       "uploadError": "Kích thước tệp không được vượt quá 5MB",
@@ -267,7 +267,10 @@
       "successWhatsApp": "Nhận phản hồi nhanh hơn qua WhatsApp",
       "whatsappLink": "Hoặc liên hệ qua WhatsApp",
       "nextStep": "Tiếp · Điều kiện vận hành →",
-      "prevStep": "← Thông tin cơ bản"
+      "prevStep": "← Thông tin cơ bản",
+      "requiredHint": "* Trường bắt buộc",
+      "uploadDrop": "Nhấn hoặc kéo bản vẽ vào đây",
+      "charCount": "ký tự"
     }
   },
   "applicationConditions": {

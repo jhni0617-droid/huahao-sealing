@@ -212,7 +212,7 @@
       "nameOptional": "(可不填)",
       "namePlaceholder": "您的姓名",
       "email": "邮箱",
-      "emailRequired": "*必填",
+      "emailRequired": "*",
       "emailPlaceholder": "your@email.com",
       "emailInvalid": "请输入有效的邮箱地址",
       "phone": "电话",
@@ -251,10 +251,10 @@
       "quantityOptional": "(可不填)",
       "quantityPlaceholder": "如: 100件/年",
       "message": "留言",
-      "messageRequired": "*必填",
+      "messageRequired": "*",
       "messagePlaceholder": "请描述您的具体需求、安装尺寸或技术参数...",
       "upload": "上传图纸",
-      "uploadOptional": "(可不填，支持 PDF/Word/Excel/图片/CAD，最大 5MB)",
+      "uploadOptional": "支持 PDF / DWG / STEP / JPG / PNG / Office，单文件 ≤ 5MB",
       "uploadButton": "选择文件",
       "uploadRemove": "移除",
       "uploadError": "文件大小不能超过 5MB",
@@ -267,7 +267,10 @@
       "successWhatsApp": "通过WhatsApp更快获取回复",
       "whatsappLink": "或通过WhatsApp与我们联系",
       "nextStep": "下一步 · 工况参数 →",
-      "prevStep": "← 返回基本信息"
+      "prevStep": "← 返回基本信息",
+      "requiredHint": "* 为必填项",
+      "uploadDrop": "点击或拖拽图纸到此处",
+      "charCount": "字"
     }
   },
   "applicationConditions": {

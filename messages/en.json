@@ -212,7 +212,7 @@
       "nameOptional": "(optional)",
       "namePlaceholder": "Your name",
       "email": "Email",
-      "emailRequired": "*Required",
+      "emailRequired": "*",
       "emailPlaceholder": "your@email.com",
       "emailInvalid": "Please enter a valid email address",
       "phone": "Phone",
@@ -251,10 +251,10 @@
       "quantityOptional": "(optional)",
       "quantityPlaceholder": "e.g. 100 pcs/year",
       "message": "Message",
-      "messageRequired": "*Required",
+      "messageRequired": "*",
       "messagePlaceholder": "Describe your requirements, dimensions, or technical parameters...",
       "upload": "Upload Drawing",
-      "uploadOptional": "(optional, supports PDF/Word/Excel/Images/CAD, max 5MB)",
+      "uploadOptional": "PDF / DWG / STEP / JPG / PNG / Office, max 5MB per file",
       "uploadButton": "Select File",
       "uploadRemove": "Remove",
       "uploadError": "File size must not exceed 5MB",
@@ -267,7 +267,10 @@
       "successWhatsApp": "Get a Faster Response via WhatsApp",
       "whatsappLink": "Or contact us via WhatsApp",
       "nextStep": "Next · Operating Conditions →",
-      "prevStep": "← Basic Info"
+      "prevStep": "← Basic Info",
+      "requiredHint": "* Required fields",
+      "uploadDrop": "Click or drag a drawing here",
+      "charCount": "chars"
     }
   },
   "applicationConditions": {

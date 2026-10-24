@@ -15,6 +15,9 @@ interface Props {
 // 与 app/api/contact/route.ts 保持一致，前后端共用同一规格
 const EMAIL_RE = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
+// 需求描述上限：设计稿为 500 字，够写完整工况（介质/温度/压力/转速/尺寸）
+const MAX_MESSAGE = 500
+
 export default function ContactForm({ defaultProduct: defaultProductProp }: Props) {
   // ?product= 只在提交时用来给询盘打标签，不参与渲染，所以从 window.location 读。
   // 不用 useSearchParams()：它会让整棵表单子树退出 SSR，联系页的 HTML 里就没有
@@ -47,6 +50,7 @@ export default function ContactForm({ defaultProduct: defaultProductProp }: Prop
   const [errorMsg, setErrorMsg] = useState("")
   const [file, setFile] = useState<File | null>(null)
   const [fileError, setFileError] = useState("")
+  const [dragging, setDragging] = useState(false)
   const t = useTranslations("contact.form")
 
   // Honeypot 反机器人：3 个隐藏字段 + 1 个提交时间戳
@@ -57,8 +61,8 @@ export default function ContactForm({ defaultProduct: defaultProductProp }: Prop
   // 表单挂载时间戳：用于后端检测秒填机器人（< 1.5s 判定为机器人）
   const [formMountedAt] = useState(() => Date.now())
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selected = e.target.files?.[0]
+  // 文件选择与拖拽共用同一套校验（大小上限 5MB，与后端 /api/contact 及文案一致）
+  const pickFile = (selected: File | null | undefined) => {
     setFileError("")
     if (!selected) {
       setFile(null)
@@ -70,6 +74,12 @@ export default function ContactForm({ defaultProduct: defaultProductProp }: Prop
       return
     }
     setFile(selected)
+  }
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    pickFile(e.target.files?.[0])
+    // 清空 value，否则同一个文件移除后再选不会触发 change
+    e.target.value = ""
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -179,9 +189,12 @@ export default function ContactForm({ defaultProduct: defaultProductProp }: Prop
         <input id="contact-hp3" name="phone_alt" tabIndex={-1} autoComplete="off" aria-hidden="true" value={honeypotUrl} onChange={(e) => setHoneypotUrl(e.target.value)} />
       </div>
 
-      <p className="text-sm text-muted">
-        {t("formIntro")}
-      </p>
+      <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-1">
+        <p className="min-w-0 flex-1 basis-[min(100%,14rem)] text-sm text-muted">
+          {t("formIntro")}
+        </p>
+        <span className="shrink-0 whitespace-nowrap pt-0.5 text-xs text-muted-light">{t("requiredHint")}</span>
+      </div>
 
       {/* Step indicator */}
       <div className="flex gap-2 mb-2">
@@ -215,7 +228,27 @@ export default function ContactForm({ defaultProduct: defaultProductProp }: Prop
 
           <div>
             <label className="form-label" htmlFor="contact-message">{t("message")} <span className="text-red-500">{t("messageRequired")}</span></label>
-            <textarea id="contact-message" required rows={3} className="form-input resize-y" placeholder={t("messagePlaceholder")} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
+            <div className="relative">
+              <textarea
+                id="contact-message"
+                required
+                rows={5}
+                maxLength={MAX_MESSAGE}
+                className="form-input resize-y pb-7"
+                placeholder={t("messagePlaceholder")}
+                value={form.message}
+                onChange={(e) => setForm({ ...form, message: e.target.value })}
+              />
+              {/* 字数计数：提示「该写多细」，同时防止超长被截断 */}
+              <span
+                aria-hidden
+                className={`pointer-events-none absolute bottom-2.5 right-3 text-xs tabular-nums ${
+                  form.message.length > MAX_MESSAGE * 0.9 ? "text-accent" : "text-muted-light"
+                }`}
+              >
+                {form.message.length}/{MAX_MESSAGE}
+              </span>
+            </div>
           </div>
 
           <button type="button" onClick={() => setStep(2)} disabled={!isValidStep1} className="btn-primary w-full justify-center text-base disabled:opacity-50">
@@ -280,26 +313,58 @@ export default function ContactForm({ defaultProduct: defaultProductProp }: Prop
             <input id="contact-quantity" className="form-input" placeholder={t("quantityPlaceholder")} value={form.quantity} onChange={(e) => setForm({ ...form, quantity: e.target.value })} />
           </div>
 
-          {/* File upload */}
+          {/* File upload：整块虚线区，支持点击与拖拽（B2B 询盘的核心动作就是传图） */}
           <div>
-            <label className="form-label" htmlFor="contact-file">{t("upload")} <span className="text-gray-400 font-normal">{t("uploadOptional")}</span></label>
-            <div className="flex items-center gap-3">
-              <label className="cursor-pointer inline-flex items-center gap-2 px-4 py-2.5 border border-border rounded-xl text-sm text-muted hover:bg-gray-50 hover:border-primary/30 transition-colors">
-                <Icon name="download" className="w-4 h-4" />
-                {t("uploadButton")}
-                <input id="contact-file" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.dwg,.dxf,.step,.stp,.igs,.stl" onChange={handleFileChange} className="hidden" />
-              </label>
-              {file && (
-                <span className="text-sm text-muted flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-green-600" />
-                  {file.name}
-                  <button type="button" onClick={() => { setFile(null); setFileError("") }} className="text-red-500 hover:text-red-700 text-sm ml-1">
+            <label className="form-label" htmlFor="contact-file">{t("upload")}</label>
+            <div
+              onDragOver={(e) => {
+                e.preventDefault()
+                setDragging(true)
+              }}
+              onDragLeave={() => setDragging(false)}
+              onDrop={(e) => {
+                e.preventDefault()
+                setDragging(false)
+                pickFile(e.dataTransfer.files?.[0])
+              }}
+              className={`border border-dashed transition-colors duration-200 ${
+                dragging ? "border-accent bg-accent-subtle" : "border-border bg-[#fafbfc] hover:border-muted-light"
+              } ${file ? "px-4 py-3" : "px-5 py-6"}`}
+            >
+              {file ? (
+                <div className="flex items-center justify-between gap-3">
+                  <span className="flex min-w-0 items-center gap-2 text-sm text-primary">
+                    <Icon name="check" className="h-4 w-4 shrink-0 text-success" />
+                    <span className="truncate">{file.name}</span>
+                    <span className="shrink-0 text-xs text-muted-light">{(file.size / 1024 / 1024).toFixed(1)} MB</span>
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFile(null)
+                      setFileError("")
+                    }}
+                    className="shrink-0 text-sm text-muted transition-colors hover:text-accent"
+                  >
                     {t("uploadRemove")}
                   </button>
-                </span>
+                </div>
+              ) : (
+                <label htmlFor="contact-file" className="flex cursor-pointer flex-col items-center gap-1.5 text-center">
+                  <Icon name="download" className="h-5 w-5 text-muted" />
+                  <span className="text-sm font-medium text-primary">{t("uploadDrop")}</span>
+                  <span className="text-xs leading-relaxed text-muted-light">{t("uploadOptional")}</span>
+                </label>
               )}
+              <input
+                id="contact-file"
+                type="file"
+                accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.dwg,.dxf,.step,.stp,.igs,.stl"
+                onChange={handleFileChange}
+                className="hidden"
+              />
             </div>
-            {fileError && <p className="text-sm text-red-500 mt-1">{fileError}</p>}
+            {fileError && <p className="mt-1 text-sm text-red-500">{fileError}</p>}
           </div>
 
           {errorMsg && (

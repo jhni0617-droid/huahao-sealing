@@ -212,7 +212,7 @@
       "nameOptional": "(任意)",
       "namePlaceholder": "お名前",
       "email": "メール",
-      "emailRequired": "*必須",
+      "emailRequired": "*",
       "emailPlaceholder": "your@email.com",
       "emailInvalid": "有効なメールアドレスを入力してください",
       "phone": "電話番号",
@@ -251,10 +251,10 @@
       "quantityOptional": "(任意)",
       "quantityPlaceholder": "例: 100個/年",
       "message": "メッセージ",
-      "messageRequired": "*必須",
+      "messageRequired": "*",
       "messagePlaceholder": "ご要望、寸法、技術パラメータなどをご記入ください...",
       "upload": "図面をアップロード",
-      "uploadOptional": "(任意, PDF/Word/Excel/画像/CAD対応, 最大5MB)",
+      "uploadOptional": "PDF / DWG / STEP / JPG / PNG / Office、1ファイル5MBまで",
       "uploadButton": "ファイルを選択",
       "uploadRemove": "削除",
       "uploadError": "ファイルサイズは5MB以下にしてください",
@@ -267,7 +267,10 @@
       "successWhatsApp": "WhatsAppでより迅速な返信を",
       "whatsappLink": "またはWhatsAppにてお問い合わせください",
       "nextStep": "次へ · 運転条件 →",
-      "prevStep": "← 基本情報"
+      "prevStep": "← 基本情報",
+      "requiredHint": "* 必須項目",
+      "uploadDrop": "クリックまたは図面をドラッグ",
+      "charCount": "文字"
     }
   },
   "applicationConditions": {

@@ -212,7 +212,7 @@
       "nameOptional": "(ไม่บังคับ)",
       "namePlaceholder": "ชื่อของคุณ",
       "email": "อีเมล",
-      "emailRequired": "*จำเป็น",
+      "emailRequired": "*",
       "emailPlaceholder": "your@email.com",
       "emailInvalid": "กรุณากรอกที่อยู่อีเมลที่ถูกต้อง",
       "phone": "โทรศัพท์",
@@ -251,10 +251,10 @@
       "quantityOptional": "(ไม่บังคับ)",
       "quantityPlaceholder": "เช่น 100 ชิ้น/ปี",
       "message": "ข้อความ",
-      "messageRequired": "*จำเป็น",
+      "messageRequired": "*",
       "messagePlaceholder": "อธิบายความต้องการ ขนาด หรือพารามิเตอร์ทางเทคนิค...",
       "upload": "อัปโหลดแบบร่าง",
-      "uploadOptional": "(ไม่บังคับ, รองรับ PDF/Word/Excel/รูปภาพ/CAD, สูงสุด 5MB)",
+      "uploadOptional": "PDF / DWG / STEP / JPG / PNG / Office ไม่เกิน 5MB ต่อไฟล์",
       "uploadButton": "เลือกไฟล์",
       "uploadRemove": "ลบ",
       "uploadError": "ขนาดไฟล์ต้องไม่เกิน 5MB",
@@ -267,7 +267,10 @@
       "successWhatsApp": "รับคำตอบเร็วขึ้นทาง WhatsApp",
       "whatsappLink": "หรือติดต่อเราทาง WhatsApp",
       "nextStep": "ถัดไป · สภาวะการทำงาน →",
-      "prevStep": "← ข้อมูลพื้นฐาน"
+      "prevStep": "← ข้อมูลพื้นฐาน",
+      "requiredHint": "* ฟิลด์ที่จำเป็น",
+      "uploadDrop": "คลิกหรือลากแบบมาที่นี่",
+      "charCount": "ตัวอักษร"
     }
   },
   "applicationConditions": {

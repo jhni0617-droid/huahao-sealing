@@ -212,7 +212,7 @@
       "nameOptional": "(선택사항)",
       "namePlaceholder": "이름",
       "email": "이메일",
-      "emailRequired": "*필수",
+      "emailRequired": "*",
       "emailPlaceholder": "your@email.com",
       "emailInvalid": "유효한 이메일 주소를 입력해주세요",
       "phone": "전화",
@@ -251,10 +251,10 @@
       "quantityOptional": "(선택사항)",
       "quantityPlaceholder": "예: 100개/년",
       "message": "메시지",
-      "messageRequired": "*필수",
+      "messageRequired": "*",
       "messagePlaceholder": "요구사항, 치수 또는 기술 매개변수를 설명해주세요...",
       "upload": "도면 업로드",
-      "uploadOptional": "(선택사항, PDF/Word/Excel/이미지/CAD 지원, 최대 5MB)",
+      "uploadOptional": "PDF / DWG / STEP / JPG / PNG / Office, 파일당 최대 5MB",
       "uploadButton": "파일 선택",
       "uploadRemove": "삭제",
       "uploadError": "파일 크기는 5MB를 초과할 수 없습니다",
@@ -267,7 +267,10 @@
       "successWhatsApp": "WhatsApp을 통해 더 빠른 응답 받기",
       "whatsappLink": "또는 WhatsApp으로 문의하세요",
       "nextStep": "다음 · 작동 조건 →",
-      "prevStep": "← 기본 정보"
+      "prevStep": "← 기본 정보",
+      "requiredHint": "* 필수 항목",
+      "uploadDrop": "클릭하거나 도면을 끌어다 놓으세요",
+      "charCount": "자"
     }
   },
   "applicationConditions": {
