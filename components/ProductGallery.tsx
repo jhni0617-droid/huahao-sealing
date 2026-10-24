@@ -5,7 +5,7 @@ import { createPortal } from "react-dom"
 import Image from "next/image"
 import { useLocale } from "next-intl"
 import { getLocalized } from "@/lib/locale-data"
-import { productGallery } from "@/lib/product-gallery"
+import { productGallery, type GalleryImageKind } from "@/lib/product-gallery"
 
 /**
  * 产品实拍图集。
@@ -81,6 +81,41 @@ const copy = {
   },
 }
 
+/**
+ * 图集 alt，按 lib/product-gallery.ts 的 kind 分类取文案（2026-10-24 加）。
+ * 此前 78 张全是空 alt —— 图集是产品中心页的主体内容之一，
+ * 空 alt 等于放弃 Google 图片搜索这个入口。
+ */
+const altCopy: Record<GalleryImageKind, Record<"zh" | "en" | "vi" | "th" | "ru" | "ja" | "ko", string>> = {
+  "seal-ring": {
+    zh: "碳石墨机械密封环车间实拍，华豪密封件",
+    en: "Carbon graphite mechanical seal ring, workshop photo, Huahao Sealing",
+    vi: "Vòng đệm cơ khí than chì carbon, ảnh thực tế tại xưởng, Huahao Sealing",
+    th: "แหวนซีลแมกคานิคัลคาร์บอนกราไฟต์ ภาพจริงจากโรงงาน Huahao Sealing",
+    ru: "Уплотнительное кольцо из углеродного графита, фото с производства, Huahao Sealing",
+    ja: "カーボングラファイト機械シールリング、工場実写、華豪シール",
+    ko: "카본 그라파이트 기계 씰 링, 공장 실사, 화하오 씰",
+  },
+  bearing: {
+    zh: "碳石墨轴承与轴套车间实拍，华豪密封件",
+    en: "Carbon graphite bearing and bushing, workshop photo, Huahao Sealing",
+    vi: "Ổ đỡ và bạc lót than chì carbon, ảnh thực tế tại xưởng, Huahao Sealing",
+    th: "ตำแหน่งและบัชชิ่งคาร์บอนกราไฟต์ ภาพจริงจากโรงงาน Huahao Sealing",
+    ru: "Подшипник и втулка из углеродного графита, фото с производства, Huahao Sealing",
+    ja: "カーボングラファイト軸受・ブッシング、工場実写、華豪シール",
+    ko: "카본 그라파이트 베어링 및 부싱, 공장 실사, 화하오 씰",
+  },
+  mixed: {
+    zh: "华豪密封件车间实拍：碳石墨密封环与轴承",
+    en: "Huahao Sealing workshop photo: carbon graphite seal rings and bearings",
+    vi: "Ảnh thực tế tại xưởng Huahao Sealing: vòng đệm và ổ đỡ than chì carbon",
+    th: "ภาพจริงจากโรงงาน Huahao Sealing: แหวนซีลและตำแหน่งคาร์บอนกราไฟต์",
+    ru: "Фото с производства Huahao Sealing: кольца и подшипники из углеродного графита",
+    ja: "華豪シール工場実写：カーボングラファイトシールリングと軸受",
+    ko: "화하오 씰 공장 실사: 카본 그라파이트 씰 링 및 베어링",
+  },
+}
+
 export default function ProductGallery() {
   const locale = useLocale()
   const t = getLocalized(copy, locale)
@@ -110,7 +145,6 @@ export default function ProductGallery() {
   }, [index, close, step])
 
   if (productGallery.length === 0) return null
-
   return (
     <section className="section-padding industrial-surface border-t border-border">
       <div className="container-wide">
@@ -124,17 +158,17 @@ export default function ProductGallery() {
         </div>
 
         <div className="grid grid-cols-2 gap-px border border-border bg-border sm:grid-cols-3 lg:grid-cols-4">
-          {productGallery.map((src, i) => (
+          {productGallery.map((item, i) => (
             <button
-              key={src}
+              key={item.src}
               type="button"
               onClick={() => setIndex(i)}
               aria-label={`${t.open} ${i + 1} / ${productGallery.length}`}
               className="group relative aspect-[4/3] overflow-hidden bg-background"
             >
               <Image
-                src={src}
-                alt=""
+                src={item.src}
+                alt={getLocalized(altCopy[item.kind], locale)}
                 fill
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
@@ -159,8 +193,8 @@ export default function ProductGallery() {
           >
           <div className="relative h-full w-full max-w-6xl" onClick={(event) => event.stopPropagation()}>
             <Image
-              src={productGallery[index]}
-              alt=""
+              src={productGallery[index].src}
+              alt={getLocalized(altCopy[productGallery[index].kind], locale)}
               fill
               sizes="100vw"
               className="object-contain"

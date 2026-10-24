@@ -11,73 +11,94 @@
  * （保留首尾两张，抽稀后末张仍是 rail-101，「从最后一张开始」的语义不变）。
  * 原因：第二行原轨道宽 34,632px，超过 GPU 16,384px 的常见纹理上限被切片；
  * 抽稀后轨道 15,360px，压进上限内，DOM 图片节点从 202 降到 126。
+ *
+ * kind = 图片主体内容的分类，用于生成多语言 alt（2026-10-24 逐张目视核对）：
+ *   seal-ring      碳石墨机械密封环（静环，方/L/楔形截面，带止动槽或油孔）
+ *   bearing        碳石墨轴承 / 轴套（带油槽或分瓣）
+ *   thrust-bearing 碳石墨止推轴承（端面螺旋槽）
+ *   split-ring     碳石墨三瓣环（三个弧段拼合）
+ *   parts          碳石墨小规格配件（桌面摊拍场景）
+ * 纯装饰性轮播也要写 alt：空 alt 会让 Google 图片搜索与 AI 爬虫完全读不到语义，
+ * 204 张图等于白加载。aria-hidden 只盖第二份副本，第一份的 alt 会被收录。
  */
 
-export const productRailModels: string[] = [
-  "/images/products/rail/rail-001.webp",
-  "/images/products/rail/rail-002.webp",
-  "/images/products/rail/rail-003.webp",
-  "/images/products/rail/rail-004.webp",
-  "/images/products/rail/rail-005.webp",
-  "/images/products/rail/rail-006.webp",
-  "/images/products/rail/rail-007.webp",
-  "/images/products/rail/rail-008.webp",
-  "/images/products/rail/rail-009.webp",
-  "/images/products/rail/rail-010.webp",
-  "/images/products/rail/rail-011.webp",
-  "/images/products/rail/rail-012.webp",
-  "/images/products/rail/rail-013.webp",
-  "/images/products/rail/rail-014.webp",
-  "/images/products/rail/rail-015.webp",
-  "/images/products/rail/rail-016.webp",
-  "/images/products/rail/rail-017.webp",
-  "/images/products/rail/rail-018.webp",
-  "/images/products/rail/rail-019.webp",
-  "/images/products/rail/rail-020.webp",
-  "/images/products/rail/rail-021.webp",
-  "/images/products/rail/rail-022.webp",
-  "/images/products/rail/rail-023.webp",
+export type RailImageKind =
+  | "seal-ring"
+  | "bearing"
+  | "thrust-bearing"
+  | "split-ring"
+  | "parts"
+
+export interface RailImage {
+  src: string
+  kind: RailImageKind
+}
+
+export const productRailModels: RailImage[] = [
+  { src: "/images/products/rail/rail-001.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-002.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-003.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-004.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-005.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-006.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-007.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-008.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-009.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-010.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-011.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-012.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-013.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-014.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-015.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-016.webp", kind: "bearing" },
+  { src: "/images/products/rail/rail-017.webp", kind: "thrust-bearing" },
+  { src: "/images/products/rail/rail-018.webp", kind: "parts" },
+  { src: "/images/products/rail/rail-019.webp", kind: "split-ring" },
+  { src: "/images/products/rail/rail-020.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-021.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-022.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-023.webp", kind: "seal-ring" },
 ]
 
-export const productRailGallery: string[] = [
-  "/images/products/rail/rail-024.webp",
-  "/images/products/rail/rail-026.webp",
-  "/images/products/rail/rail-028.webp",
-  "/images/products/rail/rail-030.webp",
-  "/images/products/rail/rail-032.webp",
-  "/images/products/rail/rail-034.webp",
-  "/images/products/rail/rail-036.webp",
-  "/images/products/rail/rail-038.webp",
-  "/images/products/rail/rail-040.webp",
-  "/images/products/rail/rail-042.webp",
-  "/images/products/rail/rail-044.webp",
-  "/images/products/rail/rail-046.webp",
-  "/images/products/rail/rail-048.webp",
-  "/images/products/rail/rail-050.webp",
-  "/images/products/rail/rail-052.webp",
-  "/images/products/rail/rail-054.webp",
-  "/images/products/rail/rail-056.webp",
-  "/images/products/rail/rail-058.webp",
-  "/images/products/rail/rail-060.webp",
-  "/images/products/rail/rail-062.webp",
-  "/images/products/rail/rail-063.webp",
-  "/images/products/rail/rail-065.webp",
-  "/images/products/rail/rail-067.webp",
-  "/images/products/rail/rail-069.webp",
-  "/images/products/rail/rail-071.webp",
-  "/images/products/rail/rail-073.webp",
-  "/images/products/rail/rail-075.webp",
-  "/images/products/rail/rail-077.webp",
-  "/images/products/rail/rail-079.webp",
-  "/images/products/rail/rail-081.webp",
-  "/images/products/rail/rail-083.webp",
-  "/images/products/rail/rail-085.webp",
-  "/images/products/rail/rail-087.webp",
-  "/images/products/rail/rail-089.webp",
-  "/images/products/rail/rail-091.webp",
-  "/images/products/rail/rail-093.webp",
-  "/images/products/rail/rail-095.webp",
-  "/images/products/rail/rail-097.webp",
-  "/images/products/rail/rail-099.webp",
-  "/images/products/rail/rail-101.webp",
+export const productRailGallery: RailImage[] = [
+  { src: "/images/products/rail/rail-024.webp", kind: "bearing" },
+  { src: "/images/products/rail/rail-026.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-028.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-030.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-032.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-034.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-036.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-038.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-040.webp", kind: "bearing" },
+  { src: "/images/products/rail/rail-042.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-044.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-046.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-048.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-050.webp", kind: "bearing" },
+  { src: "/images/products/rail/rail-052.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-054.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-056.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-058.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-060.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-062.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-063.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-065.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-067.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-069.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-071.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-073.webp", kind: "bearing" },
+  { src: "/images/products/rail/rail-075.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-077.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-079.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-081.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-083.webp", kind: "bearing" },
+  { src: "/images/products/rail/rail-085.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-087.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-089.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-091.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-093.webp", kind: "bearing" },
+  { src: "/images/products/rail/rail-095.webp", kind: "bearing" },
+  { src: "/images/products/rail/rail-097.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-099.webp", kind: "seal-ring" },
+  { src: "/images/products/rail/rail-101.webp", kind: "seal-ring" },
 ]
