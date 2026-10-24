@@ -41,11 +41,19 @@ export default function Header() {
   const locale = useLocale()
   const brand = getLocalized(brandCopy, locale)
 
-  // 客户端修正首页判断 + 滚动监听（阈值放大，确保 hero 区域内保持透明）
+  // 客户端修正首页判断 + 滚动监听
   useEffect(() => {
     const re = /^\/[a-z]{2}(\/)?$/
-    setIsHome(re.test(window.location.pathname))
-    const onScroll = () => setScrolled(window.scrollY > 80)
+    const isHomePath = re.test(window.location.pathname)
+    setIsHome(isHomePath)
+    // 首页 hero 占满一屏，滚动期间 header 一直压在 hero 图上，
+    // 因此阈值取「一屏高度」——在 hero 内保持完全透明 + 白字，
+    // 滚出 hero（进入白色内容区）才切换为实底深字，避免白字压白底看不清。
+    // 其余页面没有 hero，轻微滚动即切换。
+    const onScroll = () => {
+      const threshold = isHomePath ? Math.max(window.innerHeight - 140, 160) : 8
+      setScrolled(window.scrollY > threshold)
+    }
     onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
@@ -97,8 +105,8 @@ export default function Header() {
               xl 以下不显示整块：1024~1279px 加上 8 项导航后没有它的位置（俄语会溢出）。
               xl 起显示公司名；副标题更长，留到 2xl 才出现，避免 1280~1535px 被撑爆。 */}
           <div className={`hidden flex-col leading-tight transition-colors xl:flex ${heroTransparent ? "text-white" : "text-primary-dark"}`}>
-            <span className="font-serif-sc text-[15px] font-bold tracking-wide">{brand.name}</span>
-            <span className="hidden text-[11px] opacity-70 2xl:inline">{brand.desc}</span>
+            <span className="font-serif-sc text-[16px] font-bold tracking-wide">{brand.name}</span>
+            <span className="hidden text-[12px] opacity-70 2xl:inline">{brand.desc}</span>
           </div>
         </Link>
 
@@ -107,12 +115,12 @@ export default function Header() {
            实测 1024~1440px 原本就会把询价按钮挤出容器（这是加首页之前就存在的问题，
            加首页又多了约 100px），故整体收紧：lg 间距 gap-3、xl 间距 gap-4（原 gap-5 / gap-9），
            导航字号 14px / xl 15px（原 15px / 16px）。改前俄语在 1280 溢出 26px。 */}
-        <nav className="ml-auto hidden items-center gap-3 lg:flex xl:gap-4" aria-label="Main navigation">
+        <nav className="ml-auto hidden items-center gap-2.5 lg:flex xl:gap-3.5" aria-label="Main navigation">
           {heroNav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className={`text-[14px] font-medium transition-colors xl:text-[15px] ${
+              className={`text-[15px] font-medium transition-colors xl:text-[16px] ${
                 heroTransparent
                   ? isActive(item.href)
                     ? "text-white"
@@ -128,11 +136,11 @@ export default function Header() {
         </nav>
 
         {/* 右侧语言切换与询价按钮（桌面端） */}
-        <div className="ml-3 hidden items-center gap-3 lg:flex">
+        <div className="ml-2 hidden items-center gap-2.5 lg:flex">
           <LanguageSwitcher transparent={heroTransparent} />
           <Link
             href="/contact"
-            className={`flex items-center gap-1.5 rounded-full px-5 py-2 text-sm font-medium transition-colors ${
+            className={`flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-colors ${
               heroTransparent
                 ? "bg-white/15 text-white backdrop-blur hover:bg-white/25 ring-1 ring-white/30"
                 : "btn-primary"
