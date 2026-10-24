@@ -412,7 +412,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
       <PageHead en={tagLabels[post.tag as keyof typeof tagLabels] || post.tag} title={title} description={excerpt} />
 
       <article className="section-padding industrial-surface">
-        <div className="container-wide max-w-4xl">
+        <div className="container-wide max-w-5xl">
           <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:text-primary transition-colors mb-6">
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />

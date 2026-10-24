@@ -156,7 +156,7 @@ export default function ProductCategoryRail() {
       className="border-t border-border bg-white"
     >
       {/* ============ 桌面端（≥1024px）：5 列 + hover 展开 ============
-          门槛必须是 lg 而非 md：5 列版式按 1240px 容器设计，
+          门槛必须是 lg 而非 md：5 列版式按 1400px 容器设计，
           768–1023px 的平板上每列只剩 ~164px，标题/描述全被截断，
           且 hover 展开在触屏上无效 —— 平板回落到下方 2 列网格。 */}
       <ul className="hidden lg:flex">
