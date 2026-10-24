@@ -519,6 +519,14 @@ main {
   animation: product-rail-scroll 260s linear infinite;
   will-change: transform;
 }
+/* 离屏暂停：ProductRailViewport 用 IntersectionObserver 判断轮播滚出视口后加该类。
+   动画停摆 + 撤掉 will-change，浏览器随即释放这条合成层（第二行轨道 15,360px 宽，
+   常驻会白占约 10MB 级 GPU 内存，弱机上还会挤掉别的层导致掉帧）。
+   滚回视口即恢复，用户看不到已滚过去的那一屏，故无视觉损失。 */
+.product-rail-paused .product-rail-track {
+  animation-play-state: paused;
+  will-change: auto;
+}
 .product-rail-track:hover,
 .product-rail-track:focus-within {
   animation-play-state: paused;
@@ -550,5 +558,6 @@ main {
 @media (prefers-reduced-motion: reduce) {
   .product-rail-track {
     animation: none;
+    will-change: auto;
   }
 }

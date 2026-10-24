@@ -3,6 +3,7 @@ import { getLocale } from "next-intl/server"
 import { getLocalized } from "@/lib/locale-data"
 import { productRailModels, productRailGallery } from "@/lib/product-rail"
 import { Link } from "@/i18n/routing"
+import ProductRailViewport from "./ProductRailViewport"
 
 /**
  * 首页产品图片轮播（无限横向滚动）。
@@ -12,9 +13,11 @@ import { Link } from "@/i18n/routing"
  *
  * 两行图片源刻意拆开、内容零重叠：
  *   第一行 = 23 张型号图（正序、向左）
- *   第二行 = 78 张车间实拍倒序（从最后一张开始、向右）
+ *   第二行 = 40 张车间实拍倒序（从最后一张开始、向右）
  * 共用同一批图会因两行方向相反在中途交汇，导致同一张图上下同时出现。
- * 动画时长按各自轨道长度换算，保持相同的线速度（约 86px/s）。
+ * 动画时长按各自轨道长度换算，保持相同的线速度（约 172px/s）。
+ *
+ * 离屏暂停见 ProductRailViewport —— 滚出视口就停掉动画并释放合成层。
  */
 
 const copy = {
@@ -49,10 +52,12 @@ export default async function ProductRail() {
         </Link>
       </div>
 
-      <div className="product-rail-mask space-y-2 md:space-y-3">
-        <RailRow items={productRailModels} direction="forward" duration={59} />
-        {/* 第二行：实拍图倒序，从产品中心最后一张开始，反方向滚动 */}
-        <RailRow items={[...productRailGallery].reverse()} direction="reverse" duration={202} />
+      <div className="product-rail-mask">
+        <ProductRailViewport>
+          <RailRow items={productRailModels} direction="forward" duration={51} />
+          {/* 第二行：实拍图倒序，从产品中心最后一张开始，反方向滚动 */}
+          <RailRow items={[...productRailGallery].reverse()} direction="reverse" duration={89} />
+        </ProductRailViewport>
       </div>
     </section>
   )
@@ -77,13 +82,13 @@ function RailRow({
         <div
           key={`${src}-${i}`}
           aria-hidden={i >= items.length}
-          className="relative mr-2 aspect-[4/3] w-[130px] shrink-0 overflow-hidden bg-[#f0f1f2] sm:w-[170px] md:mr-3 md:w-[210px]"
+          className="relative mr-2 aspect-[4/3] w-[130px] shrink-0 overflow-hidden bg-[#f0f1f2] sm:w-[170px] md:mr-3 md:w-[180px]"
         >
           <Image
             src={src}
             alt=""
             fill
-            sizes="210px"
+            sizes="180px"
             loading="lazy"
             className="object-cover"
           />
