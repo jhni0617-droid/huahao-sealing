@@ -207,6 +207,24 @@ function renderContent(content: string, locale: string) {
           <span dangerouslySetInnerHTML={{ __html: parseInline(text, locale) }} />
         </p>
       )
+    } else if (/^!\[(.+?)\]\((.+?)\)$/.test(trimmed)) {
+      flushList(`list-${idx}`)
+      const m = trimmed.match(/^!\[(.+?)\]\((.+?)\)$/)!
+      const alt = m[1]
+      const src = m[2]
+      elements.push(
+        <figure key={idx} className="my-8">
+          <Image
+            src={src}
+            alt={alt}
+            width={0}
+            height={0}
+            sizes="(max-width: 768px) 100vw, 720px"
+            className="w-full h-auto rounded-lg border border-border"
+          />
+          <figcaption className="mt-2 text-center text-xs leading-relaxed text-muted">{alt}</figcaption>
+        </figure>
+      )
     } else {
       flushList(`list-${idx}`)
       elements.push(

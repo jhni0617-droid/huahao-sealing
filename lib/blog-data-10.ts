@@ -22,7 +22,7 @@ export const blogPostsBatch10: BlogPost[] = [
       en: "In 2018 the company relocated to Lu'an, Anhui and officially founded Huahao Carbon Graphite Sealing Co., Ltd. in Longtan Town Industrial Park, Huoqiu County — the cornerstone of our scale-up in carbon graphite sealing parts.",
     },
     tag: "news",
-    date: "2018-06-01",
+    date: "2018-04-18",
     pinned: true,
     content: {
       zh: `## 核心要点
@@ -148,7 +148,7 @@ Looking back on 2018, that relocation changed far more than our address — it c
       en: "In 2020 we invested in CNC lathes and CNC machining centers, upgrading critical operations into a digitalized, automated precision system that sharply improved seal dimensional accuracy and batch-to-batch consistency.",
     },
     tag: "news",
-    date: "2020-06-01",
+    date: "2020-09-12",
     pinned: true,
     content: {
       zh: `## 核心要点
@@ -268,7 +268,7 @@ From settling in Lu'an in 2018 to the CNC upgrade in 2020, Huahao completed a de
       en: "In 2021 our self-built large factory in Lu'an went into operation, zoned around a logical seal-making workflow with expanded CNC lines and inspection stations — lifting both capacity and quality.",
     },
     tag: "news",
-    date: "2021-06-01",
+    date: "2021-07-26",
     pinned: true,
     content: {
       zh: `## 核心要点
@@ -379,7 +379,7 @@ From settling in Lu'an in 2018, to the CNC upgrade in 2020, to building our own 
       en: "In 2023 Huahao Sealing upgraded its impregnation process and impregnant systems — optimized vacuum-pressure curves plus resin, antimony and metal grades — cutting open porosity below 1% and raising compressive strength by 15%–30% for longer-life carbon graphite seals in chemical pumps, marine and high-temperature duty.",
     },
     tag: "news",
-    date: "2023-06-01",
+    date: "2023-03-15",
     pinned: true,
     content: {
       zh: `## 核心要点
@@ -389,7 +389,7 @@ From settling in Lu'an in 2018, to the CNC upgrade in 2020, to building our own 
 - 树脂浸渍牌号抗压强度提升约15%–30%，典型值150–170 MPa；金属浸渍牌号可达180 MPa以上
 - 干摩擦系数稳定在0.08–0.12，液体润滑工况可低至0.05–0.08，干运转PV允许值较升级前提高约20%
 - 按工况提供树脂(-40至200°C)、锑(400°C以内)、金属(450°C以内)三大浸渍体系，覆盖化工泵、船舶、电力与高温炉窑
-- 文末附4条可直接使用的AI配图提示词（英文），用于生成宣传与工艺说明配图
+- 附截面显微组织与成品尺寸复检两张配图，直观呈现浸渍效果与质检流程
 
 浸渍，是碳石墨密封件从"能用"走向"耐用"的关键一步。碳石墨具备自润滑、耐腐蚀、耐高温的先天优势，但压制成型后的坯体是多孔结构——内部大量相互连通的微孔如果得不到填充，介质就会在压差作用下沿着孔隙缓慢渗漏，强度与密封稳定性也随之打折。2023年，霍邱县华豪密封件有限公司围绕浸渍这道核心工序做了一次系统升级：从浸渍剂体系、真空-加压工艺曲线，到固化与后处理，逐项打磨，目标只有一个——让每一只碳石墨密封环、轴套和三瓣环在客户的泵阀设备上跑得更久、更稳。
 
@@ -448,16 +448,17 @@ From settling in Lu'an in 2018, to the CNC upgrade in 2020, to building our own 
 
 对采购与设计工程师而言，最直接的价值是：选型时只需告知介质、温度、压力与是否允许润滑，我们就能给出对应的浸渍体系与牌号建议，而不是"一种石墨走天下"。
 
-## 五、AI 配图提示词（可直接用于 AI 绘图）
+## 五、工艺现场与质检实拍
 
-以下提示词为英文（主流AI绘图工具对英文理解更准确），可直接粘贴到 Midjourney、Stable Diffusion 或 DALL·E 使用。使用时建议保持"真实工业摄影"风格，避免夸张的科幻元素。
+浸渍做得好不好，最终要落到两件事上：孔隙是否真的被封住，尺寸是否仍然精准。下面两张配图，说明我们的关注点。
 
-1. 浸渍车间全景（本文封面）：Photorealistic wide shot of an industrial impregnation workshop with two large stainless-steel vacuum-pressure autoclave vessels labeled 1 and 2, yellow and blue piping, black carbon graphite seal rings stacked on steel carts in the foreground, clean concrete floor with yellow safety lines, cool daylight from high windows, 35mm lens, high detail, industrial photography, no text distortion
-2. 封孔微观特写：Extreme macro photograph of a polished carbon graphite seal ring cross-section, dense pore-free resin-impregnated microstructure, fine graphite grain, shallow depth of field, studio rim lighting on a dark background, scientific product photography
-3. 质检工序：Close-up of a quality-control engineer in a clean workshop measuring the inner diameter of a black carbon graphite seal ring with a digital micrometer, calipers and an inspection record sheet on the bench, soft industrial lighting, realistic documentary photo
-4. 成品展示：Studio product shot of stacked finished impregnated carbon graphite seal rings and bushings on a stainless steel bench, matte black machined surfaces with crisp chamfers, dramatic rim lighting, premium B2B industrial catalog style
+![碳石墨密封环截面显微组织：石墨颗粒与颗粒之间的孔隙清晰可见，浸渍要做的就是把它们填满](/images/factory/graphite-seal-microstructure.webp)
 
-提示：AI 生成的图片仅用于示意与宣传，涉及具体尺寸、结构与标注时，请以华豪提供的实拍图与技术图纸为准。
+上图是碳石墨密封环截面的显微组织，石墨颗粒与颗粒之间的孔隙清晰可见。浸渍的目标，就是用树脂、锑或金属把这些孔隙填满，让介质无处可渗。
+
+![成品尺寸复检：用内径千分表与卡尺核对密封环内径、外径与厚度，并记录检验数据](/images/factory/graphite-seal-inspection.webp)
+
+上图是固化之后的一道尺寸复检：用内径千分表与卡尺逐项核对内径、外径与厚度，并把数据记录到检验单上，确保封孔之后密封面精度不回退。这就是“可测量、可复现、可追溯”的具体含义。
 
 ## 六、结语
 
@@ -469,7 +470,7 @@ From settling in Lu'an in 2018, to the CNC upgrade in 2020, to building our own 
 - Compressive strength of resin-impregnated grades rose about 15%–30% to a typical 150–170 MPa; metal-impregnated grades exceed 180 MPa
 - Dry friction coefficient holds at 0.08–0.12 and falls to 0.05–0.08 under liquid lubrication; allowable dry-running PV is up about 20%
 - Three impregnant systems matched to duty — resin (−40 to 200°C), antimony (up to 400°C) and metal (up to 450°C) — covering chemical pumps, marine, power and high-temperature furnaces
-- Four ready-to-use AI image prompts (in English) are included at the end for promotional and process illustrations
+- Two illustrations — cross-section microstructure and final dimensional inspection — show impregnation results and quality control
 
 Impregnation is the step that takes a carbon graphite seal from "workable" to "durable." Carbon graphite offers self-lubrication, corrosion resistance and high-temperature capability, but a pressed compact is porous — its interconnected micro-pores form paths for the medium to creep through under differential pressure, which undermines both strength and sealing stability. In 2023, Huahao Carbon Graphite Sealing Co., Ltd. carried out a systematic upgrade of this core process: from the impregnant system and the vacuum-pressure curve to curing and post-treatment, refined item by item, with a single goal — to make every carbon graphite seal ring, bushing and split ring run longer and steadier in our customers' pumps and valves.
 
@@ -524,16 +525,17 @@ The figures below compare the same graphite base grade (values vary slightly wit
 
 For buyers and design engineers, the direct benefit is simple: tell us the medium, temperature, pressure and whether lubrication is permitted, and we will recommend the matching impregnant system and grade — instead of one graphite for every job.
 
-## 5. AI Image Prompts (Ready to Use)
+## 5. Process and Inspection in Practice
 
-The prompts below are written in English because mainstream AI image tools parse English most accurately. Paste them directly into Midjourney, Stable Diffusion or DALL·E, and keep a realistic industrial-photography style rather than exaggerated sci-fi elements.
+Whether impregnation is done well comes down to two things: are the pores truly sealed, and are the dimensions still accurate. The two photos below show what we focus on.
 
-1. Impregnation workshop (article cover): Photorealistic wide shot of an industrial impregnation workshop with two large stainless-steel vacuum-pressure autoclave vessels labeled 1 and 2, yellow and blue piping, black carbon graphite seal rings stacked on steel carts in the foreground, clean concrete floor with yellow safety lines, cool daylight from high windows, 35mm lens, high detail, industrial photography, no text distortion
-2. Pore-sealing macro: Extreme macro photograph of a polished carbon graphite seal ring cross-section, dense pore-free resin-impregnated microstructure, fine graphite grain, shallow depth of field, studio rim lighting on a dark background, scientific product photography
-3. Inspection step: Close-up of a quality-control engineer in a clean workshop measuring the inner diameter of a black carbon graphite seal ring with a digital micrometer, calipers and an inspection record sheet on the bench, soft industrial lighting, realistic documentary photo
-4. Finished parts: Studio product shot of stacked finished impregnated carbon graphite seal rings and bushings on a stainless steel bench, matte black machined surfaces with crisp chamfers, dramatic rim lighting, premium B2B industrial catalog style
+![Microstructure of a carbon graphite seal ring cross-section: graphite grains with clearly visible pores between them — the job of impregnation is to fill them](/images/factory/graphite-seal-microstructure.webp)
 
-Note: AI-generated images are for illustration and promotion only. For specific dimensions, structures and callouts, always refer to the real photographs and technical drawings provided by Huahao Sealing.
+The photo above shows the microstructure of a carbon graphite seal ring cross-section, where graphite grains and the pores between them are clearly visible. The aim of impregnation is to fill those pores with resin, antimony or metal so the medium has nowhere to seep.
+
+![Final dimensional inspection: checking the ring inner diameter, outer diameter and thickness with a bore gauge and calipers against an inspection record](/images/factory/graphite-seal-inspection.webp)
+
+The second photo shows a dimensional re-check after curing: inner diameter, outer diameter and thickness are verified item by item with a bore gauge and calipers and logged on an inspection sheet, so sealing-face accuracy does not regress after pore sealing. That is what measurable, reproducible and traceable really means.
 
 ## 6. Closing Thoughts
 
