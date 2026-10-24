@@ -189,8 +189,8 @@ function ProductCard({ product, locale, cats }: { product: Product; locale: stri
             src={product.image}
             alt={product.name}
             fill
-            className="object-contain p-5 transition-transform duration-300 group-hover:scale-[1.04]"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            className="object-contain p-3 transition-transform duration-300 group-hover:scale-[1.04] sm:p-5"
+            sizes="(max-width: 1024px) 50vw, 25vw"
           />
         ) : (
           <div className="flex h-full items-center justify-center px-6 text-center text-sm font-semibold tracking-[0.08em] text-muted">
@@ -199,9 +199,9 @@ function ProductCard({ product, locale, cats }: { product: Product; locale: stri
         )}
       </div>
 
-      <div className="flex min-w-0 flex-1 flex-col p-4">
+      <div className="flex min-w-0 flex-1 flex-col p-3 sm:p-4">
         <div className="flex items-baseline justify-between gap-3">
-          <span className="min-w-0 flex-1 truncate whitespace-nowrap font-mono text-base font-bold tracking-tight text-primary" title={product.model}>{product.model}</span>
+          <span className="min-w-0 flex-1 truncate whitespace-nowrap font-mono text-sm font-bold tracking-tight text-primary sm:text-base" title={product.model}>{product.model}</span>
           <span className="hidden max-w-[45%] shrink-0 truncate text-[10px] font-semibold uppercase tracking-[0.06em] text-muted 2xl:block">
             {getLocalizedProductCategory(product.category, locale)}
           </span>
@@ -212,19 +212,20 @@ function ProductCard({ product, locale, cats }: { product: Product; locale: stri
         </h3>
 
         {specLine.length > 0 && (
-          <p className="mt-2.5 truncate text-xs text-muted" title={specLine.join(" · ")}>
+          <p className="mt-2.5 line-clamp-2 text-xs leading-relaxed text-muted" title={specLine.join(" · ")}>
             {specLine.join(" · ")}
           </p>
         )}
 
         <div className="mt-4 flex flex-wrap gap-1.5 border-t border-border pt-4">
           {product.applications.slice(0, 2).map((app) => (
-            <span key={app} className="border border-border bg-background px-2 py-0.5 text-[11px] text-muted">
+            <span key={app} className="border border-border bg-background px-1.5 py-0.5 text-[11px] text-muted sm:px-2">
               {app}
             </span>
           ))}
+          {/* 移动端两列时横向空间不够，「+N」会把标签挤到第二行，窄屏先藏起来 */}
           {product.applications.length > 2 && (
-            <span className="border border-border bg-background px-2 py-0.5 text-[11px] text-muted">
+            <span className="hidden border border-border bg-background px-2 py-0.5 text-[11px] text-muted sm:block">
               +{product.applications.length - 2}
             </span>
           )}
@@ -323,7 +324,10 @@ export default async function ProductsPageContent({
         </div>
       </section>
 
-      <section className="section-padding industrial-surface">
+      {/* 这里刻意不用 section-padding：它自带 1.25rem 水平内边距，与内层 container-wide
+          的 1.25rem 叠加成 40px，比上方标题区（只靠 container-wide 的 20px）多缩进一截，
+          移动端两列时每张卡片会被挤到 147px。改成只给垂直内边距，水平留白交给 container-wide。 */}
+      <section className="industrial-surface py-[4.5rem] md:py-24 lg:py-[7.5rem]">
         <div className="container-wide">
           <div id="products-empty" style={{ display: "none" }} className="border border-border bg-white px-6 py-16 text-center">
             <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center border border-border bg-background text-accent">
@@ -334,7 +338,7 @@ export default async function ProductsPageContent({
           </div>
 
           {/* 发丝线网格：用单元格边框而非 gap-px 底色，避免最后一行不满时露出灰块 */}
-          <div id="products-grid" className="mt-12 grid border-l border-t border-border sm:grid-cols-2 lg:grid-cols-4">
+          <div id="products-grid" className="mt-12 grid grid-cols-2 border-l border-t border-border lg:grid-cols-4">
             {allProducts.map((product) => (
               <ProductCard
                 key={product.slug}
