@@ -311,7 +311,7 @@ Ice-machine graphite bearings and seal rings are classic low-load, environment-s
 2. **盘车**：新装或久停后，手动盘车 2~3 圈，确认无卡滞再送电
 3. **压装工艺**：用导向套均匀压入，速度 2~5 mm/s；严禁锤击，崩边在高压下会扩展成断裂
 4. **水压试验**：1.5 倍工作压力保持 10 分钟无压降（石墨本身不渗，泄漏都走端面或静密封）
-5. **备件存放**：浸树脂石墨有存放期（见本站《浸树脂石墨的存放与保质期》一文），避光防潮，先进先出
+5. **备件存放**：浸树脂石墨有存放期（见本站[《浸树脂石墨的存放与保质期》](/blog/resin-impregnated-graphite-storage-shelf-life)一文），避光防潮，先进先出
 
 ## 五、常见问题速查
 
@@ -402,7 +402,7 @@ The best ring loses to bad practice:
 2. **Hand-rotate** 2–3 turns after new assembly or long standstill before energizing
 3. **Press with a guide sleeve**, even load, 2–5 mm/s; no hammering — chips propagate into cracks under pressure
 4. **Hydrostatic test** at 1.5× working pressure for 10 minutes without pressure drop (graphite itself is impermeable; leakage exits at faces or statics)
-5. **Spares storage**: resin-impregnated graphite has shelf life (see this site's article on storage and shelf life) — keep dark and dry, FIFO
+5. **Spares storage**: resin-impregnated graphite has shelf life (see this site's [article on storage and shelf life](/blog/resin-impregnated-graphite-storage-shelf-life)) — keep dark and dry, FIFO
 
 ## 5. Quick Troubleshooting
 
@@ -881,7 +881,7 @@ Dyeing-machine seal selection compresses to three rules: **temperature sets impr
 - 环被止转销限制在壳体内，不随轴旋转
 - 压缩腔侧与轴承腔侧之间由环与环的对接缝、环与壳体的间隙构成曲折路径
 
-**注意区分**：本站 TP 系列碳石墨三瓣环就是这类结构的元件（标称 ≤ 10 MPa、≤ 15 m/s、-40℃ ~ 280℃），既用于压缩机轴封，也用于离心泵、船舶设备与蒸汽透平。分瓣数越多、对接缝越曲折，泄漏越小，但结构越复杂、成本越高。
+**注意区分**：本站 [TP 系列碳石墨三瓣环](/products/three-part-series) 就是这类结构的元件（标称 ≤ 10 MPa、≤ 15 m/s、-40℃ ~ 280℃），既用于压缩机轴封，也用于离心泵、船舶设备与蒸汽透平。分瓣数越多、对接缝越曲折，泄漏越小，但结构越复杂、成本越高。
 
 ## 二、间隙设计
 
@@ -997,7 +997,7 @@ A typical stack is 3–5 segmented carbon graphite rings plus retaining springs 
 - Anti-rotation pins hold the stack in the housing so it does not spin with the shaft
 - Chamber side and bearing side are separated by segment butt joints and housing clearances forming a tortuous path
 
-**Note**: the TP-series carbon graphite three-segment rings on this site are exactly this component (rated ≤ 10 MPa, ≤ 15 m/s, -40 to 280°C), used on compressor shaft ends as well as centrifugal pumps, marine equipment and steam turbines. More segments and more tortuous paths mean less leakage but more complexity and cost.
+**Note**: the [TP-series carbon graphite three-segment rings](/products/three-part-series) on this site are exactly this component (rated ≤ 10 MPa, ≤ 15 m/s, -40 to 280°C), used on compressor shaft ends as well as centrifugal pumps, marine equipment and steam turbines. More segments and more tortuous paths mean less leakage but more complexity and cost.
 
 ## 2. Clearance Design
 

@@ -1,7 +1,9 @@
 import { setRequestLocale } from "next-intl/server"
+import Image from "next/image"
 import { generateMeta } from "@/lib/utils"
 import { getLocalized } from "@/lib/locale-data"
 import { blogPosts, getPostBySlug } from "@/lib/blog-data"
+import { getPostImage } from "@/lib/blog-image"
 import { getRelatedProductsForPost } from "@/lib/product-linking"
 import { siteConfig } from "@/lib/constants"
 import { ArticleJsonLd, BreadcrumbJsonLd, FaqJsonLd } from "@/components/JsonLd"
@@ -33,6 +35,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     locale,
   })
 
+  // 社交分享图用文章自己的配图，而不是全站统一 banner
+  const heroImage = getPostImage(post)
+
   return {
     ...base,
     openGraph: {
@@ -40,6 +45,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       type: "article" as const,
       publishedTime: post.date,
       authors: [siteConfig.fullName],
+      images: [{ url: heroImage.src, alt: locale === "zh" ? heroImage.zh : heroImage.en }],
     },
     // canonical 已由 generateMeta 按 path 生成（website + /blog/{slug}），
     // 保留 base.alternates 以携带 hreflang languages
@@ -116,12 +122,20 @@ function renderContent(content: string, locale: string) {
     : []
   let takeawaysRendered = false
 
+  // 目录（TOC）：从全部二级标题生成锚点。锚点 id 用序号而非标题文本，
+  // 中文/泰文/俄文标题不需要 slug 化，跨语种也不会冲突。
+  const tocItems = lines
+    .map((line, idx) => ({ line: line.trim(), idx }))
+    .filter((o) => o.line.startsWith("## ") && o.idx !== takeawayHeadingIdx)
+    .map((o, i) => ({ idx: o.idx, id: `sec-${i + 1}`, text: o.line.slice(3) }))
+  const headingIdMap = new Map(tocItems.map((t) => [t.idx, t.id]))
+
   const flushList = (key: string) => {
     if (listItems.length > 0) {
       elements.push(
         <ul key={key} className="my-4 space-y-2 pl-6">
           {listItems.map((item, i) => (
-            <li key={i} className="text-muted leading-relaxed list-disc" dangerouslySetInnerHTML={{ __html: parseInline(item) }} />
+            <li key={i} className="text-muted leading-relaxed list-disc" dangerouslySetInnerHTML={{ __html: parseInline(item, locale) }} />
           ))}
         </ul>
       )
@@ -146,7 +160,7 @@ function renderContent(content: string, locale: string) {
           {takeawayItems.map((item, i) => (
             <li key={i} className="text-sm text-primary leading-relaxed flex gap-2">
               <span className="text-accent shrink-0 mt-0.5">▸</span>
-              <span dangerouslySetInnerHTML={{ __html: parseInline(item) }} />
+              <span dangerouslySetInnerHTML={{ __html: parseInline(item, locale) }} />
             </li>
           ))}
         </ul>
@@ -168,12 +182,17 @@ function renderContent(content: string, locale: string) {
     if (trimmed.startsWith("### ")) {
       flushList(`list-${idx}`)
       elements.push(
-        <h3 key={idx} className="text-lg font-bold text-primary mt-6 mb-3" dangerouslySetInnerHTML={{ __html: parseInline(trimmed.slice(4)) }} />
+        <h3 key={idx} className="text-lg font-bold text-primary mt-6 mb-3" dangerouslySetInnerHTML={{ __html: parseInline(trimmed.slice(4), locale) }} />
       )
     } else if (trimmed.startsWith("## ")) {
       flushList(`list-${idx}`)
       elements.push(
-        <h2 key={idx} className="text-xl font-bold text-primary mt-8 mb-4 pb-2 border-b border-border" dangerouslySetInnerHTML={{ __html: parseInline(trimmed.slice(3)) }} />
+        <h2
+          key={idx}
+          id={headingIdMap.get(idx)}
+          className="text-xl font-bold text-primary mt-8 mb-4 pb-2 border-b border-border scroll-mt-24"
+          dangerouslySetInnerHTML={{ __html: parseInline(trimmed.slice(3), locale) }}
+        />
       )
     } else if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
       listItems.push(trimmed.slice(2))
@@ -185,36 +204,109 @@ function renderContent(content: string, locale: string) {
       elements.push(
         <p key={idx} className="my-3 text-muted leading-relaxed flex gap-3">
           <span className="font-bold text-accent shrink-0">{trimmed.match(/^\d+/)?.[0]}.</span>
-          <span dangerouslySetInnerHTML={{ __html: parseInline(text) }} />
+          <span dangerouslySetInnerHTML={{ __html: parseInline(text, locale) }} />
         </p>
       )
     } else {
       flushList(`list-${idx}`)
       elements.push(
-        <p key={idx} className="my-4 text-muted leading-relaxed" dangerouslySetInnerHTML={{ __html: parseInline(trimmed) }} />
+        <p key={idx} className="my-4 text-muted leading-relaxed" dangerouslySetInnerHTML={{ __html: parseInline(trimmed, locale) }} />
       )
     }
   })
   flushTakeaways()
   flushList("list-final")
 
+  // 目录：插在「核心要点」之后（无核心要点则放正文最前）。
+  // 少于 3 个二级标题的短文章不显示，避免占地方。
+  if (tocItems.length >= 3) {
+    const tocEl = (
+      <details key="toc" className="group my-6 rounded-lg border border-border bg-white overflow-hidden" open>
+        <summary className="cursor-pointer list-none select-none px-5 py-3.5 flex items-center justify-between gap-3 text-sm font-bold text-primary hover:bg-accent-subtle/50 transition-colors">
+          <span className="flex items-center gap-2">
+            <svg className="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h10" />
+            </svg>
+            {TOC_LABEL[locale] ?? TOC_LABEL.en}
+          </span>
+          <svg className="h-4 w-4 text-muted shrink-0 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <ol className="px-5 pb-4 pt-3 space-y-2 border-t border-border">
+          {tocItems.map((t, i) => (
+            <li key={t.id} className="text-sm leading-relaxed flex gap-2.5">
+              <span className="font-mono text-[11px] font-bold text-accent shrink-0 pt-1">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <a
+                href={`#${t.id}`}
+                className="text-muted hover:text-accent transition-colors"
+                dangerouslySetInnerHTML={{ __html: parseInline(t.text, locale) }}
+              />
+            </li>
+          ))}
+        </ol>
+      </details>
+    )
+    const takeawaysIdx = elements.findIndex((el) => (el as React.ReactElement).key === "key-takeaways")
+    elements.splice(takeawaysIdx + 1, 0, tocEl)
+  }
+
   return elements
 }
 
-function parseInline(text: string): string {
+const SITE_HOSTS = ["hhseal.cn", "www.hhseal.cn"]
+
+/**
+ * 把 markdown 里的链接目标解析成最终 href。
+ *
+ * 站内链接支持**相对路径**写法，例如 `[碳石墨轴承](/products/xxx)`、`[另一篇](/blog/xxx)`：
+ * 会自动补上当前语种前缀（localePrefix: "always"），英文读者不会被带到中文页。
+ * 也兼容手写绝对地址 `https://hhseal.cn/blog/xxx` —— 同样转成带 locale 的站内路径，
+ * 避免正文里硬编码语种导致多语言互跳失效。
+ *
+ * 站内链接不加 target，外链才开新窗口。
+ */
+function resolveHref(raw: string, locale: string): { href: string; external: boolean } {
+  if (raw.startsWith("/")) return { href: `/${locale}${raw}`, external: false }
+  try {
+    const u = new URL(raw)
+    if (SITE_HOSTS.includes(u.hostname)) {
+      return { href: `/${locale}${u.pathname}${u.search}${u.hash}`, external: false }
+    }
+    return { href: raw, external: true }
+  } catch {
+    return { href: raw, external: false }
+  }
+}
+
+function parseInline(text: string, locale = "zh"): string {
   return (
     text
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
       .replace(/\*\*(.+?)\*\*/g, '<strong class="font-bold text-primary">$1</strong>')
-      // 行内链接：[锚文本](https://...)
-      // 只放行 http/https，且排除空格、引号、尖括号，避免属性逃逸
-      .replace(
-        /\[([^\]]+)\]\((https?:\/\/[^)\s"'<>]+)\)/g,
-        '<a href="$2" class="text-accent font-medium underline underline-offset-2 decoration-accent/40 hover:text-accent-hover hover:decoration-accent" target="_blank" rel="noopener">$1</a>'
-      )
+      // 行内链接：[锚文本](目标)
+      // 目标排除空格、引号、尖括号，避免属性逃逸
+      .replace(/\[([^\]]+)\]\(([^)\s"'<>]+)\)/g, (_m, label: string, raw: string) => {
+        const { href, external } = resolveHref(raw, locale)
+        const attrs = external ? ' target="_blank" rel="noopener noreferrer"' : ""
+        return `<a href="${href}" class="text-accent font-medium underline underline-offset-2 decoration-accent/40 hover:text-accent-hover hover:decoration-accent"${attrs}>${label}</a>`
+      })
   )
+}
+
+/** 「目录」标题按语种展示 */
+const TOC_LABEL: Record<string, string> = {
+  zh: "本文目录",
+  en: "Table of Contents",
+  vi: "Mục lục",
+  th: "สารบัญ",
+  ru: "Содержание",
+  ja: "目次",
+  ko: "목차",
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
@@ -242,6 +334,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
   const title = getLocalized(post.title, locale)
   const excerpt = getLocalized(post.excerpt, locale)
   const content = getLocalized(post.content, locale)
+
+  // 配图：站内已有素材（技术剖视图 / 工厂实拍 / 产品实拍 / 应用场景），按标签分配
+  const heroImage = getPostImage(post)
+  const heroCaption = getLocalized({ zh: heroImage.zh, en: heroImage.en }, locale)
 
   // GEO：基于文章“核心要点”生成 FAQ schema（内容真实，非编造）
   const blogContent = (post.content as Record<string, string | undefined>)[locale] ?? post.content.en
@@ -284,6 +380,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
         slug={slug}
         date={post.date}
         locale={locale}
+        image={heroImage.src}
       />
       <FaqJsonLd questions={faqQuestions} />
       <BreadcrumbJsonLd
@@ -310,6 +407,21 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
             </span>
             <time className="text-muted">{post.date}</time>
           </div>
+
+          {/* 文章配图：站内真实素材，object-contain 保证剖视图的标注文字不被裁切 */}
+          <figure className="mb-8 mx-auto max-w-xl">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-border bg-slate-50">
+              <Image
+                src={heroImage.src}
+                alt={heroCaption}
+                fill
+                sizes="(max-width: 576px) 100vw, 576px"
+                className="object-contain"
+                priority
+              />
+            </div>
+            <figcaption className="mt-2.5 text-xs text-muted leading-relaxed text-center">{heroCaption}</figcaption>
+          </figure>
 
           <div className="prose prose-lg max-w-none">
             {renderContent(content, locale)}

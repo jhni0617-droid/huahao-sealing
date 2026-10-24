@@ -35,7 +35,7 @@ export const blogPostsBatch16: BlogPost[] = [
 
 ### 1.2 轴端碳环
 
-叶轮轴穿过轴承腔（有润滑油），冷媒腔（无油、可能负压）在另一侧。开机负压阶段油会被吸进冷媒腔，污染换热器、降低换热效率。轴端装**碳环密封**（本站 TP 系列三瓣环即此类元件，标称 ≤ 10 MPa、≤ 15 m/s）把两侧隔开，配合密封气形成压力屏障。
+叶轮轴穿过轴承腔（有润滑油），冷媒腔（无油、可能负压）在另一侧。开机负压阶段油会被吸进冷媒腔，污染换热器、降低换热效率。轴端装**碳环密封**（本站 [TP 系列三瓣环](/products/three-part-series) 即此类元件，标称 ≤ 10 MPa、≤ 15 m/s）把两侧隔开，配合密封气形成压力屏障。
 
 ## 二、间隙设计
 
@@ -57,7 +57,7 @@ export const blogPostsBatch16: BlogPost[] = [
 
 ### 2.2 碳环间隙
 
-轴端碳环直径间隙典型 0.08~0.15 mm（按轴径 50~100 mm 机型），与本站《无油螺杆空压机碳环密封》一文的口径一致。碳环必须配密封气：
+轴端碳环直径间隙典型 0.08~0.15 mm（按轴径 50~100 mm 机型），与本站[《无油螺杆空压机碳环密封》](/blog/oil-free-screw-air-compressor-carbon-ring-seal)一文的口径一致。碳环必须配密封气：
 
 - 气源：洁净干燥的空气或氮气，露点 ≤ -20℃，含油 ≤ 0.01 mg/m³
 - 压力：高于冷媒侧 0.01~0.05 MPa，保证气流朝冷媒侧，把油雾挡在轴承腔
@@ -129,7 +129,7 @@ Typical material: resin- or metal-impregnated carbon graphite; some OEMs use pol
 
 ### 1.2 Shaft-End Carbon Rings
 
-The impeller shaft passes through the bearing chamber (oil-lubricated) with the refrigerant chamber (oil-free, possibly sub-atmospheric) on the other side. At startup suction, oil is drawn toward the refrigerant side, fouling heat exchangers and degrading heat transfer. A **shaft-end carbon ring** (the TP-series three-segment rings on this site are such components, rated ≤ 10 MPa, ≤ 15 m/s) isolates the two sides, with seal gas forming the pressure barrier.
+The impeller shaft passes through the bearing chamber (oil-lubricated) with the refrigerant chamber (oil-free, possibly sub-atmospheric) on the other side. At startup suction, oil is drawn toward the refrigerant side, fouling heat exchangers and degrading heat transfer. A **shaft-end carbon ring** (the [TP-series three-segment rings](/products/three-part-series) on this site are such components, rated ≤ 10 MPa, ≤ 15 m/s) isolates the two sides, with seal gas forming the pressure barrier.
 
 ## 2. Clearance Design
 
@@ -151,7 +151,7 @@ Design tensions:
 
 ### 2.2 Carbon Ring Clearance
 
-Shaft-end carbon ring diametral clearance is typically 0.08–0.15 mm (50–100 mm shaft machines), consistent with this site's article on oil-free screw compressor carbon rings. Seal gas is mandatory:
+Shaft-end carbon ring diametral clearance is typically 0.08–0.15 mm (50–100 mm shaft machines), consistent with this site's [article on oil-free screw compressor carbon rings](/blog/oil-free-screw-air-compressor-carbon-ring-seal). Seal gas is mandatory:
 
 - Source: clean dry air or nitrogen, dew point ≤ -20°C, oil ≤ 0.01 mg/m³
 - Pressure: 0.01–0.05 MPa above refrigerant side so flow points at the refrigerant side, keeping oil mist in the bearing chamber
@@ -292,7 +292,7 @@ pv 合格不等于寿命合格。间隙设计按介质粘度取：
 | 油润滑 | 2~5 MPa | 5~10 MPa·m/s | 润滑系统、油泵 |
 | 富气体介质 | 1~2 MPa | 1~3 MPa·m/s | 压缩机、蒸汽环境 |
 
-上表是浸渍碳石墨的通行量级参考，**具体牌号以材料供应商数据为准**——基体颗粒度、浸渍体系、密度不同，许用值可以差一倍。本站 GB 系列石墨轴承标称承压 ≤ 20 MPa 是指静强度（压溃极限），运转许用值远低于此；TD 系列推力盘标称轴向 ≤ 10 MPa 同理。
+上表是浸渍碳石墨的通行量级参考，**具体牌号以材料供应商数据为准**——基体颗粒度、浸渍体系、密度不同，许用值可以差一倍。本站 [GB 系列石墨轴承](/products/graphite-bearing) 标称承压 ≤ 20 MPa 是指静强度（压溃极限），运转许用值远低于此；[TD 系列推力盘](/products/graphite-thrust-disc) 标称轴向 ≤ 10 MPa 同理。
 
 ### 3.2 按浸渍体系修正
 
@@ -409,7 +409,7 @@ Passing pv is not passing life. Size clearance by medium:
 | Oil-lubricated | 2–5 MPa | 5–10 MPa·m/s | Lubrication systems, oil pumps |
 | Gas-rich media | 1–2 MPa | 1–3 MPa·m/s | Compressors, steam |
 
-These are order-of-magnitude references for impregnated carbon graphite; **actual grades follow supplier data** — base grain size, impregnant and density can shift allowables by 2×. The GB-series rating of ≤ 20 MPa is static strength (crush limit); operating allowables are far lower. The TD-series axial ≤ 10 MPa is the same story.
+These are order-of-magnitude references for impregnated carbon graphite; **actual grades follow supplier data** — base grain size, impregnant and density can shift allowables by 2×. The [GB-series rating](/products/graphite-bearing) of ≤ 20 MPa is static strength (crush limit); operating allowables are far lower. The [TD-series axial ≤ 10 MPa](/products/graphite-thrust-disc) is the same story.
 
 ### 3.2 By Impregnant
 
@@ -916,7 +916,7 @@ For graphite seals in food and beverage CIP service, the core question is not "i
 | 河渠直抽 | 100~1000 mg/L（汛期更高） | 石英为主，粒径 0.05~0.5 mm |
 | 浅井地下水 | 20~200 mg/L | 细砂 + 少量粉砂 |
 | 市政管网（改善后） | < 20 mg/L | 经沉淀处理，仍有波动 |
-| 海水 | 几乎无砂但高腐蚀 | 另一类问题（见本站电偶腐蚀一文） |
+| 海水 | 几乎无砂但高腐蚀 | 另一类问题（见本站[电偶腐蚀一文](/blog/graphite-seal-stainless-shaft-galvanic-corrosion)） |
 
 石英（莫氏 7）比任何密封材料都硬，磨损是"犁沟"机制：颗粒压入软的一面，在对面犁出沟槽。密封环是脆性材料，被犁出的沟槽就是永久的泄漏通道——**磨粒磨损不可逆，只能预防**。
 
@@ -1020,7 +1020,7 @@ Groundwater and shallow surface water in the Mekong Delta, Java and Luzon common
 | Direct canal/river pumping | 100–1000 mg/L (higher in flood season) | Quartz dominant, 0.05–0.5 mm |
 | Shallow well groundwater | 20–200 mg/L | Fine sand plus some silt |
 | Municipal supply (treated) | < 20 mg/L | Sedimentation-treated, still variable |
-| Seawater | Virtually sand-free but highly corrosive | A different problem (see this site's galvanic corrosion article) |
+| Seawater | Virtually sand-free but highly corrosive | A different problem (see this site's [galvanic corrosion article](/blog/graphite-seal-stainless-shaft-galvanic-corrosion)) |
 
 Quartz (Mohs 7) is harder than any seal material; wear proceeds by plowing — particles embed in the softer side and furrow the harder. Graphite is brittle, and plowed grooves are permanent leak paths: **abrasive wear is irreversible, only preventable**.
 
@@ -1174,7 +1174,7 @@ F 系列温度上限 180℃，浸树脂体系长期在 150℃ 以上会加速老
 
 ### 3.2 含砂污水
 
-含砂介质下，材料强度决定耐磨时间。浸树脂石墨（抗压 90~100 MPa 量级）在砂里比浸锑（~190 MPa）磨得快一倍以上；对磨面用不锈钢会被砂犁出沟槽。污水泵请按本站《东南亚高泥沙水源》一文的矩阵选，不要用轻工档凑。
+含砂介质下，材料强度决定耐磨时间。浸树脂石墨（抗压 90~100 MPa 量级）在砂里比浸锑（~190 MPa）磨得快一倍以上；对磨面用不锈钢会被砂犁出沟槽。污水泵请按本站[《东南亚高泥沙水源》](/blog/southeast-asia-sediment-water-pump-seal)一文的矩阵选，不要用轻工档凑。
 
 ### 3.3 频繁干运转
 
@@ -1265,7 +1265,7 @@ The F-series ceiling is 180°C, and resin systems age faster above 150°C (appro
 
 ### 3.2 Sandy Sewage
 
-In abrasive media, strength sets wear life. Resin-impregnated graphite (90–100 MPa class) wears more than twice as fast as antimony (~190 MPa) in sand; stainless faces get furrowed. Size sewage duty per this site's Southeast Asia sediment article — do not stretch the light-duty class.
+In abrasive media, strength sets wear life. Resin-impregnated graphite (90–100 MPa class) wears more than twice as fast as antimony (~190 MPa) in sand; stainless faces get furrowed. Size sewage duty per this site's [Southeast Asia sediment article](/blog/southeast-asia-sediment-water-pump-seal) — do not stretch the light-duty class.
 
 ### 3.3 Frequent Dry Running
 
@@ -1361,7 +1361,7 @@ The philosophy of light-duty rings like the F series is "suitable beats expensiv
 | 端面宽度 | 卡尺 | 宽度公差直接影响端面比压 |
 | 圆度 | 内径表多点测量 | 超差说明压制或磨削工艺问题 |
 
-**图样没有给公差时**，参照本站《1527系列配合公差》一文的口径反推：外径按 H9 级、内径按 H7 级、总高按 h9 级是通用件常见做法；有配合要求的以设备图样为准。
+**图样没有给公差时**，参照本站[《1527系列配合公差》](/blog/1527-series-seal-ring-fit-tolerance)一文的口径反推：外径按 H9 级、内径按 H7 级、总高按 h9 级是通用件常见做法；有配合要求的以设备图样为准。
 
 ### 2.3 密封面质量
 
@@ -1462,7 +1462,7 @@ FAI is therefore not a formality — it is the gate before the batch. **Relax FA
 | Face width | Caliper | Width tolerance drives face pressure |
 | Roundness | Bore gauge, multi-point | Error indicates forming or grinding problems |
 
-**Without drawing tolerances**, work from this site's 1527-series tolerance article: OD H9, ID H7, height h9 are common for general-purpose parts; fit-critical dimensions follow the equipment drawing.
+**Without drawing tolerances**, work from this site's [1527-series tolerance article](/blog/1527-series-seal-ring-fit-tolerance): OD H9, ID H7, height h9 are common for general-purpose parts; fit-critical dimensions follow the equipment drawing.
 
 ### 2.3 Face Quality
 
@@ -1555,7 +1555,7 @@ FAI for graphite seal rings reduces to one sentence: **full dimensional inspecti
 2. **温度落在基油窗口内**：矿物油基锂基脂的常用区间约 -20 °C 到 120 °C，合成烃基（PAO）可拓到 -50 °C 到 150 °C 量级
 3. **污染物不致命**：粉尘、水、化学品、清洗剂不会持续破坏皂基结构
 
-润滑脂选型本身已有相当成熟的工程讨论，温度边界和基油差异可以参照行业内的系统整理，例如 [Bearing Grease: Lithium vs. Synthetic](https://tflbearing.com/blog/bearing-grease-lithium-vs-synthetic-comparison.html)。但要注意，那类讨论的前提仍然是"这个轴承还在加脂"。当上面三条里的任何一条断掉，继续在脂的品类里优化，方向本身就错了——该换的不是脂，是轴承类型。
+润滑脂选型本身已有相当成熟的工程讨论，温度边界和基油差异可以参照润滑脂厂商的公开技术资料，例如 [Chemours Krytox](https://www.krytox.com/) 与 [Klüber Lubrication](https://www.klueber.com/) 的产品数据。但要注意，那类讨论的前提仍然是"这个轴承还在加脂"。当上面三条里的任何一条断掉，继续在脂的品类里优化，方向本身就错了——该换的不是脂，是轴承类型。
 
 ## 二、五类从设计上就该放弃脂的工位
 
@@ -1639,7 +1639,7 @@ Engineering discussions about grease quietly assume something: **that this beari
 2. **Temperature sits inside the base-oil window** — roughly -20 °C to 120 °C for mineral-oil lithium grease, extended to about -50 °C to 150 °C for synthetic hydrocarbon (PAO) bases
 3. **Contaminants are survivable** — dust, water, chemicals and washdown agents do not continuously destroy the soap structure
 
-Grease selection is well documented as a discipline in its own right; temperature envelopes and base-oil differences are covered systematically elsewhere, for example in [Bearing Grease: Lithium vs. Synthetic](https://tflbearing.com/blog/bearing-grease-lithium-vs-synthetic-comparison.html). But note the premise those discussions rest on: the bearing is still being greased. Once any one of the three preconditions breaks, optimising within the grease category is the wrong direction — what has to change is the bearing type, not the grease.
+Grease selection is well documented as a discipline in its own right; temperature envelopes and base-oil differences are covered in lubricant makers' public technical data, for example [Chemours Krytox](https://www.krytox.com/) and [Klüber Lubrication](https://www.klueber.com/). But note the premise those discussions rest on: the bearing is still being greased. Once any one of the three preconditions breaks, optimising within the grease category is the wrong direction — what has to change is the bearing type, not the grease.
 
 ## 2. Five Stations That Should Never Depend on Grease
 

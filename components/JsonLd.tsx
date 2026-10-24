@@ -30,6 +30,18 @@ export function OrganizationJsonLd({ locale = "zh" }: { locale?: string }) {
     },
     sameAs: [cfg.facebookProfile, cfg.facebookPage].filter(Boolean),
     description: cfg.description,
+    // knowsAbout：告诉搜索引擎与 AI 检索「这家公司懂什么」，
+    // 是 B2B 询价站在生成式搜索里被正确归类的关键字段（对标同行的做法）。
+    knowsAbout: [
+      "Carbon graphite seal rings",
+      "Carbon graphite split rings",
+      "Carbon graphite bearings and bushings",
+      "Resin-impregnated carbon graphite",
+      "Antimony-impregnated carbon graphite",
+      "Metal-impregnated carbon graphite",
+      "Mechanical seal carbon faces",
+      "Graphite sealing for pumps, compressors and valves",
+    ],
   }
 
   // LocalBusiness schema (for local search visibility)
@@ -249,6 +261,7 @@ export function ArticleJsonLd({
   date,
   author,
   locale = "zh",
+  image,
 }: {
   title: string
   description: string
@@ -256,6 +269,8 @@ export function ArticleJsonLd({
   date: string
   author?: string
   locale?: string
+  /** 文章配图的站内路径（如 /images/factory/xxx.webp）；缺省回退到全站 banner */
+  image?: string
 }) {
   const cfg = { ...siteConfig, ...getLocalizedSiteConfig(locale) }
   // localePrefix: "always" —— 所有语言（含默认 en 与 zh）都带前缀：/{locale}/blog/{slug}
@@ -263,18 +278,23 @@ export function ArticleJsonLd({
 
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    // TechArticle 而非 Article：本站博客是工程技术文档（选型参数、失效模式、加工工艺），
+    // 与 schema.org 对 TechArticle 的定义一致，Google 对技术类内容也会用这个类型做归类。
+    "@type": "TechArticle",
     headline: title,
     description,
     datePublished: date,
     dateModified: date,
-    image: `${baseUrl}/images/og-banner.jpg`,
+    image: image ? `${baseUrl}${image}` : `${baseUrl}/images/og-banner.jpg`,
     author: {
       "@type": "Organization",
       name: author || cfg.fullName,
     },
     publisher: {
       "@type": "Organization",
+      // 与 layout 里输出的 Organization 打通（@id 引用），
+      // 让搜索引擎把文章归属到同一个实体，而不是散落的无名 publisher。
+      "@id": `${baseUrl}/#organization`,
       name: cfg.fullName,
       logo: {
         "@type": "ImageObject",
