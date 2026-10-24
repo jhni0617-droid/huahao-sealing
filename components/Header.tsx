@@ -79,8 +79,8 @@ export default function Header() {
         heroTransparent
           ? "border-b border-transparent bg-transparent"
           : scrolled
-            ? "border-b border-border bg-white/95 shadow-sm backdrop-blur"
-            : "border-b border-border/60 bg-white/95 backdrop-blur"
+            ? "border-b border-border/70 bg-white/80 shadow-sm backdrop-blur-md"
+            : "border-b border-border/60 bg-white/80 backdrop-blur-md"
       }`}
     >
       <div className="flex h-16 w-full items-center justify-between px-6 md:h-[72px] md:px-10 xl:px-[4.5vw]">
