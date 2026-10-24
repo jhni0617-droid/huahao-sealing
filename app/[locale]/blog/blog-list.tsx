@@ -7,6 +7,7 @@ const pinnedCovers: Record<string, string> = {
   "huahao-relocated-to-luan-2018": "/images/factory/company-team-huoqiu.webp",
   "cnc-machining-upgrade-2020": "/images/factory/cnc-turning-graphite.webp",
   "self-built-factory-2021": "/images/factory/factory-aerial-2021.webp",
+  "impregnated-graphite-performance-upgrade-2023": "/images/factory/impregnation-autoclave-2023.webp",
 }
 
 /* 标签文案：与筛选逻辑在同一处，改标签只需改这里 */

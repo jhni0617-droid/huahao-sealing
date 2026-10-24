@@ -335,6 +335,11 @@ const IMAGE_OVERRIDES: Record<string, BlogImageAsset> = {
     zh: "碳石墨三瓣环：分瓣切口结构，装拆无需拆轴，常用于压缩机轴端碳环密封",
     en: "Carbon graphite split rings — segmented cuts allow fitting without dismantling the shaft, commonly used as compressor shaft-end carbon rings",
   },
+  "impregnated-graphite-performance-upgrade-2023": {
+    src: F("impregnation-autoclave-2023.webp"),
+    zh: "浸渍车间：两台真空-加压浸渍罐（编号1、2），前方为待浸渍与已浸渍的碳石墨密封环与轴套",
+    en: "Impregnation workshop — two vacuum-pressure impregnation vessels (No. 1 and 2), with carbon graphite seal rings and bushings awaiting or finishing impregnation in the foreground",
+  },
 }
 
 /**

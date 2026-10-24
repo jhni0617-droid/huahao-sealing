@@ -14,12 +14,13 @@ const pinnedCovers: Record<string, string> = {
   "huahao-relocated-to-luan-2018": "/images/factory/company-team-huoqiu.webp",
   "cnc-machining-upgrade-2020": "/images/factory/cnc-turning-graphite.webp",
   "self-built-factory-2021": "/images/factory/factory-aerial-2021.webp",
+  "impregnated-graphite-performance-upgrade-2023": "/images/factory/impregnation-autoclave-2023.webp",
 }
 
 export default async function NewsSection() {
   const locale = await getLocale()
   const t = await getTranslations("blog")
-  // 只取置顶的 3 条公司新闻，数据来自轻量模块 lib/blog-pinned.ts（36KB），
+  // 取置顶的公司新闻（4 条），数据来自轻量模块 lib/blog-pinned.ts，
   // 而不是 lib/blog-data.ts（会聚合全部 10 个分片、约 1.6MB）
   const posts = pinnedBlogPosts
 
@@ -28,7 +29,7 @@ export default async function NewsSection() {
       <SectionRail locale={locale} index="02" label={getLocalized(railLabel, locale)} en="Company News" href="/blog" />
 
       <div className="min-w-0">
-        <div className="grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+        <div className={`grid gap-px border border-border bg-border sm:grid-cols-2 ${posts.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
           {posts.map((post, i) => {
             const cover = pinnedCovers[post.slug] ?? "/images/og-banner.jpg"
             return (
@@ -43,7 +44,7 @@ export default async function NewsSection() {
                       alt={getLocalized(post.title, locale)}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      sizes={posts.length >= 4 ? "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"}
                     />
                   </div>
                   <div className="flex flex-1 flex-col p-6">
