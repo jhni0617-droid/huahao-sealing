@@ -193,7 +193,7 @@ export default function ContactForm({ defaultProduct: defaultProductProp }: Prop
         <p className="min-w-0 flex-1 basis-[min(100%,14rem)] text-sm text-muted">
           {t("formIntro")}
         </p>
-        <span className="shrink-0 whitespace-nowrap pt-0.5 text-xs text-muted-light">{t("requiredHint")}</span>
+        <span className="ml-auto shrink-0 whitespace-nowrap pt-0.5 text-xs text-muted-light">{t("requiredHint")}</span>
       </div>
 
       {/* Step indicator */}

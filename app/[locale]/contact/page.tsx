@@ -24,7 +24,7 @@ const heroImageAlt = {
 
 const contactCopy = {
   zh: {
-    headline: "提交图纸，工程师当天回复",
+    headline: "提交图纸  获取报价",
     eyebrow: "工程询盘",
     stats: ["响应", "图纸支持", "定制加工"],
     trust: [["24 小时", "快速回复"], ["7 种语言", "专业沟通"], ["源头工厂", "定制加工"]],
@@ -40,7 +40,7 @@ const contactCopy = {
     promise: "建议提供：介质、温度、压力、转速、内外径/高度、年用量。",
   },
   en: {
-    headline: "Submit drawings — engineers reply same day",
+    headline: "Submit drawings — get a quote",
     eyebrow: "Engineering inquiry",
     stats: ["Response", "Drawing support", "Custom machining"],
     trust: [["24 hours", "Fast response"], ["7 languages", "Technical dialogue"], ["Source factory", "Custom machining"]],
@@ -56,7 +56,7 @@ const contactCopy = {
     promise: "Useful details: media, temperature, pressure, speed, I.D./O.D./height, annual quantity.",
   },
   vi: {
-    headline: "Gửi bản vẽ — kỹ sư phản hồi trong ngày",
+    headline: "Gửi bản vẽ — nhận báo giá",
     eyebrow: "Yêu cầu kỹ thuật",
     stats: ["Phản hồi", "Hỗ trợ bản vẽ", "Gia công tùy chỉnh"],
     trust: [["24 giờ", "Phản hồi nhanh"], ["7 ngôn ngữ", "Trao đổi kỹ thuật"], ["Nhà máy gốc", "Gia công tùy chỉnh"]],
@@ -72,7 +72,7 @@ const contactCopy = {
     promise: "Thông tin hữu ích: môi trường, nhiệt độ, áp suất, tốc độ, I.D./O.D./chiều cao, số lượng năm.",
   },
   th: {
-    headline: "ส่งแบบ — วิศวกรตอบภายในวัน",
+    headline: "ส่งแบบ — รับใบเสนอราคา",
     eyebrow: "สอบถามทางวิศวกรรม",
     stats: ["ตอบกลับ", "รองรับ PDF/CAD", "ผลิตตามแบบ"],
     trust: [["24 ชั่วโมง", "ตอบกลับเร็ว"], ["7 ภาษา", "สื่อสารเชิงเทคนิค"], ["โรงงานต้นทาง", "ผลิตตามแบบ"]],
@@ -88,7 +88,7 @@ const contactCopy = {
     promise: "ข้อมูลที่ควรระบุ: ตัวกลาง อุณหภูมิ แรงดัน ความเร็ว I.D./O.D./ความสูง และปริมาณต่อปี",
   },
   ru: {
-    headline: "Отправьте чертёж — ответ в тот же день",
+    headline: "Отправьте чертёж — получите расчёт",
     eyebrow: "Инженерный запрос",
     stats: ["Ответ", "Поддержка PDF/CAD", "Изготовление на заказ"],
     trust: [["24 часа", "Быстрый ответ"], ["7 языков", "Технический диалог"], ["Свой завод", "Изготовление на заказ"]],
@@ -104,7 +104,7 @@ const contactCopy = {
     promise: "Полезные данные: среда, температура, давление, скорость, I.D./O.D./высота, годовой объем.",
   },
   ja: {
-    headline: "図面送付 — 当日回答",
+    headline: "図面を送って見積を取得",
     eyebrow: "技術問い合わせ",
     stats: ["対応", "PDF/CAD対応", "カスタム加工"],
     trust: [["24時間", "迅速回答"], ["7言語", "技術対話"], ["自社工場", "カスタム加工"]],
@@ -120,7 +120,7 @@ const contactCopy = {
     promise: "推奨情報: 媒体、温度、圧力、速度、内外径/高さ、年間数量。",
   },
   ko: {
-    headline: "도면 제출 — 당일 회신",
+    headline: "도면 제출하고 견적 받기",
     eyebrow: "엔지니어링 문의",
     stats: ["응답", "PDF/CAD 지원", "맞춤 가공"],
     trust: [["24시간", "빠른 회신"], ["7개 언어", "기술 소통"], ["자체 공장", "맞춤 가공"]],
@@ -166,44 +166,60 @@ export default async function ContactPage(props: { params: Promise<{ locale: str
     <>
       <Breadcrumb items={[{ name: t("pageTitle"), url: "/contact" }]} locale={locale} />
 
-      {/* Hero：左侧标题 + 三重信任点，右侧工程师与海外客户现场交流实拍。
-          图为真实客户到厂技术沟通，比图库「工程师看图纸」更能证明工程能力。 */}
-      <section className="border-b border-border bg-white">
-        <div className="container-wide grid items-center gap-8 pt-10 pb-12 md:pt-14 md:pb-16 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14">
-          <div>
+      {/* Hero：矮横幅。文字在左侧容器内，实拍图从 lg 起绝对定位在右侧、满高且右出血，
+          左缘加白色渐变与文字区柔和衔接；lg 以下图回落到文字下方全宽。 */}
+      <section className="relative overflow-hidden border-b border-border bg-white">
+        <div className="container-wide relative z-10 py-10 md:py-12 lg:flex lg:min-h-[320px] lg:items-center lg:py-14">
+          <div className="lg:max-w-[34rem] xl:max-w-[36rem]">
             <div className="mb-4 flex items-center gap-3">
               <span className="h-[3px] w-10 bg-accent" aria-hidden />
               <span className="en-caption text-sm text-muted">{copy.eyebrow}</span>
             </div>
-            <h1 className="font-serif-sc text-3xl font-bold leading-tight text-primary md:text-4xl lg:text-[2.75rem]">
-              {copy.headline}
+            <h1 className="flex flex-wrap items-baseline gap-x-3 gap-y-1 font-serif-sc text-3xl font-bold leading-tight text-primary md:text-4xl lg:text-[2.75rem]">
+              {copy.headline.split("  ").map((part) => (
+                <span key={part}>{part}</span>
+              ))}
             </h1>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-muted">{t("pageSubtitle")}</p>
+            <p className="mt-4 text-base leading-relaxed text-muted">{t("pageSubtitle")}</p>
 
-            <div className="mt-8 grid grid-cols-3 gap-4 border-t border-border pt-7">
+            <div className="mt-7 grid grid-cols-3 gap-3 border-t border-border pt-6 md:gap-4">
               {copy.trust.map(([main, sub], i) => (
-                <div key={main} className="flex items-start gap-2.5">
+                <div key={main} className="flex items-start gap-2 md:gap-2.5">
                   <Icon name={heroTrustIcons[i]} className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                   <span className="min-w-0">
-                    <span className="block text-sm font-bold leading-snug text-primary">{main}</span>
+                    <span className="block text-[13px] font-bold leading-snug text-primary md:text-sm">{main}</span>
                     <span className="mt-0.5 block text-xs leading-snug text-muted">{sub}</span>
                   </span>
                 </div>
               ))}
             </div>
           </div>
-
-          <figure className="relative aspect-[4/3] w-full overflow-hidden bg-background lg:aspect-[5/4]">
-            <Image
-              src="/images/实拍/IMG_20260518_215113.webp"
-              alt={getLocalized(heroImageAlt, locale)}
-              fill
-              priority
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 46vw"
-            />
-          </figure>
         </div>
+
+        {/* 桌面：右侧满高出血实拍 */}
+        <div className="absolute inset-y-0 right-0 hidden w-[48%] lg:block">
+          <Image
+            src="/images/实拍/IMG_20260518_215113.webp"
+            alt={getLocalized(heroImageAlt, locale)}
+            fill
+            priority
+            className="object-cover"
+            sizes="48vw"
+          />
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent" aria-hidden />
+        </div>
+
+        {/* 移动/平板：图在文字下方，通栏 */}
+        <figure className="relative aspect-[16/10] w-full overflow-hidden bg-background sm:aspect-[16/9] lg:hidden">
+          <Image
+            src="/images/实拍/IMG_20260518_215113.webp"
+            alt={getLocalized(heroImageAlt, locale)}
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+        </figure>
       </section>
 
       {/* 主分栏：左表单（白），右深色面板（询盘路径 + 联系方式） */}
