@@ -158,6 +158,36 @@ main {
   }
 }
 
+/* 桌面导航项顶部红线指示条：hover / 当前页时从左向右展开（transform-origin: left）。
+   整页最多 8 条，用 scaleX 单轴动画，不用 width 过渡（避免触发重排）。
+   需要导航项自身撑满 header 高度，红线才能贴到 header 顶边。 */
+.nav-underline {
+  position: relative;
+}
+.nav-underline::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.3s ease;
+  pointer-events: none;
+}
+.nav-underline:hover::after,
+.nav-underline:focus-visible::after,
+.nav-underline[data-active="true"]::after {
+  transform: scaleX(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-underline::after {
+    transition: none;
+  }
+}
+
 @utility section-divider {
   height: 1px;
   background: linear-gradient(90deg, var(--color-border), transparent);

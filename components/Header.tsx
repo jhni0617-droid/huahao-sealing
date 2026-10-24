@@ -34,30 +34,30 @@ const heroNavLabels = {
 export default function Header() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  // 初始假设为首页（服务端默认透明，避免 SSR 白底闪烁），客户端用 location 修正
-  const [isHome, setIsHome] = useState(true)
   const pathname = usePathname()
   const t = useTranslations()
   const locale = useLocale()
   const brand = getLocalized(brandCopy, locale)
 
-  // 客户端修正首页判断 + 滚动监听
+  // 首页判断直接用 next-intl 的 pathname（已去掉语言前缀），SSR 与客户端结果一致，
+  // 不需要 effect 兜底 —— 旧写法用 useState(true) + effect 修正，会让内页首屏
+  // 短暂按「首页透明态」渲染，并且触发 react-hooks/set-state-in-effect。
+  const isHome = pathname === "/"
+
+  // 滚动监听
   useEffect(() => {
-    const re = /^\/[a-z]{2}(\/)?$/
-    const isHomePath = re.test(window.location.pathname)
-    setIsHome(isHomePath)
     // 首页 hero 占满一屏，滚动期间 header 一直压在 hero 图上，
     // 因此阈值取「一屏高度」——在 hero 内保持完全透明 + 白字，
     // 滚出 hero（进入白色内容区）才切换为实底深字，避免白字压白底看不清。
     // 其余页面没有 hero，轻微滚动即切换。
     const onScroll = () => {
-      const threshold = isHomePath ? Math.max(window.innerHeight - 140, 160) : 8
+      const threshold = isHome ? Math.max(window.innerHeight - 140, 160) : 8
       setScrolled(window.scrollY > threshold)
     }
     onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
-  }, [])
+  }, [isHome])
 
   useEffect(() => {
     if (open) {
@@ -94,10 +94,10 @@ export default function Header() {
       <div className="flex h-16 w-full items-center justify-between px-6 md:h-[72px] md:px-10 xl:px-[4.5vw]">
         <Link href="/" className="flex shrink-0 items-center gap-3 rounded-[4px]">
           <Image
-            src="/images/logo.webp"
+            src="/images/logo-mark.webp"
             alt={t("company.name")}
-            width={160}
-            height={52}
+            width={320}
+            height={199}
             className="h-9 w-auto object-contain md:h-10"
             priority
           />
@@ -112,15 +112,17 @@ export default function Header() {
 
         {/* 桌面端：直达导航项，右对齐收在 logo 对称边距处。
             加「首页」后共 8 项。俄语标签明显更长（Применение=101px、Загрузки=71px…），
-           实测 1024~1440px 原本就会把询价按钮挤出容器（这是加首页之前就存在的问题，
-           加首页又多了约 100px），故整体收紧：lg 间距 gap-3、xl 间距 gap-4（原 gap-5 / gap-9），
-           导航字号 14px / xl 15px（原 15px / 16px）。改前俄语在 1280 溢出 26px。 */}
-        <nav className="ml-auto hidden items-center gap-2.5 lg:flex xl:gap-3.5" aria-label="Main navigation">
+            实测 1024~1440px 原本就会把询价按钮挤出容器（这是加首页之前就存在的问题，
+            加首页又多了约 100px），故整体收紧：lg 间距 gap-2、xl 间距 gap-3，
+            导航字号 15px / xl 16px。
+            导航项加 .nav-underline：顶部 2px 红线，hover/当前页从左展开，需撑满 header 高度。 */}
+        <nav className="ml-auto hidden self-stretch items-stretch gap-2 lg:flex xl:gap-3" aria-label="Main navigation">
           {heroNav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className={`text-[15px] font-medium transition-colors xl:text-[16px] ${
+              data-active={isActive(item.href) || undefined}
+              className={`nav-underline flex items-center px-1 text-[15px] font-medium transition-colors xl:text-[16px] ${
                 heroTransparent
                   ? isActive(item.href)
                     ? "text-white"
