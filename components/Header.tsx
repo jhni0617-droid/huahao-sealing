@@ -91,7 +91,7 @@ export default function Header() {
             : "border-b border-border/60 bg-white/70 backdrop-blur-md"
       }`}
     >
-      <div className="flex h-16 w-full items-center justify-between px-6 md:h-[72px] md:px-10 xl:px-[4.5vw]">
+      <div className="flex h-16 w-full items-center justify-between px-5 min-[1280px]:h-20 min-[1280px]:px-10">
         <Link href="/" className="flex shrink-0 items-center gap-3 rounded-[4px]">
           <Image
             src="/images/logo-mark.webp"
@@ -104,9 +104,9 @@ export default function Header() {
           {/* 左上角公司名（hero 透明态显示）。
               xl 以下不显示整块：1024~1279px 加上 8 项导航后没有它的位置（俄语会溢出）。
               xl 起显示公司名；副标题更长，留到 2xl 才出现，避免 1280~1535px 被撑爆。 */}
-          <div className={`hidden flex-col leading-tight transition-colors xl:flex ${heroTransparent ? "text-white" : "text-primary-dark"}`}>
-            <span className="font-serif-sc text-[16px] font-bold tracking-wide">{brand.name}</span>
-            <span className="hidden text-[12px] opacity-70 2xl:inline">{brand.desc}</span>
+          <div className={`hidden flex-col leading-tight transition-colors min-[1280px]:flex ${heroTransparent ? "text-white" : "text-primary-dark"}`}>
+            <span className="font-serif-sc text-[13px] font-bold tracking-wide min-[1280px]:text-[15px]">{brand.name}</span>
+            <span className="hidden text-[11px] opacity-70 2xl:inline">{brand.desc}</span>
           </div>
         </Link>
 
@@ -116,13 +116,13 @@ export default function Header() {
             加首页又多了约 100px），故整体收紧：lg 间距 gap-2、xl 间距 gap-3，
             导航字号 15px / xl 16px。
             导航项加 .nav-underline：顶部 2px 红线，hover/当前页从左展开，需撑满 header 高度。 */}
-        <nav className="ml-auto hidden self-stretch items-stretch gap-2 lg:flex xl:gap-3" aria-label="Main navigation">
+        <nav className="ml-auto hidden self-stretch items-stretch min-[1280px]:flex" aria-label="Main navigation">
           {heroNav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               data-active={isActive(item.href) || undefined}
-              className={`nav-underline flex items-center px-1 text-[15px] font-medium transition-colors xl:text-[16px] ${
+              className={`nav-underline flex items-center px-3 text-[16px] transition-colors duration-500 min-[1440px]:px-5 ${
                 heroTransparent
                   ? isActive(item.href)
                     ? "text-white"
@@ -138,11 +138,11 @@ export default function Header() {
         </nav>
 
         {/* 右侧语言切换与询价按钮（桌面端） */}
-        <div className="ml-2 hidden items-center gap-2.5 lg:flex">
+        <div className="ml-3 hidden items-center gap-3 min-[1280px]:flex">
           <LanguageSwitcher transparent={heroTransparent} />
           <Link
             href="/contact"
-            className={`flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+            className={`flex items-center gap-1.5 rounded-full px-5 py-2 text-sm font-medium transition-colors ${
               heroTransparent
                 ? "bg-white/15 text-white backdrop-blur hover:bg-white/25 ring-1 ring-white/30"
                 : "btn-primary"
@@ -154,7 +154,7 @@ export default function Header() {
         </div>
 
         {/* 移动端按钮 */}
-        <div className="flex items-center gap-2 lg:hidden">
+        <div className="flex items-center gap-2 min-[1280px]:hidden">
           <LanguageSwitcher transparent={heroTransparent} />
           <button
             className={`rounded-lg p-2 transition-colors ${heroTransparent ? "text-white hover:bg-white/10" : "text-primary-dark hover:bg-gray-100"}`}
@@ -171,7 +171,7 @@ export default function Header() {
 
       {/* 移动端菜单 */}
       {open && (
-        <div className="lg:hidden border-t border-border bg-white">
+        <div className="border-t border-border bg-white min-[1280px]:hidden">
           <div className="px-6 py-4">
             <div className="flex flex-col">
               {heroNav.map((item) => (
