@@ -11,31 +11,19 @@ import { getLocalized } from "@/lib/locale-data"
 /*
  * 导航样式一比一复刻「紧固件」站 Header：
  *  - header 高 80px（≥1180px），左右内边距 40px；移动端 64px / 20px
- *  - 导航项撑满 header 高度，字号 16px、左右内边距 20px
- *  - 红色指示条在**顶部**（.header__nav>ul>li>a:before：2px、left:50% width:0 → hover/.on 时 left:0 width:100%）
- *  - 底栏：白底、border-b；滚动超过 80px 加 shadow-sm
+ *  - 导航项字号 16~17px、左右内边距 12~20px，撑满 header 高度
+ *  - 红色指示条在**顶部**（2px，hover / 当前页从左展开）
+ *  - 底栏：白底半透明 + 背景模糊（"透明状"），滚动超过 80px 提高不透明度并加 shadow-sm
  *
- * 与紧固件的两处刻意不同：
+ * 与紧固件的三处刻意不同：
  *  1. **不加二级下拉** —— 本站导航是扁平 8 项，不做 mega menu。
- *  2. **logo 不透明** —— 不做 hero 顶部「透明 header + 浅色 logo」切换，
- *     header 常驻实底白，logo 固定用彩色版 logo-mark.webp。
+ *  2. **logo 恒定实体显示** —— 不做「透明 header 换浅色 logo」那套；
+ *     logo-huahao.webp 已去掉灰底与顶部残弧，只剩黑字 + 红线，任何状态都是全不透明。
+ *  3. **导航允许折两行** —— 俄语/越南语标签更长，一行放不下时自动换行，header 随之长高。
  *
  * ⚠️ 断点一律写成字面量 min-[1180px]:，不要抽成常量拼接 —— Tailwind 按源码字面量扫描生成 CSS，
  * `${X}:h-20` 这种写法不会产出任何规则（实测会让 header 永远停在 64px、导航永远是汉堡）。
- * ⚠️ 1180~1599px 导航字号/内边距逐级收紧（15px→16px、12px→16px→20px）：俄语标签
- * （Применение=101px、Загрузки=71px…）在 1440px 按紧固件的 16px/20px 排版会把 header 撑出
- * 24px 横向溢出，实测确认过。1600px 起才完全对齐紧固件。
  */
-
-const brandCopy = {
-  zh: { name: "华豪密封", desc: "石墨密封件 · 石墨轴套 · OEM加工" },
-  en: { name: "Huahao Sealing", desc: "Carbon graphite seals · bushings · OEM machining" },
-  vi: { name: "Huahao Sealing", desc: "Phớt graphite · bạc lót · gia công OEM" },
-  th: { name: "Huahao Sealing", desc: "ซีลกราไฟต์ · บูช · งาน OEM" },
-  ru: { name: "Huahao Sealing", desc: "Графитовые уплотнения · втулки · OEM" },
-  ja: { name: "Huahao Sealing", desc: "グラファイトシール · ブッシュ · OEM加工" },
-  ko: { name: "Huahao Sealing", desc: "그라파이트 씰 · 부싱 · OEM 가공" },
-}
 
 /* 全站统一导航：直达项（扁平结构，无二级）。
    第一项是「首页」——此前只能靠点 logo 回首页，内页没有明确的返回入口。 */
@@ -56,9 +44,8 @@ export default function Header() {
   const pathname = usePathname()
   const t = useTranslations()
   const locale = useLocale()
-  const brand = getLocalized(brandCopy, locale)
 
-  // 滚动超过 80px 后加阴影（复刻紧固件：80px 前无阴影，80px 后 shadow-sm）
+  // 滚动超过 80px 后提高不透明度并加阴影
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80)
     onScroll()
@@ -94,35 +81,33 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b bg-white transition-colors duration-300 ${
-        scrolled ? "border-border shadow-sm" : "border-border/60"
+      className={`sticky top-0 z-50 border-b backdrop-blur-md transition-colors duration-300 ${
+        scrolled ? "border-border bg-white/85 shadow-sm" : "border-border/60 bg-white/70"
       }`}
     >
-      <div className="flex h-16 w-full items-center justify-between px-5 min-[1180px]:h-20 min-[1180px]:px-10">
-        <Link href="/" className="flex shrink-0 items-center gap-2.5 rounded-[4px] min-[1180px]:gap-3">
+      <div className="flex min-h-16 w-full items-center justify-between px-5 min-[1180px]:min-h-20 min-[1180px]:px-10">
+        <Link href="/" className="flex shrink-0 items-center">
           <Image
-            src="/images/logo-mark.webp"
+            src="/images/logo-huahao.webp"
             alt={t("company.name")}
-            width={320}
-            height={199}
-            className="h-9 w-auto object-contain md:h-10"
+            width={969}
+            height={343}
+            className="h-10 w-auto object-contain min-[1180px]:h-12"
             priority
           />
-          {/* 左上角公司名。xl 以下不显示整块：1180~1279px 加上 8 项导航后没有它的位置（俄语会溢出）。 */}
-          <div className="hidden flex-col leading-tight text-primary-dark min-[1440px]:flex">
-            <span className="font-serif-sc text-[13px] font-bold tracking-wide min-[1440px]:text-[15px]">{brand.name}</span>
-            <span className="hidden text-[11px] opacity-70 2xl:inline">{brand.desc}</span>
-          </div>
         </Link>
 
-        {/* 桌面导航：撑满 header 高度，红色指示条走顶部 */}
-        <nav className="ml-auto hidden self-stretch items-stretch min-[1180px]:flex" aria-label="Main navigation">
+        {/* 桌面导航：撑满 header 高度，红色指示条走顶部；放不下时折成两行 */}
+        <nav
+          className="ml-auto hidden min-h-16 flex-wrap content-stretch justify-end self-stretch min-[1180px]:flex min-[1180px]:min-h-20"
+          aria-label="Main navigation"
+        >
           {heroNav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               data-active={isActive(item.href) || undefined}
-              className={`nav-underline flex items-center whitespace-nowrap px-3 text-[15px] transition-colors duration-500 min-[1440px]:px-4 min-[1600px]:px-5 min-[1600px]:text-[16px] ${
+              className={`nav-underline flex items-center whitespace-nowrap px-3 py-3 text-[16px] transition-colors duration-500 min-[1440px]:px-4 min-[1600px]:px-5 min-[1600px]:text-[17px] ${
                 isActive(item.href) ? "text-accent" : "text-muted-dark hover:text-accent"
               }`}
             >
@@ -134,7 +119,7 @@ export default function Header() {
         {/* 右侧语言切换与询价按钮 */}
         <div className="ml-3 hidden items-center gap-3 min-[1180px]:flex">
           <LanguageSwitcher transparent={false} />
-          <Link href="/contact" className="btn-primary flex items-center gap-1.5 rounded-full px-5 py-2 text-sm font-medium transition-colors">
+          <Link href="/contact" className="btn-primary flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full px-5 py-2 text-sm font-medium transition-colors">
             <Icon name="mail" className="h-4 w-4" />
             {t("nav.quote")}
           </Link>
@@ -164,7 +149,7 @@ export default function Header() {
               <div key={item.href} className="border-b border-border-light py-1 last:border-b-0">
                 <Link
                   href={item.href}
-                  className={`block py-2.5 text-[15px] font-medium transition-colors ${
+                  className={`block py-2.5 text-[16px] font-medium transition-colors ${
                     isActive(item.href) ? "text-accent" : "text-muted-dark hover:text-accent"
                   }`}
                   onClick={() => setOpen(false)}
