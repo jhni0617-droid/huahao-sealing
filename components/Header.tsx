@@ -45,9 +45,9 @@ export default function Header() {
   const t = useTranslations()
   const locale = useLocale()
 
-  // 滚动超过 80px 后提高不透明度并加阴影
+  // 滚动超过 60px 从全透明切换为毛玻璃
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 80)
+    const onScroll = () => setScrolled(window.scrollY > 60)
     onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
@@ -74,6 +74,10 @@ export default function Header() {
     return pathname.startsWith(href)
   }
 
+  // 首页 hero 顶部：header 全透明 + 白字白 logo；往下翻 60px 后转毛玻璃
+  const isHome = pathname === "/"
+  const heroTransparent = isHome && !scrolled
+
   const heroNav = Object.entries(heroNavLabels).map(([href, labels]) => ({
     href,
     label: getLocalized(labels, locale),
@@ -81,18 +85,22 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b backdrop-blur-md transition-colors duration-300 ${
-        scrolled ? "border-border bg-white/85 shadow-sm" : "border-border/60 bg-white/70"
+      className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
+        heroTransparent
+          ? "border-transparent bg-transparent"
+          : scrolled
+            ? "border-border bg-white/85 shadow-sm backdrop-blur-md"
+            : "border-border/60 bg-white/70 backdrop-blur-md"
       }`}
     >
       <div className="flex min-h-16 w-full items-center justify-between px-5 min-[1180px]:min-h-20 min-[1180px]:px-10">
         <Link href="/" className="flex shrink-0 items-center">
           <Image
-            src="/images/logo-huahao.webp"
+            src={heroTransparent ? "/images/logo-huahao-white.webp" : "/images/logo-huahao.webp"}
             alt={t("company.name")}
             width={969}
             height={343}
-            className="h-10 w-auto object-contain min-[1180px]:h-12"
+            className="h-10 w-auto object-contain min-[1180px]:h-14"
             priority
           />
         </Link>
@@ -107,8 +115,12 @@ export default function Header() {
               key={item.href}
               href={item.href}
               data-active={isActive(item.href) || undefined}
-              className={`nav-underline flex items-center whitespace-nowrap px-3 py-3 text-[16px] transition-colors duration-500 min-[1440px]:px-4 min-[1600px]:px-5 min-[1600px]:text-[17px] ${
-                isActive(item.href) ? "text-accent" : "text-muted-dark hover:text-accent"
+              className={`nav-underline flex items-center whitespace-nowrap px-3 py-3 text-[17px] transition-colors duration-500 min-[1440px]:px-4 min-[1600px]:px-5 min-[1600px]:text-[18px] ${
+                heroTransparent
+                  ? "text-white/90 hover:text-white"
+                  : isActive(item.href)
+                    ? "text-accent"
+                    : "text-muted-dark hover:text-accent"
               }`}
             >
               {item.label}
@@ -149,7 +161,7 @@ export default function Header() {
               <div key={item.href} className="border-b border-border-light py-1 last:border-b-0">
                 <Link
                   href={item.href}
-                  className={`block py-2.5 text-[16px] font-medium transition-colors ${
+                  className={`block py-2.5 text-[17px] font-medium transition-colors ${
                     isActive(item.href) ? "text-accent" : "text-muted-dark hover:text-accent"
                   }`}
                   onClick={() => setOpen(false)}
