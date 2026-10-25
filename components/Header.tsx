@@ -8,6 +8,25 @@ import LanguageSwitcher from "@/components/LanguageSwitcher"
 import Icon from "@/components/ui/Icon"
 import { getLocalized } from "@/lib/locale-data"
 
+/*
+ * 导航样式一比一复刻「紧固件」站 Header：
+ *  - header 高 80px（≥1180px），左右内边距 40px；移动端 64px / 20px
+ *  - 导航项撑满 header 高度，字号 16px、左右内边距 20px
+ *  - 红色指示条在**顶部**（.header__nav>ul>li>a:before：2px、left:50% width:0 → hover/.on 时 left:0 width:100%）
+ *  - 底栏：白底、border-b；滚动超过 80px 加 shadow-sm
+ *
+ * 与紧固件的两处刻意不同：
+ *  1. **不加二级下拉** —— 本站导航是扁平 8 项，不做 mega menu。
+ *  2. **logo 不透明** —— 不做 hero 顶部「透明 header + 浅色 logo」切换，
+ *     header 常驻实底白，logo 固定用彩色版 logo-mark.webp。
+ *
+ * ⚠️ 断点一律写成字面量 min-[1180px]:，不要抽成常量拼接 —— Tailwind 按源码字面量扫描生成 CSS，
+ * `${X}:h-20` 这种写法不会产出任何规则（实测会让 header 永远停在 64px、导航永远是汉堡）。
+ * ⚠️ 1180~1599px 导航字号/内边距逐级收紧（15px→16px、12px→16px→20px）：俄语标签
+ * （Применение=101px、Загрузки=71px…）在 1440px 按紧固件的 16px/20px 排版会把 header 撑出
+ * 24px 横向溢出，实测确认过。1600px 起才完全对齐紧固件。
+ */
+
 const brandCopy = {
   zh: { name: "华豪密封", desc: "石墨密封件 · 石墨轴套 · OEM加工" },
   en: { name: "Huahao Sealing", desc: "Carbon graphite seals · bushings · OEM machining" },
@@ -18,8 +37,8 @@ const brandCopy = {
   ko: { name: "Huahao Sealing", desc: "그라파이트 씰 · 부싱 · OEM 가공" },
 }
 
-/* 全站统一导航：直达项。
-   第一项是「首页」——此前只能靠点 logo 回首页，内页没有任何明确的返回入口。 */
+/* 全站统一导航：直达项（扁平结构，无二级）。
+   第一项是「首页」——此前只能靠点 logo 回首页，内页没有明确的返回入口。 */
 const heroNavLabels = {
   "/": { zh: "首页", en: "Home", vi: "Trang chủ", th: "หน้าแรก", ru: "Главная", ja: "ホーム", ko: "홈" },
   "/products": { zh: "产品", en: "Products", vi: "Sản phẩm", th: "สินค้า", ru: "Продукция", ja: "製品", ko: "제품" },
@@ -39,25 +58,13 @@ export default function Header() {
   const locale = useLocale()
   const brand = getLocalized(brandCopy, locale)
 
-  // 首页判断直接用 next-intl 的 pathname（已去掉语言前缀），SSR 与客户端结果一致，
-  // 不需要 effect 兜底 —— 旧写法用 useState(true) + effect 修正，会让内页首屏
-  // 短暂按「首页透明态」渲染，并且触发 react-hooks/set-state-in-effect。
-  const isHome = pathname === "/"
-
-  // 滚动监听
+  // 滚动超过 80px 后加阴影（复刻紧固件：80px 前无阴影，80px 后 shadow-sm）
   useEffect(() => {
-    // 首页 hero 占满一屏，滚动期间 header 一直压在 hero 图上，
-    // 因此阈值取「一屏高度」——在 hero 内保持完全透明 + 白字，
-    // 滚出 hero（进入白色内容区）才切换为实底深字，避免白字压白底看不清。
-    // 其余页面没有 hero，轻微滚动即切换。
-    const onScroll = () => {
-      const threshold = isHome ? Math.max(window.innerHeight - 140, 160) : 8
-      setScrolled(window.scrollY > threshold)
-    }
+    const onScroll = () => setScrolled(window.scrollY > 80)
     onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
-  }, [isHome])
+  }, [])
 
   useEffect(() => {
     if (open) {
@@ -65,16 +72,20 @@ export default function Header() {
     } else {
       document.body.style.overflow = ""
     }
-    return () => { document.body.style.overflow = "" }
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false)
+    }
+    window.addEventListener("keydown", onKey)
+    return () => {
+      document.body.style.overflow = ""
+      window.removeEventListener("keydown", onKey)
+    }
   }, [open])
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/"
     return pathname.startsWith(href)
   }
-
-  // hero 顶部透明态：首页 + 未滚动
-  const heroTransparent = isHome && !scrolled
 
   const heroNav = Object.entries(heroNavLabels).map(([href, labels]) => ({
     href,
@@ -83,16 +94,12 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        heroTransparent
-          ? "border-b border-transparent bg-transparent"
-          : scrolled
-            ? "border-b border-border/60 bg-white/70 shadow-sm backdrop-blur-md"
-            : "border-b border-border/60 bg-white/70 backdrop-blur-md"
+      className={`sticky top-0 z-50 border-b bg-white transition-colors duration-300 ${
+        scrolled ? "border-border shadow-sm" : "border-border/60"
       }`}
     >
-      <div className="flex h-16 w-full items-center justify-between px-5 min-[1280px]:h-20 min-[1280px]:px-10">
-        <Link href="/" className="flex shrink-0 items-center gap-3 rounded-[4px]">
+      <div className="flex h-16 w-full items-center justify-between px-5 min-[1180px]:h-20 min-[1180px]:px-10">
+        <Link href="/" className="flex shrink-0 items-center gap-2.5 rounded-[4px] min-[1180px]:gap-3">
           <Image
             src="/images/logo-mark.webp"
             alt={t("company.name")}
@@ -101,35 +108,22 @@ export default function Header() {
             className="h-9 w-auto object-contain md:h-10"
             priority
           />
-          {/* 左上角公司名（hero 透明态显示）。
-              xl 以下不显示整块：1024~1279px 加上 8 项导航后没有它的位置（俄语会溢出）。
-              xl 起显示公司名；副标题更长，留到 2xl 才出现，避免 1280~1535px 被撑爆。 */}
-          <div className={`hidden flex-col leading-tight transition-colors min-[1280px]:flex ${heroTransparent ? "text-white" : "text-primary-dark"}`}>
-            <span className="font-serif-sc text-[13px] font-bold tracking-wide min-[1280px]:text-[15px]">{brand.name}</span>
+          {/* 左上角公司名。xl 以下不显示整块：1180~1279px 加上 8 项导航后没有它的位置（俄语会溢出）。 */}
+          <div className="hidden flex-col leading-tight text-primary-dark min-[1440px]:flex">
+            <span className="font-serif-sc text-[13px] font-bold tracking-wide min-[1440px]:text-[15px]">{brand.name}</span>
             <span className="hidden text-[11px] opacity-70 2xl:inline">{brand.desc}</span>
           </div>
         </Link>
 
-        {/* 桌面端：直达导航项，右对齐收在 logo 对称边距处。
-            加「首页」后共 8 项。俄语标签明显更长（Применение=101px、Загрузки=71px…），
-            实测 1024~1440px 原本就会把询价按钮挤出容器（这是加首页之前就存在的问题，
-            加首页又多了约 100px），故整体收紧：lg 间距 gap-2、xl 间距 gap-3，
-            导航字号 15px / xl 16px。
-            导航项加 .nav-underline：顶部 2px 红线，hover/当前页从左展开，需撑满 header 高度。 */}
-        <nav className="ml-auto hidden self-stretch items-stretch min-[1280px]:flex" aria-label="Main navigation">
+        {/* 桌面导航：撑满 header 高度，红色指示条走顶部 */}
+        <nav className="ml-auto hidden self-stretch items-stretch min-[1180px]:flex" aria-label="Main navigation">
           {heroNav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               data-active={isActive(item.href) || undefined}
-              className={`nav-underline flex items-center px-3 text-[16px] transition-colors duration-500 min-[1440px]:px-5 ${
-                heroTransparent
-                  ? isActive(item.href)
-                    ? "text-white"
-                    : "text-white/85 hover:text-white"
-                  : isActive(item.href)
-                    ? "text-accent"
-                    : "text-muted-dark hover:text-accent"
+              className={`nav-underline flex items-center whitespace-nowrap px-3 text-[15px] transition-colors duration-500 min-[1440px]:px-4 min-[1600px]:px-5 min-[1600px]:text-[16px] ${
+                isActive(item.href) ? "text-accent" : "text-muted-dark hover:text-accent"
               }`}
             >
               {item.label}
@@ -137,27 +131,20 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* 右侧语言切换与询价按钮（桌面端） */}
-        <div className="ml-3 hidden items-center gap-3 min-[1280px]:flex">
-          <LanguageSwitcher transparent={heroTransparent} />
-          <Link
-            href="/contact"
-            className={`flex items-center gap-1.5 rounded-full px-5 py-2 text-sm font-medium transition-colors ${
-              heroTransparent
-                ? "bg-white/15 text-white backdrop-blur hover:bg-white/25 ring-1 ring-white/30"
-                : "btn-primary"
-            }`}
-          >
+        {/* 右侧语言切换与询价按钮 */}
+        <div className="ml-3 hidden items-center gap-3 min-[1180px]:flex">
+          <LanguageSwitcher transparent={false} />
+          <Link href="/contact" className="btn-primary flex items-center gap-1.5 rounded-full px-5 py-2 text-sm font-medium transition-colors">
             <Icon name="mail" className="h-4 w-4" />
             {t("nav.quote")}
           </Link>
         </div>
 
         {/* 移动端按钮 */}
-        <div className="flex items-center gap-2 min-[1280px]:hidden">
-          <LanguageSwitcher transparent={heroTransparent} />
+        <div className="flex items-center gap-2 min-[1180px]:hidden">
+          <LanguageSwitcher transparent={false} />
           <button
-            className={`rounded-lg p-2 transition-colors ${heroTransparent ? "text-white hover:bg-white/10" : "text-primary-dark hover:bg-gray-100"}`}
+            className="rounded-lg p-2 text-primary-dark transition-colors hover:bg-gray-100"
             onClick={() => setOpen(!open)}
             aria-label="Menu"
             aria-expanded={open}
@@ -169,34 +156,31 @@ export default function Header() {
         </div>
       </div>
 
-      {/* 移动端菜单 */}
+      {/* 移动端抽屉：每项 border-b 分隔（复刻紧固件） */}
       {open && (
-        <div className="border-t border-border bg-white min-[1280px]:hidden">
-          <div className="px-6 py-4">
-            <div className="flex flex-col">
-              {heroNav.map((item) => (
+        <div className="border-t border-border bg-white min-[1180px]:hidden">
+          <div className="px-5 py-4">
+            {heroNav.map((item) => (
+              <div key={item.href} className="border-b border-border-light py-1 last:border-b-0">
                 <Link
-                  key={item.href}
                   href={item.href}
-                  className={`py-3 text-[15px] font-medium transition-colors ${
+                  className={`block py-2.5 text-[15px] font-medium transition-colors ${
                     isActive(item.href) ? "text-accent" : "text-muted-dark hover:text-accent"
                   }`}
                   onClick={() => setOpen(false)}
                 >
                   {item.label}
                 </Link>
-              ))}
-            </div>
-            <div className="mt-3 flex items-center gap-3 border-t border-border pt-4">
-              <Link
-                href="/contact"
-                className="btn-primary flex flex-1 items-center justify-center gap-1.5 text-sm"
-                onClick={() => setOpen(false)}
-              >
-                <Icon name="mail" className="h-4 w-4" />
-                {t("nav.quote")}
-              </Link>
-            </div>
+              </div>
+            ))}
+            <Link
+              href="/contact"
+              className="btn-primary mt-4 flex items-center justify-center gap-1.5 text-sm"
+              onClick={() => setOpen(false)}
+            >
+              <Icon name="mail" className="h-4 w-4" />
+              {t("nav.quote")}
+            </Link>
           </div>
         </div>
       )}
