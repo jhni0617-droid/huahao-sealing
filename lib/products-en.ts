@@ -345,6 +345,7 @@ export const enProducts: Product[] = [
   {
     slug: "graphite-bearing",
     name: "Graphite Bearing",
+    seoTitle: "GB Series Graphite Bearing",
     model: "GB Series",
     category: "碳石墨轴套",
     description:

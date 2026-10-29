@@ -6,6 +6,12 @@ export interface ProductSpec {
 export interface Product {
   slug: string
   name: string
+  /**
+   * SEO 专用标题（可选）：仅用于 <title> 和 H1，不影响卡片/面包屑/内链文案。
+   * 用途是解决关键词蚕食 —— 例如石墨轴承产品页与 /products/carbon-graphite-bearings
+   * 品类页共用「carbon graphite bearings」时，由品类页独占泛词，产品页用型号词打头。
+   */
+  seoTitle?: string
   model: string
   category: string
   description: string

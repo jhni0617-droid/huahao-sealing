@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: Props) {
   const product = (productsByLocale[locale] || productsByLocale.en).find((p) => p.slug === slug)
   if (!product) return {}
   return generateMeta({
-    title: `${product.name} (${product.model})`,
+    title: product.seoTitle ?? `${product.name} (${product.model})`,
     description: product.shortDesc,
     path: `/products/${slug}`,
     locale,
@@ -138,7 +138,7 @@ export default async function ProductDetailPage({ params }: Props) {
             {/* Left: Product Info */}
             <div>
               <div className="text-sm font-semibold text-accent uppercase tracking-wider mb-2">{displayCategory}</div>
-              <h1 className="text-3xl md:text-4xl font-bold text-primary mb-2">{product.name}</h1>
+              <h1 className="text-3xl md:text-4xl font-bold text-primary mb-2">{product.seoTitle ?? product.name}</h1>
               <p className="text-lg text-muted mb-4">{product.model}</p>
 
               {/* Spec badges strip */}
