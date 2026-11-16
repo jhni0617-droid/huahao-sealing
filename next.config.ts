@@ -4,6 +4,9 @@ import createNextIntlPlugin from "next-intl/plugin"
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts")
 
 const nextConfig: NextConfig = {
+  // 自托管（阿里云/任意 VPS）构建产物：.next/standalone 只含运行期必要文件，
+  // 启动用 node .next/standalone/server.js，体积和内存都远小于整份 node_modules。
+  output: "standalone",
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 31536000,
