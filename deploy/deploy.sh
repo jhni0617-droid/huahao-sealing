@@ -53,7 +53,9 @@ fi
 if pm2 describe "$APP_NAME" >/dev/null 2>&1; then
   PORT="$PORT" HOSTNAME=127.0.0.1 pm2 restart "$APP_NAME" --update-env
 else
-  PORT="$PORT" HOSTNAME=127.0.0.1 pm2 start .next/standalone/server.js --name "$APP_NAME"
+  # --update-env 不可省：PM2 daemon 会保留启动时的环境快照，
+  # 不加这个参数新进程读不到刚 source 的 .env.production
+  PORT="$PORT" HOSTNAME=127.0.0.1 pm2 start .next/standalone/server.js --name "$APP_NAME" --update-env
 fi
 
 pm2 save
