@@ -16,15 +16,16 @@ cd "$APP_DIR"
 
 # ── 1. 拉最新代码 ──
 log "拉取代码"
-git fetch --all --prune
+git fetch --depth 1 origin main
 git reset --hard origin/main
 
 # ── 2. 依赖 ──
+# npm ci 要求 lock 与 package.json 严格同步，历史上这个仓库的 lock 曾出现
+# @swc/helpers 缺失导致 ci 直接失败，所以失败时自动退回 npm install
 log "安装依赖"
-if [ -f package-lock.json ]; then
-  npm ci --include=dev
-else
-  npm install --include=dev
+if ! npm ci --include=dev >/tmp/npmci.log 2>&1; then
+  echo "npm ci 失败（锁文件不同步），改用 npm install"
+  npm install --include=dev --no-audit --no-fund
 fi
 
 # ── 3. 构建（限制堆内存，避免小内存机器 OOM） ──
