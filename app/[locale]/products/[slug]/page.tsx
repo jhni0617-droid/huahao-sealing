@@ -19,12 +19,13 @@ interface Props {
   params: Promise<{ locale: string; slug: string }>
 }
 
-// 构建期不预渲染，首次访问时静态渲染并缓存一天（ISR），控制部署产物文件数
+// 构建期不预渲染（页面数×7 语言会把部署文件数推到 Vercel 上限），
+// 首次访问时静态渲染并永久缓存；内容改动随 git 部署自动刷新
 export async function generateStaticParams() {
   return []
 }
 
-export const revalidate = 86400
+export const revalidate = false
 
 export async function generateMetadata({ params }: Props) {
   const { slug, locale } = await params

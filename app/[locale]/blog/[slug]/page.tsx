@@ -13,12 +13,12 @@ import { Link } from "@/i18n/routing"
 import { notFound } from "next/navigation"
 
 // 构建期不预渲染（600+ 篇×7 语言会把部署文件数推到 Vercel 上限），
-// 首次访问时静态渲染并缓存一天（ISR）
+// 首次访问时静态渲染并永久缓存；内容改动随 git 部署自动刷新
 export async function generateStaticParams() {
   return []
 }
 
-export const revalidate = 86400
+export const revalidate = false
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { slug, locale } = await params

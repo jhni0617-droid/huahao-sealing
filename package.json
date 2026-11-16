@@ -19,7 +19,6 @@
     "perf": "node scripts/perf-budget.mjs",
     "perf:json": "node scripts/perf-budget.mjs --json",
     "verify": "npm run typecheck && npm run lint && npm run build && npm run perf",
-    "db:seed": "tsx scripts/seed-admin.ts",
     "translate:blog": "tsx scripts/translate-blog.ts",
     "translate:blog:check": "tsx scripts/translate-blog.ts --dry-run",
     "translate:blog:verify": "tsx scripts/verify-blog-translations.ts",
