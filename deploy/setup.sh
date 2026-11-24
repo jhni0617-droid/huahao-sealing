@@ -67,6 +67,9 @@ apt-get install -y certbot python3-certbot-nginx
 log "创建站点目录"
 mkdir -p /var/www/hhseal
 mkdir -p /var/log/pm2
+# Nginx 页面缓存目录（deploy/nginx.conf 里的 proxy_cache_path 需要）
+mkdir -p /var/cache/nginx/hhseal_html
+chown -R www-data:www-data /var/cache/nginx/hhseal_html
 
 # ── 8. 防火墙 ──
 log "配置防火墙（只放行 22 / 80 / 443）"

@@ -126,6 +126,170 @@ cd /var/www/hhseal && bash deploy/deploy.sh
 
 ---
 
+## 九、2026-11-24 性能与 502 修复（现有服务器照做）
+
+> 症状：产品页图片裂开、CSS/JS 随机 502、首字节 1.8 秒、20 并发最慢 31 秒。
+> 根因：单台机器跑全部请求 + `/_next/image` 现场转码 + 只有 HTTP/1.1。
+
+### 0. 先备份，出问题可回滚
+
+```bash
+sudo grep -rl 'server_name hhseal.cn' /etc/nginx/sites-enabled/ /etc/nginx/conf.d/
+# 假设输出是 /etc/nginx/sites-enabled/sites.conf
+sudo cp /etc/nginx/sites-available/sites.conf /etc/nginx/sites-available/sites.conf.bak-$(date +%F)
+```
+
+回滚：`sudo cp /etc/nginx/sites-available/sites.conf.bak-YYYY-MM-DD /etc/nginx/sites-available/sites.conf && sudo nginx -t && sudo systemctl reload nginx`
+
+### 1. 先把当前状态存下来（把输出发我）
+
+```bash
+pm2 status
+pm2 logs hhseal --lines 100 --err
+pm2 describe hhseal | grep -E 'restarts|uptime|memory'
+free -h
+sudo tail -50 /var/log/nginx/error.log
+```
+
+### 2. 更新代码并重新构建（关闭按需图片转码）
+
+本地 push 后，服务器上：
+
+```bash
+cd /var/www/hhseal && bash deploy/deploy.sh
+```
+
+`next.config.ts` 已加 `images.unoptimized: true`：`public/` 下 279 张图本来就是 WebP（最大 364KB），
+由 Nginx 直接读盘返回，不再走 `/_next/image` 现场转码。这是消除图片 502 的关键一步。
+
+### 3. 改 Nginx（三个改动，缺一不可）
+
+```bash
+sudo mkdir -p /var/cache/nginx/hhseal_html
+sudo chown -R www-data:www-data /var/cache/nginx/hhseal_html
+sudo nano /etc/nginx/sites-available/sites.conf
+```
+
+**3a.** 在所有 `server {` 块之前的最顶层，加这一行（`proxy_cache_path` 只能放在 http 层）：
+
+```nginx
+proxy_cache_path /var/cache/nginx/hhseal_html levels=1:2 keys_zone=hhseal_html:20m
+                 max_size=256m inactive=30m use_temp_path=off;
+```
+
+**3b.** 找到 `server_name hhseal.cn ...;` 的那个 **443** server 块，在 `server {` 下一行加：
+
+```nginx
+    http2 on;
+```
+
+**3c.** 同一个 443 块里，把原有的 `location /_next/static/`、`location /images/`、`location /`
+三段**整段删掉**，换成下面整段（`/admin` 和 `/api` 不能缓存，`/` 的 307 语言跳转也不能缓存）：
+
+```nginx
+    location /_next/static/ {
+        alias /var/www/hhseal/.next/standalone/.next/static/;
+        expires 1y;
+        add_header Cache-Control "public, max-age=31536000, immutable";
+        access_log off;
+        try_files $uri =404;
+    }
+
+    location /images/ {
+        alias /var/www/hhseal/.next/standalone/images/;
+        expires 30d;
+        add_header Cache-Control "public, max-age=2592000";
+        access_log off;
+        try_files $uri =404;
+    }
+
+    location = / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_no_cache 1;
+        proxy_cache_bypass 1;
+    }
+
+    location ^~ /admin {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_no_cache 1;
+        proxy_cache_bypass 1;
+    }
+
+    location ^~ /api {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_no_cache 1;
+        proxy_cache_bypass 1;
+    }
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_connect_timeout 10s;
+        proxy_send_timeout 60s;
+        proxy_read_timeout 60s;
+
+        proxy_cache hhseal_html;
+        proxy_cache_valid 200 5m;
+        proxy_cache_key "$scheme$host$request_uri";
+        proxy_ignore_headers Set-Cookie;
+        add_header X-Page-Cache $upstream_cache_status always;
+    }
+```
+
+> 只改 hhseal.cn 的 server 块；如果 xfastener.cn 也在同一台机器，不要碰它的 server 块。
+
+保存后：`sudo nginx -t && sudo systemctl reload nginx`
+
+### 4. 给 Node 进程加内存上限（一次性）
+
+```bash
+pm2 delete hhseal
+PORT=3000 HOSTNAME=127.0.0.1 pm2 start /var/www/hhseal/.next/standalone/server.js \
+  --name hhseal --update-env --max-memory-restart 1200M
+pm2 save
+```
+
+`deploy.sh` 里也已加上这个参数，以后重新部署不会丢。重启有 1–2 秒空窗，正常。
+
+### 5. 验证
+
+```bash
+curl -sI https://hhseal.cn/en/products | grep -iE 'HTTP/|x-page-cache|cache-control'
+curl -sI https://hhseal.cn/en/products | grep -iE 'x-page-cache'   # 第二次应变成 HIT
+curl -sI https://hhseal.cn/images/products/catalog/bia.webp | grep -iE 'HTTP/|cache-control'
+curl -sI https://hhseal.cn/_next/static/chunks/0-5foo8qn-pme.css | grep -iE 'HTTP/|cache-control'
+openssl s_client -connect hhseal.cn:443 -servername hhseal.cn -alpn h2 </dev/null 2>/dev/null | grep 'ALPN protocol'
+```
+
+期望：`HTTP/2 200`；静态资源 `Cache-Control: ... immutable`；第二次页面 `X-Page-Cache: HIT`；
+ALPN 显示 `h2`。再用浏览器打开产品页确认图片不再裂。
+
+---
+
 ## 常用命令
 
 ```bash

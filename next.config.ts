@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
   // 启动用 node .next/standalone/server.js，体积和内存都远小于整份 node_modules。
   output: "standalone",
   images: {
+    // 阿里云单机：public/ 下 279 张图已全部预转 WebP（最大 364KB），
+    // 关闭 /_next/image 按需转码，避免小机器 CPU 打满导致 502。
+    unoptimized: true,
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 31536000,
     deviceSizes: [480, 640, 768, 1024, 1280],
