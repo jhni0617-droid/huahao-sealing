@@ -55,8 +55,8 @@ if pm2 describe "$APP_NAME" >/dev/null 2>&1; then
 else
   # --update-env 不可省：PM2 daemon 会保留启动时的环境快照，
   # 不加这个参数新进程读不到刚 source 的 .env.production
-  # 内存超 1.2G 自动重启，避免小机器被 Next.js 慢慢吃满后 nginx 报 502
-  PORT="$PORT" HOSTNAME=127.0.0.1 pm2 start .next/standalone/server.js --name "$APP_NAME" --update-env --max-memory-restart 1200M
+  # 机器只有 1.6G 内存，超 700M 自动重启，避免被 Next.js 吃满后 nginx 报 502
+  PORT="$PORT" HOSTNAME=127.0.0.1 pm2 start .next/standalone/server.js --name "$APP_NAME" --update-env --max-memory-restart 700M
 fi
 
 pm2 save

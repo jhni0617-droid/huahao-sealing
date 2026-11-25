@@ -177,10 +177,10 @@ proxy_cache_path /var/cache/nginx/hhseal_html levels=1:2 keys_zone=hhseal_html:2
                  max_size=256m inactive=30m use_temp_path=off;
 ```
 
-**3b.** 找到 `server_name hhseal.cn ...;` 的那个 **443** server 块，在 `server {` 下一行加：
+**3b.** 找到 `server_name hhseal.cn ...;` 的那个 **443** server 块，把 `listen 443 ssl;` 改成（nginx 1.24 不支持 `http2 on;`）：
 
 ```nginx
-    http2 on;
+    listen 443 ssl http2;
 ```
 
 **3c.** 同一个 443 块里，把原有的 `location /_next/static/`、`location /images/`、`location /`
@@ -196,7 +196,7 @@ proxy_cache_path /var/cache/nginx/hhseal_html levels=1:2 keys_zone=hhseal_html:2
     }
 
     location /images/ {
-        alias /var/www/hhseal/.next/standalone/images/;
+        alias /var/www/hhseal/.next/standalone/public/images/;
         expires 30d;
         add_header Cache-Control "public, max-age=2592000";
         access_log off;
@@ -269,7 +269,7 @@ proxy_cache_path /var/cache/nginx/hhseal_html levels=1:2 keys_zone=hhseal_html:2
 ```bash
 pm2 delete hhseal
 PORT=3000 HOSTNAME=127.0.0.1 pm2 start /var/www/hhseal/.next/standalone/server.js \
-  --name hhseal --update-env --max-memory-restart 1200M
+  --name hhseal --update-env --max-memory-restart 700M
 pm2 save
 ```
 
