@@ -254,7 +254,7 @@ proxy_cache_path /var/cache/nginx/hhseal_html levels=1:2 keys_zone=hhseal_html:2
 
         proxy_cache hhseal_html;
         proxy_cache_valid 200 5m;
-        proxy_cache_key "$scheme$host$request_uri";
+        proxy_cache_key "$scheme$host$request_uri$http_accept_encoding";
         proxy_ignore_headers Set-Cookie;
         add_header X-Page-Cache $upstream_cache_status always;
     }
