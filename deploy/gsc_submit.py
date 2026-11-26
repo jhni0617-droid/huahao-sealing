@@ -15,7 +15,12 @@
 import sys, os, time, subprocess, urllib.request
 from playwright.sync_api import sync_playwright
 
-if os.environ.get("GSC_BROWSER") == "realchrome":
+if os.environ.get("GSC_BROWSER") == "egocopy":
+    # 复制用户已登录的 ego 配置，独立 CDP，不动用户原窗口
+    EGO = r"C:\Program Files\Citro Labs\ego lite\Application\ego.exe"
+    UD = r"C:\Users\倪\AppData\Local\Temp\gsc-ego-profile"
+    CDP = "http://127.0.0.1:9337"
+elif os.environ.get("GSC_BROWSER") == "realchrome":
     # 用户真实 Chrome 配置：网络/登录态与平时一致，需先关闭所有 Chrome 窗口
     EGO = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
     UD = r"C:\Users\倪\AppData\Local\Google\Chrome\User Data"
@@ -56,8 +61,8 @@ def cdp_ready(sec=40):
 
 
 def start_ego():
-    if EGO.endswith("chrome.exe"):
-        # 不动用户正在用的 Chrome，独立 profile 会另开窗口
+    if EGO.endswith("chrome.exe") or os.environ.get("GSC_BROWSER") == "egocopy":
+        # 不动用户正在用的浏览器，独立 profile 会另开窗口
         if cdp_ready(2):
             return
     else:
