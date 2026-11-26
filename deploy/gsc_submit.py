@@ -73,6 +73,9 @@ def start_ego():
         EGO, f"--remote-debugging-port={CDP_PORT}", "--remote-allow-origins=*",
         f"--user-data-dir={UD}", "--no-first-run", "--no-default-browser-check",
     ]
+    if not EGO.endswith("chrome.exe"):
+        # ego 的 GSC 登录在 Profile 1（Default 没有 Cookies 文件）
+        args.append(f"--profile-directory={os.environ.get('GSC_PROFILE', 'Profile 1')}")
     if EGO.endswith("chrome.exe"):
         args += ["--no-sandbox", "--disable-gpu", "--disable-dev-shm-usage"]
         if os.environ.get("GSC_BROWSER") != "realchrome":
