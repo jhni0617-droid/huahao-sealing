@@ -15,7 +15,12 @@
 import sys, os, time, subprocess, urllib.request
 from playwright.sync_api import sync_playwright
 
-if os.environ.get("GSC_BROWSER") == "egocopy":
+if os.environ.get("GSC_BROWSER") == "attach":
+    # 接管一个已经在运行的 ego（不杀进程、不重启），用于用户手动登录后继续
+    EGO = r"C:\Program Files\Citro Labs\ego lite\Application\ego.exe"
+    UD = r"C:\Users\倪\AppData\Local\Citro Labs\ego lite\User Data"
+    CDP = "http://127.0.0.1:9333"
+elif os.environ.get("GSC_BROWSER") == "egocopy":
     # 复制用户已登录的 ego 配置，独立 CDP，不动用户原窗口
     EGO = r"C:\Program Files\Citro Labs\ego lite\Application\ego.exe"
     UD = r"C:\Users\倪\AppData\Local\Temp\gsc-ego-profile"
@@ -61,6 +66,11 @@ def cdp_ready(sec=40):
 
 
 def start_ego():
+    if os.environ.get("GSC_BROWSER") == "attach":
+        # 复用正在运行的 ego，绝不重启（用户可能正在里面登录）
+        if not cdp_ready(5):
+            raise RuntimeError("attach 模式找不到 9333 上的 ego")
+        return
     if EGO.endswith("chrome.exe") or os.environ.get("GSC_BROWSER") == "egocopy":
         # 不动用户正在用的浏览器，独立 profile 会另开窗口
         if cdp_ready(2):
