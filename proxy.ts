@@ -13,6 +13,18 @@ export async function proxy(request: NextRequest) {
     return NextResponse.next()
   }
 
+  // ── 缺少语种前缀的旧地址：用 301 永久重定向到默认语种 ──
+  // 之前交给 next-intl 处理会返回 307（临时），Google 不传递权重，
+  // 旧 URL 会一直留在索引里跟规范 URL 抢排名（GSC「网页会自动重定向」29 条）。
+  const hasLocalePrefix = routing.locales.some(
+    (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`)
+  )
+  if (!hasLocalePrefix) {
+    const url = request.nextUrl.clone()
+    url.pathname = `/${routing.defaultLocale}${pathname === "/" ? "" : pathname}`
+    return NextResponse.redirect(url, 301)
+  }
+
   // ── 其余路由：i18n（语种识别、cookie、重定向） ──
   return intlMiddleware(request)
 }

@@ -11,7 +11,15 @@ import { routing } from "@/i18n/routing"
 const baseUrl = "https://hhseal.cn"
 
 // 内容页面更新不频繁，使用稳定的最后修改日期（而非每次构建都变的 new Date()）
-const CONTENT_LAST_MODIFIED = "2026-06-01"
+const CONTENT_LAST_MODIFIED = "2026-11-01"
+
+// 站点正式上线日：早于这一天的 lastmod 会让 Google 认为内容是陈年旧货。
+// 有 4 篇文章的 date 被标成 2018/2020/2021/2023，实际都是 2026 年写的，统一钳到上线日。
+const SITE_LAUNCH = "2026-05-01"
+
+function clampLastModified(date: string): string {
+  return date < SITE_LAUNCH ? SITE_LAUNCH : date
+}
 
 const staticRoutes = [
   { path: "", priority: "1.0" },
@@ -91,7 +99,7 @@ export default async function sitemap() {
   const blogRoutes = blogPosts.flatMap((p) =>
     locales.map((locale) => ({
       url: `${baseUrl}/${locale}/blog/${p.slug}`,
-      lastModified: new Date(p.date),
+      lastModified: clampLastModified(p.date),
       changeFrequency: "monthly" as const,
       priority: "0.7" as const,
       alternates: {
