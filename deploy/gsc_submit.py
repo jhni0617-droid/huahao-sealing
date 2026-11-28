@@ -67,9 +67,17 @@ def cdp_ready(sec=40):
 
 def start_ego():
     if os.environ.get("GSC_BROWSER") == "attach":
-        # 复用正在运行的 ego，绝不重启（用户可能正在里面登录）
-        if not cdp_ready(5):
-            raise RuntimeError("attach 模式找不到 9333 上的 ego")
+        # 复用正在运行的 ego；没开就用真实配置拉起来（登录态在 Profile 1 里）
+        if cdp_ready(5):
+            return
+        print("ego 未运行，用真实配置启动", flush=True)
+        subprocess.Popen([
+            EGO, f"--remote-debugging-port={CDP_PORT}", "--remote-allow-origins=*",
+            f"--user-data-dir={UD}", "--profile-directory=Profile 1",
+            "--no-first-run", "--no-default-browser-check", GSC,
+        ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        if not cdp_ready(90):
+            raise RuntimeError(f"启动 ego 后 CDP {CDP_PORT} 仍不可用")
         return
     if EGO.endswith("chrome.exe") or os.environ.get("GSC_BROWSER") == "egocopy":
         # 不动用户正在用的浏览器，独立 profile 会另开窗口
@@ -147,6 +155,9 @@ def inspect_and_request(page, url):
     page.wait_for_timeout(6000)
 
     body = page.evaluate("() => document.body.innerText")
+    # 每日配额已满：Google 是滚动 24 小时窗口，凑不满就白等
+    if "超出了配额" in body or "每日配额" in body:
+        return "QUOTA_EXCEEDED"
     # 判断是否已在索引中
     if "已在 Google 编入索引" in body or "网址已编入索引" in body:
         return "ALREADY_INDEXED"
@@ -166,6 +177,8 @@ def inspect_and_request(page, url):
     for _ in range(45):  # 最多 ~90s
         page.wait_for_timeout(2000)
         b = page.evaluate("() => document.body.innerText")
+        if "超出了配额" in b or "每日配额" in b:
+            return "QUOTA_EXCEEDED"
         if "已请求编入索引" in b or "已添加到优先抓取" in b:
             return "REQUESTED_OK"
         if "无法编入索引" in b or "无法建立索引" in b:
@@ -209,6 +222,9 @@ def main():
                 r = inspect_and_request(page, url)
                 results.append((url, r))
                 print(f"[{i+1}/{len(urls)}] {r:20s} {url}", flush=True)
+                if r == "QUOTA_EXCEEDED":
+                    print("配额已满，停止剩余提交", flush=True)
+                    break
             except Exception as e:
                 results.append((url, "ERROR"))
                 print(f"[{i+1}/{len(urls)}] ERROR: {str(e)[:100]} {url}", flush=True)
